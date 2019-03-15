@@ -1,4 +1,20 @@
+@Features = ("ID_FALLBACK","EMAIL_AUTH", "CLEAR_AUTH");
+
 $CC = "cc -std=c99 -D_POSIX_C_SOURCE -I/usr/include/gdbm -lgdbm -lgdbm_compat";
 $Cflags .= "  -DWAIT_INT";
 $MoreLib = "-ll";		# need the lex library
+
+$Owner = "root";
+$Group = "root";
+
+$QiExecDir = "/usr/app/nameserv/bin";
+$QiUtilDir = "/usr/app/nameserv/bin";
+$PhExecDir = "/usr/app/nameserv/bin";
+
+$DefineStrings{"DATABASE"} = "/usr/app/nameserv/db";
+$DefineStrings{"RUNDIR"} = "/usr/app/nameserv/db";
+$DefineStrings{"HELPDIR"} = "/usr/app/nameserv/help";
+
+$PhFlags{"FallBackAddr"} = "129.229.20.254";
+$PhFlags{"Host"} = "localhost";
 1
