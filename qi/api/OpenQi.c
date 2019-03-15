@@ -72,6 +72,8 @@ static char  RcsId[] = "@(#)$Id: OpenQi.c,v 1.8 1995/06/10 04:05:31 p-pomes Exp 
 # define	memmove(a,b,c)	bcopy(b,a,c)
 #endif
 
+#define h_addr h_addr_list[0] /* for backward compatibility */
+
 int
 OpenQi (Host, To, From)
 char	*Host;

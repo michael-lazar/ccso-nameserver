@@ -100,7 +100,7 @@ main(argc, argv)
 				syslog(LOG_NOTICE, errorstr);
 				error(argv[0], errorstr);
 			}
-			if (!bcmp(hp->h_addr_list[0], (caddr_t)&sin.sin_addr,
+			if (!bcmp(hp->h_addr_list[0], (void *)&sin.sin_addr,
 			    sizeof(sin.sin_addr))) {
 				hostname = hp->h_name;
 				break;

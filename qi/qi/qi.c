@@ -356,7 +356,7 @@ WhoAreYou()
 					IssueMessage(LOG_NOTICE, errorstr);
 					DoQuit(NULL);
 				}
-				if (!memcmp(hp->h_addr_list[0], (caddr_t)&sin->sin_addr,
+				if (!memcmp(hp->h_addr_list[0], (void *)&sin->sin_addr,
 				    sizeof(sin->sin_addr))) {
 					hostname = strdup(hp->h_name);
 					break;

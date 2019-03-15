@@ -137,7 +137,7 @@ main(argc, argv)
 			close(pipe_fd1[1]);
 			close(pipe_fd2[0]);
 
-			execlp("sort", "sort", "-r", "+1", 0);
+			execlp("sort", "sort", "-r", "-k 2", 0);
 			perror("Execl in build");
 			exit(1);
 		}

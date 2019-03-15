@@ -1,0 +1,4 @@
+$CC = "cc -std=c99 -D_POSIX_C_SOURCE -I/usr/include/gdbm -lgdbm -lgdbm_compat";
+$Cflags .= "  -DWAIT_INT";
+$MoreLib = "-ll";		# need the lex library
+1

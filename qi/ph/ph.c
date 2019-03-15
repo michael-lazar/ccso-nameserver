@@ -45,6 +45,8 @@ static char rcsrev[] = "100:Ph client $Revision: 7.6 $";
 # define INT32 long
 #endif /* OSF1 */
 
+#define h_addr h_addr_list[0] /* for backward compatibility */
+
 /*
  * This is a client program for CSO's nameserver.  It attempts to contact
  * the nameserver running on ns.uiuc.edu, and query it about entries.

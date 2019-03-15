@@ -58,6 +58,11 @@ static char rcsid[] = "@(#)$Id: phquery.c,v 1.54 1995/01/17 23:33:07 p-pomes Exp
 #include "phquery.h"
 #include "messages.h"
 
+/* For backwards compatibility */
+#define S_IREAD    S_IRUSR
+#define S_IWRITE   S_IWUSR
+#define S_IEXEC    S_IXUSR
+
 #define		VERSION		"4.4"
 
 /* How to print/log error messages */
