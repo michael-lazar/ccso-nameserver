@@ -1,0 +1,243 @@
+.\" Written by Paul Pomes, University of Illinois, Computing Services Office
+.\" Copyright (c) 1991 by Paul Pomes and the University of Illinois Board
+.\" of Trustees.  
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 3. All advertising materials mentioning features or use of this software
+.\"    must display the following acknowledgement:
+.\"	This product includes software developed by the University of
+.\"	Illinois, Urbana and its contributors.
+.\" 4. Neither the name of the University nor the names of its contributors
+.\"    may be used to endorse or promote products derived from this software
+.\"    without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.\"     @(#)$Id: phquery.8,v 1.5 1993/02/05 15:37:13 paul Exp $
+.\"
+.TH PHQUERY 8L "13 Feb 1989"
+.UC 4
+.SH NAME
+phquery \- fuzzy address resolver backend for sendmail
+.SH SYNOPSIS
+.B phquery
+[
+.B \-d
+] [
+.B \-i
+] [
+.B \-l
+] [
+.B \-p
+] [
+.BI \-x\  service_type
+] [
+.BI \-f\  from_address
+]
+address
+[ address2 ]
+\&...
+.SH DESCRIPTION
+.I Phquery
+relies on the
+.IR qi (8)
+people name server to resolve fuzzy addresses, e.g., those sent
+to
+.IR jp-morgan@uiuc.edu ,
+.IR John-Morgan@uiuc.edu ,
+or
+.IR ka9wgn@uiuc.edu .
+The local portion of the address (left of the "@")
+may be either a
+.IR ph (1)
+alias (jp-morgan),
+name (John-Morgan),
+or
+amateur radio callsign (ka9wgn)
+field.
+.PP
+N.B.,
+.I ph
+only guarantees the uniqueness of the alias field.
+Should there be two or more John-Morgan s in the ph database,
+.I phquery
+will return an error message suggesting alternatives.
+Also note that while ph names have blanks, sending a blank embedded in a mail
+address, no matter what quoting is done, is likely to be zapped by some
+intervening mail system.
+Therefore blanks in full name addresses should be replaced with dashes ("-").
+Thus "John Morgan" becomes John-Morgan.
+.PP
+.I Phquery
+is not meant to be invoked directly by users.
+Instead
+.IR sendmail (8)
+will invoke it as a non-final mailer for addresses that have a remote
+portion of
+.IR uiuc.edu .
+See the NOTES section below for a quick sendmail.cf hack that will enable
+.I phquery
+alias resolution to be done locally instead on on the machines MX'ed for
+.IR uiuc.edu .
+.PP
+The call sequence runs as follows:
+.PP
+Sendmail resolves one or more addresses in a message from, say
+.I joe@chicago.edu
+to
+.IR someone@uiuc.edu .
+.PP
+Sendmail invokes
+.I phquery
+as
+.sp
+.in +4
+phquery -f joe@chicago.edu someone
+.in
+.sp
+The text of the mail message is read by
+.I phquery
+on the standard input.
+.I Phquery
+consults the network 
+.IR qi (8)
+server to locate the email address
+.I doda@ux1.cso.uiuc.edu
+for the alias
+.IR someone .
+.PP
+The header line "X-PH: V<version>@host.domain" is added to the mail message
+where
+.I host.domain
+is the host where
+.I phquery
+did the translation.
+Sendmail is then invoked again to transport the message to its destination.
+.TP 5 5
+.B \-d
+Turn on debugging statements, disable removal of temp files, and don't
+vfork/execve sendmail for error or mail delivery.
+Enabling debug also disables
+.IR syslog (3)
+statements unless re-enabled by a subsequent
+.BR \-l .
+.TP 5 5
+.B \-i
+Issue a usage and copyright statement.
+.TP 5 5
+.B \-l
+Enable use of
+.IR syslog (3)
+routines to record signicant events using the LOG_MAIL facility.
+.TP 5 5
+.BI \-x\  service_name
+Look up the single alias
+.I service_name 
+and send the message to the email address returned.
+This feature at UIUC supports outgoing email to facsimile.
+.TP 5 5
+.BI \-f\  Address
+Use
+.I Address
+as the From: address in the forwarded mail and as the recipient for any
+error messages.
+If not specified,
+.I phquery
+will use the contents of the From: field in the message header block instead.
+.TP 5 5
+.B \-r
+A synonym for
+.BR \-f .
+.TP 5 5
+.B \-p
+If set, all error returns are copied to Postmaster.
+.SH NOTES
+A vanilla sendmail site can use the syntax
+.I some-one@uiuc.edu
+provided at least one of the following is true:
+.sp
+.nf
+a) the sendmail uses MX records,
+b) it has a mailhost or smarterhost relay that does use MX records,
+c) the rules below have been put into their sendmail.cf file.
+.fi
+.PP
+Macro M is defined to be the domain for which mail is to be accepted for.
+At UIUC, it is simply
+.PP
+DMuiuc.edu
+.PP
+To invoke
+.I phquery
+locally, add the following rule to ruleset 0 just prior to selecting the
+local mailer:
+.PP
+R$+@$M		$#PH  $@$w $:$1
+.PP
+And define the PH mailer as follows:
+.PP
+MPH,	P=/usr/local/libdata/mail/phquery, F=DFMhnmur,	A=phquery $u
+.PP
+If the IDA sendmail is used, then the steps are slightly more involved.
+Assuming again that the domain is uiuc.edu, proceed as follows.
+.IP 1)
+Add phquery support to sendmail.cf:
+.sp
+.nf
+cd sendmail/ida/cf
+.sp
+Add the lines below to the m4 file for your machine
+.sp
+define(ALTERNATENAMES, uiuc.edu)
+define(MAILERTABLE, LIBDIR/mailertable)
+.sp
+Build the sendmail.cf file and install it in the standard location.
+.fi
+.IP 2)
+Assuming LIBDIR was defined in the Makefile as /usr/local/libdata/mail,
+the next steps are
+.sp
+.nf
+cd /usr/local/libdata/mail
+cat > mailertable
+PH!your.host.domain			uiuc.edu
+^D
+cat > Makefile
+mailertable.dir:	mailertable
+	./dbm -L make mailertable mailertable
+^D
+.sp
+.PP
+Type 'make' and restart the sendmail daemon.
+.SH SEE ALSO
+.IR sendmail (8)
+.SH BUGS
+Undoubtably.
+Please send comments and suggestions to
+.BR paul-pomes@uiuc.edu .
+.PP
+N.B., the
+.B \-p
+option sends copies of failed mail to Postmaster.
+While usually a discreet person, it would still not be wise to discuss
+sensitive topics via email.
+This is useful advice at any time.
+.SH AUTHOR
+Paul Pomes, UIUC-CSO

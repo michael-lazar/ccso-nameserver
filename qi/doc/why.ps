@@ -1,0 +1,759 @@
+%!PS-Adobe-3.0
+%%Creator: groff version 1.04
+%%DocumentNeededResources: font Times-Bold
+%%+ font Times-Roman
+%%+ font Times-Italic
+%%DocumentSuppliedResources: procset grops 1.04 0
+%%Pages: 6
+%%PageOrder: Ascend
+%%Orientation: Portrait
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset grops 1.04 0
+%!PS-Adobe-3.0 Resource-ProcSet
+
+/setpacking where {
+	pop
+	currentpacking
+	true setpacking
+} if
+
+/grops 120 dict dup begin 
+
+% The ASCII code of the space character.
+/SC 32 def
+
+/A /show load def
+/B { 0 SC 3 -1 roll widthshow } bind def
+/C { 0 exch ashow } bind def
+/D { 0 exch 0 SC 5 2 roll awidthshow } bind def
+/E { 0 rmoveto show } bind def
+/F { 0 rmoveto 0 SC 3 -1 roll widthshow } bind def
+/G { 0 rmoveto 0 exch ashow } bind def
+/H { 0 rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/I { 0 exch rmoveto show } bind def
+/J { 0 exch rmoveto 0 SC 3 -1 roll widthshow } bind def
+/K { 0 exch rmoveto 0 exch ashow } bind def
+/L { 0 exch rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/M { rmoveto show } bind def
+/N { rmoveto 0 SC 3 -1 roll widthshow } bind def
+/O { rmoveto 0 exch ashow } bind def
+/P { rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/Q { moveto show } bind def 
+/R { moveto 0 SC 3 -1 roll widthshow } bind def
+/S { moveto 0 exch ashow } bind def
+/T { moveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+
+% name size font SF -
+
+/SF {
+	findfont exch
+	[ exch dup 0 exch 0 exch neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+% name a c d font MF -
+
+/MF {
+	findfont
+	[ 5 2 roll
+	0 3 1 roll % b
+	neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+/level0 0 def
+/RES 0 def
+/PL 0 def
+/LS 0 def
+
+% BP -
+
+/BP {
+	/level0 save def
+	1 setlinecap
+	1 setlinejoin
+	72 RES div dup scale
+	LS {
+		90 rotate
+	} {
+		0 PL translate
+	} ifelse
+	1 -1 scale
+} bind def
+
+/EP {
+	level0 restore
+	showpage
+} bind def
+
+
+% centerx centery radius startangle endangle DA -
+
+/DA {
+	newpath arcn stroke
+} bind def
+
+% x y SN - x' y'
+% round a position to nearest (pixel + (.25,.25))
+
+/SN {
+	transform 
+	.25 sub exch .25 sub exch
+	round .25 add exch round .25 add exch
+	itransform
+} bind def
+	
+% endx endy startx starty DL -
+% we round the endpoints of the line, so that parallel horizontal
+% and vertical lines will appear even
+
+/DL {
+	SN
+	moveto
+	SN
+	lineto stroke
+} bind def
+
+% centerx centery radius DC -
+
+/DC {
+	newpath 0 360 arc closepath
+} bind def
+
+
+/TM matrix def
+
+%  width height centerx centery DE -
+
+/DE {
+	TM currentmatrix pop
+	translate scale newpath 0 0 .5 0 360 arc closepath
+	TM setmatrix
+} bind def
+
+% these are for splines
+
+/RC /rcurveto load def
+/RL /rlineto load def
+/ST /stroke load def
+/MT /moveto load def
+/CL /closepath load def
+
+% fill the last path
+
+% amount FL -
+
+/FL {
+	currentgray exch setgray fill setgray
+} bind def
+
+% fill with the ``current color''
+
+/BL /fill load def
+
+/LW /setlinewidth load def
+% new_font_name encoding_vector old_font_name RE -
+
+/RE {
+	findfont
+	dup maxlength dict begin
+	{
+		1 index /FID ne { def } { pop pop } ifelse
+	} forall
+	/Encoding exch def
+	dup /FontName exch def
+	currentdict end definefont pop
+} bind def
+
+/DEFS 0 def
+
+% hpos vpos EBEGIN -
+
+/EBEGIN {
+	moveto
+	DEFS begin
+} bind def
+
+/EEND /end load def
+
+/CNT 0 def
+/level1 0 def
+
+% llx lly newwid wid newht ht newllx newlly PBEGIN -
+
+/PBEGIN {
+	/level1 save def
+	translate
+	div 3 1 roll div exch scale
+	neg exch neg exch translate
+	% set the graphics state to default values
+	0 setgray
+	0 setlinecap
+	1 setlinewidth
+	0 setlinejoin
+	10 setmiterlimit
+	[] 0 setdash
+	/setstrokeadjust where {
+		pop
+		false setstrokeadjust
+	} if
+	/setoverprint where {
+		pop
+		false setoverprint
+	} if
+	newpath
+	/CNT countdictstack def
+	userdict begin
+	/showpage {} def
+} bind def
+
+/PEND {
+	clear
+	countdictstack CNT sub { end } repeat
+	level1 restore
+} bind def
+
+end def
+
+/setpacking where {
+	pop
+	setpacking
+} if
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Times-Italic
+grops begin/DEFS 1 dict def DEFS begin/u{.001 mul}bind def end/RES 72 def/PL
+792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron/scaron/zcaron
+/Ydieresis/trademark/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/space/exclam
+/quotedbl/numbersign/dollar/percent/ampersand/quoteright/parenleft/parenright
+/asterisk/plus/comma/hyphen/period/slash/zero/one/two/three/four/five/six/seven
+/eight/nine/colon/semicolon/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J
+/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright/circumflex
+/underscore/quoteleft/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z
+/braceleft/bar/braceright/tilde/.notdef/quotesinglbase/guillemotleft
+/guillemotright/bullet/florin/fraction/perthousand/dagger/daggerdbl/endash
+/emdash/ff/fi/fl/ffi/ffl/dotlessi/dotlessj/grave/hungarumlaut/dotaccent/breve
+/caron/ring/ogonek/quotedblleft/quotedblright/oe/lslash/quotedblbase/OE/Lslash
+/.notdef/exclamdown/cent/sterling/currency/yen/brokenbar/section/dieresis
+/copyright/ordfeminine/guilsinglleft/logicalnot/minus/registered/macron/degree
+/plusminus/twosuperior/threesuperior/acute/mu/paragraph/periodcentered/cedilla
+/onesuperior/ordmasculine/guilsinglright/onequarter/onehalf/threequarters
+/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex/Idieresis/Eth
+/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis/multiply/Oslash/Ugrave
+/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls/agrave/aacute/acircumflex
+/atilde/adieresis/aring/ae/ccedilla/egrave/eacute/ecircumflex/edieresis/igrave
+/iacute/icircumflex/idieresis/eth/ntilde/ograve/oacute/ocircumflex/otilde
+/odieresis/divide/oslash/ugrave/uacute/ucircumflex/udieresis/yacute/thorn
+/ydieresis]def/Times-Italic@0 ENC0/Times-Italic RE/Times-Roman@0 ENC0
+/Times-Roman RE/Times-Bold@0 ENC0/Times-Bold RE
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 18/Times-Bold@0 SF(The CCSO Nameserver \255 Why?)164.385 105.6 Q/F1 10
+/Times-Roman@0 SF(by)283 139.2 Q(Steven Dorner)215.73 151.2 Q
+(s\255dorner@uiuc.edu)7.5 E(Computer and Communications Services Of)192.265
+163.2 Q(\214ce)-.18 E(University of Illinois at Urbana)225.23 175.2 Q
+(December 7, 1989)251.205 199.2 Q(updated by)265.92 235.2 Q(Paul Pomes)214.605
+247.2 Q(paul\255pomes@uiuc.edu)7.5 E(Computer and Communications Services Of)
+192.265 259.2 Q(\214ce)-.18 E(University of Illinois at Urbana)225.23 271.2 Q
+(August 2, 1992)257.305 295.2 Q/F2 10/Times-Bold@0 SF(Intr)72 359.4 Q(oduction)
+-.18 E F1 .248(There are several documents that describe the function, impleme\
+ntation, and use of the CCSO Nameserver)72 375.6 R(.)-.55 E .449
+(This paper has a slightly dif)72 387.6 R .45(ferent thrust; it endeavors to a\
+nswer the question, \231Why?\232 Why did we want a)-.18 F 2.816
+(Nameserver? Why)72 399.6 R .315
+(did we put in the features we did, and not others?)2.816 F .315
+(Why did we develop our own rather)5.315 F .378(than use someone else')72 411.6
+R 2.878(s? Why)-.55 F .379
+(did we choose the CSnet server as a starting point, and what are the dif)2.878
+F(fer)-.18 E(-)-.2 E(ences between our Nameserver and the CSnet server?)72
+423.6 Q .98(This paper should be of most use to those contemplating a name ser\
+vice for their own or)72 439.8 R 3.48(ganization. W)-.18 F(e)-.8 E .346(hope i\
+t will at least point such people at some of the questions to ask about a name\
+ service; we do not pre-)72 451.8 R
+(tend that they will reach the same conclusions as we did.)72 463.8 Q 1.187
+(Necessary to the understanding of this paper is)72 480 R/F3 10/Times-Italic@0
+SF 1.186(The CCSO Nameserver \255 A Description)3.687 F F1(.)A F3 3.686(AD)
+6.186 G(escription)464 480 Q F1 .758
+(explains exactly what our Nameserver is, and how it operates.)72 492 R 2.358
+-.8(We w)5.758 H .759(ill assume that the reader is familiar).8 F(with that in\
+formation, and will not attempt here to duplicate the explanations of)72 504 Q
+(fered in)-.18 E F3 2.5(AD)2.5 G(escription)439 504 Q F1(.)A .711(The CCSO Nam\
+eserver is, like many systems, the product of design, accident, and evolution.)
+72 520.2 R .711(Not every-)5.711 F 1.489(thing panned out as we had hoped; som\
+e things we thought were important were eventually discarded;)72 532.2 R .064
+(some things we tried did not succeed.)72 544.2 R .064
+(Special note will be made where the reality dif)5.064 F .063
+(fers radically from the)-.18 F 3.036(intention. These)72 556.2 R .536
+(places merit close scrutiny)3.036 F 3.036(,s)-.65 G .536
+(ince they indicate a place where the \231right\232 choice is proba-)259.266
+556.2 R(bly not very clear)72 568.2 Q(.)-.55 E F2(Why Have a Name Service?)72
+592.2 Q F1 .43
+(The \214rst question to be answered is, why do this thing at all?)72 608.4 R
+.429(What are the real bene\214ts of a name service)5.429 F
+(like the CCSO Nameserver?)72 620.4 Q 1.6 -.8(We h)5 H
+(ad several reasons for expending the ef).8 E(fort to create our Nameserver)
+-.18 E(.)-.55 E<83>77 636.6 Q F2(Electr)5 E 1.076(onic mail dir)-.18 F(ectory)
+-.18 E(.)-.55 E F1 1.076
+(First and foremost, we wanted some way for people in our University to)6.076 F
+.085(\214nd one another)85.5 648.6 R 1.185 -.55('s e).37 H .085
+(lectronic mail addresses.).55 F .085
+(There are hundreds of computers in many dif)5.085 F .085(ferent depart-)-.18 F
+.45(ments, and \214nding somebody')85.5 660.6 R 2.95(se)-.55 G .45
+(mail address was like looking for a needle in a haystack.)218.69 660.6 R 2.95
+(An)5.45 G .45(ame ser)469.6 660.6 R(-)-.2 E .422(vice would provide a central\
+ collection and inquiry point for electronic mail addresses.)85.5 672.6 R 2.022
+-.8(We h)5.422 H .422(ave found).8 F .32 LW 76 682.2 72 682.2 DL 80 682.2 76
+682.2 DL 84 682.2 80 682.2 DL 88 682.2 84 682.2 DL 92 682.2 88 682.2 DL 96
+682.2 92 682.2 DL 100 682.2 96 682.2 DL 104 682.2 100 682.2 DL 108 682.2 104
+682.2 DL 112 682.2 108 682.2 DL 116 682.2 112 682.2 DL 120 682.2 116 682.2 DL
+124 682.2 120 682.2 DL 128 682.2 124 682.2 DL 132 682.2 128 682.2 DL 136 682.2
+132 682.2 DL 140 682.2 136 682.2 DL 144 682.2 140 682.2 DL 148 682.2 144 682.2
+DL 152 682.2 148 682.2 DL 156 682.2 152 682.2 DL 160 682.2 156 682.2 DL 164
+682.2 160 682.2 DL 168 682.2 164 682.2 DL 172 682.2 168 682.2 DL 176 682.2 172
+682.2 DL 180 682.2 176 682.2 DL 184 682.2 180 682.2 DL 188 682.2 184 682.2 DL
+192 682.2 188 682.2 DL 196 682.2 192 682.2 DL 200 682.2 196 682.2 DL 204 682.2
+200 682.2 DL 208 682.2 204 682.2 DL 212 682.2 208 682.2 DL 216 682.2 212 682.2
+DL/F4 8/Times-Roman@0 SF(Converted to portable n/trof)93.6 694.2 Q 2(ff)-.144 G
+(ormat using the -me macros from funky Next W)190.328 694.2 Q
+(riteNow format \(icch\).)-.32 E EP
+%%Page: 2 2
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 289.65(2T)72 60 S(he CCSO Nameserver \255 Why?)373.32 60
+Q/F1 10/Times-Roman@0 SF .907
+(the Nameserver to be very useful in this regard, although it has been dif)85.5
+96 R .907(\214cult to collect the electronic)-.18 F(mail addresses.)85.5 108 Q
+<83>77 120 Q F0 .903(Automatic mail forwarding.)5 F F1 .903
+(Another reason, ironically)5.903 F 3.402(,t)-.65 G .902
+(hat we wanted a Nameserver was to elimi-)327.456 120 R 1.368
+(nate the need for explicit electronic mail addresses.)85.5 132 R 3.868(Ac)
+6.368 G 1.368(entral repository of speci\214c email addresses)321.92 132 R .872
+(would give us the capability to accept very general addresses, such as \231St\
+eve.Dorner@uiuc.edu\232, turn)85.5 144 R .829
+(them into proper electronic mail addresses, and deliver them.)85.5 156 R .83
+(This would not only eliminate the need)5.829 F 1.459(for correspondents to kn\
+ow email addresses, but would also allow people to move from machine to)85.5
+168 R .049(machine without having to retrain everyone who sends them mail.)85.5
+180 R .05(It would only be necessary to change)5.049 F .62(the electronic mail\
+ address in the name service to change the account that receives a person')85.5
+192 R 3.12(sm)-.55 G 3.12(ail. In)477.55 192 R
+(practice, we have found this to be a very convenient service.)85.5 204 Q<83>77
+216 Q F0(Electr)5 E 1.639(onic \231Phone Book\232.)-.18 F F1 1.639
+(Another function of a name service would be as a replacement for the)6.639 F
+.26(paper phone book.)85.5 228 R .26(It could be used to look up mailing addre\
+sses and phone numbers of people or cam-)5.26 F .177(pus or)85.5 240 R .177
+(ganizations, just like a regular phone book.)-.18 F .177
+(Unlike a regular phone book, it would be ready at the)5.177 F .308(\214ngerti\
+ps of anyone on our campus network, not across the room on a bookshelf.)85.5
+252 R .307(Also unlike a regular)5.307 F 1.871(phone book, it could be kept up\
+ to date as people move around in the University)85.5 264 R 6.872(.W)-.65 G
+4.372(ea)451.454 264 S 1.872(re a little)464.706 264 R(suprised that this is)
+85.5 276 Q F0(the)2.5 E F1(big hit of our Nameserver)2.5 E 2.5(,a)-.4 G
+(nd the major reason that people use it.)293.13 276 Q<83>77 288 Q F0 .941
+(User validation.)5 F F1 .941(Given a name service that keeps some information\
+ about everyone on campus, it is)5.941 F .014
+(reasonable to contemplate using it as a central point for authentication.)85.5
+300 R 2.514(Au)5.014 G .014(ser would identify himself to)388.394 300 R .433
+(the name server)85.5 312 R 2.933(,a)-.4 G .433
+(nd other systems would accept the name server)159.149 312 R 1.533 -.55('s w)
+.37 H .432(ord that the user was who he said).55 F .352
+(he was, eliminating the burden on the user of remembering many dif)85.5 324 R
+.352(ferent passwords, as well as ensur)-.18 F(-)-.2 E .852(ing security)85.5
+336 R 5.852(.T)-.65 G .851
+(his was not to be part of our initial implementation, however)147.104 336 R(.)
+-.55 E/F2 10/Times-Italic@0 SF 3.351([Reality: This)5.851 F .851(has been)3.351
+F(put on hold until MIT')85.5 348 Q 2.5(sK)-1.29 G(erber)186.72 348 Q
+(os ceases to be a moving tar)-.37 E(get.])-.37 E F1<83>77 360 Q F0
+(Accounting.)5 E F1(The name service could serve as a central repository for a\
+ccounting information.)5 E .522(What is has come down to for us is: the Namese\
+rver is a very good substitute for the paper phone book, a)72 376.2 R .431(sub\
+stitute that people really like; the Nameserver is the only way to \214nd out \
+someone')72 388.2 R 2.93(se)-.55 G .43(mail address; and)433.15 388.2 R
+(the Nameserver is very useful for forwarding mail.)72 400.2 Q F0(What Did W)72
+424.2 Q 2.5(eW)-.55 G(ant In a Nameserver)142.29 424.2 Q 2.5(,a)-.92 G
+(nd Why Did W)238.85 424.2 Q 2.5(eW)-.55 G(ant It?)319.43 424.2 Q F1 1.668 -.8
+(We h)72 440.4 T .068
+(ad de\214nite ideas about some of the features we wanted in our name service.)
+.8 F .069(The following items were)5.069 F(considered essential:)72 452.4 Q<83>
+77 468.6 Q F0(Flexibility)5 E(.)-.55 E F1 1.903 -.8(We w)5.303 H .303
+(anted our name service to be a fairly general tool.).8 F .302
+(Rather than try to think of all pos-)5.303 F .037(sible uses of it beforehand\
+, our goal was to come up with a design that would give us the freedom to add)
+85.5 480.6 R .169(new data items or new categories of entries.)85.5 492.6 R
+.168(The keeping of tagged \214elds and the use of \214eld properties)5.168 F
+(in our Nameserver have met this goal completely)85.5 504.6 Q(.)-.65 E<83>77
+516.6 Q F0 .428(Large Capacity)5 F(.)-.55 E F1(Obviously)5.428 E 2.928(,w)-.65
+G 2.928(en)213.354 516.6 S .429
+(eeded a database that could handle the \214fty to one hundred thousand)225.722
+516.6 R 1.976(entries we were expecting.)85.5 528.6 R 1.976
+(This is actually a rather magic range; in the middle of the range, one)6.976 F
+.071(exceeds the capacity of 16 bit pointers.)85.5 540.6 R .072
+(Our Nameserver uses 32 bit pointers, and so is quite safe from a)5.071 F
+(size standpoint.)85.5 552.6 Q<83>77 564.6 Q F0 .338(High Performance.)5 F F1
+.337(The system has to be very fast if it is going to be used; no one is going\
+ to want to)5.338 F .364(wait a long time to look up a phone number)85.5 576.6
+R 5.365(.M)-.55 G(oreover)279.695 576.6 Q 2.865(,l)-.4 G .365
+(ow delay is absolutely essential if a name ser)317.98 576.6 R(-)-.2 E .085
+(vice is going to be involved in mail handling.)85.5 588.6 R .084
+(Response time for our Nameserver on a typical query is 1)5.084 F(second, and \
+most of that is spent on network setup, so we are pleased with performance.)
+85.5 600.6 Q<83>77 612.6 Q F0 1.604(Online Update by Users.)5 F F1 3.204 -.8
+(We w)6.604 H 1.605
+(anted a name service in which individuals could update their own).8 F 2.559
+(information. There)85.5 624.6 R .059
+(were basically three reasons for this; two practical and one philosophical.)
+2.559 F .058(The prac-)5.058 F .136(tical reasons are that we didn')85.5 636.6
+R 2.636(tw)-.18 G .136(ant to bear the lar)218.324 636.6 R .136
+(ge clerical burden of keeping the database up-to-date,)-.18 F .01
+(and we didn')85.5 648.6 R 2.51(tw)-.18 G .009(ant to incur the inevitable tim\
+e and accuracy penalty that goes with the aforesaid clerical)150.06 648.6 R
+3.846(burden. The)85.5 660.6 R 1.346(philosophical reason is we'd rather users\
+ have control of their own information, unless)3.846 F 1.23
+(there was a good reason for them not to do so.)85.5 672.6 R 2.83 -.8(We a)6.23
+H 1.23(llow anyone to change most information about).8 F .014(themselves in ou\
+r Nameserver; they can do it any time they wish, and the changes are instantly\
+ available)85.5 684.6 R(to others.)85.5 696.6 Q<83>77 708.6 Q F0
+(Network-based.)5 E F1(Obviously)5.7 E 3.2(,al)-.65 G(ar)215.83 708.6 Q .699
+(ge database that is being dynamically updated is going to have to be)-.18 F
+.682(accessed over a network.)85.5 720.6 R .682(Even if the database wasn')
+5.682 F 3.182(tt)-.18 G .682(oo lar)311.668 720.6 R .683
+(ge to be replicated on each computer)-.18 F 3.183(,t)-.4 G(he)494.56 720.6 Q
+EP
+%%Page: 3 3
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver \255 Why?)72 60 Q(3)499 60 Q/F1 10
+/Times-Roman@0 SF .575(fact that updates are possible at any time would mean t\
+he databases would be out of date immediately)85.5 96 R(.)-.65 E 2.52(Ad)85.5
+110 S .02
+(istributed system such as that used by the Internet Domain Name Server)100.24
+110 R/F2 7/Times-Roman@0 SF(1)389.03 106 Q F1 .02(could have been used; both)
+395.05 110 R 2.797(implementation restraints and security concerns made us dec\
+ide in favor of a single, centralized)85.5 122 R(database.)85.5 134 Q 2.393 -.8
+(We f)72 150.2 T .794(eel that our Nameserver has met all of the essential req\
+uirements listed above.).8 F 2.394 -.8(We a)5.794 H .794(lso had a list of).8 F
+.055(items that would be nice, but were not considered essential, for a name s\
+ervice.)72 162.2 R .055(Our track record with these)5.055 F .809(items is less\
+ good; some of them were not done because we changed our minds about their wor\
+th, others)72 174.2 R(because we just didn')72 186.2 Q 2.5(th)-.18 G
+(ave the time to implement them.)168.47 186.2 Q<83>77 204.4 Q F0 .076
+(The Owning Account.)5 F F1 .075(This idea came from the CSnet Name Server;)
+5.076 F F2(2)366.785 200.4 Q F1 .075(the gist of it is that each user has)
+372.86 204.4 R 3.167(as)85.5 216.4 S .667
+(ingle account which \231own\232 his or her entry)96.997 216.4 R 5.667(.T)-.65
+G .667(he name service only requires that the host on which)287.753 216.4 R
+1.248(the account resides verify that the account accessing the entry is indee\
+d what it is claimed to be; no)85.5 228.4 R 1.287
+(passwords are required of the user)85.5 240.4 R(.)-.55 E/F3 10/Times-Italic@0
+SF 3.787([Reality: W)6.287 F 3.787(en)-.92 G 1.287(ever did this.)299.546 240.4
+R 1.287(It r)6.287 F(equir)-.37 E 1.287(es that the hosts on which)-.37 F .32
+(owning accounts r)85.5 252.4 R .32(eside have a high degr)-.37 F .319
+(ee of cooperation with the name service, something we did not)-.37 F .054
+(feel we could get fr)85.5 264.4 R .055(om all the University computers.)-.37 F
+1.895 -.92(We c)5.055 H .055(ould do this for those we administer ourselves,)
+.92 F .546(but have not felt a gr)85.5 276.4 R .545(eat need to do so.)-.37 F
+.545(Instead, we assign passwor)5.545 F .545(ds to anyone who wishes to change)
+-.37 F(his or her information.])85.5 288.4 Q F1<83>77 300.4 Q F0 2.559
+(Domain-based Authorization.)5 F F1 2.559
+(Along with the concept of the owning account came the idea of)7.559 F 1.301
+(domain-based authorization.)85.5 312.4 R 1.301
+(In short, one viewed the owning account as being composed of several)6.301 F
+.012(domains, each of which would have its own Nameserver entry)85.5 324.4 R
+5.012(.F)-.65 G(urther)347.418 324.4 Q 2.512(,e)-.4 G .012
+(ach of these domains would be)380.35 324.4 R .551(allowed to do updates on th\
+e information kept about anyone whose owning account was in its domain.)85.5
+336.4 R 1.149(For example, if the owning account for my entry was \231dorner@g\
+arcon.cso.uiuc.edu\232, there would be)85.5 348.4 R
+(\214ve \231people\232 who could update my entry:)85.5 360.4 Q 12.5
+(dorner@garcon.cso.uiuc.edu \(me\))176.97 380.8 R 47.81
+(garcon.cso.uiuc.edu \(my)176.97 392.8 R(system administrator\))2.5 E 77.52
+(cso.uiuc.edu \(my)176.97 404.8 R(department\))2.5 E 93.35(uiuc.edu \(my)176.97
+416.8 R(University\))2.5 E 113.07(edu \(the)176.97 428.8 R(super)2.5 E(-user\))
+-.2 E .036(This would allow us to restrict some \214elds in our name service t\
+o being changed at certain levels; for exam-)72 453.4 R 1.133
+(ple, only my department \(or above\) could change my job title.)72 465.4 R
+1.133(This would maintain the integrity of the)6.133 F .646
+(database \(I couldn')72 477.4 R 3.146(tl)-.18 G .645(ie about myself\), and a\
+t the same time would not place the burden of upkeep on any)158.458 477.4 R
+.644(single area; each domain would handle its own.)72 489.4 R F3 3.144
+([Reality: W)5.644 F 3.144(en)-.92 G .644(ever implemented this scheme.)333.31
+489.4 R .644(Most data)5.644 F 1.014(elements ar)72 501.4 R 3.514(ec)-.37 G
+1.014
+(hangeable by the individuals involved; if they wish to lie, they may do so.)
+131.418 501.4 R 1.013(About the only)6.014 F .832(thing that is r)72 513.4 R
+.833(estricted is the name of the person; changes to names ar)-.37 F 3.333(eh)
+-.37 G .833(andled by me personally at this)374.565 513.4 R 2.5(time. I)72
+525.4 R(had to make \214ve changes in a year of operation.])2.5 E F1<83>77
+541.6 Q F0 -.18(Wi)5 G(de A).18 E(vailability of Client Softwar)-.74 E(e.)-.18
+E F1 1.4 -.7(To q)5 H(uote from one of our early design documents:).7 E/F4 9
+/Times-Roman@0 SF(People should be able to access the nameserver from just abo\
+ut anything short of an Edsel.)105.5 556.6 Q F1 2.123 -.8(We w)85.5 572.8 T
+.522(anted a name service that was available to anyone on our campus network.)
+.8 F .522(In this we have done)5.522 F
+(fairly well; we have clients for UNIX, VMS,)85.5 586.8 Q F2(3)264.63 582.8 Q
+F1(DOS,)270.63 586.8 Q F2(4)293.13 582.8 Q F1(Macintosh,)299.13 586.8 Q F2(5)
+343.85 582.8 Q F1(as well as a limited VM/CMS client.)349.85 586.8 Q<83>77 603
+Q F0 .595(Easy Entry of Information.)5 F F1 -.4(Wi)5.595 G .595
+(th at least 50,000 entries expected, we had to have an automated way).4 F
+1.281(of entering information; \231just type it in\232 was right out.)85.5 615
+R 1.28(In this our NameServer gets mixed reviews.)6.281 F .32 LW 76 624.6 72
+624.6 DL 80 624.6 76 624.6 DL 84 624.6 80 624.6 DL 88 624.6 84 624.6 DL 92
+624.6 88 624.6 DL 96 624.6 92 624.6 DL 100 624.6 96 624.6 DL 104 624.6 100
+624.6 DL 108 624.6 104 624.6 DL 112 624.6 108 624.6 DL 116 624.6 112 624.6 DL
+120 624.6 116 624.6 DL 124 624.6 120 624.6 DL 128 624.6 124 624.6 DL 132 624.6
+128 624.6 DL 136 624.6 132 624.6 DL 140 624.6 136 624.6 DL 144 624.6 140 624.6
+DL 148 624.6 144 624.6 DL 152 624.6 148 624.6 DL 156 624.6 152 624.6 DL 160
+624.6 156 624.6 DL 164 624.6 160 624.6 DL 168 624.6 164 624.6 DL 172 624.6 168
+624.6 DL 176 624.6 172 624.6 DL 180 624.6 176 624.6 DL 184 624.6 180 624.6 DL
+188 624.6 184 624.6 DL 192 624.6 188 624.6 DL 196 624.6 192 624.6 DL 200 624.6
+196 624.6 DL 204 624.6 200 624.6 DL 208 624.6 204 624.6 DL 212 624.6 208 624.6
+DL 216 624.6 212 624.6 DL/F5 5/Times-Roman@0 SF(1)93.6 635 Q/F6 8/Times-Roman@0
+SF(See RFC-1035,)2 3.2 M/F7 8/Times-Italic@0 SF
+(Domain Names \255 Implementation and Speci\214cation)2 E F6 2(,P)C 2(.M)
+323.492 638.2 S(ockapetris.)334.604 638.2 Q F5(2)93.6 648.6 Q F6(See)2 3.2 M F7
+(The CSNet Name Server)2 E F6 2(,M)C 2(.S)200.756 651.8 S(olomon, L. Landweber)
+209.204 651.8 Q 2(,D)-.32 G 2(.N)291.98 651.8 S(euhengen.)301.756 651.8 Q F5(3)
+93.6 662.2 Q F6 .065(The VMS client was contributed by Mark Sandrock \(m-sandr\
+ock@uiuc.edu\) of the University')2.064 3.2 N 2.065(sS)-.44 G .065
+(chool of Chemical Sciences.)412.709 665.4 R F5(4)93.6 675.8 Q F6(The DOS clie\
+nt was contributed by Gary Jacobs of Qualcomm Corp \(gjacobs@qualcomm.com\).)2
+3.2 M F5(5)93.6 689.4 Q F6 .012(The Macintosh client was contributed by John N\
+orstad, Academic Computing and Network Services, Northwestern University)2.012
+3.2 N(\(j-norstad@nwu.edu\).)72 702.2 Q EP
+%%Page: 4 4
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 289.65(4T)72 60 S(he CCSO Nameserver \255 Why?)373.32 60
+Q/F1 10/Times-Roman@0 SF 1.069
+(Automated entry is used, but it is not very pleasant; witness the document,)
+85.5 96 R/F2 10/Times-Italic@0 SF 1.069(Rebuilding a Nameserver)3.569 F
+(Database In 24 Easy Steps)85.5 108 Q F1(.)A<83>77 120 Q F0 .562
+(Don't Pass Passwords Over the Network.)5 F F1 -.4(Wi)5.562 G .562
+(th cheap ethernet devices available, it is fairly easy for).4 F .26
+(the asocial person to tap an ethernet and grab packets.)85.5 132 R .261
+(This would allow such a miscreant to steal pass-)5.261 F .589(words; to avoid\
+ this, we wanted no password to traverse our networks \231in the clear\232.)
+85.5 144 R .589(Our Nameserver)5.589 F
+(uses a random challenge scheme that meets this requirement.)85.5 156 Q F0
+(Why Did W)72 180 Q 2.5(eD)-.55 G(evelop Our Own?)136.73 180 Q F1 .411(Some or)
+72 196.2 R .411(ganizations suf)-.18 F .411
+(fer from NIHS \(Not Invented Here Syndrome\); if someone else did it, it')-.18
+F 2.912(sn)-.55 G .412(ot good)473.308 196.2 R .839(enough for us.)72 208.2 R
+-.8(We)5.839 G .839('d like to think that does not describe us.).8 F .838
+(While we were thinking about criteria for a)5.838 F .404(name service, we als\
+o surveyed the \214eld to see if any of the name servers then in existence wer\
+e appropri-)72 220.2 R .373(ate for out task.)72 234.2 R 1.973 -.8(We l)5.373 H
+.373
+(ooked initially at two; the CSnet Name Server and White Pages from Andrew;).8
+F/F3 7/Times-Roman@0 SF(6)477.758 230.2 Q F1(later)484.13 234.2 Q(,)-.4 E
+(we examined NetDB from Stanford.)72 248.2 Q F3(7)217.25 244.2 Q F1
+(In tabular form, this is what we found:)223.25 248.2 Q F3(8)377.12 244.2 Q .4
+LW 475.81 261.1 100.19 261.1 DL F0 84.7(Criteria CSNET)105.19 270.6 R
+(White Pages)314.055 270.6 Q(NetDB)420.355 270.6 Q 475.81 275.1 100.19 275.1 DL
+475.81 277.1 100.19 277.1 DL 475.81 279.1 100.19 279.1 DL F1 92.47
+(Flexible? No)105.19 288.6 R 79.495(No No)334.47 288.6 R 475.81 293.1 100.19
+293.1 DL(Lar)105.19 302.6 Q(ge Capacity?)-.18 E -1(Ye)427.52 302.6 S(s)1 E
+(No; 16 bit pointers.)204.6 302.6 Q 18.37(No; performance)297.38 302.6 R .56
+(problems with only a)297.38 314.6 R .57(few thousand entries.)297.38 326.6 R
+475.81 331.1 100.19 331.1 DL 72.995(Performance? Y)105.19 340.6 R(es)-1 E 1.303
+(Problems with a few)297.38 340.6 R(thousand entries)297.38 352.6 Q
+(Not evaluated)406.885 340.6 Q 475.81 357.1 100.19 357.1 DL(Online Updates?)
+105.19 366.6 Q -1(Ye)236.215 366.6 S 83.705(sN)1 G(o)341.69 366.6 Q
+(Clerical staf)398.78 366.6 Q 2.5(fo)-.18 G(nly)458.03 366.6 Q 475.81 371.1
+100.19 371.1 DL 62.995(Network-based? Y)105.19 380.6 R 80.04(es Y)-1 F 77.165
+(es Y)-1 F(es)-1 E 475.81 385.1 100.19 385.1 DL(Owning Account?)105.19 394.6 Q
+-1(Ye)236.215 394.6 S 81.205(sN)1 G 74.495(/A N/A)339.19 394.6 R 475.81 399.1
+100.19 399.1 DL(Domain Auth?)105.19 408.6 Q 79.87(No N/A)237.38 408.6 R
+(Sort of)421.045 408.6 Q 475.81 413.1 100.19 413.1 DL -.4(Wi)105.19 422.6 S
+(dely A).4 E(vail Client?)-.74 E -1(Ye)236.215 422.6 S 176.755(sY)1 G(es)433.74
+422.6 Q(No; need Andrew)305.035 422.6 Q 475.81 427.1 100.19 427.1 DL
+(Easy Info Entry?)105.19 436.6 Q -1(Ye)236.215 436.6 S 70.095(sU)1 G 64.72
+(nknown Y)328.08 436.6 R(es)-1 E 475.81 441.1 100.19 441.1 DL
+(Secure Passwords?)105.19 450.6 Q -1(Ye)236.215 450.6 S 81.205(sN)1 G 74.495
+(/A N/A)339.19 450.6 R 475.81 455.1 100.19 455.1 DL 196.1 261.1 196.1 455.1 DL
+198.1 261.1 198.1 455.1 DL 475.81 261.1 475.81 455.1 DL 100.19 261.1 100.19
+455.1 DL 391.28 261.1 391.28 455.1 DL 289.88 261.1 289.88 455.1 DL 197.1 261.1
+197.1 455.1 DL F0 -.92(Ta)216.8 483 S(ble 1.).92 E F1(Name Server Comparison)5
+E .91(The above comparison made it clear to us that we couldn')72 499.2 R 3.409
+(tu)-.18 G .909(se any of the three candidates as they were.)323.728 499.2 R
+(They simply didn')72 511.2 Q 2.5(th)-.18 G
+(ave the features we felt were essential.)155.99 511.2 Q
+(Therefore, we decided to roll our own.)5 E F0(Why Did W)72 535.2 Q 2.5(eU)-.55
+G(se the CSnet Server As a Starting Point?)136.73 535.2 Q F1 2.747 -.8(We d)72
+551.4 T 1.147(id not start completely from scratch.).8 F 2.748 -.8(We d)6.148 H
+1.148(ecided that the CSnet Name Server would make a good).8 F .785
+(starting point for our own name server)72 563.4 R 5.785(.T)-.55 G .785
+(ake a look at T)243.715 563.4 R .785(able 1 again.)-.7 F .785
+(The CSnet server met three out of)5.785 F .812(\214ve of our essential criter\
+ia, and four out of \214ve of our list of non-essentials.)72 575.4 R .812
+(It fell down in three areas:)5.812 F(\215exibility)72 587.4 Q 2.532(,b)-.65 G
+2.532(yk)120.282 587.4 S .031
+(eeping a \214xed set of information about each entry; capacity)132.814 587.4 R
+2.531(,b)-.65 G 2.531(yu)379.924 587.4 S .031(sing 16 bit pointers; and the)
+392.455 587.4 R(domain authorization scheme, which it did not use.)72 599.4 Q
+.448(Examination of the CSnet source code revealed that the two major de\214ci\
+encies, the 16 bit pointers and the)72 615.6 R(in\215exibility)72 627.6 Q 4.662
+(,c)-.65 G 2.162(ould be remedied very easily)129.632 627.6 R 7.162(.T)-.65 G
+2.161(he underlying database was actually fairly general, and)268.932 627.6 R
+.77(adapted itself easily to tagged \214elds and 32 bit pointers.)72 639.6 R
+.77(That left only the domain authorization scheme,)5.77 F .32 LW 76 649.2 72
+649.2 DL 80 649.2 76 649.2 DL 84 649.2 80 649.2 DL 88 649.2 84 649.2 DL 92
+649.2 88 649.2 DL 96 649.2 92 649.2 DL 100 649.2 96 649.2 DL 104 649.2 100
+649.2 DL 108 649.2 104 649.2 DL 112 649.2 108 649.2 DL 116 649.2 112 649.2 DL
+120 649.2 116 649.2 DL 124 649.2 120 649.2 DL 128 649.2 124 649.2 DL 132 649.2
+128 649.2 DL 136 649.2 132 649.2 DL 140 649.2 136 649.2 DL 144 649.2 140 649.2
+DL 148 649.2 144 649.2 DL 152 649.2 148 649.2 DL 156 649.2 152 649.2 DL 160
+649.2 156 649.2 DL 164 649.2 160 649.2 DL 168 649.2 164 649.2 DL 172 649.2 168
+649.2 DL 176 649.2 172 649.2 DL 180 649.2 176 649.2 DL 184 649.2 180 649.2 DL
+188 649.2 184 649.2 DL 192 649.2 188 649.2 DL 196 649.2 192 649.2 DL 200 649.2
+196 649.2 DL 204 649.2 200 649.2 DL 208 649.2 204 649.2 DL 212 649.2 208 649.2
+DL 216 649.2 212 649.2 DL/F4 5/Times-Roman@0 SF(6)93.6 659.6 Q/F5 8
+/Times-Roman@0 SF(See)2 3.2 M/F6 8/Times-Italic@0 SF(An Overview of the Andr)2
+E(ew Message System)-.296 E F5 2(,J)C 2(.R)261.108 662.8 S(osenber)270.444
+662.8 Q(g, C. Everhart, N. Borenstein.)-.144 E F4(7)93.6 673.2 Q F5(See)2 3.2 M
+F6 -1.704(User ')2 F 2(sG)-1.032 G(uide for NetDB)140.02 676.4 Q F5 2(,N)C
+(etworking and Communications Systems, Stanford University)198.684 676.4 Q(.)
+-.52 E F4(8)93.6 686.8 Q F5 .295(The information in this table was taken from \
+before cited documents describing the three name servers, as well as from othe\
+r)2.295 3.2 N(documents and source code in the case of the CSnet server)72
+699.6 Q(.)-.44 E EP
+%%Page: 5 5
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver \255 Why?)72 60 Q(5)499 60 Q/F1 10
+/Times-Roman@0 SF .075
+(which we decided we could add easily enough at a later date.)72 96 R/F2 10
+/Times-Italic@0 SF 2.575([Reality: As)5.075 F .075(was mentioned befor)2.575 F
+.075(e, we never)-.37 F(did do this.])72 108 Q F0(What')72 132 Q 2.5(st)-.37 G
+(he Differ)108.57 132 Q(ence?)-.18 E F1 .069(In the process of adapting the CS\
+net Name Server to our purposes, we wound up making many changes.)72 148.2 R
+(In)5.069 E .218
+(fact, while we still use a modi\214ed version of the CSnet server)72 160.2 R
+1.318 -.55('s d).37 H .217(atabase code, the overlying software is all).55 F
+(new)72 172.2 Q 6.435(.F)-.65 G 1.436
+(or the bene\214t of those familiar with the CSnet server)102.505 172.2 R 3.936
+(,l)-.4 G 1.436(et us outline the dif)334.494 172.2 R 1.436
+(ferences between the)-.18 F(CSnet software and our own:)72 184.2 Q<83>77 200.4
+Q F0 .099(Pointers expanded to 32 bits.)5 F F1 .099
+(16 bits translates into 65,000 entries \(or 32,000 for signed pointers\), and)
+5.099 F(was not enough.)85.5 212.4 Q 1.6 -.8(We t)5 H
+(herefore increased the pointer size.).8 E<83>77 224.4 Q F0 1.488
+(Fixed \214elds r)5 F 1.488(eplaced with tagged \214elds.)-.18 F F1 1.489
+(The CSnet server had a half dozen or so null-terminated)6.489 F/F3 9
+/Times-Roman@0 SF(ASCII)85.5 236.4 Q F1 2.746(\214elds. Each)2.746 F .246
+(\214eld had to be present in every entry)2.746 F 2.746(,a)-.65 G .245
+(lthough a \214eld could be empty)321.015 236.4 R 5.245(.T)-.65 G .245
+(he database)457.385 236.4 R .605
+(proper \(as opposed to the higher levels of the server\))85.5 248.4 R F0(did)
+3.106 E F1 .606(allow an arbitrary number of null-terminated)3.106 F .598
+(\214elds; a little sur)85.5 260.4 R .598
+(gery was done to exploit this basic orientation.)-.18 F .597
+(As mentioned elswhere, each entry in)5.597 F(our database has only non-empty \
+\214elds, tagged with what kind of \214eld each is.)85.5 272.4 Q<83>77 284.4 Q
+F0 1.392(One-tier authorization.)5 F F1 1.392
+(The CSnet server thought in terms of user)6.392 F 3.892(,h)-.4 G 1.392
+(ost, site triples.)380.38 284.4 R 3.892(Au)6.392 G 1.392(ser could)466.228
+284.4 R .363(change his information.)85.5 296.4 R 2.863(Ah)5.363 G .362
+(ost could change the information of any user whose entry was \231owned\232 by)
+201.382 296.4 R .015(an account on that host.)85.5 308.4 R 2.516(As)5.016 G
+.016(ite could change the entry of any host identi\214ed with that site.)
+198.912 308.4 R(Finally)5.016 E 2.516(,t)-.65 G(here)486.79 308.4 Q 1.329
+(was a \231super)85.5 320.4 R 1.328(-user\232 entry)-.2 F 6.328(.F)-.65 G
+(urther)201.594 320.4 Q 3.828(,e)-.4 G 1.328
+(ach host and site had a password that was used for client-server)235.842 320.4
+R 2.802(communication. W)85.5 332.4 R 2.802(er)-.8 G .302
+(emoved this entire structure; in our Nameserver)174.734 332.4 R 2.802(,e)-.4 G
+.302(ach user has his own password,)376.958 332.4 R .158
+(and can use it to change his own entry)85.5 344.4 R 5.158(.S)-.65 G .158
+(ome users have \231hero\232 privileges, which allow them to change)252.082
+344.4 R(anything in any entry)85.5 356.4 Q(.)-.65 E<83>77 368.4 Q F0 .493
+(Removal of pipe and email interfaces.)5 F F1 .494
+(The CSnet server had a client that could talk to it via the net-)5.493 F 1.49
+(work, a pipe, or electronic mail.)85.5 380.4 R 3.089 -.8(We r)6.49 H 1.489
+(emove the latter two capabilities \(although our server).8 F F0(can)3.989 E F1
+(be)3.989 E 1.751(talked to through a pipe by server administrators\).)85.5
+392.4 R 1.751(The pipe was a simple special case of network)6.751 F .554
+(access, and was removed without loss of functionality \(nor ef)85.5 404.4 R
+(\214ciency)-.18 E 3.054(,s)-.65 G .553(ince our server is on a machine)376.27
+404.4 R .51(with no real users\).)85.5 416.4 R .51(The email interface could b\
+e done, but we have had no incentive to do it; network)5.51 F
+(access has so far been suf)85.5 430.4 Q(\214cient.)-.18 E/F4 7/Times-Roman@0
+SF(9)215.28 426.4 Q F1<83>77 442.4 Q F0 .409(Removal of mail forwarding pr)5 F
+(ograms.)-.18 E F1 .409(The CSnet server looked at mail forwarding very dif)
+5.409 F(ferently)-.18 E 1.436
+(than do we; we therefore removed that portion of the code.)85.5 454.4 R 1.436
+(Mail forwarding is done outside of the)6.436 F(Nameserver)85.5 466.4 Q F2 .257
+(per se)2.757 F F1 2.757(,i)C 2.757(no)169.021 466.4 S .257(ther programs.)
+181.778 466.4 R .258
+(These programs use the Nameserver to look up information, but)5.257 F
+(are otherwise unrelated to it.)85.5 478.4 Q<83>77 490.4 Q F0 1.362
+(New Clients.)5 F F1 1.362(Our client software is completely dif)6.362 F 3.862
+(ferent. The)-.18 F 1.362(ideas are basically the same, but the)3.862 F
+(commands and other operational issues have all been addressed afresh.)85.5
+502.4 Q 5<834f>77 514.4 S .145(ur Nameserver is talked to very dif)92.72 514.4
+R .146(ferently than the CSnet server)-.18 F 5.146(.W)-.55 G 2.646(ef)368.56
+514.4 S .146(ound the CSnet protocol some-)378.976 514.4 R 1.027
+(what confusing, and rather dif)85.5 526.4 R 1.026
+(\214cult for a human to use; ours can actually be used by a)-.18 F F2 1.026
+(homo sapiens)3.526 F F1(without great grief.)85.5 538.4 Q .511
+(There are of course many other dif)72 554.6 R 3.012(ferences. The)-.18 F .512
+(list above is only intended to hit the \231high spots\232, places)3.012 F 2.26
+(where we dif)72 566.6 R 2.26
+(fer in a signi\214cant manner from the CSnet product.)-.18 F 2.259
+(Note that we have not necessarily)7.259 F F2(impr)72 578.6 Q(oved)-.37 E F1
+.154(on CSnet')2.654 F 2.654(sw)-.55 G .154(ork; we have)165.702 578.6 R F2
+(adapted)2.655 E F1 .155(some of it to \214t our needs and desires.)2.655 F
+.155(It may well be that the)5.155 F .539
+(CSnet server would be more appropriate for any given or)72 590.6 R 3.038
+(ganization. For)-.18 F .538(example, if network connections)3.038 F .066(are \
+not universal our server is a bit awkward; the built-in email interface of the\
+ CSnet server would be quite)72 602.6 R(useful in such a case.)72 614.6 Q F0
+(Conclusion)72 638.6 Q F1 2.045 -.8(We a)72 654.8 T .445
+(re quite pleased with our Nameserver).8 F 5.444(.I)-.55 G 2.944(tm)255.092
+654.8 S .444(eets most of our needs, and we are con\214dent that its \215exi-)
+268.596 654.8 R .116(bility and good performance will serve us well as we use \
+it for more purposes.)72 666.8 R(Or)5.117 E .117(ganizations considering a)-.18
+F .32 LW 76 676.4 72 676.4 DL 80 676.4 76 676.4 DL 84 676.4 80 676.4 DL 88
+676.4 84 676.4 DL 92 676.4 88 676.4 DL 96 676.4 92 676.4 DL 100 676.4 96 676.4
+DL 104 676.4 100 676.4 DL 108 676.4 104 676.4 DL 112 676.4 108 676.4 DL 116
+676.4 112 676.4 DL 120 676.4 116 676.4 DL 124 676.4 120 676.4 DL 128 676.4 124
+676.4 DL 132 676.4 128 676.4 DL 136 676.4 132 676.4 DL 140 676.4 136 676.4 DL
+144 676.4 140 676.4 DL 148 676.4 144 676.4 DL 152 676.4 148 676.4 DL 156 676.4
+152 676.4 DL 160 676.4 156 676.4 DL 164 676.4 160 676.4 DL 168 676.4 164 676.4
+DL 172 676.4 168 676.4 DL 176 676.4 172 676.4 DL 180 676.4 176 676.4 DL 184
+676.4 180 676.4 DL 188 676.4 184 676.4 DL 192 676.4 188 676.4 DL 196 676.4 192
+676.4 DL 200 676.4 196 676.4 DL 204 676.4 200 676.4 DL 208 676.4 204 676.4 DL
+212 676.4 208 676.4 DL 216 676.4 212 676.4 DL/F5 5/Times-Roman@0 SF(9)93.6
+686.8 Q/F6 8/Times-Roman@0 SF .712(There is actually one quasi-mail interface \
+to our Nameserver; it runs on our VM/CMS machine and translates BITnet mes-)
+2.712 3.2 N(sages into Nameserver queries.)72 699.6 Q EP
+%%Page: 6 6
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 289.65(6T)72 60 S(he CCSO Nameserver \255 Why?)373.32 60
+Q/F1 10/Times-Roman@0 SF .905(name service are welcome to evaluate ours, and u\
+se it if they wish \(subject to the distribution conditions)72 96 R .356
+(outlined in)72 108 R/F2 10/Times-Italic@0 SF .356
+(The CCSO Nameserver \255 A Description)2.856 F F1 2.856(,w)C .356
+(hich are liberal\).)294.088 108 R .356(There are however other excellent)5.356
+F(choices; your choice will depend on your needs.)72 120 Q EP
+%%Trailer
+end
+%%EOF

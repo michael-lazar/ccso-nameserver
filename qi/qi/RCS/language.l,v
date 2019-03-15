@@ -1,0 +1,999 @@
+head	1.34;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.34
+date	95.06.27.16.07.43;	author p-pomes;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.06.27.13.18.47;	author p-pomes;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.06.27.13.16.55;	author p-pomes;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.01.17.23.36.08;	author p-pomes;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	94.03.07.19.10.06;	author paul;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	93.02.23.05.25.57;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	93.02.04.22.10.13;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	92.07.27.15.33.22;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	92.07.27.15.26.04;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	90.12.18.08.41.34;	author dorner;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	90.05.16.09.18.24;	author dorner;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	89.07.19.10.18.54;	author dorner;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	89.07.05.20.17.03;	author dorner;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	89.05.08.22.43.49;	author dorner;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	89.03.20.15.14.52;	author dorner;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	88.11.15.13.35.28;	author dorner;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	88.07.27.13.25.43;	author dorner;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	88.05.25.11.32.35;	author dorner;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	88.05.03.14.16.22;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	88.03.07.10.32.06;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	88.03.02.22.42.44;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	88.03.02.16.14.09;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	88.03.02.11.16.15;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	88.03.02.08.32.06;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.02.29.09.52.16;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.02.24.17.05.48;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.02.15.14.03.17;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.02.10.13.14.54;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	87.12.11.12.12.46;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	87.12.10.16.22.33;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	87.12.09.13.40.28;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.57;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.34
+log
+@Use the built-in FLEX_SCANNER define rather than LEXISFLEX.
+@
+text
+@%start C
+%start CE
+%start Q
+%start I
+%start F
+%start A
+%{
+/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: language.l,v 1.33 1995/06/27 13:18:47 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+int	cmd;
+char	*quote;
+
+int	OldPh = 0;		/* is user using an old version of ph? */
+
+#define OLD		OldPh=1
+#define INCREMENT	80
+#define UNREASONABLE	8192
+extern FILE *Input;
+extern FILE *Output;
+
+#undef input
+#undef unput
+#undef output
+
+static int TC;
+
+
+/*
+ * input/output with backup and a record of the last command
+ */
+char	CommandText[UNREASONABLE];
+char	*CommandSpot = CommandText;
+
+static void CollectQuote __P((char *, int));
+static int GetAC __P((FILE *));
+
+#define RESET	CommandSpot = CommandText
+#ifdef FLEX_SCANNER
+#undef YY_INPUT
+#define YY_INPUT(buf,result,max_size) \
+{ \
+int c = GetAC(Input); \
+result = (c == EOF) ? YY_NULL : (buf[0] = c, 1); \
+}
+#else /* !FLEX_SCANNER */
+#define input()		(((TC=GetAC(Input))==EOF)?0:(*CommandSpot++ = TC))
+#endif /* FLEX_SCANNER */
+#define unput(c)	CommandSpot--,ungetc(c,Input)
+#define output(c)	putc(c,Output)
+%}
+%%
+	BEGIN I;				/* start state */
+<I>query	{AddValue((char *)yytext,COMMAND); cmd = C_QUERY; BEGIN C;}
+<I>ph		{AddValue((char *)yytext,COMMAND); cmd = C_QUERY; BEGIN C;}
+<I>change	{AddValue((char *)yytext,COMMAND); cmd = C_CHANGE; BEGIN C;}
+<I>login	{AddValue((char *)yytext,COMMAND); cmd = C_LOGIN; BEGIN C;}
+<I>xlogin	{AddValue((char *)yytext,COMMAND); cmd = C_XLOGIN; BEGIN A;}
+<I>klogin	{AddValue((char *)yytext,COMMAND); cmd = C_XLOGIN; BEGIN A;}
+<I>answer	{AddValue((char *)yytext,COMMAND); cmd = C_ANSWER; BEGIN A;}
+<I>email	{AddValue((char *)yytext,COMMAND); cmd = C_EMAIL; BEGIN C;}
+<I>clear	{AddValue((char *)yytext,COMMAND); cmd = C_CLEAR; BEGIN C;}
+<I>logout	{AddValue((char *)yytext,COMMAND); cmd = C_LOGOUT; BEGIN C;}
+<I>fields	{AddValue((char *)yytext,COMMAND); cmd = C_FIELDS; BEGIN C;}
+<I>add		{AddValue((char *)yytext,COMMAND); cmd = C_ADD; BEGIN C;}
+<I>delete	{AddValue((char *)yytext,COMMAND); cmd = C_DELETE; BEGIN C;}
+<I>set		{AddValue((char *)yytext,COMMAND); cmd = C_SET; BEGIN C;}
+<I>quit		{AddValue((char *)yytext,COMMAND); cmd = C_QUIT; BEGIN C;}
+<I>stop		{AddValue((char *)yytext,COMMAND); cmd = C_QUIT; BEGIN C;}
+<I>exit		{AddValue((char *)yytext,COMMAND); cmd = C_QUIT; BEGIN C;}
+<I>status	{AddValue((char *)yytext,COMMAND); cmd = C_STATUS; BEGIN C;}
+<I>help		{AddValue((char *)yytext,COMMAND); cmd = C_HELP; BEGIN C;}
+<I>id		{AddValue((char *)yytext,COMMAND); cmd = C_ID; BEGIN C;}
+<I>siteinfo	{AddValue((char *)yytext,COMMAND); cmd = C_INFO; BEGIN C;}
+
+<I>interactive\ncsnet\nversion\n\t3.0\nwhois\n	{OLD;RESET;}
+
+<I>exact\n	{AddValue("query",COMMAND); CommandSpot--; cmd = C_QUERY; BEGIN C;}
+<I>[ \t]+	;				/* ignore whitespace */
+<I>[^ \377\t\n]+	{Unknown((char *)yytext);BEGIN F;}	/* extraneous junk */
+<I,F>\n		return(-1);			/* no command */
+<I>'#'		{BEGIN F;}
+
+<F>.		;				/* just toss it all */
+
+<A>[ \t]	;
+<A>[^ \t\n]+	{AddValue((char *)yytext,VALUE);}
+<A>\n		{DoCommand(cmd); RESET; return(cmd);}
+<C>return	{AddValue("return",RETURN);}	/* make , return, and */
+<C>force	{AddValue("force",RETURN);}	/* force all serve */
+<C>make		{AddValue("make",RETURN);}	/* the same function */
+<C,CE>\"	{CollectQuote(0,0); BEGIN Q;}	/* begin a quoted value */
+<C,CE>[ \t]	{BEGIN C;}			/* ignore whitespace */
+<C,CE>\\\n	{BEGIN C;}			/* ignore escaped newlines */
+<C>[^ \"\n\t=~]+	{AddValue((char *)yytext,VALUE);}		/* a single value */
+<CE>[^ \"\n\t]+	{AddValue((char *)yytext,VALUE); BEGIN C;}	/* value after = */
+<C>=		{AddValue("=",EQUAL);BEGIN CE;}	/* the equal sign */
+<C>~		{AddValue("~",EQUAL|TILD_E);BEGIN CE;}	/* the tilde */
+<C,CE>\n	{DoCommand(cmd); RESET; return(cmd);}/* execute */
+
+<Q>[^\\\"]+	CollectQuote((char *)yytext,yyleng);	/* copy any char but quote */
+<Q>\\\"		CollectQuote("\"",1);		/* copy an escaped quote */
+<Q>\\\\		CollectQuote("\\",1);		/* copy an escaped backslash */
+<Q>\\n		CollectQuote("\n",1);		/* C newline */
+<Q>\\t		CollectQuote("\t",1);		/* C tab */
+<Q>\"		{AddValue((quote)?quote:"",VALUE); BEGIN C;}	/* enter the quoted value */
+
+\377.		;	/* ignore telnet commands; refuse telnet options */
+\377\373.	{fprintf(Output,"\377\376%c",(unsigned char) yytext[2]);}
+\377\375.	{fprintf(Output,"\377\374%c",(unsigned char) yytext[2]);}
+\\		;				/* ignore other backslashes */
+
+%%
+static void
+CollectQuote(text, len)
+	char	*text;
+	int	len;
+{
+	static char *endt;
+	static int size = 0;
+	static int cnt = 0;
+
+	if (text == NULL)
+	{
+		if (quote)
+		{
+			free(quote);
+			quote = 0;
+			size = 0;
+			cnt = 0;
+		}
+	} else
+	{
+		if (cnt + len >= size && cnt + len < UNREASONABLE)
+		{
+			if (!quote)
+			{
+				endt = quote = malloc(len + INCREMENT);
+				size = len + INCREMENT;
+				cnt = 0;
+			} else
+			{
+				size = cnt + len + INCREMENT;
+				quote = realloc(quote, size);
+				endt = quote + cnt;
+			}
+		}
+		strcpy(endt, text);
+		endt += len;
+		cnt += len;
+	}
+}
+
+/*
+ * get a non-null, non-return character
+ */
+static int 
+GetAC(fp)
+	FILE *fp;
+{
+	int	c;
+
+	do
+	{
+		c = getc(fp);
+	}
+	while (c == '\r' || c == '\0');
+
+	return (c);
+}
+@
+
+
+1.33
+log
+@Flex changes from Brian Ward <ward@@blah.math.tu-graz.ac.at>.
+@
+text
+@d45 1
+a45 1
+static char  RcsId[] = "@@(#)$Id: language.l,v 1.32 1995/06/27 13:16:55 p-pomes Exp p-pomes $";
+d78 1
+a78 1
+#ifdef LEXISFLEX
+d85 1
+a85 1
+#else /* lex ain't flex */
+d87 1
+a87 1
+#endif /* LEXISFLEX */
+@
+
+
+1.32
+log
+@Added xlogin with klogin as a synonym.
+@
+text
+@d45 1
+a45 1
+static char  RcsId[] = "@@(#)$Id: language.l,v 1.31 1995/01/17 23:36:08 p-pomes Exp p-pomes $";
+d78 8
+d87 1
+@
+
+
+1.31
+log
+@Avoid null pointer dereference.
+@
+text
+@d45 1
+a45 1
+static char  RcsId[] = "@@(#)$Id: language.l,v 1.30 1994/03/12 00:24:45 paul Exp p-pomes $";
+d88 2
+a89 1
+<I>klogin	{AddValue((char *)yytext,COMMAND); cmd = C_KLOGIN; BEGIN A;}
+@
+
+
+1.30
+log
+@Added new copyright statement.
+@
+text
+@d45 1
+a45 1
+static char  RcsId[] = "@@(#)$Id$";
+d135 1
+a135 1
+<Q>\"		{AddValue(quote,VALUE); BEGIN C;}	/* enter the quoted value */
+@
+
+
+1.29
+log
+@Add klogin command.
+@
+text
+@d9 33
+a41 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d43 5
+a47 1
+#include "commands.h"
+d49 1
+a49 1
+#include "conf.h"
+@
+
+
+1.28
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d56 1
+@
+
+
+1.27
+log
+@cast yytext to char * to avoid system 5 complaints.
+@
+text
+@d42 3
+d110 1
+a110 1
+void
+d153 1
+a153 1
+int 
+@
+
+
+1.26
+log
+@Fix strange pseudo-octal constants.
+@
+text
+@d49 19
+a67 19
+<I>query	{AddValue(yytext,COMMAND); cmd = C_QUERY; BEGIN C;}
+<I>ph		{AddValue(yytext,COMMAND); cmd = C_QUERY; BEGIN C;}
+<I>change	{AddValue(yytext,COMMAND); cmd = C_CHANGE; BEGIN C;}
+<I>login	{AddValue(yytext,COMMAND); cmd = C_LOGIN; BEGIN C;}
+<I>answer	{AddValue(yytext,COMMAND); cmd = C_ANSWER; BEGIN A;}
+<I>email	{AddValue(yytext,COMMAND); cmd = C_EMAIL; BEGIN C;}
+<I>clear	{AddValue(yytext,COMMAND); cmd = C_CLEAR; BEGIN C;}
+<I>logout	{AddValue(yytext,COMMAND); cmd = C_LOGOUT; BEGIN C;}
+<I>fields	{AddValue(yytext,COMMAND); cmd = C_FIELDS; BEGIN C;}
+<I>add		{AddValue(yytext,COMMAND); cmd = C_ADD; BEGIN C;}
+<I>delete	{AddValue(yytext,COMMAND); cmd = C_DELETE; BEGIN C;}
+<I>set		{AddValue(yytext,COMMAND); cmd = C_SET; BEGIN C;}
+<I>quit		{AddValue(yytext,COMMAND); cmd = C_QUIT; BEGIN C;}
+<I>stop		{AddValue(yytext,COMMAND); cmd = C_QUIT; BEGIN C;}
+<I>exit		{AddValue(yytext,COMMAND); cmd = C_QUIT; BEGIN C;}
+<I>status	{AddValue(yytext,COMMAND); cmd = C_STATUS; BEGIN C;}
+<I>help		{AddValue(yytext,COMMAND); cmd = C_HELP; BEGIN C;}
+<I>id		{AddValue(yytext,COMMAND); cmd = C_ID; BEGIN C;}
+<I>siteinfo	{AddValue(yytext,COMMAND); cmd = C_INFO; BEGIN C;}
+d73 1
+a73 1
+<I>[^ \377\t\n]+	{Unknown(yytext);BEGIN F;}	/* extraneous junk */
+d80 1
+a80 1
+<A>[^ \t\n]+	{AddValue(yytext,VALUE);}
+d88 2
+a89 2
+<C>[^ \"\n\t=~]+	{AddValue(yytext,VALUE);}		/* a single value */
+<CE>[^ \"\n\t]+	{AddValue(yytext,VALUE); BEGIN C;}	/* value after = */
+d94 1
+a94 1
+<Q>[^\\\"]+	CollectQuote(yytext,yyleng);	/* copy any char but quote */
+@
+
+
+1.25
+log
+@Re-formatted for clarity.
+@
+text
+@d73 1
+a73 1
+<I>[^ \0377\t\n]+	{Unknown(yytext);BEGIN F;}	/* extraneous junk */
+d101 3
+a103 3
+\0255.		;	/* ignore telnet commands; refuse telnet options */
+\0255\0251.	{fprintf(Output,"\0255\0254%c",(unsigned char) yytext[2]);}
+\0255\0253.	{fprintf(Output,"\0255\0252%c",(unsigned char) yytext[2]);}
+@
+
+
+1.24
+log
+@Last dorner changes.
+@
+text
+@d8 7
+a14 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d18 2
+a19 2
+int theCommand;
+char *theQuote;
+d21 2
+a22 1
+int OldPh=0;			/* is user using an old version of ph? */
+d24 1
+a24 1
+#define INCREMENT 	80
+d36 6
+a41 5
+/***********************************************************************
+* input/output with backup and a record of the last command
+***********************************************************************/
+char CommandText[UNREASONABLE];
+char *CommandSpot=CommandText;
+d49 19
+a67 19
+<I>query	{AddValue(yytext,COMMAND); theCommand = C_QUERY; BEGIN C;}
+<I>ph		{AddValue(yytext,COMMAND); theCommand = C_QUERY; BEGIN C;}
+<I>change	{AddValue(yytext,COMMAND); theCommand = C_CHANGE; BEGIN C;}
+<I>login	{AddValue(yytext,COMMAND); theCommand = C_LOGIN; BEGIN C;}
+<I>answer	{AddValue(yytext,COMMAND); theCommand = C_ANSWER; BEGIN A;}
+<I>email	{AddValue(yytext,COMMAND); theCommand = C_EMAIL; BEGIN C;}
+<I>clear	{AddValue(yytext,COMMAND); theCommand = C_CLEAR; BEGIN C;}
+<I>logout	{AddValue(yytext,COMMAND); theCommand = C_LOGOUT; BEGIN C;}
+<I>fields	{AddValue(yytext,COMMAND); theCommand = C_FIELDS; BEGIN C;}
+<I>add		{AddValue(yytext,COMMAND); theCommand = C_ADD; BEGIN C;}
+<I>delete	{AddValue(yytext,COMMAND); theCommand = C_DELETE; BEGIN C;}
+<I>set		{AddValue(yytext,COMMAND); theCommand = C_SET; BEGIN C;}
+<I>quit		{AddValue(yytext,COMMAND); theCommand = C_QUIT; BEGIN C;}
+<I>stop		{AddValue(yytext,COMMAND); theCommand = C_QUIT; BEGIN C;}
+<I>exit		{AddValue(yytext,COMMAND); theCommand = C_QUIT; BEGIN C;}
+<I>status	{AddValue(yytext,COMMAND); theCommand = C_STATUS; BEGIN C;}
+<I>help		{AddValue(yytext,COMMAND); theCommand = C_HELP; BEGIN C;}
+<I>id		{AddValue(yytext,COMMAND); theCommand = C_ID; BEGIN C;}
+<I>siteinfo	{AddValue(yytext,COMMAND); theCommand = C_INFO; BEGIN C;}
+d71 1
+a71 1
+<I>exact\n	{AddValue("query",COMMAND); CommandSpot--; theCommand = C_QUERY; BEGIN C;}
+d81 1
+a81 1
+<A>\n		{DoCommand(theCommand); RESET; return(theCommand);}
+d92 1
+a92 1
+<C,CE>\n	{DoCommand(theCommand); RESET; return(theCommand);}/* execute */
+d99 1
+a99 1
+<Q>\"		{AddValue(theQuote,VALUE); BEGIN C;}	/* enter the quoted value */
+d107 4
+a110 1
+void CollectQuote(char *theText,int theLen)
+d112 5
+a116 8
+    static char *theEnd;
+    static int theSize=0;
+    static int theCount=0;
+    char *malloc(), *realloc();
+
+    if (theText==NULL)
+    {
+	if (theQuote)
+d118 8
+a125 9
+	    free(theQuote);
+	    theQuote = 0;
+	    theSize = 0;
+	    theCount = 0;
+	}
+    }
+    else
+    {
+	if (theCount+theLen>=theSize && theCount+theLen<UNREASONABLE)
+d127 17
+a143 12
+	    if (!theQuote)
+	    {
+		theEnd = theQuote = malloc(theLen+INCREMENT);
+		theSize = theLen+INCREMENT;
+		theCount = 0;
+	    }
+	    else
+	    {
+		theSize = theCount + theLen + INCREMENT;
+		theQuote = realloc(theQuote,theSize);
+		theEnd = theQuote+theCount;
+	    }
+a144 4
+	strcpy(theEnd,theText);
+	theEnd += theLen;
+	theCount += theLen;
+    }
+d147 6
+a152 4
+/***********************************************************************
+* get a non-null, non-return character
+***********************************************************************/
+int GetAC(FILE *fp)
+d154 1
+a154 1
+    int c;
+d156 5
+a160 5
+    do
+    {
+	c=getc(fp);
+    }
+    while (c=='\r' || c=='\0');
+d162 1
+a162 1
+    return(c);
+@
+
+
+1.23
+log
+@No help here.
+@
+text
+@d17 1
+d52 1
+d65 1
+d80 2
+a81 1
+<C>return	{AddValue("return",RETURN);}	/* make and return serve */
+d86 1
+a86 1
+<C>[^ \"\n\t=]+	{AddValue(yytext,VALUE);}		/* a single value */
+d88 2
+a89 1
+<C>=		{AddValue("=",EQUAL);BEGIN CE;}	/* the equal sign of a pair */
+@
+
+
+1.22
+log
+@No help here.
+@
+text
+@d16 1
+d100 1
+a100 3
+CollectQuote(theText,theLen)
+char *theText;
+int theLen;
+d143 1
+a143 2
+GetAC(fp)
+FILE *fp;
+@
+
+
+1.21
+log
+@No help here.
+@
+text
+@d50 1
+d60 1
+d96 1
+@
+
+
+1.20
+log
+@No help here.
+@
+text
+@d15 1
+a15 1
+#include "../Include/commands.h"
+@
+
+
+1.19
+log
+@No help here.
+@
+text
+@d15 1
+a15 1
+#include "../include/commands.h"
+@
+
+
+1.18
+log
+@No help here.
+@
+text
+@d57 1
+a57 1
+<I>end		{AddValue(yytext,COMMAND); theCommand = C_QUIT; BEGIN C;}
+@
+
+
+1.17
+log
+@No help here.
+@
+text
+@d8 7
+a14 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@d8 7
+a14 1
+#include "commands.h"
+d58 1
+a58 1
+<I>identify	{AddValue(yytext,COMMAND); theCommand = C_ID; BEGIN C;}
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d51 2
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@a37 13
+<I>QUERY	{AddValue(yytext,COMMAND); theCommand = C_QUERY; BEGIN C;}
+<I>PH		{AddValue(yytext,COMMAND); theCommand = C_QUERY; BEGIN C;}
+<I>CHANGE	{AddValue(yytext,COMMAND); theCommand = C_CHANGE; BEGIN C;}
+<I>LOGIN	{AddValue(yytext,COMMAND); theCommand = C_LOGIN; BEGIN C;}
+<I>ANSWER	{AddValue(yytext,COMMAND); theCommand = C_ANSWER; BEGIN A;}
+<I>LOGOUT	{AddValue(yytext,COMMAND); theCommand = C_LOGOUT; BEGIN C;}
+<I>FIELDS	{AddValue(yytext,COMMAND); theCommand = C_FIELDS; BEGIN C;}
+<I>ADD		{AddValue(yytext,COMMAND); theCommand = C_ADD; BEGIN C;}
+<I>DELETE	{AddValue(yytext,COMMAND); theCommand = C_DELETE; BEGIN C;}
+<I>SET		{AddValue(yytext,COMMAND); theCommand = C_SET; BEGIN C;}
+<I>QUIT		{AddValue(yytext,COMMAND); theCommand = C_QUIT; BEGIN C;}
+<I>STOP		{AddValue(yytext,COMMAND); theCommand = C_QUIT; BEGIN C;}
+<I>END		{AddValue(yytext,COMMAND); theCommand = C_QUIT; BEGIN C;}
+a64 2
+<C>RETURN	{AddValue("return",RETURN);}	/* make and return serve */
+<C>MAKE		{AddValue("make",RETURN);}	/* the same function */
+d76 1
+a76 1
+<Q>\\\"		CollectQuote("\q",1);		/* copy an escaped quote */
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d38 13
+d78 2
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d15 1
+a15 1
+#define UNREASONABLE	4096
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d67 3
+a69 3
+<C>\"		{CollectQuote(0,0); BEGIN Q;}	/* begin a quoted value */
+<C>[ \t]	{BEGIN C;}			/* ignore whitespace */
+<C>\\\n	{BEGIN C;}			/* ignore escaped newlines */
+d72 2
+a73 2
+<C>=		{AddValue("=",EQUAL);}	/* the equal sign of a pair */
+<C>\n		{DoCommand(theCommand); RESET; return(theCommand);}/* execute */
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d68 2
+a69 2
+<C,CE>[ \t]	{BEGIN C;}			/* ignore whitespace */
+<C,CE>\\\n	{BEGIN C;}			/* ignore escaped newlines */
+d72 1
+a72 1
+<C>=		{AddValue("=",EQUAL);BEGIN CE;}	/* the equal sign of a pair */
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d2 1
+d68 2
+a69 2
+<C>[ \t]	;				/* ignore whitespace */
+<C>\\\n		;				/* ignore escaped newlines */
+d71 2
+a72 1
+<C>=		{AddValue("=",EQUAL);}		/* the equal sign of a pair */
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d70 1
+a70 1
+<C>=[^ \"\n\t]*	{AddValue("=",EQUAL);AddValue(yytext+1,VALUE);}		/* the equal sign of a pair */
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d70 1
+a70 1
+<C>=		{AddValue("=",EQUAL);}		/* the equal sign of a pair */
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d38 1
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d5 1
+d40 1
+a40 1
+<I>answer	{AddValue(yytext,COMMAND); theCommand = C_ANSWER; BEGIN C;}
+d60 3
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@a68 1
+<Q>\n		CollectQuote(yytext,yyleng);	/* copy newline, too */
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d10 2
+a11 2
+int OldPh=0;
+#define OLD	if (!OldPh) {OldPh=1;ComplainOld();}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d10 1
+a10 1
+static int OldPh=0;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a30 1
+/*#define input()		(((TC=GetAC(Input))==EOF)?0:putchar(TC))*/
+d51 1
+a51 1
+<I>exact\n	{AddValue("query",COMMAND); theCommand = C_QUERY; BEGIN C;}
+@

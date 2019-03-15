@@ -1,0 +1,411 @@
+head	1.9;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.9
+date	94.09.09.20.17.46;	author p-pomes;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	93.12.19.18.43.04;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	93.07.24.19.05.26;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	93.02.27.21.06.24;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.12.18.15.15.31;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.28.05.04.09;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.27.22.20.02;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.27.21.37.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.9
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: id.c,v 1.8 1994/03/12 00:59:25 paul Exp p-pomes $";
+#endif
+
+#include <string.h>
+#include <stdio.h>
+#include <ndbm.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/file.h>
+
+static DBM *db;
+
+/*
+ * initialize the id database
+ */
+IdInit(dbName)
+	char *dbName;
+{
+	if ((db = dbm_open(dbName, O_RDWR | O_CREAT, 0660)) == NULL)
+		return (1);
+
+	srand(time(0));
+	return (0);
+}
+
+/*
+ * make the database go away
+ */
+IdDone()
+{
+	dbm_close(db);
+}
+
+/*
+ * assign an id number to an UVID
+ */
+char    *
+AssignId(uvid)
+	char    *uvid;
+{
+	datum    key;
+	datum    rec;
+	int      id;
+	static char scratch[40];
+
+	key.dptr = uvid;
+	key.dsize = strlen(uvid) + 1;
+
+	rec = dbm_fetch(db, key);
+	if (rec.dptr)
+		return (NULL);
+
+	rec.dptr = scratch;
+
+	do
+	{
+		id = rand() + 10000000;
+		sprintf(scratch, "%c%d", strncmp(uvid, "000", 3) ? 'i' : 't', id);
+		rec.dsize = strlen(scratch) + 1;
+	}
+	while (dbm_store(db, rec, key, DBM_INSERT) != 0);
+	dbm_store(db, key, rec, DBM_INSERT);
+	return (scratch);
+}
+
+/*
+ * given an uvid, find an id, or vice-versa
+ */
+char    *
+FindId(id)
+	char    *id;
+{
+	static datum key, rec;
+
+	key.dptr = id;
+	key.dsize = strlen(id) + 1;
+
+	rec = dbm_fetch(db, key);
+
+	return (rec.dptr);
+}
+
+/*
+ * Dump the database
+ */
+DumpId()
+{
+	datum    key, rec;
+	char     scratch[256];
+
+	for (key = dbm_firstkey(db); key.dptr; key = dbm_nextkey(db))
+	{
+		strcpy(scratch, key.dptr);
+		key.dptr = scratch;
+		rec = dbm_fetch(db, key);
+		if (rec.dptr)
+			printf("%s:%s\n", key.dptr, rec.dptr);
+		else
+			printf("%s:not found\n", key.dptr);
+	}
+}
+@
+
+
+1.8
+log
+@New copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d41 1
+@
+
+
+1.7
+log
+@fcntl.h is normally in /usr/include .
+@
+text
+@d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 4
+@
+
+
+1.6
+log
+@Always include fcntl.h and file.h
+@
+text
+@d12 1
+a12 1
+#include <sys/fcntl.h>
+@
+
+
+1.5
+log
+@System 5 changes, 1 or more of #include <sys/fcntl.h> instead of <sys/file.h>,
+define index/rindex replacements using strchr/strrchr, define L_SET, etc
+values if not present.
+@
+text
+@d12 2
+a13 5
+#ifdef SYSV
+# include <sys/fcntl.h>
+#else /* !SYSV */
+# include <sys/file.h>
+#endif /* SYSV */
+@
+
+
+1.4
+log
+@rand/srand are more common than random/srandom.
+@
+text
+@d12 5
+a16 1
+#include <sys/file.h>
+@
+
+
+1.3
+log
+@Random fixes.
+@
+text
+@d25 1
+a25 1
+	srandom(time(0));
+d60 1
+a60 1
+		id = random() + 10000000;
+@
+
+
+1.2
+log
+@Re-formatted for clarity
+@
+text
+@d20 1
+a20 1
+	char *dbname;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d14 1
+a14 1
+static DBM *theDB;
+d16 5
+a20 4
+/***********************************************************************
+* initialize the id database
+***********************************************************************/
+IdInit(char *dbName)
+d22 2
+a23 2
+  if ((theDB = dbm_open(dbName, O_RDWR | O_CREAT, 0660)) == NULL)
+    return(1);
+d25 2
+a26 2
+  srandom(time(0));
+  return (0);
+d29 3
+a31 3
+/***********************************************************************
+* make the database go away
+***********************************************************************/
+d34 1
+a34 1
+  dbm_close(theDB);
+d37 6
+a42 6
+/***********************************************************************
+* assign an id number to an UVID
+***********************************************************************/
+char   *
+AssignId(theUVID)
+char   *theUVID;
+d44 23
+a66 23
+  datum   theKey;
+  datum   theRec;
+  int   theId;
+  static char scratch[40];
+
+  theKey.dptr = theUVID;
+  theKey.dsize = strlen(theUVID) + 1;
+
+  theRec = dbm_fetch(theDB, theKey);
+  if (theRec.dptr)
+    return (NULL);
+
+  theRec.dptr = scratch;
+
+  do
+  {
+    theId = random() + 10000000;
+    sprintf(scratch, "%c%d", strncmp(theUVID,"000",3) ? 'i':'t',theId);
+    theRec.dsize = strlen(scratch) + 1;
+  }
+  while (dbm_store(theDB, theRec, theKey, DBM_INSERT) != 0);
+  dbm_store(theDB, theKey, theRec, DBM_INSERT);
+  return (scratch);
+d69 6
+a74 6
+/***********************************************************************
+* given an uvid, find an id, or vice-versa
+***********************************************************************/
+char   *
+FindId(theId)
+char   *theId;
+d76 1
+a76 1
+  static datum   theKey, theRec;
+d78 2
+a79 2
+  theKey.dptr = theId;
+  theKey.dsize = strlen(theId) + 1;
+d81 1
+a81 1
+  theRec = dbm_fetch(theDB, theKey);
+d83 1
+a83 1
+  return (theRec.dptr);
+d86 3
+a88 3
+/***********************************************************************
+* Dump the database
+***********************************************************************/
+d91 2
+a92 2
+  datum   theKey, theRec;
+  char scratch[256];
+d94 10
+a103 10
+  for (theKey = dbm_firstkey(theDB); theKey.dptr; theKey = dbm_nextkey(theDB))
+  {
+    strcpy(scratch,theKey.dptr);
+    theKey.dptr = scratch;
+    theRec = dbm_fetch(theDB, theKey);
+    if (theRec.dptr)
+      printf("%s:%s\n", theKey.dptr, theRec.dptr);
+    else
+      printf("%s:not found\n", theKey.dptr);
+  }
+@

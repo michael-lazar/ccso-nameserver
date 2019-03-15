@@ -1,0 +1,619 @@
+Path: senator-bedfellow.mit.edu!faqserv
+From: o.crepin-leblond@imperial.ac.uk   (Olivier M.J. Crepin-Leblond)
+Newsgroups: comp.mail.misc,comp.mail.uucp,news.newusers.questions,alt.internet.services,alt.internet.access.wanted,alt.answers,comp.answers,news.answers
+Subject: FAQ: International E-mail accessibility
+Supersedes: <mail/country-codes_796429194@rtfm.mit.edu>
+Followup-To: poster
+Date: 28 Apr 1995 08:59:33 GMT
+Organization: Imperial College London, UK.
+Lines: 597
+Approved: news-answers-request@MIT.Edu
+Expires: 11 Jun 1995 08:59:16 GMT
+Message-ID: <mail/country-codes_799059556@rtfm.mit.edu>
+Reply-To: ocl@ic.ac.uk
+NNTP-Posting-Host: bloom-picayune.mit.edu
+Summary: This posting gives a list of country codes with email accessibility. 
+         It is helpful in finding-out if a country has easy access to 
+         email and internet facilities and is aimed at general email and 
+         internet users.
+X-Last-Updated: 1995/04/23
+Originator: faqserv@bloom-picayune.MIT.EDU
+Xref: senator-bedfellow.mit.edu comp.mail.misc:23201 comp.mail.uucp:15618 news.newusers.questions:60498 alt.internet.services:49191 alt.internet.access.wanted:27032 alt.answers:8953 comp.answers:11483 news.answers:42907
+
+Archive-name: mail/country-codes
+Last-modified: 1995/04/23
+
+Based on International Standard ISO 3166 Names
+Compiled by Olivier M.J. Crepin-Leblond
+E-mail: <ocl@ic.ac.uk>
+Release: 95.04.01
+
+
+Release Notes:   a. Rwanda node is off-line. New service soon.
+                 b. World Wide Web (WWW) version available
+
+This document is Copyright 1995 by Olivier Crepin-Leblond. 
+No part of this document may be reproduced in any commercial publication 
+by any means - graphic, electronic, or mechanical, including photocopying, 
+recording, taping, or storage in an information retrieval system without 
+prior written permission of the copyright holder.
+It may however be freely redistributed in its entirety provided that
+this copyright notice, its headers "Archive-name", "Last-modified",
+and "Release" are not removed.
+
+     Every now-and-then there are enquiries on the net regarding
+E-mail to a distant country. The question is often of the type
+"has that country got E-mail access ?". The following table is a
+guide of country codes, showing the countries which have access to
+Internet or general E-mail services.  The country codes have been
+derived from the  International Organization for Standardization 
+standard ISO 3166.  A country code is taken as a top level domain
+once it is registered at rs.internic.net so *not* all country codes
+listed are top level domains. At the bottom of the table, there is
+also a section of general top level domains, based on the information
+available at rs.internic.net.
+
+NOTES:
+
+1. Description of codes:
+
+FI  stands for FULL INTERNET access. This includes 'telnet', 'ftp',
+    and internet E-mail.
+B   stands for BITNET access although the address may be in internet
+    DNS (Domain Name System) format. 
+*   (Asterisk) means that the country is reachable by E-mail. If this is
+    not preceded by FI or B, it means that the connection may be a UUCP
+    connection. An asterisk is included after FI or B for consistency.
+PFI stands for a provisional full internet connection.(+) 
+P   stands for provisional connection. (+)
+    (+) This is used when one or more of the following is true:
+       - address not verified or lack of address
+       - UUCP dialup not active
+       - net connection possible but not officially announced
+       - premature official announcement of connection
+F  stands for a country that is connected to Internet only via means
+   of the FIDOnet network. It is assumed that the FIDO connection in this
+   case is stable and reliable.
+
+2. Networks which are not included:
+
+Networks such as MILNET (U.S. Military's unclassified portion of the
+DDN - Data Defense Network) have computers all around the world. It is 
+generally possible to assume that wherever there is a U.S. military base, 
+there will be a node reachable through gateways.
+
+Private company networks such as for DEC (Digital Equipment Corp.),
+or Sun Microsystems, for example, have nodes in many exotic locations.
+However the connection may take place via UUCP and cost a lot of money.
+Those networks have therefore not been included. In addition, those
+are PRIVATE networks.
+
+Many companies ( like U.S. Sprint, for example ) offer commercial 
+services to many countries which are not readily available on 
+the Internet. The service is VERY COSTLY, usually takes place via
+UUCP or X.400 connections. X.400 E-mail is usually charged to
+someone and if the telecommunication carrier cannot find someone
+to pay for the message transfer, it will reject it. As a result,
+those types of network have not been included in the list.
+Although a user may RECEIVE E-mail from a user on those networks, one 
+may not be able to reply to it.
+
+ 
+3. Updates:
+
+    The situation changes from day to day. The growth in international
+networking is such that the information contained in this document
+may be out of date by the time it reaches you.
+If you have any update (i.e. knowledge that a new country is connected),
+please send a message to <ocl@ic.ac.uk>, including an example address
+from the country reached so that it can be verified.
+Furthermore, if you are a connection provider or could provide a
+low cost connection in a country, and are not listed as a provider in 
+that country (see "FURTHER INFORMATION" section), please notify either
+Randy Bush <randy@psg.com> or me.
+NOTE: This doesn't include providers for North America. 
+If you are a North American provider, then please DON'T contact us.
+
+
+4. .US sites
+
+    While there are several hundreds of BITNET nodes in USA, none have
+a name in the format `.US'. That's why the .us domain is only FI and *.
+
+5. .edu, .com, etc.
+
+    The domains in this section are special in that some of them are
+used in more than one country. The domains which have full internet 
+access are marked accordingly. However, this doesn't mean that *all*
+of  those  domains  have  full  internet  access.   For   example,
+only a small proportion of .mil sites have full internet access. The
+same is true for .com sites, for example.  
+
+6. UK and GB domains
+
+     There are two codes for United Kingdom, namely UK and GB. While 
+UK is used for addressing of most domains in DNS format, the field 
+GB is used mainly in the X.400 addressing of United Kingdom sites.
+However, there is an increasing trend in some United Kingdom sites
+being directly connected to Internet under the GB domain. The GB domain
+is hence a perfectly suitable Internet top level domain.
+When looking for further information, it is worth looking at both
+UK and GB for United Kingdom.
+
+7. Further information column
+
+     This column contains information as follows:
+
+- E-mail address of a contact from which further information may be obtained
+  and/or
+- Details of a gopher system that can be queried for further information
+  in this case, look at Section 8: Where to find further information
+  or
+- If no other information available: nameserver details, if any.
+  This is the main nameserver as listed in the rs.internic.net database.
+  Those often change as the network grows, and it is hard to keep track of
+  all nameservers, but they should usually work. Nameservers can be 
+  queried by users using nslookup. 
+
+8. Where to find further information
+
+  A number of sites run on-line information databases, mail-servers,
+and gopher information systems where further information can be found.
+
+- rs.internic.net
+    Part of this site, the InterNIC database services, contains the
+  Internet "white pages". The "whois" section of the "white pages"
+  has registration records for top level domains. "whois" can be
+  accessed by connecting interactively (telnet rs.internic.net),
+  or via gopher (gopher rs.internic.net) or using the "whois"
+  command available on some computer systems (whois -h rs.internic.net).
+  Registration records for a domain are sometimes useful since they
+  provide Administrative and Technical Contacts for this domain
+  and those may hence be able to provide further information.
+
+- gopher.ripe.net
+    This is a gopher system run by ripe.net, the co-ordinator for
+  European Internet nodes. It contains a lot of information regarding
+  European IP, etc. It may be accessed either as "gopher gopher.ripe.net"
+  or "telnet gopher.ripe.net" and logging-in appropriately. 
+  It also has a "whois" database.
+
+- GNET: an Archive and Electronic Journal
+  This is co-ordinated by Larry Press <lpress@dhvx20.csudh.edu>
+  Archived documents are available by anonymous ftp from the 
+  directory global_net at dhvx20.csudh.edu (155.135.1.1).  To 
+  conserve bandwidth, the archive contains an abstract of each 
+  document, as well as the full document.   
+  In addition to the archive, there is a moderated GNET 
+  discussion list.  
+  To submit a document to the archive or subscribe to the moderated 
+  discussion list, use the address gnet_request@dhvx20.csudh.edu.  
+
+- BITNIC Bitnet Network Information Center
+    Bitnet LISTSERVs contain files which list all BITNET sites around 
+  the world. For a listing of all BITNET sites, in country code order,
+  send a message to LISTSERV@Bitnic.educom.edu (or LISTSERV@BITNIC for
+  BITNET folks), no subject, and the command: 
+  GET NODES INFO3
+  in the body of the message.
+  A very long file of information on all international BITNET sites
+  can be ftp'ed from Bitnic.educom.edu and is called BITEARN.NODES .
+  It is more than 2Mb long.
+
+- gopher.psg.com
+    This gopher system, maintained by the Network Startup Resource
+  Center and PSGnet/RAINet contains perhaps the most comprehensive
+  collection of information about country connectivity.
+  It may be accessed as "gopher gopher.psg.com". For the gopher client
+  impaired, one can telnet to gopher.psg.com and login as gopher. 
+  An important feature is an E-mail interface to access the information
+  in the gopher system.
+  Send E-mail to: server@gopher.psg.com
+  any subject, and in the body of the message:
+
+  send country/<country-code>
+
+  Example: if you want further information about Brazil (country code BR)
+
+  send country/BR
+
+  Many thanks to Randy Bush <randy@psg.com> and to John Klensin
+  <klensin@infoods.unu.edu> for setting-up this site and this
+  collaborative effort.
+
+9. Archiving
+
+    Once released, this document is archived in a number of archive
+sites around the world. Amongst them:
+
+ ftp://rtfm.mit.edu:/pub/usenet/news.answers/mail/
+ ftp://lth.se:/pub/netnews/news.answers/mail/
+#ftp://ftp.uu.net:/usenet/news.answers/mail/
+#ftp://unix.hensa.ac.uk:/pub/uunet/usenet/news.answers/mail/
+#ftp://grasp.insa-lyon.fr:/pub/faq/mail/
+
+(#) those may not be accessible via Bear access or direct PC access
+    in some cases. 
+
+Via E-mail request as follows: 
+
+mail ftpmail@grasp.insa-lyon.fr
+Subject: no one cares
+open
+[mime]
+get pub/faq/mail/country-codes
+quit
+
+where [ ] = optional
+
+All FAQs are also available via listserv@cc1.kuleuven.ac.be   or
+listserv@blekul11.bitnet . For an index of all FAQs available,
+put the command GET NETFAQS FILELIST in the body of your message.
+
+The document is also retrievable by E-mail from rtfm.mit.edu by
+sending an E-mail to mail-server@rtfm.mit.edu , blank subject line
+and the command: send usenet/news.answers/mail/country-codes
+
+The up-to-date, pre-release document is also available using an
+experimental simple mail-server that I have setup from my account.
+Send E-mail to: <ocl@ic.ac.uk> with a subject: archive-server-request
+and the command: get mail/country-codes  in the body of your message.
+
+The document is also distributed automatically once a month on a 
+mailing list. To subscribe to that mailing list, send a message to:
+listserver@ic.ac.uk   with the command in the body of the message:
+SUBSCRIBE country-codes <your-name>
+where "<your-name>" is your real name.
+
+
+10. New World-Wide-Web (WWW) document
+
+An experimental (i.e: under construction) WWW version of this document
+is available as:
+
+          http://www.ee.ic.ac.uk/misc/country-codes.html
+
+This is currently experimental, so its reference may change at short
+notice, and some of the links in the document are currently not working.
+HTTP references for Top-Level information servers for a particular country
+should be sent to <ocl@ic.ac.uk>. 
+
+
+ISO 3166 Codes + Top level domains.
+
+WARNING:
+
+The link to some countries marked as being connected to Internet via
+UUCP or FIDO is often an expensive telephone dialup link. The people
+in those countries pay dearly for every byte of information sent to
+them. It is therefore not advised to send an electronic mail to a
+remote node in such a country asking "how's the weather there".
+When it comes to money, people take things very seriously, especially
+since funds are scarce. It is a matter of net etiquette to keep this
+in mind. Junk mail sent to any node that has to pay a lot for its
+telephone connection will clearly be dealt with HARSHLY and evasive
+action may well be taken against those not respecting this notice.
+
+
+Code    Country              Conn     Notes         Further information 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+AD   Andorra                                            
+AE   United Arab Emirates        P    Apparently dead ns.uu.net
+AF   Afghanistan(Islamic St.)
+AG   Antigua and Barbuda         *                    upr1.upr.clu.edu 
+AI   Anguilla
+AL   Albania                     P                    gwd2i.cnuce.cnr.it
+AM   Armenia                FI   *    Ex-USSR
+AN   Netherland Antilles 
+AO   Angola (Republic of)        *                    gopher gopher.psg.com
+AQ   Antarctica             FI   *    intermittent    luxor.cc.waikato.ac.nz
+AR   Argentina              FI B *  Uni. de Buenos Aires <info@dcfcen.edu.ar>
+                                                      <info@satlink.net>
+                                                      gopher gopher.psg.com
+AS   American Samoa
+AT   Austria                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+AU   Australia              FI   *                    munnari.oz.au 
+AW   Aruba                       *                    gopher gopher.psg.com
+AZ   Azerbaijan             FI B *    Ex-USSR         gopher gopher.psg.com
+BA   Bosnia-Herzegovina               
+BB   Barbados                    *                    upr1.upr.clu.edu
+BD   Bangladesh                  F
+BE   Belgium                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+BF   Burkina Faso                *                    gopher gopher.psg.com
+BG   Bulgaria               FI B *     Daniel Kalchev <daniel@digsys.bg>
+BH   Bahrain                   B *    Gulfnet       <postmaster@bhuob00.bitnet>
+BI   Burundi
+BJ   Benin
+BM   Bermuda                FI   *   
+BN   Brunei Darussalam
+BO   Bolivia                     *                    gopher gopher.psg.com
+BR   Brazil                 FI B *                    gopher gopher.psg.com
+BS   Bahamas                     *                    upr1.upr.clu.edu
+BT   Bhutan
+BV   Bouvet Island
+BW   Botswana                    *                    gopher gopher.psg.com
+BY   Belarus                FI   *    Ex-USSR         gopher gopher.psg.com
+BZ   Belize                      *                    gopher gopher.psg.com
+CA   Canada                 FI B *                    relay.cdnnet.ca
+CC   Cocos (Keeling) Isl.
+CF   Central African Rep.
+CG   Congo                       *                    gopher gopher.psg.com
+CH   Switzerland            FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+CI   Ivory Coast                 *                    gopher gopher.psg.com
+CK   Cook Islands
+CL   Chile                  FI B *                    gopher gopher.psg.com
+                                                      dcc.uchile.cl
+CM   Cameroon               FI   *    in .fr domain   gopher gopher.psg.com
+CN   China                  FI   *                    ns.cnc.ac.cn
+                                                      gopher gopher.psg.com
+CO   Colombia               FI B *                    gopher gopher.psg.com 
+                                                      cunixd.cc.columbia.edu
+CR   Costa Rica             FI B *                    gopher gopher.psg.com 
+CS   Czechoslovakia    ******** not a top-level domain anymore ********
+CU   Cuba                        *                    gopher gopher.psg.com
+CV   Cape Verde
+CX   Christmas Island
+CY   Cyprus                 FI B *                    gopher gopher.ripe.net
+CZ   Czech Republic         FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+DE   Germany                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net 
+                                                      gopher gopher.psg.com
+DJ   Djibouti
+DK   Denmark                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+DM   Dominica                    *                    upr1.upr.clu.edu
+DO   Dominican Republic          *                    gopher gopher.psg.com
+DZ   Algeria                FI   *                    gopher gopher.psg.com
+EC   Ecuador                FI B *                    gopher gopher.psg.com
+EE   Estonia                FI   *    Juhan Poeldvere <juhan@chem.ut.ee> 
+EG   Egypt                  FI B *                    gopher gopher.psg.com
+EH   Western Sahara
+ER   Eritrea                     *                    gopher gopher.psg.com
+ES   Spain                  FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+ET   Ethiopia                    F                    gopher gopher.psg.com
+FI   Finland                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+FJ   Fiji                   FI   *                    <postmaster@usp.ac.fj> 
+FK   Falkland Isl.(Malvinas)
+FM   Micronesia 
+FO   Faroe Islands          FI   *                    danpost.uni-c.dk
+FR   France                 FI B *                    gopher gopher.ripe.net 
+                                                      telnet ns.ripe.net
+                                                      gopher gopher.psg.com
+FX   France (European Ter.)           ???
+GA   Gabon
+GB   Great Britain (UK)     FI   *    X.400 & IP      ns1.cs.ucl.ac.uk
+GD   Grenada                     P                    upr1.upr.clu.edu
+GE   Georgia                     *    Ex-USSR         ns.eu.net
+GF   Guyana (Fr.)                *                    gopher gopher.psg.com
+GH   Ghana                       *                    gopher gopher.psg.com
+GI   Gibraltar
+GL   Greenland              FI   *                    gopher gopher.psg.com
+GM   Gambia                      F                    gopher gopher.psg.com
+GN   Guinea                PFI   *    dial-IP         
+GP   Guadeloupe (Fr.)            P                    gopher gopher.psg.com
+GQ   Equatorial Guinea
+GR   Greece                 FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+GS   South Georgia  and
+     South Sandwich Islands
+GT   Guatemala                   *                    ns.uu.net
+GU   Guam (US)              FI   *  in US domains     gopher gopher.psg.com
+GW   Guinea Bissau
+GY   Guyana
+HK   Hong Kong              FI B *                    hp9000.csc.cuhk.hk
+HM   Heard & McDonald Isl.
+HN   Honduras                    *                    ns.uu.net
+HR   Croatia                FI   *                    dns.srce.hr 
+HT   Haiti                       P                    gopher gopher.psg.com
+HU   Hungary                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+                                                      gopher gopher.psg.com
+ID   Indonesia              FI   *                    gopher gopher.psg.com
+                                                      ns.uu.net
+IE   Ireland                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+IL   Israel                 FI B *                    relay.huji.ac.il
+IN   India                  FI B *                    gopher gopher.psg.com
+                                                      sangam.ncst.ernet.in
+IO   British Indian O. Terr.
+IQ   Iraq
+IR   Iran                   FI B *   Ali Shokoufandeh <ali@IREARN.BITNET>
+                                    Ebrahim Mashayekh <ebrahim@IREARN.BITNET>
+                                        Akbar Behzadi <akbar@IREARN.BITNET>
+IS   Iceland                FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+IT   Italy                  FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+JM   Jamaica                FI   *                    gopher gopher.psg.com
+JO   Jordan
+JP   Japan                  FI B *                    gopher gopher.psg.com
+                                                      jp-gate.wide.ad.jp
+KE   Kenya                       *                    gopher gopher.psg.com
+KG   Kyrgyz Republic                  Ex-USSR
+KH   Cambodia                    *
+KI   Kiribati
+KM   Comoros
+KN   St.Kitts Nevis Anguilla     P                    upr1.upr.clu.edu
+KP   Korea (North)               P                    
+KR   Korea (South)          FI B *                    ns.kaist.ac.kr
+KW   Kuwait                 FI   *    No BITNET       gopher gopher.psg.com
+KY   Cayman Islands
+KZ   Kazachstan             FI   *    Ex-USSR
+LA   Laos
+LB   Lebanon                FI   *                    gopher gopher.psg.com
+LC   Saint Lucia                 *                    upr1.upr.clu.edu
+LI   Liechtenstein          FI   *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+LK   Sri Lanka              FI   *    intermittent    gopher gopher.psg.com
+LR   Liberia
+LS   Lesotho                     *                    gopher gopher.psg.com
+LT   Lithuania              FI   *    Ex-USSR         aun.uninett.no
+LU   Luxembourg             FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+LV   Latvia                 FI   *    Ex-USSR         lapsene.mii.lu.lv
+LY   Libya
+MA   Morocco               PFI   *   FI late'94/'95   gopher gopher.psg.com
+MC   Monaco
+MD   Moldova                FI   *    intermittent         
+MG   Madagascar (Republic of)    *                    gopher gopher.psg.com
+MH   Marshall Islands
+MK   Macedonia (former Yugo.)    *                    gopher gopher.psg.com
+ML   Mali                        *                    gopher gopher.psg.com
+MM   Myanmar
+MN   Mongolia                    *                    gopher gopher.psg.com
+MO   Macau                  FI   *                    hkuxb.hku.hk
+MP   Northern Mariana Isl.
+MQ   Martinique (Fr.)
+MR   Mauritania
+MS   Montserrat
+MT   Malta                       P                    ns.iunet.it
+MU   Mauritius                   *                    gopher gopher.psg.com
+MV   Maldives
+MW   Malawi                      F
+MX   Mexico                 FI B *                    gopher gopher.psg.com
+                                                      mtecv1.mty.itesm.mx 
+MY   Malaysia               FI B *                    mimos.my
+MZ   Mozambique                  *                    gopher gopher.psg.com
+NA   Namibia                     *             <postmaster@grumpy.cs.unam.na>
+                                                      gopher gopher.psg.com
+NC   New Caledonia (Fr.)         *                    gopher gopher.psg.com
+NE   Niger                       *    in .fr domain   gopher gopher.psg.com
+NF   Norfolk Island
+NG   Nigeria                     F                    gopher gopher.psg.com
+NI   Nicaragua              FI   *                    gopher gopher.psg.com
+NL   Netherlands            FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+NO   Norway                 FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+NP   Nepal                       *                    gopher gopher.psg.com
+NR   Nauru
+NU   Niue
+NZ   New Zealand            FI   *                    truth.waikato.ac.nz
+OM   Oman                        *
+PA   Panama                 FI B *                    gopher gopher.psg.com 
+PE   Peru                   FI   *                    gopher gopher.psg.com
+PF   Polynesia (Fr.)             *                    gopher gopher.psg.com
+PG   Papua New Guinea            *                    munnari.oz.au
+PH   Philippines            FI   *                    ns.uu.net
+PK   Pakistan                    *        Imran Anwar <imran@panix.com> 
+PL   Poland                 FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net 
+                                                      gopher gopher.psg.com
+PM   St. Pierre & Miquelon
+PN   Pitcairn
+PR   Puerto Rico (US)       FI B *                    sun386-gauss.pr
+PT   Portugal               FI B *                    gopher gopher.ripe.net
+                                                      telnet gopher.ripe.net
+PW   Palau
+PY   Paraguay                    *                    ns.uu.net
+QA   Qatar
+RE   Reunion (Fr.)          FI   *    In .fr domain   inria.inria.fr
+RO   Romania                FI B *                    roearn.ici.ac.ro
+RU   Russian Federation     FI B *    Ex-USSR         
+RW   Rwanda                      F    currently cut   gopher gopher.psg.com
+SA   Saudi Arabia           FI B *    dial-ip         gopher gopher.psg.com
+SB   Solomon Islands
+SC   Seychelles                  *                    gopher gopher.psg.com
+SD   Sudan                       F                   
+SE   Sweden                 FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+SG   Singapore              FI B *                    gopher solomon.technet.sg
+                                                      gopher gopher.psg.com
+SH   St. Helena
+SI   Slovenia               FI   *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+SJ   Svalbard & Jan Mayen IsFI   *     in .no domain
+SK   Slovakia (Slovak Rep)  FI B *                    gopher gopher.ripe.net
+                                                      telnet ns.ripe.net
+SL   Sierra Leone                *                    gopher gopher.psg.com
+SM   San Marino
+SN   Senegal                     *                    gopher gopher.psg.com
+SO   Somalia
+SR   Suriname                    *                    upr1.upr.clu.edu
+ST   St. Tome and Principe
+SU   Soviet Union           FI B *    Still used.     <hostmaster@ussr.eu.net> 
+                                                      gopher gopher.psg.com
+SV   El Salvador                                      gopher gopher.psg.com
+SY   Syria
+SZ   Swaziland                   *                    gopher gopher.psg.com
+TC   Turks & Caicos Islands
+TD   Chad
+TF   French Southern Terr.
+TG   Togo                        *                    gopher gopher.psg.com
+TH   Thailand               FI   *                    gopher gopher.psg.com
+                                                      chulkn.chula.ac.th
+TJ   Tadjikistan                      Ex-USSR         
+TK   Tokelau      
+TM   Turkmenistan                *    Ex-USSR in .su domain         
+TN   Tunisia                FI B *                    gopher gopher.psg.com
+                                                      alyssa.rsinet.tn
+TO   Tonga
+TP   East Timor
+TR   Turkey                 FI B *                    gopher gopher.psg.com
+                                                      knidos.cc.metu.edu.tr
+TT   Trinidad & Tobago           *                    gopher gopher.psg.com
+TV   Tuvalu
+TW   Taiwan                 FI B *                    gopher gopher.psg.com 
+TZ   Tanzania                    F                    gopher gopher.psg.com
+UA   Ukraine                FI   *    UA Network Enq. <domain-master@cs.kiev.ua>
+UG   Uganda                      F                    gopher gopher.psg.com
+UK   United Kingdom         FI B *    ISO 3166 is GB  telnet news.janet.ac.uk
+                                                      gopher news.janet.ac.uk
+                                    UK Network Enq. <liaison@nsfnet-relay.ac.uk>
+                                                      gopher gopher.psg.com
+UM   US Minor outlying Isl.
+US   United States          FI   *    see note (4)    venera.isi.edu
+UY   Uruguay                FI B *                    gopher gopher.psg.com
+UZ   Uzbekistan                       Ex-USSR
+VA   Vatican City State
+VC   St.Vincent & Grenadines     P                    upr1.upr.clu.edu
+VE   Venezuela              FI   *                    nisc.jvnc.net
+VG   Virgin Islands (British)
+VI   Virgin Islands (US)         *                    
+VN   Vietnam                     *                    gopher gopher.psg.com
+VU   Vanuatu                     *                    gopher gopher.psg.com
+WF   Wallis & Futuna Islands
+WS   Samoa
+YE   Yemen
+YT   Mayotte
+YU   Yugoslavia                B *    effectively cut-off completely   
+ZA   South Africa           FI   *                    gopher gopher.psg.com
+ZM   Zambia                 FI   *    intermittent    gopher gopher.psg.com
+ZR   Zaire
+ZW   Zimbabwe               FI   *                    gopher gopher.psg.com
+
+See Note [5] for the next top level domains (rs.internic.net):
+
+ARPA Old style Arpanet           *    alias still works ns.nic.ddn.mil
+COM  Commercial             FI   *                    telnet whois.internic.net
+EDU  Educational            FI B *                    telnet whois.internic.net
+GOV  Government             FI   *                    telnet whois.internic.net
+INT  International field    FI   *    used by Nato    ns1.cs.ucl.ac.uk
+MIL  US Military            FI   *                    ns.nic.ddn.mil
+NATO Nato field                  *    soon to be deleted ???
+NET  Network                FI   *                    telnet whois.internic.net
+ORG  Non-Profit OrganizationFI   *                    telnet whois.internic.net
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+DISCLAIMER: while every effort is made to provide accurate information,
+this list is not guaranteed to be accurate. This document is in NO WAY
+an official document. The information given should not be used as a basis
+for routing tables but only as general end-user information. This is a
+voluntary effort. I would appreciate greatly if errors/omissions could
+be pointed out to me and they would be corrected in the next release. 
+The information included in this document implies no view whatsoever
+regarding questions of sovereignty or the status of any place listed.
+Affiliation to Imperial College is given for identification purposes only.
+
+
+-- 
+Olivier M.J. Crepin-Leblond, Digital Comms. Section, Elec. Eng. Department
+ Imperial College of Science, Technology and Medicine, London SW7 2BT, UK
+<foobar@ic.ac.uk>   Mobile (GMT): +44 (0)956 84 111 3   <foobar@gih.co.uk>     
+

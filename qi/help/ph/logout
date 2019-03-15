@@ -1,0 +1,13 @@
+SYNTAX: logout
+
+SUMMARY
+The "logout" command allows a user who is logged in to the Nameserver
+to logout.  Once a user is logged out, ph will no longer execute commands
+requiring a login such as "me", "edit", "make", etc., but it will respond
+to queries.
+
+"Logout" differs from the "quit" command in that "logout" leaves the
+user in ph's interactive mode, while "quit" exits ph entirely.  If you
+want to simultaneously logout and exit ph, use "quit" instead of "logout".
+
+SEE ALSO: login, quit

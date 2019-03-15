@@ -1,0 +1,58 @@
+#! /usr/bin/perl
+
+#
+# usage
+if ($#ARGV<0) {print STDERR "usage: flat2add prod.cnf [files]\n";exit 1;}
+
+#
+# parse the config file
+#
+$config=shift;
+open (CONFIG,$config) || die "$config: $!\n";
+while (<CONFIG>)
+{
+	chop;
+	if (substr($_,0,1) eq "#") {next;}
+	if (length==0) {next;}
+	split(/:/);
+	if (@_ < 2) {next;}
+	$Pconf{$_[0]} = $_[1];
+}
+close(CONFIG);
+@fids = sort(keys(%Pconf));
+
+#
+# here we go
+while (<>) {
+	chop;
+	%old = &SplitFields($_);
+
+	#
+	# now, go through all the fields
+	#
+	$resString = "add";
+	foreach $f (@fids)
+	{
+		if ($old{$f} ne "")
+		{
+			$resString .= sprintf(" %s=\"%s\"",$Pconf{$f},$old{$f});
+		}
+	}
+	$resString .= "\n";
+	print $resString;
+}
+
+sub SplitFields
+{
+	$_ = $_[0];
+	if ($_ ne "")
+	{
+		s/	([0-9]+):/	$1	/g;
+		s/:/	/;
+		%flds = split("\t");
+	}
+	else
+	{
+		();
+	}
+}

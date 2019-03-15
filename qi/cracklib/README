@@ -1,0 +1,8 @@
+This directory contains modified routines from Alec Moffett's CrackLib
+library.  Instead of using the user's GCOS field to test for passwords,
+these routines use other fields within a user's ph entry.  Note that the
+dictionary and other utilities are not included here.  You'll need to get
+the vanilla package for that.
+
+Paul Pomes
+p-pomes@uiuc.edu

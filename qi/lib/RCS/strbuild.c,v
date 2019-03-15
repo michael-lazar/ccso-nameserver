@@ -1,0 +1,379 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.7
+date	94.03.12.00.06.47;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	92.07.23.14.40.57;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	90.12.18.08.41.04;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	89.03.20.15.14.24;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.12.02.14.44.48;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.11.15.13.34.53;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.08.10.45.00;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@New copyright statement.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id$";
+#endif
+
+#include "protos.h"
+
+/*
+ * These routines provide a reasonably efficient way of building up a
+ * string of unknown length.  The string is kept in a buffer, and the end
+ * of the current string is remembered so that it can be easily added on
+ * to.  If the buffer runs out of space it is reallocated at twice its 
+ * needed size.  Once the string has been built it should be copied, since
+ * it will be destroyed by the next call to init_string().
+ */
+
+#define INITIAL_SIZE 128
+
+static char *StrBuf;
+static unsigned StrBufSize;
+static unsigned StrBufUsed;
+
+/*
+ * Initialize the buffer to start building a new string.
+ */
+void 
+init_string()
+{
+	if (StrBuf)
+		free(StrBuf);
+	StrBufSize = INITIAL_SIZE;
+	StrBuf = malloc(StrBufSize);
+	StrBuf[0] = '\0';
+	StrBufUsed = 1;
+}
+
+/*
+ * Add a new string onto the current buffer.	A pointer to the beginning *
+ * of the buffer is returned.
+ */
+char *
+add_string(str)
+	char *str;
+{
+	int	strlength;
+
+	/* Nothing to do */
+	if (!str || !str[0])
+		return StrBuf;
+
+	/* Just so we don't have to count it twice */
+	strlength = strlen(str);
+
+	/* Make sure we have enough space in the buffer */
+	if (StrBufUsed + strlength > StrBufSize)
+	{
+		StrBufSize += strlength;
+		free(StrBuf);
+		StrBuf = realloc(StrBuf, StrBufSize *= 2);
+	}
+
+	/* Add on the new string */
+	(void) strcat(&StrBuf[StrBufUsed - 1], str);
+	StrBufUsed += strlength;
+
+	/* Return a pointer to the whole thing */
+	return StrBuf;
+}
+@
+
+
+1.6
+log
+@Re-formatted for clarity.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+a2 1
+/*LINTLIBRARY*/
+d4 5
+a8 6
+ * * These routines provide a reasonably efficient way of building up a *
+ * string of unknown length.  The string is kept in a buffer, and the * end
+ * of the current string is remembered so that it can be easily added * on
+ * to.  If the buffer runs out of space it is reallocated at twice its *
+ * needed size.  Once the string has been built it should be copied, since *
+ * it will be destroyed by the next call to init_string(). 
+d11 9
+a25 2
+#include <stdlib.h>
+
+d27 1
+a27 1
+ * * Initialize the buffer to start building a new string. 
+d29 2
+a30 1
+void init_string(void)
+d32 6
+a37 6
+  if (StrBuf)
+    free(StrBuf);
+  StrBufSize = INITIAL_SIZE;
+  StrBuf = malloc(StrBufSize);
+  StrBuf[0] = '\0';
+  StrBufUsed = 1;
+d41 2
+a42 2
+ * * Add a new string onto the current buffer.  A pointer to the beginning *
+ * of the buffer is returned. 
+d44 3
+a46 1
+char *add_string(char *str)
+d48 1
+a48 1
+  int   str_len;
+d50 18
+a67 18
+  /* Nothing to do */
+  if (!str || !str[0])
+    return StrBuf;
+
+  /* Just so we don't have to count it twice */
+  str_len = strlen(str);
+
+  /* Make sure we have enough space in the buffer */
+  if (StrBufUsed + str_len > StrBufSize)
+  {
+    StrBufSize += str_len;
+    free(StrBuf);
+    StrBuf = realloc(StrBuf, StrBufSize *= 2);
+  }
+
+  /* Add on the new string */
+  (void) strcat(&StrBuf[StrBufUsed - 1], str);
+  StrBufUsed += str_len;
+d69 2
+a70 2
+  /* Return a pointer to the whole thing */
+  return StrBuf;
+@
+
+
+1.4
+log
+@No help here.
+@
+text
+@d1 1
+d27 1
+a27 3
+char   *
+strcat(), *malloc(), *realloc();
+void free();
+d32 1
+a32 1
+init_string()
+d46 1
+a46 3
+char   *
+add_string(str)
+char   *str;
+@
+
+
+1.3
+log
+@No help here.
+@
+text
+@d1 9
+a10 8
+/***********************************************************************
+* Portions of this software Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  Portions of this software
+* orginally written for CSNET; copyright status unclear at this time.  No
+* warranties expressed or implied, no support provided.  Please do not
+* redistribute it in its present form.  Contact me for details
+* (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+@
+
+
+1.2
+log
+@No help here.
+@
+text
+@d1 1
+d27 1
+d34 6
+a39 6
+    if (StrBuf)
+	free(StrBuf);
+    StrBufSize = INITIAL_SIZE;
+    StrBuf = malloc(StrBufSize);
+    StrBuf[0] = '\0';
+    StrBufUsed = 1;
+d50 1
+a50 1
+    int     str_len;
+d52 3
+a54 3
+    /* Nothing to do */
+    if (!str || !str[0])
+	return StrBuf;
+d56 2
+a57 2
+    /* Just so we don't have to count it twice */
+    str_len = strlen(str);
+d59 7
+a65 7
+    /* Make sure we have enough space in the buffer */
+    if (StrBufUsed + str_len > StrBufSize)
+    {
+	StrBufSize += str_len;
+	free(StrBuf);
+	StrBuf = realloc(StrBuf, StrBufSize *= 2);
+    }
+d67 3
+a69 3
+    /* Add on the new string */
+    (void) strcat(&StrBuf[StrBufUsed - 1], str);
+    StrBufUsed += str_len;
+d71 2
+a72 2
+    /* Return a pointer to the whole thing */
+    return StrBuf;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 8
+d10 7
+a16 7
+** These routines provide a reasonably efficient way of building up a
+** string of unknown length.  The string is kept in a buffer, and the
+** end of the current string is remembered so that it can be easily added
+** on to.  If the buffer runs out of space it is reallocated at twice its
+** needed size.  Once the string has been built it should be copied, since
+** it will be destroyed by the next call to init_string().
+*/
+d24 1
+a24 1
+char *
+d28 2
+a29 2
+** Initialize the buffer to start building a new string.
+*/
+d41 4
+a44 4
+** Add a new string onto the current buffer.  A pointer to the beginning
+** of the buffer is returned.
+*/
+char *
+d46 1
+a46 1
+char *str;
+d48 1
+a48 1
+    int str_len;
+@

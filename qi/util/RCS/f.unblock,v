@@ -1,0 +1,631 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	95.05.23.15.00.30;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@Revised GenPass().
+@
+text
+@#!%PerlProg%
+#
+# f.unblock - unblock a staff tape, producing the standard format
+#
+# The f.unblock script is used on the staff tape produced as part of the
+# phone book printing.  The f2.unblock is for the dataset produced by
+# AISS explicitly for ph.
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: f.unblock,v 1.2 1995/01/11 00:05:11 p-pomes Exp p-pomes $
+
+# Tape layout is as follows:
+# 9	SSN				1-9
+# 1     pad				10
+# 23	last name			11-33
+# 15	first name			34-48
+# 15	middle name			49-63
+# 15	spouse name			64-78
+# 75	title				79-153
+# 25	department			154-178
+# 25	office number			179-203
+# 25	office street address		204-228
+# 16	office city			229-244
+# 2	office state			245-246
+# 5	office zip code			247-251
+# 3	office mailcode			252-254
+# 10	office phone			255-264
+# 1	suppress home address (if *)	265
+# 50	home street address		266-315
+# 15	home city			316-330
+# 2	home state			331-332
+# 5	home zip code			333-337
+# 1	suppress home phone (if *)	338
+# 11	home phone number		339-349
+# 50	email address (don't use as it's often alias@@uiuc.edu)	350-399
+# 1	newline character		400
+#
+# Start with
+# dd if=rmt0 of=fac ibs=4000 cbs=400 conv=ascii
+#
+# some definitions
+#
+
+#
+# table of mailcodes to street addresses
+%mcTable = (
+  "002","2001 s lincoln\\nurbana, il 61801",
+  "003","1707 s orchard\\nurbana, il 61801",
+  "004","1008 w. hazelwood dr\\nurbana, il 61801",
+  "005","1717 philo #24\\nurbana, il 61801",
+  "007","511 hazelwood\\nchampaign, il 61820",
+  "010","1503 s maryland dr\\nurbana, il 61801",
+  "012","1001 w college ct\\nurbana, il 61801",
+  "014","1001 w college ct\\nurbana, il 61801",
+  "016","1001 w college ct\\nurbana, il 61801",
+  "018","906 w college ct\\nurbana, il 61801",
+  "020","906 w college ct\\nurbana, il 61801",
+  "022","906 w college ct\\nurbana, il 61801",
+  "024","805 w pennsylvania\\nurbana, il 61801",
+  "026","1109 s lincoln\\nurbana, il 61801",
+  "028","1005 s lincoln\\nurbana, il 61801",
+  "030","1005 s lincoln\\nurbana, il 61801",
+  "032","1005 s lincoln\\nurbana, il 61801",
+  "033","1005 w nevada\\nurbana, il 61801",
+  "034","907 1/2 w nevada\\nurbana, il 61801",
+  "035","1003 nevada\\nurbana, il 61801",
+  "036","909 w oregon\\nurbana, il 61801",
+  "038","1105 w nevada\\nurbana, il 61801",
+  "040","1111 w nevada\\nurbana, il 61801",
+  "042","1111 w nevada\\nurbana, il 61801",
+  "044","1111 w nevada\\nurbana, il 61801",
+  "046","1102 s goodwin\\nurbana, il 61801",
+  "048","1102 s goodwin\\nurbana, il 61801",
+  "050","1005 w gregory dr\\nurbana, il 61801",
+  "052","906 s goodwin\\nurbana, il 61801",
+  "056","1114 w nevada\\nurbana, il 61801",
+  "059","901 w oregon\\nurbana, il 61801",
+  "060","919 w illinois\\nurbana, il 61801",
+  "064","912 w illinois\\nurbana, il 61801",
+  "065","901 w illinois\\nurbana, il 61801",
+  "066","1010 w illinois\\nurbana, il 61801",
+  "068","1010 w illinois\\nurbana, il 61801",
+  "070","1010 w illinois\\nurbana, il 61801",
+  "072","500 s goodwin\\nurbana, il 61801",
+  "074","606 s gregory\\nurbana, il 61801",
+  "076","408 s goodwin\\nurbana, il 61801",
+  "077","300 goodwin\\nurbana, il 61801",
+  "102","1301 w green\\nurbana, il 61801",
+  "104","1301 w green\\nurbana, il 61801",
+  "106","1301 w green\\nurbana, il 61801",
+  "110","407 s goodwin\\nurbana, il 61801",
+  "112","407 s goodwin\\nurbana, il 61801",
+  "114","407 s goodwin\\nurbana, il 61801",
+  "116","505 s goodwin\\nurbana, il 61801",
+  "118","505 s goodwin\\nurbana, il 61801",
+  "120","505 s goodwin\\nurbana, il 61801",
+  "122","505 s goodwin\\nurbana, il 61801",
+  "123","505 s goodwin\\nurbana, il 61801",
+  "134","1205 w oregon\\nurbana, il 61801",
+  "140","1207 w oregon \\nurbana, il 61801",
+  "142","1201 w nevada\\nurbana, il 61801",
+  "144","1204 w nevada\\nurbana, il 61801",
+  "146","608 s mathews\\nurbana, il 61801",
+  "147","607 s mathews\\nurbana, il 61801",
+  "148","607 s mathews\\nurbana, il 61801",
+  "150","607 s mathews\\nurbana, il 61801",
+  "152","607 s mathews\\nurbana, il 61801",
+  "154","708 s mathews\\nurbana, il 61801",
+  "156","708 s mathews\\nurbana, il 61801",
+  "158","707 s mathews\\nurbana, il 61801",
+  "160","707 s mathews\\nurbana, il 61801",
+  "162","707 s mathews\\nurbana, il 61801",
+  "164","707 s mathews\\nurbana, il 61801",
+  "166","707 s mathews\\nurbana, il 61801",
+  "168","707 s mathews\\nurbana, il 61801",
+  "170","707 s mathews\\nurbana, il 61801",
+  "172","707 s mathews\\nurbana, il 61801",
+  "174","707 s mathews\\nurbana, il 61801",
+  "176","707 s mathews\\nurbana, il 61801",
+  "178","707 s mathews\\nurbana, il 61801",
+  "180","905 s goodwin\\nurbana, il 61801",
+  "182","905 s goodwin\\nurbana, il 61801",
+  "184","905 s goodwin\\nurbana, il 61801",
+  "186","905 s goodwin\\nurbana, il 61801",
+  "188","905 s goodwin\\nurbana, il 61801",
+  "190","901 s mathews\\nurbana, il 61801",
+  "192","901 s mathews\\nurbana, il 61801",
+  "194","901 s mathews\\nurbana, il 61801",
+  "221","1002 w green\\nurbana, il 61801",
+  "222","1010 w green\\nurbana, il 61801",
+  "223","105 s gregory\\nurbana, il 61801",
+  "226","1011 w springfield\\nurbana, il 61801",
+  "227","1011 w western\\nurbana, il 61801",
+  "228","1308 w main\\nurbana, il 61801",
+  "230","104 s goodwin\\nurbana, il 61801",
+  "232","105 s goodwin\\nurbana, il 61801",
+  "233","1101 w springfield\\nurbana, il 61801",
+  "234","103 s goodwin\\nurbana, il 61801",
+  "236","104 s wright\\nurbana, il 61801",
+  "238","104 s mathews\\nurbana, il 61801",
+  "240","106 s burrill\\nurbana, il 61801",
+  "242","103 s mathews\\nurbana, il 61801",
+  "244","1206 w green\\nurbana, il 61801",
+  "246","1304 w green\\nurbana, il 61801",
+  "248","1304 w green\\nurbana, il 61801",
+  "249","208 n wright\\nchampaign, il 61820",
+  "250","205 n mathews\\nurbana, il 61801",
+  "250","301 n mathews\\nurbana, il 61801",
+  "251","405 n mathews\\nurbana, il 61801",
+  "252","1110 w main\\nurbana, il 61801",
+  "253","1208 w springfield #208\\nurbana, il 61801",
+  "254","1212 w springfield\\nurbana, il 61801",
+  "256","1304 w springfield\\nurbana, il 61801",
+  "258","1304 w springfield\\nurbana, il 61801",
+  "262","104 s wright\\nurbana, il 61801",
+  "264","1308 w main\\nurbana, il 61801",
+  "266","1308 w green\\nurbana, il 61801",
+  "268","1308 w green\\nurbana, il 61801",
+  "269","1308 w green\\nurbana, il 61801",
+  "270","1308 w green\\nurbana, il 61801",
+  "272","1308 w green\\nurbana, il 61801",
+  "274","1308 w green\\nurbana, il 61801",
+  "276","1308 w green\\nurbana, il 61801",
+  "278","1308 w green\\nurbana, il 61801",
+  "302","502 e john\\nchampaign, il 61820",
+  "304","601 e john\\nchampaign, il 61820",
+  "306","610 e john\\nchampaign, il 61820",
+  "318","801 s wright\\nchampaign, il 61820",
+  "320","801 s wright\\nchampaign, il 61820",
+  "322","801 s wright\\nchampaign, il 61820",
+  "325","801 s wright\\nchampaign, il 61820",
+  "332","506 s wright\\nurbana, il 61801",
+  "334","506 s wright\\nurbana, il 61801",
+  "336","506 s wright\\nurbana, il 61801",
+  "338","506 s wright\\nurbana, il 61801",
+  "340","506 s wright\\nurbana, il 61801",
+  "344","506 s wright\\nurbana, il 61801",
+  "346","506 s wright\\nurbana, il 61801",
+  "348","506 s wright\\nurbana, il 61801",
+  "350","506 s wright\\nurbana, il 61801",
+  "352","506 s wright\\nurbana, il 61801",
+  "354","506 s wright\\nurbana, il 61801",
+  "356","506 s wright\\nurbana, il 61801",
+  "358","506 s wright\\nurbana, il 61801",
+  "360","506 s wright\\nurbana, il 61801",
+  "362","506 s wright\\nurbana, il 61801",
+  "364","506 s wright\\nurbana, il 61801",
+  "366","502 e john\\nchampaign, il 61820",
+  "367","506 s wright\\nurbana, il 61801",
+  "368","506 s wright\\nurbana, il 61801",
+  "370","506 s wright\\nurbana, il 61801",
+  "374","725 s wright\\nchampaign, il 61820",
+  "378","715 s wright\\nchampaign, il 61820",
+  "380","713 s wright\\nchampaign, il 61820",
+  "382","1409 w green\\nurbana, il 61801",
+  "384","1401 w green\\nurbana, il 61801",
+  "386","1305 w green\\nurbana, il 61801",
+  "388","1401 w green\\nurbana, il 61801",
+  "390","1001 s wright\\nurbana, il 61801",
+  "393","810 s sixth\\nchampaign, il 61820",
+  "394","williard airport savoy ",
+  "396","510 e daniel\\nchampaign, il 61820",
+  "422","403 e healey\\nchampaign, il 61820",
+  "423","301 e springfield #104\\nchampaign, il 61820",
+  "424","302 e john\\nchampaign, il 61820",
+  "426","302 e john\\nchampaign, il 61820",
+  "428","302 e john\\nchampaign, il 61820",
+  "430","302 e john\\nchampaign, il 61820",
+  "431","302 e john\\nchampaign, il 61820",
+  "432","302 e john\\nchampaign, il 61820",
+  "433","202 univ inn\\nchampaign, il 61820",
+  "433","302 e john\\nchampaign, il 61820",
+  "436","505 e green\\nchampaign, il 61820",
+  "437","505 e green\\nchampaign, il 61820",
+  "438","505 e green\\nchampaign, il 61820",
+  "440","505 e green\\nchampaign, il 61820",
+  "442","610 s sixth\\nchampaign, il 61820",
+  "444","606 e healey\\nchampaign, il 61820",
+  "446","702 s wright\\nurbana, il 61801",
+  "448","702 s wright\\nurbana, il 61801",
+  "450","702 s wright\\nurbana, il 61801",
+  "452","702 s wright\\nurbana, il 61801",
+  "454","702 s wright\\nurbana, il 61801",
+  "456","702 s wright\\nurbana, il 61801",
+  "458","702 s wright\\nurbana, il 61801",
+  "460","702 s wright\\nurbana, il 61801",
+  "462","810 s wright\\nurbana, il 61801",
+  "464","810 s wright\\nurbana, il 61801",
+  "466","810 s wright\\nurbana, il 61801",
+  "468","810 s wright\\nurbana, il 61801",
+  "472","1400 w park\\nurbana, il 61801",
+  "474","611 w park\\nurbana, il 61801",
+  "476","605 e springfield\\nchampaign, il 61820",
+  "477","501 s sixth\\nchampaign, il 61820",
+  "478","1307 w park\\nurbana, il 61801",
+  "482","901 s sixth\\nchampaign, il 61820",
+  "484","909 s sixth\\nchampaign, il 61820",
+  "486","911 s sixth\\nchampaign, il 61820",
+  "488","510 e chalmers\\nchampaign, il 61820",
+  "490","909 s fifth\\nchampaign, il 61820",
+  "492","912 s fifth\\nchampaign, il 61820",
+  "493","501 e daniel\\nchampaign, il 61820",
+  "496","409 e chalmers\\nchampaign, il 61820",
+  "498","409 e chalmers\\nchampaign, il 61820",
+  "502","409 e chalmers\\nchampaign, il 61820",
+  "504","504 e armory\\nchampaign, il 61820",
+  "521","201 john\\nchampaign, il 61820",
+  "522","1408 w gregory dr\\nurbana, il 61801",
+  "523","1004 s fourth\\nchampaign, il 61820",
+  "524","1103 s sixth\\nchampaign, il 61820",
+  "525","406 e armory\\nchampaign, il 61820",
+  "526","505 e armory\\nchampaign, il 61820",
+  "528","505 e armory\\nchampaign, il 61820",
+  "530","505 e armory\\nchampaign, il 61820",
+  "532","505 e armory\\nchampaign, il 61820",
+  "534","505 e armory\\nchampaign, il 61820",
+  "536","505 e armory\\nchampaign, il 61820",
+  "539","505 e armory\\nchampaign, il 61820",
+  "540","101 e gregory dr\\nchampaign, il 61820",
+  "542","101 e gregory dr\\nchampaign, il 61820",
+  "544","101 e gregory dr\\nchampaign, il 61820",
+  "546","301 e gregory\\nchampaign, il 61820",
+  "548","1203 s fourth\\nchampaign, il 61820",
+  "550","206 e peabody dr\\nchampaign, il 61820",
+  "552","206 e peabody dr\\nchampaign, il 61820",
+  "554","206 e peabody dr\\nchampaign, il 61820",
+  "555","200 e florida\\nchampaign, il 61820",
+  "556","201 e peabody dr\\nchampaign, il 61820",
+  "558","57 e armory\\nchampaign, il 61820",
+  "562","52 e gregory dr\\nchampaign, il 61820",
+  "563","52 e gregory dr\\nchampaign, il 61820",
+  "564","52 e gregory dr\\nchampaign, il 61820",
+  "566","1325 s oak\\nchampaign, il 61820",
+  "568","24 e green\\nchampaign, il 61820",
+  "570","54 e gregory dr\\nchampaign, il 61820",
+  "572","1117 s oak\\nchampaign, il 61820",
+  "574","1207 s oak\\nchampaign, il 61820",
+  "576","23 e stadium dr\\nchampaign, il 61820",
+  "580","1321 s oak\\nchampaign, il 61820",
+  "584","1206 s fourth\\nchampaign, il 61820",
+  "586","1206 s fourth\\nchampaign, il 61820",
+  "588","1206 s fourth\\nchampaign, il 61820",
+  "590","408 e peabody dr\\nchampaign, il 61820",
+  "592","500 e peabody dr\\nchampaign, il 61820",
+  "594","504 e pennsylvania\\nchampaign, il 61820",
+  "596","57 e green\\nchampaign, il 61820",
+  "622","608 e lorado taft dr\\nchampaign, il 61820",
+  "624","608 e lorado taft dr\\nchampaign, il 61820",
+  "626","1403 w lorado taft dr\\nurbana, il 61801",
+  "630","1207 w gregory dr\\nurbana, il 61801",
+  "631","1107 s dorner\\nurbana, il 61801",
+  "634","1201 s dorner\\nurbana, il 61801",
+  "635","1101 w peabody\\nchampaign, il 61820",
+  "636","1103 w dorner dr\\nurbana, il 61801",
+  "640","1302 w pennsylvania\\nurbana, il 61801",
+  "642","1208 w pennsylvania\\nurbana, il 61801",
+  "644","1304 w pennsylvania\\nurbana, il 61801",
+  "646","1304 w pennsylvania\\nurbana, il 61801",
+  "650","607 e peabody dr\\nchampaign, il 61820",
+  "652","607 e peabody dr\\nchampaign, il 61820",
+  "654","1800 s first\\nchampaign, il 61820",
+  "656","1800 s first\\nchampaign, il 61820",
+  "658","1817 s neil\\nchampaign, il 61820",
+  "662","1609 s oak\\nchampaign, il 61820",
+  "663","1611 s oak\\nchampaign, il 61820",
+  "664","1 e st mary's rd\\nchampaign, il 61820",
+  "666","2201 s first\\nchampaign, il 61820",
+  "670","51 gerty dr #174\\nchampaign, il 61820",
+  "672","51 gerty dr #105\\nchampaign, il 61820",
+  "674","2204 griffith dr\\nchampaign, il 61820",
+  "675","11 gerty dr\\nchampaign, il 61820",
+  "676","1 e hazelwood dr\\nurbana, il 61801",
+  "677","1701 s oak\\nchampaign, il 61820",
+  "702","1406 w green\\nurbana, il 61801",
+  "704","1110 w green\\nurbana, il 61801",
+  "704","1110 w green\\nurbana, il 61801",
+  "706","1206 s sixth\\nchampaign, il 61820",
+  "708","1310 s sixth\\nchampaign, il 61820",
+  "710","1301 w gregory dr\\nurbana, il 61801",
+  "712","600 s mathews\\nurbana, il 61801",
+  "714","506 s mathews\\nurbana, il 61801",
+  "716","603 e daniel\\nchampaign, il 61820",
+  "718","608 s wright\\nurbana, il 61801",
+  "720","608 s wright\\nurbana, il 61801",
+  "800","1501 s oak\\nchampaign, il 61820"
+);
+
+#
+# beginning of interesting stuff
+#
+
+#
+# usage
+if ($#ARGV<0) {print STDERR "usage: f.unblock prod.cnf [files]\n";exit 1;}
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+# 
+# Initialize the password arrays
+$DictFile = "/usr/share/lib/dict/words";
+open(DICT, "<$DictFile") || die "$DictFile: $!\n";
+while (<DICT>)
+{
+  chop;
+  next if (/\W/o || /[A-Z][A-Z]/o || /^ass$/o || /^butt$/o || /^crap$/o ||
+	   /^damn$/o || /^dyke$/o || /^fag$/o );
+  if (length == 3)
+  {
+    push(ThreeWord, $_);
+  }
+  elsif (length == 4)
+  {
+    push(FourWord, $_);
+  }
+}
+close(DICT);
+
+@@Punct = (2..9, '!', '*', '#', '$', '%', '&', '-', '+', '=', '<', '>', '?');
+srand(time|$$);
+
+#
+# read prod.cnf
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  chop;
+  if (/^#/) {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@@_ < 2) {next;}
+  $fid{$_[1]} = $_[0];
+}
+close(CONFIG);
+
+#
+# here we go...
+while (<>)
+{
+  tr/A-Z/a-z/;
+  if (length($_)<20) {next;}	# sanity check
+  
+  ($id,$lName,$fName,$mName,$spouse,$title,$dept,
+   $offNum,$offSt,$offCity,$offState,$offZip,$offMC,$offPhone,
+   $supHomeAddr,$homeSt,$homeCity,$homeState,$homeZip,$supHomePhone,$homePhone,
+   $email)
+    = unpack("A9xA23A15A15A15A75A25A25A25A16A2A5A3A10A1A50A15A3A5A1A11A50",$_);
+  
+  $name = $lName;
+  $name = &SepCat($name," ",$fName);
+  $name = &SepCat($name," ",$mName);
+  
+  $offPhone = &FixPhone($offPhone);
+  $homePhone = $supHomePhone ne "" ? "" : &FixPhone($homePhone);
+  
+  if ($supHomeAddr ne "")
+  {
+    $homeAddr = "";
+  }
+  else
+  {
+    if ($homeCity eq "c")
+    {
+      $homeCity = "champaign";
+      if ($homeZip eq "") {$homeZip = "61820";}
+    }
+    elsif ($homeCity eq "u")
+    {
+      $homeCity = "urbana";
+      if ($homeZip eq "") {$homeZip = "61801";}
+    }
+    if ($homeState eq "") {$homeState = "il";}
+    
+    $homeAddr = $homeSt;
+    $homeRest = $homeCity;
+    $homeRest = &SepCat($homeRest,", ",$homeState);
+    $homeRest = &SepCat($homeRest," ",$homeZip);
+    $homeAddr = &SepCat($homeAddr,"\\n",$homeRest);
+  }
+  
+  $offAddr = $offNum;
+  $offAddr = &SepCat($offAddr,", MC ",$offMC);
+  if ($offMC ne "")
+  {
+    $offAddr = &SepCat($offAddr,"\\n",$mcTable{$offMC});
+  }
+  else
+  {
+    $offRest = $offCity;
+    $offRest = &SepCat($offRest,", ",$offState);
+    $offRest = &SepCat($offRest," ",$offZip);
+    $offAddr = &SepCat($offAddr,"\\n",$offSt);
+    $offAddr = &SepCat($offAddr,"\\n",$offRest);
+  }
+  
+  #
+  # create default password
+  #
+  $Password = &GenPass();
+
+  $out = $fid{"id"} . ":" . $id . "\t4:person phone";
+  $out = &SepCat($out,"\t".$fid{"name"}.":",$name);
+  $out = &SepCat($out,"\t".$fid{"title"}.":",$title);
+  $out = &SepCat($out,"\t".$fid{"department"}.":",$dept);
+  $out = &SepCat($out,"\t".$fid{"office_address"}.":",$offAddr);
+  $out = &SepCat($out,"\t".$fid{"office_phone"}.":",$offPhone);
+  $out = &SepCat($out,"\t".$fid{"home_address"}.":",$homeAddr);
+  $out = &SepCat($out,"\t".$fid{"home_phone"}.":",$homePhone);
+  $out = &SepCat($out,"\t".$fid{"created"}.":",$Date);
+  $out = &SepCat($out,"\t".$fid{"password"}.":",$Password);
+  
+  # fix this bit of stupidity
+  $out =~ s/ ,/, /g;
+  
+  # and print it...
+  print $out . "\n";
+}
+
+sub FixPhone
+{
+  $phone = $_[0];
+  if (length($phone)==7)
+  {
+    $phone =~ s/.../(217) $&-/;
+  }
+  elsif (length($phone)==10)
+  {
+    $phone =~ s/(...)(...)/($1) $2-/;
+  }
+  $phone;
+}
+
+sub SepCat
+{
+  ($str1,$sep,$str2) = @@_;
+  ($str1 ne "" && $str2 ne "") ? ($str1 .= $sep . $str2) : ($str1 .= $str2);
+}
+
+sub GenPass
+{
+  local($i,$word1, $word2, $sep);
+  if (rand() < 0.5)
+  {
+    $word1 = $ThreeWord[rand(@@ThreeWord)];
+    $word2 = $FourWord[rand(@@FourWord)];
+  }
+  else
+  {
+    $word1 = $FourWord[rand(@@FourWord)];
+    $word2 = $ThreeWord[rand(@@ThreeWord)];
+  }
+  $sep = $Punct[rand(@@Punct)];
+  $word1 .= $sep . $word2;
+
+  $i = 1;
+  $i = int(rand(8));
+  
+  $word2 = substr($word1, $i, 1);
+  $word2 =~ s/./\U$&/;
+  substr($word1, $i, 1) = $word2;
+
+  return($word1);
+}
+@
+
+
+1.2
+log
+@Made location of perl a Makefile option.
+@
+text
+@d43 1
+a43 1
+# @@(#)$Id: f.unblock,v 1.1 1994/03/12 00:59:25 paul Exp p-pomes $
+d382 2
+a383 1
+  next if (/\W/ || /[A-Z][A-Z]/);
+d518 1
+a518 1
+  local($word1, $word2, $sep);
+d531 8
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#!/usr/bin/perl
+d5 4
+d43 1
+a43 1
+# @@(#)$Id$
+d46 24
+a69 23
+# 9	SSN
+# 1     pad
+# 23	last name
+# 15	first name
+# 15	middle name
+# 15	spouse name
+# 75	title
+# 25	department
+# 25	office number
+# 25	office street address
+# 16	office city
+# 2	office state
+# 5	office zip code
+# 3	office mailcode
+# 10	office phone
+# 1	suppress home address (if *)
+# 50	home street address
+# 15	home city
+# 2	home state
+# 5	home zip code
+# 1	suppress home phone (if *)
+# 11	home phone number
+# 50	email address (don't use as it's often alias@@uiuc.edu)
+@

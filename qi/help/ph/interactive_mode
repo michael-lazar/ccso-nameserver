@@ -1,0 +1,87 @@
+The ph user interface has two modes: "command-line mode" and "interactive
+mode".  Command-line mode permits the user to process ph queries from
+the operating system prompt or so-called "command-line".  If ph is
+given no arguments on the command-line, it enters interactive mode,
+where it prompts for, executes, and displays the results of Nameserver
+commands.
+
+Interactive mode is commonly used to view and change information in
+one's own entry or an entry for which one has proxy as well as to process
+queries.  It also provides access to a variety of Nameserver commands
+not available in command-line mode. To see a list and brief description
+of the interactive mode commands, type "help commands".  Some of these
+commands require the user to identify him/herself to ph by use of the
+"login" command (see help on "login"); others do not.  Interactive mode
+commands may be abbreviated, provided enough characters are given to
+distinguish them from other commands.
+
+EXAMPLES
+If the "ph" command is issued at the operating system prompt
+without any arguments (i.e., a query expression), it takes the
+user to interactive mode where s/he is presented with the "ph>"
+prompt.  Once at the "ph>" prompt, an interactive mode command can
+be issued.  The example below shows how one enters interactive mode:
+
+   ux1 4> ph
+   $Date: 1992/08/17 13:35:39 $$Revision: 5.7 $
+   100:Ph passwords may be obtained at CCSO Accounting, 1420 DCL.
+   100:Be sure to bring your University Id Card. You may not need
+   100:a password if you are using the login in your email field.
+   200:Database ready.
+
+   ph> [ph is ready and waiting for you to enter a command]
+
+On some Unix systems, it is also possible to enter interactive mode by
+invoking ph on the command-line with the name of one of the ten data
+types found in the "type" field of the Nameserver database.  These
+include: "areacode", "fall", "food", "person", "phone", "spring",
+"summer", "timetable", "unit", and "weather".  If ph is invoked with
+one of these alternative names, it sets the default type for all queries
+to the type specified.  It also displays the name of the specified type
+in the interactive mode prompt (e.g., "weather>", "food>", etc., instead
+of "ph>").  In the example below, ph is invoked with the name "person"
+and enters interactive mode.  All queries processed during the session
+default to type "person":
+
+   ux1 9> person
+   $Date: 1992/08/17 13:35:39 $$Revision: 5.7 $
+   100:Ph passwords may be obtained at CCSO Accounting, 1420 DCL.
+   100:Be sure to bring your University Id Card. You may not need
+   100:a password if you are using the login in your email field.
+   200:Database ready.
+
+   person> ph english return name phone
+   ----------------------------------------
+        name: english aaron joseph
+       phone: (217) 367-6845
+   ----------------------------------------
+        name: english francis e
+       phone: 332-1877
+   ----------------------------------------
+        name: english margaret m
+       phone: 367-3167
+   ----------------------------------------
+        name: english paul richard
+       phone: Not present in entry.
+   ----------------------------------------
+        name: english sondra kay
+       phone: 384-4669
+   ----------------------------------------
+         name: english talisa renee
+       phone: (217) 332-4514
+   ----------------------------------------
+
+Once having entered interactive mode in this manner, it is possible to
+override the default type by specifying a different type in the selection
+clause of the query:
+
+   person> ph type=unit english return name phone
+   ----------------------------------------
+        name: English as an International Language, Division of
+       phone: 333-1506
+   ----------------------------------------
+        name: English, Dept of
+       phone: 333-2391
+   ----------------------------------------
+
+SEE ALSO: ph, query, manpage, command-line_mode, proxy, type

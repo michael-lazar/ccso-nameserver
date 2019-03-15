@@ -1,0 +1,1848 @@
+head	1.30;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.30
+date	94.12.17.14.45.21;	author p-pomes;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	94.03.10.23.46.13;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	94.03.06.21.26.18;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	94.03.03.16.55.59;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	93.12.23.09.56.46;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	93.07.24.16.01.59;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.04.01.20.41.54;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	92.12.12.19.06.38;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	92.08.16.17.24.32;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	92.07.30.04.30.34;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.27.21.36.08;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.27.15.19.08;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	92.07.27.15.04.35;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	90.12.18.08.41.31;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	90.05.16.09.18.23;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.07.19.10.18.51;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.07.05.20.17.01;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.03.20.15.14.50;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.12.02.14.45.27;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.11.15.13.35.26;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.07.08.14.00.40;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.07.06.20.47.50;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.04.19.08.11.58;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.04.16.12.39;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.32;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.30
+log
+@Added support for NoMeta property to disallow lookups with metacharacters.
+Fields with it require an exact match.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: field.c,v 1.29 1994/05/05 21:21:51 paul Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#include <sys/param.h>
+
+/*
+ * this file contains functions that deal with fields
+ */
+FDESC	**FieldDescriptors;
+static int LineNumber;
+
+#define FREEFD(FD)    {free((FD)->fdName);free(FD);FD=0;}
+#define IS_A_COMMENT(l) (*(l) == '#')
+#define IS_BLANK(l)   (!(*(StrSkip(l," \t\n\f"))))
+
+static void DumpFD __P((FILE *, FDESC *));
+static FDESC *GetFD __P((FILE *));
+static char *StrSkip __P((char *, char *));
+
+extern int IndicateAlways;
+
+/*
+ * read the field config file.	Read into global FieldDescriptors
+ */
+int 
+GetFieldConfig()
+{
+	int	i;
+	FILE	*fp;
+	FDESC	*fd;
+	char	fconfig[MAXPATHLEN];
+
+	(void) sprintf(fconfig, "%s.cnf", Database);
+
+	if ((fp = fopen(fconfig, "r")) == NULL)
+	{
+		IssueMessage(LOG_ERR, "GetFieldConfig: fopen(%s): %s",
+			fconfig, strerror(errno));
+		return (0);
+	}
+	if (FieldDescriptors)
+	{
+		for (; *FieldDescriptors; FieldDescriptors++)
+			FREEFD(*FieldDescriptors);
+		FieldDescriptors = NULL;
+	}
+	FieldDescriptors = (FDESC **) malloc(sizeof (FDESC *));
+	LineNumber = 0;
+
+	i = 0;
+	while (fd = GetFD(fp))
+	{
+		*(FieldDescriptors + i) = fd;
+		/* DumpFD(stdout,*(FieldDescriptors+i)); */
+		i++;
+		FieldDescriptors = (FDESC **) realloc(FieldDescriptors, (i+1) * sizeof (FDESC *));
+	}
+	*(FieldDescriptors + i) = NULL;
+	return (i);
+}
+
+/*
+ * read a single field descriptor from a file.	storage is malloc'ed
+ */
+static FDESC *
+GetFD(fp)
+	FILE *fp;
+{
+	static char Line[MAX_LINE + 2];
+	FDESC	*fd;
+	FDESC	tempFD;
+	int	number;
+	char	*token;
+	char	help[MAX_LINE];
+
+	*Line = '\0';
+	do
+	{
+		if (fgets(Line, MAX_LINE + 1, fp) == NULL)
+			return (NULL);
+		LineNumber++;
+	}
+	while (!*Line || IS_A_COMMENT(Line) || IS_BLANK(Line));
+
+	/* got a non-comment, non-blank line.  now try to parse it. */
+	memset(&tempFD, 0, sizeof(FDESC));
+
+	/* strip the newline */
+	/* Line[strlen(Line) - 2] = '\0'; */
+	if ((token = strchr(Line, '\n')) != NULL)
+		*token = '\0';
+
+	/* Id number */
+	if (!(token = strtok(Line, ":")))
+		goto err;
+	tempFD.fdId = atoi(token);
+
+	/* name */
+	if (!(token = strtok(NULL, ":")))
+		goto err;
+	tempFD.fdName = strdup(token);
+
+	/* max length */
+	if (!(token = strtok(NULL, ":")))
+	{
+		free(tempFD.fdName);
+		goto err;
+	}
+	tempFD.fdMax = atoi(token);
+
+	/* help */
+	*help = '\0';
+	for (token = strtok(NULL, ":"); token; token = strtok(NULL, ":"))
+	{
+		number = strlen(token);
+		if (number)
+		{
+			if (token[number - 1] == '\\')	/* ends in backslash? */
+				token[number - 1] = ':';	/* turn it into colon */
+			else
+				number = 0;
+		}
+		strcate(help, token);
+		if (!number)
+			break;	/* stop with help */
+	}
+	tempFD.fdHelp = strdup(help);
+
+	/* merge flags */
+	if (token = strtok(NULL, ":"))
+		tempFD.fdMerge = strdup(token);
+	else
+		tempFD.fdMerge = "";
+
+	/* flags */
+	for (token = strtok(NULL, ":"); token; token = strtok(NULL, ":"))
+	{
+		if (islower(*token))
+			*token = toupper(*token);
+		switch (*token)
+		{
+		    case 'A':
+			tempFD.fdAlways = 1;
+			break;
+		    case 'C':
+			tempFD.fdChange = 1;
+			break;
+		    case 'D':
+			tempFD.fdDefault = 1;
+			break;
+		    case 'E':
+			tempFD.fdEncrypt = 1;
+			break;
+		    case 'F':
+			tempFD.fdForcePub = 1;
+			break;
+		    case 'I':
+			tempFD.fdIndexed = 1;
+			break;
+		    case 'L':
+			if (!stricmp(token, "LookUp"))
+				tempFD.fdLookup = 1;
+			else
+				tempFD.fdLocalPub = 1;
+			break;
+		    case 'N':
+			if (!stricmp(token, "NoMeta"))
+				tempFD.fdNoMeta = 1;
+			else
+				tempFD.fdNoPeople = 1;
+			break;
+		    case 'P':
+			tempFD.fdPublic = 1;
+			break;
+		    case 'S':
+			tempFD.fdSacred = 1;
+			break;
+		    case 'T':
+			tempFD.fdTurn = 1;
+			break;
+		    case 'W':
+			tempFD.fdAny = 1;
+			break;	/* Wildany */
+		    default:
+			IssueMessage(LOG_ERR, "%s: unknown field flag\n", token);
+			break;
+		}
+	}
+
+	fd = (FDESC *) malloc(sizeof (FDESC));
+	memcpy((void *)fd, (void *)&tempFD, sizeof (FDESC));
+	return (fd);
+err:
+	IssueMessage(LOG_ERR, "GetFD: config file error, line %d", LineNumber);
+	return (NULL);
+}
+
+/*
+ * dump a field descriptor
+ */
+static void 
+DumpFD(fp, fd)
+	FILE *fp;
+	FDESC *fd;
+{
+	fprintf(fp, "%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\n%s",
+		fd->fdId,
+		fd->fdIndexed ? "idx" : "!idx",
+		fd->fdLookup ? "lup" : "!lup",
+		fd->fdNoMeta ? "nmt" : "!nmt",
+		fd->fdPublic ? "pub" : "!pub",
+		fd->fdLocalPub ? "lpu" : "!lpu",
+		fd->fdDefault ? "dft" : "!dft",
+		fd->fdAlways ? "alw" : "!alw",
+		fd->fdAny ? "any" : "!any",
+		fd->fdChange ? "chg" : "!chg",
+		fd->fdNoPeople ? "npl" : "!npl",
+		fd->fdMax,
+		fd->fdName,
+		fd->fdHelp);
+}
+
+/*
+ * advance a string pointer past all occurrences of a set of chars.
+ */
+static char *
+StrSkip(str, skipChars)
+	char *str, *skipChars;
+{
+	register char *skipThis;/* current char in skip set */
+	register char chr;	/* current char in str */
+
+	for (chr = *str;; chr = *(++str))
+	{
+		for (skipThis = skipChars; *skipThis; skipThis++)
+			if (chr == *skipThis)
+				goto outerFor;	/* chr is in skipChars */
+		return (str);	/* chr is NOT in skipChars */
+	      outerFor:;
+	}
+}
+
+/*
+ * find a numbered field in a QDIR structure
+ * returns index of field, or -1 if not found
+ */
+int 
+FindField(indir, num)
+	QDIR indir;
+	int num;
+{
+	char	ascii[20];
+	register char **dir;
+	int	len;
+
+	(void) sprintf(ascii, "%d:", num);
+	len = strlen(ascii);
+
+	for (dir = indir; *dir; dir++)
+		if (!strncmp(ascii, *dir, len))
+			return (dir - indir);
+
+	return (-1);
+}
+
+/*
+ * find a field descriptor by Id
+ */
+FDESC *
+FindFDI(indx)
+	int indx;
+{
+	FDESC **fd;
+
+	for (fd = FieldDescriptors; *fd; fd++)
+		if ((*fd)->fdId == indx)
+			return (*fd);
+
+	return (NULL);
+}
+
+/*
+ * find a field descriptor by name
+ */
+FDESC *
+FindFD(name)
+	char *name;
+{
+	FDESC **fd;
+
+	for (fd = FieldDescriptors; *fd; fd++)
+		if (!stricmp((*fd)->fdName, name))
+		{		/* always field/property. Probably a better way to do this.  mae */
+			if (!stricmp("Always", name))
+			{
+				IndicateAlways = 1;
+			}
+			return (*fd);
+		}
+	return (NULL);
+}
+@
+
+
+1.29
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: field.c,v 1.28 1994/03/12 00:24:45 paul Exp paul $";
+d206 4
+a209 1
+			tempFD.fdNoPeople = 1;
+d249 1
+@
+
+
+1.28
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d76 2
+a77 1
+		IssueMessage(LOG_INFO, "Couln't open field config file %s.\n", fconfig);
+d221 1
+a221 1
+			IssueMessage(LOG_INFO, "%s: unknown field flag\n", token);
+d230 1
+a230 1
+	IssueMessage(LOG_INFO, "Error in config file, line %d.", LineNumber);
+@
+
+
+1.27
+log
+@Simplify allocation of FieldDescriptors[].
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.26
+log
+@On the trail of a malloc bug.
+@
+text
+@a31 1
+#define GUESSCOUNT 35		/* guess how many FD's there are */
+d59 2
+a60 2
+		FieldDescriptors[i] = fd;
+		/* DumpFD(stdout,FieldDescriptors[i]); */
+d62 1
+a62 2
+		FieldDescriptors = (FDESC **)
+		    realloc(FieldDescriptors, (i+1) * sizeof (FDESC *));
+d64 1
+a64 1
+	FieldDescriptors[i] = NULL;
+@
+
+
+1.25
+log
+@zero freed pointers.
+@
+text
+@a35 1
+	int	fieldCount;
+d54 1
+a54 2
+	fieldCount = GUESSCOUNT;
+	FieldDescriptors = (FDESC **) malloc(GUESSCOUNT * sizeof (FDESC *));
+d57 2
+a58 1
+	for (i = 0; fd = GetFD(fp); i++)
+d60 5
+a64 15
+		if (fd == NULL)
+		{
+			IssueMessage(LOG_INFO, "Error in %s, line %d.\n", fconfig, LineNumber);
+			i--;	/* back up loop counter! */
+		} else
+		{
+			FieldDescriptors[i] = fd;
+			/* DumpFD(stdout,FieldDescriptors[i]); */
+			if (i == fieldCount - 1)
+			{
+				fieldCount += GUESSCOUNT;
+				FieldDescriptors = (FDESC **)
+				    realloc(FieldDescriptors, fieldCount * sizeof (FDESC *));
+			}
+		}
+a65 1
+
+a66 4
+
+	FieldDescriptors =
+	    (FDESC **) realloc(FieldDescriptors, (i + 1) * sizeof (FDESC *));
+
+a77 1
+	static FDESC blankFD;
+d89 1
+d94 1
+a94 2
+
+	tempFD = blankFD;
+d103 1
+a103 1
+		return (NULL);
+d108 1
+a108 1
+		return (NULL);
+d115 1
+a115 1
+		return (NULL);
+d196 1
+a196 1
+	*fd = tempFD;	/* intentional structure assignment */
+d198 3
+@
+
+
+1.24
+log
+@Replaced make_str() with strdup().
+@
+text
+@d19 1
+a19 1
+#define FREEFD(FD)    {free((FD)->fdName);free(FD);}
+@
+
+
+1.23
+log
+@POSIX changes: index() -> strchr().
+@
+text
+@d126 1
+a126 1
+	tempFD.fdName = make_str(token);
+d152 1
+a152 1
+	tempFD.fdHelp = make_str(help);
+d156 1
+a156 1
+		tempFD.fdMerge = make_str(token);
+@
+
+
+1.22
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d115 1
+a115 1
+	if ((token = index(Line, '\n')) != NULL)
+@
+
+
+1.21
+log
+@Added LocalPub changes.
+@
+text
+@d23 4
+d89 1
+a89 1
+FDESC *
+d220 1
+a220 1
+void 
+d244 1
+a244 1
+char *
+@
+
+
+1.20
+log
+@Build fconfig string with single call to sprintf().
+@
+text
+@d182 4
+a185 1
+			tempFD.fdLookup = 1;
+d226 1
+@
+
+
+1.19
+log
+@Adjusted GUESSCOUNT
+@
+text
+@d38 1
+a38 2
+	(void) strcpy(fconfig, Database);
+	(void) strcat(fconfig, ".cnf");
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d28 1
+a28 1
+#define GUESSCOUNT 32		/* guess how many FD's there are */
+@
+
+
+1.17
+log
+@Revised #include file list.
+@
+text
+@d90 1
+a90 1
+	static char theLine[MAX_LINE + 2];
+d98 1
+d101 1
+a101 1
+		if (fgets(theLine, MAX_LINE + 1, fp) == NULL)
+d104 1
+a104 1
+	while (!*theLine || IS_A_COMMENT(theLine) || IS_BLANK(theLine));
+d111 3
+a113 1
+	theLine[strlen(theLine) - 2] = '\0';
+d116 1
+a116 1
+	if (!(token = strtok(theLine, ":")))
+d242 1
+a242 1
+	register char theChar;	/* current char in str */
+d244 1
+a244 1
+	for (theChar = *str;; theChar = *(++str))
+d247 3
+a249 3
+			if (theChar == *skipThis)
+				goto outerFor;	/* theChar is in skipChars */
+		return (str);	/* theChar is NOT in skipChars */
+@
+
+
+1.16
+log
+@Random fixes.
+@
+text
+@d11 2
+a15 6
+#include <stdio.h>
+#include <ctype.h>
+#include <sys/param.h>
+#include "field.h"
+#include "qi.h"
+#include "log.h"
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d256 1
+a256 1
+ * find a numbered field in a DIR structure
+d261 1
+a261 1
+	DIR indir;
+@
+
+
+1.14
+log
+@Re-formatted for clarity.
+@
+text
+@d8 1
+a8 1
+ * You may direct questions to dorner@@garcon.cso.uiuc.edu
+@
+
+
+1.13
+log
+@last dorner changes.
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d3 9
+a11 1
+/***********************************************************************
+d13 1
+a13 1
+ ***********************************************************************/
+d20 1
+a20 5
+FieldDesc **FieldDescriptors;
+FieldDesc *GetFD();
+char   *malloc();
+char   *StrSkip();
+char   *GetNumber();
+d29 6
+a34 5
+/***********************************************************************
+ * read the field config file.  Read into global FieldDescriptors
+ ***********************************************************************/
+#define GUESSCOUNT 32       /* guess how many FD's there are */
+int GetFieldConfig(void)
+d36 42
+a77 45
+  int   fieldCount;
+  int   i;
+  FILE   *theFile;
+  FieldDesc *theFD;
+  char *realloc();
+  char fconfig[MAXPATHLEN];
+  
+  strcpy(fconfig,Database);
+  strcat(fconfig,".cnf");
+
+  if ((theFile = fopen(fconfig, "r")) == NULL)
+  {
+    IssueMessage(LOG_INFO, "Couln't open field config file %s.\n", fconfig);
+    return (0);
+  }
+  if (FieldDescriptors)
+  {
+    for (; *FieldDescriptors; FieldDescriptors++)
+      FREEFD(*FieldDescriptors);
+    FieldDescriptors = NULL;
+  }
+
+  fieldCount = GUESSCOUNT;
+  FieldDescriptors = (FieldDesc **) malloc(GUESSCOUNT * sizeof(FieldDesc *));
+  LineNumber = 0;
+
+  for (i = 0; theFD = GetFD(theFile); i++)
+  {
+    if (theFD == NULL)
+    {
+      IssueMessage(LOG_INFO, "Error in %s, line %d.\n", fconfig, LineNumber);
+      i--;        /* back up loop counter! */
+    }
+    else
+    {
+      FieldDescriptors[i] = theFD;
+      /* DumpFD(stdout,FieldDescriptors[i]); */
+      if (i == fieldCount - 1)
+      {
+	fieldCount += GUESSCOUNT;
+	FieldDescriptors = (FieldDesc **)
+	  realloc(FieldDescriptors,fieldCount * sizeof(FieldDesc *));
+      }
+    }
+  }
+d79 1
+a79 1
+  FieldDescriptors[i] = NULL;
+d81 2
+a82 2
+  FieldDescriptors =
+    (FieldDesc **) realloc(FieldDescriptors, (i + 1) * sizeof(FieldDesc *));
+d84 1
+a84 1
+  return (i);
+d87 6
+a92 4
+/***********************************************************************
+ * read a single field descriptor from a file.  storage is malloc'ed
+ ***********************************************************************/
+FieldDesc *GetFD(FILE *theFile)
+d94 116
+a209 94
+  static char theLine[MAX_LINE + 2];
+  static FieldDesc blankFD;
+  FieldDesc *theFD;
+  FieldDesc tempFD;
+  int   number;
+  char   *token;
+  char   *make_str();
+  char  help[MAX_LINE];
+  char   *strtok();
+
+  do
+  {
+    if (fgets(theLine, MAX_LINE + 1, theFile) == NULL)
+      return (NULL);
+  }
+  while (!*theLine || IS_A_COMMENT(theLine) || IS_BLANK(theLine));
+
+  /* got a non-comment, non-blank line.  now try to parse it. */
+
+  tempFD = blankFD;
+
+  /* strip the newline */
+  theLine[strlen(theLine) - 2] = '\0';
+
+  /* Id number */
+  if (!(token = strtok(theLine, ":")))
+    return (NULL);
+  tempFD.fdId = atoi(token);
+
+  /* name */
+  if (!(token = strtok(NULL, ":")))
+    return (NULL);
+  tempFD.fdName = make_str(token);
+
+  /* max length */
+  if (!(token = strtok(NULL, ":")))
+  {
+    free(tempFD.fdName);
+    return (NULL);
+  }
+  tempFD.fdMax = atoi(token);
+
+  /* help */
+  *help = '\0';
+  for (token = strtok(NULL, ":"); token; token = strtok(NULL, ":"))
+  {
+    number = strlen(token);
+    if (number)
+    {
+      if (token[number - 1] == '\\')    /* ends in backslash? */
+	token[number - 1] = ':';    /* turn it into colon */
+      else
+	number = 0;
+    }
+    strcate(help, token);
+    if (!number)
+      break;        /* stop with help */
+  }
+  tempFD.fdHelp = make_str(help);
+
+  /* merge flags */
+  if (token = strtok(NULL, ":"))
+    tempFD.fdMerge = make_str(token);
+  else
+    tempFD.fdMerge = "";
+
+  /* flags */
+  for (token = strtok(NULL, ":"); token; token = strtok(NULL, ":"))
+  {
+    if (islower(*token))
+      *token = toupper(*token);
+    switch (*token)
+    {
+      case 'A': tempFD.fdAlways = 1; break;
+      case 'C': tempFD.fdChange = 1; break;
+      case 'D': tempFD.fdDefault = 1; break;
+      case 'E': tempFD.fdEncrypt = 1; break;
+      case 'F': tempFD.fdForcePub = 1; break;
+      case 'I': tempFD.fdIndexed = 1; break;
+      case 'L': tempFD.fdLookup = 1; break;
+      case 'N': tempFD.fdNoPeople = 1; break;
+      case 'P': tempFD.fdPublic = 1; break;
+      case 'S': tempFD.fdSacred = 1; break;
+      case 'T': tempFD.fdTurn = 1; break;
+      case 'W': tempFD.fdAny = 1; break;	/* Wildany */
+      default:
+	IssueMessage(LOG_INFO, "%s: unknown field flag\n", token);
+	break;
+    }
+  }
+
+  theFD = (FieldDesc *) malloc(sizeof(FieldDesc));
+  *theFD = tempFD;      /* intentional structure assignment */
+  return (theFD);
+d212 1
+a212 1
+/***********************************************************************
+d214 5
+a218 2
+ ***********************************************************************/
+void DumpFD(FILE *theFile,FieldDesc *theFD)
+d220 13
+a232 13
+  fprintf(theFile, "%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\n%s",
+      theFD->fdId,
+      theFD->fdIndexed ? "idx" : "!idx",
+      theFD->fdLookup ? "lup" : "!lup",
+      theFD->fdPublic ? "pub" : "!pub",
+      theFD->fdDefault ? "dft" : "!dft",
+      theFD->fdAlways ? "alw" : "!alw",
+      theFD->fdAny ? "any" : "!any",
+      theFD->fdChange ? "chg" : "!chg",
+      theFD->fdNoPeople ? "npl" : "!npl",
+      theFD->fdMax,
+      theFD->fdName,
+      theFD->fdHelp);
+d235 1
+a235 1
+/***********************************************************************
+d237 4
+a240 2
+ ***********************************************************************/
+char *StrSkip(char *theString,char *skipChars)
+d242 2
+a243 2
+  register char *skipThis;  /* current char in skip set */
+  register char theChar;    /* current char in theString */
+d245 8
+a252 8
+  for (theChar = *theString;; theChar = *(++theString))
+  {
+    for (skipThis = skipChars; *skipThis; skipThis++)
+      if (theChar == *skipThis)
+	goto outerFor;  /* theChar is in skipChars */
+    return (theString);   /* theChar is NOT in skipChars */
+outerFor:;
+  }
+d255 8
+a262 5
+/***********************************************************************
+* find a numbered field in a Dir structure
+* returns index of field, or -1 if not found
+***********************************************************************/
+int FindField(Dir theDir,int theNumber)
+d264 10
+a273 10
+  char  theAscii[20];
+  register char **dir;
+  int   len;
+
+  sprintf(theAscii, "%d:", theNumber);
+  len = strlen(theAscii);
+
+  for (dir = theDir; *dir; dir++)
+    if (!strncmp(theAscii, *dir, len))
+      return (dir - theDir);
+d275 1
+a275 1
+  return (-1);
+d278 6
+a283 4
+/***********************************************************************
+* find a field descriptor by Id
+***********************************************************************/
+FieldDesc *FindFDI(int theIndex)
+d285 1
+a285 1
+  FieldDesc **theFD;
+d287 3
+a289 3
+  for (theFD = FieldDescriptors; *theFD; theFD++)
+    if ((*theFD)->fdId == theIndex)
+      return (*theFD);
+d291 1
+a291 1
+  return (NULL);
+d294 6
+a299 4
+/***********************************************************************
+* find a field descriptor by name
+***********************************************************************/
+FieldDesc *FindFD(char *theName)
+d301 1
+a301 11
+  FieldDesc **theFD;
+
+  for (theFD = FieldDescriptors; *theFD; theFD++)
+    if (!stricmp((*theFD)->fdName, theName))
+    {	/* always field/property. Probably a better way to do this.  mae */
+      if (!stricmp("Always", theName))
+      {
+	  IndicateAlways = 1;
+      }
+      return (*theFD);
+    }
+d303 10
+a312 1
+  return (NULL);
+@
+
+
+1.12
+log
+@No help here.
+@
+text
+@d16 1
+a19 1
+extern char *FieldConfig;     /* in conf.c */
+d44 4
+d49 1
+a49 1
+  if ((theFile = fopen(FieldConfig, "r")) == NULL)
+d51 1
+a51 1
+    IssueMessage(LOG_INFO, "Couln't open field config file %s.\n", FieldConfig);
+d69 1
+a69 1
+      IssueMessage(LOG_INFO, "Error in %s, line %d.\n", FieldConfig, LineNumber);
+d158 6
+d171 12
+a182 33
+      case 'I':
+      tempFD.fdIndexed = 1;
+      break;
+      case 'L':
+      tempFD.fdLookup = 1;
+      break;
+      case 'P':
+      tempFD.fdPublic = 1;
+      break;
+      case 'A':
+      tempFD.fdAlways = 1;
+      break;
+      case 'W':     /* stands for wild any . property in f.config = Wildany */
+      tempFD.fdAny = 1;    /* I already used A in Always. Mae */
+      break;
+      case 'D':
+      tempFD.fdDefault = 1;
+      break;
+      case 'T':
+      tempFD.fdTurn = 1;
+      break;
+      case 'C':
+      tempFD.fdChange = 1;
+      break;
+      case 'S':
+      tempFD.fdSacred = 1;
+      break;
+      case 'N':
+      tempFD.fdNoPeople = 1;
+      break;
+      case 'E':
+      tempFD.fdEncrypt = 1;
+      break;
+d184 2
+a185 2
+      IssueMessage(LOG_INFO, "%s: unknown field flag\n", token);
+      break;
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d1 1
+d37 1
+a37 1
+GetFieldConfig()
+d48 1
+a48 1
+    return (NULL);
+d92 1
+a92 3
+FieldDesc *
+GetFD(theFile)
+FILE   *theFile;
+d208 1
+a208 3
+DumpFD(theFile, theFD)
+FILE   *theFile;
+FieldDesc *theFD;
+d228 1
+a228 4
+char   *
+StrSkip(theString, skipChars)
+char   *theString;
+char   *skipChars;
+d247 1
+a247 3
+FindField(theDir, theNumber)
+int   theNumber;
+Dir   theDir;
+d266 1
+a266 3
+FieldDesc *
+FindFDI(theIndex)
+int   theIndex;
+d280 1
+a280 3
+FieldDesc *
+FindFD(theName)
+char   *theName;
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d96 2
+a98 1
+  FieldDesc *theFD;
+d114 1
+a114 10
+  tempFD.fdIndexed = 0;
+  tempFD.fdLookup = 0;
+  tempFD.fdPublic = 0;
+  tempFD.fdDefault = 0;
+  tempFD.fdAlways = 0;
+  tempFD.fdAny = 0;
+  tempFD.fdTurn = 0;
+  tempFD.fdChange = 0;
+  tempFD.fdSacred = 0;
+  tempFD.fdEncrypt = 0;
+d189 3
+d222 1
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d15 3
+a17 7
+#include "../Include/field.h"
+#include "../Include/qi.h"
+#ifdef ULTRIX43LOG
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+d30 2
+d117 2
+d179 6
+d224 2
+d302 5
+d308 1
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d15 2
+a16 2
+#include "../include/field.h"
+#include "../include/qi.h"
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d1 9
+a10 6
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+/***********************************************************************
+d48 1
+a48 1
+    syslog(LOG_INFO, "Couln't open field config file %s.\n", FieldConfig);
+d66 1
+a66 1
+      syslog(LOG_INFO, "Error in %s, line %d.\n", FieldConfig, LineNumber);
+d195 1
+a195 1
+      syslog(LOG_INFO, "%s: unknown field flag\n", token);
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d14 1
+a14 1
+#ifdef ultrix
+d19 1
+a19 1
+extern char *FieldConfig;	/* in conf.c */
+d27 3
+a29 3
+#define FREEFD(FD)	{free((FD)->fdName);free(FD);}
+#define IS_A_COMMENT(l)	(*(l) == '#')
+#define IS_BLANK(l)	(!(*(StrSkip(l," \t\n\f"))))
+d34 1
+a34 1
+#define GUESSCOUNT 32		/* guess how many FD's there are */
+d37 5
+a41 5
+    int     fieldCount;
+    int     i;
+    FILE   *theFile;
+    FieldDesc *theFD;
+    char *realloc();
+d43 19
+a61 1
+    if ((theFile = fopen(FieldConfig, "r")) == NULL)
+d63 2
+a64 2
+	syslog(LOG_INFO, "Couln't open field config file %s.\n", FieldConfig);
+	return (NULL);
+d66 1
+a66 1
+    if (FieldDescriptors)
+d68 8
+a75 3
+	for (; *FieldDescriptors; FieldDescriptors++)
+	    FREEFD(*FieldDescriptors);
+	FieldDescriptors = NULL;
+d77 1
+d79 1
+a79 3
+    fieldCount = GUESSCOUNT;
+    FieldDescriptors = (FieldDesc **) malloc(GUESSCOUNT * sizeof(FieldDesc *));
+    LineNumber = 0;
+d81 2
+a82 19
+    for (i = 0; theFD = GetFD(theFile); i++)
+    {
+	if (theFD == NULL)
+	{
+	    syslog(LOG_INFO, "Error in %s, line %d.\n", FieldConfig, LineNumber);
+	    i--;		/* back up loop counter! */
+	}
+	else
+	{
+	    FieldDescriptors[i] = theFD;
+	    /* DumpFD(stdout,FieldDescriptors[i]); */
+	    if (i == fieldCount - 1)
+	    {
+		fieldCount += GUESSCOUNT;
+		FieldDescriptors = (FieldDesc **)
+		    realloc(fieldCount * sizeof(FieldDesc *));
+	    }
+	}
+    }
+d84 1
+a84 6
+    FieldDescriptors[i] = NULL;
+
+    FieldDescriptors =
+	(FieldDesc **) realloc(FieldDescriptors, (i + 1) * sizeof(FieldDesc *));
+
+    return (i);
+d94 8
+a101 8
+    static char theLine[MAX_LINE + 2];
+    FieldDesc tempFD;
+    FieldDesc *theFD;
+    int     number;
+    char   *token;
+    char   *make_str();
+    char    help[MAX_LINE];
+    char   *strtok();
+d103 6
+a108 6
+    do
+    {
+	if (fgets(theLine, MAX_LINE + 1, theFile) == NULL)
+	    return (NULL);
+    }
+    while (!*theLine || IS_A_COMMENT(theLine) || IS_BLANK(theLine));
+d110 1
+a110 1
+    /* got a non-comment, non-blank line.  now try to parse it. */
+d112 8
+a119 8
+    tempFD.fdIndexed = 0;
+    tempFD.fdLookup = 0;
+    tempFD.fdPublic = 0;
+    tempFD.fdDefault = 0;
+    tempFD.fdTurn = 0;
+    tempFD.fdChange = 0;
+    tempFD.fdSacred = 0;
+    tempFD.fdEncrypt = 0;
+d121 2
+a122 2
+    /* strip the newline */
+    theLine[strlen(theLine) - 2] = '\0';
+d124 4
+a127 4
+    /* Id number */
+    if (!(token = strtok(theLine, ":")))
+	return (NULL);
+    tempFD.fdId = atoi(token);
+d129 4
+a132 4
+    /* name */
+    if (!(token = strtok(NULL, ":")))
+	return (NULL);
+    tempFD.fdName = make_str(token);
+d134 7
+a140 7
+    /* max length */
+    if (!(token = strtok(NULL, ":")))
+    {
+	free(tempFD.fdName);
+	return (NULL);
+    }
+    tempFD.fdMax = atoi(token);
+d142 6
+a147 3
+    /* help */
+    *help = '\0';
+    for (token = strtok(NULL, ":"); token; token = strtok(NULL, ":"))
+d149 4
+a152 11
+	number = strlen(token);
+	if (number)
+	{
+	    if (token[number - 1] == '\\')	/* ends in backslash? */
+		token[number - 1] = ':';	/* turn it into colon */
+	    else
+		number = 0;
+	}
+	strcate(help, token);
+	if (!number)
+	    break;		/* stop with help */
+d154 5
+a158 1
+    tempFD.fdHelp = make_str(help);
+d160 6
+a165 2
+    /* flags */
+    for (token = strtok(NULL, ":"); token; token = strtok(NULL, ":"))
+d167 27
+a193 32
+	if (islower(*token))
+	    *token = toupper(*token);
+	switch (*token)
+	{
+	  case 'I':
+	    tempFD.fdIndexed = 1;
+	    break;
+	  case 'L':
+	    tempFD.fdLookup = 1;
+	    break;
+	  case 'P':
+	    tempFD.fdPublic = 1;
+	    break;
+	  case 'D':
+	    tempFD.fdDefault = 1;
+	    break;
+	  case 'T':
+	    tempFD.fdTurn = 1;
+	    break;
+	  case 'C':
+	    tempFD.fdChange = 1;
+	    break;
+	  case 'S':
+	    tempFD.fdSacred = 1;
+	    break;
+	  case 'E':
+	    tempFD.fdEncrypt = 1;
+	    break;
+	  default:
+	    syslog(LOG_INFO, "%s: unknown field flag\n", token);
+	    break;
+	}
+d195 1
+d197 3
+a199 3
+    theFD = (FieldDesc *) malloc(sizeof(FieldDesc));
+    *theFD = tempFD;		/* intentional structure assignment */
+    return (theFD);
+d209 10
+a218 10
+    fprintf(theFile, "%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\n%s",
+	    theFD->fdId,
+	    theFD->fdIndexed ? "idx" : "!idx",
+	    theFD->fdLookup ? "lup" : "!lup",
+	    theFD->fdPublic ? "pub" : "!pub",
+	    theFD->fdDefault ? "dft" : "!dft",
+	    theFD->fdChange ? "chg" : "!chg",
+	    theFD->fdMax,
+	    theFD->fdName,
+	    theFD->fdHelp);
+d229 2
+a230 2
+    register char *skipThis;	/* current char in skip set */
+    register char theChar;	/* current char in theString */
+d232 6
+a237 6
+    for (theChar = *theString;; theChar = *(++theString))
+    {
+	for (skipThis = skipChars; *skipThis; skipThis++)
+	    if (theChar == *skipThis)
+		goto outerFor;	/* theChar is in skipChars */
+	return (theString);	/* theChar is NOT in skipChars */
+d239 1
+a239 1
+    }
+d247 2
+a248 2
+int     theNumber;
+Dir     theDir;
+d250 3
+a252 3
+    char    theAscii[20];
+    register char **dir;
+    int     len;
+d254 2
+a255 2
+    sprintf(theAscii, "%d:", theNumber);
+    len = strlen(theAscii);
+d257 3
+a259 3
+    for (dir = theDir; *dir; dir++)
+	if (!strncmp(theAscii, *dir, len))
+	    return (dir - theDir);
+d261 1
+a261 1
+    return (-1);
+d269 1
+a269 1
+int     theIndex;
+d271 1
+a271 1
+    FieldDesc **theFD;
+d273 3
+a275 3
+    for (theFD = FieldDescriptors; *theFD; theFD++)
+	if ((*theFD)->fdId == theIndex)
+	    return (*theFD);
+d277 1
+a277 1
+    return (NULL);
+d287 1
+a287 1
+    FieldDesc **theFD;
+d289 3
+a291 3
+    for (theFD = FieldDescriptors; *theFD; theFD++)
+	if (!stricmp((*theFD)->fdName, theName))
+	    return (*theFD);
+d293 1
+a293 1
+    return (NULL);
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d2 6
+d12 2
+a13 2
+#include "field.h"
+#include "qi.h"
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d8 3
+d12 1
+a38 1
+#ifndef ultrix
+a39 1
+#endif
+a56 1
+#ifndef ultrix
+a57 1
+#endif
+a185 1
+#ifndef ultrix
+a186 1
+#endif
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d35 1
+d37 1
+d55 1
+d57 1
+d186 1
+d188 1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d12 3
+a14 3
+char *malloc();
+char *StrSkip();
+char *GetNumber();
+d24 1
+a24 1
+#define GUESSCOUNT 32	/* guess how many FD's there are */
+d27 3
+a29 3
+    int fieldCount;
+    int i;
+    FILE *theFile;
+d31 1
+d33 1
+a33 1
+    if ((theFile = fopen(FieldConfig,"r"))==NULL)
+d35 2
+a36 2
+	syslog(LOG_INFO,"Couln't open field config file %s.\n",FieldConfig);
+	return(NULL);
+d40 1
+a40 1
+	for (;*FieldDescriptors;FieldDescriptors++)
+d49 1
+a49 1
+    for (i=0; theFD=GetFD(theFile) ; i++)
+d53 2
+a54 2
+	    syslog(LOG_INFO,"Error in %s, line %d.\n",FieldConfig,LineNumber);
+	    i--; /* back up loop counter! */
+d59 1
+a59 1
+	    /*DumpFD(stdout,FieldDescriptors[i]);*/
+d64 1
+a64 1
+				    realloc(fieldCount * sizeof(FieldDesc *));
+d72 1
+a72 1
+	(FieldDesc **) realloc(FieldDescriptors,(i+1) * sizeof(FieldDesc *));
+d74 1
+a74 1
+    return(i);
+d82 1
+a82 1
+FILE *theFile;
+d84 1
+a84 1
+    static char theLine[MAX_LINE+2];
+d87 5
+a91 5
+    int number;
+    char *token;
+    char *make_str();
+    char help[MAX_LINE];
+    char *strtok();
+d95 2
+a96 2
+	if (fgets(theLine,MAX_LINE+1,theFile)==NULL)
+	    return(NULL);
+d104 1
+a104 1
+    tempFD.fdPublic  = 0;
+d107 3
+a109 3
+    tempFD.fdChange  = 0;
+    tempFD.fdSacred  = 0;
+    tempFD.fdEncrypt  = 0;
+d112 2
+a113 2
+    theLine[strlen(theLine)-2] = '\0';
+ 
+d115 2
+a116 2
+    if (!(token = strtok(theLine,":")))
+	return(NULL);
+d120 2
+a121 2
+    if (!(token = strtok(NULL,":")))
+	return(NULL);
+d125 1
+a125 1
+    if (!(token = strtok(NULL,":")))
+d128 1
+a128 1
+	return(NULL);
+d134 1
+a134 1
+    for (token=strtok(NULL,":");token;token=strtok(NULL,":"))
+d139 2
+a140 2
+	    if (token[number-1]=='\\')	/* ends in backslash? */
+		token[number-1] = ':';	/* turn it into colon */
+d142 1
+a142 1
+		number=0;
+d144 3
+a146 2
+	strcate(help,token);
+	if (!number) break;		/* stop with help */
+d151 1
+a151 1
+    for (token=strtok(NULL,":");token;token=strtok(NULL,":"))
+d153 3
+a155 2
+	if (islower(*token)) *token = toupper(*token);
+	switch(*token)
+d157 27
+a183 11
+	    case 'I':tempFD.fdIndexed = 1; break;
+	    case 'L':tempFD.fdLookup = 1; break;
+	    case 'P':tempFD.fdPublic = 1; break;
+	    case 'D':tempFD.fdDefault = 1; break;
+	    case 'T':tempFD.fdTurn = 1; break;
+	    case 'C':tempFD.fdChange = 1; break;
+	    case 'S':tempFD.fdSacred = 1; break;
+	    case 'E':tempFD.fdEncrypt = 1; break;
+	    default:
+		syslog(LOG_INFO,"%s: unknown field flag\n",token);
+		break;
+d188 2
+a189 2
+    *theFD = tempFD;	/* intentional structure assignment */
+    return(theFD);
+d191 1
+d195 2
+a196 2
+DumpFD(theFile,theFD)
+FILE *theFile;
+d199 10
+a208 10
+    fprintf(theFile,"%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\n%s",
+	theFD->fdId,
+	theFD->fdIndexed ? "idx" : "!idx",
+	theFD->fdLookup ? "lup" : "!lup",
+	theFD->fdPublic ? "pub" : "!pub",
+	theFD->fdDefault ? "dft" : "!dft",
+	theFD->fdChange ? "chg" : "!chg",
+	theFD->fdMax,
+	theFD->fdName,
+	theFD->fdHelp);
+d210 1
+d214 4
+a217 4
+char *
+StrSkip(theString,skipChars)
+char *theString;
+char *skipChars;
+d222 1
+a222 1
+    for (theChar = *theString;;theChar = *(++theString))
+d224 1
+a224 1
+	for (skipThis=skipChars;*skipThis;skipThis++)
+d226 3
+a228 3
+		goto outerFor;		/* theChar is in skipChars */
+	return(theString);		/* theChar is NOT in skipChars */
+	outerFor:;
+d231 1
+d236 3
+a238 3
+FindField(theDir,theNumber)
+int theNumber;
+Dir theDir;
+d240 1
+a240 1
+    char theAscii[20];
+d242 1
+a242 1
+    int len;
+d244 1
+a244 1
+    sprintf(theAscii,"%d:",theNumber);
+d247 5
+a251 5
+    for (dir=theDir;*dir;dir++)
+	if (!strncmp(theAscii,*dir,len))
+	    return(dir-theDir);
+    
+    return(-1);
+d259 1
+a259 1
+int theIndex;
+d263 5
+a267 5
+    for (theFD=FieldDescriptors;*theFD;theFD++)
+	if ((*theFD)->fdId==theIndex)
+	    return(*theFD);
+    
+    return(NULL);
+d275 1
+a275 1
+char *theName;
+d279 5
+a283 5
+    for (theFD=FieldDescriptors;*theFD;theFD++)
+	if (!stricmp((*theFD)->fdName,theName))
+	    return(*theFD);
+    
+    return(NULL);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d258 1
+a258 1
+	if (!strcmp((*theFD)->fdName,theName))
+@

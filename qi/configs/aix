@@ -1,0 +1,13 @@
+#  Most defaults are suitable for AIX 3.2+
+$OtherDefines{"Mem_Type"} = "void";
+# Note that kerberos authentication fails using "csnet-ns".  If you wish to
+# use kerberos, set service instead to just "ns" and edit /etc/services
+# to include ns in the csnet-ns entry.
+$PhFlags{"NsService"} = "csnet-ns";
+$CC = "xlc";
+$Cflags .= " -D_ALL_SOURCE -DFCNTL_LOCK -DWAIT_INT";
+$DbmLib = "-ldbm";
+# -M flag to xlc puts dependencies in a foo.u file instead of stdout.  It
+# also compiles the module even if only dependencies are wanted.  Thanks IBM!
+$Depend = "";
+1

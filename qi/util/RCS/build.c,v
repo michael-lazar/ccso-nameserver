@@ -1,0 +1,702 @@
+head	1.14;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.14
+date	94.09.09.20.17.46;	author p-pomes;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.03.11.21.26.14;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	93.12.19.18.43.04;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	93.07.24.19.03.41;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	93.04.16.02.11.11;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	93.04.02.17.54.42;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	93.04.02.16.14.43;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	93.04.01.16.27.58;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	93.02.27.21.06.24;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.07.28.22.02.21;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.28.05.04.09;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.27.22.20.02;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.27.21.37.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.14
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: build.c,v 1.13 1994/03/12 00:59:25 paul Exp p-pomes $";
+#endif
+
+#include <fcntl.h>
+#include <sys/file.h>
+#include "protos.h"
+
+#define ESC   '\033'
+
+extern QHEADER header;
+extern IDX last_node;
+extern NODE *node_buf;
+extern LEAF_DES *leaf_des_buf;
+extern int Quiet;		/* qi/qi.c */
+static char *Me;		/* the name of this program */
+
+
+main(argc, argv)
+	int	argc;
+	char	*argv[];
+
+{
+	char	bdx_file[100];
+	char	idx_file[100];
+	char	seq_file[100];
+	char	line[512];
+	struct iindex buf;
+	int	fd;
+	int	pipe_fd1[2], pipe_fd2[2];
+	int	seqflag = 0;
+	IDX	hash_index;
+	FILE	*to_sort, *from_sort;
+	int	count = 0;
+	char	*cp;
+
+	/* when you're strange, no one remembers your name */
+	Me = *argv;
+
+	OP_VALUE(NOLOG_OP) = strdup("");
+	while (--argc > 0 && **(++argv) == '-')
+	{
+		char *equal, **opt;
+
+		(*argv)++;
+		if (**argv == 's')
+			seqflag++;
+		else if (**argv == 'q')
+			Quiet++;
+		else if (equal = strchr(*argv, '='))
+		{
+			*equal++ = '\0';
+			for (opt = Strings; *opt; opt += 2)
+				if (!strcmp(opt[0], *argv))
+				{
+					opt[1] = equal;
+					break;
+				}
+			if (*opt == '\0')
+			{
+				fprintf(stderr, "%s: %s: unknown string.\n",
+					Me, *argv);
+				exit(1);
+			}
+		} else
+		{
+			fprintf(stderr, "%s: %s: unknown option.\n", Me, *argv);
+			exit(1);
+		}
+	}
+	Database = (argc > 0) ? *argv : DATABASE;
+	if (!Quiet)
+		fprintf(stderr, "%s: building sequence file for database %s\n",
+			Me, Database);
+	sleep(5);
+	sprintf(idx_file, "%s.idx", Database);
+	sprintf(bdx_file, "%s.bdx", Database);
+	sprintf(seq_file, "%s.seq", Database);
+
+	DoSysLog(0);		/* report errors to stderr */
+
+	if (seqflag)
+	{			/* build a new .seq file */
+		new_file(seq_file);
+		chmod(seq_file, 0660);
+
+		if ((fd = open(idx_file, O_RDONLY)) == -1)
+		{
+			perror(idx_file);
+			exit(1);
+		}
+		/* set up the neccessary mechanism to talk to sort */
+		pipe(pipe_fd1);
+		pipe(pipe_fd2);
+
+		if (fork() == 0)
+		{
+			dup2(pipe_fd1[0], 0);
+			dup2(pipe_fd2[1], 1);
+
+			close(pipe_fd1[1]);
+			close(pipe_fd2[0]);
+
+			execlp("sort", "sort", "-r", "+1", 0);
+			perror("Execl in build");
+			exit(1);
+		}
+		close(pipe_fd1[0]);
+		close(pipe_fd2[1]);
+
+		to_sort = fdopen(pipe_fd1[1], "w");
+		from_sort = fdopen(pipe_fd2[0], "r");
+
+
+		if (fork() == 0)
+		{		/* read from .idx file and write to sort */
+			fclose(from_sort);
+			hash_index = 0;
+			while (read(fd, (char *) &buf, sizeof (buf)) > 0)
+			{
+				if (buf.i_string[0] && buf.i_string[0] != EMPTY)
+				{	/* a hit */
+					if (buf.i_string[0] != ESC)
+					{
+						fprintf(to_sort, "%d %s\n", hash_index, buf.i_string);
+						/* fprintf(stderr,"%d %s\n",hash_index,buf.i_string); */
+					}
+				}
+				hash_index++;
+				count++;
+				if (!Quiet && count % 1000 == 1)
+					fprintf(stderr, "%d (%s) to sort.\n", count,
+						Visible(buf.i_string, strlen(buf.i_string)));
+			}
+			if (!Quiet)
+				fprintf(stderr, "%d to sort\n", count);
+			exit(0);
+		} else
+		{		/* read from sort and insert into .seq file */
+			fclose(to_sort);
+
+			while (fgets(line, sizeof line, from_sort))
+			{
+
+				count++;
+				if (!Quiet && count % 1000 == 1)
+					fprintf(stderr, "%d from sort.\n", count);
+				/* Get rid of the ending newline */
+				if (cp = strchr(line, '\n'))
+					*cp = '\0';
+
+				/* Get the hash table index */
+				hash_index = atoi(line);
+
+				/* Skip to the key and inset it into the seq set */
+				if (cp = strchr(line, ' '))
+				{
+					strcpy(buf.i_string, cp + 1);
+					/*
+					 * fprintf( stderr, "%d %s\n", hash_index, buf.i_string );
+					 */
+					insert(buf.i_string, hash_index);
+				}
+			}
+			if (!Quiet)
+				fprintf(stderr, "%d from sort\n", count);
+		}
+
+		close(fd);
+		put_tree_head();
+	}
+	bintree_init(Database);
+	build_leaf_descriptors();
+	header.index_root = build_tree((INT32) 1, header.last_leaf);
+	printf("Tree built, %ld nodes\n", last_node);
+
+	write_index(bdx_file);
+
+	put_tree_head();
+	exit(0);
+}
+@
+
+
+1.13
+log
+@New copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d210 1
+a210 1
+	header.index_root = build_tree((long) 1, header.last_leaf);
+@
+
+
+1.12
+log
+@Replace DontLog with Option setting macro.
+@
+text
+@d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 4
+@
+
+
+1.11
+log
+@fcntl.h is normally in /usr/include .
+@
+text
+@a8 3
+#include <stdio.h>
+#include <ctype.h>
+#include <sys/types.h>
+d11 1
+a11 2
+#include "bintree.h"
+#include "db.h"
+a12 5
+#ifdef __STDC__
+# include <stdlib.h>
+# include <string.h>
+#endif /* __STDC__ */
+
+a19 1
+extern int DontLog;
+d44 1
+a44 1
+	DontLog = 1;
+@
+
+
+1.10
+log
+@POSIX: index() -> strchr()
+@
+text
+@d12 1
+a12 1
+#include <sys/fcntl.h>
+@
+
+
+1.9
+log
+@Quiet now a global in qi/qi.c .
+@
+text
+@d12 2
+a13 5
+#ifdef SYSV
+# include <sys/fcntl.h>
+#else /* !SYSV */
+# include <sys/file.h>
+#endif /* SYSV */
+a19 6
+# ifndef index
+#  define index strchr
+#  define rindex strrchr
+# endif /* !index */
+#else /* !__STDC__ */
+char	*index();
+d64 1
+a64 1
+		else if (equal = index(*argv, '='))
+d163 1
+a163 1
+				if (cp = index(line, '\n'))
+d170 1
+a170 1
+				if (cp = index(line, ' '))
+@
+
+
+1.8
+log
+@Change HEADER to QHEADER.
+@
+text
+@d37 2
+a38 1
+int	DontLog = 1;
+d54 1
+a54 1
+	int	seqflag = 0, Quiet = 0;
+d63 1
+a203 14
+}
+
+/*
+ * pacify ld
+ */
+char   **
+get_dir_ptrs(iloc)
+	long	iloc;
+{
+	return ((char **) NULL);
+}
+
+cleanup()
+{
+@
+
+
+1.7
+log
+@Announce which database is being smashed, uhhhh built, and pause 5 seconds.
+@
+text
+@d33 1
+a33 1
+extern HEADER header;
+@
+
+
+1.6
+log
+@Now can modify Strings[] like qi, e.g. prog -DATABASE=/tmp/foo .
+@
+text
+@d93 4
+@
+
+
+1.5
+log
+@System 5 changes, 1 or more of #include <sys/fcntl.h> instead of <sys/file.h>,
+define index/rindex replacements using strchr/strrchr, define L_SET, etc
+values if not present.
+@
+text
+@d38 1
+d53 1
+a53 1
+	int	seqflag = 0;
+d59 4
+a62 1
+	if (argc < 2 || argc > 3)
+d64 27
+a90 7
+		printf("Usage: %s [-s] database\n", argv[0]);
+		exit(1);
+	}
+	if (strcmp(argv[1], "-s") == 0)
+	{
+		seqflag++;
+		argv++;
+d92 4
+a95 3
+	sprintf(idx_file, "%s.idx", argv[1]);
+	sprintf(bdx_file, "%s.bdx", argv[1]);
+	sprintf(seq_file, "%s.seq", argv[1]);
+d148 1
+a148 1
+				if (count % 1000 == 1)
+d152 2
+a153 1
+			fprintf(stderr, "%d to sort\n", count);
+d163 1
+a163 1
+				if (count % 1000 == 1)
+d182 2
+a183 1
+			fprintf(stderr, "%d from sort\n", count);
+d189 1
+a189 1
+	bintree_init(argv[1]);
+@
+
+
+1.4
+log
+@missing exit(0); added.
+@
+text
+@d12 5
+a16 1
+#include <sys/file.h>
+d20 8
+d29 1
+@
+
+
+1.3
+log
+@Random fixes.
+@
+text
+@d157 1
+@
+
+
+1.2
+log
+@Re-formatted for clarity
+@
+text
+@d16 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d22 1
+a22 4
+int DontLog=1;
+char   *
+index(), *rindex();
+char   *Visible();
+d26 2
+a27 2
+int   argc;
+char   *argv[];
+d30 22
+a51 77
+  char  bdx_file[100];
+  char  idx_file[100];
+  char  seq_file[100];
+  char  line[512];
+  struct iindex buf;
+  int   fd;
+  int   pipe_fd1[2], pipe_fd2[2];
+  int   seqflag = 0;
+  IDX   hash_index;
+  FILE   *to_sort, *from_sort;
+  int   count=0;
+  char *cp;
+
+  if (argc < 2 || argc > 3)
+  {
+    printf("Usage: %s [-s] database\n", argv[0]);
+    exit(1);
+  }
+  if (strcmp(argv[1], "-s") == 0)
+  {
+    seqflag++;
+    argv++;
+  }
+
+
+  sprintf(idx_file, "%s.idx", argv[1]);
+  sprintf(bdx_file, "%s.bdx", argv[1]);
+  sprintf(seq_file, "%s.seq", argv[1]);
+
+  DoSysLog(0);		/* report errors to stderr */
+
+  if (seqflag)
+  {               /* build a new .seq file */
+    new_file(seq_file);
+    chmod(seq_file,0660);
+
+    if ((fd = open(idx_file, O_RDONLY)) == -1)
+    {
+      perror(idx_file);
+      exit(1);
+    }
+    /* set up the neccessary mechanism to talk to sort */
+    pipe(pipe_fd1);
+    pipe(pipe_fd2);
+
+    if (fork() == 0)
+    {
+      dup2(pipe_fd1[0], 0);
+      dup2(pipe_fd2[1], 1);
+
+      close(pipe_fd1[1]);
+      close(pipe_fd2[0]);
+
+      execlp("sort", "sort", "-r", "+1", 0);
+      perror("Execl in build");
+      exit(1);
+    }
+    close(pipe_fd1[0]);
+    close(pipe_fd2[1]);
+
+    to_sort = fdopen(pipe_fd1[1], "w");
+    from_sort = fdopen(pipe_fd2[0], "r");
+
+
+    if (fork() == 0)
+    {             /* read from .idx file and write to sort */
+      fclose(from_sort);
+      hash_index = 0;
+      while (read(fd, (char *) &buf, sizeof(buf)) > 0)
+      {
+	if (buf.i_string[0] && buf.i_string[0] != EMPTY)
+	{         /* a hit */
+	  if (buf.i_string[0] != ESC)
+	  {
+	    fprintf(to_sort, "%d %s\n", hash_index, buf.i_string);
+	    /* fprintf(stderr,"%d %s\n",hash_index,buf.i_string); */
+	  }
+d53 90
+a142 24
+	hash_index++;
+	count++;
+	if (count % 1000 == 1)
+	  fprintf(stderr, "%d (%s) to sort.\n", count,
+	      Visible(buf.i_string, strlen(buf.i_string)));
+      }
+      fprintf(stderr, "%d to sort\n", count);
+      exit(0);
+    }
+    else
+    {             /* read from sort and insert into .seq file */
+      fclose(to_sort);
+
+      while (fgets(line, sizeof line, from_sort))
+      {
+
+	count++;
+	if (count % 1000 == 1)
+	  fprintf(stderr, "%d from sort.\n", count);
+	/* Get rid of the ending newline */
+	if (cp=index(line,'\n')) *cp = '\0';
+
+	/* Get the hash table index */
+	hash_index = atoi(line);
+d144 2
+a145 8
+	/* Skip to the key and inset it into the seq set */
+	if (cp=index(line,' '))
+	{
+	  strcpy(buf.i_string, cp + 1);
+	  /*
+	   * fprintf( stderr, "%d %s\n", hash_index, buf.i_string ); 
+	   */
+	  insert(buf.i_string, hash_index);
+d147 4
+d152 1
+a152 12
+      }
+      fprintf(stderr, "%d from sort\n", count);
+    }
+    
+    close(fd);
+    put_tree_head();
+  }
+
+  bintree_init(argv[1]);
+  build_leaf_descriptors();
+  header.index_root = build_tree((long)1, header.last_leaf);
+  printf("Tree built, %ld nodes\n", last_node);
+d154 2
+a155 1
+  write_index(bdx_file);
+d157 8
+a164 1
+  put_tree_head();
+d167 3
+a169 5
+/***********************************************************************
+* pacify ld
+***********************************************************************/
+char **get_dir_ptrs(iloc)long iloc;{return((char **)NULL);}
+cleanup(){}
+@

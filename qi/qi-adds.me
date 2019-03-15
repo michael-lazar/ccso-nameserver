@@ -1,0 +1,544 @@
+.\" Process with either "groff -me qi-adds.me > qi-adds.ps"
+.\" or "psroff -me qi-adds.me > qi-adds.ps"
+.\" or "nroff -me qi-adds.me | col > qi-adds.txt"
+.ds MO 1.15\"	mod number
+.de c
+.nr _F \\n(.f
+.ul 0
+.ft CR
+.if \\n(.$ \&\\$1\f\\n(_F\\$2
+.rr _F
+..
+.sp 5
+.ce 1000
+.sz 14
+.b
+Proposed Changes to QI
+.sz
+.(f
+Copyright \(co 1994, 1995 Paul Pomes and the University of Illinois
+Board of Trustees.
+Anyone may reproduce this document, in whole or in part, provided that:
+(1) any copy or republication of the entire document must show
+the University of Illinois as the source, and must include this notice;
+and (2) any other use of this material must reference this paper and
+the University of Illinois, and the fact that the material is copyright by
+Paul Pomes and the University of Illinois Board of Trustees and is used
+by permission.
+.)f
+.sp
+.i "Release \*(MO"
+.sp 2
+.ul
+Paul Pomes*
+.(f
+*
+.c <p-pomes@uiuc.edu>
+.)f
+.sp
+Computing and Communications Services Office
+University of Illinois, Urbana\-Champaign
+Urbana, Illinois  61801
+.sp 4
+.i ABSTRACT
+.lp
+.(b I F
+The server side of ph, qi, has become an essential part of how
+.sm CCSO
+manages services.
+Revision of the
+.i hero ,
+.i proxy ,
+and
+.i no_update
+fields plus three new fields will adapt qi to a more distributed operation.
+The
+.c klogin
+command will be changed to
+.c xlogin
+to allow for a variety of login methods.
+The
+.c siteinfo
+command will return a new
+.i authenticate
+field to signal newer clients as to what authentication methods are supported
+via the revised
+.c xlogin
+command.
+Review and comments are solicited to refine this proposal before it's
+committed to code.
+.)b
+.eh '%''Proposed Changes to QI'
+.oh 'Proposed Changes to QI''%'
+.sh 1 Introduction
+.lp
+I've been thinking about the access control and privacy problems
+that are developing as qi is pushed to do more and more.
+This springs from the Beckman\-only pool of terminal server
+ports, email to pagers w.o. disclosure of pager numbers, and UofI Direct's
+requirement to add users on the fly.
+.lp
+My solution is to extend the capabilities of three existing qi fields,
+create three new fields, and create two new field properties.
+Because the syntax of the
+.i hero
+and
+.i proxy
+fields will change, they will be re-named to
+.i acl
+(for access control list) and
+.i write
+respectively.
+The extensions to the
+.i no_update
+field are backward compatible and don't require changing the field's name.
+The three new fields will be called
+.i group ,
+.i read ,
+and
+.i remote .
+The new properties will be
+.q NoMeta
+and
+.q Access .
+.lp
+In the
+.sm UNIX \**
+.(f
+\** UNIX is a registered trademark of X/Open.
+.)f
+world users with root privileges do not run as superuser all the time.
+To do so invites system-wide accidents when mistakes are made.
+Instead they run the
+.i su (8)
+command to briefly assume needed privileges.
+When done they revert to their less potent user identities.
+The same feature can be obtained in qi by requiring Kerberos authentication
+before privileged functions are used.
+For everyday use a user could log in with Network ID and password or
+present a valid Kerberos ticket, e.g., p\-pomes@\s-1UIUC.EDU\s0.
+To enable privileged functions granted by the
+.i acl
+field, a Kerberos ticket for their phhero instance,
+e.g., p\-pomes/phhero@\s-1UIUC.EDU\s0, must be presented.
+Each instance, null and phhero, can have separate passwords or
+require a challenge/response device.
+.sh 1 Group
+.lp
+The new numeric
+.i group
+field will have the properties of
+.q Indexed ,
+.q Lookup and
+.q Public .
+The omission of the
+.q "Change"
+property prevents the user from modifying or deleting it.
+At the University of Illinois it will be set to the department
+distribution code.
+When a user logs in the effective group id will be set to the first value
+in the field.
+Users who haven't logged in will have a effective group id of \-1
+and the pseudo\-alias
+.q anon .
+The latter is intended for use by the new
+.i read
+field.
+Syntax:
+.ip
+.c "xx [yy]"
+.sh 1 Acl
+.lp
+At present, if the
+.i hero
+field is set to
+.q opr ,
+.q operator ,
+or
+.q oper ,
+the user is essentially a nearly unlimited proxy for everyone.
+He can change any field of any entry that the entry's owner can change.
+She cannot change any user that's also a hero.
+If any other string is present besides those three,
+the user can change any field in any entry,
+and add/delete whole entries.
+.lp
+I propose to replace
+.i hero
+with
+.i acl .
+Like
+.i hero ,
+.i acl
+will have no properties.
+It can only be modified by the database administrator running qi directly.
+No changes to the
+.i acl
+field will be allowed via ph.
+Syntax:
+.ip
+.c "*|[*,!]field1[,[!]field2]=perm1[:NN][:NN][,perm2[:NN][:NN]]  [...]"
+.lp
+where fieldX is the name of a field in
+.c prod.cnf
+and permX
+is one of
+.c r
+(read),
+.c w
+(write), or
+.c x
+(search/execute).
+Search would apply to
+.c prod.cnf
+fields while execute applies to privileged qi commands such as add or delete.
+If present,
+.sm :NN
+restricts the changes to users in group
+.sm NN .
+Permissions override whatever permissions are given by the
+.c prod.cnf
+file.
+Some illustrative examples:
+.ip
+.c *=r,w,x
+.lp
+Equivalent to the unlimited hero previously described.
+.ip
+.c *,!password,!id=r,w
+.lp
+All fields except the
+.i password
+and
+.i id
+fields can be read and written.
+This combination doesn't actually make sense as it would strip the default
+search property from the
+.i name
+and
+.i alias
+fields among others.
+.ip
+.c "ccso-accounts=r,w,x id=r"
+.lp
+Allow the user to read (see), write, and search on the
+.i ccso\-accounts
+field; read, but not search on, the
+.i id
+field.
+.ip
+.c add=x
+.lp
+Allow execution of the privileged
+.q add
+command to create a new entry.
+.ip
+.c id,ccso-accounts=r:608:2217,w:608,x
+.lp
+Would allow the user to see the
+.i id
+and
+.i ccso\-accounts
+fields for
+.sm CCSO
+and
+.sm CS
+employees, write them for
+.sm CCSO
+employees, and search on, but not print, those fields for all other users.
+.sh 1 Write
+.lp
+The current implementation of
+.i proxy
+allows whatever user(s) listed the same privileges as the entry's owner.
+Evolving policy requires that this be limited.
+The
+.i write
+replacement will have the same properties of
+.q LocalPub ,
+.q Change ,
+.q Indexed ,
+and
+.q Lookup
+as
+.i proxy
+does.
+Syntax:
+.ip
+.c "[field1[,field2]=]alias1[,alias2]  [...]"
+.lp
+The implied permission is write but this will not override the default
+permission set in
+.c prod.cnf .
+In the simplest form of the
+.i write
+field, its syntax matches that of the
+.i proxy
+field:
+.ip
+.c "alias1 [alias2]"
+.lp
+The difference will be that only fields that have the properties
+.q Public
+and
+.q Change
+can be modified by the designated alias.
+.lp
+Examples:
+.ip
+.c lemson
+.lp
+User lemson can change the
+.i email ,
+.i phone ,
+.i office_phone ,
+.i fax ,
+.i address ,
+.i office_address ,
+.i office_location ,
+.i nickname ,
+.i department ,
+.i title ,
+.i hours ,
+.i project ,
+.i other ,
+.i pager ,
+.i family ,
+.i birthday ,
+.i high_school ,
+and
+.i colleges
+fields.
+.ip
+.c "email=p-pomes id,fax,phone,email=roma"
+.lp
+User p\-pomes can modify the
+.i email
+field, while roma can also change the
+.i fax
+and
+.i phone .
+.i id
+is not changeable by default so it's ignored.
+.sh 1 No_update
+.lp
+The
+.i no_update
+field is similar to the new
+.i remote
+field in that its contents do not affect qi's operation.
+Instead
+.i no_update
+provides information to external programs and heros about how they should
+modify (or not) user entries.
+In its present incarnation, the mere presence of
+.i no_update
+controls the precedence of information during a bulk database update.
+When present, information in the old database file, e.g.,
+.i home_phone ,
+is used rather than it's equivalent in the update file.
+My extension is to add per-field control of updating.
+Syntax:
+.ip
+.c "xyzzy|field1[ field2]"
+.lp
+Any token not recognized as a field name, e.g.,
+.c xyzzy ,
+will cause the all field effect of the old syntax.
+This extension provides the mechanism for users to
+.q "opt out"
+of the distributed password registrar system now under development.
+.lp
+Examples:
+.ip
+.c "yes password"
+.lp
+Does the traditional protection of some fields during bulk updates and
+informs application programs that the password field should be left alone.
+.ip
+.c "home_phone"
+.lp
+Only the
+.i home_phone
+field is saved from the old database during an update.
+.sh 1 Read
+.lp
+Fields that have the new property
+.q Access
+allow the user to control who can see them via the
+.i read
+field.
+.i Read
+has the one property
+.q Change
+which makes it invisible to everyone save the user.
+Syntax:
+.ip
+.c "[field1[,field2]=][domain][,group][,alias]
+.lp
+Domains are distinguished from aliases by the presence of the
+.q .
+character.
+Groups are distinguished from domains and aliases by having all digits and
+no internal
+.q . s.
+The given permissions
+.b replace
+the default permissions given in the
+.c prod.cnf
+file.
+Each of domains, groups, and aliases each represent a class.
+If a particular class type is not mentioned, all members of that class
+have read access subject to the other classes.
+Groups take precedence over domains and aliases take precedence over both
+domains and groups.
+If one or more members of a class are listed, only those are granted read
+access.
+Examples:
+.ip
+.c *.uiuc.edu
+.lp
+Restrict all fields with the
+.q Access
+property to
+.sm UIUC
+hosts only.
+.ip
+.c home_phone=cs.uiuc.edu,p-pomes
+.lp
+The
+.q Access
+property field
+.i home_phone
+is hidden from all users save those on 
+.sm CS
+Department machines and to alias p-pomes (provided he logs in).
+.ip
+.c home_phone=*.uiuc.edu,*.uic.edu,0608,j-user
+.lp
+Allows any user at the Urbana and Chicago campus to see the
+.i home_phone .
+Any member of CCSO (group 0608) and user j-user can see the field
+from anywhere provided they log in.
+.ip
+.c pager=tampico.cso.uiuc.edu,engwig,r-booth
+.lp
+Any user from tampico and users engwig and r\-booth can see
+.i pager .
+.sh 1 NoMeta
+.lp
+The
+.c NoMeta
+field property dis-allows the use of wildcard characters for lookups.
+Matches must be exact or they will fail.
+This property is handy for fields such as
+.i id .
+In
+.sm UIUC 's
+case we wish to allow administrators, who have the complete
+.sm ID
+number from a class roster, to use it as a query for the
+.i alias .
+At the same time it prevents iterative attacks to discover the
+.sm ID
+number of a person.
+.sh 1 Remote
+.lp
+The
+.i remote
+field
+would have the single property
+.q Indexed
+and would not be present in most entries.
+If absent, the terminal server authentication software (tacacsd)
+would allow access upon successful login to some default modem pool.
+If the entry was present, then only the listed pools could be used.
+If
+.q default
+is listed, then the user can also access the default modem pool.
+Syntax:
+.ip
+.c "[default] pool1 [pool2]"
+.lp
+Where poolN is some symbolic name defined in tacacsd for a set of
+terminal server modems.
+pool1 could be replaced by terminal server domain names as well.
+Interpretation of this field is completely up to tacacsd.
+.sh 1 "Siteinfo Extension"
+.lp
+The
+.c siteinfo
+command currently returns site-specific information about the qi server
+such as the administrative contact, which field to use for email addresses,
+who to contact about passwords, etc.
+The new
+.c authenticate
+keyword will signal clients as to which authentication methods are supported.
+Syntax:
+.ip
+.c "-200:N:authenticate:NN[:NN]"
+.lp
+where N is the sub-field counter and NN is the key value for the supported
+authentication methods.
+The following authentication methods have been defined so far:
+.lp
+.c
+.nf
+#define LQ_FWTK		0x004	/* use FWTK auth server, if available */
+#define LQ_KRB4		0x008	/* use v4 Kerberos login, if available */
+#define LQ_KRB5		0x010	/* use v5 Kerberos login, if available */
+#define LQ_GSS		0x020	/* use GSS-API login, if available */
+#define LQ_EMAIL	0x040	/* use email login, if available */
+#define LQ_PASSWORD	0x080	/* password encrypted response to challenge */
+#define LQ_CLEAR	0x100	/* use clear-text passwords */
+.fi
+.r
+.sh 1 "Xlogin Command"
+.lp
+At present the
+.c "klogin alias"
+command initiates a v4 Kerberos login sequence.
+The qi server responds with a 301 line that is the signal for the
+client to send the mutually authenticating credentials.
+I've replaced the
+.c klogin
+command with the more general
+.c xlogin
+command to handle more varied ways of login signalled by the
+.c authenticate
+keyword in the
+.c siteinfo
+response.
+Syntax:
+.ip
+xlogin NN alias
+.lp
+Where
+.c NN
+is the login method as defined in
+.c include/qiapi.h
+and above.
+Depending on the method selected, the qi server responds with either
+a challenge to be presented to the user, or a signal to the client to
+send previously obtained credentials.
+.sh 1 Discussion
+.lp
+I can use a common routine to parse the acl, write, and read permission
+fields.
+The mechanism is general enough to handle the requirements stated earlier.
+To prevent tribalism, it's my intention to only mark a very small
+number of fields with the Access keyword.
+Offhand I would say that only
+.i pager ,
+.i home_phone ,
+and
+.i home_address
+qualify as many users tend to zero these fields.
+The new email to pager service requires the pager number to be stored in ph.
+However many people won't use it if their pager number is world readable.
+.lp
+Comments are solicited, especially ways to either simplify the system
+or make it more general.
+Ways to compromise security are especially invited.
+.lp
+/pbp

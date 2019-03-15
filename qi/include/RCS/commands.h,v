@@ -1,0 +1,828 @@
+head	1.28;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.28
+date	95.06.28.20.34.44;	author p-pomes;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	94.03.11.23.29.48;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	93.12.16.22.58.55;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	93.11.24.20.10.00;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	93.11.23.22.44.41;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	93.06.14.20.35.46;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.04.03.23.54.49;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.02.10.21.38.31;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	92.07.29.15.25.03;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	92.07.28.05.01.43;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	92.07.26.19.06.06;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.07.24.16.51.59;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.07.22.15.48.46;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.22.15.43.18;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	90.12.18.08.40.54;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	90.05.16.09.18.06;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	89.10.18.07.52.05;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	89.07.19.10.18.12;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.03.20.15.14.08;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	88.12.02.14.40.53;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.11.15.13.30.41;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.07.27.13.25.42;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.07.08.14.01.02;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.04.19.08.12.29;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.02.15.14.03.16;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.02.10.13.14.53;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	87.12.12.11.28.28;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.56;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.28
+log
+@rename C_KLOGIN to C_XLOGIN.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * @@(#)$Id: commands.h,v 1.27 1994/03/11 23:29:48 paul Exp p-pomes $
+ */
+
+#ifndef COMMANDS_H
+#define COMMANDS_H
+#include <stdio.h>
+#include "conf.h"
+#include "log.h"
+#include "field.h"
+#include "qi.h"
+#include "qiapi.h"
+
+/*
+ * Commands.  Changes made here should also be made in language.l
+ */
+#define C_QUERY		1
+#define C_CHANGE	2
+#define C_LOGIN		3
+#define C_ANSWER	4
+#define C_LOGOUT	5
+#define C_FIELDS	6
+#define C_ADD		7
+#define C_DELETE	8
+#define C_SET		9
+#define C_QUIT		10
+#define C_STATUS	11
+#define C_ID		12
+#define C_HELP		13
+#define C_CLEAR		14
+#define C_INFO		15
+#define C_EMAIL		16
+#define C_XLOGIN	17	/* always defined, even if not enabled */
+
+extern QDIR User;		/* in commands.c */
+extern char *UserAlias;		/* in commands.c */
+extern int UserEnt;		/* in commands.c */
+extern FILE *Input;		/* mqi.c */
+extern FILE *Output;		/* mqi.c */
+extern QDIR HeroDir;		/* commands.c */
+extern char *Hero;		/* commands.c */
+extern int AmHero;		/* commands.c */
+extern int AmOpr;		/* commands.c */
+
+/*
+ * server states
+ */
+extern int State;		/* in commands.c */
+
+# define S_IDLE		0	/* nothing in the works */
+# define S_E_PENDING	1	/* waiting for login response */
+
+/*
+ * Value types
+ */
+
+/* the following types may be or'd together */
+#define VALUE	1		/* single value */
+#define EQUAL	2		/* an equals sign */
+#define VALUE2	4		/* a value AFTER an equals sign */
+
+/* other types */
+#define RETURN	8		/* a return token */
+#define COMMAND 16		/* a command name */
+#define TILD_E 32		/* a tilde */
+
+/* Flags */
+#define A_NO_RECURSE	1	/* don't perform tail recursion on names */
+
+/*
+ * Argument structure
+ */
+struct argument
+{
+	int	aType;
+	int	aKey;
+	int	aFlag;
+	int	aRating;
+	char	*aFirst;
+	char	*aSecond;
+	FDESC	*aFD;
+	struct argument	*aNext;
+};
+typedef struct argument ARG;
+extern void (*CommandTable[]) __P((ARG *));	/* in commands.c */
+
+/*
+ * delimiters for word breakup
+ */
+#define IDX_DELIM " \t\n,;:"
+
+/*
+ * flags
+ */
+extern int ReadOnly;		/* mqi.c */
+
+/*
+ * just in case...
+ */
+#define MAXSTR 256
+
+#endif
+@
+
+
+1.27
+log
+@New copyright message.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: options.h,v 1.8 1994/03/11 23:23:48 paul Exp $
+d64 1
+a64 1
+#define C_CLEAR	14
+d67 1
+a67 1
+#define C_KLOGIN	17	/* always defined, even if not enabled */
+@
+
+
+1.26
+log
+@Kerberos changes from Alan Crosswell of Columbia.
+@
+text
+@d2 35
+a36 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+@
+
+
+1.25
+log
+@Added aFlag variable to ARG structure.
+@
+text
+@d24 1
+a24 5
+#ifdef KERBEROS
+# define C_KLOGIN	4 
+#else /* !KERBEROS */
+# define C_ANSWER	4
+#endif /* KERBEROS */
+d34 1
+a34 3
+#ifndef KERBEROS
+# define C_CLEAR	14
+#endif /* !KERBEROS */
+d37 1
+a48 1
+#ifndef KERBEROS
+a55 1
+#endif /* !KERBEROS */
+@
+
+
+1.24
+log
+@*** empty log message ***
+@
+text
+@d78 3
+d88 2
+a89 1
+	int	NoRecurse;
+a93 1
+	int	aRating;
+@
+
+
+1.23
+log
+@Use qiapi.h instead of replies.h
+@
+text
+@d85 1
+@
+
+
+1.22
+log
+@Kerberos changes from Brown University.
+@
+text
+@a11 1
+#include <cdefs.h>
+d16 1
+a62 5
+
+/*
+ * Reply codes
+ */
+#include "replies.h"
+@
+
+
+1.21
+log
+@*** empty log message ***
+@
+text
+@d24 5
+a28 1
+#define C_ANSWER	4
+d38 3
+a40 1
+#define C_CLEAR		14
+d54 1
+d60 3
+a62 2
+#define S_IDLE		0	/* nothing in the works */
+#define S_E_PENDING	1	/* waiting for login response */
+@
+
+
+1.20
+log
+@*** empty log message ***
+@
+text
+@d46 1
+@
+
+
+1.19
+log
+@Random fixes.
+@
+text
+@a102 1
+#ifndef MAXSTR
+a103 1
+#endif
+a104 3
+#ifndef New
+#define New(type)	((type *)malloc(sizeof(type)))
+#endif
+@
+
+
+1.18
+log
+@revised typedefs
+@
+text
+@d83 1
+a83 1
+	FieldDesc *aFD;
+d88 1
+a88 1
+extern void (*CommandTable[])(ARG *);	/* in commands.c */
+@
+
+
+1.17
+log
+@*** empty log message ***
+@
+text
+@d38 1
+a38 1
+extern Dir User;		/* in commands.c */
+d43 1
+a43 1
+extern Dir HeroDir;		/* commands.c */
+@
+
+
+1.16
+log
+@re-formatted for clarity.
+@
+text
+@d77 1
+a77 1
+struct Arg
+d84 1
+a84 1
+	Arg	*aNext;
+d87 2
+a88 2
+typedef struct Arg Arg;
+extern void (*CommandTable[])(Arg *);	/* in commands.c */
+@
+
+
+1.15
+log
+@Last dorner changes.
+@
+text
+@d1 7
+a7 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d12 1
+d17 4
+a20 3
+/***********************************************************************
+* Commands.  Changes made here should also be made in language.l
+***********************************************************************/
+d47 3
+a49 3
+/***********************************************************************
+* server states
+***********************************************************************/
+d55 3
+a57 3
+/***********************************************************************
+* Reply codes
+***********************************************************************/
+d60 4
+a63 3
+/***********************************************************************
+* Value types
+***********************************************************************/
+d74 3
+a76 4
+/***********************************************************************
+* Argument structure
+***********************************************************************/
+typedef struct Arg Arg;
+d79 7
+a85 7
+    int     aType;
+    int     aKey;
+    char   *aFirst;
+    char   *aSecond;
+    FieldDesc *aFD;
+    Arg    *aNext;
+    int     aRating;
+d87 2
+a88 1
+extern void (*CommandTable[]) (Arg *theArgs);	/* in commands.c */
+d90 3
+a92 3
+/***********************************************************************
+* delimiters for word breakup
+***********************************************************************/
+d95 3
+a97 3
+/***********************************************************************
+* flags
+***********************************************************************/
+d100 4
+a103 3
+/***********************************************************************
+* just in case...
+***********************************************************************/
+d105 1
+@
+
+
+1.14
+log
+@No help here.
+@
+text
+@d13 1
+d34 2
+d70 1
+@
+
+
+1.13
+log
+@No help here.
+@
+text
+@a32 3
+int 
+DoQuery(), DoChange(), DoLogin(), DoAnswer(), DoLogout(), DoFields(),
+DoAdd(), DoDelete(), DoSet(), DoQuit(), DoStatus(), DoId(), DoHelp();
+a33 1
+extern int (*CommandTable[]) ();/* in commands.c */
+d82 1
+a89 13
+* history
+***********************************************************************/
+#define	HISTORY	'!'
+#define H_QUERY 'q'
+#define H_RETURN 'r'
+
+/***********************************************************************
+* routines
+***********************************************************************/
+long *DoLookup();
+Dir     GetAliasDir();
+
+/***********************************************************************
+a97 1
+char   *malloc();
+@
+
+
+1.12
+log
+@No help here.
+@
+text
+@d32 1
+a32 1
+
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d31 1
+d35 1
+a35 1
+DoAdd(), DoDelete(), DoSet(), DoQuit(), DoStatus(), DoId();
+d90 1
+a90 2
+#define IDX_DELIM " \t\n"	/* restrictive set, for index */
+#define LOOK_DELIM " \t\n!@@#$.,\";:"	/* generous set, for matching */
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d13 1
+a13 5
+#ifdef ULTRIX43LOG
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d7 2
+a8 2
+#ifndef COMMANDS_DOT_H
+#define COMMANDS_DOT_H
+d10 1
+a10 3
+#include "field.h"
+#include "qi.h"
+#ifdef ultrix
+d15 2
+d103 1
+a103 1
+unsigned long *DoLookup();
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d1 6
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d24 2
+d29 1
+a29 1
+DoAdd(), DoDelete(), DoSet(), DoQuit();
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d6 3
+d10 1
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d3 1
+d21 3
+a23 2
+int DoQuery(), DoChange(), DoLogin(), DoAnswer(), DoLogout(), DoFields(),
+    DoAdd(), DoDelete(), DoSet(), DoQuit();
+d25 9
+a33 9
+extern int (*CommandTable[])();		/* in commands.c */
+extern Dir User;			/* in commands.c */
+extern char *UserAlias;			/* in commands.c */
+extern int UserEnt;			/* in commands.c */
+extern FILE *Input;	/* mqi.c */
+extern FILE *Output;	/* mqi.c */
+extern Dir HeroDir;	/* commands.c */
+extern char *Hero;	/* commands.c */
+extern int AmHero;	/* commands.c */
+d38 2
+a39 1
+extern int State;			/* in commands.c */
+d52 3
+a54 3
+#define VALUE	1	/* single value */
+#define EQUAL	2	/* an equals sign */
+#define VALUE2	4	/* a value AFTER an equals sign */
+d57 2
+a58 2
+#define RETURN	8	/* a return token */
+#define COMMAND 16	/* a command name */
+d66 4
+a69 4
+    int aType;
+    int aKey;
+    char *aFirst;
+    char *aSecond;
+d71 2
+a72 2
+    Arg *aNext;
+    int aRating;
+d78 1
+a78 1
+#define IDX_DELIM " \t\n"		/* restrictive set, for index */
+d92 1
+a92 1
+Dir GetAliasDir();
+d103 2
+a104 1
+char *malloc();
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d43 1
+a43 2
+#define LR_PROGRESS	100	/* in progress */
+#define LR_ECHO		101	/* echoing cmd */
+a44 33
+#define LR_OK		200	/* success */
+#define LR_RONLY	201	/* database ready in read only mode */
+
+#define LR_MORE		300	/* need more info */
+#define LR_LOGIN	301	/* encrypt this string */
+
+#define LR_TEMP		400	/* temporary error */
+#define LR_INTERNAL	401	/* database error, possibly temporary */
+#define LR_LOCK		402	/* lock not obtained within timeout period */
+
+#define LR_ERROR	500	/* hard error; general */
+#define	LR_NOMATCH	501	/* no matches to request */
+#define LR_TOOMANY	502	/* too many matches to request */
+#define LR_AINFO	503	/* may not see that field */
+#define LR_ASEARCH	504	/* may not search on that field */
+#define LR_ACHANGE	505	/* may not change field */
+#define LR_NOTLOG	506	/* must be logged in */
+#define LR_FIELD	507	/* field unknown */
+#define LR_ABSENT	508	/* field not present in entry */
+#define LR_ALIAS	509	/* requested alias is already in use */
+#define LR_AENTRY	510	/* may not change entry */
+#define LR_ADD		511	/* may not add entries */
+#define LR_VALUE	512	/* illegal value */
+#define LR_OPTION	513	/* unknown option */
+#define LR_UNKNOWN	514	/* unknown command */
+#define LR_NOKEY	515	/* no indexed field found in query */
+#define LR_AUTH		516	/* no authorization for request */
+#define LR_READONLY	517	/* operation failed; database is read-only */
+#define LR_LIMIT	518	/* too many entries selected for change */
+#define LR_HISTORY	519	/* history substitution failed */
+
+#define LR_SYNTAX	599	/* syntax error */
+
+d99 1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d44 1
+d75 1
+d111 7
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d73 1
+@

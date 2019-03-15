@@ -1,0 +1,693 @@
+%!PS-Adobe-3.0
+%%Creator: groff version 1.04
+%%DocumentNeededResources: font Times-Bold
+%%+ font Times-Roman
+%%+ font Times-Italic
+%%+ font Courier-Bold
+%%+ font Courier
+%%+ font Symbol
+%%DocumentSuppliedResources: procset grops 1.04 0
+%%Pages: 9
+%%PageOrder: Ascend
+%%Orientation: Portrait
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset grops 1.04 0
+%!PS-Adobe-3.0 Resource-ProcSet
+
+/setpacking where {
+	pop
+	currentpacking
+	true setpacking
+} if
+
+/grops 120 dict dup begin 
+
+% The ASCII code of the space character.
+/SC 32 def
+
+/A /show load def
+/B { 0 SC 3 -1 roll widthshow } bind def
+/C { 0 exch ashow } bind def
+/D { 0 exch 0 SC 5 2 roll awidthshow } bind def
+/E { 0 rmoveto show } bind def
+/F { 0 rmoveto 0 SC 3 -1 roll widthshow } bind def
+/G { 0 rmoveto 0 exch ashow } bind def
+/H { 0 rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/I { 0 exch rmoveto show } bind def
+/J { 0 exch rmoveto 0 SC 3 -1 roll widthshow } bind def
+/K { 0 exch rmoveto 0 exch ashow } bind def
+/L { 0 exch rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/M { rmoveto show } bind def
+/N { rmoveto 0 SC 3 -1 roll widthshow } bind def
+/O { rmoveto 0 exch ashow } bind def
+/P { rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/Q { moveto show } bind def 
+/R { moveto 0 SC 3 -1 roll widthshow } bind def
+/S { moveto 0 exch ashow } bind def
+/T { moveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+
+% name size font SF -
+
+/SF {
+	findfont exch
+	[ exch dup 0 exch 0 exch neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+% name a c d font MF -
+
+/MF {
+	findfont
+	[ 5 2 roll
+	0 3 1 roll % b
+	neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+/level0 0 def
+/RES 0 def
+/PL 0 def
+/LS 0 def
+
+% BP -
+
+/BP {
+	/level0 save def
+	1 setlinecap
+	1 setlinejoin
+	72 RES div dup scale
+	LS {
+		90 rotate
+	} {
+		0 PL translate
+	} ifelse
+	1 -1 scale
+} bind def
+
+/EP {
+	level0 restore
+	showpage
+} bind def
+
+
+% centerx centery radius startangle endangle DA -
+
+/DA {
+	newpath arcn stroke
+} bind def
+
+% x y SN - x' y'
+% round a position to nearest (pixel + (.25,.25))
+
+/SN {
+	transform 
+	.25 sub exch .25 sub exch
+	round .25 add exch round .25 add exch
+	itransform
+} bind def
+	
+% endx endy startx starty DL -
+% we round the endpoints of the line, so that parallel horizontal
+% and vertical lines will appear even
+
+/DL {
+	SN
+	moveto
+	SN
+	lineto stroke
+} bind def
+
+% centerx centery radius DC -
+
+/DC {
+	newpath 0 360 arc closepath
+} bind def
+
+
+/TM matrix def
+
+%  width height centerx centery DE -
+
+/DE {
+	TM currentmatrix pop
+	translate scale newpath 0 0 .5 0 360 arc closepath
+	TM setmatrix
+} bind def
+
+% these are for splines
+
+/RC /rcurveto load def
+/RL /rlineto load def
+/ST /stroke load def
+/MT /moveto load def
+/CL /closepath load def
+
+% fill the last path
+
+% amount FL -
+
+/FL {
+	currentgray exch setgray fill setgray
+} bind def
+
+% fill with the ``current color''
+
+/BL /fill load def
+
+/LW /setlinewidth load def
+% new_font_name encoding_vector old_font_name RE -
+
+/RE {
+	findfont
+	dup maxlength dict begin
+	{
+		1 index /FID ne { def } { pop pop } ifelse
+	} forall
+	/Encoding exch def
+	dup /FontName exch def
+	currentdict end definefont pop
+} bind def
+
+/DEFS 0 def
+
+% hpos vpos EBEGIN -
+
+/EBEGIN {
+	moveto
+	DEFS begin
+} bind def
+
+/EEND /end load def
+
+/CNT 0 def
+/level1 0 def
+
+% llx lly newwid wid newht ht newllx newlly PBEGIN -
+
+/PBEGIN {
+	/level1 save def
+	translate
+	div 3 1 roll div exch scale
+	neg exch neg exch translate
+	% set the graphics state to default values
+	0 setgray
+	0 setlinecap
+	1 setlinewidth
+	0 setlinejoin
+	10 setmiterlimit
+	[] 0 setdash
+	/setstrokeadjust where {
+		pop
+		false setstrokeadjust
+	} if
+	/setoverprint where {
+		pop
+		false setoverprint
+	} if
+	newpath
+	/CNT countdictstack def
+	userdict begin
+	/showpage {} def
+} bind def
+
+/PEND {
+	clear
+	countdictstack CNT sub { end } repeat
+	level1 restore
+} bind def
+
+end def
+
+/setpacking where {
+	pop
+	setpacking
+} if
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Times-Italic
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Courier
+%%IncludeResource: font Symbol
+grops begin/DEFS 1 dict def DEFS begin/u{.001 mul}bind def end/RES 72 def/PL
+792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron/scaron/zcaron
+/Ydieresis/trademark/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/space/exclam
+/quotedbl/numbersign/dollar/percent/ampersand/quoteright/parenleft/parenright
+/asterisk/plus/comma/hyphen/period/slash/zero/one/two/three/four/five/six/seven
+/eight/nine/colon/semicolon/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J
+/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright/circumflex
+/underscore/quoteleft/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z
+/braceleft/bar/braceright/tilde/.notdef/quotesinglbase/guillemotleft
+/guillemotright/bullet/florin/fraction/perthousand/dagger/daggerdbl/endash
+/emdash/ff/fi/fl/ffi/ffl/dotlessi/dotlessj/grave/hungarumlaut/dotaccent/breve
+/caron/ring/ogonek/quotedblleft/quotedblright/oe/lslash/quotedblbase/OE/Lslash
+/.notdef/exclamdown/cent/sterling/currency/yen/brokenbar/section/dieresis
+/copyright/ordfeminine/guilsinglleft/logicalnot/minus/registered/macron/degree
+/plusminus/twosuperior/threesuperior/acute/mu/paragraph/periodcentered/cedilla
+/onesuperior/ordmasculine/guilsinglright/onequarter/onehalf/threequarters
+/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex/Idieresis/Eth
+/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis/multiply/Oslash/Ugrave
+/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls/agrave/aacute/acircumflex
+/atilde/adieresis/aring/ae/ccedilla/egrave/eacute/ecircumflex/edieresis/igrave
+/iacute/icircumflex/idieresis/eth/ntilde/ograve/oacute/ocircumflex/otilde
+/odieresis/divide/oslash/ugrave/uacute/ucircumflex/udieresis/yacute/thorn
+/ydieresis]def/Courier@0 ENC0/Courier RE/Courier-Bold@0 ENC0/Courier-Bold RE
+/Times-Italic@0 ENC0/Times-Italic RE/Times-Roman@0 ENC0/Times-Roman RE
+/Times-Bold@0 ENC0/Times-Bold RE
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 18/Times-Bold@0 SF(The CCSO Nameserver Server\255Client Pr)106.074 105.6 Q
+(otocol)-.324 E/F1 10/Times-Roman@0 SF(by)283 139.2 Q(Steven Dorner)215.73
+151.2 Q(s\255dorner@uiuc.edu)7.5 E(Computer and Communications Services Of)
+192.265 163.2 Q(\214ce)-.18 E(University of Illinois at Urbana)225.23 175.2 Q
+(April 2, 1990)261.195 199.2 Q(updated by)265.92 235.2 Q(Paul Pomes)214.605
+247.2 Q(paul\255pomes@uiuc.edu)7.5 E(Computer and Communications Services Of)
+192.265 259.2 Q(\214ce)-.18 E(University of Illinois at Urbana)225.23 271.2 Q
+(August 2, 1992)257.305 295.2 Q/F2 10/Times-Bold@0 SF(Intr)72 359.4 Q(oduction)
+-.18 E F1 .526
+(This document describes the protocol used by the CCSO Nameserver)72 375.6 R
+5.526(.I)-.55 G 3.026(tp)365 375.6 S .526(rovides all the information nec-)
+375.806 375.6 R 1.574
+(essary to write a program that interfaces with the Nameserver)72 387.6 R 4.074
+(,o)-.4 G 4.074(rf)343.658 387.6 S 1.574(or a human to speak directly to the)
+354.392 387.6 R(Nameserver)72 399.6 Q(.)-.55 E 1.32
+(While CCSO provides a client program for our Nameserver)72 415.8 R 3.819(,w)
+-.4 G 3.819(ea)334.537 415.8 S 1.319(lso expect the Nameserver to be used)
+347.236 415.8 R .501(from programs other than this client.)72 427.8 R .502
+(First, our client does not run on every system.)5.502 F(Secondly)5.502 E 3.002
+(,t)-.65 G .502(he Name-)464.348 427.8 R .627(server is potentially of use for\
+ more than just human lookup of information; other programs \(such as mail)72
+439.8 R(delivery agents\) may wish to use the Nameserver)72 451.8 Q(.)-.55 E
+.824(This was kept in mind when designing the protocol used by the Nameserver)
+72 468 R 5.825(.I)-.55 G 3.325(ti)396.845 468 S 3.325(sf)405.73 468 S .825
+(airly easy to generate)416.275 468 R(and parse \(if not totally regular\), an\
+d should prove easy to incorporate in any program.)72 480 Q F2(General Format)
+72 504 Q F1 .259
+(The general format of the protocol is request/response, like that of FTP;)72
+522.2 R/F3 7/Times-Roman@0 SF(1)362.029 518.2 Q F1 .258
+(the client makes requests, and the)368.288 522.2 R .515
+(server responds to them.)72 536.2 R .516
+(The conversation is in \231netascii\232, with a carriage return-linefeed pair)
+5.515 F F3(2)456.384 532.2 Q F1(separating)462.9 536.2 Q
+(the lines, as in telnet.)72 550.2 Q F3(3)156.44 546.2 Q F1(This allows a user\
+ to use the Nameserver with any telnet client, if they wish.)162.44 550.2 Q
+3.638(Ar)72 566.4 S 1.137(equest begins with a keyword, and may have zero or m\
+ore keywords or values, separated by spaces,)86.188 566.4 R .77
+(tabs, or newlines, and followed by a carriage return-linefeed pair)72 578.4 R
+5.77(.V)-.55 G .77(alues containing spaces, tabs or new-)351.85 578.4 R .813
+(lines should be enclosed in)72 590.4 R F2(double)3.313 E F1 .812
+(quotes \(`"'\).)3.313 F .812
+(Any printable characters may be used in a quoted string)5.812 F .465
+(\(except `"'\).)72 602.4 R .466(In addition, the sequences \231\\n\232, \231\
+\\t\232, \231\\"\232, and \231\\\\\232 may be used to mean newline, tab, doubl\
+e)5.465 F(quote, and backslash, respectively)72 614.4 Q(.)-.65 E .32 LW 76
+639.6 72 639.6 DL 80 639.6 76 639.6 DL 84 639.6 80 639.6 DL 88 639.6 84 639.6
+DL 92 639.6 88 639.6 DL 96 639.6 92 639.6 DL 100 639.6 96 639.6 DL 104 639.6
+100 639.6 DL 108 639.6 104 639.6 DL 112 639.6 108 639.6 DL 116 639.6 112 639.6
+DL 120 639.6 116 639.6 DL 124 639.6 120 639.6 DL 128 639.6 124 639.6 DL 132
+639.6 128 639.6 DL 136 639.6 132 639.6 DL 140 639.6 136 639.6 DL 144 639.6 140
+639.6 DL 148 639.6 144 639.6 DL 152 639.6 148 639.6 DL 156 639.6 152 639.6 DL
+160 639.6 156 639.6 DL 164 639.6 160 639.6 DL 168 639.6 164 639.6 DL 172 639.6
+168 639.6 DL 176 639.6 172 639.6 DL 180 639.6 176 639.6 DL 184 639.6 180 639.6
+DL 188 639.6 184 639.6 DL 192 639.6 188 639.6 DL 196 639.6 192 639.6 DL 200
+639.6 196 639.6 DL 204 639.6 200 639.6 DL 208 639.6 204 639.6 DL 212 639.6 208
+639.6 DL 216 639.6 212 639.6 DL/F4 8/Times-Roman@0 SF
+(Converted to portable n/trof)93.6 651.6 Q 2(ff)-.144 G
+(ormat using the -me macros from funky Next W)190.328 651.6 Q
+(riteNow format \(icch\).)-.32 E/F5 5/Times-Roman@0 SF(1)93.6 662 Q F4
+(See RFC-959,)2 3.2 M/F6 8/Times-Italic@0 SF(File T)2 E(ransfer Pr)-.44 E
+(otocol \(FTP\))-.296 E F4 2(,J)C 2(.P)245.812 665.2 S(ostel and J. Reynolds.)
+254.26 665.2 Q F5(2)93.6 675.6 Q F4(The carriage return is optional.)2 3.2 M F5
+(3)93.6 689.2 Q F4(See RFC-854,)2 3.2 M F6 -.736(Te)2 G(lnet Pr).736 E
+(otocol Speci\214cation)-.296 E F4 2(,J)C 2(.P)244.844 692.4 S(ostel.)253.292
+692.4 Q EP
+%%Page: 2 2
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 224.86(2T)72 60 S
+(he CCSO Nameserver Server\255Client Pr)308.53 60 Q(otocol)-.18 E/F1 10
+/Times-Roman@0 SF .141(Like FTP)72 96 R 2.641(,n)-1.11 G .141
+(umerical values are used to indicate the Nameserver)119.232 96 R 1.241 -.55
+('s r).37 H .14(esponse to requests.).55 F .14(Unlike FTP)5.14 F 2.64(,d)-1.11
+G .14(ata is)483.03 96 R(passed on the same connection as commands.)72 108 Q
+(The format for responses is as follows:)5 E/F2 10/Times-Italic@0 SF -.37(re)97
+124.2 S(sult code:).37 E F0([)A F2(entry index:)A F0(][)A F2(\214eld name:)A F0
+(])A F2(text)A F1 .029(Multiline responses should preface each line of the res\
+ponse with the appropriate result code, negated \(pref-)72 140.4 R .836
+(aced with \231\255\232\), on all lines of the response but the last.)72 152.4
+R .836(If a particular command can apply to more than)5.836 F .087(one entry)72
+164.4 R 2.587(,r)-.65 G .087(esponses involving individual entries will have a\
+n entry index directly following the result code.)117.344 164.4 R .778(This in\
+dex will begin with 1, and be incremented each time a new entry is being refer\
+red to.)72 176.4 R(Commands)5.778 E .408(that can apply to more than one \214e\
+ld will have the name of the \214eld to which the response applies directly)72
+188.4 R .024(following the entry index.)72 200.4 R .023(The text of the respon\
+se will be either an error message intended for human con-)5.024 F .085
+(sumption, or data from the Nameserver)72 212.4 R 5.085(.W)-.55 G .086
+(hitespace \(spaces or tabs\) may appear anywhere in the response.)246.09 212.4
+R .056(Since more than one speci\214c piece of information may be manipulated \
+by a particular command, it is possi-)72 228.6 R .489(ble for parts of a comma\
+nd to succeed, while other parts of the same command fail.)72 240.6 R .489
+(This situation is han-)5.489 F(dled as a single multi-line response, with the\
+ result code changing as appropriate.)72 252.6 Q .385(As for FTP)72 268.8 R
+2.884(,n)-1.11 G .384(umerical responses are in the range 100\255599 \(or from\
+ \255599 to \255100 for multiline responses\),)127.044 268.8 R
+(where the leading digit has the following signi\214cance:)72 280.8 Q
+(1: In progress)112 297 Q(2: Success)112 309 Q(3: More information needed)112
+321 Q(4: T)112 333 Q(emporary failure; it may be worthwile to try again.)-.7 E
+(5: Permanent failure)112 345 Q(Speci\214c numbers have meanings to some comma\
+nds; all commands obey the general scheme.)72 365.4 Q 1.276(Many commands gene\
+rate more than one line of response; every client should be prepared to deal w\
+ith)72 381.6 R 1.15(such continued responses.)72 393.6 R 1.149
+(It is worthwhile to note that a command is \214nished when and only when the)
+6.15 F(result code on a response line \(treated as a signed integer\) is great\
+er than or equal to 200.)72 405.6 Q .81(Keywords must be given in lower case; \
+case in the values of \214elds is preserved, although queries are not)72 421.8
+R(case-sensitive.)72 433.8 Q F0(The Commands)72 457.8 Q/F3 10/Courier-Bold@0 SF
+(query [field=]value. . .)72 474 Q([return field1 [field2]])228 474 Q
+(ph [field=]value. . .)72 486 Q([return field1 [field2]])210 486 Q F1 1.325
+(This is the basic client request.)72 508.4 R 1.324
+(It may be used in any of the Nameserver modes.)6.325 F/F4 7/Times-Roman@0 SF
+(4)413.478 504.4 Q F1 1.324(Entries whose \214elds)420.802 508.4 R .576
+(match the given values will be found, and the requested \214elds printed.)72
+520.4 R .576(If no \214eld name is speci\214ed in the)5.576 F .042
+(query part of the command, the \231name\232 \214eld is assumed.)72 532.4 R
+.042(If no \214elds are speci\214ed with a)5.042 F/F5 10/Courier@0 SF(return)
+2.542 E F1 .042(clause, a)2.542 F .445
+(default set of \214elds will be returned.)72 544.4 R .446
+(Fields from each entry will be prefaced with an entry index, a colon,)5.446 F
+.509(the \214eld name, and another colon.)72 556.4 R .509
+(If the special \214eld name \231all\232 is given in the)5.509 F F5(return)
+3.009 E F1 .509(clause, all \214elds)3.009 F 1.344(from the entry will be prin\
+ted \(subject to normal constraints with regard to Nameserver mode and \214eld)
+72 568.4 R(properties\).)72 580.4 Q .252(Note that to view some sensitive \214\
+elds, it is necessary to use Nameserver login mode.)72 596.6 R .252
+(Note also that \214elds)5.252 F .823(whose descriptions include the property \
+Encrypt cannot be printed by the server)72 608.6 R 5.823(.V)-.55 G .823
+(alues containing new-)414.594 608.6 R
+(lines will be broken into lines and printed one line per response.)72 620.6 Q
+.154(The second number on each response is the entry index; it is incremented \
+each time the response refers to a)72 636.8 R(new entry)72 648.8 Q(.)-.65 E
+.875(Some implementations of)72 665 R F2(qi)3.375 E F1 .876
+(return a 102 response before the actual entries, giving the number of entries)
+3.375 F(found; be prepared to see or not see this response.)72 677 Q .32 LW 76
+686.6 72 686.6 DL 80 686.6 76 686.6 DL 84 686.6 80 686.6 DL 88 686.6 84 686.6
+DL 92 686.6 88 686.6 DL 96 686.6 92 686.6 DL 100 686.6 96 686.6 DL 104 686.6
+100 686.6 DL 108 686.6 104 686.6 DL 112 686.6 108 686.6 DL 116 686.6 112 686.6
+DL 120 686.6 116 686.6 DL 124 686.6 120 686.6 DL 128 686.6 124 686.6 DL 132
+686.6 128 686.6 DL 136 686.6 132 686.6 DL 140 686.6 136 686.6 DL 144 686.6 140
+686.6 DL 148 686.6 144 686.6 DL 152 686.6 148 686.6 DL 156 686.6 152 686.6 DL
+160 686.6 156 686.6 DL 164 686.6 160 686.6 DL 168 686.6 164 686.6 DL 172 686.6
+168 686.6 DL 176 686.6 172 686.6 DL 180 686.6 176 686.6 DL 184 686.6 180 686.6
+DL 188 686.6 184 686.6 DL 192 686.6 188 686.6 DL 196 686.6 192 686.6 DL 200
+686.6 196 686.6 DL 204 686.6 200 686.6 DL 208 686.6 204 686.6 DL 212 686.6 208
+686.6 DL 216 686.6 212 686.6 DL/F6 5/Times-Roman@0 SF(4)93.6 697 Q/F7 8
+/Times-Roman@0 SF(See)2 3.2 M/F8 8/Times-Italic@0 SF
+(The CCSO Nameserver \255 A Description)2 E F7 2(,S)C 2(.D)249.268 700.2 S
+(orner and P)259.044 700.2 Q 2(.P)-.888 G
+(omes, for a description of Nameserver modes.)303.484 700.2 Q EP
+%%Page: 3 3
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver Server\255Client Pr)72 60 Q 222.36
+(otocol 3)-.18 F/F1 10/Times-Roman@0 SF
+(\231Query\232 and \231ph\232 are synonyms.)72 96 Q F0(Examples)72 120 Q/F2 10
+/Courier-Bold@0 SF(query name=dorner phone=244)112 136.2 Q/F3 10/Symbol SF(-)A
+F2(1765)A F3(-)112 148.2 Q/F4 10/Courier@0 SF 48(200:1: alias:)B(s)6 E F3(-)A
+F4(dorner)A F3(-)112 160.2 Q F4 54(200:1: name:)B(dorner steven c.)6 E F3(-)112
+172.2 Q F4 48(200:1: email:)B(dorner@garcon.cso.uiuc.edu)6 E F3(-)112 184.2 Q
+F4 48(200:1: phone:)B(\(w\) 244)6 E F3(-)A F4(1765)A F3(-)112 196.2 Q F4 36
+(200:1: address:)B(181 DCL, MC 256)6 E F3(-)112 208.2 Q F4 78(200:1: :)B
+(1201 W. Washington, C, 61821)6 E F3(-)112 220.2 Q F4 18(200:1: department:)B
+(computing services office)6 E F3(-)112 232.2 Q F4 48(200:1: title:)B
+(res programmer)6 E F3(-)112 244.2 Q F4 30(200:1: nickname:)B(Steve)6 E F3(-)
+112 256.2 Q F4 48(200:1: hours:)B(8)6 E F3(-)A F4 6(4w)C(eekdays)278.98 256.2 Q
+(200:Ok.)112 268.2 Q F2(query alias=s)112 280.2 Q F3(-)A F2(dorner)A F3(-)112
+292.2 Q F4 48(200:1: alias:)B(s)6 E F3(-)A F4(dorner)A F3(-)112 304.2 Q F4 54
+(200:1: name:)B(dorner steven c.)6 E F3(-)112 316.2 Q F4 48(200:1: email:)B
+(dorner@garcon.cso.uiuc.edu)6 E F3(-)112 328.2 Q F4 48(200:1: phone:)B
+(\(w\) 244)6 E F3(-)A F4(1765)A F3(-)112 340.2 Q F4 36(200:1: address:)B
+(181 DCL, MC 256)6 E F3(-)112 352.2 Q F4 78(200:1: :)B
+(1201 W. Washington, C, 61821)6 E F3(-)112 364.2 Q F4 18(200:1: department:)B
+(computing services office)6 E F3(-)112 376.2 Q F4 48(200:1: title:)B
+(res programmer)6 E F3(-)112 388.2 Q F4 30(200:1: nickname:)B(Steve)6 E F3(-)
+112 400.2 Q F4 48(200:1: hours:)B(8)6 E F3(-)A F4 6(4w)C(eekdays)278.98 400.2 Q
+(200:Ok.)112 412.2 Q F2(query dorner return alias hours)112 424.2 Q F3(-)112
+436.2 Q F4 48(200:1: alias:)B(m)6 E F3(-)A F4(dorner)A F3(-)112 448.2 Q F4 48
+(508:1: hours:)B(Not present in entry.)6 E F3(-)112 460.2 Q F4 48
+(200:2: alias:)B(j)6 E F3(-)A F4(dorner)A F3(-)112 472.2 Q F4 48(508:2: hours:)
+B(Not present in entry.)6 E F3(-)112 484.2 Q F4 48(200:3: alias:)B(s)6 E F3(-)A
+F4(dorner)A F3(-)112 496.2 Q F4 48(200:3: hours:)B(8)6 E F3(-)A F4 6(4w)C
+(eekdays)278.98 496.2 Q F3(-)112 508.2 Q F4 48(200:4: alias:)B(j)6 E F3(-)A F4
+(dorner1)A F3(-)112 520.2 Q F4 48(508:4: hours:)B(Not present in entry.)6 E
+(200:Ok.)112 532.2 Q F2(query alias=s)112 544.2 Q F3(-)A F2(dorner return id)A
+F3(-)112 556.2 Q F4 66(503:1: id:)B(You may not view this field.)6 E(200:Ok.)
+112 568.2 Q F2(query name=dorner address=moon)112 580.2 Q F4
+(501:No matches to your query.)112 592.2 Q F2(change [field=]value. . .)72
+624.6 Q(make field=value)234 624.6 Q F4(Change)72 645 Q F1 .935
+(looks much like)3.435 F F4(query)3.435 E F1 5.935(.T)C .934
+(he entries to be changed are speci\214ed as in)225.175 645 R F4(query)3.434 E
+F1 5.934(.T)C .934(hey keyword)451.136 645 R F4(make)72 657 Q F1 1.444
+(separates the search criteria from the \214elds to be changed.)3.943 F 1.444
+(The change command works in hero)6.444 F .552(mode, or in login mode if appli\
+ed to \214elds whose description contain the Change property)72 671 R/F5 7
+/Times-Roman@0 SF(5)439.412 667 Q F1 .552(in the entry of)445.964 671 R .32 LW
+76 680.6 72 680.6 DL 80 680.6 76 680.6 DL 84 680.6 80 680.6 DL 88 680.6 84
+680.6 DL 92 680.6 88 680.6 DL 96 680.6 92 680.6 DL 100 680.6 96 680.6 DL 104
+680.6 100 680.6 DL 108 680.6 104 680.6 DL 112 680.6 108 680.6 DL 116 680.6 112
+680.6 DL 120 680.6 116 680.6 DL 124 680.6 120 680.6 DL 128 680.6 124 680.6 DL
+132 680.6 128 680.6 DL 136 680.6 132 680.6 DL 140 680.6 136 680.6 DL 144 680.6
+140 680.6 DL 148 680.6 144 680.6 DL 152 680.6 148 680.6 DL 156 680.6 152 680.6
+DL 160 680.6 156 680.6 DL 164 680.6 160 680.6 DL 168 680.6 164 680.6 DL 172
+680.6 168 680.6 DL 176 680.6 172 680.6 DL 180 680.6 176 680.6 DL 184 680.6 180
+680.6 DL 188 680.6 184 680.6 DL 192 680.6 188 680.6 DL 196 680.6 192 680.6 DL
+200 680.6 196 680.6 DL 204 680.6 200 680.6 DL 208 680.6 204 680.6 DL 212 680.6
+208 680.6 DL 216 680.6 212 680.6 DL/F6 5/Times-Roman@0 SF(5)93.6 691 Q/F7 8
+/Times-Roman@0 SF(See)2.239 3.2 M/F8 8/Times-Italic@0 SF .239
+(The CCSO Nameserver \255 A Description)2.239 F F7 2.239(,S)C 2.239(.D)251.18
+694.2 S .239(orner and P)261.195 694.2 R 2.239(.P)-.888 G .239
+(omes, for a description of Nameserver \214eld description prop-)306.352 694.2
+R(erties.)72 703.8 Q EP
+%%Page: 4 4
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 224.86(4T)72 60 S
+(he CCSO Nameserver Server\255Client Pr)308.53 60 Q(otocol)-.18 E/F1 10
+/Times-Roman@0 SF .323(the logged-in user)72 96 R 5.323(.I)-.55 G 2.823(fi)
+155.459 96 S 2.823(ti)164.392 96 S 2.823(sd)172.775 96 S .322(esired remove a \
+\214eld, Adjacent double quotes \(""\) should be given as the \231new)184.488
+96 R 1.338(value\232 of the \214eld.)72 108 R 1.339(Fields whose descriptions \
+include the property Encrypted must be encrypted before)6.338 F .554
+(transmission to the Nameserver)72 120 R 3.053(,u)-.4 G .553(nless the)210.184
+120 R/F2 10/Times-Italic@0 SF(qi)3.053 E F1 .553
+(program is being run directly from a terminal.)3.053 F .553(This encryp-)5.553
+F(tion should be done with the password of the logged in user)72 132 Q(.)-.55 E
+F0(Examples)72 156 Q/F3 10/Courier-Bold@0 SF(change alias=s)112 172.2 Q/F4 10
+/Symbol SF(-)A F3(dorner make hours="when the sun shines")A/F5 10/Courier@0 SF
+(506:You must be logged in to use this command.)112 184.2 Q F3
+(change steven dorner make hours="")112 196.2 Q F5(200:1 entry changed.)112
+208.2 Q F3(change steven dorner make name="Dr. Strangelove")112 220.2 Q F4(-)
+112 232.2 Q F5(505:name:you may not change this field.)A
+(500:1 entry found, none changed.)112 244.2 Q F3
+(change ikenberry make email=zzz@xxx)112 256.2 Q F5
+(518:Too many entries \(3\) selected; limit is 2.)112 268.2 Q F3
+(change stanley ikenberry make email=zzz@xxx)112 280.2 Q F4(-)112 292.2 Q F5
+(510:s)A F4(-)A F5(ikenberry:You may not change this entry.)A
+(500:1 entry found, none changed.)112 304.2 Q F3(login)72 336.6 Q F5(alias)2.5
+E F3(answer)72 348.6 Q F5(code)2.5 E F3(clear)72 360.6 Q F5(password)2.5 E F1
+.939(This is used to enter login or hero mode.)72 381 R .939
+(The Nameserver will respond with a random challenge, which)5.939 F 1.283
+(may be returned in encrypted form via the)72 393 R F5(answer)3.783 E F1 3.782
+(command. The)3.782 F 1.282(encryption key will be a password)3.782 F 1.263
+(known to both the Nameserver and the user)72 405 R 6.263(.A)-.55 G(lternately)
+270.404 405 Q 3.763(,t)-.65 G 1.263(he client may respond with the)316.567 405
+R F5(clear)3.764 E F1(com-)3.764 E .732
+(mand, and give the proper password in clear text.)72 417 R .731
+(This is not the recommended method, and is only pro-)5.732 F
+(vided for the lazy protocol implementor)72 429 Q(.)-.55 E F0(Examples)72 453 Q
+F3(login s_dorner)112 469.2 Q F5(301:dkeiigjasdvvnmnmeigh)112 481.2 Q F3
+(answer ewituegndvbngkgdfkgl)112 493.2 Q F5(200:s)112 505.2 Q F4(-)A F5
+(dorner:Hi how are you?)A F3(login s)112 517.2 Q F4(-)A F3(dorner)A F5
+(301:?;_?DB,F9X;8O=H8Y<H[H=FY?1*;>?#\(^='<!HH)112 529.2 Q F3
+(answer ellwekkewdfasoiioiogdfkldfg)112 541.2 Q F5(500:Login failed.)112 553.2
+Q F3(login s)112 565.2 Q F4(-)A F3(dorner)A F5
+(301:aksjdsflkajajeruopqwda,mcdfkklqopakdjl)112 577.2 Q F3(clear mysecret)112
+589.2 Q F5(200:s)112 601.2 Q F4(-)A F5(dorner:Hi how are you?)A F3(logout)72
+633.6 Q F1(Exits login or hero mode, entering anonymous mode.)72 654 Q
+(The connection is not closed, however)5 E(.)-.55 E F0(Example)72 678 Q F3
+(logout)112 694.2 Q F5(200:Ok)112 706.2 Q EP
+%%Page: 5 5
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver Server\255Client Pr)72 60 Q 222.36
+(otocol 5)-.18 F/F1 10/Courier-Bold@0 SF(fields [field...])72 96 Q/F2 10
+/Times-Roman@0 SF -.4(Wi)72 116.4 S .86(th no ar).4 F .86
+(guments, lists all \214eld descriptions.)-.18 F -.4(Wi)5.861 G .861
+(th \214eld names as ar).4 F .861(guments, descriptions of the named)-.18 F
+(\214elds are given.)72 128.4 Q
+(The second number of each response is the \214eld id number)5 E(.)-.55 E F0
+(Example)72 152.4 Q F1(fields)112 168.6 Q/F3 10/Symbol SF(-)112 180.6 Q/F4 10
+/Courier@0 SF(200:6:alias:max 32 Indexed Lookup Public Default Change Turn)A F3
+(-)112 192.6 Q F4(200:6:alias:Unique name for user, chosen by user.)A F3(-)112
+204.6 Q F4(200:3:name:max 64 Indexed Lookup Public Default)A F3(-)112 216.6 Q
+F4(200:3:name:Full name.)A(...)112 228.6 Q F3(-)112 240.6 Q F4
+(200:24:def_account:Default account for printing)A(200:Ok.)112 252.6 Q F1
+(add field=value...)72 285 Q F2 .167
+(Creates a nameserver entry with the given \214elds.)72 305.4 R .167
+(Note that this command adds an)5.167 F F0(entry)2.667 E F2 2.667(,n)C .166
+(ot a \214eld; to add)438.335 305.4 R 2.5<618c>72 317.4 S
+(eld to an existing entry)84.5 317.4 Q 2.5(,t)-.65 G(he)183.29 317.4 Q F4
+(change)2.5 E F2(command should be used.)2.5 E(Hero mode is required.)5 E F0
+(Examples)72 341.4 Q F1(add name="churchill winston" address="england")112
+357.6 Q F4(511:You may not add Nameserver entries.)112 369.6 Q F1
+(add name="churchill winston" address="england")112 381.6 Q F4(200:Ok.)112
+393.6 Q F1(delete [field=]value...)72 426 Q F2 .285
+(Deletes one or more nameserver entries.)72 446.4 R .286
+(Note that this command deletes an)5.285 F F0(entry)2.786 E F2 2.786(,n)C .286
+(ot a \214eld; to remove a)415.08 446.4 R(\214eld from an existing entry)72
+458.4 Q 2.5(,t)-.65 G(he)188.01 458.4 Q F4(change)2.5 E F2
+(command should be used.)2.5 E(Hero mode is required.)5 E F0(Example)72 482.4 Q
+F1(delete winston churchill)112 498.6 Q F4(200:1 entries deleted.)112 510.6 Q
+F1(siteinfo)72 543 Q F2 2.073(Returns information about the server)72 563.4 R
+3.173 -.55('s s).37 H 4.573(ite. Some).55 F 2.073
+(servers will provide more information than others;)4.573 F(clients should be \
+ready for speci\214c items to be missing, or for the whole command not to be i\
+mplemented.)72 575.4 Q(De\214ned data items are:)72 591.6 Q
+(Maildomain \255 domain to use for phquery-type mail.)112 607.8 Q
+(Mail\214eld \255 \214eld to use for phquery-type mail.)112 619.8 Q
+(Administrator \255 guru in char)112 631.8 Q(ge of service.)-.18 E
+(Passwords \255 person in char)112 643.8 Q
+(ge of ordinary password/change requests.)-.18 E F0(Example)72 672 Q EP
+%%Page: 6 6
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 224.86(6T)72 60 S
+(he CCSO Nameserver Server\255Client Pr)308.53 60 Q(otocol)-.18 E/F1 10
+/Courier-Bold@0 SF(siteinfo)112 96 Q/F2 10/Symbol SF(-)112 108 Q/F3 10
+/Courier@0 SF(200:1:maildomain:uiuc.edu)A F2(-)112 120 Q F3
+(200:2:mailfield:alias)A F2(-)112 132 Q F3(200:3:administrator:s)A F2(-)A F3
+(dorner@uiuc.edu)A F2(-)112 144 Q F3(200:4:passwords:nameserv@uiuc.edu)A
+(200:Ok.)112 156 Q F1(set option[=value]...)72 188.4 Q/F4 10/Times-Roman@0 SF
+(Sets an option for this nameserver session.)72 208.8 Q F0(Examples)72 232.8 Q
+F1(set verbose=off)112 249 Q F3(200:Done.)112 261 Q F1(set language=french)112
+273 Q F2(-)112 285 Q F3(513:language:unknown option)A
+(513:No option recognized.)112 297 Q F1(id)72 329.4 Q F3(information)2.5 E F4
+1.229(Enters the given information in the Nameserver logs.)72 349.8 R 1.23
+(This command is used by the CCSO Nameserver)6.229 F
+(client to enter the user id of the person running it.)72 361.8 Q F0(Example)72
+385.8 Q F1(id 103)112 402 Q F3(200:Thanks.)112 414 Q F1(status)72 446.4 Q F4
+(Prints the current status of the Nameserver)72 466.8 Q(.)-.55 E F0(Examples)72
+490.8 Q F1(status)112 507 Q F3(200:Database ready.)112 519 Q F1(status)112 531
+Q F3(201:Database ready, read-only.)112 543 Q F1
+(help [{native|client} [topic...]])72 575.4 Q F4 .423
+(Prints help \214les for the Nameserver)72 595.8 R 5.423(.I)-.55 G(f)226.738
+595.8 Q/F5 10/Times-Italic@0 SF(client)2.922 E F4 .422
+(is speci\214ed, it should be a valid Nameserver client identi\214er)2.922 F(,)
+-.4 E 1.519(such as \231ph\232.)72 607.8 R 1.519
+(The client-speci\214c help will \214rst be searched for)6.519 F F5(topic)4.02
+E F4 4.02(,a)C 1.52(nd then the native help will be)373.78 607.8 R 2.849
+(searched. If)72 619.8 R F5(topic)2.849 E F4 .349
+(is omitted, a list of all available help texts will be returned.)2.849 F .348
+(If "native" or)5.348 F F5(client)2.848 E F4 .348(are also)2.848 F
+(omitted, a list of clients will be returned.)72 631.8 Q .949(The second numbe\
+r of each response is the help text index; this number is incremented each tim\
+e a new)72 648 R(topic text is being printed.)72 660 Q F0(Examples)72 684 Q F1
+(help)112 700.2 Q F2(-)112 712.2 Q F3(200:1:The following clients have help:)A
+F2(-)112 724.2 Q F3 12(200:1:native ph)B EP
+%%Page: 7 7
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver Server\255Client Pr)72 60 Q 222.36
+(otocol 7)-.18 F/F1 10/Courier@0 SF(200:Ok.)112 96 Q/F2 10/Courier-Bold@0 SF
+(help native)112 108 Q/F3 10/Symbol SF(-)112 120 Q F1
+(200:1:These "native" help topics are available:)A F3(-)112 132 Q F1 78
+(200:1:100 401)B(505)351.49 132 Q(...)112 144 Q(200:Ok.)112 156 Q F2(help ph)
+112 168 Q F3(-)112 180 Q F1(200:1:These "ph" help topics are available:)A F3(-)
+112 192 Q F1 66(200:1:edit login)B 42(password uiuc.general)345.49 192 R(...)
+112 204 Q F3(-)112 216 Q F1
+(200:2:These "native" help topics are also available:)A F3(-)112 228 Q F1 42
+(200:2:site policy)B(...)112 240 Q(200:Ok.)112 252 Q F2(help ph add)112 264 Q
+F3(-)112 276 Q F1(200:1:add:)A F3(-)112 288 Q F1 6(200:1: SYNTAX:)B
+(add name-of-field=value-of-field...)6 E(...)112 300 Q(200:Ok.)112 312 Q F2
+(quit)72 344.4 Q(stop)72 356.4 Q(exit)72 368.4 Q/F4 10/Times-Roman@0 SF 1.537
+(Ends a nameserver session.)72 388.8 R/F5 10/Times-Italic@0 SF(Qi)6.537 E F4
+1.536(will break the connection.)4.037 F 1.536
+(These commands are synonymous with one)6.536 F(another)72 400.8 Q(.)-.55 E F0
+(Example)72 424.8 Q F2(quit)112 441 Q F1(200:Bye!)112 453 Q EP
+%%Page: 8 8
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 12/Times-Bold@0 SF 3(APPENDIX A)249.672 98.4 R(Command Summary)234.168
+141.6 Q/F1 11/Courier-Bold@0 SF(query [field=]value...)142.8 198 Q
+([return field...])301.2 198 Q(ph [field=]value...)142.8 211.2 Q
+([return field...])281.4 211.2 Q(change [field=]value...)142.8 224.4 Q
+(make field=value...)307.8 224.4 Q(login alias)142.8 237.6 Q(answer code)142.8
+250.8 Q(clear password)142.8 264 Q(logout)142.8 277.2 Q(fields [field...])142.8
+290.4 Q(add field=value...)142.8 303.6 Q(delete [field=]value...)142.8 316.8 Q
+(set option[=value]...)142.8 330 Q(id information)142.8 343.2 Q(status)142.8
+356.4 Q(siteinfo)142.8 369.6 Q(help [{native|client} [topic...]])142.8 382.8 Q
+(quit)142.8 396 Q(exit)142.8 409.2 Q(stop)142.8 422.4 Q/F2 10/Times-Bold@0 SF
+224.86(8T)72 756 S(he CCSO Nameserver Server\255Client Pr)308.53 756 Q(otocol)
+-.18 E EP
+%%Page: 9 9
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 12/Times-Bold@0 SF 3(APPENDIX B)250.002 98.4 R(Result Codes)254.502 141.6 Q
+/F1 10/Times-Roman@0 SF 18.5(100 In)160.43 196.8 R(progress \(general\).)2.5 E
+18.5(101 Echo)160.43 208.8 R(of current command.)2.5 E 18.5(102 Count)160.43
+220.8 R(of number of matches to query)2.5 E(.)-.65 E 18.5(200 Success)160.43
+232.8 R(\(general\).)2.5 E 18.5(201 Database)160.43 244.8 R(ready)2.5 E 2.5(,b)
+-.65 G(ut read only)267.14 244.8 Q(.)-.65 E 18.5(300 More)160.43 256.8 R
+(information \(general\).)2.5 E 18.5(301 Encrypt)160.43 268.8 R(this string.)
+2.5 E 18.5(400 T)160.43 280.8 R(emporary error \(general\).)-.7 E 18.5
+(401 Internal)160.43 292.8 R(database error)2.5 E(.)-.55 E 18.5(402 Lock)160.43
+304.8 R(not obtained within timeout period.)2.5 E 18.5(475 Database)160.43
+316.8 R(unavailable; try later)2.5 E(.)-.55 E 18.5(500 Permanent)160.43 328.8 R
+(error \(general\).)2.5 E 18.5(501 No)160.43 340.8 R(matches to query)2.5 E(.)
+-.65 E 18.5(502 T)160.43 352.8 R(oo many matches to query)-.7 E(.)-.65 E 18.5
+(503 Not)160.43 364.8 R(authorized for requested information.)2.5 E 18.5
+(504 Not)160.43 376.8 R(authorized for requested search criteria.)2.5 E 18.5
+(505 Not)160.43 388.8 R(authorized to change requested \214eld.)2.5 E 18.5
+(506 Request)160.43 400.8 R(refused; must be logged in to execute.)2.5 E 18.5
+(507 Field)160.43 412.8 R(does not exist.)2.5 E 18.5(508 Field)160.43 424.8 R
+(is not present in requested entry)2.5 E(.)-.65 E 18.5(509 Alias)160.43 436.8 R
+(already in use.)2.5 E 18.5(510 Not)160.43 448.8 R
+(authorized to change this entry)2.5 E(.)-.65 E(51)160.43 460.8 Q 21.37(1N)-.37
+G(ot authorized to add entries.)203.65 460.8 Q 18.5(512 Illegal)160.43 472.8 R
+(value.)2.5 E 18.5(513 Unknown)160.43 484.8 R(option.)2.5 E 18.5(514 Unknown)
+160.43 496.8 R(command.)2.5 E 18.5(515 No)160.43 508.8 R
+(indexed \214eld in query)2.5 E(.)-.65 E 18.5(516 No)160.43 520.8 R
+(authorization for request.)2.5 E 18.5(517 Operation)160.43 532.8 R
+(failed because database is read only)2.5 E(.)-.65 E 18.5(518 T)160.43 544.8 R
+(oo many entries selected by change command.)-.7 E 18.5(520 CPU)160.43 556.8 R
+(usage limit exceeded.)2.5 E 18.5(521 Change)160.43 568.8 R
+(command would have overriden existing \214eld,)2.5 E
+(and the "addonly" option is on.)196.43 580.8 Q 18.5(522 Attempt)160.43 592.8 R
+(to view "Encrypted" \214eld.)2.5 E 18.5(523 Expecting)160.43 604.8 R
+("answer" or "clear")2.5 E 18.5(524 Names)160.43 616.8 R
+(of help topics may not contain "/".)2.5 E 18.5(598 Command)160.43 628.8 R
+(unknown.)2.5 E 18.5(599 Syntax)160.43 640.8 R(error)2.5 E(.)-.55 E/F2 10
+/Times-Bold@0 SF(The CCSO Nameserver Server\255Client Pr)72 756 Q 222.36
+(otocol 9)-.18 F EP
+%%Trailer
+end
+%%EOF

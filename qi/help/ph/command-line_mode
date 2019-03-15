@@ -1,0 +1,58 @@
+The ph user interface has two modes: "command-line mode" and
+"interactive mode".  As its name implies, "command-line mode" permits
+the user to process ph queries from the operating system prompt or
+so-called "command-line".  Command-line mode can only be used to view
+public information in the Nameserver database.  In order to change a
+Nameserver entry or view privileged information about one's own entry,
+interactive mode is required.
+
+The syntax for a command-line mode query is:
+
+   ph [-s server] [-p port] [-t type] [-f field1,field2,...]
+   [-mMrRbBTlLF] query
+
+Note that many options and switches are available in command-line mode.
+All such options are explained in full in the help file called "manpage"
+(the Unix online manual page for ph).
+
+EXAMPLES
+To do a simple Nameserver lookup in command-line mode, get to the
+operating system prompt and type the command "ph" followed by a query
+expression.  The entries matching your query will be printed to the
+screen.  If the matching entries exceed one screen's worth of
+information, they will be filtered through the default pager (usually
+"more") and displayed one screen at a time.  To advance to the next
+screen, press the space bar.  Once all of the matching entries are
+displayed, you will be returned to the system prompt.  The following
+example shows a simple lookup on the name "paul pomes" using ph's default
+settings:
+
+   ux1 3> ph paul pomes
+   ----------------------------------------
+              name: pomes paul
+             phone: (217) 333-6262
+           address: 1429 dcl, MC 256
+                  : 1304 w springfield
+                  : urbana, il 61801
+        department: computing services office
+             title: sr res programmer
+          email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+   ----------------------------------------
+   ux1 4>
+
+Of course, command-line mode queries can take advantage of the various
+options and switches mentioned above.  In the example below, the "-s
+server" option is used to query the Nameserver at Northwestern
+University, the "-f field1, field2..." option is used to specify which
+fields to display, and the "-r" option is used to tell ph not to
+reformat (combine) the "email" and "alias" fields into a single field
+with an alias-based address:
+
+   ux1 37> ph -s ns.nwu.edu -f name,alias,email -r john norstad
+    ----------------------------------------
+      name: norstad, john l
+     alias: j-norstad
+     email: jln@casbah.acns.nwu.edu
+   ----------------------------------------
+
+SEE ALSO: ph, query, manpage, interactive_mode

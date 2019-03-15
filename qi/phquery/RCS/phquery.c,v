@@ -1,0 +1,6360 @@
+head	1.54;
+access;
+symbols
+	RELEASE:1.25;
+locks; strict;
+comment	@ * @;
+
+
+1.54
+date	95.01.17.23.33.07;	author p-pomes;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	94.10.31.17.36.10;	author p-pomes;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	94.05.16.22.10.52;	author paul;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	94.04.01.17.00.26;	author paul;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	94.03.29.19.34.28;	author paul;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	94.03.25.19.07.03;	author paul;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	93.08.08.14.22.29;	author paul;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	93.06.24.04.49.46;	author paul;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	93.04.21.20.02.59;	author paul;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	93.03.01.19.31.54;	author paul;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	92.12.14.20.17.04;	author paul;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	92.11.24.21.18.54;	author paul;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	92.10.12.19.24.10;	author paul;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	92.10.07.15.16.17;	author paul;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	92.08.26.21.51.28;	author paul;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	92.08.19.21.30.30;	author paul;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	92.08.04.18.26.08;	author paul;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	92.05.22.18.37.54;	author paul;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	92.05.05.18.29.06;	author paul;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	92.03.09.00.16.47;	author paul;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	92.02.23.14.36.15;	author paul;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	92.02.20.22.38.13;	author paul;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	92.02.17.23.16.19;	author paul;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	91.11.13.16.35.30;	author paul;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	91.11.06.17.26.19;	author paul;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	91.10.22.16.13.03;	author paul;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	91.09.01.16.09.44;	author paul;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	91.08.19.03.22.20;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	91.08.17.17.45.18;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	91.05.10.02.21.27;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	91.05.08.17.05.59;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	91.04.03.22.24.44;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	91.03.18.15.38.00;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	91.03.16.17.28.21;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	91.01.26.21.10.29;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	90.12.11.12.25.50;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	90.12.10.21.58.27;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	90.12.10.14.09.03;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	90.06.11.10.52.40;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	90.01.30.23.51.30;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	89.07.28.10.05.12;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	89.07.27.23.19.22;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	89.05.24.00.11.48;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	89.05.16.16.59.36;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.05.11.17.20.48;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.05.10.11.50.49;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.05.10.00.57.49;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.05.09.22.53.57;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	89.05.08.23.21.20;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	89.05.08.20.40.14;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	89.05.05.11.26.06;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	89.05.05.00.11.03;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	89.05.01.15.26.34;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	89.02.13.16.07.39;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@Fuzzy address resolver.  Links sendmail with ph/qi.
+@
+
+
+1.54
+log
+@*** empty log message ***
+@
+text
+@/*
+ * Written by Paul Pomes, University of Illinois, Computing Services Office
+ * Copyright (c) 1991 by Paul Pomes and the University of Illinois Board
+ * of Trustees.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	Illinois, Urbana and its contributors.
+ * 4. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * Email:	Paul-Pomes@@uiuc.edu	USMail:	Paul Pomes
+ * ICBM:	40 06 47 N / 88 13 35 W		University of Illinois - CSO
+ *						1304 West Springfield Avenue
+ *						Urbana, Illinois,  61801-2910
+ */
+
+#ifndef lint
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.53 1994/10/31 17:36:10 p-pomes Exp p-pomes $";
+#endif /* lint */
+
+#include "protos.h"
+#ifdef __STDC__
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+#else /* !__STDC__ */
+# include <strings.h>
+#endif /* __STDC__ */
+
+#include <sysexits.h>
+#include <sys/stat.h>
+#include <assert.h>
+#include <qiapi.h>
+#include <qicode.h>
+#include "phquery.h"
+#include "messages.h"
+
+#define		VERSION		"4.4"
+
+/* How to print/log error messages */
+#define		DANGER_WILL_ROBINSON(KateBush) \
+	{ if (Debug) \
+		perror (KateBush); \
+	if (Log) { \
+		char *xyzzy = malloc(strlen(KateBush)+4); \
+		(void) strcpy(xyzzy, KateBush); (void) strcat(xyzzy, ": %m"); \
+		syslog (LOG_ERR, xyzzy); free(xyzzy); } \
+	finis (); }
+
+/*
+**  PHQUERY -- Resolve fuzzy addresses to specific a user@@FQDN
+**
+**	FQDN := Fully Qualified Domain Name
+**	Phquery is invoked as a mailer (not a final mailer!) by sendmail
+**	to resolve addresses of the form user@@some.domain where some.domain
+**	is one of the m4 ALTERNATENAMES define used in building an IDA
+**	sendmail.cf file.  At UIUC this would be user@@uiuc.edu .
+**
+**	The user token is interpreted first as a QI alias, then as a full
+**	name if that fails.  QI is the CSnet Query Interpreter.  At UIUC it
+**	contains the entire campus phone directory plus the unit directory.
+**	A user entry has about as many fields as ls has option letters.
+**	The most important are alias, name, **	email, phone, department,
+**	and curriculum.  In the simplest case, matching an alias (guaranteed
+**	unique) returns the email address.
+**
+**	Since life is seldom simple, the alternate cases/actions are summarized
+**
+**	a) alias match, email found
+**		write a X-PH-To: header with the email address found, copy the
+**		rest of the message, and re-invoke sendmail
+**	     OR
+**		write a X-PH: VX.Y@@<host> and re-invoke sendmail.  This is
+**		useful for sites that don't wish to expand alias lists in the
+**		header block.
+**	b) alias match, no email field:
+**		return public fields of ph entry and suggest phone usage
+**	c) alias match, bogus email field:
+**		sendmail catches this one.  The user will see the X-PH-To:
+**		header.  Not the best so far.....
+**	d) alias fail:
+**		try name field
+**	e) single name match, email present:
+**		deliver as in a)
+**	f) single name match, no email field:
+**		handle as in b)
+**	g) single name match, bogus email field:
+**		handle as in c)
+**	h) multiple (<5) name matches:
+**		return alias, name, email, and dept fields of matches
+**	i) multiple (>5) name matches:
+**		return "too ambiguous" message
+**
+**	Phquery is also used to create return addresses of the form
+**	ph-alias@@ALTERNATENAMES.  This is implemented by adding the fields
+**
+**	Resent-From: postmaster@@<host>
+**	Reply-To: ph-alias@@ALTERNATENAMES
+**	Comment: Reply-To: added by phquery (Vx.y)
+**
+**	N.B., RFC-822, Section 4.4.1 requires that the From / Resent-From
+**	fields be a single, authenticated machine address.
+*/
+
+FILE	*ToQi =		FILE_NULL;	/* write to the QI */
+FILE	*FromQi =	FILE_NULL;	/* read from the QI */
+
+extern int	errno;
+
+/* Set to carbon-copy postmaster on error returns */
+int	PostmasterCC =	0;
+
+#ifdef REPLYTO
+/* Set if the reply-to: field on outgoing mail is to inserted */
+int	ReplyTo = 0;
+#endif /* REPLYTO */
+
+/* Hostname of this machine */
+char	HostNameBuf[100];
+
+/* How program was invoked (argv[0]) for error messages */
+char	*MyName;
+
+/* Exit status for finis() reporting to calling process */
+int	ExitStat =	EX_TEMPFAIL;
+
+/* Field values of email and alias from ph/qi server */
+int	EmailVal, AliasVal;
+
+/* Temporary message file */
+char	TmpFile[] =	"/tmp/PhMailXXXXXXX";
+
+/* Temporary file for creating error messages */
+char	ErrorFile[] =	"/tmp/PhErrMailXXXXXXX";
+
+/* Temporary file for rewriting messages */
+char	NewFile[] =	"/tmp/PhNewMailXXXXXXX";
+
+/*
+ * How to report events: Debug set for stderr messages, Log for syslog.
+ * Setting Debug disables fork/execve in ReMail.
+ */
+int	Debug =		0;
+int	Log =		1;
+
+/* From address supplied by caller */
+char	*From =		CPNULL;
+
+/* Name of qi server */
+char	*QiHost = NULL;		/* Initial Qi server */
+
+char	*usage[] = {
+	"usage: %s [-d] [-p] [-l] [-R] [-i] [-s server] [-x service] [-f FromAddress] address1 [address2]",
+	CPNULL
+};
+
+void ErrorReturn __P((NADD *, FILE *, char *[]));
+void FindFrom __P((FILE *));
+void ReMail __P((NADD *, FILE *, char *[]));
+char * CodeString __P((int));
+FILE * OpenTemp __P((const char *));
+QIR * PickField  __P((QIR *, int));
+void Query __P((NADD *));
+int SendQuery __P((NADD *, const char *, const char *));
+void RevQuery __P((NADD *));
+char * Malloc __P((unsigned int));
+void PrintMsg __P((FILE *, char *[]));
+char * Realloc __P((char *, unsigned int));
+void PrtUsage();
+void finis();
+
+main(argc, argv, envp)
+int	argc;
+char	*argv[], *envp[];
+{
+	extern	int	optind;		/* from getopt () */
+	extern	char	*optarg;	/* from getopt () */
+		int	option;		/* option "letter" */
+		int	i;		/* good ol' i */
+		char	*Service = CPNULL; /* ph alias from -x */
+		FILE	*Msg;		/* stream pointer for temp file */
+		NADD	*New, *NewP;	/* translated addresses */
+		char	Buf[MAXSTR];
+	extern	char	HostNameBuf[];
+
+#ifdef SA_FULLDUMP
+	/* AIX does not provide the data section in a core dump by default. */
+	struct sigaction handlr;
+
+	handlr.sa_handler = NULL;
+	handlr.sa_flags = SA_FULLDUMP;
+	sigaction(SIGSEGV, &handlr, NULL);
+	sigaction(SIGIOT, &handlr, NULL);
+#endif /* SA_FULLDUMP */
+
+	(void) chdir ("/usr/tmp");
+
+	MyName = ((MyName = strrchr (*argv, '/')) == CPNULL)
+		? *argv : (MyName + 1);
+
+	while ((option = getopt (argc, argv, "f:r:s:x:pRdli")) != EOF) {
+		switch (option) {
+		    case 'f':
+			From = optarg;
+			break;
+
+		    case 's':
+			QiHost = optarg;
+			break;
+
+		    case 'x':
+			Service = optarg;
+			break;
+
+		    case 'R':
+#ifdef REPLYTO
+			/* Re-write outgoing address with Reply-To: field */
+			ReplyTo++;
+#endif /* REPLYTO */
+			break;
+
+		    case 'r':
+			From = optarg;
+			break;
+
+		    case 'p':
+			PostmasterCC++;
+			break;
+
+		    case 'l':
+			Log++;
+			break;
+
+		    case 'd':
+			Debug++;
+			QiDebug = Debug - 1;
+			Log = 0;
+			break;
+
+		    case 'i':
+		    default:
+			PrtUsage ();
+			finis ();
+			break;
+		}
+	}
+	argc -= optind;			/* skip options */
+	argv += optind;
+
+	/* Fire up logging, or not, as the flags may be */
+	if (Log)
+#ifdef LOG_MAIL
+# ifndef SYSLOG
+#  define	SYSLOG		LOG_MAIL
+# endif
+		openlog(MyName, LOG_PID, SYSLOG);
+#else
+		openlog(MyName, LOG_PID);
+#endif
+
+	if (Log && From)
+		syslog (LOG_DEBUG, "From %s", From);
+
+	/* fetch our host name, some use will be found for it.... */
+	if (gethostname (HostNameBuf, 100-1) != 0)
+		DANGER_WILL_ROBINSON("gethostname")
+
+	/* Is the qi server open for business? */
+	if (!QiHost)
+		QiHost = QI_HOST;
+	if ((i = OpenQi(QiHost, &ToQi, &FromQi)) < 0) {
+#ifdef QI_ALT
+		i = OpenQi(QI_ALT, &ToQi, &FromQi);
+#endif /* QI_ALT */
+	}
+	if (i < 0) {
+		DANGER_WILL_ROBINSON("No qi servers available");
+	}
+	else {
+		/* Nail down AliasVal and EmailVal */
+		QIF *QFp;
+
+		for (QFp = QiFields; QFp < (QiFields + QiHighKey + 1); QFp++) {
+			if (QFp->value == NULL)
+				continue;
+			if (equal(QFp->value, "alias")) {
+				AliasVal = QFp - QiFields;
+				QFp->returnOK++;
+			}
+			else if (equal(QFp->value, "name"))
+				QFp->returnOK++;
+			else if (equal(QFp->value, "curriculum"))
+				QFp->returnOK++;
+			else if (equal(QFp->value, "phone"))
+				QFp->returnOK++;
+			else if (equal(QFp->value, "department"))
+				QFp->returnOK++;
+			else if (equal(QFp->value, "title"))
+				QFp->returnOK++;
+			else if (equal(QFp->value, "left_uiuc"))
+				QFp->returnOK++;
+			else if (equal(QFp->value, "email"))
+				EmailVal = QFp - QiFields;
+		}
+	}
+
+	/* Open the temp file, copy the message into it */
+	Msg = OpenTemp (TmpFile);
+	while ((i = fread (Buf, sizeof (char), MAXSTR, stdin)) != 0)
+		if (fwrite (Buf, sizeof (char), i, Msg) != i)
+			DANGER_WILL_ROBINSON("Msg copy")
+	if (fflush(Msg) < 0)
+		DANGER_WILL_ROBINSON("Msg fflush")
+
+	/*
+	 * Remaining arguments are addresses.  If From == CHNULL,
+	 * then submission was done locally and return address has
+	 * to be on the From: line.
+	 */
+	if (From == CPNULL || (From != CPNULL && From == CHNULL))
+		FindFrom (Msg);
+
+#ifdef REPLYTO
+	if (ReplyTo) {
+
+		/*
+		 * Check with QI to see if this person has a email entry.
+		 * If so add the Resent-From, Reply-To, and Comment fields.
+		 * Then invoke ReMail with xyzzy appended to the From address
+		 * so that sendmail won't send it back to us.  If a
+		 * Reply-To: field is already present, handle as though no
+		 * email field was found.
+		 */
+
+		/*
+		 * Allocate NewAddress structs for from address, to addresses,
+		 * plus 1 for terminal null.
+		 */
+		New = (NADD *) Malloc ((unsigned) ((argc+2) * sizeof (NADD)));
+		(New + argc + 1)->original = CPNULL;
+		NewP = New;
+		RevQuery (NewP);
+		assert (NewP->new != CPNULL);
+
+		/* If a single alias was found, append the domain */
+		if (abs (NewP->code) == LR_OK) {
+			NewP->new =
+			    Realloc (NewP->new, (unsigned) (strlen (NewP->new)
+							+ strlen (DOMAIN) + 2));
+			(void) strcat (NewP->new, "@@");
+			(void) strcat (NewP->new, DOMAIN);
+		}
+
+		/* Add To: addresses to NewP array */
+		NewP++;
+		while (argc > 0) {
+			NewP->original = *argv;
+			NewP->new = CPNULL;
+			NewP++; argv++; argc--;
+		}
+
+		/* ReMail will add the new headers and call sendmail */
+		ReMail (New, Msg, envp);
+
+		/* We done good. */
+		ExitStat = EX_OK;
+		finis ();
+	}
+#endif /* REPLYTO */
+
+	/*
+	 * If not a ReplyTo ...
+	 * Allocate NewAddress structs for addresses (or just one if this
+	 * is a service forward).
+	 */
+	i = (Service == CPNULL) ? argc : 1;
+	New = (NADD *) Malloc ((unsigned) ((i+1) * sizeof (NADD)));
+	(New + i)->original = CPNULL;
+	NewP = New;
+
+	if (Service != CPNULL) {
+		NewP->original = Service;
+		NewP->new = CPNULL;
+		Query (NewP);
+		assert (NewP->new != CPNULL && NewP->field != -1);
+		if (Debug)
+			printf ("code %d, (%s) %s --> %s\n",
+			    NewP->code, QiFields[NewP->field].value,
+			    NewP->original, NewP->new);
+		if (Log)
+			syslog (LOG_INFO, "(%s) %s --> %s",
+			    QiFields[NewP->field].value, NewP->original, NewP->new);
+	}
+	else
+		/* Loop on addresses in argv building up translation table */
+		while (argc > 0) {
+			NewP->original = *argv;
+			NewP->new = CPNULL;
+			Query (NewP);
+			assert (NewP->new != CPNULL && NewP->field != -1);
+			if (Debug)
+				printf ("code %d, (%s) %s --> %s\n",
+				    NewP->code, QiFields[NewP->field].value,
+				    NewP->original, NewP->new);
+			if (Log)
+				syslog (LOG_INFO, "(%s) %s --> %s",
+				    QiFields[NewP->field].value, NewP->original,
+				    NewP->new);
+			NewP++; argv++; argc--;
+		}
+
+	/*
+	 * Now re-invoke sendmail with the translated addresses.
+	 * Make one pass for collecting error returns into one message.
+	 */
+	for (NewP = New; NewP->original != CPNULL; NewP++)
+		if (abs (NewP->code) != LR_OK) {
+			ErrorReturn (NewP, Msg, envp);
+			break;
+		}
+
+	/* Any good addresses? */
+	for (NewP = New; NewP->original != CPNULL; NewP++)
+		if (abs (NewP->code) == LR_OK) {
+			ReMail (NewP, Msg, envp);
+			break;
+		}
+
+	/* exit */
+	ExitStat = EX_OK;
+	finis ();
+}
+/*
+**  ErrorReturn -- Create and send informative mail messages
+**
+**	The envelope from address should be set to null as per RFC-821
+**	in regard to notification messages (Section 3.6).
+**
+**	Parameters:
+**		Addr -- pointer to NewAddress structure with addresses
+**			and messages
+**		Omsg -- stream pointer to original message
+**		envp -- environment pointer for fork/execve
+**
+**	Returns:
+**		Nothing
+**
+**	Side Effects:
+**		None
+*/
+
+char	*ap[] = { "-sendmail", "-oi", "-f", "MAILER-DAEMON", "-t", 0};
+
+void
+ErrorReturn (Addr, Omsg, envp)
+	NADD	*Addr;
+	FILE	*Omsg;
+	char	*envp[];
+{
+		int	i;			/* Good ol' i */
+		char	Buf[MAXSTR];		/* Temp for copying msg test */
+		FILE	*Emsg;			/* For creating the error msg */
+		int	pid;			/* For fork() */
+		int	flags = 0;		/* Controls printing of msgs */
+		int	SubCode;		/* Printing control */
+		NADD	*AddrP;			/* Loop variable */
+		QIR	*QRp;			/* Another loop variable */
+	extern	char	*ap[];
+
+	/* Open the error file */
+	Emsg = OpenTemp (ErrorFile);
+
+	/* Insert the headers */
+	if (fprintf (Emsg, "To: %s\n", From) < 0)
+		DANGER_WILL_ROBINSON("ErrorReturn: To")
+	if (PostmasterCC)
+		if (fprintf (Emsg, "Cc: Postmaster\n") < 0)
+			DANGER_WILL_ROBINSON("ErrorReturn: Cc")
+	if (fprintf (Emsg, "Subject: Returned mail - nameserver error report\n\n") < 0)
+		DANGER_WILL_ROBINSON("ErrorReturn: Subject")
+	if (fprintf (Emsg, " --------Message not delivered to the following:\n\n") < 0)
+		DANGER_WILL_ROBINSON("ErrorReturn: Message")
+	for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+		if (abs (AddrP->code) != LR_OK)
+			if (fprintf (Emsg, " %15s    %s\n", AddrP->original, AddrP->new) < 0)
+				DANGER_WILL_ROBINSON("ErrorReturn: addr")
+	if (fprintf (Emsg, "\n --------Error Detail (phquery V%s):\n\n", VERSION) < 0)
+		DANGER_WILL_ROBINSON("ErrorReturn: Detail")
+
+	/* Loop again to insert messages */
+	for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+		if (abs (AddrP->code) == LR_NOMATCH) {
+			if (! (flags & NO_MATCH_MSG)) {
+				PrintMsg (Emsg, NoMatchMsg);
+				flags |= NO_MATCH_MSG;
+				break;
+			}
+		}
+	for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+		if (abs (AddrP->code) == LR_ERROR) {
+			if (! (flags & HARD_MSG)) {
+				PrintMsg (Emsg, HardMsg);
+				flags |= HARD_MSG;
+			}
+			for (QRp = AddrP->QIalt; QRp->code < 0; QRp++)
+				if (fprintf (Emsg, " %d: %s\n", QRp->code, QRp->message) < 0)
+					DANGER_WILL_ROBINSON("ErrorReturn: hard")
+			if (putc ('\n', Emsg) < 0)
+				DANGER_WILL_ROBINSON("ErrorReturn: hard putc")
+		}
+	for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+		if (abs (AddrP->code) == LR_ABSENT) {
+			if (! (flags & ABSENT_MSG)) {
+				PrintMsg (Emsg, AbsentMsg);
+				flags |= ABSENT_MSG;
+			}
+			for (QRp = AddrP->QIalt; QRp->code < 0; QRp++)
+				if (abs(QRp->code) == LR_OK && QRp->field > 0 &&
+				    QiFields[QRp->field].returnOK)
+					if (fprintf (Emsg, " %s: %s\n", QiFields[QRp->field].value, QRp->message) < 0)
+						DANGER_WILL_ROBINSON("ErrorReturn: absent")
+			if (putc ('\n', Emsg) < 0)
+				DANGER_WILL_ROBINSON("ErrorReturn: absent putc")
+		}
+	for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+		if (abs (AddrP->code) == LR_TOOMANY) {
+			if (! (flags & TOO_MANY_MSG)) {
+				PrintMsg (Emsg, TooManyMsg);
+				flags |= TOO_MANY_MSG;
+				break;
+			}
+		}
+	for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+		if (abs (AddrP->code) == LR_AMBIGUOUS) {
+			if (! (flags & MULTI_MSG)) {
+				PrintMsg (Emsg, MultiMsg);
+				flags |= MULTI_MSG;
+			}
+			for (QRp = AddrP->QIalt, SubCode = QRp->subcode;
+			    QRp->code < 0; QRp++) {
+				if (QRp->subcode != SubCode) {
+					SubCode = QRp->subcode;
+					if (putc ('\n', Emsg) < 0)
+						DANGER_WILL_ROBINSON("ErrorReturn: multi putc")
+				}
+				if (abs(QRp->code) == LR_OK && QRp->field > 0 &&
+				    QiFields[QRp->field].returnOK)
+					if (fprintf (Emsg, " %s: %s\n", QiFields[QRp->field].value, QRp->message) < 0)
+						DANGER_WILL_ROBINSON("ErrorReturn: multi")
+			}
+			if (putc ('\n', Emsg) < 0)
+				DANGER_WILL_ROBINSON("ErrorReturn: multi putc2")
+		}
+	if (fprintf (Emsg, "\n --------Unsent Message below:\n\n") < 0)
+		DANGER_WILL_ROBINSON("ErrorReturn: unsent below")
+	rewind (Omsg);
+	while ((i = fread (Buf, sizeof (char), MAXSTR, Omsg)) != 0) {
+		if (fwrite (Buf, sizeof (char), i, Emsg) != i)
+			DANGER_WILL_ROBINSON("ErrorReturn: Emsg copy")
+	}
+	if (fprintf (Emsg, "\n --------End of Unsent Message\n") < 0)
+		DANGER_WILL_ROBINSON("ErrorReturn: unsent end")
+	(void) fflush (Emsg);
+	(void) fclose (Emsg);
+	if (freopen (ErrorFile, "r", stdin) == FILE_NULL)
+		DANGER_WILL_ROBINSON("ErrorReturn: freopen")
+
+	/* Zap file so it disappears automagically */
+	if (! Debug)
+		(void) unlink (ErrorFile);
+
+	/*
+	 * fork, then execve sendmail for delivery
+	 */
+
+	pid = 0;
+	if (! Debug && (pid = fork ()) == -1)
+		DANGER_WILL_ROBINSON("ErrorReturn: fork")
+	if (pid) {
+		(void) wait(0);
+		return;
+	}
+	else if (! Debug)
+		execve (SENDMAIL, ap, envp);
+}
+/*
+**  FindFrom -- Find From: address in message headers
+**
+**	Parameters:
+**		MsgFile -- stream pointer to message
+**
+**	Returns:
+**		Nothing
+**
+**	Side Effects:
+**		Global From pointer is adjusted to point at either a
+**		malloc'ed area containing the address, or to the
+**		constant string "Postmaster" if none is found.
+*/
+
+void
+FindFrom (MsgFile)
+	FILE	*MsgFile;
+{
+	char		*p1, *p2;
+	extern char	*From;
+	char		Buf[MAXSTR];
+
+	rewind (MsgFile);
+	while (fgets (Buf, MAXSTR, MsgFile) != CPNULL && *Buf != '\n') {
+		if (strncasecmp (Buf, "From:", 5))
+			continue;
+		else {
+			if ((p1 = strchr (Buf, '<')) != CPNULL) {
+				p1++;
+				if ((p2 = strchr (Buf, '>')) != CPNULL) {
+					From = Malloc ((unsigned) ((p2-p1)+1));
+					(void) strncpy (From, p1, (p2-p1));
+				}
+				else {
+					if (Debug)
+						fprintf (stderr, "Unbalanced <> in From: address\n");
+					if (Log)
+						syslog (LOG_ERR, "Unbalanced <> in From: address");
+					From = "Postmaster";
+				}
+			}
+			else {
+				/*
+				 * Mail from local users may not have the <>
+				 * yet.  See what's there anyway.
+				 */
+				p1 = &Buf[5];
+				while (*p1 && isspace(*p1))
+					p1++;
+				p2 = Buf + strlen(Buf);
+				if (p2 > p1) {
+					From = Malloc ((unsigned) ((p2-p1)+1));
+					(void) strncpy (From, p1, (p2-p1));
+				}
+			}
+			break;
+		}
+	}
+	if (From == CPNULL || strlen(From) == 0) {
+		if (Debug)
+			fprintf (stderr, "No From: address in message\n");
+		if (Log)
+			syslog (LOG_ERR, "No From: address in message");
+		From = "Postmaster";
+	}
+	if (Log)
+		syslog (LOG_DEBUG, "From %s", From);
+}
+/*
+**  ReMail -- Forward message to recipients after adding phquery headers
+**
+**	Parameters:
+**		Addr -- pointer to NewAddress structure with addresses
+**			and messages
+**		Omsg -- stream pointer to original message
+**		envp -- environment pointer for fork/execve
+**
+**	Returns:
+**		Nothing
+**
+**	Side Effects:
+**		None
+*/
+
+void
+ReMail (Addr, Omsg, envp)
+	NADD	*Addr;
+	FILE	*Omsg;
+	char	*envp[];
+{
+		int	i = 10;
+		char	Buf[MAXSTR];
+		NADD	*AddrP;
+		FILE	*Nmsg;
+		int	pid = 0;
+		char	**nap, **np, nFrom[100];
+	extern	char	*From, HostNameBuf[];
+
+	/* Open the rewrite file */
+	Nmsg = OpenTemp (NewFile);
+
+	/* size the argument array */
+#ifdef REPLYTO
+	if (ReplyTo)
+		for (AddrP = Addr, AddrP++; AddrP->original != CPNULL; AddrP++)
+			i++;
+	else
+#endif /* REPLYTO */
+	for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+		if (abs (AddrP->code) == LR_OK)
+			i++;
+	np = nap = (char **) Malloc ((unsigned)(i * sizeof (char *)));
+
+	/* Fill out the first portion of the sendmail argument vector */
+	*np++ = "-sendmail";
+	*np++ = "-oi";
+	*np++ = "-f";
+#ifdef REPLYTO
+	if (ReplyTo) {
+		/*
+		 * Tack on .xyzzy to the From address so sendmail will know
+		 * it's been here.
+		 */
+		(void) strcpy (nFrom, From);
+		(void) strcat (nFrom, ".xyzzy");
+		*np++ = nFrom;
+	}
+	else
+#endif /* REPLYTO */
+	{
+		*np++ = From;
+		for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+			if (abs (AddrP->code) == LR_OK)
+				*np++ = AddrP->new;
+	}
+
+	/* Read and copy the header block, adding X-PH-To: or X-PH: header */
+	rewind (Omsg);
+	while (fgets (Buf, MAXSTR, Omsg) != CPNULL && *Buf != '\n') {
+		if ((nequal (Buf, "To:", 3) || nequal (Buf, "Cc:", 3)
+		    || nequal (Buf, "From:", 5)) && pid == 0) {
+			int	LineLength;
+
+#ifdef REPLYTO
+			if (ReplyTo) {
+
+				/* Add the Reply-To: fields */
+				AddrP = Addr;
+				if (fprintf (Nmsg, "Comment: Reply-To: added by phquery (V%s)\n", VERSION) < 0)
+					DANGER_WILL_ROBINSON("ReMail: comment")
+				if (fprintf (Nmsg, "Resent-From: postmaster@@%s\n", HostNameBuf) < 0)
+					DANGER_WILL_ROBINSON("ReMail: resent")
+				if (fprintf (Nmsg, "Reply-To: %s\n", AddrP->new) < 0)
+					DANGER_WILL_ROBINSON("ReMail: reply")
+				for (AddrP++; AddrP->original != CPNULL; AddrP++)
+					*np++ = AddrP->original;
+				pid++;
+			}
+			else
+#endif /* REPLYTO */
+			{
+
+				/* Write the PH header and add to argv */
+#ifdef	EXPAND_TO
+				if (fprintf (Nmsg, "X-PH(%s)-To:", VERSION) < 0)
+					DANGER_WILL_ROBINSON("ReMail: x-pht")
+				LineLength = 8;
+				for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+					if (abs (AddrP->code) == LR_OK) {
+						if ((LineLength + strlen (AddrP->new)) > 75) {
+							if (fprintf (Nmsg, "\n\t") < 0)
+								DANGER_WILL_ROBINSON("ReMail: \\n\\t")
+							LineLength = 8;
+						}
+						if (fprintf (Nmsg, " %s", AddrP->new) < 0)
+							DANGER_WILL_ROBINSON("ReMail: x-pht2")
+					}
+				if (putc('\n', Nmsg) < 0)
+					DANGER_WILL_ROBINSON("ReMail: putc")
+#else /* ! EXPAND_TO */
+				if (fprintf (Nmsg, "X-PH: V%s@@%s\n", VERSION, HostNameBuf) < 0)
+					DANGER_WILL_ROBINSON("ReMail: x-phv")
+#endif /* EXPAND_TO */
+				pid++;
+			}
+		}
+		if (fputs (Buf, Nmsg) < 0)
+			DANGER_WILL_ROBINSON("ReMail: fputs")
+	}
+	if (fputs (Buf, Nmsg) < 0)
+		DANGER_WILL_ROBINSON("ReMail: fputs2")
+	*np = CPNULL;
+
+	if (Debug) {
+		printf ("Final send vector:");
+		for (np = nap; *np != CPNULL; np++)
+			printf (" %s", *np);
+		(void) putchar ('\n');
+	}
+
+	/* Copy the remainder of the message */
+	while ((i = fread (Buf, sizeof (char), MAXSTR, Omsg)) != 0)
+		if (fwrite (Buf, sizeof (char), i, Nmsg) != i)
+			DANGER_WILL_ROBINSON("ReMail: nmsg copy")
+
+	/* Re-arrange the stream pointers and invoke sendmail */
+	if (fflush (Nmsg) < 0)
+		DANGER_WILL_ROBINSON("ReMail: fflush")
+	(void) fclose (Nmsg);
+	if (freopen (NewFile, "r", stdin) == FILE_NULL)
+		DANGER_WILL_ROBINSON("ReMail: NewFile freopen")
+
+	/* Zap file so it disappears automagically */
+	if (! Debug)
+		(void) unlink (NewFile);
+
+	/*
+	 * fork, then execve sendmail for delivery
+	 */
+
+	pid = 0;
+	if (! Debug && (pid = fork ()) == -1)
+		DANGER_WILL_ROBINSON("ReMail: fork")
+	if (pid) {
+		(void) wait(0);
+		return;
+	}
+	else if (! Debug)
+		execve (SENDMAIL, nap, envp);
+}
+/*
+**  CodeString -- Return text string corresponding to supplied reply code
+**
+**	Parameters:
+**		code -- reply value
+**
+**	Returns:
+**		char pointer to text string or NULL pointer if no matching
+**		key is located.
+**
+**	Side Effects:
+**		None
+*/
+
+char *
+CodeString (code)
+	int	code;
+{
+		struct QiReplyCode	*Cpnt;
+	extern	struct QiReplyCode	QiCodes[];
+
+	for (Cpnt = QiCodes; Cpnt->key != -1; Cpnt++)
+		if (Cpnt->key == abs (code))
+			return (Cpnt->value);
+	return (CPNULL);
+}
+/*
+**  OpenTemp -- Create and open a temporary file
+**
+**	For the supplied file name, create, open, and chmod the file
+**
+**	Parameters:
+**		Name -- pathname of file to create in mkstemp format
+**
+**	Returns:
+**		Stream descriptor of resulting file, or NULL if error
+**
+**	Side Effects:
+**		mkstemp modifies calling argument
+*/
+
+FILE *
+OpenTemp (Name)
+	const char *Name;
+{
+	int	fd;
+	FILE	*Stream;
+
+	if ((fd = mkstemp ((char *)Name)) == -1)
+		DANGER_WILL_ROBINSON("OpenTemp: mkstemp")
+
+	/* Protect it */
+	if (fchmod (fd, S_IREAD|S_IWRITE) == -1)
+		DANGER_WILL_ROBINSON("OpenTemp: fchmod")
+
+	/* Make fd a stream */
+	if ((Stream = fdopen (fd, "r+")) == FILE_NULL)
+		DANGER_WILL_ROBINSON("OpenTemp: fdopen")
+	return (Stream);
+}
+/*
+**  Query -- Create queries to send to the CSnet central server
+**
+**	Using the alias, call-sign, and full name fields, as known by the
+**	CSnet central name server Query Interpreter, Query creates variants
+**	of the supplied name (New->original) if a straight alias lookup fails.
+**	For each variant, SendQuery() is called until either one succeeds or
+**	all variants are exhausted.
+**
+**	Parameters:
+**		New -- pointer to NewAddress struct
+**
+**	Returns:
+**		None
+**
+**	Side Effects:
+**		Modifies contents under New pointer.
+*/
+
+void
+Query(New)
+	NADD	*New;
+{
+	char	scratch[MAXSTR];	/* copy of FullName w.o. punct */
+	char	*sp;			/* work ptrs for scratch */
+#ifdef	WILDNAMES
+	char	*sp2;			/* work ptrs for scratch */
+#endif /* WILDNAMES */
+	char	**Lpnt = TryList;	/* Loop pointer for TryList */
+	int	NoMore = -1;		/* set if all name variants done */
+
+	/* Unquote the address if needed */
+	while (*New->original == '"' &&
+	       New->original[strlen(New->original)-1] == '"') {
+		New->original[strlen(New->original)-1] = CHNULL;
+		New->original++;
+	}
+
+	/*
+	 * Try the query as an alias lookup first, then as a full name lookup.
+	 */
+
+	do {
+		/*
+		 * Convert punctuation/separators in scratch to space
+		 * characters one at a time if testing for name.  If
+		 * WILDNAMES is #define'd, a wildcard char '*' will be
+		 * appended after each single character name, e.g. p-pomes
+		 * is tried as p* pomes.  This has risks as follows:  assume
+		 * Duncan Lawrie sets his alias to "lawrie".  A query for
+		 * d-lawrie will fail as a alias lookup but succeed as a
+		 * name lookup when written as "d* lawrie".  This works until
+		 * Joe Student sets his alias to "d-lawrie".  Whoops.
+		 * Still in a non-hostile environment, this function may be
+		 * more useful than dangerous.
+		 */
+		if ((New->field = FieldValue(*Lpnt)) ==  -1)
+		{
+			if (Debug)
+				printf ("%s not a server field\n", *Lpnt);
+			if (Log)
+				syslog (LOG_ERR, "%s not a server field",*Lpnt);
+			Lpnt++;
+			continue;
+		}
+		if (equal (*Lpnt, "name")) {
+
+			/* Try as is first time for hyphenated names */
+			if (NoMore == -1) {
+				(void) strcpy (scratch, New->original);
+				if (SendQuery (New, *Lpnt, scratch))
+					return;
+				NoMore = 0;
+			}
+			else {
+				char stemp[MAXSTR], *st = stemp;
+
+				for (sp = scratch; *sp != CHNULL; ) {
+
+					/* copy until non-space punct char */
+					if (!ispunct (*sp) || *sp == ' ' || *sp == '*') {
+#ifdef	WILDNAMES
+						sp2 = sp;
+#endif /* WILDNAMES */
+						*st++ = *sp++;
+						if (*sp == CHNULL)
+							NoMore++;
+						continue;
+					}
+
+#ifdef	WILDNAMES
+					/* if one non-punct char, append * */
+					if ((sp - sp2) == 1)
+						*st++ = '*';
+#endif /* WILDNAMES */
+					*st++ = ' ';
+					sp++;
+					break;
+				}
+				while (*sp != CHNULL)
+					*st++ = *sp++;
+				*st = CHNULL;
+				(void) strcpy (scratch, stemp);
+				if (SendQuery (New, *Lpnt, scratch))
+					return;
+				if (NoMore > 0)
+					Lpnt++;
+				continue;
+			}
+		}
+
+		/*
+		 * Convert punctuation/separators in scratch to hyphen
+		 * characters if testing for alias.
+		 */
+		else if (equal (*Lpnt, "alias")) {
+			(void) strcpy (scratch, New->original);
+			for (sp = scratch; *sp != CHNULL; sp++)
+				if (ispunct(*sp))
+					*sp = '-';
+			if (SendQuery (New, *Lpnt, scratch))
+				return;
+			Lpnt++;
+		}
+		else {
+			(void) strcpy (scratch, New->original);
+			if (SendQuery (New, *Lpnt, scratch))
+				return;
+			Lpnt++;
+		}
+	} while (*Lpnt != CPNULL);
+}
+/*
+**  SendQuery -- Send queries to the local CSnet central name server
+**
+**	Takes a field type (alias, call-sign, full name, etc), as known by
+**	the CSnet central name server Query Interpreter, and looks up the
+**	corresponding email address "usercode@@host".  Cases where the
+**	alias/name aren't found, are ambiguous, or lack an email address
+**	return a message instead of the address.  Additional information is
+**	returned as an array of QIR records pointed to by New->QIalt.
+**
+**	Parameters:
+**		New -- pointer to NewAddress struct
+**		Field -- type of field (name, alias, etc) for Value
+**		Value -- name to lookup
+**
+**	Returns:
+**		1 if a match(es) is found including too many
+**		0 otherwise
+**
+**	Side Effects:
+**		Modifies contents under New pointer.
+*/
+
+SendQuery(New, Field, Value)
+	NADD	*New;
+	const char *Field, *Value;
+{
+	QIR	*EmailQ, *QRp;	/* For handling ReadQi() responses */
+	int	i;		/* good ol' i */
+
+	/* Make a query out of the arguments */
+	if (Debug)
+		printf ("querying for %s \"%s\"\n", Field, Value);
+	if (Log)
+		syslog (LOG_DEBUG, "querying for %s \"%s\"", Field, Value);
+	if (fprintf (ToQi, "query %s=%s return all\n", Field, Value) < 0)
+		DANGER_WILL_ROBINSON("SendQuery: qi query")
+	if (fflush (ToQi) < 0)
+		DANGER_WILL_ROBINSON("SendQuery: qi fflush")
+
+	/*
+	 * Grab the responses and let the fun begin.
+	 * The possibilities are:
+	 *
+	 * 102:There were N matches to your query
+	 * -200:1:         alias: Paul-Pomes
+	 * -200:1:          name: pomes paul b
+	 * -200:1:      callsign: See Figure 1
+	 * -508:1:    curriculum: Not present in entry.
+	 * -200:1:    department: Computing Services Office
+	 * -200:1:         email: paul@@uxc.cso.uiuc.edu
+	 * 200:Ok.
+	 *
+	 * 501:No matches to your query.
+	 *
+	 * 502:Too many matches to request.
+	 *
+	 * -515:no non-null key field in query.
+	 * -515:Initial metas may be used as qualifiers only.
+	 * 500:Did not understand query.
+	 */
+	EmailQ = ReadQi (FromQi, NULL);
+
+	/*
+	 * If we read a temporary error, be a nice program and defer.
+	 */
+	if (EmailQ->code > 399 && EmailQ->code < 500)
+		finis ();
+
+	/*
+	 * No matches at all?  Too many?  Note that single line errors
+	 * will have code > 0.
+	 */
+	if (EmailQ->code > 0) {
+		New->new = CodeString (EmailQ->code);
+		New->code = EmailQ->code;
+		New->QIalt = QIR_NULL;
+		FreeQIR (EmailQ);
+		if (New->code == LR_TOOMANY)
+			return (1);
+		return (0);
+	}
+
+	/* anything else must be multi-line */
+	assert (EmailQ->code < 0);
+
+	/* Are there multiple responses (subcode > 1)? */
+	for (QRp = EmailQ; QRp->code < 0; QRp++)
+		if (QRp->subcode > 1) {
+			New->code = LR_AMBIGUOUS;
+			New->new = CodeString (LR_AMBIGUOUS);
+			New->QIalt = EmailQ;
+			return (1);
+		}
+
+	/* a multi-line error? */
+	New->QIalt = EmailQ;
+	if (abs (QRp->code) >= 500) {
+		for (QRp = EmailQ; QRp->code < 0; QRp++)
+			;
+		New->code = QRp->code;
+		New->new = CodeString (QRp->code);
+		return (1);
+	}
+
+	/* If one person, handle as single match alias */
+	QRp = PickField (EmailQ, EmailVal);
+	if (QRp == QIR_NULL) {
+		New->code = LR_ABSENT;
+		New->new = CodeString (LR_ABSENT);
+		return (1);
+	}
+	if (QRp->field != EmailVal) {
+		if (Log)
+			syslog (LOG_ERR, "Email field for %s (%s) in ph/qi database is present but null",
+				Value, Field);
+		if (Debug)
+			fprintf (stderr, "Email field for %s (%s) in ph/qi database is present but null\n",
+				Value, Field);
+		New->code = LR_ABSENT;
+		New->new = CodeString (LR_ABSENT);
+		return (1);
+	}
+	New->code = abs (QRp->code);
+	switch (abs (QRp->code)) {
+	    case LR_ABSENT:
+		New->new = CodeString (QRp->code);
+		return (1);
+
+	    case LR_OK:
+		New->new = QRp->message;
+
+		/* chop at first address */
+		{
+			char *cp = New->new;
+
+			/* skip any white space */
+			while (*cp != CHNULL && isspace(*cp))
+				cp++;
+
+			while (*cp != CHNULL) {
+				if (isspace(*cp) || *cp == ',') {
+					*cp = CHNULL;
+					break;
+				}
+				cp++;
+			}
+		}
+		return (1);
+
+	    default:
+		if (Debug)
+			fprintf (stderr, "unexpected code %d\n",
+			    QRp->code);
+		if (Log)
+			syslog (LOG_ERR, "Query: %s: unexpected code %d", Field, QRp->code);
+		finis ();
+	}
+	FreeQIR (EmailQ);
+	return (0);
+}
+/*
+**  RevQuery -- Reverse query, email to ph alias
+**
+**	Takes a email address as known by the CSnet central name server
+**	Query Interpreter, and looks up the corresponding alias. Cases
+**	where the email address matches multiple aliases return the
+**	original address.  In addition the global variable ReplyTo is
+**	set to -1.
+**
+**	Parameters:
+**		New -- pointer to NewAddress struct
+**
+**	Returns:
+**		None
+**
+**	Side Effects:
+**		Modifies contents under New pointer.
+**		ReplyTo set to -1 if QI returns multiple aliases or
+**		no match.
+*/
+
+void
+RevQuery(New)
+	NADD	*New;
+{
+		int	i;
+		QIR	*AliasQ, *QRp;
+	extern	char	*From, HostNameBuf[];
+	extern	FILE	*ToQi, *FromQi;
+
+	/*
+	 * We have to have a from address here.  If it doesn't have
+	 * a fully qualified form, convert it to name@@domain by
+	 * appending our Fully Qualified Domain Name.  FQDN, the
+	 * litany of the new Internet Age.
+	 */
+
+	assert (From != CPNULL);
+	if (strchr (From, '@@') == CPNULL) {
+		char	*nFrom;
+
+		/*
+		 * We can't Realloc(From) since it may point to
+		 * an area on the stack.
+		 */
+		nFrom = Malloc ((unsigned)(strlen (From) + 1));
+		(void) strcpy (nFrom, From);
+		From = Realloc (nFrom, (unsigned)(strlen(nFrom) +
+				       strlen(HostNameBuf) + 5));
+		(void) strcat (From, "@@");
+		(void) strcat (From, HostNameBuf);
+	}
+	New->original = From;
+
+	/* Send the query
+	 * I'd check for a -1 here, but am unsure how network errors really
+	 * are manifested.
+	 */
+	if (Debug)
+		printf ("querying alias corresponding to \"%s\"\n", From);
+	if (Log)
+		syslog (LOG_DEBUG, "querying alias for \"%s\"", From);
+	if (fprintf (ToQi, "query email=%s return alias \n", From) < 0)
+		DANGER_WILL_ROBINSON("RevQuery: qi query")
+	if (fflush (ToQi) < 0)
+		DANGER_WILL_ROBINSON("RevQuery: qi fflush")
+
+	/*
+	 * Grab the responses and let the fun begin.
+	 * The possibilities are:
+	 *
+	 * 102:There was N matches to your query.
+	 *
+	 * -200:1:         alias: rrv
+	 * 200:Ok.
+	 *
+	 * -200:1:         alias: Paul-Pomes
+	 * -200:2:         alias: PostMaster
+	 * 200:Ok.
+	 *
+	 * 501:No matches to your query.
+	 *
+	 * 502:Too many matches to request.
+	 *
+	 * 5XX:Other error
+	 *
+	 * For anything other than the first case, set ReplyTo to -1 and
+	 * set New->new = New->original .
+	 */
+	AliasQ = ReadQi (FromQi, NULL);
+
+	/* Handle the 501, 502, 5XX codes */
+	if (AliasQ->code > 0) {
+#ifdef REPLYTO
+		ReplyTo = -1;
+#endif /* REPLYTO */
+		New->new = New->original;
+		FreeQIR (AliasQ);
+		return;
+	}
+
+	/* Are there multiple responses (subcode > 1)? */
+	for (QRp = AliasQ; QRp->code < 0; QRp++)
+		if (QRp->subcode > 1) {
+#ifdef REPLYTO
+			ReplyTo = -1;
+#endif /* REPLYTO */
+			New->new = New->original;
+			FreeQIR (AliasQ);
+			return;
+		}
+
+	QRp = AliasQ;
+	assert (abs (QRp->code) == LR_OK && QRp->field == AliasVal);
+	New->code = abs (QRp->code);
+	New->new = QRp->message;
+	return;
+}
+/*
+** Malloc -- malloc with error checking
+**
+**	Parameters:
+**		size -- number of bytes to get
+**
+**	Returns:
+**		(char *) of first char of block, or
+**		finis() if any error
+**
+**	Side Effects:
+**		none
+*/
+
+char *
+Malloc (size)
+	unsigned	size;			/* Bytes to get */
+{
+		char	*cp;		/* Pointer to memory */
+
+	if ((cp = (char *) malloc (size)) == CPNULL) {
+		if (Debug) {
+			fprintf (stderr, "Malloc: %u bytes failed:", size);
+			perror("");
+		}
+		if (Log)
+			syslog (LOG_ERR, "Malloc: %u bytes failed: %m", size);
+		finis ();
+	}
+	return (cp);
+}
+/*
+** PrintMsg -- Print a message on the named stream
+**
+**	Parameters:
+**		OutFile -- stream to print message to
+**		Msg - array of char pointers that make up message,
+**		      null terminated
+**
+**	Returns:
+**		None
+**
+**	Side Effects:
+**		none
+*/
+
+void
+PrintMsg (OutFile, Msg)
+	FILE	*OutFile;
+	char	*Msg[];
+{
+	while (*Msg != CPNULL) {
+		if (fprintf (OutFile, "%s\n", *Msg) < 0)
+			DANGER_WILL_ROBINSON("PrintMsg")
+		Msg++;
+	}
+}
+/*
+** Realloc -- realloc with error checking
+**
+**	Parameters:
+**		ptr -- pointer to existing data
+**		size -- number of bytes to get
+**
+**	Returns:
+**		(char *) of first char of block, or
+**		finis() if any error
+**
+**	Side Effects:
+**		none
+*/
+
+char *
+Realloc (ptr, size)
+	char		*ptr;
+	unsigned	size;
+{
+		char	*cp;		/* pointer to memory */
+
+	if ((cp = (char *) realloc (ptr, size)) == CPNULL) {
+		if (Debug) {
+			fprintf (stderr, "Realloc: %u bytes failed:", size);
+			perror("");
+		}
+		if (Log)
+			syslog (LOG_ERR, "Realloc: %u bytes failed: %m", size);
+		finis ();
+	}
+	return (cp);
+}
+/*
+** PrtUsage -- Print how to use message
+**
+**	Print usage messages (char *usage[]) to stderr and exit nonzero.
+**	Each message is followed by a newline.
+**
+**	Parameters:
+**		none
+**
+**	Returns:
+**		none
+**
+**	Side Effects:
+**		none
+*/
+
+void
+PrtUsage ()
+{
+	int	which = 0;		/* current line */
+
+	fprintf (stderr, "%s: version %s\n", MyName, VERSION);
+	while (usage[which] != CPNULL) {
+		fprintf (stderr, usage[which++], MyName);
+		(void) putc ('\n', stderr);
+	}
+	(void) fflush (stdout);
+}
+/*
+**  finis -- Clean up and exit.
+**
+**	Parameters:
+**		none
+**
+**	Returns:
+**		never
+**
+**	Side Effects:
+**		exits sendmail
+*/
+
+void
+finis()
+{
+	extern	FILE	*ToQi, *FromQi;
+
+	if (ToQi)
+		CloseQi(ToQi, FromQi);
+
+	/* clean up temp files */
+	if (! Debug) {
+		(void) unlink (TmpFile);
+		(void) unlink (ErrorFile);
+		(void) unlink (NewFile);
+	}
+
+	/* and exit */
+	exit (ExitStat);
+}
+@
+
+
+1.53
+log
+@Added SIGIOT to AIX's list of full-dump signals.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.52 1994/05/16 22:10:52 paul Exp p-pomes $";
+d44 6
+a49 15
+#ifdef STANDALONE
+# include <stdio.h>
+# include <sys/types.h>
+# if defined(SYSV) || defined(PCS)
+#  include <time.h>
+# else /* !SYSV && !PCS */
+#  include <sys/time.h>
+# endif /* SYSV || PCS */
+# include <ctype.h>
+# include <sys/socket.h>
+# include <sys/syslog.h>
+# include <sys/wait.h>
+# include <sys/signal.h>
+# include <netinet/in.h>
+# include <sysexits.h>
+d51 1
+d53 2
+a54 12
+# ifdef __STDC__
+#  undef __P
+#  define __P(x) x
+# else /* !__STDC__ */
+#  define const
+#  undef __P
+#  define __P(x) ()
+# endif /* __STDC__ */
+#else /* !STANDALONE */
+# include "sendmail.h"
+#endif /* STANDALONE */
+#include <netdb.h>
+a55 17
+#include <sys/param.h>
+#if defined(pyr) || defined(is68k) || defined(NeXT) || defined(__convex__) \
+    || defined(BSD4_4) || defined(ibm032) || defined(UMAX)
+# include <sys/proc.h>
+# include <sys/uio.h>
+# include <sys/vnode.h>
+# define	IREAD		VREAD
+# define	IWRITE		VWRITE
+#else	/* ! pyr && ! is68k */
+# if defined(sun) || defined(convex) || defined(apollo)
+#  include <sys/stat.h>
+#  define	IREAD		S_IREAD
+#  define	IWRITE		S_IWRITE
+# else	/* ! sun && ! convex */
+#  include <sys/inode.h>
+# endif	/* sun || convex */
+#endif	/* pyr || is68k */
+d61 1
+a61 1
+#define		VERSION		"4.3"
+d173 1
+a173 1
+char	*QiHost = QI_HOST; /* Initial Qi server */
+a179 5
+#ifdef __STDC__
+# include <unistd.h>
+# include <stdlib.h>
+#endif /* __STDC__ */
+
+d292 2
+d888 1
+a888 1
+	if ((fd = mkstemp (Name)) == -1)
+d892 1
+a892 1
+	if (fchmod (fd, IREAD|IWRITE) == -1)
+@
+
+
+1.52
+log
+@Every call that writes to the socket or to a disk file is now checked.
+Produces full core dumps under AIX.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.51 1994/04/01 17:00:26 paul Exp paul $";
+d256 1
+@
+
+
+1.51
+log
+@Error string allocated on the fly.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.50 1994/03/29 19:34:28 paul Exp paul $";
+d56 1
+d96 1
+a96 1
+#define		VERSION		"4.2"
+d249 9
+d368 1
+a368 2
+	if ((Msg = OpenTemp (TmpFile)) == FILE_NULL)
+		finis ();
+d372 2
+a373 1
+	(void) fflush (Msg);
+d531 1
+a531 2
+	if ((Emsg = OpenTemp (ErrorFile)) == FILE_NULL)
+		finis ();
+d535 1
+a535 1
+		finis ();
+d537 6
+a542 3
+		fprintf (Emsg, "Cc: Postmaster\n");
+	fprintf (Emsg, "Subject: Returned mail - nameserver error report\n\n");
+	fprintf (Emsg, " --------Message not delivered to the following:\n\n");
+d545 4
+a548 2
+			fprintf (Emsg, " %15s    %s\n", AddrP->original, AddrP->new);
+	fprintf (Emsg, "\n --------Error Detail (phquery V%s):\n\n", VERSION);
+d566 4
+a569 3
+				fprintf (Emsg, " %d: %s\n", QRp->code,
+				    QRp->message);
+			(void) putc ('\n', Emsg);
+d580 4
+a583 3
+					fprintf (Emsg, " %s: %s\n",
+					    QiFields[QRp->field].value, QRp->message);
+			(void) putc ('\n', Emsg);
+d603 2
+a604 1
+					(void) putc ('\n', Emsg);
+d608 2
+a609 2
+					fprintf (Emsg, " %s: %s\n",
+					    QiFields[QRp->field].value, QRp->message);
+d611 2
+a612 1
+			(void) putc ('\n', Emsg);
+d614 2
+a615 1
+	fprintf (Emsg, "\n --------Unsent Message below:\n\n");
+d621 2
+a622 1
+	fprintf (Emsg, "\n --------End of Unsent Message\n");
+d626 1
+a626 1
+		DANGER_WILL_ROBINSON("ErrorReturn: ErrorFile freopen")
+d746 1
+a746 2
+	if ((Nmsg = OpenTemp (NewFile)) == FILE_NULL)
+		finis ();
+d796 5
+a800 3
+					finis ();
+				fprintf (Nmsg, "Resent-From: postmaster@@%s\n", HostNameBuf);
+				fprintf (Nmsg, "Reply-To: %s\n", AddrP->new);
+d812 1
+a812 1
+					finis ();
+d817 2
+a818 1
+							fprintf (Nmsg, "\n\t");
+d821 2
+a822 1
+						fprintf (Nmsg, " %s", AddrP->new);
+d824 2
+a825 1
+				(void) putc ('\n', Nmsg);
+d827 2
+a828 1
+				fprintf (Nmsg, "X-PH: V%s@@%s\n", VERSION, HostNameBuf);
+d833 2
+a834 1
+		fputs (Buf, Nmsg);
+d836 2
+a837 1
+	(void) fputs (Buf, Nmsg);
+d853 2
+a854 1
+	(void) fflush (Nmsg);
+a1099 1
+	fprintf (ToQi, "query %s=%s return all\n", Field, Value);
+d1104 4
+a1107 1
+	(void) fflush (ToQi);
+a1287 1
+	fprintf (ToQi, "query email=%s return alias \n", From);
+d1292 4
+a1295 1
+	(void) fflush (ToQi);
+d1370 1
+a1370 1
+			fprintf (stderr, "malloc of %u bytes failed:", size);
+d1374 1
+a1374 1
+			syslog (LOG_ERR, "malloc of %u bytes failed: %m", size);
+d1401 1
+a1401 1
+			finis ();
+d1429 1
+a1429 1
+			fprintf (stderr, "realloc of %u bytes failed:", size);
+d1433 1
+a1433 1
+			syslog (LOG_ERR, "realloc of %u bytes failed: %m", size);
+@
+
+
+1.50
+log
+@Changed (r)index() calls to str(r)chr() calls.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.49 1994/03/25 19:07:03 paul Exp paul $";
+d95 1
+a95 4
+#define		VERSION		"4.1"
+
+#undef newstr
+#define		newstr(s)	strcpy(Malloc(strlen(s) + 1), s)
+d101 4
+a104 2
+	if (Log) \
+		syslog (LOG_ERR, strcat (KateBush, ": %m")); \
+@
+
+
+1.49
+log
+@Added some new includes (sys/proc.h and sys/uio.h) for vnode.h.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.48 1993/08/08 14:22:29 paul Exp paul $";
+d251 1
+a251 1
+	MyName = ((MyName = rindex (*argv, '/')) == CPNULL)
+d655 1
+a655 1
+			if ((p1 = index (Buf, '<')) != CPNULL) {
+d657 1
+a657 1
+				if ((p2 = index (Buf, '>')) != CPNULL) {
+d1239 1
+a1239 1
+	if (index (From, '@@') == CPNULL) {
+@
+
+
+1.48
+log
+@*** empty log message ***
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.47 1993/06/24 04:49:46 paul Exp paul $";
+d76 2
+@
+
+
+1.47
+log
+@First pass at using api library.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.46 1993/04/21 20:02:59 paul Exp paul $";
+d312 1
+a312 1
+	if (Log)
+@
+
+
+1.46
+log
+@Eliminate hard-coded limit on number of new addresses.
+Verify that elements of TryList are supported by the server.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.45 1993/03/01 19:31:54 paul Exp paul $";
+a54 1
+# include <sys/errno.h>
+d65 1
+d88 2
+d93 1
+a93 1
+#define		VERSION		"3.18"
+d161 2
+a162 2
+FILE	*ToQI =		FILE_NULL;	/* write to the QI */
+FILE	*FromQI =	FILE_NULL;	/* read from the QI */
+a204 6
+/* Fields returned by queries to server */
+QIF	*Fields;
+
+/* Highest field value. */
+int	HighKey;
+
+a226 4
+QIR * ReadQI __P((const char *, const char *));
+int FieldValue __P((const char *));
+void GarbageCollect __P((QIR *));
+void GetFields ();
+a231 3
+void ContactQI();
+
+char * strsep __P((char **, const char *));
+d287 1
+d319 37
+a363 3
+	/* Load up the Fields[] array from qi server. */
+	GetFields();
+
+d437 1
+a437 1
+			    NewP->code, Fields[NewP->field].value,
+d441 1
+a441 1
+			    Fields[NewP->field].value, NewP->original, NewP->new);
+d452 1
+a452 1
+				    NewP->code, Fields[NewP->field].value,
+d456 1
+a456 1
+				    Fields[NewP->field].value, NewP->original,
+a482 93
+**  ContactQI -- Connect to the QI server
+**
+**	Examine the ToQI and FromQI file descriptors.  If NULL, open
+**	socket connections to the QI server.  Exits on any error.
+**
+**	Parameters:
+**		none
+**
+**	Returns:
+**		None
+**
+**	Side Effects:
+**		Changes ToQI and FromQI if an open is done.
+*/
+
+void
+ContactQI ()
+{
+		int	sock;		/* our socket */
+	struct	sockaddr_in QI;		/* the address of the nameserver */
+	struct	servent	*Ns;		/* nameserver service entry */
+	struct	hostent	*Host;		/* host entry for nameserver */
+	extern	char	*QiHost;	/* Qi server host */
+	extern	FILE	*ToQI, *FromQI;	/* read/write streams to QI */
+
+	/* Already opened... */
+	if (ToQI != FILE_NULL && FromQI != FILE_NULL) {
+		if (Debug)
+			printf("ToQI/FromQI already opened\n");
+		return;
+	}
+	if (Debug)
+		printf("opening ToQI/FromQI\n");
+
+	/* Locate the proper port */
+	if (Ns = getservbyname (QISERVICE, "tcp")) {
+		QI.sin_port = Ns->s_port;
+	} else {
+		if (Debug)
+			fprintf (stderr, "server \"%s\" unknown - using 105\n", QISERVICE);
+		if (Log)
+			syslog (LOG_ERR, "server \"%s\" unknown - using 105", QISERVICE);
+		QI.sin_port = 105;
+	}
+	QI.sin_family = AF_INET;
+
+again:
+	/* Get a socket for the QI connection */
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+		if (Log)
+			syslog (LOG_ERR, "ContactQI: socket(): %m");
+		if (Debug)
+			fprintf (stderr, "ContactQI: can't create socket\n");
+		finis();
+	}
+
+	/* Locate the proper host */
+	if (Host = gethostbyname (QiHost)) {
+		bcopy (Host->h_addr, (char *) &QI.sin_addr.s_addr, 4);
+	} else {
+		if (Log)
+			syslog (LOG_ERR, "ContactQI: gethostbyname(%s): %m", QiHost);
+		if (Debug) {
+			fprintf (stderr, "gethostbyname(%s):", QiHost);
+			perror ("");
+		}
+		finis();
+	}
+
+	/* Connect to the nameserver */
+	if (connect (sock, (struct sockaddr *) &QI, sizeof (QI)) < 0) {
+		if (Log)
+			syslog (LOG_INFO, "ContactQI: connect(%s): %m", QiHost);
+		if (Debug) {
+			fprintf (stderr, "ContactQI: connect(%s):", QiHost);
+			perror ("");
+		}
+		(void) close(sock);
+#ifdef QI_ALT
+		if (!equal (QiHost, QI_ALT)) {
+			QiHost = QI_ALT;
+			goto again;
+		}
+#endif /* QI_ALT */
+		finis ();
+	}
+
+	/* Connection ok, change to canonical form */
+	ToQI = fdopen (sock, "w");
+	FromQI = fdopen (sock, "r");
+	return;
+}
+/*
+d522 1
+a522 1
+	
+a559 4
+					if (! (flags & PHONE_MSG)) {
+						PrintMsg (Emsg, PhoneMsg);
+						flags |= PHONE_MSG;
+					}
+d563 1
+a563 1
+				    Fields[QRp->field].returnOK)
+d565 1
+a565 1
+					    Fields[QRp->field].value, QRp->message);
+a580 4
+					if (! (flags & PHONE_MSG)) {
+						PrintMsg (Emsg, PhoneMsg);
+						flags |= PHONE_MSG;
+					}
+d589 1
+a589 1
+				    Fields[QRp->field].returnOK)
+d591 1
+a591 1
+					    Fields[QRp->field].value, QRp->message);
+d866 2
+a867 2
+		struct ReplyCodes	*Cpnt;
+	extern	struct ReplyCodes	Codes[];
+d869 1
+a869 1
+	for (Cpnt = Codes; Cpnt->key != -1; Cpnt++)
+a908 29
+**  PickField -- Find the QI_response with the named field
+**
+**	Cycle through a chain of QI_response's looking for one with the
+**	named field.  Return a pointer to that one or NULL if not present.
+**	Assumes that the last QI_response.code > 0.
+**
+**	Parameters:
+**		qp -- QI_response chain pointer
+**		field -- QI field to search for
+**
+**	Returns:
+**		pointer to located QI_response or NULL if not found
+**
+**	Side Effects:
+**		None
+*/
+
+QIR *
+PickField (qp, field)
+	QIR	*qp;
+	int	field;
+{
+	do {
+		if (qp->field == field)
+			return (qp);
+	} while ((qp++)->code < 0);
+	return (QIR_NULL);
+}
+/*
+d964 1
+a964 1
+		if ((New->field = FieldValue(*Lpnt)) ==  NONE_OF_ABOVE)
+a1059 1
+**		Will call ContactQI() if the connection is closed.
+d1067 1
+a1067 1
+	QIR	*EmailQ, *QRp;	/* For handling ReadQI() responses */
+a1069 3
+	/* Open the ToQI and FromQI descriptors if necessary */
+	ContactQI();
+
+d1071 1
+a1071 1
+	fprintf (ToQI, "query %s=%s return all\n", Field, Value);
+d1076 2
+a1077 2
+	(void) fflush (ToQI);
+	
+d1099 1
+a1099 1
+	EmailQ = ReadQI (Field, Value);
+a1101 10
+	 * If we read a preliminary response (99<x<200), garbage
+	 * collect and read some more.
+	 */
+	i = abs (EmailQ->code);
+	if (i > 99 && i < 200) {
+		GarbageCollect (EmailQ);
+		EmailQ = ReadQI (Field, Value);
+	}
+
+	/*
+d1104 1
+a1104 1
+	else if (i > 399 && i < 500)
+d1115 1
+a1115 1
+		GarbageCollect (EmailQ);
+d1196 1
+a1196 1
+	GarbageCollect (EmailQ);
+a1214 1
+**		Will call ContactQI() if the connection is closed.
+d1227 1
+a1227 1
+	extern	FILE	*ToQI, *FromQI;
+a1228 3
+	/* Open the ToQI and FromQI descriptors if necessary */
+	ContactQI();
+
+d1235 1
+a1235 1
+	
+d1257 1
+a1257 1
+	fprintf (ToQI, "query email=%s return alias \n", From);
+d1262 1
+a1262 1
+	(void) fflush (ToQI);
+d1286 1
+a1286 11
+	AliasQ = ReadQI ("email", From);
+
+	/*
+	 * If we read a preliminary response (99<x<200), garbage
+	 * collect and read some more.
+	 */
+	i = abs (AliasQ->code);
+	if (i > 99 && i < 200) {
+		GarbageCollect (AliasQ);
+		AliasQ = ReadQI ("email", From);
+	}
+d1294 1
+a1294 1
+		GarbageCollect (AliasQ);
+d1305 1
+a1305 1
+			GarbageCollect (AliasQ);
+d1308 1
+a1308 1
+	
+a1315 306
+**  ReadQI -- Read and store response from QI server
+**
+**	A QI response has one of the following structures:
+**
+**	<-><code>:<subcode><ws><field name>:<string>
+**	5XX:Error message
+**	200:Ok.
+**
+**	The leading '-' marks a continuation line.  The last line of a
+**	response will not have the '-'.
+**
+**	<code> is the response code.  Response codes are listed in phquery.h
+**	and closely follow the conventions of SMTP (RFC-821):
+**
+**	1XX - status
+**	2XX - information
+**	3XX - additional information or action needed
+**	4XX - temporary errors
+**	5XX - permanent errors
+**	6XX - phquery specific codes
+**
+**	<subcode> links multiple fields (e.g., email and pager) to a single
+**	individual.  If a name query results in a multiple match, subcode
+**	increments by 1 for each person but has the same value for all response
+**	lines for that individual.
+**
+**	<ws> is sufficient white space to right adjust <field name>: to the
+**	same position on each line.
+**
+**	<field name> is one of the field type in phquery.h (e.g., department,
+**	mailcode, etc).
+**
+**	<string> is either the value for <field name>, if <code> == 200 (LR_OK),
+**	or an error message it <code> is anything else.
+**
+**	Parameters:
+**		Field - name of field searched for in calling routine
+**		Value - value of field searched for in calling routine
+**
+**		The Field and Value parameters are for use in error messages.
+**
+**	Returns:
+**		A pointer to a malloc()'ed block of QI_response structs that
+**		is terminated with QI_response.code > 0.
+**
+**	Side Effects:
+**		Creates a block of data that must be later free()'d.
+**		Advances FromQI.
+*/
+
+QIR *
+ReadQI (Field, Value)
+	const char *Field, *Value;
+{
+		int	i, code;
+		int	loopcnt = 1;
+		char	*tp;
+		unsigned size = sizeof (QIR);
+		char	fstring[MAXSTR];	/* field string */
+		char	message[MAXSTR];	/* field value */
+		char	Temp[MAXSTR];
+		int	CurField = -1;
+	register QIR	*Base, *RepChain;
+
+	Base = RepChain = (QIR *) Malloc (size);
+	RepChain->field = -1;
+	Base->message = CPNULL;
+	do {
+		*fstring = *message = CHNULL;
+		if (fgets (Temp, MAXSTR-1, FromQI) == CPNULL) {
+			if (Debug)
+				fprintf (stderr, "premature EOF\n");
+			if (Log)
+				syslog (LOG_ERR, "ReadQI: premature EOF");
+			finis ();
+		}
+		if (Debug > 1)
+			printf ("ReadQI read =%s=\n", Temp);
+		code = atoi (Temp);
+
+		/* Positive response codes are formatted "<code>:<message>" */
+		if (code > 0 || abs(code) >= 400) {
+			RepChain->subcode = NONE_OF_ABOVE;
+			if (sscanf (Temp, "%d:%[^\n]", &RepChain->code, message)
+			    != 2 || *message == CHNULL) {
+				if (Debug)
+					fprintf (stderr, "ReadQI: short #1 sscanf for %s=%s\n", Field, Value);
+				if (Log)
+					syslog (LOG_ERR, "ReadQI: short #1 sscanf read for %s=%s: %m", Field, Value);
+				finis ();
+			}
+		}
+
+		/* Otherwise they are the 4 field type */
+		else if (( i = sscanf (Temp, "%d:%d:%[^:]: %[^\n]",
+		    &RepChain->code, &RepChain->subcode, fstring, message))
+		    != 4 || *fstring == CHNULL || *message == CHNULL) {
+			/*
+			 * The short sscanf() read may be due to a embedded
+			 * newline.  If so, continue for a bit to fill out the
+			 * code field before reading another line.
+			 */
+			if (!(i == 3 && *message == CHNULL)) {
+				if (Debug)
+					fprintf (stderr, "ReadQI: short #2 sscanf for %s=%s, expected 4 got %d\n", Field, Value, i);
+				if (Log)
+					syslog (LOG_ERR, "ReadQI: short #2 sscanf for %s=%s, expected 4 got %d", Field, Value, i);
+				finis ();
+			}
+		}
+
+		/*
+		 * Some fields go over multiple response lines.  In that case
+		 * the field is all blanks.  Copy the response field from the
+		 * previous response if not already set.
+		 */
+		for (tp = fstring; tp <= fstring + (MAXSTR-1) && *tp == ' ';
+		     tp++) ;
+		if (*tp)
+			CurField = RepChain->field = FieldValue (tp);
+		else
+			RepChain->field = CurField;
+
+		/* Now get a new line if message was empty. */
+		if (*message == CHNULL)
+			continue;
+		RepChain->message = Malloc ((unsigned) (strlen (message) + 1));
+		(void) strcpy (RepChain->message, message);
+		if (RepChain->code > 0)
+			break;
+		size += sizeof (QIR);
+		Base = (QIR *) Realloc ((char *) Base, size);
+		RepChain = Base + loopcnt;
+		RepChain->field = -1;
+		loopcnt++;
+	} while (loopcnt);
+	if (Debug)
+		for (RepChain = Base; RepChain->code < 0; RepChain++)
+			printf ("code %d, subcode %d, field %s, message: %s\n",
+			    RepChain->code,
+			    RepChain->subcode,
+			    Fields[RepChain->field].value,
+			    RepChain->message);
+	return (Base);
+}
+/*
+** FieldValue -- Locate argument in Fields[] and return integer value
+**
+**	Parameters:
+**		field -- character string to locate in Fields[]
+**
+**	Returns:
+**		integer value of field or NONE_OF_ABOVE (-1) if not found.
+**
+**	Side Effects:
+**		none
+*/
+
+FieldValue (field)
+	const char	*field;
+{
+		QIF	*QFp = Fields;
+
+	/* Guard against stupid mistakes (so they show up somewhere else?) */
+	if (field == CPNULL || *field == CHNULL)
+		return (NONE_OF_ABOVE);
+
+	/* Replace this with a binary search if profiling peaks here.  XXX */
+	while (QFp <= (Fields + HighKey)) {
+		if (QFp->value && equal (field, QFp->value))
+			break;
+		QFp++;
+	}
+	if (QFp > (Fields + HighKey))
+		return (NONE_OF_ABOVE);
+	return (QFp-Fields);
+}
+/*
+** GarbageCollect -- Free space allocated within QI_response array
+**
+**	Parameters:
+**		QRp -- pointer to array of QI_response
+**
+**	Returns:
+**		None
+**
+**	Side Effects:
+**		none
+*/
+
+void
+GarbageCollect (QRp)
+	QIR	*QRp;
+{
+	QIR	*QRsave = QRp;
+
+	assert (QRp != QIR_NULL);
+	do {
+		if (QRp->message != CPNULL)
+			free (QRp->message);
+		QRp->message = CPNULL;
+	} while ((QRp++)->code < 0);
+	free ((char *) QRsave);
+}
+/*
+** GetFields -- Fill in Fields[] array using information from qi server.
+**
+**	Parameters:
+**		none
+**
+**	Returns:
+**		None
+**
+**	Side Effects:
+**		allocates space for Fields and fills it.
+*/
+#define		FINC		20
+
+void
+GetFields ()
+{
+		int	code = 0;
+		char	Temp[MAXSTR], *p, *val, **pp;
+		int	limit, num;
+	extern	int	HighKey;
+	extern	FILE	*ToQI, *FromQI;
+
+	/* Open the ToQI and FromQI descriptors if necessary */
+	ContactQI();
+	if (Debug)
+		printf("Fetching fields from server\n");
+
+	/* Ask for available fields */
+	fprintf (ToQI, "fields\n");
+	(void) fflush (ToQI);
+
+	Fields = (QIF *) Malloc ((FINC * sizeof(QIF)));
+	bzero ((char *)Fields, (FINC * sizeof(QIF)));
+	bzero(Temp, MAXSTR);
+	limit = FINC - 1;
+
+	/* Read and assign */
+	do {
+		if (fgets (Temp, MAXSTR-1, FromQI) == CPNULL || *Temp == CHNULL) {
+			if (Debug)
+				fprintf (stderr, "GetFields: premature EOF\n");
+			if (Log)
+				syslog (LOG_ERR, "GetFields: premature EOF");
+			finis ();
+		}
+		p = Temp;
+		code = ((val = strsep(&p, ":")) == CPNULL) ? 0 : atoi(val);
+		if (code != -(LR_OK) || code > 0) {
+			if (code == LR_PROGRESS)
+				continue;
+			if (code == LR_OK)
+				break;
+			if (Debug)
+				fprintf (stderr, "GetFields: error %s\n", Temp);
+			if (Log)
+				syslog (LOG_ERR, "GetFields: error %s", Temp);
+			finis ();
+		}
+		num = 0;
+		if (p == CPNULL)
+			break;
+		num = ((val = strsep(&p, ":")) == CPNULL) ? 0 : atoi(val);
+		if (p == CPNULL || (val = strsep(&p, ":")) == CPNULL) {
+			num = 0;
+			break;
+		}
+		if (num > HighKey)
+			HighKey = num;
+		if (num > limit) {
+			int curval = limit + 1;
+
+			Fields = (QIF *)Realloc((char *)Fields, ((num + FINC)*sizeof(QIF)));
+			limit = num + FINC;
+			bzero((char *)(Fields+curval), (limit - curval)*sizeof(QIF));
+			limit--;
+		}
+		if (equal(val, "alias"))
+			AliasVal = num;
+		if (equal(val, "email"))
+			EmailVal = num;
+		if ((Fields+num)->value && strcmp((Fields+num)->value, val)) {
+			if (Debug)
+				fprintf (stderr, "Fields \"%s\" and \"%s\" have same key (%d)\n", (Fields+num)->value, val, num);
+			if (Log)
+				syslog (LOG_ERR, "Fields \"%s\" and \"%s\" have same key (%d)", (Fields+num)->value, val, num);
+			finis ();
+		}
+		else
+			(Fields+num)->value = newstr(val);
+		(Fields+num)->returnOK = 0;
+		for (pp = OKList; *pp != CPNULL; pp++)
+			if (equal(val, *pp))
+				(Fields+num)->returnOK = 1;
+	} while (1);
+	if (Debug > 1)
+		for (num = 0; num <= HighKey; num++)
+			if ((Fields+num)->value)
+				printf("%d\t%s %d\n", num, (Fields+num)->value,
+					(Fields+num)->returnOK);
+}
+/*
+d1449 1
+a1449 1
+	extern	FILE	*ToQI, *FromQI;
+d1451 3
+a1454 6
+	if (ToQI != FILE_NULL)
+		(void) fclose (ToQI);
+	if (FromQI != FILE_NULL)
+		(void) fclose (FromQI);
+	ToQI = FromQI = FILE_NULL;
+
+a1463 64
+#ifdef LACK_STRSEP
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms are permitted
+ * provided that: (1) source distributions retain this entire copyright
+ * notice and comment, and (2) distributions including binaries display
+ * the following acknowledgement:  ``This product includes software
+ * developed by the University of California, Berkeley and its contributors''
+ * in the documentation or other materials provided with the distribution
+ * and in all advertising materials mentioning features or use of this
+ * software. Neither the name of the University nor the names of its
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+#if defined(LIBC_SCCS) && !defined(lint)
+static const char sccsid[] = "@@(#)strsep.c	5.3 (Berkeley) 5/18/90";
+#endif /* LIBC_SCCS and not lint */
+
+/*
+ * Get next token from string *stringp, where tokens are nonempty
+ * strings separated by characters from delim.  
+ *
+ * Writes NULs into the string at *stringp to end tokens.
+ * delim need not remain constant from call to call.
+ * On return, *stringp points past the last NUL written (if there might
+ * be further tokens), or is NULL (if there are definitely no more tokens).
+ *
+ * If *stringp is NULL, strtoken returns NULL.
+ */
+char *
+strsep(stringp, delim)
+	register char **stringp;
+	register const char *delim;
+{
+	register char *s;
+	register const char *spanp;
+	register int c, sc;
+	char *tok;
+
+	if ((s = *stringp) == NULL)
+		return (NULL);
+	for (tok = s;;) {
+		c = *s++;
+		spanp = delim;
+		do {
+			if ((sc = *spanp++) == c) {
+				if (c == 0)
+					s = NULL;
+				else
+					s[-1] = 0;
+				*stringp = s;
+				return (tok);
+			}
+		} while (sc != 0);
+	}
+	/* NOTREACHED */
+}
+#endif /* LACK_STRSEP */
+@
+
+
+1.45
+log
+@Revised version and usage printing.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.44 1992/12/14 20:17:04 paul Exp paul $";
+d91 1
+a91 1
+#define		VERSION		"3.17"
+d109 11
+a119 9
+**	to resolve addresses of the form user@@DOMAINMASTER where DOMAINMASTER
+**	is a m4 define used in building an IDA sendmail.cf file.  At UIUC
+**	this would be user@@uiuc.edu .  The user token is interpreted first
+**	as a QI alias, then as a full name if that fails.  QI is the CSnet
+**	Query Interpreter.  At UIUC it contains the entire campus phone
+**	directory plus the unit directory.  A user entry has about as many
+**	fields as ls has option letters.  The most important are alias, name,
+**	email, phone, department, and curriculum.  In the simplest case,
+**	matching an alias (guaranteed unique) returns the email address.
+d149 1
+a149 1
+**	ph-alias@@DOMAINMASTER.  This is implemented by adding the fields
+d152 1
+a152 1
+**	Reply-To: ph-alias@@DOMAINMASTER
+d507 1
+a507 2
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	{
+d793 1
+a793 2
+		int	napi = 0;
+		int	i;
+d798 1
+a798 1
+		char	*nap[50], nFrom[100];
+d805 12
+d818 3
+a820 3
+	nap[napi++] = "-sendmail";
+	nap[napi++] = "-oi";
+	nap[napi++] = "-f";
+d822 1
+a822 2
+	if (ReplyTo)
+	{
+d829 1
+a829 1
+		nap[napi++] = nFrom;
+d834 1
+a834 1
+		nap[napi++] = From;
+d837 1
+a837 1
+				nap[napi++] = AddrP->new;
+d848 1
+a848 2
+			if (ReplyTo)
+			{
+d856 2
+a857 3
+				AddrP++;
+				for (; AddrP->original != CPNULL; AddrP++)
+					nap[napi++] = AddrP->original;
+d887 1
+a887 1
+	nap[napi] = CPNULL;
+d891 2
+a892 2
+		for (i = 0; nap[i] != CPNULL; i++)
+			printf (" %s", nap[i]);
+d1070 9
+a1078 1
+		New->field = FieldValue(*Lpnt);
+d1181 1
+a1181 3
+	fprintf (ToQI,
+	    "query %s=%s return all\n",
+	    Field, Value);
+d1185 1
+a1185 2
+		syslog (LOG_DEBUG, "querying for %s \"%s\"",
+		    Field, Value);
+d1726 1
+a1726 1
+			Fields = (QIF *)Realloc(Fields, ((num + FINC)*sizeof(QIF)));
+d1728 1
+a1728 1
+			bzero(Fields+curval, (limit - curval)*sizeof(QIF));
+@
+
+
+1.44
+log
+@Changed NEED_STRSEP to LACK_STRSEP to fit with existing usages in
+src/config/*.h
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.43 1992/11/24 21:18:54 paul Exp paul $";
+a299 4
+			PrtUsage ();
+			finis ();
+			break;
+
+d1852 1
+@
+
+
+1.43
+log
+@Un-quoted quoted arguments as might be supplied by DECnet hosts.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.42 1992/10/12 19:24:10 paul Exp paul $";
+d1896 1
+a1896 1
+#ifdef NEED_STRSEP
+d1959 1
+a1959 1
+#endif /* NEED_STRSEP */
+@
+
+
+1.42
+log
+@Cleanup fixes for recent GetFields() change.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.41 1992/10/07 15:16:17 paul Exp paul $";
+d1039 7
+@
+
+
+1.41
+log
+@Revised to report on more error types; to fetch fields from the server
+rather than compiling in; fields to return selected at compile time.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.40 1992/08/26 21:51:28 paul Exp paul $";
+d91 1
+a91 1
+#define		VERSION		"3.16"
+d207 3
+d211 1
+a211 1
+	"usage: %s [-d] [-p] [-l] [-R] [-i] [-x service] [-f FromAddress] address1 [address2]",
+d261 1
+a261 1
+	while ((option = getopt (argc, argv, "f:r:x:pRdli")) != EOF) {
+d267 4
+d412 1
+a412 1
+		assert (NewP->new != CPNULL);
+d427 1
+a427 1
+			assert (NewP->new != CPNULL);
+d483 1
+a483 1
+		char	*QiHost = QI_HOST; /* Initial Qi server */
+d1601 1
+a1601 1
+	while (QFp < (Fields + HighKey)) {
+d1606 1
+a1606 1
+	if (QFp == Fields + HighKey)
+d1662 2
+d1718 9
+a1726 1
+		(Fields+num)->value = newstr(val);
+d1732 5
+@
+
+
+1.40
+log
+@Now logs the field that matched the argument address.
+@
+text
+@d4 1
+a4 1
+ * of Trustees.  
+d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.39 1992/08/19 21:30:30 paul Exp paul $";
+d91 1
+a91 1
+#define		VERSION		"3.15"
+d93 2
+a94 16
+/* Domain to append to ph aliases when creating Reply-To: fields */
+#if !defined(DOMAIN) && defined(REPLYTO)
+# define	DOMAIN		"uiuc.edu"
+#endif	/* !DOMAIN && REPLYTO */
+
+/* Designated server port */
+#ifndef	QISERVICE
+# define	QISERVICE	"ns"
+#endif	/* QISERVICE */
+
+/* Mail transport agent of choice */
+#if defined(BSD4_4)
+#define		SENDMAIL	"/usr/sbin/sendmail"
+#else /* !BSD4_4 */
+#define		SENDMAIL	"/usr/lib/sendmail"
+#endif /* BSD4_4 */
+d154 1
+a154 1
+**	fields be a single, authenticated machine address.  
+a156 21
+/* some handy defines */
+#define		CHNULL			('\0')
+#define		CPNULL			((char *) NULL)
+#define		FILE_NULL		((FILE *) NULL)
+#define		NADD_NULL		((struct NewAddress *) NULL)
+#define		QIR_NULL		((struct QI_response *) NULL)
+
+/* some handy compare operators */
+#define		nequal(s1,s2,n)		(strncasecmp (s1, s2, n) == 0)
+#define		equal(s1,s2)		(strcasecmp (s1, s2) == 0)
+
+/* large string size */
+#define		MAXSTR			250
+
+/* Bit flags to control printing of informative messages in ErrorReturn() */
+#define		NO_MATCH_MSG		0x1
+#define		MULTI_MSG		0x2
+#define		ABSENT_MSG		0x4
+#define		TOO_MANY_MSG		0x8
+#define		PHONE_MSG		0x10
+
+d179 3
+a191 8
+ * The types of nameserver queries to make.
+ * N.B., Query() assumes that "name" is the last token in this list.
+ * Also be sure to duplicate any extra keywords added to TryList to the
+ * query fprintf near the top of Query().
+ */
+char	*TryList[] =	{ "alias", "callsign", "name", CPNULL };
+
+/*
+d201 6
+d208 1
+a208 1
+	"usage: %s [-d] [-p] [-s] [-l] [-R] [-i] [-x service] [-f FromAddress] address1 [address2]",
+d226 1
+a226 1
+QIR * ReadQI __P((FILE *, const char *, const char *));
+d229 1
+d237 2
+d253 2
+d258 1
+a258 1
+	while ((option = getopt (argc, argv, "f:r:x:pRsdli")) != EOF) {
+a274 10
+		    case 's':
+			/* Designated humor section for humor-less CSO types */
+			if (Debug) {
+				fprintf (stderr, "Checking Figure 1 ......");
+				(void) fflush (stderr);
+				sleep (2);
+				fprintf (stderr, "done.\n");
+			}
+			break;
+
+d332 3
+d350 1
+a350 1
+		 * so that sendmail won't send it back to us.  If a 
+d394 1
+a394 1
+	 * is a service forward.
+d581 1
+a581 1
+		QIR	*QIp;			/* Another loop variable */
+d610 11
+d630 3
+a632 2
+			for (QIp = AddrP->QIalt; QIp->code < 0; QIp++)
+				if (abs (QIp->code) == LR_OK)
+d634 1
+a634 1
+					    Fields[QIp->field].value, QIp->message);
+d655 4
+a658 4
+			for (QIp = AddrP->QIalt, SubCode = QIp->subcode;
+			    QIp->code < 0; QIp++) {
+				if (QIp->subcode != SubCode) {
+					SubCode = QIp->subcode;
+d661 2
+a662 1
+				if (abs (QIp->code) == LR_OK)
+d664 1
+a664 1
+					    Fields[QIp->field].value, QIp->message);
+d708 1
+a708 1
+**		Global From pointer is adjusted to point at either a 
+d931 1
+a931 1
+	struct	ReplyCodes		*Cpnt;
+d1136 1
+a1136 1
+**		0 otherwise 
+d1147 1
+a1147 1
+	QIR	*EmailQ, *QIp;	/* For handling ReadQI() responses */
+d1155 1
+a1155 1
+	    "query %s=%s return name alias callsign phone department curriculum email\n",
+d1181 3
+a1183 1
+	 * 5XX:Other errors
+d1185 1
+a1185 1
+	EmailQ = ReadQI (FromQI, Field, Value);
+d1194 1
+a1194 1
+		EmailQ = ReadQI (FromQI, Field, Value);
+d1200 1
+a1200 1
+	else if ((i > 399 && i < 500) || (i >= 500 && i != 501 && i != 502))
+d1221 2
+a1222 2
+	for (QIp = EmailQ; QIp->code < 0; QIp++)
+		if (QIp->subcode > 1) {
+d1229 10
+d1240 7
+a1246 2
+	QIp = PickField (EmailQ, EMAIL);
+	if (QIp->field != EMAIL) {
+d1257 2
+a1258 3
+	New->code = abs (QIp->code);
+	New->QIalt = EmailQ;
+	switch (abs (QIp->code)) {
+d1260 1
+a1260 1
+		New->new = CodeString (QIp->code);
+d1264 1
+a1264 1
+		New->new = QIp->message;
+d1287 1
+a1287 1
+			    QIp->code);
+d1289 1
+a1289 1
+			syslog (LOG_ERR, "Query: %s: unexpected code %d", Field, QIp->code);
+d1322 1
+a1322 1
+		QIR	*AliasQ, *QIp;
+d1353 1
+a1353 1
+	/* Send the query 
+d1386 1
+a1386 1
+	AliasQ = ReadQI (FromQI, "email", From);
+d1395 1
+a1395 1
+		AliasQ = ReadQI (FromQI, "email", From);
+d1409 2
+a1410 2
+	for (QIp = AliasQ; QIp->code < 0; QIp++)
+		if (QIp->subcode > 1) {
+d1419 4
+a1422 4
+	QIp = AliasQ;
+	assert (abs (QIp->code) == LR_OK && QIp->field == ALIAS);
+	New->code = abs (QIp->code);
+	New->new = QIp->message;
+a1461 1
+**		InFile - stream pointer for input
+d1477 1
+a1477 2
+ReadQI (InFile, Field, Value)
+	FILE	*InFile;
+d1495 1
+a1495 1
+		if (fgets (Temp, MAXSTR-1, InFile) == CPNULL) {
+d1507 1
+a1507 1
+		if (code > 0) {
+d1587 1
+a1587 1
+	struct	QI_fields	*QIp = Fields;
+d1594 2
+a1595 2
+	do {
+		if (equal (field, QIp->value))
+d1597 5
+a1601 2
+	} while ((++QIp)->key != NONE_OF_ABOVE);
+	return (QIp->key);
+d1607 1
+a1607 1
+**		QIp -- pointer to array of QI_response
+d1617 29
+a1645 2
+GarbageCollect (QIp)
+	QIR	*QIp;
+d1647 8
+a1654 1
+	QIR	*QIsave = QIp;
+d1656 10
+a1665 1
+	assert (QIp != QIR_NULL);
+d1667 48
+a1714 5
+		if (QIp->message != CPNULL)
+			free (QIp->message);
+		QIp->message = CPNULL;
+	} while ((QIp++)->code < 0);
+	free ((char *) QIsave);
+d1867 64
+@
+
+
+1.39
+log
+@include time.h when STANDALONE defined.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.38 1992/08/04 18:26:08 paul Exp paul $";
+d91 1
+a91 1
+#define		VERSION		"3.14"
+d443 3
+a445 2
+			printf ("code %d, %s --> %s\n",
+			    NewP->code, NewP->original, NewP->new);
+d447 2
+a448 2
+			syslog (LOG_INFO, "%s --> %s",
+			    NewP->original, NewP->new);
+d458 3
+a460 2
+				printf ("code %d, %s --> %s\n",
+				    NewP->code, NewP->original, NewP->new);
+d462 3
+a464 2
+				syslog (LOG_INFO, "%s --> %s",
+				    NewP->original, NewP->new);
+d1074 1
+@
+
+
+1.38
+log
+@Allow for compilation w.o. sendmail.h if _DSTANDALONE defined.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.37 1992/05/22 18:37:54 paul Exp paul $";
+d47 5
+@
+
+
+1.37
+log
+@Eliminate many #include directives in favor of a single #include "sendmail.h"
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.36 1992/05/05 18:29:06 paul Exp paul $";
+d44 22
+a65 1
+#include "sendmail.h"
+@
+
+
+1.36
+log
+@Made handling of embedded newlines more robust.
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.35 1992/03/09 00:16:47 paul Exp paul $";
+d44 2
+a45 1
+#include <stdio.h>
+a46 1
+#include <sys/types.h>
+d49 1
+a49 2
+    || defined(BSD4_4) || defined(ibm032)
+# include <sys/time.h>
+a61 10
+#include <netdb.h>
+#include <ctype.h>
+#include <sys/socket.h>
+#include <sys/syslog.h>
+#include <sys/errno.h>
+#include <sys/wait.h>
+#include <netinet/in.h>
+#include <sysexits.h>
+#include <strings.h>
+#include <cdefs.h>
+a63 5
+#ifdef SYSV
+# define	index		strchr
+# define	rindex		strrchr
+# define	bcopy(h,a,l)	memcpy(a,h,l)
+#endif /* SYSV */
+d65 1
+a65 1
+#define		VERSION		"3.13"
+@
+
+
+1.35
+log
+@Replaced "REGENTS" with "TRUSTEES". *sigh*
+@
+text
+@d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.34 1992/02/23 14:36:15 paul Exp paul $";
+d72 1
+d81 1
+a81 1
+#define		VERSION		"3.12"
+d239 17
+a255 34
+void ErrorReturn(NADD *, FILE *, char *[]);
+void FindFrom(FILE *);
+void ReMail(NADD *, FILE *, char *[]);
+char * CodeString(int);
+FILE * OpenTemp(const char *);
+QIR * PickField (QIR *, int);
+void Query(NADD *);
+int SendQuery(NADD *, const char *, const char *);
+void RevQuery(NADD *);
+QIR * ReadQI(FILE *, const char *, const char *);
+int FieldValue(const char *);
+void GarbageCollect(QIR *);
+char * Malloc(unsigned int);
+void PrintMsg(FILE *, char *[]);
+char * Realloc(char *, unsigned int);
+void PrtUsage();
+void finis();
+#else /* !__STDC__ */
+# define	const
+void ErrorReturn();
+void FindFrom();
+void ReMail();
+char * CodeString();
+FILE * OpenTemp();
+QIR * PickField ();
+void Query();
+int SendQuery();
+void RevQuery();
+QIR * ReadQI();
+int FieldValue();
+void GarbageCollect();
+char * Malloc();
+void PrintMsg();
+char * Realloc();
+a257 1
+#endif /* !__STDC__ */
+d1482 1
+a1517 5
+			if (Debug)
+				fprintf (stderr, "ReadQI: short #2 sscanf for %s=%s, expected 4 got %d\n", Field, Value, i);
+			if (Log)
+				syslog (LOG_ERR, "ReadQI: short #2 sscanf for %s=%s, expected 4 got %d", Field, Value, i);
+
+d1523 5
+a1527 1
+			if (!(i == 3 && *message == CHNULL))
+d1529 1
+d1537 6
+a1542 8
+		if (RepChain->field == -1) {
+			for (tp = fstring; tp <= fstring + (MAXSTR-1) &&
+					  *tp == ' '; tp++) ;
+			if (RepChain->code < 0 && *tp == CHNULL)
+				RepChain->field = (RepChain - 1)->field;
+			else
+				RepChain->field = FieldValue (tp);
+		}
+@
+
+
+1.34
+log
+@New copyright statement lifted from Berkeley code.
+@
+text
+@d22 1
+a22 1
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+d25 1
+a25 1
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.33 1992/02/20 22:38:13 paul Exp paul $";
+@
+
+
+1.33
+log
+@Rip out last of copyleft.
+@
+text
+@d3 1
+a3 1
+ * Copyright (C) 1991 by Paul Pomes and the University of Illinois Board
+d6 15
+a20 13
+ * Redistribution and use in source and binary forms are permitted
+ * provided that: (1) source distributions retain this entire copyright
+ * notice and comment, and (2) distributions including binaries display
+ * the following acknowledgement:  ``This product includes software
+ * developed by the University of Illinois, Urbana and its contributors''
+ * in the documentation or other materials provided with the distribution
+ * and in all advertising materials mentioning features or use of this
+ * software. Neither the name of the University nor the names of its
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+d22 12
+d41 1
+a41 1
+static char rcsid[] = "@@(#)$Id: phquery.c,v 1.32 1992/02/17 23:16:19 paul Exp paul $";
+@
+
+
+1.32
+log
+@Punted copyleft.
+@
+text
+@d27 1
+a27 1
+static char rcsid[] = "@@(#)$Id$";
+d239 1
+a239 1
+void PrtUsage(int);
+a262 46
+char	*CopyLeft[] = {
+ " Written by Paul Pomes, University of Illinois, Computing Services Office",
+ " Copyright (C) 1989 by Paul Pomes and the University of Illinois Board",
+ " of Trustees",
+ " ",
+ " This program is distributed in the hope that it will be useful, but without",
+ " any warranty.  No author or distributor accepts responsibility to anyone",
+ " for the consequences of using it, no matter how awful, or for whether it",
+ " serves any particular purpose or works at all, unless s/he says so in",
+ " writing.",
+ " ",
+ " Everyone is granted permission to copy, modify and redistribute this",
+ " program under the following conditions:",
+ " ",
+ "    Permission is granted to anyone to make or distribute copies of program",
+ "    source code, either as received or modified, in any medium, provided",
+ "    that all copyright notices, permission and nonwarranty notices are",
+ "    preserved, and that the distributor grants the recipient permission for",
+ "    further redistribution as permitted by this document, and gives him and",
+ "    points out to him an exact copy of this document to inform him of his",
+ "    rights.",
+ " ",
+ "    Permission is granted to distribute this program in compiled or",
+ "    executable form under the same conditions applying for source code,",
+ "    provided that either",
+ " ",
+ "    A. it is accompanied by the corresponding machine-readable source code,",
+ "       or",
+ "    B. it is accompanied by a written offer, with no time limit, to give",
+ "       anyone a machine-readable copy of the corresponding source code in",
+ "       return for reimbursement of the cost of distribution.  This written",
+ "       offer must permit verbatim duplication by anyone.",
+ "    C. it is distributed by someone who received only the executable form,",
+ "       and is accompanied by a copy of the written offer of source code",
+ "       which he received along with it.",
+ " ",
+ " In other words, you are welcome to use, share and improve this program.",
+ " You are forbidden to forbid anyone else to use, share and improve what",
+ " you give them.   Help stamp out software-hoarding!",
+ " ",
+ "UUCP:     {att,iuvax,uunet}!uiucuxc!paul     ICBM: 40 06 47 N / 88 13 35 W",
+ "Internet, BITNET: paul@@uxc.cso.uiuc.edu      Phone: 217 333 6262",
+ "US Mail:  UofIllinois, CSO, 1304 W Springfield Ave, Urbana, IL  61801-2910",
+ CPNULL
+};
+
+d325 1
+a325 1
+			PrtUsage (1);
+d330 1
+a330 1
+			PrtUsage (0);
+d1723 1
+a1723 1
+**		FullText -- prints the copyright statement if set
+d1733 1
+a1733 2
+PrtUsage (FullText)
+	int	FullText;
+a1741 2
+	if (FullText)
+		PrintMsg (stdout, CopyLeft);
+@
+
+
+1.31
+log
+@Re-invoke sendmail with -oi flag (urp!).
+@
+text
+@d2 3
+a4 3
+ * Copyright (c) 1989 Paul Pomes
+ * Copyright (c) 1989 University of Illinois Board of Trustees
+ * All rights reserved.
+d7 9
+a15 10
+ * provided that the above copyright notice and this paragraph are
+ * duplicated in all such forms and that any documentation,
+ * advertising materials, and other materials related to such
+ * distribution and use acknowledge that the software was developed
+ * by the University of Illinois, Urbana.  In addition, redistribution
+ * and use must conform to the terms listed in the CopyLeft text below.
+ *
+ * The name of the University may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+d18 6
+a23 1
+ * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+d27 1
+a27 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.30 1991/11/06 17:26:19 paul Exp paul $";
+d233 1
+a233 1
+QIR * ReadQI(FILE *);
+d565 1
+a565 1
+			fprintf (stderr, "server \"%s\" unknown - using 105", QISERVICE);
+d579 1
+a579 1
+			fprintf (stderr, "ContactQI: can't create socket");
+d795 1
+a795 1
+						syslog (LOG_ERR, "Unbalanced <> in From: address\n");
+d820 1
+a820 1
+			syslog (LOG_ERR, "No From: address in message\n");
+d1218 1
+a1218 1
+		syslog (LOG_DEBUG, "querying for %s \"%s\"\n",
+d1241 1
+a1241 1
+	EmailQ = ReadQI (FromQI);
+d1250 1
+a1250 1
+		EmailQ = ReadQI (FromQI);
+d1292 1
+a1292 1
+			fprintf (stderr, "Email field for %s (%s) in ph/qi database is present but null",
+d1403 1
+a1403 1
+		syslog (LOG_DEBUG, "querying alias for \"%s\"\n", From);
+d1428 1
+a1428 1
+	AliasQ = ReadQI (FromQI);
+d1437 1
+a1437 1
+		AliasQ = ReadQI (FromQI);
+d1505 2
+d1508 2
+d1520 1
+a1520 1
+ReadQI (InFile)
+d1522 1
+d1555 1
+a1555 1
+					fprintf (stderr, "ReadQI: short #1 sscanf\n");
+d1557 1
+a1557 1
+					syslog (LOG_ERR, "ReadQI: short #1 sscanf read: %m");
+d1567 1
+a1567 1
+				fprintf (stderr, "ReadQI: short #2 sscanf, expected 4 got %d\n", i);
+d1569 1
+a1569 1
+				syslog (LOG_ERR, "ReadQI: short #2 sscanf, expected 4 got %d", i);
+@
+
+
+1.30
+log
+@Handle other 5XX errors.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.29 1991/10/22 16:13:03 paul Exp paul $";
+d62 1
+a62 1
+#define		VERSION		"3.11"
+d634 1
+a634 1
+char	*ap[] = { "-sendmail", "-f", "MAILER-DAEMON", "-t", 0};
+d859 1
+@
+
+
+1.29
+log
+@Completely hide the ReplyTo: function inside #ifdef REPLYTO wrapper.
+Better parse of From: lines w.o. <>s.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.28 1991/09/01 16:09:44 paul Exp paul $";
+d62 1
+a62 1
+#define		VERSION		"3.10"
+d1233 2
+d1251 1
+a1251 1
+	else if (i > 399 && i < 500)
+d1418 2
+d1435 1
+a1435 1
+	/* Handle the 501, 502 codes */
+@
+
+
+1.28
+log
+@Corrected logic bug that caused premature termination of scan when
+a field was continued.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.27 1991/08/19 03:22:20 paul Exp paul $";
+d62 1
+a62 1
+#define		VERSION		"3.9"
+d65 1
+a65 1
+#ifndef	DOMAIN
+d67 1
+a67 1
+#endif	/* DOMAIN */
+d171 1
+d174 1
+d333 1
+d336 1
+d414 1
+d460 1
+d797 2
+a798 2
+				 * Punt to postmaster.  If there's too
+				 * many, I'll fix this someday.
+d800 8
+a807 5
+				if (Debug)
+					fprintf (stderr, "No <> in From: address\n");
+				if (Log)
+					syslog (LOG_ERR, "No <> in From: address\n");
+				From = "Postmaster";
+d812 1
+a812 1
+	if (From == CPNULL) {
+d819 2
+a851 1
+	extern	int	ReplyTo;
+d860 3
+a862 7
+	if (ReplyTo == 0) {
+		nap[napi++] = From;
+		for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+			if (abs (AddrP->code) == LR_OK)
+				nap[napi++] = AddrP->new;
+	}
+	else {
+d871 8
+d887 18
+a904 1
+			if (ReplyTo == 0) {
+a924 13
+			else if (ReplyTo == 1) {
+
+				/* Add the Reply-To: fields */
+				AddrP = Addr;
+				if (fprintf (Nmsg, "Comment: Reply-To: added by phquery (V%s)\n", VERSION) < 0)
+					finis ();
+				fprintf (Nmsg, "Resent-From: postmaster@@%s\n", HostNameBuf);
+				fprintf (Nmsg, "Reply-To: %s\n", AddrP->new);
+				AddrP++;
+				for (; AddrP->original != CPNULL; AddrP++)
+					nap[napi++] = AddrP->original;
+				pid++;
+			}
+a1357 1
+	extern	int	ReplyTo;
+d1433 1
+d1435 1
+d1444 1
+d1446 1
+@
+
+
+1.27
+log
+@System 5 changes wrapped with #ifdef SYSV .
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.26 1991/08/17 17:45:18 paul Exp paul $";
+d850 1
+a850 1
+	if (ReplyTo == 0)
+d855 1
+d1570 2
+a1571 1
+	} while (loopcnt++);
+@
+
+
+1.26
+log
+@Chop email field to a single address.  Print CopyLeft only for -i flag.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.25 1991/05/10 02:21:27 paul Exp paul $";
+d56 5
+@
+
+
+1.25
+log
+@Eliminated limit on returned message size.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.24 1991/05/08 17:05:59 paul Exp paul $";
+d57 1
+a57 1
+#define		VERSION		"3.8"
+a353 2
+			if (Debug == 1)
+				PrtUsage (1);
+d470 1
+a470 1
+			syslog (LOG_DEBUG, "%s --> %s",
+d484 1
+a484 1
+				syslog (LOG_DEBUG, "%s --> %s",
+d1276 17
+@
+
+
+1.24
+log
+@Ackk!  vfork() on SPARCs is very anti-social when the -O compile option
+is used.  Modified register values get sent back to the parent.  Fixed
+by converting all instances of vfork() to fork().
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.23 1991/04/03 22:24:44 paul Exp paul $";
+d57 1
+a57 1
+#define		VERSION		"3.7"
+a638 1
+		int	ByteLimit = 15000;	/* Limit returned msg size */
+d716 1
+a716 2
+	while ((i = fread (Buf, sizeof (char), MAXSTR, Omsg)) != 0
+	    && ByteLimit > 0) {
+a718 2
+		else
+			ByteLimit -= i;
+@
+
+
+1.23
+log
+@Handle case when qi has a present but null email entry for someone.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.22 1991/03/18 15:38:00 paul Exp paul $";
+d197 1
+a197 1
+ * Setting Debug disables vfork/execve in ReMail.
+d616 1
+a616 1
+**		envp -- environment pointer for vfork/execve
+d636 1
+a636 1
+		int	pid;			/* For vfork() */
+d735 1
+a735 1
+	 * vfork, then execve sendmail for delivery
+d739 1
+a739 1
+	if (! Debug && (pid = vfork ()) == -1)
+d819 1
+a819 1
+**		envp -- environment pointer for vfork/execve
+d936 1
+a936 1
+	 * vfork, then execve sendmail for delivery
+d940 1
+a940 1
+	if (! Debug && (pid = vfork ()) == -1)
+@
+
+
+1.22
+log
+@Broke UIUC-specific part into a messages.h file.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.21 1991/03/16 17:28:21 paul Exp paul $";
+d472 1
+a472 1
+			syslog (LOG_INFO, "%s --> %s",
+d486 1
+a486 1
+				syslog (LOG_INFO, "%s --> %s",
+d1262 11
+a1272 1
+	assert (QIp->field == EMAIL);
+@
+
+
+1.21
+log
+@ANSIfied.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.21 1991/03/05 19:08:39 paul Exp $";
+d55 1
+d65 3
+a67 1
+#define		QISERVICE	"ns"
+a156 62
+
+/* Messages for ErrorReturn().  How simple, yet stupid, do we have to be? */
+
+char	*NoMatchMsg[] = {
+ " The message, \"No matches to nameserver query,\" is generated whenever",
+ " the ph nameserver fails to locate either a ph alias or name field that",
+ " matches the supplied name.  The usual causes are typographical errors or",
+ " the use of nicknames.  Recommended action is to use the ph program to",
+ " determine the correct ph alias for the individuals addressed.  If ph is",
+ " not available, try sending to the most explicit form of the name, e.g.,",
+ " if mike-fox fails, try michael-j-fox.",
+ " ",
+ CPNULL
+};
+
+char	*MultiMsg[] = {
+ " The message, \"Multiple matches found for nameserver query,\" is generated",
+ " whenever the ph nameserver finds multiple matches for the supplied name.",
+ " The steering philosophy is that mail should be delivered only to the",
+ " addressed individual.  Since the supplied information is insufficient",
+ " to locate a specific individual, your message is being returned.",
+ " To help you locate the correct individual, selected fields from the",
+ " possible matches are included below.  The alias field is the only one",
+ " guaranteed unique within a given ph community.",
+ " ",
+ CPNULL
+};
+
+char	*TooManyMsg[] = {
+ " The message, \"Too many matches found to nameserver query,\" is generated",
+ " whenever the supplied name or alias matched over twenty ph nameserver",
+ " entries.  In this case no information will be returned about possible",
+ " matches.  Recommended action is to supply more specific names, e.g.,",
+ " john-b-smith instead of john-smith, or use the per-person unique ph alias.",
+ " You may have thought that you had used a ph alias and not a name.  This is",
+ " an artifact of the address resolution process.  If the address fails as an",
+ " alias, it is retried first as a callsign and then as a name.  While aliases",
+ " are guaranteed unique, names can match multiple individuals depending on",
+ " how common the name is.",
+ " ",
+ CPNULL
+};
+
+char	*AbsentMsg[] = {
+ " The message, \"E-mail field not present in nameserver entry,\" is generated",
+ " whenever the ph nameserver matched the supplied name or alias with an",
+ " entry that lacked an email address field.  In this case no delivery can",
+ " be made.  Recommended action is to contact the individual by alternate",
+ " means via the information included below.  If the individual already has",
+ " an email address, s/he should edit their ph entry to include it.",
+ " ",
+ CPNULL
+};
+
+char	*PhoneMsg[] = {
+ " A note regarding phone numbers: the UIUC area code is 217.  There are three",
+ " exchanges used by UIUC: 333, 332, and 244.  UIUC phone numbers are often",
+ " abbreviated by omitting the first two digits of the exchange.  Thus the",
+ " example phone number 3-6262 can be reached by dialing 1 217 333 6262.",
+ " ",
+ CPNULL
+};
+@
+
+
+1.20
+log
+@Changes for 4.4 BSD and to handle backup QI server (QI_ALT in Makefile).
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.19 1990/12/11 12:25:50 paul Exp paul $";
+d31 1
+a31 1
+    || defined(BSD4_4)
+d37 1
+a37 1
+# if defined(sun) || defined(convex)
+d56 1
+a56 1
+#define		VERSION		"3.6"
+d269 39
+a307 3
+char	*Malloc(), *Realloc();
+#if !defined(__STDC__)
+char	*malloc(), *realloc();
+d309 1
+a369 1
+	extern	FILE	*OpenTemp();
+d587 1
+d686 1
+d688 3
+a690 3
+NADD	*Addr;
+FILE	*Omsg;
+char	*envp[];
+a701 1
+	extern	FILE	*OpenTemp();
+d801 1
+a801 1
+		pid = wait(0);
+d822 1
+d824 1
+a824 1
+FILE	*MsgFile;
+d887 1
+d889 3
+a891 3
+NADD	*Addr;
+FILE	*Omsg;
+char	*envp[];
+a899 1
+	extern	FILE	*OpenTemp();
+d930 1
+a930 1
+			int	LineLength = 0;
+d970 1
+a970 1
+	nap[napi++] = CPNULL;
+d1002 1
+a1002 1
+		pid = wait(0);
+d1024 1
+a1024 1
+int	code;
+d1051 1
+a1051 1
+char	*Name;
+d1088 2
+a1089 2
+QIR	*qp;
+int	field;
+d1116 1
+d1118 1
+a1118 1
+NADD	*New;
+d1121 4
+a1124 1
+	char	*sp, *sp2;		/* work ptrs for scratch */
+d1162 1
+d1164 1
+d1238 2
+a1239 2
+NADD	*New;
+char	*Field, *Value;
+a1242 2
+	QIR	*ReadQI();
+	char	*Realloc();
+d1366 1
+d1368 1
+a1368 1
+NADD	*New;
+a1374 1
+	extern	QIR	*ReadQI();
+d1519 1
+a1519 1
+FILE	*InFile;
+a1528 1
+		char	*Malloc(), *Realloc();
+d1626 1
+a1626 1
+char	*field;
+d1654 1
+d1656 1
+a1656 1
+QIR	*QIp;
+a1666 1
+	QIsave = QIR_NULL;
+d1684 1
+a1684 1
+unsigned	size;			/* Bytes to get */
+d1688 1
+a1688 1
+	if ((cp = malloc (size)) == CPNULL) {
+d1714 1
+d1716 2
+a1717 2
+FILE	*OutFile;
+char	*Msg[];
+d1742 2
+a1743 2
+char		*ptr;
+unsigned	size;
+d1747 1
+a1747 1
+	if ((cp = realloc (ptr, size)) == CPNULL) {
+d1774 1
+d1776 1
+a1776 1
+int	FullText;
+a1784 1
+	which = 0;
+d1801 1
+@
+
+
+1.19
+log
+@Corrected handling of hyphenated names.  Added WILDNAMES #define for more
+aggressive matching of full name lookups.  See the comments in phquery.h.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.18 90/12/10 21:58:27 paul Exp Locker: paul $";
+d30 2
+a31 1
+#if defined(pyr) || defined(is68k) || defined(NeXT) || defined(__convex__)
+d56 1
+a56 1
+#define		VERSION		"3.5"
+d67 3
+d71 1
+a553 1
+		int	sav_errno;	/* errno value preserver */
+d557 1
+a568 12
+	/* Get a socket for the QI connection */
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	{
+		if (Debug)
+			fprintf (stderr, "ContactQI: can't create socket");
+	severe:
+		if (Log)
+			syslog (LOG_ERR, "ContactQI: cannot get connection");
+		finis();
+	}
+	QI.sin_family = AF_INET;
+
+d579 12
+d593 1
+a593 1
+	if (Host = gethostbyname (QI_HOST)) {
+d596 7
+a602 3
+		if (Debug)
+			fprintf (stderr, "host name lookup failure: \"%s\"", QI_HOST);
+		goto severe;
+d606 7
+a612 3
+	if (connect(sock, (struct sockaddr *) &QI, sizeof (QI)) < 0)
+	{
+		sav_errno = errno;
+d614 4
+a617 31
+		errno = sav_errno;
+		switch (errno)
+		{
+		  case EISCONN:
+		  case ETIMEDOUT:
+		  case EINPROGRESS:
+		  case EALREADY:
+		  case EADDRINUSE:
+		  case EHOSTDOWN:
+		  case ENETDOWN:
+		  case ENETRESET:
+		  case ENOBUFS:
+		  case ECONNREFUSED:
+		  case ECONNRESET:
+		  case EHOSTUNREACH:
+		  case ENETUNREACH:
+			/* There are others, I'm sure..... */
+			finis ();
+
+		  case EPERM:
+			/* Why is this happening? */
+			if (Debug)
+				fprintf (stderr, "ContactQI: funny failure, addr=%lx, port=%x",
+				QI.sin_addr.s_addr, QI.sin_port);
+			finis ();
+
+		  default:
+			if (Debug)
+				fprintf (stderr, "ContactQI: default failure, addr=%lx, port=%x",
+				QI.sin_addr.s_addr, QI.sin_port);
+			finis ();
+d619 2
+d622 1
+@
+
+
+1.18
+log
+@Fixed handling of imbedded newlines.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.17 90/12/10 14:09:03 paul Exp Locker: paul $";
+d55 1
+a55 1
+#define		VERSION		"3.4"
+a248 3
+/* Characters that can act as separators in full name requests */
+char	PunctChars[] =	"-_.,+=#$";
+
+d373 1
+a373 1
+				Usage (1);
+d378 1
+a378 1
+			Usage (1);
+d383 1
+a383 1
+			Usage (0);
+d836 7
+d885 3
+a918 1
+						nap[napi++] = AddrP->new;
+a921 3
+				for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+					if (abs (AddrP->code) == LR_OK)
+						nap[napi++] = AddrP->new;
+d1071 1
+a1071 1
+**  Query -- Make calls to the local CSnet central name server
+d1073 5
+a1077 6
+**	Takes a alias, call-sign, or full name, as known by the CSnet central
+**	name server Query Interpreter, and looks up the corresponding
+**	email address "usercode@@host".  Cases where the alias/name aren't
+**	found, are ambiguous, or lack an email address return a message
+**	instead of the address.  Additional information is returned as an
+**	array of QIR records pointed to by New->QIalt.
+a1085 1
+**		Will call ContactQI() if the connection is closed.
+a1086 2
+**		Looks up the user specified in nbuf.  If the name is
+**		found, replace the contents of nbuf with the email address.
+d1092 4
+a1095 12
+		QIR	*EmailQ, *QIp;	/* For handling ReadQI() responses */
+		char	scratch[MAXSTR]; /* copy of FullName w.o. punct */
+		char	*sp;		/* work ptr for scratch */
+		char	**Lpnt;		/* Loop pointer for TryList */
+		int	multi;		/* Set if more than 1 person */
+		int	i;		/* good ol' i */
+	extern	char	*TryList[];
+	extern	FILE	*ToQI, *FromQI;
+	extern	char	PunctChars[];
+	extern	int	ReplyTo;
+		QIR	*ReadQI();
+		char	*Realloc();
+a1096 3
+	/* Open the ToQI and FromQI descriptors if necessary */
+	ContactQI();
+
+d1101 1
+a1101 3
+	for (Lpnt = TryList; *Lpnt != CPNULL; Lpnt++) {
+		(void) strcpy (scratch, New->original);
+
+d1104 10
+a1113 1
+		 * characters if testing for name.
+d1115 1
+a1115 7
+		if (equal (*Lpnt, "name"))
+			for (i = 0; PunctChars[i] != CHNULL; i++) {
+				if (PunctChars[i] == ' ')
+					continue;
+				while ((sp = index (scratch, PunctChars[i])) != CPNULL)
+					*sp = ' ';
+			}
+d1117 6
+a1122 10
+		/*
+		 * Convert punctuation/separators in scratch to hyphen
+		 * characters if testing for alias.
+		 */
+		else if (equal (*Lpnt, "alias"))
+			for (i = 0; PunctChars[i] != CHNULL; i++) {
+				if (PunctChars[i] == '-')
+					continue;
+				while ((sp = index (scratch, PunctChars[i])) != CPNULL)
+					*sp = '-';
+d1124 2
+d1127 1
+a1127 29
+		/* Make a query out of the arguments */
+		fprintf (ToQI,
+		    "query %s=%s return name alias callsign phone department curriculum email\n",
+		    *Lpnt, scratch);
+		if (Debug)
+			printf ("querying for %s \"%s\"\n", *Lpnt, scratch);
+		if (Log)
+			syslog (LOG_DEBUG, "querying for %s \"%s\"\n",
+			    *Lpnt, scratch);
+		(void) fflush (ToQI);
+		
+		/*
+		 * Grab the responses and let the fun begin.
+		 * The possibilities are:
+		 *
+		 * 102:There were N matches to your query
+		 * -200:1:         alias: Paul-Pomes
+		 * -200:1:          name: pomes paul b
+		 * -200:1:      callsign: See Figure 1
+		 * -508:1:    curriculum: Not present in entry.
+		 * -200:1:    department: Computing Services Office
+		 * -200:1:         email: paul@@uxc.cso.uiuc.edu
+		 * 200:Ok.
+		 *
+		 * 501:No matches to your query.
+		 *
+		 * 502:Too many matches to request.
+		 */
+		EmailQ = ReadQI (FromQI);
+d1129 28
+a1156 8
+		/*
+		 * If we read a preliminary response (99<x<200), garbage
+		 * collect and read some more.
+		 */
+		i = abs (EmailQ->code);
+		if (i > 99 && i < 200) {
+			GarbageCollect (EmailQ);
+			EmailQ = ReadQI (FromQI);
+d1160 2
+a1161 1
+		 * If we read a temporary error, be a nice program and defer.
+d1163 6
+a1168 13
+		else if (i > 399 && i < 500)
+			finis ();
+
+		/*
+		 * No matches at all?  Too many?  Note that single line errors
+		 * will have code > 0.  This test should only be done for the
+		 * last iteration of this loop.
+		 */
+		if (EmailQ->code > 0) {
+			if (equal (*Lpnt, "name")) {
+				New->new = CodeString (EmailQ->code);
+				New->code = EmailQ->code;
+				New->QIalt = QIR_NULL;
+d1170 1
+a1170 5
+			}
+			else {
+				GarbageCollect (EmailQ);
+				continue;
+			}
+d1172 31
+d1204 8
+a1211 2
+		/* anything else must be multi-line */
+		assert (EmailQ->code < 0);
+d1213 2
+a1214 6
+		/* Are there multiple responses (subcode > 1)? */
+		for (QIp = EmailQ, multi = 0; QIp->code < 0; QIp++)
+			if (QIp->subcode > 1) {
+				multi++;
+				break;
+			}
+d1216 29
+a1244 10
+		/* If one person, handle as single match alias */
+		if (multi == 0) {
+			QIp = PickField (EmailQ, EMAIL);
+			assert (QIp->field == EMAIL);
+			New->code = abs (QIp->code);
+			New->QIalt = EmailQ;
+			switch (abs (QIp->code)) {
+			    case LR_ABSENT:
+				New->new = CodeString (QIp->code);
+				return;
+d1246 9
+a1254 3
+			    case LR_OK:
+				New->new = QIp->message;
+				return;
+d1256 5
+a1260 9
+			    default:
+				if (Debug)
+					fprintf (stderr, "unexpected code %d\n",
+					    QIp->code);
+				if (Log)
+					syslog (LOG_ERR, "Query: %s: unexpected code %d", *Lpnt, QIp->code);
+				finis ();
+			}
+		}
+d1262 20
+a1281 2
+		/* Multiple matches. */
+		else {
+d1285 1
+a1285 1
+			return;
+d1287 22
+a1308 1
+		GarbageCollect (EmailQ);
+d1310 2
+d1728 1
+a1728 1
+** Usage -- Print how to use message
+d1743 1
+a1743 1
+Usage (FullText)
+@
+
+
+1.17
+log
+@Portability enhancements
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.16 90/06/11 10:52:40 paul Exp Locker: paul $";
+d55 1
+a55 1
+#define		VERSION		"3.3"
+d270 1
+a270 1
+#endif /* !__STDC__ && !__stdc__ */
+d314 1
+a314 1
+ "US Mail:  UofIllinois, CSO, 1304 W Springfield Ave, Urbana, IL  61801-2987",
+d375 2
+a376 1
+			Usage (1);
+d1437 1
+d1473 8
+a1480 1
+			finis ();
+d1486 1
+a1486 1
+		 * previous response.
+d1488 12
+a1499 6
+		for (tp = fstring; tp <= fstring + (MAXSTR-1) && *tp == ' '; tp++)
+			;
+		if (RepChain->code < 0 && *tp == CHNULL)
+			RepChain->field = (RepChain - 1)->field;
+		else
+			RepChain->field = FieldValue (tp);
+d1507 1
+@
+
+
+1.16
+log
+@Simplify headers, add support for service lookups (fax, etc).
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.15 90/01/30 23:51:30 paul Exp Locker: paul $";
+d29 2
+a30 1
+#ifdef	pyr
+d35 2
+a36 2
+#else	/* ! pyr */
+# ifdef sun
+d40 1
+a40 1
+# else	/* ! sun */
+d42 2
+a43 2
+# endif	sun
+#endif	pyr
+d55 1
+a55 1
+#define		VERSION		"3.2"
+d267 5
+a330 1
+	extern	char	*Malloc(), *rindex(), *Realloc();
+d684 2
+a685 1
+	fprintf (Emsg, "To: %s\n", From);
+d777 1
+a777 1
+		pid = wait((union wait *)NULL);
+d901 2
+a902 1
+				fprintf (Nmsg, "X-PH(%s)-To:", VERSION);
+d926 2
+a927 1
+				fprintf (Nmsg, "Comment: Reply-To: added by phquery (V%s)\n", VERSION);
+d971 1
+a971 1
+		pid = wait((union wait *)NULL);
+d1286 2
+a1287 1
+	 * appending our fully qualified domain name.
+d1307 4
+a1310 1
+	/* Send the query */
+d1425 1
+a1425 1
+		int	code;
+d1464 2
+a1465 2
+		else if (sscanf (Temp, "%d:%d:%[^:]: %[^\n]",
+		    &RepChain->code, &RepChain->subcode, fstring, message)
+d1468 1
+a1468 1
+				fprintf (stderr, "ReadQI: short #2 sscanf\n");
+d1470 1
+a1470 1
+				syslog (LOG_ERR, "ReadQI: short #2 sscanf read: %m");
+d1479 1
+a1479 1
+		for (tp = fstring; tp < fstring + MAXSTR && *tp == ' '; tp++)
+a1576 1
+	extern	char	*malloc();
+d1609 2
+a1610 1
+		fprintf (OutFile, "%s\n", *Msg);
+a1634 1
+	extern	char	*realloc();
+@
+
+
+1.15
+log
+@Different kinds of massaging is done to argument string depending
+on lookup type.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.14 89/07/28 10:05:12 paul Exp Locker: paul $";
+d54 1
+a54 1
+#define		VERSION		"3.1"
+d95 4
+d120 1
+a120 1
+**	Resent-From: postmaster@@DOMAINMASTER
+d122 1
+a122 1
+**	Comment: From: field converted to Reply-To: by phquery (Vx.y) at <host>
+d262 1
+a262 1
+	"usage: %s [-d] [-p] [-s] [-l] [-R] [-i] [-f FromAddress] address1 [address2]",
+d320 1
+d331 1
+a331 1
+	while ((option = getopt (argc, argv, "f:r:pRsdli")) != EOF) {
+d337 4
+d470 2
+a471 1
+	 * Allocate NewAddress structs for addresses
+d473 3
+a475 2
+	New = (NADD *) Malloc ((unsigned) ((argc+1) * sizeof (NADD)));
+	(New + argc)->original = CPNULL;
+d478 2
+a479 3
+	/* Loop on addresses in argv building up translation table */
+	while (argc > 0) {
+		NewP->original = *argv;
+a488 1
+		NewP++; argv++; argc--;
+d490 15
+d884 1
+a884 1
+	/* Read and copy the header block, adding the X-PH-To: header */
+d894 1
+d907 6
+a1146 1
+		 *
+d1208 1
+a1208 1
+			assert (QIp->field == EMAIL)
+@
+
+
+1.14
+log
+@Minor fixes and de-linting.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.13 89/07/27 23:19:22 paul Exp Locker: paul $";
+d54 1
+a54 1
+#define		VERSION		"3.0"
+d224 1
+a224 1
+/* Exit status for reporting to calling process */
+d1081 6
+a1086 3
+		    for (i = 0; PunctChars[i] != CHNULL; i++)
+			while ((sp = index (scratch, PunctChars[i])) != CPNULL)
+			    *sp = ' ';
+d1088 12
+d1115 2
+d1132 16
+d1235 1
+d1280 2
+d1297 10
+@
+
+
+1.13
+log
+@First working version of -R (reply-to:) processing.
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.12 89/05/24 00:11:48 paul Exp Locker: paul $";
+d424 5
+a428 2
+		/* Allocate NewAddress structs for addresses plus 1 */
+		New = (NADD *) Malloc ((unsigned) ((argc+1) * sizeof (NADD)));
+a430 1
+
+d434 1
+a434 2
+		NewP->new = Realloc (NewP->new, (unsigned)(strlen (NewP->new) +
+				strlen (DOMAIN) + 3));
+d436 3
+d451 1
+d459 4
+a462 1
+	/* Allocate NewAddress structs for addresses */
+d647 1
+@
+
+
+1.12
+log
+@Changed #include's to cope with SUN systems.  -pbp
+@
+text
+@d23 1
+a23 3
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.11 89/05/16 16:59:36 paul Exp Locker: paul $";
+#else /* not lint */
+# define	QI_HOST		"some string"
+d54 1
+a54 1
+#define		VERSION		"2.0"
+d56 5
+d67 8
+d112 10
+d149 6
+a154 6
+ " the ph nameserver fails to locate either a ph ALIAS or NAME that matches",
+ " the supplied name.  The usual causes are typographical errors or the use of",
+ " nicknames.  Recommended action is to use the ph program to determine the",
+ " correct ph alias for the individuals addressed.  If ph is not available,",
+ " try sending to the most explicit form of the name, e.g., if mike-fox fails,",
+ " try michael-j-fox.",
+d215 6
+d258 1
+a258 1
+	"usage: %s [-d] [-p] [-s] [-l] [-i] [-f FromAddress] address1 [address2]",
+d319 2
+a320 1
+	extern	char	*malloc(), *rindex();
+d326 1
+a326 1
+	while ((option = getopt (argc, argv, "f:r:psdli")) != EOF) {
+d332 5
+d393 4
+d401 2
+a402 7
+		if (fwrite (Buf, sizeof (char), i, Msg) != i) {
+			if (Debug)
+				perror("Msg copy");
+			if (Log)
+				syslog (LOG_ERR, "Msg copy: %m");
+			finis ();
+		}
+d413 38
+a450 7
+	/* Allocate NewAddress structs for addresses */
+	if ((New = (NADD *) malloc ((unsigned) ((argc+1)
+	    * sizeof (NADD)))) == NADD_NULL) {
+		if (Debug)
+			perror ("malloc");
+		if (Log)
+			syslog (LOG_ERR, "malloc: %m");
+d453 3
+d715 2
+a716 7
+		if (fwrite (Buf, sizeof (char), i, Emsg) != i) {
+			if (Debug)
+				perror("Emsg copy");
+			if (Log)
+				syslog (LOG_ERR, "Emsg copy: %m");
+			finis ();
+		}
+d723 2
+a724 7
+	if (freopen (ErrorFile, "r", stdin) == FILE_NULL) {
+		if (Debug)
+			perror ("ErrorFile freopen");
+		if (Log)
+			syslog (LOG_ERR, "freopen of %s: %m", ErrorFile);
+		finis ();
+	}
+d735 2
+a736 7
+	if (! Debug && (pid = vfork ()) == -1) {
+		if (Debug)
+			perror ("ErrorReturn fork:");
+		if (Log)
+			syslog (LOG_ERR, "ErrorReturn fork: %m");
+		finis ();
+	}
+d774 1
+a774 1
+					From = malloc ((unsigned) ((p2-p1)+1));
+d827 1
+a827 1
+		char	*nap[50];
+d829 2
+a830 1
+	extern	char	*From;
+d839 11
+a849 1
+	nap[napi++] = From;
+d858 13
+a870 8
+			/* Write the PH header and add to argv */
+			fprintf (Nmsg, "X-PH(%s)-To:", VERSION);
+			LineLength = 8;
+			for (AddrP = Addr; AddrP->original != CPNULL; AddrP++)
+				if (abs (AddrP->code) == LR_OK) {
+					if ((LineLength + strlen (AddrP->new)) > 75) {
+						fprintf (Nmsg, "\n\t");
+						LineLength = 8;
+d872 15
+a886 5
+					fprintf (Nmsg, " %s", AddrP->new);
+					nap[napi++] = AddrP->new;
+				}
+			(void) putc ('\n', Nmsg);
+			pid++;
+d901 3
+a903 9
+	while ((i = fread (Buf, sizeof (char), MAXSTR, Omsg)) != 0) {
+		if (fwrite (Buf, sizeof (char), i, Nmsg) != i) {
+			if (Debug)
+				perror("ReMail: nmsg copy");
+			if (Log)
+				syslog (LOG_ERR, "Nmsg copy: %m");
+			finis ();
+		}
+	}
+d908 2
+a909 7
+	if (freopen (NewFile, "r", stdin) == FILE_NULL) {
+		if (Debug)
+			perror ("NewFile freopen");
+		if (Log)
+			syslog (LOG_ERR, "freopen of %s: %m", NewFile);
+		finis ();
+	}
+d920 2
+a921 7
+	if (! Debug && (pid = vfork ()) == -1) {
+		if (Debug)
+			perror ("ReMail fork:");
+		if (Log)
+			syslog (LOG_ERR, "ReMail fork: %m");
+		finis ();
+	}
+d977 2
+a978 7
+	if ((fd = mkstemp (Name)) == -1) {
+		if (Debug)
+			perror (Name);
+		if (Log)
+			syslog (LOG_ERR, "mkstemp(\"%s\"): %m", Name);
+		finis ();
+	}
+d981 2
+a982 7
+	if (fchmod (fd, IREAD|IWRITE) == -1) {
+		if (Debug)
+			perror (Name);
+		if (Log)
+			syslog (LOG_ERR, "fchmod(\"%s\"): %m", Name);
+		finis ();
+	}
+d985 2
+a986 7
+	if ((Stream = fdopen (fd, "r+")) == FILE_NULL) {
+		if (Debug)
+			perror (Name);
+		if (Log)
+			syslog (LOG_ERR, "fdopen(\"%s\"): %m", Name);
+		finis ();
+	}
+d1053 1
+d1167 108
+@
+
+
+1.11
+log
+@Maded openlog facility definable in Makefile.  -pbp
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.10 89/05/11 17:20:48 paul Exp Locker: paul $";
+d37 7
+a43 1
+# include <sys/inode.h>
+d470 1
+a470 1
+			syslog(LOG_ERR, "ContactQI: cannot get connection");
+d480 4
+a483 2
+			fprintf (stderr, "server \"%s\" unknown", QISERVICE);
+		goto severe;
+@
+
+
+1.10
+log
+@Pyramid specific changes.  -pbp
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.9 89/05/10 11:50:49 paul Exp Locker: paul $";
+d343 4
+a346 1
+		openlog(MyName, LOG_PID, LOG_MAIL);
+@
+
+
+1.9
+log
+@Sundry formatting changes, added more text to messages.  -pbp
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.8 89/05/10 00:57:49 paul Exp Locker: paul $";
+d31 8
+a38 1
+#include <sys/inode.h>
+d147 1
+a147 1
+ " whenever the supplied name or alias matched over thirty ph nameserver",
+@
+
+
+1.8
+log
+@Final Wednesday morning clean-ups, typo-corrections, and semi-major
+re-write of Query().  Now handles callsigns which was easier than changing
+the extant documentation.  Erasing people's minds would have been tough too.
+-pbp
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.7 89/05/09 22:53:57 paul Exp Locker: paul $";
+d43 2
+d91 5
+a95 5
+#define		CHNULL		('\0')
+#define		CPNULL		((char *) NULL)
+#define		FILE_NULL	((FILE *) NULL)
+#define		NADD_NULL	((struct NewAddress *) NULL)
+#define		QIR_NULL	((struct QI_response *) NULL)
+d97 1
+d101 2
+a102 5
+/* Flags to control printing of informative messages in ErrorReturn() */
+#define		NO_MATCH	1
+#define		MULTI		2
+#define		ABSENT		4
+#define		TOO_MANY	8
+d104 7
+d116 5
+a120 3
+ " the supplied name.  The usual cause is typographical errors.  Recommended",
+ " action is to use the ph program to determine the correct ph alias for the",
+ " individuals addressed.",
+d164 8
+a171 2
+/* large string size */
+#define		MAXSTR		250
+d173 2
+a174 2
+FILE	*ToQI = FILE_NULL;	/* write to the QI */
+FILE	*FromQI = FILE_NULL;	/* read from the QI */
+d179 1
+a179 1
+int	PostmasterCC = 0;
+d185 1
+a185 1
+int	ExitStat = EX_TEMPFAIL;
+d188 1
+a188 1
+char	TmpFile[] = "/tmp/PhMailXXXXXXX";
+d191 1
+a191 1
+char	ErrorFile[] = "/tmp/PhErrMailXXXXXXX";
+d194 1
+a194 1
+char	NewFile[] = "/tmp/PhNewMailXXXXXXX";
+d202 1
+a202 1
+char	*TryList[] = { "alias", "callsign", "name", CPNULL };
+d205 1
+a205 1
+char	PunctChars[] = "-_.,+=#$";
+d211 2
+a212 2
+int	Debug = 0;
+int	Log = 1;
+d215 1
+a215 1
+char	*From = CPNULL;
+d570 1
+a570 1
+	fprintf (Emsg, "\n --------Error Detail:\n\n");
+d575 1
+a575 1
+			if (! (flags & NO_MATCH)) {
+d577 1
+a577 1
+				flags |= NO_MATCH;
+d583 1
+a583 1
+			if (! (flags & ABSENT)) {
+d585 5
+a589 1
+				flags |= ABSENT;
+d599 1
+a599 1
+			if (! (flags & TOO_MANY)) {
+d601 1
+a601 1
+				flags |= TOO_MANY;
+d607 1
+a607 1
+			if (! (flags & MULTI)) {
+d609 5
+a613 1
+				flags |= MULTI;
+d779 1
+a779 1
+			fprintf (Nmsg, "X-PH-To:");
+@
+
+
+1.7
+log
+@First working version up to spec.  -pbp
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.6 89/05/08 23:21:20 paul Exp Locker: paul $";
+d107 1
+a107 1
+ " The message, \"No matches to nameserver request,\" is generated whenever",
+d130 1
+a130 1
+ " The message, \"Too many matches found to nameserver request,\" is generated",
+d135 1
+a135 1
+ " You may have though that you had used a ph alias and not a name.  This is",
+d137 3
+a139 2
+ " alias, it is retried as a name.  While aliases are guaranteed unique, names",
+ " can match multiple individuals depending on how common the name is.",
+d181 8
+d960 1
+d963 1
+d976 2
+a977 9
+	/* Make a query out of the arguments for a alias lookup */
+	fprintf (ToQI,
+	    "query alias=%s return name alias phone department curriculum email\n",
+	    New->original);
+	if (Debug)
+		printf ("querying for alias \"%s\"\n", New->original);
+	if (Log)
+		syslog (LOG_DEBUG, "querying for alias \"%s\"\n", New->original);
+	(void) fflush (ToQI);
+d979 8
+a986 22
+	/*
+	 * Get response.  The possibilities are
+	 *
+	 * -200:1:         alias: Paul-Pomes
+	 * -200:1:          name: pomes paul b
+	 * -508:1:    curriculum: Not present in entry.
+	 * -200:1:    department: Computing Services Office
+	 * -200:1:         email: paul@@uxc.cso.uiuc.edu
+	 * 200:Ok.
+	 *
+	 * 501:No matches to your query.
+	 */
+	EmailQ = ReadQI (FromQI);
+	if (EmailQ->code != LR_NOMATCH) {
+		QIp = PickField (EmailQ, EMAIL);
+		assert (QIp->field == EMAIL)
+		New->code = abs (QIp->code);
+		New->QIalt = EmailQ;
+		switch (abs (QIp->code)) {
+		    case LR_ABSENT:
+			New->new = CodeString (QIp->code);
+			return;
+d988 28
+a1015 3
+		    case LR_OK:
+			New->new = QIp->message;
+			return;
+d1017 16
+a1032 7
+		    default:
+			if (Debug)
+				fprintf (stderr, "unexpected code %d\n",
+				    QIp->code);
+			if (Log)
+				syslog (LOG_ERR, "Query: Alias: unexpected code %d", QIp->code);
+			finis ();
+a1033 2
+	}
+	GarbageCollect (EmailQ);
+d1035 2
+a1036 3
+	/*
+	 * Try as a full name.
+	 */
+d1038 6
+a1043 5
+	/* Convert punctuation/separators in the name to space characters. */
+	(void) strcpy (scratch, New->original);
+	for (i = 0; PunctChars[i] != CHNULL; i++)
+		while ((sp = index (scratch, PunctChars[i])) != CPNULL)
+			*sp = ' ';
+d1045 10
+a1054 12
+	/* Make a query out of the arguments */
+	fprintf (ToQI,
+	    "query name=%s return name alias phone department curriculum email\n",
+	    scratch);
+	if (Debug)
+		printf ("querying for name \"%s\"\n", scratch);
+	if (Log)
+		syslog (LOG_DEBUG, "querying for name \"%s\"\n", scratch);
+	(void) fflush (ToQI);
+	
+	/* Grab the responses and let the fun begin */
+	EmailQ = ReadQI (FromQI);
+d1056 3
+a1058 10
+	/*
+	 * No matches at all?  Too many?  Note that single line errors will
+	 * have code > 0.
+	 */
+	if (EmailQ->code > 0) {
+		New->new = CodeString (EmailQ->code);
+		New->code = EmailQ->code;
+		New->QIalt = QIR_NULL;
+		return;
+	}
+d1060 8
+a1067 8
+	/* anything else must be multi-line */
+	assert (EmailQ->code < 0);
+
+	/* Are there multiple responses (subcode > 1)? */
+	for (QIp = EmailQ, multi = 0; QIp->code < 0; QIp++)
+		if (QIp->subcode > 1) {
+			multi++;
+			break;
+d1070 5
+a1074 9
+	/* If one person, handle as single match alias */
+	if (multi == 0) {
+		QIp = PickField (EmailQ, EMAIL);
+		assert (QIp->field == EMAIL)
+		New->code = abs (QIp->code);
+		New->QIalt = EmailQ;
+		switch (abs (QIp->code)) {
+		    case LR_ABSENT:
+			New->new = CodeString (QIp->code);
+a1075 12
+
+		    case LR_OK:
+			New->new = QIp->message;
+			return;
+
+		    default:
+			if (Debug)
+				fprintf (stderr, "unexpected code %d\n",
+				    QIp->code);
+			if (Log)
+				syslog (LOG_ERR, "Query: Fullname: unexpected code %d", QIp->code);
+			finis ();
+d1077 1
+a1078 8
+
+	/* Multiple matches. */
+	else {
+		New->code = LR_AMBIGUOUS;
+		New->new = CodeString (LR_AMBIGUOUS);
+		New->QIalt = EmailQ;
+	}
+	return;
+d1143 1
+d1260 1
+d1263 1
+@
+
+
+1.6
+log
+@First working version of fullname code.  Still to come: alternates
+response and callsign.  -pbp
+@
+text
+@d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.4 89/05/05 11:26:06 paul Exp Locker: paul $";
+d60 2
+a61 2
+**	fields as ls has option letters.  The most important are alias, email,
+**	name, and, if I get around to it, callsign.  In the simplest case,
+d98 56
+d241 1
+a241 1
+ 0
+d302 2
+d356 3
+a358 2
+		(void) strcpy (Buf, *argv);
+		NewP->code = Query (Buf, sizeof Buf);
+d360 2
+a361 1
+			printf ("code %d, %s --> %s\n", NewP->code, *argv, Buf);
+d363 2
+a364 14
+			syslog (LOG_INFO, "%s --> %s", *argv, Buf);
+		if (*Buf == CHNULL) {
+			/* really bad news... */
+			if (Debug)
+				fprintf (stderr, "LR_OK & null address\n");
+			if (Log)
+				syslog (LOG_ERR, "LR_OK & null address");
+			ExitStat = EX_SOFTWARE;
+			finis ();
+		}
+		else {
+			NewP->new = malloc ((unsigned) (strlen (Buf) + 1));
+			(void) strcpy (NewP->new, Buf);
+		}
+d393 1
+a393 1
+**	socket connections to the QI server.
+d399 1
+a399 1
+**		0 on success, the appropriate sysexit code if not.
+d418 1
+a418 1
+		return (0);
+d494 1
+a494 1
+	return (0);
+d522 9
+a530 5
+		int	i;
+		char	Buf[MAXSTR];
+		FILE	*Emsg;
+		int	pid;
+		int	ByteLimit = 15000;
+d543 52
+a594 4
+	for (; Addr->original != CPNULL; Addr++)
+		if (abs (Addr->code) != LR_OK)
+			fprintf (Emsg, " %15s    %s\n", Addr->original, Addr->new);
+	/* XXX Loop again here to insert alternatives plus message */
+a818 155
+**  AliasToMail -- format and send a alias lookup to the QI
+**
+**	Takes a presumed QI alias and formats it into a query for the QI.
+**	The response is read by ReadQI, garbage collection is done, and
+**	a pointer to a QI_response struct is returned.
+**
+**	Parameters:
+**		Alias -- a buffer containing a QI alias
+**
+**	Returns:
+**		Pointer to malloc()'ed data with the email address or error
+**		message if any error is found.
+**
+**	Side Effects:
+**		none
+*/
+
+QIR *
+AliasToMail (Alias)
+char	*Alias;
+{
+	QIR	*QIp;			/* response chain pointer */
+	QIR	*tp;			/* garbage collection temp */
+	QIR	*ReadQI();
+	char	*Realloc();
+
+	/* Make a query out of the arguments */
+	fprintf (ToQI, "query alias=%s return email\n", Alias);
+	if (Debug)
+		printf ("querying for alias \"%s\"\n", Alias);
+	if (Log)
+		syslog (LOG_DEBUG, "querying for alias \"%s\"\n", Alias);
+	(void) fflush (ToQI);
+
+	/*
+	 * Get response.  The possibilities are
+	 *
+	 * -200: email: <address>
+	 * 200:Ok.
+	 *
+	 * -508:1: email: Not present in entry.
+	 * 200:Ok.
+	 *
+	 * 501:No matches to your query.
+	 *
+	 * In any case, ignore anything after first response.
+	 */
+	QIp = ReadQI (FromQI);
+
+	/* garbage collect */
+	if (QIp->code < 0) {
+
+		/* Mark this as the last by making code > 0 */
+		QIp->code *= -1;
+
+		/* Loop and free message pointers */
+		tp = QIp;
+		do {
+			tp++;
+			if (tp->message != CHNULL)
+				free (tp->message);
+		} while (tp->code < 0);
+
+		/* Zap all other than first record */
+		QIp = (QIR *) Realloc ((char *) QIp, sizeof (QIR));
+	}
+	return (QIp);
+}
+/*
+**  CallsignToMail -- Format and send a callsign lookup to the QI
+**
+**	Takes a presumed QI callsign and formats it into a query for the QI.
+**	A pointer to a static array containing the answer or error message
+**	text is returned.  The calling procedure should examine ResponseCode.
+**
+**	Parameters:
+**		CallSign -- a buffer containing a QI callsign
+**		ResponseCode -- integer pointer for result codes
+**
+**	Returns:
+**		Pointer to static data with the email address or error
+**		message if any error is found.
+**
+**	Side Effects:
+**		Modifies ResponseCode to report back errors.
+*/
+
+char *
+CallsignToMail (CallSign, ResponseCode)
+char	*CallSign;
+int	*ResponseCode;
+{
+	static	char	NameVar[MAXSTR];
+
+	/* Make a query out of the arguments */
+	fprintf (ToQI, "query callsign=%s return email\n", CallSign);
+	if (Debug)
+		printf ("querying for alias \"%s\"\n", CallSign);
+	(void) fflush (ToQI);
+	/* *ResponseCode = XXX; */
+	return (NameVar);
+}
+/*
+**  FullnameToMail -- Format and send a full name lookup to the QI
+**
+**	Takes a presumed QI full name and formats it into a query for the QI.
+**	The response is read by ReadQI, garbage collection is done, and
+**	a pointer to a QI_response struct is returned.
+**
+**	Parameters:
+**		FullName -- a buffer containing a QI name
+**
+**	Returns:
+**		Pointer to malloc()'ed data with the email address and other
+**		data (alias, name, department and curriculum).  If the name
+**		is ambiguous, multiple records chained after the returned
+**		pointer are included.
+**
+**	Side Effects:
+**		None
+*/
+
+QIR *
+FullnameToMail (FullName)
+char	*FullName;
+{
+		QIR	*QIp;		/* response chain pointer */
+		char	scratch[MAXSTR]; /* copy of FullName w.o. punct */
+		char	*sp;		/* work ptr for scratch */
+		int	i;		/* good ol' i */
+	extern	char	PunctChars[];
+		QIR	*ReadQI();
+		char	*Realloc();
+
+	/* Convert punctuation/separators in the name to space characters. */
+	(void) strcpy (scratch, FullName);
+	for (i = 0; PunctChars[i] != CHNULL; i++)
+		while ((sp = index (scratch, PunctChars[i])) != CPNULL)
+			*sp = ' ';
+
+	/* Make a query out of the arguments */
+	fprintf (ToQI, "query name=%s return alias name department curriculum email\n", scratch);
+	if (Debug)
+		printf ("querying for name \"%s\"\n", scratch);
+	if (Log)
+		syslog (LOG_DEBUG, "querying for name \"%s\"\n", scratch);
+	(void) fflush (ToQI);
+	
+	/* Grab the responses and let the fun begin */
+	QIp = ReadQI (FromQI);
+
+	/* Let Query() (the calling routine) sort things out */
+	return (QIp);
+}
+/*
+d894 29
+d929 2
+a930 1
+**	instead of the address.
+d933 1
+a933 2
+**		nbuf -- a buffer containing a QI user name/alias.
+**		nbsize -- the size of nbuf.
+d936 1
+a936 2
+**		An exit code telling if the username was found and
+**		whether an email address was found.
+d940 1
+d945 2
+a946 3
+Query(nbuf, nbsize)
+char	*nbuf;
+int	nbsize;
+d948 5
+a952 3
+		QIR	*EmailQ, *QIp;
+		int	code;			/* Response from ContactQI */
+		int	multi;			/* Set if more than 1 person */
+d954 3
+a956 3
+		QIR	*AliasToMail();
+		char	*CallsignToMail();
+		QIR	*FullnameToMail();
+d959 1
+a959 2
+	if ((code = ContactQI()))
+		return (code);
+d962 1
+a962 2
+	 * Try the query as an alias lookup first, then as one of a
+	 * possible full name combinations.
+d965 9
+a973 6
+	EmailQ = AliasToMail (nbuf);
+	switch (abs (EmailQ->code)) {
+	    case LR_OK:
+		(void) strncpy (nbuf, EmailQ->message, nbsize-2);
+		nbuf[nbsize-1] = CHNULL;
+		return (EmailQ->code);
+d975 35
+a1009 4
+	    case LR_ABSENT:
+		(void) strncpy (nbuf, CodeString (EmailQ->code), nbsize-2);
+		nbuf[nbsize-1] = CHNULL;
+		return (EmailQ->code);
+d1011 1
+d1013 19
+a1031 9
+#ifdef notdef
+	/* try as a callsign */
+	EmailP = CallsignToMail (nbuf, &code);
+	if (code != LR_NOMATCH) {
+		(void) strncpy (nbuf, EmailP, nbsize-2);
+		nbuf[nbsize-1] = CHNULL;
+		return (code);
+	}
+#endif notdef
+d1033 3
+d1037 2
+a1038 2
+	 * Try as a fullname.  This must be last since no test of
+	 * code is done.
+d1040 5
+a1044 7
+	EmailQ = FullnameToMail (nbuf);
+
+	/* No matches at all? */
+	if (EmailQ->code > 0 && EmailQ->code == LR_NOMATCH) {
+		(void) strncpy (nbuf, CodeString (EmailQ->code), nbsize-2);
+		nbuf[nbsize-1] = CHNULL;
+		return (abs (EmailQ->code));
+d1047 1
+a1047 1
+	/* anything must be multi-line */
+d1051 2
+a1052 2
+	for (QIp = EmailQ, multi = 0; QIp->code < 0 && multi == 0; QIp++)
+		if (QIp->subcode > 1)
+d1054 2
+d1057 1
+a1057 1
+	/* If one person, search for email field */
+d1059 8
+a1066 4
+		for (QIp = EmailQ; QIp->code < 0 && QIp->field != EMAIL; QIp++)
+			;
+		/* if not EMAIL, something went wrong in the query process */
+		assert (QIp->field == EMAIL);
+d1068 11
+a1078 4
+		if (abs (QIp->code) != LR_OK) {
+			(void) strncpy (nbuf, CodeString (QIp->code), nbsize-2);
+			nbuf[nbsize-1] = CHNULL;
+			return (abs (EmailQ->code));
+a1079 5
+		else {
+			(void) strncpy (nbuf, QIp->message, nbsize-2);
+			nbuf[nbsize-1] = CHNULL;
+			return (abs (QIp->code));
+		}
+d1082 1
+a1082 2
+	/* Multiple matches.  Create the error message listing alternatives. */
+	/* XXX for now, just say that it's a no-no. */
+d1084 3
+a1086 3
+		(void) strncpy (nbuf, CodeString (LR_TOOMANY), nbsize-2);
+		nbuf[nbsize-1] = CHNULL;
+		return (LR_TOOMANY);
+d1088 1
+d1110 1
+d1248 25
+d1305 24
+d1389 2
+a1390 4
+	if (FullText) {
+		while (CopyLeft[which] != CPNULL)
+			printf ("%s\n", CopyLeft[which++]);
+	}
+@
+
+
+1.5
+log
+@Added ReadQI() function.  Working version ready for CallsignToMail()
+and FullnameToMail() to be done.  Famous last words.  -pbp
+@
+text
+@d29 1
+d124 3
+d271 1
+a271 1
+		finis ();
+d325 1
+a325 1
+		if (NewP->code != LR_OK) {
+d332 1
+a332 1
+		if (NewP->code == LR_OK) {
+d492 1
+a492 1
+		if (Addr->code != LR_OK)
+d517 1
+d534 1
+d650 1
+a650 1
+				if (AddrP->code == LR_OK) {
+d692 1
+d709 1
+d825 2
+a826 2
+**	A pointer to a static array containing the answer or error message
+**	text is returned.  The calling procedure should examine ResponseCode.
+a829 1
+**		ResponseCode -- integer pointer for result codes
+d832 4
+a835 2
+**		Pointer to static data with the email address or error
+**		message if any error is found.
+d838 1
+a838 1
+**		Modifies ResponseCode to report back errors.
+d841 2
+a842 2
+char *
+FullnameToMail (FullName, ResponseCode)
+a843 1
+int	*ResponseCode;
+d845 7
+a851 1
+	static	char	NameVar[MAXSTR];
+d853 6
+d860 1
+a860 1
+	fprintf (ToQI, "query name=%s return email\n", FullName);
+d862 3
+a864 1
+		printf ("querying for alias \"%s\"\n", FullName);
+d866 6
+a871 2
+	/* *ResponseCode = XXX; */
+	return (NameVar);
+d895 1
+a895 1
+		if (Cpnt->key == code)
+d926 1
+a926 1
+		return (FILE_NULL);
+d935 1
+a935 1
+		return (FILE_NULL);
+d944 1
+a944 1
+		return (FILE_NULL);
+d975 3
+a977 2
+		QIR	*EmailQ;
+		int	code;
+d981 1
+a981 1
+		char	*FullnameToMail();
+d993 1
+a993 1
+	switch (EmailQ->code) {
+d999 1
+a999 1
+	    case LR_NOMATCH:
+d1007 1
+a1007 1
+	EMailP = CallsignToMail (nbuf, &code);
+d1009 1
+a1009 1
+		(void) strncpy (nbuf, EMailP, nbsize-2);
+d1013 1
+d1019 43
+a1061 5
+	EMailP = FullnameToMail (nbuf, &code);
+	(void) strncpy (nbuf, EMailP, nbsize-2);
+	nbuf[nbsize-1] = CHNULL;
+#endif notdef
+	return (code);
+d1132 1
+d1144 1
+a1144 1
+					fprintf (stderr, "ReadQI: short #1 fscanf\n");
+d1146 2
+a1147 1
+					syslog (LOG_ERR, "ReadQI: short #1 fscanf read: %m");
+d1156 1
+a1156 1
+				fprintf (stderr, "ReadQI: short fscanf\n");
+d1158 2
+a1159 1
+				syslog (LOG_ERR, "ReadQI: short fscanf read: %m");
+d1247 1
+d1281 1
+@
+
+
+1.4
+log
+@Formatting niceties.
+@
+text
+@d13 1
+d16 1
+d23 1
+a23 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.3 89/05/05 00:11:03 paul Exp Locker: paul $";
+d42 1
+a42 1
+/* designated server port */
+d45 1
+a45 1
+/* the mail transport agent of choice */
+a47 2
+int	PostmasterCC = 0;
+
+d49 1
+a49 1
+**  PHQUERY -- resolve fuzzy addresses to specific a user@@FQDN
+d90 3
+a92 2
+#define		FILENULL	((FILE *) NULL)
+#define		NADDNULL	((struct NewAddress *) NULL)
+d94 3
+d100 2
+a101 2
+FILE	*ToQI = FILENULL;	/* write to the QI */
+FILE	*FromQI = FILENULL;	/* read from the QI */
+d105 4
+a108 1
+/* how program was invoked (argv[0]) for error messages */
+d111 1
+a111 1
+/* exit status for reporting to calling process */
+d114 1
+a114 1
+/* temporary message file */
+d117 1
+a117 1
+/* temporary file for creating error messages */
+d120 1
+a120 1
+/* temporary file for rewriting messages */
+d123 4
+a126 1
+/* how to report events: Debug set for stderr messages, Log for syslog */
+d130 1
+a130 1
+/* from address supplied by caller */
+d143 5
+a147 5
+ " This program is distributed in the hope that it will be useful,",
+ " but without any warranty.  No author or distributor accepts",
+ " responsibility to anyone for the consequences of using it or for",
+ " whether it serves any particular purpose or works at all, unless",
+ " s/he says so in writing.",
+d149 2
+a150 2
+ " Everyone is granted permission to copy, modify and redistribute",
+ " this program under the following conditions:",
+d152 7
+a158 7
+ "    Permission is granted to anyone to make or distribute copies",
+ "    of program source code, either as received or modified, in any",
+ "    medium, provided that all copyright notices, permission and",
+ "    nonwarranty notices are preserved, and that the distributor",
+ "    grants the recipient permission for further redistribution as",
+ "    permitted by this document, and gives him and points out to",
+ "    him an exact copy of this document to inform him of his rights.",
+d160 3
+a162 13
+ "    Permission is granted to distribute this program in compiled",
+ "    or executable form under the same conditions applying for",
+ "    source code, provided that either",
+ "    A. it is accompanied by the corresponding machine-readable",
+ "       source code, or",
+ "    B. it is accompanied by a written offer, with no time limit,",
+ "       to give anyone a machine-readable copy of the corresponding",
+ "       source code in return for reimbursement of the cost of",
+ "       distribution.  This written offer must permit verbatim",
+ "       duplication by anyone.",
+ "    C. it is distributed by someone who received only the",
+ "       executable form, and is accompanied by a copy of the",
+ "       written offer of source code which he received along with it.",
+d164 9
+a172 3
+ " In other words, you are welcome to use, share and improve this",
+ " program.  You are forbidden to forbid anyone else to use, share",
+ " and improve what you give them.   Help stamp out software-hoarding!",
+d174 4
+d179 1
+a179 1
+ "Internet, BITNET: paul@@uxc.cso.uiuc.edu      Phone: 217 359 0881",
+d196 1
+a196 1
+	extern FILE	*OpenTemp();
+d200 1
+d247 1
+a247 1
+	/* fire up logging, or not, as the flags may be */
+d258 2
+a259 2
+	/* open the temp file, copy the message into it */
+	if ((Msg = OpenTemp (TmpFile)) == FILENULL)
+d279 1
+a279 1
+	/* allocate NewAddress structs for addresses */
+d281 1
+a281 1
+	    * sizeof (NADD)))) == NADDNULL) {
+d291 1
+a291 1
+	/* loop on addresses in argv building up translation table */
+d297 1
+a297 2
+			fprintf (stderr, "code %d, %s --> %s\n",
+				NewP->code, *argv, Buf);
+d317 2
+a318 2
+	 * now re-invoke sendmail with the translated addresses.
+	 * make one pass for collecting error returns into one message.
+d326 1
+a326 1
+	/* any good addresses? */
+d338 1
+a338 1
+**  ContactQI -- connect to the QI server
+d362 2
+a363 2
+	/* already opened */
+	if (ToQI != FILENULL && FromQI != FILENULL) {
+d371 1
+a371 1
+	/* get a socket for the QI connection */
+d383 1
+a383 1
+	/* find the proper port */
+d392 1
+a392 1
+	/* find the proper host */
+d401 1
+a401 1
+	/* connect to the nameserver */
+d422 1
+a422 1
+			/* there are others, I'm sure..... */
+d426 1
+a426 1
+			/* why is this happening? */
+d439 1
+a439 1
+	/* connection ok, change to canonical form */
+d447 3
+a454 1
+**		MsgSelect -- select which error messages to include
+d465 1
+a465 1
+ErrorReturn (Addr, Omsg, envp, MsgSelect)
+a468 1
+int	MsgSelect;
+d477 2
+a478 2
+	/* open the error file */
+	if ((Emsg = OpenTemp (ErrorFile)) == FILENULL)
+d481 1
+a481 1
+	/* insert the headers */
+d508 1
+a508 1
+	if (freopen (ErrorFile, "r", stdin) == FILENULL) {
+d515 1
+a515 1
+	/* zap file so it disappears automagically */
+d580 1
+a580 1
+				 * punt to postmaster.  if there's too
+a608 2
+#define		nequal(s1,s2,n)		(strncasecmp (s1, s2, n) == 0)
+
+d614 9
+a622 9
+	int		napi = 0;
+	int		i;
+	char		Buf[MAXSTR];
+	NADD		*AddrP;
+	FILE		*Nmsg;
+	int		pid = 0;
+	char		*nap[50];
+	extern FILE	*OpenTemp();
+	extern char	*From;
+d624 2
+a625 2
+	/* open the rewrite file */
+	if ((Nmsg = OpenTemp (NewFile)) == FILENULL)
+d628 1
+a628 1
+	/* fill out the first portion of the sendmail argument vector */
+d633 1
+a633 1
+	/* read and copy the header block, adding the X-PH-To: header */
+d640 1
+a640 1
+			/* write the PH header and add to argv */
+d660 8
+a667 1
+	/* copy the remainder of the message */
+d671 1
+a671 1
+				perror("Nmsg copy");
+d678 1
+a678 1
+	/* re-arrange the stream pointers and invoke sendmail */
+d681 1
+a681 1
+	if (freopen (NewFile, "r", stdin) == FILENULL) {
+d688 1
+a688 1
+	/* zap file so it disappears automagically */
+d714 2
+a715 2
+**	A pointer to a static array containing the answer or error message
+**	text is returned.  The calling procedure should examine ResponseCode.
+a718 1
+**		ResponseCode -- integer pointer for result codes
+d721 1
+a721 1
+**		Pointer to static data with the email address or error
+d725 1
+a725 1
+**		Modifies ResponseCode to report back errors.
+d728 2
+a729 4
+#define GetQValue(Line) (index(index(index(Line,':')+1,':')+1,':')+2)
+
+char *
+AliasToMail (Alias, ResponseCode)
+a730 1
+int	*ResponseCode;
+d732 4
+a735 9
+	/* pointer to NameVar returned by this function */
+	static	char	NameVar[MAXSTR];
+		char	scratch[MAXSTR];	/* some space */
+		int	Scode = -1;		/* QI code temporary */
+		int	code;			/* value set by GetNonCom() */
+		int	GotOne = 0;		/* for picking best QI value */
+		int	Leave = 0;
+		int	InRep = 0;
+		char	*CodeString();		/* explicit error messages */
+d737 1
+a737 1
+	/* make a query out of the arguments */
+d741 2
+a742 1
+	syslog (LOG_DEBUG, "querying for alias \"%s\"\n", Alias);
+d745 14
+a758 21
+	do {
+		/* break on read error.  the QI will not return a -1 code */
+		if ((code = GetNonCom(scratch, MAXSTR, FromQI)) == -1)
+			break;
+	
+		/*
+		 * test the code from the first field in a qi response.
+		 * continuation lines have a leading '-' so the code < 0 .
+		 */
+		if (code < 0) {
+			InRep++;
+			Scode = code *= -1;
+		}
+		else
+			InRep = 0;
+		switch (code) {
+		    case LR_PROGRESS:
+		    case LR_ECHO:
+		    case LR_RONLY:
+			Leave = (! InRep) ? 1 : 0;
+			break;
+d760 2
+a761 17
+		    case LR_OK:
+			/*
+			 * If this is a terminal OK, return previous code if
+			 * there was one.
+			 */
+			if (! InRep) {
+				code = (Scode > -1) ? Scode : code;
+				Leave++;
+			}
+			else if (! GotOne) {
+				/* record sought after response */
+				(void) strcpy (NameVar, GetQValue (scratch));
+				/* strip newline */
+				NameVar[strlen (NameVar) - 1] = '\0';
+				GotOne++;
+			}
+			break;
+d763 2
+a764 5
+		    case LR_TEMP:
+		    case LR_INTERNAL:
+		    case LR_LOCK:
+			/* supposedly temporary errors */
+			finis ();
+d766 7
+a772 28
+		    case LR_LOGIN:
+		    case LR_MORE:
+		    case LR_ERROR:
+		    case LR_NOMATCH:
+		    case LR_TOOMANY:
+		    case LR_AINFO:
+		    case LR_ASEARCH:
+		    case LR_ACHANGE:
+		    case LR_NOTLOG:
+		    case LR_FIELD:
+		    case LR_ABSENT:
+		    case LR_ALIAS:
+		    case LR_AENTRY:
+		    case LR_ADD:
+		    case LR_VALUE:
+		    case LR_OPTION:
+		    case LR_UNKNOWN:
+		    case LR_NOKEY:
+		    case LR_AUTH:
+		    case LR_READONLY:
+		    case LR_LIMIT:
+		    case LR_HISTORY:
+		    case LR_SYNTAX:
+			/* print up a friendly error message */
+			(void) sprintf (NameVar, "%d: %s",
+			    code, CodeString (code));
+			Leave = (! InRep) ? 1 : 0;
+			break;
+d774 4
+a777 10
+		    default:
+			(void) sprintf (NameVar, "%d: Unknown nameserver error",
+			    code);
+			PostmasterCC++;
+			Leave = (! InRep) ? 1 : 0;
+			break;
+		}
+	} while (code < 0 || ! Leave);
+	*ResponseCode = (Scode > -1) ? Scode : code;
+	return (NameVar);
+d780 1
+a780 1
+**  CallsignToMail -- format and send a callsign lookup to the QI
+d805 1
+a805 1
+	/* make a query out of the arguments */
+d814 1
+a814 1
+**  FullnameToMail -- format and send a full name lookup to the QI
+d839 1
+a839 1
+	/* make a query out of the arguments */
+a873 39
+**  GetNonCom -- Get a non-comment line from a stream
+**
+**	Read a stream descriptor until a non-comment line is found or EOF.
+**
+**	Parameters:
+**		String - pointer to line storage
+**		maxChars - maximum number of characters to read
+**		InFile - stream to read from
+**
+**	Returns:
+**		integer value of first field in string,
+**		or -1 on EOF or error
+**
+**	Side Effects:
+**		none
+*/
+
+GetNonCom (String, maxChars, InFile)
+char	*String;
+int	maxChars;	
+FILE	*InFile;
+{
+	for (;;) {
+		if (fgets (String, maxChars, InFile) == NULL)
+			return (-1);
+		else if (*String == '#')
+			continue;
+		else if (*String != '-' && ! isdigit (*String)) {
+			if (Debug)
+				fprintf (stderr, "GetNonCom: bad string: %s",
+					String);
+			syslog (LOG_ERR, "GetNonCom: bad string: %s", String);
+			continue;
+		}
+		else
+			return (atoi(String));	/* success */
+	}
+}
+/*
+d900 1
+a900 1
+		return (FILENULL);
+d903 1
+a903 1
+	/* protect it */
+d909 1
+a909 1
+		return (FILENULL);
+d912 2
+a913 2
+	/* make fd a stream */
+	if ((Stream = fdopen (fd, "r+")) == FILENULL) {
+d918 1
+a918 1
+		return (FILENULL);
+d949 1
+a949 1
+		char	*EMailP;
+d952 1
+a952 1
+		char	*AliasToMail();
+d965 6
+a970 2
+	if ((EMailP = AliasToMail (nbuf, &code)) != CPNULL)
+		(void) strncpy (nbuf, EMailP, nbsize-1);
+d972 7
+d980 6
+a985 2
+	else if ((EMailP = CallsignToMail (nbuf, &code)) != CPNULL)
+		(void) strncpy (nbuf, EMailP, nbsize-1);
+d987 8
+a994 5
+	/* try as a fullname */
+	else if ((EMailP = FullnameToMail (nbuf, &code)) != CPNULL)
+		(void) strncpy (nbuf, EMailP, nbsize-1);
+	
+	/* return the answer */
+d998 217
+d1264 1
+a1264 1
+	if (ToQI != FILENULL)
+d1266 1
+a1266 1
+	if (FromQI != FILENULL)
+d1268 1
+a1268 1
+	ToQI = FromQI = FILENULL;
+@
+
+
+1.3
+log
+@AliasToMail and PutResponse combined.  Next Fullname/CallsignToMail.  -pbp
+@
+text
+@d21 1
+a21 1
+static char rcsid[] = "@@(#)$Header: /usr/local/src/mail/sendmail/uiuc/RCS/phquery.c,v 1.1 89/02/13 16:07:39 paul Exp Locker: paul $";
+d96 2
+a97 2
+FILE	*ToQI = FILENULL;		/* write to the QI */
+FILE	*FromQI = FILENULL;		/* read from the QI */
+d169 1
+a169 1
+ "Internet, BITNET: paul@@uxc.cso.uiuc.edu",
+d178 8
+a185 8
+	extern int	optind;		/* from getopt () */
+	extern char	*optarg;	/* from getopt () */
+	int		option;		/* option "letter" */
+	int		i;		/* good ol' i */
+	FILE		*Msg;		/* stream pointer for temp file */
+	NADD		*New, *NewP;	/* translated addresses */
+	char		Buf[MAXSTR];
+	extern char	*malloc(), *rindex();
+d197 1
+d345 6
+a350 6
+	int             sock;	/* our socket */
+	int		sav_errno;
+	struct sockaddr_in QI;	/* the address of the nameserver */
+	struct servent *theNs;	/* nameserver service entry */
+	struct hostent *theHost;/* host entry for nameserver */
+	extern FILE	*ToQI, *FromQI;
+d358 1
+a358 1
+	if (Debug > 1)
+d362 1
+a362 2
+	sock = socket(AF_INET, SOCK_STREAM, 0);
+	if (sock < 0)
+d374 2
+a375 2
+	if (theNs = getservbyname (QISERVICE, "tcp")) {
+		QI.sin_port = theNs->s_port;
+d383 2
+a384 2
+	if (theHost = gethostbyname (QI_HOST)) {
+		bcopy (theHost->h_addr, (char *) &QI.sin_addr.s_addr, 4);
+d429 1
+a429 1
+	/* connection ok, put it into canonical form */
+d442 1
+d453 1
+a453 1
+ErrorReturn (Addr, Omsg, envp)
+d457 1
+d459 6
+a464 6
+	int		i;
+	char		Buf[MAXSTR];
+	FILE		*Emsg;
+	int		pid;
+	int		ByteLimit = 15000;
+	extern FILE	*OpenTemp();
+d479 1
+d702 1
+a702 1
+**		theAlias -- a buffer containing a QI alias
+d716 2
+a717 2
+AliasToMail (theAlias, ResponseCode)
+char	*theAlias;
+d731 1
+a731 1
+	fprintf (ToQI, "query alias=%s return email\n", theAlias);
+d733 2
+a734 2
+		printf ("querying for alias \"%s\"\n", theAlias);
+	syslog (LOG_DEBUG, "querying for alias \"%s\"\n", theAlias);
+d847 1
+a847 1
+	static char NameVar[MAXSTR];
+d881 1
+a881 1
+	static char NameVar[MAXSTR];
+d909 2
+a910 2
+	struct ReplyCodes		*Cpnt;
+	extern struct ReplyCodes	Codes[];
+d923 1
+a923 1
+**		theString - pointer to line storage
+d925 1
+a925 1
+**		theFile - stream to read from
+d935 2
+a936 2
+GetNonCom (theString, maxChars, theFile)
+char	*theString;
+d938 1
+a938 1
+FILE	*theFile;
+d941 1
+a941 1
+		if (fgets (theString, maxChars, theFile) == NULL)
+d943 1
+a943 1
+		else if (*theString == '#')
+d945 1
+a945 1
+		else if (*theString != '-' && ! isdigit (*theString)) {
+d948 2
+a949 2
+					theString);
+			syslog (LOG_ERR, "GetNonCom: bad string: %s", theString);
+d953 1
+a953 1
+			return (atoi(theString));	/* success */
+d1032 6
+a1037 6
+	char		*EMailP;
+	int		code;
+	extern FILE	*ToQI, *FromQI;
+	char		*AliasToMail();
+	char		*CallsignToMail();
+	char		*FullnameToMail();
+d1081 1
+a1081 1
+	int		which = 0;		/* current line */
+d1109 1
+a1109 1
+	extern FILE	*ToQI, *FromQI;
+@
+
+
+1.2
+log
+@Checking in clean-ups before renovation.  -pbp
+@
+text
+@d22 3
+a24 1
+#endif /* not lint */
+a103 3
+/* global status variable */
+int	ResponseCode;
+
+d219 1
+d225 1
+d392 1
+a392 1
+	if (connect(sock, &QI, sizeof (QI)) < 0)
+a579 120
+**  PutResponse  -- insert first successful response from QI into a string
+**
+**	Take the result returned from a QI query and and pack it into the
+**	argument string.  This can be either the email address or the error
+**	message.  The return code must be examined to tell which.
+**	Because the QI returns different formats depending on the answer,
+**	a FSM is used to process the response.
+**
+**	Parameters:
+**		NameVar - string to store the QI response into
+**
+**	Returns:
+**		The code status from QI
+**
+**	Side Effects:
+**		none
+*/
+
+#define GetQValue(aLine) (index(index(index(aLine,':')+1,':')+1,':')+2)
+
+PutResponse (NameVar)
+char	*NameVar;
+{
+	char            scratch[MAXSTR];	/* some space */
+	int             Scode = -1;
+	int		code;
+	int             GotOne = 0;
+	int		Leave = 0;
+	int		InRep = 0;
+	int		i;
+	char		*CodeString();
+
+	while ((i = GetGood(scratch, MAXSTR, FromQI)) >= 0) {	/* read it */
+
+		/* break on read error */
+		if (i == -1)
+			break;
+	
+		/*
+		 * get the code from the first field in scratch.  continuation
+		 * lines have a leading '-' so the code will be negative for
+		 * them.
+		 */
+		if ((code = atoi (scratch)) < 0) {
+			InRep++;
+			code *= -1;
+			Scode = code;
+		}
+		else
+			InRep = 0;
+		switch (code) {
+		    case LR_PROGRESS:
+		    case LR_ECHO:
+		    case LR_RONLY:
+			Leave = (! InRep) ? 1 : 0;
+			break;
+
+		    case LR_OK:
+			/*
+			 * if this is a terminal OK, return previous code if
+			 * there was one
+			 */
+			if (! InRep)
+				return ((Scode > -1) ? Scode : code);
+			else if (! GotOne) {
+				/* record sought after response */
+				(void) strcpy (NameVar, GetQValue (scratch));
+				/* strip newline */
+				NameVar[strlen (NameVar) - 1] = '\0';
+				GotOne++;
+			}
+			break;
+
+		    case LR_TEMP:
+		    case LR_INTERNAL:
+		    case LR_LOCK:
+			/* supposedly temporary errors */
+			finis ();
+
+		    case LR_LOGIN:
+		    case LR_MORE:
+		    case LR_ERROR:
+		    case LR_NOMATCH:
+		    case LR_TOOMANY:
+		    case LR_AINFO:
+		    case LR_ASEARCH:
+		    case LR_ACHANGE:
+		    case LR_NOTLOG:
+		    case LR_FIELD:
+		    case LR_ABSENT:
+		    case LR_ALIAS:
+		    case LR_AENTRY:
+		    case LR_ADD:
+		    case LR_VALUE:
+		    case LR_OPTION:
+		    case LR_UNKNOWN:
+		    case LR_NOKEY:
+		    case LR_AUTH:
+		    case LR_READONLY:
+		    case LR_LIMIT:
+		    case LR_HISTORY:
+		    case LR_SYNTAX:
+			(void) sprintf (NameVar, "%d: %s",
+			    code, CodeString (code));
+			Leave = (! InRep) ? 1 : 0;
+			break;
+
+		    default:
+			(void) sprintf (NameVar, "%d: Unknown nameserver error",
+			    code);
+			PostmasterCC++;
+			Leave = (! InRep) ? 1 : 0;
+			break;
+		}
+		if (Leave)
+			break;
+	}
+	return ((Scode > -1) ? Scode : code);
+}
+/*
+d643 1
+a643 9
+		if (nequal (Buf, "Message-id:", 11))
+			fprintf (Nmsg, "X-Old-%s", Buf);
+		else if (fputs (Buf, Nmsg) == EOF) {
+			if (Debug)
+				perror ("ReMail");
+			if (Log)
+				syslog (LOG_ERR, "ReMail: %m");
+			finis ();
+		}
+d695 2
+a696 3
+**	A pointer to a static array containing the answer is returned.
+**	If the NULL pointer is returned, the calling procedure should
+**	examine ResponseCode.
+d700 1
+d707 1
+a707 2
+**		Will call ContactQI() if the connection is closed.
+**		Uses ResponseCode to report back errors.
+d710 2
+d713 1
+a713 1
+AliasToMail (theAlias)
+d715 1
+d717 9
+a725 1
+	static char NameVar[MAXSTR];
+a726 3
+	if ((ResponseCode = ContactQI()))
+		return (CPNULL);
+
+d731 1
+d733 85
+a817 1
+	ResponseCode = PutResponse (NameVar);
+d821 68
+d915 1
+a915 1
+**  GetGood -- Get a non-comment line from a stream
+d925 2
+a926 1
+**		1 on success, 0 if comment, -1 on EOF or error
+d932 1
+a932 1
+GetGood (theString, maxChars, theFile)
+d940 11
+a950 4
+		if (*theString == '#')
+			return (0);	/* a comment */
+		else 
+			return (1);	/* success */
+d1020 1
+d1033 2
+d1036 4
+d1045 1
+a1045 2
+	if ((EMailP = AliasToMail (nbuf)) != CPNULL) {
+		code = ResponseCode;
+a1046 1
+	}
+a1047 1
+#ifdef notdef
+d1049 1
+a1049 2
+	else if ((EMailP = CallsignToMail (nbuf)) != CPNULL) {
+		code = ResponseCode;
+a1050 1
+	}
+d1053 1
+a1053 2
+	else if ((EMailP = FullnameToMail (nbuf)) != CPNULL) {
+		code = ResponseCode;
+a1054 2
+	}
+#endif notdef
+a1055 5
+	/* give it up, return code */
+	else {
+		code = ResponseCode;
+	}
+
+d1069 1
+a1069 1
+**		none, exit (1)
+d1072 1
+a1072 1
+**		program terminates
+a1089 1
+	finis ();
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d21 1
+a21 1
+static char rcsid[] = "@@(#)$Header$";
+a33 1
+#include <errno.h>
+d89 1
+d102 3
+d125 1
+a125 1
+	"usage: %s [-d] [-p] [-l] [-i] [-f FromAddress] address1 [address2]",
+a128 8
+struct	NewAddress {
+	char	*original;
+	char	*new;
+	int	code;
+};
+
+typedef	struct NewAddress NADD;
+
+d191 1
+a191 1
+	while ((option = getopt (argc, argv, "f:r:pdli")) != EOF) {
+d197 9
+d268 1
+a268 1
+	    * sizeof (NADD)))) == (NADD *) NULL) {
+d824 1
+a824 1
+**	examine errno.
+d835 1
+a835 1
+**		Uses errno to report back errors.
+d844 1
+a844 1
+	if ((errno = ContactQI()))
+d852 1
+a852 1
+	errno = PutResponse (NameVar);
+d964 1
+a964 1
+**	Takes a full name or user alias, as known by the CSnet central
+d987 1
+a987 1
+	char		*email_p;
+d997 3
+a999 3
+	if ((email_p = AliasToMail(nbuf)) != CPNULL) {
+		code = errno;
+		(void) strncpy (nbuf, email_p, nbsize-1);
+d1002 14
+a1015 4
+	/*
+	 * try formatting the name into a full name
+	 */
+
+d1018 1
+a1018 1
+		code = errno;
+@

@@ -1,0 +1,3482 @@
+head	1.29;
+access;
+symbols;
+locks
+	p-pomes:1.29; strict;
+comment	@ * @;
+
+
+1.29
+date	95.06.27.02.20.33;	author p-pomes;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.06.26.19.58.14;	author p-pomes;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.06.23.19.26.57;	author p-pomes;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.06.23.12.58.03;	author p-pomes;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.06.23.02.52.53;	author p-pomes;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.06.10.04.04.53;	author p-pomes;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.06.09.23.16.49;	author p-pomes;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.06.09.17.44.38;	author p-pomes;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.06.08.21.53.41;	author p-pomes;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.06.08.21.19.58;	author p-pomes;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.06.07.19.17.56;	author p-pomes;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.03.03.01.06.25;	author p-pomes;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.03.01.20.34.11;	author p-pomes;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.03.01.20.09.29;	author p-pomes;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.02.22.02.57.51;	author p-pomes;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.11.18.16.03.13;	author p-pomes;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.09.09.20.13.11;	author p-pomes;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.08.18.16.21.22;	author p-pomes;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.05.05.21.09.05;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.05.05.20.45.26;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.05.05.20.39.00;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.03.12.04.27.19;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.03.11.22.45.56;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.03.06.21.48.56;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.01.05.15.50.17;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	93.12.21.21.42.43;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.12.19.18.41.33;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	93.12.16.23.00.52;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.24.22.32.24;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.29
+log
+@bug fixes.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *              Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *      This product includes software developed by the Corporation for
+ *      Research and Educational Networking (CREN), the University of
+ *      Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of its
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.28 1995/06/26 19:58:14 p-pomes Exp $";
+#endif
+
+/*
+ * Login and Logout functions, using the many flavors of password
+ *  protocols (original recipe, Kerberos, email etc.)
+ *
+ *
+ * LoginQi - Login to QI server, optionally prompting for username/password.
+ *
+ *   Parameters:
+ *           UseHost - name of Qi server host
+ *           ToQI - stream descriptor to write to
+ *           FromQI - stream descriptor to read from
+ *           Options - see qiapi.h/LQ_* defines
+ *           Username - pointer to name to login as (alias) or NULL
+ *           Password - pointer to password or NULL
+ *
+ *   Returns:
+ *           alias logged in as or NULL.
+ *
+ *   Side Effects:
+ *           possibly obtains and caches Kerberos tickets.
+ *           username/password prompts are written/read to/from stdin/out,
+ *            iff Options&LQ_INTERACTIVE.
+ *
+ * (most of this code lifted out of ph 6.5)
+ */
+
+#include <syslog.h>
+
+#ifdef __STDC__
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#else /* !__STDC__ */
+#include <strings.h>
+char *malloc();
+char *getenv();
+char *strtok();
+
+#endif /* __STDC__ */
+#include <stdio.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/socket.h>
+#include <sys/file.h>
+#include <sys/stat.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <ctype.h>
+#ifdef SYSV
+#include <fcntl.h>
+#endif
+#include <arpa/inet.h>
+#include <pwd.h>
+#include <sys/param.h>
+#include <errno.h>
+#include "conf.h"
+#include "qiapi.h"
+#ifdef KRB4_AUTH
+#include <kerberosIV/des.h>
+#include <kerberosIV/krb.h>
+#endif /* KRB4_AUTH */
+
+#ifdef KRB5_AUTH
+#include <krb5/krb5.h>
+#include <krb5/krb5_err.h>
+#include <krb5/ccache.h>
+#endif /* KRB5_AUTH */
+
+char *getpass __P((const char *));
+
+#ifndef NAMEPROMPT
+#define NAMEPROMPT "Enter nameserver alias: "
+#endif
+#ifndef PASSPROMPT
+#define PASSPROMPT "Enter nameserver password: "
+#endif
+#ifndef CLIENT
+#define CLIENT "ph"
+#endif
+
+#define MAXSTR		255	/*max string length */
+
+int  QiDebug = 0;
+int  QiAuthDebug = 0;
+static char MsgBuf[MAXSTR];	/*messages from qi */
+char *AuthMethods = NULL;
+
+#ifdef FWTK_AUTH
+static int LoginFwtk __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+#endif /* FWTK_AUTH */
+
+#ifdef KRB4_AUTH
+static int LoginKrb4 __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+#endif /* KRB4_AUTH */
+
+#ifdef KRB5_AUTH
+static int LoginKrb5 __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+#endif /* KRB5_AUTH */
+
+#ifdef GSS_AUTH
+static int LoginGss __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+#endif /* GSS_AUTH */
+
+static int LoginEmail __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+static int LoginOriginal __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+static void GetAutoLogin __P((char **, char **));
+static void SkipMacdef __P((FILE *));
+static int CheckAuth __P((FILE *, FILE *));
+
+/*
+ * try each kind of login protocol in turn 'til one succeeds or we run
+ * out of choices.  To avoid reprompting for Username or Password, it
+ * is the responsiblity of each routine to malloc up the result of
+ * obtaining the username/password, and the responsibility of this
+ * routine to clean them up -- unless they were passed in from caller of
+ * course.
+ */
+char *
+LoginQi(UseHost, ToQI, FromQI, Options, Username, Password)
+    const char *UseHost;
+    FILE *ToQI, *FromQI;
+    int  Options;
+    const char *Username, *Password;
+{
+    char *U = (char *) Username, *P = (char *) Password;
+    static char MyAlias[MAXSTR];
+    int LoggedIn, code;
+    char *pnt;
+
+    if (!AuthMethods && (code = CheckAuth(ToQI, FromQI)) != LR_OK)
+	return (NULL);
+    if (QiAuthDebug) {
+	fprintf(stderr, "Options %#x, Username %s, Password %s\n", Options,
+	    (Username)?Username:"(nil)", (Password)?Password:"(nil)");
+	fprintf(stderr, "AuthMethods: %s\n", AuthMethods);
+    }
+    memset(MyAlias, 0, sizeof MyAlias);
+    for (LoggedIn = 0, pnt = AuthMethods; pnt && *pnt && !LoggedIn; ) {
+	if (QiAuthDebug)
+	    fprintf(stderr, "LoginQi:Trying method %d\n", atoi(pnt));
+	switch (code = atoi(pnt)) {
+	  case LQ_FWTK:
+#if defined(FWTK_AUTH)
+	    if (Options & LQ_FWTK &&
+		LoginFwtk(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P)
+		== LR_OK)
+		    LoggedIn++;
+#endif /* FWTK_AUTH */
+	    break;
+
+	  case LQ_KRB5:
+#if defined(KRB5_AUTH)
+	    if (Options & LQ_KRB5 &&
+		LoginKrb5(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P)
+		== LR_OK)
+		    LoggedIn++;
+#endif /* KRB5_AUTH */
+	    break;
+
+	  case LQ_GSS:
+#ifdef GSS_AUTH
+	    if (Options & LQ_GSS &&
+		LoginGss(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+		    LoggedIn++;
+#endif /* GSS_AUTH */
+	    break;
+
+	  case LQ_KRB4:
+#if defined(KRB4_AUTH)
+	    if (Options & LQ_KRB4 &&
+		LoginKrb4(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P)
+		== LR_OK)
+		    LoggedIn++;
+#endif /* KRB4_AUTH */
+	    break;
+
+	  case LQ_PASSWORD:
+	    if (Options & LQ_PASSWORD &&
+		LoginOriginal(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+		    LoggedIn++;
+	    break;
+
+	  case LQ_EMAIL:
+	    if (Options & LQ_EMAIL &&
+		LoginEmail(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+		    LoggedIn++;
+	    break;
+
+	  case LQ_CLEAR:
+	    break;
+
+	  default:
+	    syslog(LOG_ERR, "LoginQi:Unknown authentication method %d ignored", code);
+	    fprintf(stderr, "LoginQi:Unknown authentication method %d ignored\n", code);
+	    break;
+	}
+	pnt = strchr(pnt, ':');
+	if (pnt && *pnt)
+	    pnt++;
+    }
+    if (!Username && U)		/* username was not passed in */
+	free(U);		/* so free malloc'd string */
+    if (!Password && P) {	/* ditto for password */
+	memset(P, 0, strlen(P));
+	free(P);
+    }
+    fputs(MsgBuf, stdout);
+    return ((*MyAlias) ? MyAlias : NULL);
+}
+
+
+/*
+ * Original recipe login, based on shared secret (password) between QI
+ * server and user.  If autologin is selected, .netrc is tried first.
+ * If LoginQiEmailAuth is true, then email auth is attempted.
+ */
+static int LoginQiEmailAuth = 0;	/* a dirty little secret */
+
+static int
+LoginOriginal(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+    const char *UseHost;
+    FILE *ToQI, *FromQI;
+    int  Options;
+    char *MyAlias, **Up, **Pp;
+{
+    int  code;
+    char *pnt, scratch[MAXSTR];
+
+    /*
+     * If LQ_AUTO option selection and a username is not supplied,
+     * try getting the login info from .netrc
+     */
+    if (Options & LQ_AUTO && !*Up) {	/* try autologin w/.netrc */
+	GetAutoLogin(Up, Pp);
+	if (QiAuthDebug)
+	    fprintf(stderr, "autologin: .netrc user=%s, pass=%s\n",
+		    (*Up) ? *Up : "(none)", (*Pp) ? *Pp : "(none)");
+    }
+    if (!*Up) {			/* username not supplied */
+	if (!(Options & LQ_INTERACTIVE))	/* sorry, I can't ask you. */
+	    return (LR_ERROR);
+	printf(NAMEPROMPT);	/* ask for missing alias */
+	fgets(scratch, sizeof (scratch), stdin);
+	scratch[strlen(scratch) - 1] = '\0';	/* zap the \n */
+	if (!*scratch)
+	    return (LR_ERROR);
+	*Up = strdup(scratch);
+    }
+    if (*Pp && **Pp == '\0')
+	*Pp = NULL;
+    if (!*Pp && !LoginQiEmailAuth && !(Options & LQ_INTERACTIVE))
+	return (LR_ERROR);	/* I can't ask your password */
+    if (QiAuthDebug)
+	fprintf(stderr, "sent=login %s\n", *Up);	/*send login request */
+    if (fprintf(ToQI, "login %s\n", *Up) == EOF) {
+	syslog(LOG_ERR, "LoginOriginal: fprintf: %m");
+	fprintf(stderr, "LoginOriginal: Whoops--the nameserver died.\n");
+	return LR_ERROR;
+    }
+    fflush(ToQI);
+
+    for (;;) {			/*read the response */
+	if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+	    fprintf(stderr, "LoginOriginal: Whoops--the nameserver died.\n");
+	    return LR_ERROR;
+	}
+	code = atoi(MsgBuf);
+
+	/* intermediate or strange response */
+	if (code != LR_LOGIN && code != LR_XLOGIN)
+	    fputs(MsgBuf, stdout);
+	if (code >= LR_OK)	/*final response */
+	    break;
+    }
+
+    if (code == LR_LOGIN || code == LR_XLOGIN) {
+	if (LoginQiEmailAuth) {	/* try email login */
+	    pnt = getpwuid(getuid())->pw_name;
+
+	    if (QiAuthDebug)
+		fprintf(stderr, "sent=email %s\n", pnt);
+	    fprintf(ToQI, "email %s\n", pnt);
+	}
+	else
+	{
+	    if (!*Pp) {		/* password not supplied */
+		char *newp;
+
+		if (code == LR_XLOGIN)
+		    pnt = strchr(MsgBuf, ':') + 1;
+		else
+		    pnt = PASSPROMPT;
+		newp = getpass(pnt);
+		if (newp && *newp)
+		    *Pp = strdup(newp);
+	    }
+	    if (strlen(*Pp) > PH_PW_LEN) {
+		char *cp = &(*Pp)[PH_PW_LEN];
+
+		while (*cp)
+		    *cp++ = '\0';	/* null out *all* the extras */
+	    }
+#ifdef PRE_ENCRYPT
+	    crypt_start(crypt(*Pp,*Pp));
+#else
+	    crypt_start(*Pp);
+#endif
+
+	    /*encrypt the challenge with the password */
+	    MsgBuf[strlen(MsgBuf) - 1] = '\0';	/*strip linefeed */
+	    scratch[encryptit(scratch, (char *) strchr(MsgBuf, ':') + 1)] = '\0';
+
+	    /*send the encrypted text to qi */
+	    if (QiAuthDebug)
+		fprintf(stderr, "sent=answer %s\n", scratch);
+	    fprintf(ToQI, "answer %s\n", scratch);
+	}
+    }
+    fflush(ToQI);
+
+    /*get the final response */
+    for (;;) {
+	if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+	    fprintf(stderr, "LoginOriginal: Whoops--the nameserver died.\n");
+	    return LR_ERROR;
+	}
+	code = atoi(MsgBuf);
+	if (code >= LR_OK)	/*final response */
+	    break;
+    }
+
+    if (code == LR_OK) {	/*logged in */
+	strcpy(MyAlias, (char *) strchr(MsgBuf, ':') + 1);
+	*(char *) strchr(MyAlias, ':') = '\0';
+    }
+    else
+	*MyAlias = '\0';
+    return (code);
+}
+/*
+ * check .netrc to for username and password to try to login with.
+ */
+static void
+GetAutoLogin(alias, pw)
+    char **alias, **pw;		/* filled in from .netrc */
+{
+    FILE *netrc;		/*the .netrc file */
+    char path[1024];		/*pathname of .netrc file */
+    struct stat statbuf;	/*permissions, etc. of .netrc file */
+    char key[80], val[80];	/*line from the .netrc file */
+    char *token;		/*token (word) from the line from the .netrc file */
+
+    /*
+     * manufacture the pathname of the user's .netrc file
+     */
+    sprintf(path, "%s/.netrc", getenv("HOME"));
+
+    /*
+     * make sure its permissions are ok
+     */
+    if (stat(path, &statbuf) < 0)
+	return;
+    if (statbuf.st_mode & 077)
+	return;			/*refuse insecure files */
+
+    /*
+     * try to open it
+     */
+    if (!(netrc = fopen(path, "r")))
+	return;
+
+    /*
+     * look for a ``machine'' named ``ph''
+     */
+    while (2 == fscanf(netrc, "%s %s", key, val)) {
+	if (!strcmp(key, "machine") && !strcmp(val, CLIENT)) {
+	    /*
+	     * found an entry for ph.  look now for other items
+	     */
+	    while (2 == fscanf(netrc, "%s %s", key, val)) {
+		if (!strcmp(key, "machine"))	/*new machine */
+		    goto out;
+		else if (!strcmp(key, "login"))
+		    *alias = strdup(val);
+		else if (!strcmp(key, "password"))
+		    *pw = strdup(val);
+		else if (!strcmp(key, "macdef"))
+		    SkipMacdef(netrc);
+	    }
+	}
+	else if (!strcmp(key, "macdef"))
+	    SkipMacdef(netrc);
+    }
+  out:
+    return;
+}
+
+/*
+ * skip a macdef in the .netrc file
+ */
+static void
+SkipMacdef(netrc)
+    FILE *netrc;
+{
+    int  c, wasNl;
+
+    for (wasNl = 0; (c = getc(netrc)) != EOF; wasNl = (c == '\n'))
+	if (wasNl && c == '\n')
+	    break;
+}
+
+#ifdef FWTK_AUTH
+/*
+ * Use the authentication server from the TIS Firewall Toolkit.  Properly
+ * built it provides SNK/4, SecureId, S/Key, and other methods.
+ */
+static int
+LoginFwtk(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+    const char *UseHost;
+    FILE *ToQI, *FromQI;
+    int  Options;
+    char *MyAlias, **Up, **Pp;
+{
+    int  code;
+    char *pnt, *newp;
+    char scratch[MAXSTR];
+
+    /* if LQ_AUTO option selection and a username is not supplied,
+     * try getting the login info from .netrc
+     */
+    if (!(Options & LQ_INTERACTIVE))	/* only interactive use is possible */
+	return (LR_ERROR);
+
+    if (!*Up) {			/* username not supplied */
+	printf(NAMEPROMPT);	/* ask for missing alias */
+	fgets(scratch, sizeof (scratch), stdin);
+	scratch[strlen(scratch) - 1] = '\0';	/* zap the \n */
+	if (!*scratch)
+	    return (LR_ERROR);
+	*Up = strdup(scratch);
+    }
+    if (QiAuthDebug)
+	fprintf(stderr, "sent=xlogin %d %s\n", LQ_FWTK, *Up);
+    if (fprintf(ToQI, "xlogin %d %s\n", LQ_FWTK, *Up) == EOF) {
+	syslog(LOG_ERR, "LoginFwtk: fprintf: %m");
+	fprintf(stderr, "LoginFwtk: Whoops--the nameserver died.\n");
+	return LR_ERROR;
+    }
+
+    fflush(ToQI);
+
+    for (;;) {			/*read the response */
+	if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+	    fprintf(stderr, "LoginFwtk: Whoops--the nameserver died.\n");
+	    return LR_ERROR;
+	}
+	code = atoi(MsgBuf);
+
+	/* intermediate or strange response */
+	if (code != LR_LOGIN && code != LR_XLOGIN)
+	    fputs(MsgBuf, stdout);
+	if (code >= LR_OK)	/*final response */
+	    break;
+    }
+
+    /*
+     * Ignore passed in password because SNK/4, SecureId, S/Key all require
+     * a password calculated from a challenge.  Well, that's not exactly
+     * true with S/Key, however S/Key doesn't use reuseable passwords.
+     */
+    if (code == LR_XLOGIN) {
+	if ((pnt = strchr(MsgBuf, '\n')) != NULL)
+	    *pnt = '\0';
+	pnt = strchr(MsgBuf, ':') + 1;
+    }
+    else
+	pnt = PASSPROMPT;
+    newp = getpass(pnt);
+
+    /* send the response to qi */
+    if (QiAuthDebug)
+	fprintf(stderr, "sent=answer %s\n", newp);
+    fprintf(ToQI, "answer %s\n", newp);
+    fflush(ToQI);
+
+    /*get the final response */
+    for (;;) {
+	if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+	    fprintf(stderr, "LoginFwtk: Whoops--the nameserver died.\n");
+	    return LR_ERROR;
+	}
+	code = atoi(MsgBuf);
+	if (code >= LR_OK)	/*final response */
+	    break;
+    }
+
+    if (code == LR_OK) {	/*logged in */
+	strcpy(MyAlias, (char *) strchr(MsgBuf, ':') + 1);
+	*(char *) strchr(MyAlias, ':') = '\0';
+    }
+    else
+	*MyAlias = '\0';
+    return (code);
+}
+#endif /* FWTK_AUTH */
+
+#ifdef KRB4_AUTH
+/*
+ * Extra-Krispy recipe, using a trusted third party with a strange name.
+ */
+static int
+LoginKrb4(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+    const char *UseHost;
+    FILE *ToQI, *FromQI;
+    int  Options;
+    char *MyAlias, **Up, **Pp;
+{
+    struct sockaddr_in sin, lsin;
+    int  sock = fileno(ToQI);
+    int  namelen;
+    int  code, retval;
+    char SrvHost[MAXSTR];
+    static char scratch[MAXSTR];
+    static char kpass[MAXSTR];
+    KTEXT_ST ticket;
+    INT32 authopts;
+    MSG_DAT msg_data;
+    CREDENTIALS cred;
+    Key_schedule sched;
+    char principal[ANAME_SZ];
+    char instance[INST_SZ];
+    char realm[REALM_SZ], *hrealm, *pnt;
+    char krbtkfile[MAXPATHLEN];
+    char okrbtkfile[MAXPATHLEN];
+
+    *principal = *instance = *realm = '\0';
+    (void) strcpy(SrvHost, UseHost);
+    if (hrealm = strchr(SrvHost, '.'))
+	*hrealm = '\0';
+
+    /* find out who I am */
+    namelen = sizeof (lsin);
+    if (getsockname(sock, (struct sockaddr *) &lsin, &namelen) < 0) {
+	return (LR_ERROR);
+    }
+
+    /* find out who the other side is */
+    namelen = sizeof (sin);
+    if (getpeername(sock, (struct sockaddr *) &sin, &namelen) < 0) {
+	return (LR_ERROR);
+    }
+
+    /*
+     * Did the user specify a username?  Has autologin been requested?
+     * If not, and if we're not logged in to Kerberos, prompt for one.
+     */
+    if (!*Up) {
+	struct stat dummy;
+
+	if (!(Options & LQ_AUTO))	/* no user, no autologin */
+	    return (LR_ERROR);	/* no deal */
+	if (stat(TKT_FILE, &dummy)) {	/* no ticket cache */
+	    if (!(Options & LQ_INTERACTIVE))	/* can't ask */
+		return (LR_ERROR);
+	    printf(NAMEPROMPT);
+	    fgets(scratch, sizeof (scratch), stdin);
+	    if (!*scratch)
+		return (LR_ERROR);
+	    else {
+		/* zap newline */
+		scratch[strlen(scratch) - 1] = 0;
+		*Up = strdup(scratch);
+	    }
+	}
+    }
+    /* If we're not already logged in with Kerberos then do so (get a TGT).
+     * (NULL username at this point implies we already have a TGT).
+     */
+    if (*Up) {
+	if ((pnt = strchr(*Up, '/')) != NULL)
+	    *pnt = '.';		/* convert V5 principal/instance to V4 format */
+	retval = kname_parse(principal, instance, realm, *Up);
+	if (pnt && *pnt)
+	    *pnt = '/';
+	if (retval != KSUCCESS) {
+	    fprintf(stderr, "LoginKrb4: %s\n", krb_err_txt[retval]);
+	    return LR_ERROR;
+	}
+	if (!*realm && krb_get_lrealm(realm, 1)) {
+	    fprintf(stderr, "LoginKrb4: Unable to get realm.\n");
+	    return LR_ERROR;
+	}
+	/* set tkt file we'll use */
+	strcpy(okrbtkfile, TKT_FILE);
+	sprintf(krbtkfile, "/tmp/tkt_ph4_%d", getpid());
+	krb_set_tkt_string(krbtkfile);
+
+	if (*Pp && **Pp == '\0')
+	    *Pp = NULL;
+	if (!*Pp) {		/* no password supplied */
+	    if (!(Options & LQ_INTERACTIVE))	/* I can't ask */
+		return LR_ERROR;
+
+	    /* Read the password string, krb_get_pw_in_tkt() will convert to
+	     * key.
+	     */
+	    if (des_read_pw_string(kpass, sizeof (kpass),
+				    "Enter kerberos password: ", 0) != 0) {
+		fprintf(stderr, "LoginKrb4: Unable to read password.\n");
+		return LR_ERROR;
+	    }
+	    if (*kpass)
+		*Pp = strdup(kpass);
+	    memset(kpass, 0, sizeof(kpass));
+	    (void) sprintf(kpass, "%ld", time());
+	}
+	/* login */
+	retval = krb_get_pw_in_tkt(principal, instance, realm,
+				   "krbtgt", realm, 96,
+				   (*Pp == NULL || **Pp == '\0') ? kpass : *Pp);
+	if (QiAuthDebug)
+	    fprintf(stderr, "%s getting V4 Kerberos TGT for %s.%s@@%s.\n",
+		    (retval == KSUCCESS) ? "Success" : "Failure",
+		    principal, (instance) ? instance : "(nil)", realm);
+	if (retval != KSUCCESS) {
+	    if (*Up) {
+		krb_set_tkt_string(okrbtkfile);
+	    }
+	    return LR_ERROR;
+	}
+    }
+
+    /* Read principal name from ticket cache if needed */
+    if (!*principal) {
+	if ((retval = tf_init(TKT_FILE, R_TKT_FIL)) != KSUCCESS) {
+	    syslog(LOG_ERR, "LoginKrb4: tf_init(%s): %s",
+		    TKT_FILE, krb_err_txt[retval]);
+	    fprintf(stderr, "LoginKrb4: tf_init(%s): %s",
+		    TKT_FILE, krb_err_txt[retval]);
+	    return LR_ERROR;
+	}
+	if ((retval = tf_get_pname(principal)) != KSUCCESS) {
+	    syslog(LOG_ERR, "LoginKrb4: tf_get_pname(): %s",
+		    krb_err_txt[retval]);
+	    fprintf(stderr, "LoginKrb4: tf_get_pname(): %s",
+		    krb_err_txt[retval]);
+	    return LR_ERROR;
+	}
+    }
+    if (QiAuthDebug)
+	fprintf(stderr, "sent=xlogin %d %s\n", LQ_KRB4, principal);
+    if (fprintf(ToQI, "xlogin %d %s\n", LQ_KRB4, principal) == EOF) {
+	syslog(LOG_ERR, "LoginKrb4: fprintf: %m");
+	fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+	return LR_ERROR;
+    }
+    fflush(ToQI);
+
+    for (;;) {			/* read the response */
+	if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+	    fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+	    if (*Up)
+		dest_tkt();	/* destroy temp tickets for
+				 * specified username */
+	    return (LR_ERROR);
+	}
+	code = atoi(MsgBuf);
+
+	/* intermediate or strange response */
+	if (code != LR_LOGIN && code != LR_XLOGIN)
+	    fputs(MsgBuf, stdout);
+	if (code >= LR_OK)	/* final response */
+	    break;
+    }
+
+    if (code == LR_LOGIN || code == LR_XLOGIN) {
+	/*
+	 * call Kerberos library routine to obtain an authenticator,
+	 * pass it over the socket to the server, and obtain mutual
+	 * authentication.
+	 */
+
+#ifdef KRBNSREALM
+	hrealm = KRBNSREALM;
+#else
+	hrealm = krb_realmofhost(UseHost);
+#endif
+	authopts = KOPT_DO_MUTUAL;
+	retval = krb_sendauth(authopts, sock, &ticket,
+			      KRB4SRV, SrvHost, hrealm,
+			      0, &msg_data, &cred,
+			      sched, &lsin, &sin, "VERSION9");
+	if (QiAuthDebug)
+	    fprintf(stderr, "%s doing V4 Kerberos mutual authentication of %s.%s@@%s with %s.%s@@%s\n",
+		(retval == KSUCCESS) ? "Success" : "Failure",
+		cred.pname, (*cred.pinst) ? cred.pinst : "(nil)", cred.realm,
+		KRB4SRV, SrvHost, hrealm);
+	if (*Up)		/* ???? */
+	    dest_tkt();		/* destroy special tickets as soon as
+				 * possible */
+
+	/* get the final response (even if mutual failed) */
+	for (;;) {
+	    if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+		fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+		return LR_ERROR;
+	    }
+	    code = atoi(MsgBuf);
+	    if (code >= LR_OK)	/* final response */
+		break;
+	}
+
+	if (*Up) {
+	    krb_set_tkt_string(okrbtkfile);
+	}
+
+	if (retval == KSUCCESS && code == LR_OK) {	/* logged in */
+	    strcpy(MyAlias, (char *) strchr(MsgBuf, ':') + 1);
+	    *(char *) strchr(MyAlias, ':') = '\0';
+	}
+	else
+	    *MyAlias = '\0';
+	return (code);
+    }
+}
+#endif /* KRB4_AUTH */
+
+#ifdef KRB5_AUTH
+
+static krb5_data tgtname = {
+    0,
+    KRB5_TGS_NAME_SIZE,
+    KRB5_TGS_NAME
+};
+
+/*
+ * Try no preauthentication first; then try the encrypted timestamp
+ */
+int preauth_search_list[] = {
+    0,
+    KRB5_PADATA_ENC_UNIX_TIME,
+    -1
+};
+
+
+/*
+ * Extra-Krispy recipe, using a trusted third party with a strange name.
+ */
+static int
+LoginKrb5(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+    const char *UseHost;
+    FILE *ToQI, *FromQI;
+    int  Options;
+    char *MyAlias, **Up, **Pp;
+{
+    int  code, retval;
+    int  sock = fileno(ToQI);
+    char scratch[MAXSTR];
+    char cname[MAXSTR], pname[MAXSTR];
+    static char kpass[MAXSTR];
+    int kpasslen = sizeof(kpass);
+    char cache_name[MAXSTR];
+    krb5_ccache cache = NULL;
+    krb5_creds my_creds;
+    krb5_principal me;
+    krb5_error *err_ret;
+    krb5_ap_rep_enc_part *rep_ret;
+    krb5_address **my_addresses;
+    int i, options = 0;
+    krb5_timestamp now;
+    char *pnt, *princ = NULL, realm[MAXSTR];
+
+    *cname = *pname = '\0';
+
+    if (retval = krb5_cc_default(&cache)) {
+	syslog(LOG_ERR, "LoginKrb5: krb5_cc_default(): %s",
+		error_message(retval));
+	fprintf(stderr, "LoginKrb5: krb5_cc_default(): %s\n",
+		error_message(retval));
+	return (LR_ERROR);
+    }
+
+    memset ((char*)&my_creds, 0, sizeof(my_creds));
+    if (retval = krb5_sname_to_principal(UseHost, KRB5SRV, KRB5_NT_SRV_HST,
+					&my_creds.server)) {
+	syslog(LOG_ERR, "LoginKrb5:krb5_sname_to_principal(%s,%s): %s.",
+	    UseHost, KRB5SRV, error_message(retval));
+	fprintf(stderr, "LoginKrb5:krb5_sname_to_principal(%s,%s): %s.\n",
+	     UseHost, KRB5SRV, error_message(retval));
+	return (LR_ERROR);
+    }
+    (void) krb5_unparse_name(my_creds.server, &pnt);
+    (void) strcpy(cname, pnt);
+    free(pnt);
+
+    /*
+     * Strategy: determine if ticket cache exists.  If it does and the
+     * tickets are valid, use them to log in.  If ticket cache doesn't
+     * exist, create a temporary cache, prompt for username and password if
+     * need be, and send Kerberos authentication.
+     */
+
+#ifdef KRBNSREALM
+    (void) strcpy(realm, KRBNSREALM);
+#else
+    if (retval = krb5_get_default_realm(&pnt)) {
+	syslog(LOG_ERR, "LoginKrb5: krb5_get_default_realm(): %s",
+		error_message(retval));
+	fprintf(stderr, "LoginKrb5:  krb5_get_default_realm(): %s\n",
+		error_message(retval));
+	krb5_free_principal(my_creds.server);
+	return (LR_ERROR);
+    }
+    (void) strncpy(realm, pnt, MAXSTR-1);
+    free(pnt);
+#endif
+
+    /*
+     * If user has previously done a kinit, then krb5_cc_get_principal()
+     * will succeed.  The ticket obtained may have timed out so be prepared
+     * to handle that after  krb5_get_credentials().
+     */
+    if (retval = krb5_cc_get_principal(cache, &my_creds.client)) {
+
+	/* No credentials cache. */
+	if (!*Up && !(Options & LQ_INTERACTIVE)) {	/* can't ask */
+		krb5_free_principal(my_creds.server);
+		return (LR_ERROR);
+	}
+	if (!*Up) {
+		printf(NAMEPROMPT);
+		fgets(scratch, sizeof (scratch), stdin);
+		if (!*scratch) {
+		    krb5_free_principal(my_creds.server);
+		    return (LR_ERROR);
+		}
+		/* zap newline */
+		scratch[strlen(scratch) - 1] = 0;
+		*Up = strdup(scratch);
+	}
+
+	/* convert V4 principal/instance to V5 format */
+	if ((pnt = strchr(*Up, '.')) != NULL) {
+	    char *at = strchr(*Up, '@@');
+
+	    if (at) {
+		if (at > pnt)
+		    *pnt = '/';
+		else
+		    pnt = NULL;
+	    }
+	    else
+		*pnt = '/';
+	}
+
+	/* create the principal to ask for */
+	if (retval = krb5_parse_name (*Up, &me)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_parse_name(%s): %s",
+		*Up, error_message(retval));
+	    fprintf(stderr, "LoginKrb5:  krb5_parse_name(%s): %s\n",
+		*Up, error_message(retval));
+	    krb5_free_principal(my_creds.server);
+	    return (LR_ERROR);
+	}
+	if (pnt && *pnt)
+	    *pnt = '.';
+	(void) krb5_unparse_name(me, &pnt);
+	(void) strcpy(pname, pnt);
+	free(pnt);
+
+	/* Determine address(es) of client host */
+	if (retval = krb5_os_localaddr(&my_addresses)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_os_localaddr(): %s",
+		    error_message(retval));
+	    fprintf(stderr, "LoginKrb5:  krb5_os_localaddr(): %s\n",
+		    error_message(retval));
+	    krb5_free_principal(my_creds.server);
+	    krb5_free_principal(me);
+	    return (LR_ERROR);
+	}
+
+	/* What time is it? */
+	if (retval = krb5_timeofday(&now)) {
+	    syslog(LOG_ERR, "LoginKrb5:  krb5_timeofday(): %s",
+		    error_message(retval));
+	    fprintf(stderr, "LoginKrb5:   krb5_timeofday(): %s\n",
+		    error_message(retval));
+	    krb5_free_principal(my_creds.server);
+	    krb5_free_principal(me);
+	    krb5_free_addresses(my_addresses);
+	    return (LR_ERROR);
+	}
+
+	/* create a temporary credentials cache */
+	(void) sprintf(cache_name, "FILE:/tmp/tkt_ph5_%d", getpid());
+	if ((retval = krb5_cc_resolve(cache_name, &cache))) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_cc_resolve(%s): %s",
+		    cache_name, error_message(retval));
+	    fprintf(stderr, "LoginKrb5:  krb5_cc_resolve(%s): %s\n",
+		    cache_name, error_message(retval));
+	    krb5_free_principal(my_creds.server);
+	    krb5_free_principal(me);
+	    krb5_free_addresses(my_addresses);
+	    return (LR_ERROR);
+	}
+
+	/* make the principal the primary cache entry */
+	if (retval = krb5_cc_initialize(cache, me)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_cc_initialize(%s): %s",
+		pname, error_message(retval));
+	    fprintf(stderr, "LoginKrb5: krb5_cc_initialize(%s): %s\n",
+		pname, error_message(retval));
+	    krb5_free_principal(my_creds.server);
+	    krb5_free_principal(me);
+	    krb5_free_addresses(my_addresses);
+	    return (LR_ERROR);
+	}
+
+	my_creds.client = me;
+	my_creds.times.starttime = 0;
+	my_creds.times.endtime = now + ((QiAuthDebug) ? 3600 : 60);
+	my_creds.times.renew_till = 0;
+
+	if (*Pp && **Pp == '\0')
+	    *Pp = NULL;
+	if (!*Pp) {		/* no password supplied */
+	    if (!(Options & LQ_INTERACTIVE)) {	/* I can't ask */
+		krb5_free_principal(my_creds.server);
+		krb5_free_principal(me);
+		krb5_free_addresses(my_addresses);
+		return LR_ERROR;
+	    }
+	    if (krb5_read_password("Enter Kerberos password: ", 0,
+				    kpass, &kpasslen) != 0) {
+		fprintf(stderr, "Unable to read password.\n");
+		krb5_free_principal(my_creds.server);
+		krb5_free_principal(me);
+		krb5_free_addresses(my_addresses);
+		return LR_ERROR;
+	    }
+	    if (*kpass)
+		*Pp = strdup(kpass);
+	    memset(kpass, 0, sizeof(kpass));
+	    (void) sprintf(kpass, "%d", my_creds.times.endtime);
+	}
+
+	/* Iterate through the pre-auth methods until we succeed or fail */
+	for (i=0; preauth_search_list[i] >= 0; i++) {
+	    retval = krb5_get_in_tkt_with_password(options, my_addresses,
+						   preauth_search_list[i],
+                                                   ETYPE_DES_CBC_CRC,
+                                                   KEYTYPE_DES,
+				   (*Pp == NULL || **Pp == '\0') ? kpass : *Pp,
+                                                   cache,
+                                                   &my_creds, 0);
+	    if (retval != KRB5KDC_ERR_PREAUTH_FAILED &&
+                  code != KRB5KRB_ERR_GENERIC)
+		break;
+	}
+	if (!QiAuthDebug)
+	    (void) krb5_cc_destroy(cache);
+	cache = NULL;
+	krb5_free_addresses(my_addresses);
+	if (QiAuthDebug) {
+	    fprintf(stderr, "%s obtaining V5 Kerberos ticket for %s to use %s.\n",
+		    (retval == 0) ? "Success" : "Failure", pname, cname);
+	}
+	if (retval) {
+	    krb5_free_principal(my_creds.server);
+	    krb5_free_principal(me);
+	    if (retval != KRB5KRB_AP_ERR_BAD_INTEGRITY)
+		fprintf(stderr, "LoginKrb5: krb5_get_in_tkt_with_password(): %s\n",
+		    error_message(retval));
+	    return (LR_ERROR);
+	}
+    }
+
+    /* Get service ticket from cache or use TGT with KDC */
+    else if (retval = krb5_get_credentials(0, cache, &my_creds)) {
+	fprintf(stderr, "LoginKrb5: krb5_get_credentials(): %s\n",
+	    error_message(retval));
+	krb5_free_principal(my_creds.server);
+	krb5_free_principal(me);
+	return (LR_ERROR);
+    }
+
+    if (retval = krb5_unparse_name(my_creds.client, &princ)) {
+	syslog(LOG_ERR, "LoginKrb5: krb5_unparse_name(): %s",
+	    error_message(retval));
+	fprintf(stderr, "LoginKrb5:  krb5_unparse_name(): %s\n",
+	    error_message(retval));
+	krb5_free_principal(my_creds.server);
+	krb5_free_principal(me);
+	memset ((char*)&my_creds, 0, sizeof(my_creds));
+	return (LR_ERROR);
+    }
+    (void) strcpy(pname, princ);
+
+    if (!*Up && princ) {
+	*Up = princ;
+	if (pnt = strchr(*Up, '@@'))
+	    *pnt = '\0';
+    }
+
+    if (QiAuthDebug)
+	fprintf(stderr, "sent=xlogin %d %s\n", LQ_KRB5, *Up);
+    if (fprintf(ToQI, "xlogin %d %s\n", LQ_KRB5, *Up) == EOF) {
+	syslog(LOG_ERR, "LoginKrb5: fprintf: %m");
+	fprintf(stderr, "LoginKrb5: Whoops--the nameserver died.\n");
+	krb5_free_principal(my_creds.server);
+	krb5_free_principal(me);
+	memset ((char*)&my_creds, 0, sizeof(my_creds));
+	return LR_ERROR;
+    }
+    fflush(ToQI);
+
+    for (;;) {			/* read the response */
+	if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+	    fprintf(stderr, "LoginKrb5: Whoops--the nameserver died.\n");
+	    krb5_free_principal(my_creds.server);
+	    krb5_free_principal(me);
+	    memset ((char*)&my_creds, 0, sizeof(my_creds));
+	    return (LR_ERROR);
+	}
+	code = atoi(MsgBuf);
+
+	/* intermediate or strange response */
+	if (code != LR_LOGIN && code != LR_XLOGIN)
+	    fputs(MsgBuf, stdout);
+	if (code >= LR_OK)	/* final response */
+	    break;
+    }
+
+    if (code == LR_LOGIN || code == LR_XLOGIN) {
+	/*
+	 * call Kerberos library routine to obtain an authenticator,
+	 * pass it over the socket to the server, and obtain mutual
+	 * authentication.
+	 */
+
+	retval = krb5_sendauth((krb5_pointer) &sock,
+				KQI_VERSION,
+				my_creds.client,
+				my_creds.server,
+				AP_OPTS_MUTUAL_REQUIRED,
+				0,
+				&my_creds,
+				cache,
+				0, 0,		/* don't need seqno or subkey */
+				&err_ret,
+				&rep_ret);
+	if (QiAuthDebug) {
+	    fprintf(stderr, "%s doing V5 Kerberos mutual authentication of %s with %s.\n",
+		    (retval == 0) ? "Success" : "Failure", pname, cname);
+	}
+	/* krb5_free_principal(me); */	/* can't do if already had TGT */
+	krb5_free_principal(my_creds.server);
+	memset ((char*)&my_creds, 0, sizeof(my_creds));
+	if (retval && err_ret)
+	    fprintf(stderr, "LoginKrb5: %s\n", error_message(retval));
+
+	/* get the final response (even if mutual failed) */
+	for (;;) {
+	    if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+		fprintf(stderr, "LoginKrb5: Whoops--the nameserver died.\n");
+		return LR_ERROR;
+	    }
+	    code = atoi(MsgBuf);
+	    if (code >= LR_OK)	/* final response */
+		break;
+	}
+
+	if (retval == KSUCCESS && code == LR_OK) {	/* logged in */
+	    strcpy(MyAlias, (char *) strchr(MsgBuf, ':') + 1);
+	    *(char *) strchr(MyAlias, ':') = '\0';
+	}
+	else
+	    *MyAlias = '\0';
+	return (code);
+    }
+}
+#endif /* KRB5_AUTH */
+
+/*
+ * Bean sprout recipe, using Berkeley r-command ingredients.
+ * (actually just calls LoginOriginal since I stole this code
+ *  out of ph....)
+ */
+static int
+LoginEmail(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+    const char *UseHost;
+    FILE *ToQI, *FromQI;
+    int  Options;
+    char *MyAlias, **Up, **Pp;
+{
+    int  rc;
+
+    LoginQiEmailAuth = 1;	/* set our secret internal flag */
+    if (QiAuthDebug)
+	fprintf(stderr, "attempting email login.\n");
+    rc = LoginOriginal(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp);
+    LoginQiEmailAuth = 0;
+    return rc;
+}
+
+/*
+ * LogoutQi - Logout from QI server.
+ *
+ *   Parameters:
+ *           ToQI - stream descriptor to write to
+ *           FromQI - stream descriptor to read from
+ *
+ *   Returns:
+ *           success(LR_OK) or failure indication
+ *
+ */
+
+int
+LogoutQi(ToQI, FromQI)
+    FILE *ToQI, *FromQI;
+{
+    QIR *r;
+    int  n;
+
+    fprintf(ToQI, "logout\n");
+    fflush(ToQI);
+    if ((r = ReadQi(FromQI, &n)) == NULL)
+	return LR_ERROR;
+    n = r->code;
+
+    /* Accept the memory leak to simplify standalone compilation of ph */
+    /* FreeQIR(r); */
+    return n;
+}
+
+static int
+CheckAuth(ToQI, FromQI)
+    FILE *ToQI, *FromQI;
+{
+    int code;
+    char *pnt, sbuf[10], buf[MAXSTR];
+
+    /* See if the server has preferences for authentication methods */
+    if (QiAuthDebug)
+	fprintf(stderr, "sent=siteinfo\n");
+    if (fprintf(ToQI, "siteinfo\n") == EOF) {
+	syslog(LOG_ERR, "LoginQi: fprintf: %m");
+	fprintf(stderr, "LoginQi: Whoops--the nameserver died.\n");
+	return LR_ERROR;
+    }
+    fflush(ToQI);
+
+    for (;;) {			/*read the response */
+	if (!GetGood(MsgBuf, MAXSTR, FromQI)) {
+	    fprintf(stderr, "LoginOriginal: Whoops--the nameserver died.\n");
+	    return LR_ERROR;
+	}
+	code = atoi(MsgBuf);
+	if (pnt = strstr(MsgBuf, "authenticate")) {
+	    /* skip to next ':' */
+	    if (pnt = strchr(pnt, ':')) {
+		if (pnt && *++pnt)
+		    AuthMethods = strdup(pnt);
+	    }
+	}
+	if (code >= LR_OK)	/*final response */
+	    break;
+    }
+    if (AuthMethods || code != LR_OK)
+	return (code);
+
+    /*
+     * If siteinfo was uninformative, build our own based on what we were
+     * compiled with.  N.B., ordering here reflects policy of which login
+     * methods are preferred at each site.
+     */
+    *buf = '\0';
+#ifdef KRB5_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_KRB5);
+    strcat(buf, sbuf);
+#endif /* KRB5_AUTH */
+#ifdef KRB4_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_KRB4);
+    strcat(buf, sbuf);
+#endif /* KRB4_AUTH */
+#ifdef GSS_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_GSS);
+    strcat(buf, sbuf);
+#endif /* GSS_AUTH */
+    (void) sprintf(sbuf, ":%d", LQ_PASSWORD);
+    strcat(buf, sbuf);
+    (void) sprintf(sbuf, ":%d", LQ_EMAIL);
+    strcat(buf, sbuf);
+#ifdef FWTK_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_FWTK);
+    strcat(buf, sbuf);
+#endif /* FWTK_AUTH */
+    AuthMethods = strdup(buf+1);
+    return (LR_OK);
+}
+
+/*
+ * get a non-comment line from a stream
+ * a comment is a line beginning with a # sign
+ */
+int
+GetGood(str, maxc, fp)
+    char *str;			/*space to put the chars */
+    int  maxc;			/*max # of chars we want */
+
+#ifdef VMS
+    int  fp;			/*stream to read them from */
+{
+    static char Qbuf[MAXSTR + 4] = {'\0'};
+    static int pos = {0},
+	end = {0},
+	len = {0};
+    char *linp;
+
+    for (;;) {
+	if (pos >= len) {
+	    len = netread(fp, Qbuf, maxc);
+	    if (len <= 0)
+		return (0);
+	    Qbuf[len] = '\0';
+	    pos = 0;
+	}
+	linp = strchr(Qbuf + pos, '\n');	/*find next newline char */
+	if (linp == NULL)
+	    end = len;		/*no newline chars left */
+	else
+	    end = linp - Qbuf;	/*convert pointer to index */
+
+	strncpy(str, Qbuf + pos, end - pos + 1);
+	*(str + end - pos + 1) = '\0';
+	pos = end + 1;		/*save new position for next time */
+
+	if (!*str)
+#else
+    FILE *fp;			/*stream to read them from */
+{
+    errno = 0;
+    for (;;) {
+	if (!fgets(str, maxc, fp))
+#endif
+	{
+	    fputs("Oops; lost connection to server.\n", stderr);
+	    exit(1);
+	}
+	else if (*str != '#') {
+	    if (QiDebug)
+		fprintf(stderr, "read =%s", str);
+	    return (1);		/*not a comment; success! */
+	}
+    }
+    /* NOTREACHED */
+}
+
+#ifdef NO_STRDUP
+char *
+strdup(str)
+    const char *str;
+{
+    int  len;
+    char *copy;
+
+    len = strlen(str) + 1;
+    if (!(copy = malloc((unsigned int) len)))
+	return ((char *) NULL);
+    memcpy(copy, str, len);
+    return (copy);
+}
+#endif
+@
+
+
+1.28
+log
+@Fixed a return call to use a pointer.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.27 1995/06/23 19:26:57 p-pomes Exp p-pomes $";
+d107 1
+a138 1
+#include <krb5/ccache.h>
+a144 1
+#ifdef EMAIL_AUTH
+a145 3
+#endif /* EMAIL_AUTH */
+
+#ifdef PASS_AUTH
+a146 2
+#endif /* PASS_AUTH */
+
+d179 1
+a179 1
+    for (LoggedIn = 0, pnt = AuthMethods; *pnt && !LoggedIn; ) {
+a218 1
+#ifdef PASS_AUTH
+a221 1
+#endif /* PASS_AUTH */
+a224 1
+#ifdef EMAIL_AUTH
+d228 3
+a230 1
+#endif /* EMAIL_AUTH */
+a252 1
+#if defined(PASS_AUTH) || defined(EMAIL_AUTH)
+a316 1
+# ifdef EMAIL_AUTH
+a325 2
+# endif /* EMAIL_AUTH */
+# ifdef PASS_AUTH
+a358 1
+# endif /* PASS_AUTH */
+a451 1
+#endif /* PASS_AUTH || EMAIL_AUTH */
+a1124 1
+#ifdef EMAIL_AUTH
+a1145 1
+#endif /* EMAIL_AUTH */
+d1223 4
+a1230 5
+#ifdef KRB4_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_KRB4);
+    strcat(buf, sbuf);
+#endif /* KRB4_AUTH */
+#ifdef PASS_AUTH
+a1232 2
+#endif /* PASS_AUTH */
+#ifdef EMAIL_AUTH
+d1235 4
+a1238 1
+#endif /* EMAIL_AUTH */
+@
+
+
+1.27
+log
+@Really, really, close.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.26 1995/06/23 12:58:03 p-pomes Exp p-pomes $";
+d178 1
+a178 1
+	return (code);
+d1110 1
+a1110 1
+	/* krb5_free_principal(me);	/* can't do if already had TGT */
+@
+
+
+1.26
+log
+@Much better behavior.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.25 1995/06/23 02:52:53 p-pomes Exp p-pomes $";
+d586 1
+a586 1
+    char realm[REALM_SZ], *hrealm;
+d634 2
+d637 2
+d669 1
+d673 2
+a674 1
+				   "krbtgt", realm, 96, *Pp);
+d686 18
+d705 2
+a706 2
+	fprintf(stderr, "sent=xlogin %d %s\n", LQ_KRB4, *Up);
+    if (fprintf(ToQI, "xlogin %d %s\n", LQ_KRB4, *Up) == EOF) {
+d896 14
+d919 2
+@
+
+
+1.25
+log
+@working version
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.24 1995/06/10 04:04:53 p-pomes Exp p-pomes $";
+a308 1
+
+d346 2
+a347 1
+		*Pp = strdup(newp);
+d520 5
+a532 1
+    *Pp = strdup(newp);
+d657 2
+a658 1
+	    if (des_read_pw_string(kpass, sizeof (kpass), PASSPROMPT, 0) != 0) {
+d662 2
+a663 1
+	    *Pp = strdup(kpass);
+d947 2
+a948 1
+	    if (krb5_read_password(PASSPROMPT, 0, kpass, &kpasslen) != 0) {
+d955 2
+a956 1
+	    *Pp = strdup(kpass);
+d958 1
+d967 1
+a967 1
+                                                   *Pp,
+@
+
+
+1.24
+log
+@moved some messages about.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.23 1995/06/09 23:16:49 p-pomes Exp p-pomes $";
+d128 4
+d133 1
+a133 1
+int LoginKrb4 __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+d137 1
+a137 1
+int LoginKrb5 __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+d189 9
+d276 1
+a276 1
+    char scratch[MAXSTR];
+d278 2
+a279 1
+    /* if LQ_AUTO option selection and a username is not supplied,
+d298 2
+d318 3
+a320 1
+	if (code != LR_LOGIN)	/*intermediate or strange response */
+d327 1
+a327 1
+    if (code == LR_LOGIN) {
+d329 1
+a329 1
+	    char *me = getpwuid(getuid())->pw_name;
+d332 2
+a333 2
+		fprintf(stderr, "sent=email %s\n", me);
+	    fprintf(ToQI, "email %s\n", me);
+d342 5
+a346 1
+		newp = getpass(PASSPROMPT);
+d355 1
+d357 3
+d466 91
+d644 2
+d675 2
+a676 2
+	fprintf(stderr, "sent=klogin %d\n", LQ_KRB4);	/* send login request */
+    if (fprintf(ToQI, "klogin %d\n", LQ_KRB4) == EOF) {
+d692 3
+a694 1
+	if (code != LR_LOGIN)	/* intermediate or strange response */
+d700 1
+a700 1
+    if (code == LR_LOGIN) {
+d783 1
+d797 2
+d816 3
+d866 13
+d886 1
+d897 1
+a897 12
+	    krb5_free_addresses(my_addresses);
+	    return (LR_ERROR);
+	}
+
+	/* create the principal to ask for */
+	(void) sprintf(scratch, "%s@@%s", *Up, realm);
+	if (retval = krb5_parse_name (scratch, &me)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_parse_name(%s): %s",
+		scratch, error_message(retval));
+	    fprintf(stderr, "LoginKrb5:  krb5_parse_name(%s): %s\n",
+		scratch, error_message(retval));
+	    krb5_free_principal(my_creds.server);
+d917 4
+a920 4
+	    syslog(LOG_ERR, "LoginKrb5: krb5_cc_initialize(): %s",
+		error_message(retval));
+	    fprintf(stderr, "LoginKrb5: krb5_cc_initialize(): %s\n",
+		error_message(retval));
+d932 2
+d970 2
+a971 5
+	    krb5_unparse_name(my_creds.server, &pnt);
+	    fprintf(stderr, "%s obtaining V5 Kerberos ticket for %s@@%s to use %s.\n",
+		    (retval == 0) ? "Success" : "Failure", *Up, realm, pnt);
+	    free(pnt);
+
+d1002 1
+d1011 2
+a1012 2
+	fprintf(stderr, "sent=klogin %d\n", LQ_KRB5);	/* send login request */
+    if (fprintf(ToQI, "klogin %d\n", LQ_KRB5) == EOF) {
+d1031 3
+a1033 1
+	if (code != LR_LOGIN)	/* intermediate or strange response */
+d1039 1
+a1039 1
+    if (code == LR_LOGIN) {
+d1058 2
+a1059 4
+	    krb5_unparse_name(my_creds.server, &pnt);
+	    fprintf(stderr, "%s doing V5 Kerberos mutual authentication of %s@@%s with %s.\n",
+		    (retval == 0) ? "Success" : "Failure", *Up, realm, pnt);
+	    free(pnt);
+d1061 1
+a1061 1
+	/* krb5_free_principal(me);	/* don't do if already had TGT */
+@
+
+
+1.23
+log
+@More improvements.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.22 1995/06/09 17:44:38 p-pomes Exp p-pomes $";
+d837 7
+a850 7
+	}
+	if (QiAuthDebug) {
+	    krb5_unparse_name(my_creds.server, &pnt);
+	    fprintf(stderr, "%s obtaining V5 Kerberos ticket for %s@@%s to use %s.\n",
+		    (retval == 0) ? "Success" : "Failure", *Up, realm, pnt);
+	    free(pnt);
+
+@
+
+
+1.22
+log
+@About to chop stuff out that might be needed later.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.21 1995/06/08 21:53:41 p-pomes Exp p-pomes $";
+d121 1
+a121 1
+#define MAXSTR		2048	/*max string length */
+d156 1
+a156 1
+ * is the responsiblity of each routine to malloc up the result of 
+d455 1
+d457 1
+a457 1
+    static char kpass[BUFSIZ];
+d469 5
+a512 1
+	*principal = *instance = *realm = '\0';
+d524 1
+a524 1
+	sprintf(krbtkfile, "/tmp/tkt_ph_%d", getpid());
+d545 3
+a547 2
+	    fprintf(stderr, "%s getting v4 Kerberos ticket granting ticket.\n",
+		    (retval == KSUCCESS) ? "success" : "failure");
+d593 1
+a593 1
+			      KRB4SRV, UseHost, hrealm,
+d597 4
+a600 2
+	    fprintf(stderr, "%s doing V4 Kerberos mutual authentication of %s with %s in realm %s.\n",
+		    (retval == KSUCCESS) ? "Success" : "Failure", KRB4SRV, UseHost, hrealm);
+d661 2
+a662 2
+    static char scratch[MAXSTR];
+    static char kpass[BUFSIZ];
+d664 1
+a664 1
+    char cache_name[255];
+d667 1
+a667 1
+    krb5_principal server, me;
+d673 1
+a673 1
+    char *pnt, *princ = NULL, *realm = NULL;
+d701 1
+a701 1
+    realm = strdup(KRBNSREALM);
+d703 1
+a703 1
+    if (retval = krb5_get_default_realm(&realm)) {
+d711 2
+a724 1
+		free(realm);
+a731 1
+		    free(realm);
+a745 1
+	    free(realm);
+a755 1
+	    free(realm);
+a767 1
+	    free(realm);
+d773 1
+a773 1
+	(void) sprintf(cache_name, "FILE:/tmp/tkt_ph_%d", getpid());
+a780 1
+	    free(realm);
+a792 1
+	    free(realm);
+a797 17
+	if (retval = krb5_build_principal_ext(&server,
+					      krb5_princ_realm(me)->length,
+					      krb5_princ_realm(me)->data,
+					      tgtname.length, tgtname.data,
+					      krb5_princ_realm(me)->length,
+					      krb5_princ_realm(me)->data,
+					       0)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_build_principal_ext(): %s",
+		error_message(retval));
+	    fprintf(stderr, "LoginKrb5: krb5_build_principal_ext(): %s\n",
+		error_message(retval));
+	    krb5_free_principal(my_creds.server);
+	    krb5_free_principal(me);
+	    free(realm);
+	    krb5_free_addresses(my_addresses);
+	    return (LR_ERROR);
+	}
+d804 3
+d811 3
+a832 2
+	krb5_free_principal(server);
+	krb5_free_addresses(my_addresses);
+d836 7
+a842 1
+	if (retval == KRB5KRB_AP_ERR_BAD_INTEGRITY)
+d844 7
+a850 4
+	else if (retval) {
+	    fprintf(stderr, "LoginKrb5: krb5_get_in_tkt_with_password(): %s\n",
+		error_message(retval));
+	    return (LR_ERROR);
+d858 2
+d868 3
+d885 3
+d895 3
+d926 4
+a929 2
+	    fprintf(stderr, "%s doing V5 Kerberos mutual authentication of %s with %s in realm %s.\n",
+		    (retval == KSUCCESS) ? "Success" : "Failure", KRB5SRV, UseHost, realm);
+d931 3
+d1048 1
+a1048 1
+    
+@
+
+
+1.21
+log
+@For now, this looks like a working V5 version.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.20 1995/06/08 21:19:58 p-pomes Exp p-pomes $";
+d700 1
+d713 3
+a715 1
+	if (!*Up && !(Options & LQ_INTERACTIVE))	/* can't ask */
+d717 1
+d721 3
+a723 1
+		if (!*scratch)
+d725 1
+d737 2
+d748 3
+d761 3
+d774 4
+d787 4
+d806 4
+d817 1
+a817 1
+	    if (!(Options & LQ_INTERACTIVE))	/* I can't ask */
+d819 1
+@
+
+
+1.20
+log
+@That paranoid feeling that a check-in would be a good idea.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.19 1995/06/07 19:17:56 p-pomes Exp p-pomes $";
+d786 1
+a786 1
+	my_creds.times.endtime = now + (QiAuthDebug) ? 3600 : 60;
+@
+
+
+1.19
+log
+@Another checkpoint while I recover all the things I was thinking about
+last time I looked at this.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.18 1995/03/03 01:06:25 p-pomes Exp p-pomes $";
+d106 1
+a119 3
+#ifndef NSSERVICE
+#define	NSSERVICE	"ns"
+#endif
+a184 9
+	  case LQ_KRB4:
+#if defined(KRB4_AUTH)
+	    if (Options & LQ_KRB4 &&
+		LoginKrb4(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P)
+		== LR_OK)
+		    LoggedIn++;
+#endif /* KRB4_AUTH */
+	    break;
+
+d202 9
+d213 2
+a214 2
+	    if (Options & LQ_PASSWORD)
+		(void) LoginOriginal(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P);
+d534 1
+a563 1
+	    memset(kpass, 0, sizeof (kpass));	/* paranoia */
+d587 1
+a587 1
+			      NSSERVICE, UseHost, hrealm,
+d591 2
+a592 2
+	    fprintf(stderr, "%s doing v4 Kerberos mutual authentication of %s with %s in realm %s.\n",
+		    (retval == KSUCCESS) ? "success" : "failure", NSSERVICE, UseHost, hrealm);
+a612 1
+	    memset(kpass, 0, sizeof (kpass));	/* Don't need to fall thru */
+d624 17
+d652 1
+d655 7
+a661 3
+    krb5_ccache occ, cc;
+    krb5_creds creds;
+    krb5_data rdata;
+d663 1
+a663 1
+    int options = KRB5_DEFAULT_OPTIONS;
+d667 1
+a667 1
+    if (retval = krb5_cc_default(&cc)) {
+d675 9
+a683 1
+    memset ((char*)&creds, 0, sizeof(creds));
+d686 1
+a686 1
+     * Strategy: determine in ticket cache exists.  If it does and the
+d688 1
+a688 2
+     * exist, or tickets are invalid (too old, etc), then ignore cache.
+     * Create a temporary cache, prompt for username and password if
+d692 3
+d702 1
+a703 5
+    rdata.length = strlen(realm);
+    rdata.data = (char *) malloc(rdata.length+1);
+    strcpy(rdata.data, realm);
+    krb5_princ_set_realm(creds.server, &rdata);
+
+d706 2
+a707 1
+     * will succeed.  
+d709 14
+a722 1
+    if ((retval = krb5_cc_get_principal(cc, &creds.client)) == 0)
+d724 3
+a726 8
+	/* Cache present, check for valid ticket */
+	retval = krb5_get_credentials(0, cc, creds);
+    
+    if (retval) {
+
+	/* create a new credentials cache name */
+	if (retval = krb5_cc_generate_new(&cc)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_cc_generate_new(): %s",
+d728 1
+a728 1
+	    fprintf(stderr, "LoginKrb5:  krb5_cc_generate_new(): %s\n",
+d732 4
+a735 4
+    }
+    else {
+	if (retval = krb5_unparse_name(creds.client, &princ)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_unparse_name(): %s",
+d737 1
+a737 1
+	    fprintf(stderr, "LoginKrb5:  krb5_unparse_name(): %s\n",
+d742 3
+a744 21
+    }
+
+    if (!*Up && princ) {
+	*Up = strdup(princ);
+	if (pnt = strchr(*Up, '@@'))
+	    *pnt = '\0';
+    }
+
+    if (!*Up && !(Options & LQ_INTERACTIVE))	/* can't ask */
+	    return (LR_ERROR);
+
+    if (!*Up) {
+	    printf(NAMEPROMPT);
+	    fgets(scratch, sizeof (scratch), stdin);
+	    if (!*scratch)
+		return (LR_ERROR);
+	    /* zap newline */
+	    scratch[strlen(scratch) - 1] = 0;
+	    *Up = strdup(scratch);
+	}
+	if (retval =  krb5_parse_name(scratch, &creds.client)) {
+d746 1
+a746 1
+		    scratch, error_message(retval));
+d748 1
+a748 1
+		    scratch, error_message(retval));
+a750 13
+    }
+    /*
+     * Did the user specify a username?  Has autologin been requested?
+     * If not, and if we're not logged in to Kerberos, prompt for one.
+     */
+    if (!*Up) {
+	if (!(Options & LQ_AUTO))	/* no user, no autologin */
+	    return (LR_ERROR);	/* no deal */
+    }
+    else {
+	/* See if credentials are still valid */
+
+
+d752 7
+a758 9
+    /* If we're not already logged in with Kerberos then do so (get a TGT).
+     * (NULL username at this point implies we already have a TGT).
+     */
+    if (*Up) {
+	if (retval = krb5_parse_name(*Up, &creds.client)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_parse_name(%s): %s",
+		    *Up, error_message(retval));
+	    fprintf(stderr, "LoginKrb5:  krb5_parse_name(%s): %s\n",
+		    *Up, error_message(retval));
+d762 6
+a767 7
+
+	/* Determine address(es) of client host */
+	if (retval = krb5_os_localaddr(&my_addresses)) {
+	    syslog(LOG_ERR, "LoginKrb5: krb5_os_localaddr(): %s",
+		    error_message(retval)b;
+	    fprintf(stderr, "LoginKrb5:  krb5_os_localaddr(): %s\n",
+		    error_message(retval));
+d771 12
+a782 6
+	/* What time is it? */
+	if (retval = krb5_timeofday(&now)) {
+	    syslog(LOG_ERR, "LoginKrb5:  krb5_timeofday(): %s",
+		    error_message(retval));
+	    fprintf(stderr, "LoginKrb5:   krb5_timeofday(): %s\n",
+		    error_message(retval));
+d785 4
+d792 1
+a792 1
+	    if (krb5_read_password(PASSPROMPT, 0, kpass, sizeof (kpass), 0) != 0) {
+d797 15
+d813 11
+a823 10
+	/* login */
+	retval = krb5_get_in_tkt_with_password(options,
+	if (QiAuthDebug)
+	    fprintf(stderr, "%s getting Kerberos ticket granting ticket.\n",
+		    (retval == KSUCCESS) ? "success" : "failure");
+	if (retval != KSUCCESS) {
+	    if (*Up) {
+		krb_set_tkt_string(okrbtkfile);
+	    }
+	    return LR_ERROR;
+d826 22
+d851 2
+a852 2
+	syslog(LOG_ERR, "LoginKrb4: fprintf: %m");
+	fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+d859 1
+a859 5
+	    fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+	    if (*Up)
+		dest_tkt();	/* destroy temp tickets for
+				 * specified username */
+	    memset(kpass, 0, sizeof (kpass));	/* paranoia */
+d876 17
+a892 16
+#ifdef KRBNSREALM
+	hrealm = KRBNSREALM;
+#else
+	hrealm = krb_realmofhost(UseHost);
+#endif
+	authopts = KOPT_DO_MUTUAL;
+	retval = krb_sendauth(authopts, sock, &ticket,
+			      NSSERVICE, UseHost, hrealm,
+			      0, &msg_data, &cred,
+			      sched, &lsin, &sin, "VERSION9");
+	if (QiAuthDebug)
+	    fprintf(stderr, "%s doing Kerberos mutual authentication of %s with %s in realm %s.\n",
+		    (retval == KSUCCESS) ? "success" : "failure", NSSERVICE, UseHost, hrealm);
+	if (*Up)		/* ???? */
+	    dest_tkt();		/* destroy special tickets as soon as
+				 * possible */
+d897 1
+a897 1
+		fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+a904 4
+	if (*Up) {
+	    krb_set_tkt_string(okrbtkfile);
+	}
+
+a905 1
+	    memset(kpass, 0, sizeof (kpass));	/* Don't need to fall thru */
+a912 1
+#endif /* notdef */
+@
+
+
+1.18
+log
+@checkpoint
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.17 1995/03/01 20:34:11 p-pomes Exp p-pomes $";
+d104 4
+d130 4
+d135 2
+a136 1
+static int LoginKrb5 __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+a142 4
+#ifdef KRB4_AUTH
+static int LoginKrb4 __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+#endif /* KRB4_AUTH */
+
+d187 9
+d197 1
+a197 1
+#ifdef KRB5_AUTH
+d199 2
+a200 1
+		LoginKrb5(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+a212 8
+	  case LQ_KRB4:
+#ifdef KRB4_AUTH
+	    if (Options & LQ_KRB4 &&
+		LoginKrb4(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+		    LoggedIn++;
+#endif /* KRB4_AUTH */
+	    break;
+
+d245 1
+a245 1
+    return (*MyAlias) ? MyAlias : NULL;
+d335 1
+a335 1
+	    crypt_start(*Pp);
+d441 2
+a442 2
+
+#ifdef KRB5_AUTH
+d447 1
+a447 1
+LoginKrb5(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+a453 1
+    int  status;
+d456 3
+a463 1
+    static char scratch[MAXSTR];
+a466 1
+    int  code;
+a468 1
+    static char kpass[BUFSIZ];
+d484 1
+a484 1
+     * If not, and if we're not logged in to kerberos, prompt for one.
+d505 1
+a505 1
+    /* If we're not already logged in with kerberos then do so (get a TGT).
+d510 3
+a512 3
+	status = kname_parse(principal, instance, realm, *Up);
+	if (status != KSUCCESS) {
+	    fprintf(stderr, "%s\n", krb_err_txt[status]);
+d516 1
+a516 1
+	    fprintf(stderr, "Unable to get realm.\n");
+d527 4
+d532 1
+a532 1
+		fprintf(stderr, "Unable to read password.\n");
+d538 1
+a538 1
+	status = krb_get_pw_in_tkt(principal, instance, realm,
+d541 3
+a543 3
+	    fprintf(stderr, "%s getting kerberos ticket granting ticket.\n",
+		    (status == KSUCCESS) ? "success" : "failure");
+	if (status != KSUCCESS) {
+d551 2
+a552 2
+	fprintf(stderr, "sent=klogin %d\n", LQ_KRB5);	/* send login request */
+    if (fprintf(ToQI, "klogin %d\n", LQ_KRB5) == EOF) {
+d588 1
+a588 1
+	status = krb_sendauth(authopts, sock, &ticket,
+d593 2
+a594 2
+	    fprintf(stderr, "%s doing kerberos mutual authentication of %s with %s in realm %s.\n",
+		    (status == KSUCCESS) ? "success" : "failure", NSSERVICE, UseHost, hrealm);
+d614 1
+a614 1
+	if (status == KSUCCESS && code == LR_OK) {	/* logged in */
+d624 3
+a626 3
+#endif /* KRB5_AUTH */
+
+#ifdef KRB4_AUTH
+d631 1
+a631 1
+LoginKrb4(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+d637 1
+a637 9
+    struct sockaddr_in sin, lsin;
+    int  status;
+    int  sock = fileno(ToQI);
+    int  namelen;
+    KTEXT_ST ticket;
+    INT32 authopts;
+    MSG_DAT msg_data;
+    CREDENTIALS cred;
+    Key_schedule sched;
+a638 6
+    char principal[ANAME_SZ];
+    char instance[INST_SZ];
+    char realm[REALM_SZ], *hrealm;
+    int  code;
+    char krbtkfile[MAXPATHLEN];
+    char okrbtkfile[MAXPATHLEN];
+d640 13
+a652 4
+
+    /* find out who I am */
+    namelen = sizeof (lsin);
+    if (getsockname(sock, (struct sockaddr *) &lsin, &namelen) < 0) {
+d656 15
+a670 3
+    /* find out who the other side is */
+    namelen = sizeof (sin);
+    if (getpeername(sock, (struct sockaddr *) &sin, &namelen) < 0) {
+d674 5
+d680 2
+a681 2
+     * Did the user specify a username?  Has autologin been requested?
+     * If not, and if we're not logged in to kerberos, prompt for one.
+d683 36
+a719 7
+	struct stat dummy;
+
+	if (!(Options & LQ_AUTO))	/* no user, no autologin */
+	    return (LR_ERROR);	/* no deal */
+	if (stat(TKT_FILE, &dummy)) {	/* no ticket cache */
+	    if (!(Options & LQ_INTERACTIVE))	/* can't ask */
+		return (LR_ERROR);
+d724 10
+a733 5
+	    else {
+		/* zap newline */
+		scratch[strlen(scratch) - 1] = 0;
+		*Up = strdup(scratch);
+	    }
+d736 14
+a749 1
+    /* If we're not already logged in with kerberos then do so (get a TGT).
+d753 6
+a758 5
+	*principal = *instance = *realm = '\0';
+	status = kname_parse(principal, instance, realm, *Up);
+	if (status != KSUCCESS) {
+	    fprintf(stderr, "%s\n", krb_err_txt[status]);
+	    return LR_ERROR;
+d760 9
+a768 3
+	if (!*realm && krb_get_lrealm(realm, 1)) {
+	    fprintf(stderr, "Unable to get realm.\n");
+	    return LR_ERROR;
+a769 4
+	/* set tkt file we'll use */
+	strcpy(okrbtkfile, TKT_FILE);
+	sprintf(krbtkfile, "/tmp/tkt_ph_%d", getpid());
+	krb_set_tkt_string(krbtkfile);
+d771 8
+d782 1
+a782 1
+	    if (des_read_pw_string(kpass, sizeof (kpass), PASSPROMPT, 0) != 0) {
+d789 1
+a789 2
+	status = krb_get_pw_in_tkt(principal, instance, realm,
+				   "krbtgt", realm, 96, *Pp);
+d791 3
+a793 3
+	    fprintf(stderr, "%s getting kerberos ticket granting ticket.\n",
+		    (status == KSUCCESS) ? "success" : "failure");
+	if (status != KSUCCESS) {
+d801 2
+a802 2
+	fprintf(stderr, "sent=klogin %d\n", LQ_KRB4);	/* send login request */
+    if (fprintf(ToQI, "klogin %d\n", LQ_KRB4) == EOF) {
+d838 1
+a838 1
+	status = krb_sendauth(authopts, sock, &ticket,
+d843 2
+a844 2
+	    fprintf(stderr, "%s doing kerberos mutual authentication of %s with %s in realm %s.\n",
+		    (status == KSUCCESS) ? "success" : "failure", NSSERVICE, UseHost, hrealm);
+d864 1
+a864 1
+	if (status == KSUCCESS && code == LR_OK) {	/* logged in */
+d873 1
+d875 2
+a876 2
+#endif /* KRB4_AUTH */
+
+@
+
+
+1.17
+log
+@indent checkpoint
+@
+text
+@d38 1
+a38 2
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.16 1995/03/01 20:09:29 p-pomes Exp p-pomes $";
+
+d124 9
+d136 1
+a137 1
+#endif /*KRB4_AUTH */
+d140 1
+a141 1
+#endif /*EMAIL_AUTH */
+d144 1
+a145 1
+#endif /* PASS_AUTH */
+d148 1
+d167 2
+d170 7
+d178 37
+d216 3
+a218 3
+    if (Options & LQ_EMAIL &&
+	LoginEmail(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+	goto LoggedIn;
+d220 11
+a230 8
+#ifdef KRB4_AUTH
+    if (Options & LQ_KRB4 &&
+	LoginKrb4(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+	goto LoggedIn;
+#endif /* KRB4_AUTH */
+    if (Options & LQ_PASSWORD)
+	(void) LoginOriginal(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P);
+  LoggedIn:
+d242 1
+d303 1
+d312 4
+a315 1
+	else {
+d339 1
+d433 182
+d722 2
+a723 2
+	fprintf(stderr, "sent=klogin\n");	/* send login request */
+    if (fprintf(ToQI, "klogin\n") == EOF) {
+d795 1
+a795 1
+#endif /*KRB4_AUTH */
+d819 1
+a819 1
+#endif /*EMAIL_AUTH */
+d849 66
+@
+
+
+1.16
+log
+@Working version checkpoint
+@
+text
+@d4 1
+a4 1
+ *		Dorner, and Paul Pomes
+d17 3
+a19 3
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+d38 2
+a39 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.15 1995/02/22 02:57:51 p-pomes Exp p-pomes $";
+d43 24
+a66 24
+** Login and Logout functions, using the many flavors of password
+**  protocols (original recipe, Kerberos, email etc.)
+**
+**
+** LoginQi - Login to QI server, optionally prompting for username/password.
+**
+**	Parameters:
+**		UseHost - name of Qi server host
+**		ToQI - stream descriptor to write to
+**		FromQI - stream descriptor to read from
+**		Options - see qiapi.h/LQ_* defines
+**		Username - pointer to name to login as (alias) or NULL
+**		Password - pointer to password or NULL
+**
+**	Returns:
+**		alias logged in as or NULL.
+**
+**	Side Effects:
+**		possibly obtains and caches Kerberos tickets.
+**		username/password prompts are written/read to/from stdin/out,
+**		 iff Options&LQ_INTERACTIVE.
+**
+** (most of this code lifted out of ph 6.5)
+*/
+d71 3
+a73 3
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+d75 5
+a79 4
+# include <strings.h>
+char	*malloc();
+char	*getenv();
+char	*strtok();
+d105 1
+a105 1
+char	*getpass __P((const char *));
+d108 1
+a108 1
+# define NAMEPROMPT "Enter nameserver alias: "
+d111 2
+a112 2
+# define PASSPROMPT "Enter nameserver password: "
+#endif 
+d114 2
+a115 2
+# define CLIENT "ph"
+#endif 
+d117 1
+a117 1
+# define	NSSERVICE	"ns"
+d122 3
+a124 3
+int QiDebug = 0;
+int QiAuthDebug = 0;
+static char MsgBuf[MAXSTR];	/*messages from qi*/
+d128 2
+a129 1
+#endif /*KRB4_AUTH*/
+d132 2
+a133 1
+#endif /*EMAIL_AUTH*/
+d136 1
+d138 1
+a138 1
+static void GetAutoLogin __P((char **,char **));
+d151 4
+a154 4
+const char *UseHost;
+FILE *ToQI, *FromQI;
+int Options;
+const char *Username, *Password;
+d156 2
+a157 2
+  char *U = (char *)Username, *P = (char *)Password;
+  static char MyAlias[MAXSTR];
+d159 1
+a159 1
+  memset(MyAlias,0,sizeof MyAlias);
+d161 3
+a163 3
+  if (Options&LQ_EMAIL &&
+      LoginEmail(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+    goto LoggedIn;
+d166 3
+a168 3
+  if (Options&LQ_KRB4 && 
+      LoginKrb4(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+    goto LoggedIn;
+d170 11
+a180 11
+  if (Options&LQ_PASSWORD)
+    (void) LoginOriginal(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P);
+ LoggedIn:
+  if (!Username && U)		/* username was not passed in */
+    free(U);			/* so free malloc'd string */
+  if (!Password && P) {		/* ditto for password */
+    memset(P,0,strlen(P));
+    free(P);
+  }
+  fputs(MsgBuf, stdout);
+  return (*MyAlias)? MyAlias : NULL;
+d182 1
+a183 1
+
+d189 1
+a189 1
+static int LoginQiEmailAuth = 0; /* a dirty little secret */
+d193 4
+a196 4
+const char *UseHost;
+FILE *ToQI, *FromQI;
+int Options;
+char *MyAlias, **Up, **Pp;
+d198 24
+a221 7
+  int	code;
+  char	scratch[MAXSTR];
+  
+  /* if LQ_AUTO option selection and a username is not supplied,
+     try getting the login info from .netrc */
+  if (Options&LQ_AUTO && !*Up) { /* try autologin w/.netrc */
+    GetAutoLogin(Up,Pp);
+d223 52
+a274 31
+      fprintf(stderr,"autologin: .netrc user=%s, pass=%s\n",
+	      (*Up)?*Up:"(none)", (*Pp)?*Pp:"(none)");
+  }
+  if (!*Up) {			/* username not supplied */
+    if (!(Options&LQ_INTERACTIVE))  /* sorry, I can't ask you. */
+      return (LR_ERROR);
+    printf(NAMEPROMPT);	/* ask for missing alias */
+    fgets(scratch, sizeof (scratch), stdin);
+    scratch[strlen(scratch) - 1] = '\0';	/* zap the \n */
+    if (!*scratch)
+      return (LR_ERROR);
+    *Up = strdup(scratch);
+  }
+  if (!*Pp &&!LoginQiEmailAuth && !(Options&LQ_INTERACTIVE))
+    return (LR_ERROR);		/* I can't ask your password */
+  if (QiAuthDebug)
+    fprintf(stderr, "sent=login %s\n", *Up); /*send login request */
+  if (fprintf(ToQI, "login %s\n", *Up) == EOF) {
+    syslog(LOG_ERR, "LoginOriginal: fprintf: %m");
+    fprintf(stderr, "LoginOriginal: Whoops--the nameserver died.\n");
+    return LR_ERROR;
+  }
+
+  fflush(ToQI);
+  
+  for (;;)		/*read the response */
+    {
+      if (!GetGood(MsgBuf, MAXSTR, FromQI))
+	{
+	  fprintf(stderr, "LoginOriginal: Whoops--the nameserver died.\n");
+	  return LR_ERROR;
+d276 8
+a283 47
+      code = atoi(MsgBuf);
+      if (code != LR_LOGIN) /*intermediate or strange response */
+	fputs(MsgBuf, stdout);
+      if (code >= LR_OK)	/*final response */
+	break;
+    }
+  
+  if (code == LR_LOGIN)
+    {
+      if (LoginQiEmailAuth) {	/* try email login */
+	char *me = getpwuid(getuid())->pw_name;
+	
+	if (QiAuthDebug)
+	  fprintf(stderr, "sent=email %s\n",me);
+	fprintf(ToQI, "email %s\n", me);
+      } else {
+	if (!*Pp) {		/* password not supplied */
+	  char *newp;
+	  newp = getpass(PASSPROMPT);
+	  *Pp = strdup(newp);
+	}
+	if (strlen(*Pp) > PH_PW_LEN) {
+	  char *cp = &(*Pp)[PH_PW_LEN];
+	  while (*cp)
+	    *cp++ = '\0'; /* null out *all* the extras */
+	}
+	crypt_start(*Pp);
+	
+	/*encrypt the challenge with the password */
+	MsgBuf[strlen(MsgBuf) - 1] = '\0';	/*strip linefeed */
+	scratch[encryptit(scratch, (char *)strchr(MsgBuf, ':') + 1)] = '\0';
+	
+	/*send the encrypted text to qi */
+	if (QiAuthDebug)
+	  fprintf(stderr, "sent=answer %s\n", scratch);
+	fprintf(ToQI, "answer %s\n", scratch);
+      }
+    }
+  fflush(ToQI);
+
+  /*get the final response */
+  for (;;)
+    {
+      if (!GetGood(MsgBuf, MAXSTR, FromQI))
+	{
+	  fprintf(stderr, "LoginOriginal: Whoops--the nameserver died.\n");
+	  return LR_ERROR;
+d285 3
+a287 3
+      code = atoi(MsgBuf);
+      if (code >= LR_OK)	/*final response */
+	break;
+d290 7
+a296 7
+  if (code == LR_OK)	/*logged in */
+    {
+      strcpy(MyAlias, (char *)strchr(MsgBuf, ':') + 1);
+      *(char *)strchr(MyAlias, ':') = '\0';
+    } else
+      *MyAlias = '\0';
+  return (code);
+d301 3
+a303 3
+static void 
+GetAutoLogin(alias,pw)
+char **alias, **pw;		/* filled in from .netrc */
+d305 42
+a346 45
+  FILE	*netrc;		/*the .netrc file */
+  char	path[1024];	/*pathname of .netrc file */
+  struct stat statbuf;	/*permissions, etc. of .netrc file */
+  char	key[80], val[80];	/*line from the .netrc file */
+  char	*token;		/*token (word) from the line from the .netrc file */
+  
+  /*
+   * manufacture the pathname of the user's .netrc file
+   */
+  sprintf(path, "%s/.netrc", getenv("HOME"));
+  
+  /*
+   * make sure its permissions are ok
+   */
+  if (stat(path, &statbuf) < 0)
+    return;
+  if (statbuf.st_mode & 077)
+    return;		/*refuse insecure files */
+  
+  /*
+   * try to open it
+   */
+  if (!(netrc = fopen(path, "r")))
+    return;
+  
+  /*
+   * look for a ``machine'' named ``ph''
+   */
+  while (2 == fscanf(netrc, "%s %s", key, val))
+    {
+      if (!strcmp(key, "machine") && !strcmp(val, CLIENT))
+	{
+	  /*
+	   * found an entry for ph.  look now for other items
+	   */
+	  while (2 == fscanf(netrc, "%s %s", key, val))
+	    {
+	      if (!strcmp(key, "machine"))	/*new machine */
+		goto out;
+	      else if (!strcmp(key, "login"))
+		*alias = strdup(val);
+	      else if (!strcmp(key, "password"))
+		*pw = strdup(val);
+	      else if (!strcmp(key, "macdef"))
+		SkipMacdef(netrc);
+d348 3
+a350 2
+	} else if (!strcmp(key, "macdef"))
+	  SkipMacdef(netrc);
+d352 2
+a353 2
+ out:
+  return;
+d359 1
+a359 1
+static void 
+d361 1
+a361 1
+FILE	*netrc;
+d363 1
+a363 1
+	int	c, wasNl;
+d365 3
+a367 3
+	for (wasNl = 0; (c = getc(netrc)) != EOF; wasNl = (c == '\n'))
+		if (wasNl && c == '\n')
+			break;
+d376 4
+a379 4
+const char *UseHost;
+FILE *ToQI, *FromQI;
+int Options;
+char *MyAlias, **Up, **Pp;
+d381 50
+a430 55
+  struct sockaddr_in sin, lsin;
+  int	status;
+  int	sock = fileno(ToQI);
+  int	namelen;
+  KTEXT_ST ticket;
+  INT32	authopts;
+  MSG_DAT	msg_data;
+  CREDENTIALS cred;
+  Key_schedule sched;
+  static char scratch[MAXSTR];
+  char	principal[ANAME_SZ];
+  char	instance[INST_SZ];
+  char	realm[REALM_SZ], *hrealm;
+  int	code;
+  char	krbtkfile[MAXPATHLEN];
+  char	okrbtkfile[MAXPATHLEN];
+  static char kpass[BUFSIZ];
+
+  /* find out who I am */
+  namelen = sizeof (lsin);
+  if (getsockname(sock, (struct sockaddr *) & lsin, &namelen) < 0)
+    {
+      return (LR_ERROR);
+    }
+  
+  /* find out who the other side is */
+  namelen = sizeof (sin);
+  if (getpeername(sock, (struct sockaddr *) & sin, &namelen) < 0)
+    {
+      return (LR_ERROR);
+    }
+  
+  /*
+   * Did the user specify a username?  Has autologin been requested?
+   * If not, and if we're not logged in to kerberos, prompt for one.
+   */
+  if (!*Up)
+    {
+      struct stat dummy;
+      
+      if (!(Options&LQ_AUTO))	/* no user, no autologin */
+	return (LR_ERROR);	/* no deal */
+      if (stat(TKT_FILE, &dummy)) /* no ticket cache */
+	{
+	  if (!(Options&LQ_INTERACTIVE)) /* can't ask */
+	    return (LR_ERROR);
+	  printf(NAMEPROMPT);
+	  fgets(scratch, sizeof (scratch), stdin);
+	  if (!*scratch)
+	    return (LR_ERROR);
+	  else
+	    {
+	      /* zap newline*/
+	      scratch[strlen(scratch) - 1] = 0;
+	      *Up = strdup(scratch);
+d434 27
+a460 10
+ /* If we're not already logged in with kerberos then do so (get a TGT).
+    (NULL username at this point implies we already have a TGT). */
+  if (*Up)
+    {
+      *principal = *instance = *realm = '\0';
+      status = kname_parse(principal, instance, realm, *Up);
+      if (status != KSUCCESS)
+	{
+	  fprintf(stderr, "%s\n", krb_err_txt[status]);
+	  return LR_ERROR;
+d462 9
+a470 30
+      if (!*realm && krb_get_lrealm(realm, 1))
+	{
+	  fprintf(stderr, "Unable to get realm.\n");
+	  return LR_ERROR;
+	}
+      /* set tkt file we'll use */
+      strcpy(okrbtkfile, TKT_FILE);
+      sprintf(krbtkfile, "/tmp/tkt_ph_%d", getpid());
+      krb_set_tkt_string(krbtkfile);
+      
+      if (!*Pp) {		/* no password supplied */
+	if (!(Options&LQ_INTERACTIVE))	/* I can't ask */
+	  return LR_ERROR;
+	if (des_read_pw_string(kpass,sizeof(kpass),PASSPROMPT,0) != 0) {
+	  fprintf(stderr, "Unable to read password.\n");
+	  return LR_ERROR;
+	}
+	*Pp = strdup(kpass);
+      }
+      /* login */
+      status = krb_get_pw_in_tkt(principal, instance, realm,
+				 "krbtgt", realm, 96, *Pp);
+      if (QiAuthDebug)
+	fprintf(stderr, "%s getting kerberos ticket granting ticket.\n",
+		(status == KSUCCESS)?"success":"failure");
+      if (status != KSUCCESS)
+	{
+	  if (*Up)
+	    {
+	      krb_set_tkt_string(okrbtkfile);
+d472 1
+a472 1
+	  return LR_ERROR;
+d475 3
+a477 4
+  if (QiAuthDebug)
+    fprintf(stderr, "sent=klogin\n");	/* send login request */
+  if (fprintf(ToQI, "klogin\n") == EOF)
+  {
+d481 25
+a505 2
+  }
+  fflush(ToQI);
+a506 26
+  for (;;)		/* read the response */
+    {
+      if (!GetGood(MsgBuf, MAXSTR, FromQI))
+	{
+	  fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+	  if (*Up)
+	    dest_tkt();	/* destroy temp tickets for
+			   specified username */
+	  memset(kpass,0,sizeof(kpass)); /* paranoia */
+	  return(LR_ERROR);
+	}
+      code = atoi(MsgBuf);
+      if (code != LR_LOGIN)	/* intermediate or strange response */
+	fputs(MsgBuf, stdout);
+      if (code >= LR_OK)	/* final response */
+	break;
+    }
+  
+  if (code == LR_LOGIN)
+    {
+      /*
+       * call Kerberos library routine to obtain an authenticator,
+       * pass it over the socket to the server, and obtain mutual
+       * authentication.
+       */
+      
+d508 1
+a508 1
+      hrealm = KRBNSREALM;
+d510 1
+a510 1
+      hrealm = krb_realmofhost(UseHost);
+d512 17
+a528 19
+      authopts = KOPT_DO_MUTUAL;
+      status = krb_sendauth(authopts, sock, &ticket,
+			    NSSERVICE, UseHost, hrealm,
+			    0, &msg_data, &cred,
+			    sched, &lsin, &sin, "VERSION9");
+      if (QiAuthDebug)
+	fprintf(stderr, "%s doing kerberos mutual authentication of %s with %s in realm %s.\n",
+		(status == KSUCCESS)?"success":"failure", NSSERVICE,  UseHost, hrealm);
+      if (*Up)		/* ???? */
+	dest_tkt();	/* destroy special tickets as soon as
+			   possible */
+	  
+      /* get the final response (even if mutual failed)*/
+      for (;;)
+	{
+	  if (!GetGood(MsgBuf, MAXSTR, FromQI))
+	    {
+	      fprintf(stderr, "LoginKrb4: Whoops--the nameserver died.\n");
+	      return LR_ERROR;
+d530 3
+a532 3
+	  code = atoi(MsgBuf);
+	  if (code >= LR_OK)	/* final response */
+	    break;
+d534 3
+a536 4
+      
+      if (*Up)
+	{
+	  krb_set_tkt_string(okrbtkfile);
+d539 8
+a546 8
+      if (status == KSUCCESS && code == LR_OK)	/* logged in */
+	{
+	  memset(kpass,0,sizeof(kpass)); /* Don't need to fall thru */
+	  strcpy(MyAlias, (char *)strchr(MsgBuf, ':') + 1);
+	  *(char *)strchr(MyAlias, ':') = '\0';
+	} else
+	  *MyAlias = '\0';
+      return (code);
+d549 1
+a549 1
+#endif /*KRB4_AUTH*/
+d559 4
+a562 4
+const char *UseHost;
+FILE *ToQI, *FromQI;
+int Options;
+char *MyAlias, **Up, **Pp;
+d564 2
+a565 1
+    int rc;
+d568 1
+a568 1
+      fprintf(stderr,"attempting email login.\n");
+d573 13
+a585 13
+#endif /*EMAIL_AUTH*/
+
+/*
+** LogoutQi - Logout from QI server.
+**
+**	Parameters:
+**		ToQI - stream descriptor to write to
+**		FromQI - stream descriptor to read from
+**
+**	Returns:
+**		success(LR_OK) or failure indication
+**
+*/
+d589 1
+a589 1
+FILE *ToQI, *FromQI;
+d591 8
+a598 2
+  QIR *r;
+  int n;
+d600 3
+a602 9
+  fprintf(ToQI,"logout\n");
+  fflush(ToQI);
+  if ((r = ReadQi(FromQI, &n)) == NULL)
+    return LR_ERROR;
+  n = r->code;
+
+  /* Accept the memory leak to simplify standalone compilation of ph */
+  /* FreeQIR(r); */
+  return n;
+d609 1
+a609 1
+int 
+d611 2
+a612 2
+	char	*str;		/*space to put the chars */
+	int	maxc;		/*max # of chars we want */
+d615 1
+a615 1
+	int	fp;	/*stream to read them from */
+d617 23
+a639 7
+	static char Qbuf[MAXSTR + 4] =
+	{'\0'};
+	static int pos =
+	{0},	end =
+	{0},	len =
+	{0};
+	char	*linp;
+d641 1
+a641 21
+	for (;;)
+	{
+		if (pos >= len)
+		{
+			len = netread(fp, Qbuf, maxc);
+			if (len <= 0)
+				return (0);
+			Qbuf[len] = '\0';
+			pos = 0;
+		}
+		linp = strchr(Qbuf + pos, '\n'); /*find next newline char */
+		if (linp == NULL)
+			end = len;		/*no newline chars left */
+		else
+			end = linp - Qbuf;	/*convert pointer to index */
+
+		strncpy(str, Qbuf + pos, end - pos + 1);
+		*(str + end - pos + 1) = '\0';
+		pos = end + 1;		/*save new position for next time */
+
+		if (!*str)
+d643 1
+a643 1
+	FILE	*fp;			/*stream to read them from */
+d645 4
+a648 2
+	errno = 0;
+	for (;;)
+d650 7
+a656 11
+		if (! fgets(str, maxc, fp))
+#endif
+		{
+			fputs("Oops; lost connection to server.\n", stderr);
+			exit(1);
+		} else if (*str != '#')
+		{
+			if (QiDebug)
+				fprintf(stderr, "read =%s", str);
+			return (1);	/*not a comment; success! */
+		}
+d658 2
+a659 1
+	/* NOTREACHED */
+d665 1
+a665 1
+	const char *str;
+d667 2
+a668 2
+	int len;
+	char *copy;
+d670 5
+a674 5
+	len = strlen(str) + 1;
+	if (!(copy = malloc((unsigned int)len)))
+		return((char *)NULL);
+	memcpy(copy, str, len);
+	return(copy);
+@
+
+
+1.15
+log
+@Now trims newlines correctly.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.14 1994/11/18 16:03:13 p-pomes Exp p-pomes $";
+d98 4
+a101 4
+#ifdef KERBEROS
+#include <des.h>
+#include <krb.h>
+#endif /* KERBEROS */
+d121 1
+d124 3
+a126 3
+#ifdef KERBEROS
+static int LoginKRB __P((const char *, FILE *, FILE *, int, char *, char **, char **));
+#endif /*KERBEROS*/
+d130 1
+d132 1
+d160 3
+a162 3
+#ifdef KERBEROS
+  if (Options&LQ_KERBEROS && 
+      LoginKRB(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+d164 2
+a165 2
+#endif /* KERBEROS */
+  if (Options&LQ_LOGIN)
+d200 1
+a200 1
+    if (QiDebug)
+d216 1
+a216 1
+  if (QiDebug)
+d245 1
+a245 1
+	if (QiDebug)
+d266 1
+a266 1
+	if (QiDebug)
+d368 1
+a368 1
+#ifdef KERBEROS
+d373 1
+a373 1
+LoginKRB(UseHost, ToQI, FromQI, Options, MyAlias, Up, Pp)
+d470 1
+a470 1
+      if (QiDebug)
+d482 1
+a482 1
+  if (QiDebug)
+d486 2
+a487 2
+	syslog(LOG_ERR, "LoginKRB: fprintf: %m");
+	fprintf(stderr, "LoginKRB: Whoops--the nameserver died.\n");
+d496 1
+a496 1
+	  fprintf(stderr, "LoginKRB: Whoops--the nameserver died.\n");
+d528 1
+a528 1
+      if (QiDebug)
+d540 1
+a540 1
+	      fprintf(stderr, "LoginKRB: Whoops--the nameserver died.\n");
+d563 1
+a563 1
+#endif /*KERBEROS*/
+d580 1
+a580 1
+    if (QiDebug)
+@
+
+
+1.14
+log
+@Moved some function declarations to be global scope in LoginQi.c.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.13 1994/09/09 20:13:11 p-pomes Exp p-pomes $";
+d206 1
+a206 1
+    scratch[strlen(scratch)] = '\0';	/* zap the \n */
+@
+
+
+1.13
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.12 1994/08/18 16:21:22 p-pomes Exp p-pomes $";
+d130 2
+a191 1
+  static void GetAutoLogin __P((char **,char **));
+a302 1
+  static void SkipMacdef __P((FILE *));
+@
+
+
+1.12
+log
+@Delete declaration for strdup().
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.11 1994/05/05 21:09:05 paul Exp p-pomes $";
+d381 1
+a381 1
+  long	authopts;
+@
+
+
+1.11
+log
+@Revised error messages.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.10 1994/05/05 20:45:26 paul Exp $";
+a103 1
+char	*strdup __P((const char *));
+@
+
+
+1.10
+log
+@zapped perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.9 1994/05/05 20:39:00 paul Exp paul $";
+d215 6
+a220 1
+  fprintf(ToQI, "login %s\n", *Up); /*send login request */
+d227 1
+a227 1
+	  fprintf(stderr, "Whoops--the nameserver died.\n");
+d275 1
+a275 1
+	  fprintf(stderr, "Whoops--the nameserver died.\n");
+d482 6
+a487 1
+  fprintf(ToQI, "klogin\n");	/* send login request */
+d494 1
+a494 1
+	  fprintf(stderr, "Whoops--the nameserver died.\n");
+d538 1
+a538 1
+	      fprintf(stderr, "Whoops--the nameserver died.\n");
+@
+
+
+1.9
+log
+@Zap perror().
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.8 1994/03/12 04:27:19 paul Exp paul $";
+a656 2
+			if (errno)
+				perror("");
+@
+
+
+1.8
+log
+@Changed NSSERVICE back to "ns" from "csnet-ns" as I can't get the
+latter to decode authenticators properly when used with Kerberos.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: LoginQi.c,v 1.7 1994/03/11 22:45:56 paul Exp paul $";
+a393 1
+      perror("getsockname");
+a400 1
+      perror("getpeername");
+@
+
+
+1.7
+log
+@New copyright statement.  Re-arranged some #include's for use with
+debugging malloc library.  Changed default service name from "ns" to
+"csnet-ns".
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d116 1
+a116 1
+# define	NSSERVICE	"csnet-ns"
+@
+
+
+1.6
+log
+@converted to use MsgBug instead of scratch.
+@
+text
+@d2 33
+a34 2
+ * Login and Logout functions, using the many flavors of password
+ *  protocols (original recipe, Kerberos, email etc.)
+d36 5
+d42 4
+a66 2
+#include "conf.h"
+#include "qiapi.h"
+a78 3
+char	*getpass __P((const char *));
+char	*strdup __P((const char *));
+
+d96 2
+d103 3
+d116 1
+a116 1
+# define	NSSERVICE	"ns"
+a122 4
+
+#ifndef lint
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.5 1994/01/05 15:50:17 paul Exp paul $";
+#endif
+@
+
+
+1.5
+log
+@Added strdup() to replace newstr macro.
+@
+text
+@a65 2
+int QiDebug = 0;
+
+d81 3
+d85 1
+a85 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.4 93/12/21 21:42:43 paul Exp Locker: paul $";
+d115 5
+a124 5
+#ifdef EMAIL_AUTH
+  if (Options&LQ_EMAIL &&
+      LoginEmail(UseHost, ToQI, FromQI, Options, MyAlias, &U, &P) == LR_OK)
+    goto LoggedIn;
+#endif /* EMAIL_AUTH */
+d134 1
+a152 2
+  char	encryptMe[MAXSTR];	/*string from nameserver */
+  char	encrypted[MAXSTR];	/*string from ns, encrypted */
+d184 1
+a184 1
+      if (!GetGood(encryptMe, MAXSTR, FromQI))
+d189 1
+a189 1
+      code = atoi(encryptMe);
+d191 1
+a191 1
+	fputs(encryptMe, stdout);
+d218 2
+a219 2
+	encryptMe[strlen(encryptMe) - 1] = '\0';	/*strip linefeed */
+	encrypted[encryptit(encrypted, (char *)strchr(encryptMe, ':') + 1)] = '\0';
+d223 2
+a224 2
+	  fprintf(stderr, "sent=answer %s\n", encrypted);
+	fprintf(ToQI, "answer %s\n", encrypted);
+d232 1
+a232 1
+      if (!GetGood(encryptMe, MAXSTR, FromQI))
+d237 1
+a237 1
+      code = atoi(encryptMe);
+d244 1
+a244 1
+      strcpy(MyAlias, (char *)strchr(encryptMe, ':') + 1);
+d448 1
+a448 1
+      if (!GetGood(scratch, MAXSTR, FromQI))
+d457 1
+a457 1
+      code = atoi(scratch);
+d459 1
+a459 1
+	fputs(scratch, stdout);
+d492 1
+a492 1
+	  if (!GetGood(scratch, MAXSTR, FromQI))
+d497 1
+a497 2
+	  code = atoi(scratch);
+	  fputs(scratch, stdout);
+d510 1
+a510 1
+	  strcpy(MyAlias, (char *)strchr(scratch, ':') + 1);
+@
+
+
+1.4
+log
+@Allow for fixed Kerberos realm.
+@
+text
+@d42 1
+a82 2
+#define		newstr(s)	strcpy((char *)malloc(strlen(s) + 1), s)
+
+d84 1
+a84 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.3 1993/12/19 18:41:33 paul Exp paul $";
+d173 1
+a173 1
+    *Up = newstr(scratch);
+d208 1
+a208 1
+	  *Pp = newstr(newp);
+d298 1
+a298 1
+		*alias = newstr(val);
+d300 1
+a300 1
+		*pw = newstr(val);
+d392 1
+a392 1
+	      *Up = newstr(scratch);
+d424 1
+a424 1
+	*Pp = newstr(kpass);
+d637 15
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d65 2
+d85 1
+a85 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.2 1993/12/16 23:00:52 paul Exp paul $";
+a87 5
+#ifdef VMS
+static int GetGood __P((char *, int, int));
+#else
+static int GetGood __P((char *, int, FILE *));
+#endif /*VMS*/
+d246 1
+a246 1
+      *(strchr(MyAlias, ':')) = '\0';
+d349 1
+a349 1
+  char	realm[REALM_SZ];
+d473 5
+d480 1
+a480 2
+			    NSSERVICE, UseHost,
+			    krb_realmofhost(UseHost),
+d485 1
+a485 1
+		(status == KSUCCESS)?"success":"failure", NSSERVICE,  UseHost, krb_realmofhost(UseHost));
+d512 2
+a513 2
+	  strcpy(MyAlias, strchr(scratch, ':') + 1);
+	  *strchr(MyAlias, ':') = '\0';
+d568 3
+a570 1
+  FreeQIR(r);
+d578 1
+a578 1
+static int 
+d627 1
+a627 1
+			return 0;
+@
+
+
+1.2
+log
+@Use NSSERVICE instead of hardwiring "ns" as the Kerberos instance.
+Removed test of effective uid in LoginEmail() as ContactQi() has
+already reset that to the user.
+@
+text
+@d54 1
+a54 1
+#include <sys/fcntl.h>
+d83 1
+a83 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.1 1993/11/24 22:32:24 paul Exp paul $";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d74 3
+d83 1
+a83 1
+static char RcsId[] = "@@(#)$Id: LoginQi.c,v 1.2 93/11/11 22:12:27 alan Exp $";
+d404 1
+d478 1
+a478 1
+			    "ns", UseHost,
+d483 2
+a484 2
+	fprintf(stderr, "%s doing kerberos mutual authentication.\n",
+		(status == KSUCCESS)?"success":"failure");
+a532 1
+  if (geteuid() == 0) {		/* then we must have a reserved port */
+a539 2
+  } else
+    return (LR_ERROR);
+@

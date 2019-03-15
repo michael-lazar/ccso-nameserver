@@ -1,0 +1,1508 @@
+.\" Process with "tbl programmer.me | troff -me | whatever" or more simply
+.\"		 "groff -t -me programmer.me | lpr -Pps"
+.\" @(#)$Id: programmer.me,v 1.2 1993/04/02 17:52:23 paul Exp $
+.de c
+.nr _F \\n(.f
+.ul 0
+.ft CR
+.if \\n(.$ \&\\$1\f\\n(_F\\$2
+.rr _F
+..
+.de cs
+.nr _F \\n(.f
+.ul 0
+.ft CR
+.if \\n(.$ \&\s-1\\$1\s0\f\\n(_F\\$2
+.rr _F
+..
+.if n .na
+.if n .ll 6.5i
+.hy 14
+.(l C
+.sz 18
+.ft B
+The CCSO Nameserver \- Programmer's Guide
+.sp
+.sz
+.ft
+by
+Steven Dorner\ \ \ s\-dorner@uiuc.edu
+Computer and Communications Services Office
+University of Illinois at Urbana
+.sp
+December 22, 1988
+.sp 2
+updated by
+Paul Pomes\ \ \ paul\-pomes@uiuc.edu
+Computer and Communications Services Office
+University of Illinois at Urbana
+.sp
+August 2, 1992
+.(f
+Converted to portable n/troff format using the -me macros from funky
+Next WriteNow format (icch).
+.)f
+.)l
+.eh '%''The CCSO Nameserver \- Programmer\(aas Guide'
+.oh 'The CCSO Nameserver \- Programmer\(aas Guide''%'
+.sp 3
+.uh Introduction
+.lp
+It is our intention that other institutions be easily able to use
+the CCSO Nameserver if they wish to do so.
+This document should provide most of the information necessary
+to use and modify the Nameserver for use at places other than the
+University of Illinois.
+.lp
+It is assumed that the reader is familiar with the material presented in
+.i "The CCSO Nameserver, A Description" ,
+and
+.i "The CCSO Nameserver, Guide to Installation" .
+Those documents describe in some detail what the CCSO Nameserver is,
+and of what it consists.
+Readers familiar with the CSNet Name Server will also want to read
+.i "The CCSO Nameserver, Why"
+to see the major differences between CSNet's server and our own.
+This document will attempt to supplement the
+information in the abovementioned
+papers, chiefly in the areas of data structures and file formats,
+although other topics will be mentioned briefly.
+.uh Acknowledgment
+.lp
+The CCSO Nameserver is similar to the CSNet Name Server.
+This similarity is not accidental;
+the CCSO Nameserver is derived from the CSNet program,
+and still uses a good portion of the CSNet source code.
+We are grateful that the CSNet Name Server was made available to us.
+.uh "Data Structures"
+.lp
+Herein described is every structure used by the Nameserver,
+what it looks like, where it is defined, and where it is used.
+From these descriptions,
+you will infer that the Nameserver assumes that a
+.c short
+is two bytes, an
+.c int
+is four bytes, a
+.c long
+is four bytes, and a pointer is four bytes.
+If you intend to run the Nameserver on a machine that is set up differently,
+you would do well to take a good look at each data structure,
+especially those that deal with the database entries and indices themselves.
+While an effort has been made to make the code automatically
+adjust to differing word sizes,
+it has never been tried on an 8086, a Harris, or a Cray,
+so you are on your own.
+You should be especially careful to ensure that where the
+Nameserver uses a
+.c long ,
+you give it at least four bytes with which to work.
+.lp
+That said, on to the descriptions.
+Each description includes the declaration of the structure
+(lifted from the Nameserver source code).
+.(b L
+.uh "\s-1ARG\s0 \(em Command Argument \(em include/commands.h"
+.sp \n(psu
+.ft CR
+struct argument
+{
+    int     aType;
+    int     aKey;
+    char    *aFirst;
+    char    *aSecond;
+    FDESC   *aFD;
+    struct argument *aNext;
+    int     aRating;
+};
+typedef struct argument ARG;
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/add.c        qi/change.c     qi/query.c
+qi/auth.c       qi/commands.c   qi/set.c
+.ft
+.)b
+.lp
+The
+.cs ARG
+structure is used by the Nameserver central server,
+.i qi ,
+to hold the arguments to Nameserver commands.
+Each command is broken into words,
+and these words put into
+.cs ARG
+structures for manipulation by the server.
+.lp
+The
+.c aType
+field is used to label each argument.
+This field is formed by or'ing together the appropriate bits
+(bits defined in
+.c include/commands.h ).
+Meaningful combinations of bits are:
+.(b L
+.TS
+center;
+c c c c c
+cfCR c c c l.
+\fBBits	Example\fP	\f(CBaFirst	aSecond\fP	\fBExplanation\fP
+_
+COMMAND	query	"query"	NULL	The name of a command.
+RETURN	return	"return"	NULL	A return or make token.
+VALUE	smith	"smith"	NULL	A field value or field name.
+VALUE|EQUAL	email=	"email"	NULL	Make a field empty.
+VALUE|EQUAL|VALUE2	name=john	"name"	"john"	A field and a value.
+.TE
+.)b
+.lp
+The actual command, token,
+or values of the arguments are pointed to by
+.c aFirst
+(\c
+.cs "COMMAND, RETURN, VALUE" )
+and by
+.c aSecond
+(\c
+.cs VALUE2 ).
+They point to
+.q malloc-space ,\**
+.(f
+\** Storage dynamically allocated via the UNIX library function
+.i malloc (3).
+.)f
+and are freed at the end of each command.
+.lp
+The next argument in the command line is pointed to by
+.c aNext ,
+unless we are at the end of the command, in which case
+.c aNext
+is
+.cs NULL .
+.lp
+If an argument refers to a field name
+(such as a field on which to query, or a field to be printed by a query),
+.c aFD
+will point to the
+.cs FDESC
+for the field with the name
+.c aFirst
+(if there is no field with the given name, the command will be discarded.)
+.lp
+.c AKey
+and
+.c aRating
+are used when the argument is a field and value to be looked for during a query.
+.c AKey
+will be set to 1 if the field in question is an indexed field.
+.c ARating
+is computed for indexed fields,
+and is a measure of how easy it would be to find entries based on the argument.
+The primary criterion here is lack of metacharacters;
+length of the value to be looked for is given second priority.
+.(b L
+.uh "\s-1CMD\s0 \(em Command Handling Information \(em ph/ph.c"
+.sp \n(psu
+.ft CR
+struct command
+{
+    char    *cName;         /*the name of the command */
+    int     cLog;           /*must be logged in to use? */
+    int     (*cFunc) ();    /*function to call for command */
+};
+typedef struct command CMD;
+.ft
+.)b
+.lp
+Used in
+.c ph.c .
+.lp
+The Nameserver client,
+.i ph ,
+knows its commands from a table.
+The table is made up of
+.cs CMD
+structures.
+The elements are pretty straightforward;
+the name of the command (\c
+.c cName ),
+a flag indicating whether or not the user
+must be logged in to use the command (\c
+.c cLog ),
+the function that handles the command
+(this function should take two arguments;
+a pointer to the line the user typed
+and a flag indicating whether the command should be executed (0)
+or detailed help should be printed (1)) (\c
+.c cFunc ).
+.(b L
+.uh "\s-1QDIR\s0 \(em Values From A Nameserver Entry \(em include/qi.h"
+.sp \n(psu
+.ft CR
+typedef char **QDIR;
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/add.c      qi/commands.c qi/lookup.c   util/makei.c
+qi/auth.c     qi/dbm.c      qi/query.c    util/mdump.c
+qi/change.c   qi/field.c    util/maked.c
+.ft
+.)b
+.lp
+Probably the most basic structure of all is the
+.cs QDIR .
+It is a pointer to an array of pointers,
+each pointer pointing to a field from a Nameserver entry.
+The pointer array is terminated with a
+.cs NULL
+pointer.
+The fields each begin with the
+.sm ASCII
+value of the
+.c fdId
+field of the
+.cs FDESC
+that describes their data, followed by a colon,
+followed by the field's data, and terminated with a
+.cs NULL
+byte.
+The pointer array may come from any of the suitable storage classes;
+the storage for the fields is almost always in malloc-space.
+.(b L
+.uh "directory_entry \(em Information On the Current Entry \(em qi/dbm.c"
+.sp \n(psu
+.ft CR
+struct directory_entry
+{
+    long    ent_index;
+    DREC    *ent_ptr;
+};
+.ft
+.)b
+.lp
+Used in
+.c qi/dbm.c .
+.lp
+The database portion of the Nameserver central server operates on the
+.q "current entry" ,
+with commands to make a given entry current,
+and to do various things to that entry.
+The number (in the
+.i .dir
+file) of the entry so selected (\c
+.c ent_index ),
+and a pointer to the data from that entry (\c
+.c ent_ptr ,
+which points to a
+.cs DREC ),
+is kept in a directory_entry structure in
+.c qi/dbm.c .
+The structure is not used elsewhere.
+.(b L
+.uh "dirhead \(em Header of the .dir File \(em include/db.h"
+.sp \n(psu
+.ft CR
+struct dirhead
+{                           /* in block 0 of the .dir file */
+    PTRTYPE nents;          /* number of entries in the .dir file */
+    PTRTYPE next_id;        /* the next id capable of being issued */
+    int     hashes[NHASH];  /* # of hashes to find index entries */
+    int     nfree;          /* number of free entries in freelist,
+                             * (not currently used) */
+    int     freel[10];
+};
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/dbi.c      util/border.c util/makei.c
+qi/dbm.c      util/credb.c  util/mdump.c
+.ft
+.)b
+and in the
+.i .dir
+and
+.i .dov
+files.
+.lp
+The
+.i .dir
+file contains the data for Nameserver entries.
+The first part of that file is the header,
+and it is read and written directly to and from a
+.c dirhead
+structure.
+Thus, this structure is incarnate both in memory and on disk.
+(On disk, it is padded at the end to the size of a
+.cs DREC ,
+256 bytes.)
+.lp
+Undoubtedly the most often used part of this structure is
+.c nents ,
+which gives the total number of Nameserver database entries.
+It is especially popular with Nameserver utilities,
+who like to know how many entries they must process.
+Both
+.c nents
+and
+.c next_id
+are used when new Nameserver entries are added to the database.
+The free count (\c
+.c nfree )
+and the free list (\c
+.c freel )
+are not currently being used.
+The
+.c hashes
+array is a histogram of the number of indexed strings requiring a given
+number of applications of the hashing function.
+This has little to do with
+.i .dir
+file, but is kept here for convenience.
+.(b L
+.uh "dumptype \(em Database Dump Names & Functions \(em util/mdump.c"
+.sp \n(psu
+.ft CR
+struct dumptype
+{
+    char    *name;
+    int     (*select) ();
+    int     (*dump) ();
+};
+.ft
+.)b
+.lp
+Used in
+.c mdump.c .
+.lp
+.i Mdump
+is a program to dump the contents of the Nameserver database into an
+.sm ASCII
+file.
+Many different dumps are provided;
+they differ in which entries are dumped,
+and what fields are dumped from each entry.
+.i Mdump
+uses an array of
+.c dumptype
+structures to keep track of the different dumps.
+Each dump has a name (\c
+.c name ),
+a function that is called to determine whether or not to include a
+given entry in the dump (\c
+.c select ,
+called with a
+.cs QDIR
+pointer for the entry),
+and the action to take for selected entries (\c
+.c dump ,
+called with a
+.cs QDIR
+pointer for the entry).
+This design permits
+.i mdump
+to be very modular, and has made customized dumping of the
+database a trivial task.
+.lp
+.(b L
+.uh "\s-1DOVR\s0 \(em Overflow of Entry Data \(em include/db.h
+.ft CR
+struct d_ovrflo
+{
+    char    d_mdata[NDOCHARS];
+    PTRTYPE d_nextptr;        /* ptr to next ovrflo block */
+};
+typedef struct d_ovrflo DOVR;
+.ft
+.)b
+.lp
+Used in
+.c qi/dbd.c ,
+and in the
+.i .dov
+file.
+.lp
+The
+.i .dir
+file is made up of fixed length records (\c
+.cs DREC ).
+Entries that are too long to fit in a
+.cs DREC
+are continued in one or more
+.cs DOVR
+records.
+The
+.cs DOVR
+structure is read and written directly to the
+.i .dov
+file, and hence is used both in memory and on disk.
+The format is very simple;
+all but the last word are used for entry data (\c
+.c d_mdata ).
+The last word (\c
+.c d_nextptr )
+is either the number of the next
+.cs DOVR
+used by this entry, or
+.cs NULL
+if the entry is completed in this block.
+.lp
+.cs DOVR
+structures are used only when reading or writing entries;
+most entry manipulation takes place in
+.cs QDIR
+or
+.cs DREC
+structures.
+.(b L
+.uh "\s-1DREC\s0 \(em Entry Data \(em include/db.h"
+.sp \n(psu
+.ft CR
+struct d_record
+{
+    PTRTYPE d_ovrptr;          /* ptr to ovrflo block ( if any ) */
+    PTRTYPE d_id;              /* unique id */
+    long    d_crdate;          /* date of creation */
+    long    d_chdate;          /* date of last modification */
+    unsigned short d_dead;     /* deleted entry */
+    unsigned short d_datalen;  /* length of data that follows */
+    char    d_data[NDCHARS];   /* various strings, variable length */
+};
+typedef struct d_record DREC;
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/dbd.c       qi/dbm.c     util/credb.c,
+.ft
+.)b
+and in the
+.i .dir
+file.
+.lp
+Each Nameserver entry (on disk) begins with a
+.cs DREC .
+If all the data in the entry cannot be contained in one
+.cs DREC
+(on disk),
+.cs DOVR
+structures will be used to contain the remaining data.
+The
+.cs DREC
+is used somewhat differently in memory.
+When an entry is read in, the
+.cs DREC
+is first read from the
+.i .dir
+file; if there are overflow blocks, the
+.cs DREC
+is
+.b lengthened
+to accommodate the excess data.
+Therefore, while a
+.cs DREC
+is 256 bytes on disk, in memory it may be much larger.
+.lp
+.c D_ovrptr
+is the number of the first overflow block (\c
+.cs DOVR )
+for this entry, or
+.cs NULL
+if there are no overflow blocks.
+.c D_id
+is the number of the
+.cs DREC
+in the
+.i .dir
+file.
+.c D_crdate
+is the creation date of the entry, and
+.c d_chdate
+is the date the entry was last changed;
+both dates are in seconds since the
+.sm UNIX
+epoch (00:00 GMT Jan 1, 1970).
+If
+.c d_dead
+is non-zero, the entry should be ignored.
+.c D_datalen
+is the number of bytes of data in the entry;
+this includes space for
+.cs NULL
+terminators for fields, but not space for any of the header fields or pointers;
+it is the length of the data alone.
+Finally,
+.c d_data
+is the entry's data;
+on disk, the data may be continued in
+.cs DOVR
+structures; in memory, the
+.cs DREC
+will be lengthened as mentioned above.
+.lp
+Within a
+.cs DREC ,
+the data is organized into fields.
+Each field is a null-terminated
+.sm ASCII
+string, prefixed by a tag consisting of the
+.c fdId
+of the
+.cs FDESC
+for the field (in
+.sm ASCII )
+and a colon.
+There may be an essentially unlimited number of fields in a single entry.
+Only one field tagged with any given
+.cs FDESC
+should appear in an entry.
+.uh "\s-1FDESC\s0 \(em Field Description \(em include/field.h"
+.(l L
+.ft CR
+struct fielddesc
+{
+    short fdId;       /* id # of the field */
+    short fdMax;      /* maximum length of the field */
+    int   dIndexed;   /* do we index this field? */
+    int   fdLookup;   /* do we let just anyone do lookups with this? */
+    int   fdPublic;   /* is field publicly viewable? */
+    int   fdDefault;  /* print the field by default? */
+    int   fdAlways;   /* print the always fields ? */
+    int   fdAny;      /* the search field/property any */
+    int   fdTurn;     /* can the user turn off display of this field? */
+    int   fdChange;   /* is field changeable by the user? */
+    int   fdSacred;   /* field requires great holiness of changer */
+    int   fdEncrypt;  /* field requires encryption when it passes the net */
+    int   fdNoPeople; /* field may not be changed for "people"
+                       * entries, but can for others */
+    int   fdForcePub; /* field is public, no matter what F_SUPPRESS is */
+    char  *fdName;    /* name of the field */
+    char  *fdHelp;    /* help for this field */
+    char  *fdMerge;   /* merge instructions for this field */
+};
+typedef struct fielddesc FDESC;
+.ft
+.)l
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+include/field.h qi/change.c     qi/field.c      qi/query.c
+qi/auth.c       qi/commands.c   qi/lookup.c
+.ft
+.)b
+.lp
+Each Nameserver entry is made up of one or more
+.i fields .
+Each field has associated with it a
+.cs FDESC
+that describes the data in the field.
+A
+.cs FDESC
+consists of a unique number that identifies the field (\c
+.c fdId ),
+a maximum length for the field (\c
+.c fdMax ),
+a name for the field (\c
+.c fdName ),
+some description of what the field is intended to contain (\c
+.c fdHelp ),
+instructions on how the field is to be merged during updates (\c
+.c fdMerge ),
+and a set of attributes for the field.
+The attributes and their meanings are as follows:
+.nr ii \w'\f(CRfdForcePub\fP\ \ 'u
+.ip \f(CRfdIndexed\fP
+Words from this field appear in the Nameserver index (hash table in the
+.i .idx
+file).
+Any command that selects Nameserver entries must specify at least one
+field that is indexed as part of its search criteria.
+.ip \f(CRfdLookup\fP
+This field may be specified in a lookup.
+That is, it is permissible to use the contents of this field
+as a method for selecting entries.
+Most fields have this attribute;
+it is present for the rare case where it may be desirable to turn it off.
+.ip \f(CRfdPublic\fP
+Fields with this attribute may be viewed by anyone.
+Some fields (like the password field, for example)
+are private to the owner of the entry in which they appear,
+and should not be shown to the general public.
+Such fields would have the
+.c fdPublic
+attribute turned off.
+.ip \f(CRfdDefault\fP
+With this attribute turned on,
+the field will be printed when a query is issued that does
+not specify which fields are to be returned.
+.ip \f(CRfdAlways\fP
+When enabled, this attribute forces the field's contents to be always printed
+in addition to whatever fields specified by the query.
+.ip \f(CRfdAny\fP
+This field is always searched by queries.
+.ip \f(CRfdTurn\fP
+The field may be inhibited from display to the public
+by putting an asterisk as the first character of the field.
+This is not currently implemented usefully.
+.ip \f(CRfdChange\fP
+The field's contents may be changed by anyone who knows
+the password for the entry in question.
+.ip \f(CRfdSacred\fP
+This attribute is not in current use,
+but exists for historical reasons.
+.ip \f(CRfdEncrypt\fP
+The contents of this field should be encrypted before
+being transmitted over a network.
+.ip \f(CRfdNoPeople\fP
+The contents of the field may not be changed for entries that have a type of
+.q people
+but can be for other types.
+.ip \f(CRfdForcePub\fP
+Force the contents of the field to be Public no matter what
+.cs F_SUPPRESS 's
+value is (field
+.q suppress
+in the
+.i cnf
+file).
+.nr ii 5n
+.lp
+.(b L
+.uh "\s-1QHEADER\s0 \(em Header of .idx File \(em include/bintree.h"
+.sp \n(psu
+.ft CR
+struct header
+{
+    IDX   seq_set;      /* pointer to first leaf */
+    IDX   freelist;     /* unused */
+    IDX   last_leaf;    /* pointer to last leaf */
+    IDX   index_root;   /* pointer to first node */
+    int   reads;        /* statistics... */
+    int   writes;       /* statistics... */
+    int   lookups;      /* statistics... */
+    int   inserts;      /* statistics... */
+    int   deletes;      /* statistics... */
+};
+typedef struct header QHEADER;
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/bintree.c        util/build.c       util/border.c
+util/maket.c
+.ft
+.)b
+and in the
+.i .seq
+file.
+.lp
+A
+.cs QHEADER
+is found as the first part of the
+.i .seq
+file.
+This file contains a linked list that holds all the strings
+in the Nameserver index (\c
+.i .idx
+file) in lexicographic order.
+.c Seq_set
+is the number of the first chunk of the linked list (these
+.q chunks
+are actually
+.cs LEAF
+structures, and may contain one or more
+.cs ITEM 's,
+which in turn contain the index strings and the index number for the strings).
+.c Freelist
+is the number of the first unused
+.cs LEAF
+in a string of unused
+.cs LEAF 's.
+The element
+.c index_root
+actually refers to the
+.i .bdx
+file, and is the number of the top of the tree of
+.cs NODE 's
+contained in that file.
+What follows are statistics;
+they are not currently being used.
+.(b L
+.uh "iindex \(em Hash Table Index Entry \(em include/db.h"
+.sp \n(psu
+.ft CR
+struct iindex
+{
+    union
+    {
+        char    ii_string[NICHARS];
+        PTRTYPE ii_recptrs[NIPTRS];
+    } i_i;
+};
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/dbi.c      util/build.c      util/credb.c
+.ft
+.)b
+and in the
+.i .idx
+file.
+.lp
+The
+.c iindex
+structure is the basic component of the Nameserver's hash table index.
+An
+.c iindex
+structure is really both variants (\c
+.c ii_string
+and
+.c ii_recptrs )
+at the same time.
+From the beginning of the structure to the first
+.cs NULL
+byte, it is a string from the Nameserver database.
+From the first full word after the word in which the
+.cs NULL
+byte appears, it is a list of entry numbers where the word appears,
+until the first
+.cs NULL
+word or the last word in the structure.
+The last word in the structure, if not
+.cs NULL ,
+is the number of the overflow block that continues this index entry.
+.(b L
+.uh "\s-1LEAF\s0 \(em Element of List of Hash Table Strings \(em include/bintree.h"
+.sp \n(psu
+.ft CR
+struct leaf
+{
+    IDX     leaf_no;        /* this leaf's index */
+    IDX     next;           /* pointer to next leaf */
+    int     n_bytes;        /* number of bytes in data */
+    char    data[DATA_SIZE]; /* data--zero or more ITEMs */
+};
+typedef struct leaf LEAF;
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/bintree.c      util/border.c     util/maket.c
+.ft
+.)b
+and in the
+.i .seq
+file.
+.lp
+The
+.cs LEAF
+is used to maintain a linked list of all
+the strings in the Nameserver index (\c
+.i .idx
+file), in lexicographic order.
+This list is useful for searching the index itself
+(as opposed to using the index to search the database).
+Each
+.cs LEAF
+has a number (\c
+.c leaf_no ),
+the number of the next
+.cs LEAF
+in the list (\c
+.c next ),
+some data (\c
+.c data ),
+and the length of the data (\c
+.c n_bytes ).
+.lp
+The data consists of one or more
+.cs ITEM 's;
+each
+.cs ITEM
+contains the number of the index entry involved,
+and the string in that entry.
+.cs ITEM 's
+are stored in order within a
+.cs LEAF ;
+thus, all the strings in the Nameserver index may be
+examined in order by looking at each
+.cs LEAF
+in order, looking at each
+.cs ITEM
+of each
+.cs LEAF
+in order.
+.cs ITEM 's
+end with a
+.cs NULL
+index entry number; there is no fixed number of
+.cs ITEM 's
+in a
+.cs LEAF .
+.(b L
+.uh "\s-1LEAF_DES\s0 \(em Information About a \s-1LEAF\s0 \(em include/bintree.h
+.sp \n(psu
+.ft CR
+struct leaf_des
+{
+    IDX     leaf_no;            /* start of leaf string */
+    char    max_key[KEY_SIZE];  /* biggest key in leaf string */
+};
+typedef struct leaf_des LEAF_DES;
+.ft
+.)b
+Used in
+.c util/build.c
+and
+.c util/maket.c .
+.lp
+The
+.cs LEAF_DES
+structure is only used while building the
+.i .bdx
+file.
+Its sole function is to keep track of the lexicographically
+greatest string in each leaf.
+.c Max_key
+holds the first four letters of the greatest string, and
+.c leaf_no
+is the number of the leaf in question.
+.(b L
+.uh "\s-1NODE\s0 \(em Nodes of Tree Built From \s-1LEAF\s0's \(em include/bintree.h"
+.sp \n(psu
+.ft CR
+struct node
+{
+    IDX     l_ptr;          /* if your name is <= key */
+    char    key[KEY_SIZE];  /* greatest key in l_ptr subtree */
+    IDX     r_ptr;          /* if your name is > key */
+};
+typedef struct node NODE;
+.ft
+.)b
+.(b
+.ti -\n(biu
+Used in
+.ft CR
+qi/bintree.c  util/border.c util/build.c  util/maket.c
+.)b
+and in the
+.i .bdx
+file.
+.lp
+Searching the linked list of
+.cs LEAF 's
+can be quite time-consuming; the
+.i .bdx
+file, made up of
+.cs NODE 's,
+is used to quickly find the proper starting point for searches.
+Each
+.cs NODE
+contains the first four letters of an index string (\c
+.c key ),
+the number of the
+.cs NODE
+or
+.cs LEAF
+containing strings less than or equal to the
+.c key
+(\c
+.c l_ptr ),
+and the number of the
+.cs NODE
+or
+.cs LEAF
+containing strings greater than or equal to the
+.c key
+(\c
+.c r_ptr ).
+In this context, a negative number means a
+.cs LEAF
+is being pointed to, and a positive number means another
+.cs NODE
+is being pointed to.
+.(b L
+.uh "\s-1OPTION\s0 \(em The Name And Value of a Nameserver Option \(em include/options.h"
+.sp \n(psu
+.ft CR
+struct option
+{
+    char    *opName;
+    char    *opValue;
+};
+typedef struct option OPTION;
+.ft
+.)b
+Used in
+.c qi/qi.c
+and
+.c qi/set.c .
+.lp
+This one is pretty simple.
+Nameserver options are kept in an array of
+.cs OPTION
+structures.
+Each structure has the name of the option (\c
+.c opName ,
+in static data), and the value of the option, or
+.cs NULL
+if the option is not set, (\c
+.c opValue ,
+in malloc-space).
+.(b L
+.uh "suffix \(em File Suffix and Selector Mask \(em util/border.c"
+.sp \n(psu
+.ft CR
+struct suffix
+{
+    char    *suffix;
+    int     mask;
+};
+.ft
+.)b
+Used in
+.c util/border.c .
+.lp
+This structure is used to keep track of the six suffices (\c
+.i dir ,
+.i dov ,
+.i idx ,
+.i iov ,
+.i seq ,
+and
+.i bdx )
+that are used for Nameserver files.
+The suffix string is kept in
+.c suffix ,
+and a bit that is used for selecting a particular suffix is kept in
+.c mask ;
+a bit pattern is generated from
+.i border 's
+arguments, and
+.c mask
+is anded with that pattern to see if the file with the particular suffix
+is to be reordered.
+.uh "File Organization"
+.lp
+The Nameserver database is kept in six files.
+The files and their functions are:
+.ip \fI.dir\fP
+The first part of every entry is kept in the
+.i .dir
+file.
+The file begins with a
+.c dirhead
+and has one
+.cs DREC
+for every Nameserver entry.
+.ip \fI.dov\fP
+Those entries too big to fit into a single
+.cs DREC
+are continued in the
+.i .dov
+file.
+Its entries are of type
+.cs DOVR ;
+like the
+.i .dir
+file, it begins with a
+.c dirhead .
+.ip \fI.idx\fP
+The Nameserver's hash table is kept here.
+It begins with a
+.cs QHEADER ,
+and continues with
+.c iindex
+structures.
+.ip \fI.iov\fP
+Index entries too long for one
+.c iindex
+are continued in the
+.i .iov
+file (an index entry becomes too long if the string it references
+appears in many Nameserver entries;
+.q smith ,
+for example, has multiple continuations).
+Each entry is a list of pointers,
+all but the last being pointers into the
+.i .dir
+file; the last pointer is a pointer to further index overflow blocks.
+If the block is not filled,
+the last valid pointer will be followed by a
+.cs NULL
+pointer.
+The zeroth entry in the
+.i .iov
+file is empty.
+.ip \fI.seq\fP
+This file contains every string in the Nameserver index,
+in lexicographic order.
+It is used during metacharacter searches,
+and consists of
+.cs LEAF
+structures, each containing one or more
+.cs ITEM 's.
+The first leaf in the linked list is pointed to by the
+.c seq_set
+element of the
+.cs QHEADER ,
+found in the
+.i .idx
+file.
+.ip \fI.bdx\fP
+The
+.i .bdx
+file contains a tree that speeds the searching of the
+.i .seq
+file.
+This tree is made up of
+.cs NODE
+structures; the top of the tree is pointed to by the
+.c index_root
+element of the
+.cs QHEADER ,
+found in the
+.i .idx
+file.
+.lp
+To better understand the organization of Nameserver files,
+consider a database consisting of only the following data (the \(-> symbol
+represents the tab character):
+.(b F
+.na
+.nh
+.ft CR
+.ti -3n
+3:Anna Arcola Anderson\(->0:142 Aspen Avenue Arcadia Alaska\(->10:All-Around Architect and Annunciator\(->9:Archeology Anthropology and Alimentary Angles\(->15:Asking All American Armenians About Asps Alligators Antelopes and Alphonse Amato\(->16:Avid Activist for All-merican Amateur Arrest Association
+.ft
+.ad
+.)b
+.(b F
+.na
+.nh
+.ft CR
+.ti -3n
+3:Crispin C Caramel\(->0:52C Calle Cadiz Cropcount California\(->10:Creepy-Crawly-Creature Creator
+.ft
+.ad
+.)b
+.(b F
+.na
+.nh
+.ft CR
+.ti -3n
+3:Dexter D Dripslobber\(->0:224 Deerdropping Drive Denver Delaware\(->10:Decimator of Delinquent Drivers
+.ft
+.ad
+.)b
+.hy 14
+.lp
+Once we have turned this data into a Nameserver database, named
+.q example ,
+let's look up the string
+.q 142 ,
+and see how the Nameserver would go about locating it.
+.lp
+The following diagram shows the relevant portions of the example database.
+Important addresses and values are show in solid boxes;
+interesting but incidental information is shown in dashed boxes.
+The
+.q #
+symbol represents a
+.cs NULL
+byte.
+.(b L
+.ft CR
+   -----------------------------<i<-------------------------
+   |                                                       |
+  \e|/                                                      |
+0x00000  #  #  #  #  #  #  #  #  #  #  #  # ff ff ff ff    |  example.bdx
+0x00010  c  r  e  f ff ff ff ff    .\0.\0.    ^^^^^|^^^^^    |
+         ^^^^^^^^^^------------->ii>-------------|         |
+                                                \e|/       /i\e
+                                                 |         |
+   -----------------------------<iii<-------------         |
+   |                                                       |
+  \e|/                                                      |
+0x00100  #  #  # 01  #  #  # 02  #  #  # E6  #  #  # 0C    |  example.seq
+                                             ^^^^^^^^^^--  |
+0x00110  1  4  2  #  #  #  # 1D  2  2  4  #  #  #  # 19 |  |
+                                                        |  |
+                                                        |  |
+   -----------------------------<iv<---------------------  |
+   |                                                       |
+   |                                                       |
+0x00000  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 00    |  example.idx
+  \e|/    .\0.\0.                               ^^^^^^^^^^-----
+0x00300  1  4  2  #  #  #  # 01  #  #  #  #  #  #  #  #
+                     ^^^^|^^^^^
+                         |
+   ---------<1<-----------
+   |
+  \e|/
+0x00100  #  #  # 01  #  #  # 01  # A8 17 B8  # A8 17 B8       example.dir
+         ^^^^^^^^^^------------------->2>-----------------
+0x00110  #  # 01 22  3  :  A  n  n  a     A  r  c  o  l  |
+0x00120  a     A  n  d  e  r  s  o  n     0  :  1  4  2  |
+0x00130     A  s  p  e  n     A  v  e  b  u  e     A  r  |
+0x00140  c  a  d  i  a     A  l  a  s  k  a  #  1  0  :  |
+0x00150  A  l  l  -  A  r  o  u  n  d     A  r  c  h  i  |
+0x00160  t  e  c  t     a  n  d     A  n  n  u  n  i  c  |
+0x00170  a  t  o  r  #  9  :  A  r  c  h  e  o  l  o  g  |
+0x00180  y     A  n  t  h  r  o  p  o  l  o  g  y     a  |
+0x00190  n  d     A  l  i  m  e  n  t  a  r  y     A  n  |
+0x001a0  g  l  e  s  #  1  5  :  A  s  k  i  n  g     A  |
+0x001b0  l  l     A  m  e  r  i  c  a  n     A  r  m  e  |
+0x001c0  n  i  a  n  s     A  b  o  u  t     A  s  p  s  |
+0x001d0     A  l  l  i  g  a  t  o  r  s     A  n  t  e  |
+0x001e0  l  o  p  e  s     a  n  d     A  l  p  h  o  n  |
+0x001f0  s  e     A  m  a  t  o  #  1  6  :  A  v  i  d  |
+ .\0.\0.                                                   |
+                                                         |
+   -------------------------<2<---------------------------
+   |
+  \e|/
+0x00100     A  c  t  i  v  i  s  t     f  o  r     A  l       example.dov
+0x00110  l  -  A  m  e  r  i  c  a  n     A  m  a  t  e
+0x00120  u  r     A  r  r  e  s  t     A  s  s  o  c  i
+0x00130  a  t  i  o  n  #  #  #  #  #  #  #  #  #  #  #
+.)b
+.ip \fB1\fP
+Compute the hashing function for the string
+.q 142 .
+The result points to location 0x300 in the
+.i .idx
+file.
+In that
+.c iindex ,
+we find the string
+.q 142 ,
+indicating that this is indeed the
+.c iindex
+we want.
+The next full word is 1,
+indicating that the string
+.q 142
+appears in the first entry in the
+.i .dir
+file.
+Notice that the word after our 1 is a full word of zero;
+this indicates that there are no more entries containing
+.q 142 .
+.ip \fB2\fP
+After following the pointer into the
+.i .dir
+file, we find the first database entry (\c
+.cs DREC
+at location 0x100, after the
+.c dirhead ).
+We notice from the first word in the entry (\c
+.c d_ovrptr )
+that the entry's data is continued in the first data block of the
+.i .dov
+file (at 0x100, after the
+.c dirhead ).
+The next word (\c
+.c d_id )
+confirms that we are indeed at entry 1 in the
+.i .dir
+file, and the half word at 0x110 (\c
+.c d_dead )
+tells us by being
+.cs NULL
+that the entry is in use.
+We notice that the data is 0x122 bytes long from the next half word (\c
+.c d_datalen ).
+And sure enough, our string does appear in the entry,
+as part of the address field,
+between 0x12b and 0x14c.
+.lp
+Suppose that instead of looking for
+.q 142 ,
+we were looking for anything beginning with
+.q 14 .
+Since we wouldn't know where our strings might hash,
+we must search the index to find strings that fit our pattern.
+.ip \fBi\fP
+First, we find the head
+.cs NODE
+of the tree in the
+.i .bdx
+file.
+This is kept in the
+.i .idx
+file, in the
+.c index_root
+element of the
+.cs QHEADER ,
+and is the fourth word of the
+.i .idx
+file.
+In our case, this word is 0, indicating the tree begins with
+.cs NODE
+0.
+.ip \fBii\fP
+.cs NODE
+0 in the
+.i .bdx
+file has as its key
+.q cref
+(at 0x10).
+Our goal string,
+.q 14 ,
+is less than
+.q cref ,
+so we follow the left pointer (\c
+.c l_ptr ,
+at 0xc).
+It is \-1, meaning the
+.cs LEAF
+containing keys greater than or equal to our goal key is the
+.cs LEAF
+1.
+.ip \fBiii\fP
+The first
+.cs LEAF
+(at 0x100) does indeed contain a string that matches
+.q 14 ;
+the string is
+.q 142 ,
+and we notice (at 0x10c, which is the
+.c p_number
+of an
+.cs ITEM )
+that the string
+.q 142
+appears in the
+.i .idx
+file as number 0xc.
+.ip \fBiv\fP
+0xc translates to an address of 0x300 in the
+.i .idx
+file; the process continues with steps 1 and 2 above.
+.uh "Statistics and the Nameserver Log"
+.lp
+The Nameserver logs every command
+and error that it sees via the 4.3BSD syslog facility.
+At our site, we
+.q "roll over"
+this log weekly, and keep information for one week back.
+A week's log file is typically half a megabyte or so
+(representing a few thousand Nameserver commands).
+.lp
+We use this log for several things.
+First, it tells us how much use our Nameserver gets;
+this allows us to judge user satisfaction.
+Second, it tells us where our Nameserver is used from;
+this lets us know if we are getting good penetration
+into the computing community,
+or if our service is unknown to some parts of the campus.
+It also allows us to detect possible abuses of the Nameserver;
+if a host suddenly makes thousands of queries,
+we can look at that host's commands to see if someone
+is trying to use the Nameserver as a mailing list,
+or overloading it with nonsense queries.
+Third, it tells us what commands users actually use,
+and what commands are gathering dust;
+that helps us allocate our time to areas of user interest,
+rather than spend our time improving something no one cares about anyway.
+Fourth, It tells us how users are doing with the Nameserver;
+if a high proportion of responses for a particular command are errors,
+it may mean we need to modify the command to make it more intuitive,
+or improve our documentation.
+Finally, it allows us to see exactly what a user has done
+when that user comes to us with a problem using the Nameserver.
+Usually, the log gives us the information we need to discover
+the user's problem.
+.lp
+The program that allows us to (in some measure) accomplish these
+wonders with the log file is in the subdirectory stats.
+The
+.i nsstats
+program is invoked by
+.i cron (8).
+Unlike much of the Nameserver,
+this program is quite informal, written to serve our needs only;
+the most apt word to use is
+.q hack .
+But we have found it to be a useful hack, and perhaps you will, too.
+.uh nsstats
+.lp
+I'll present the output from
+.i nsstats
+in sections,
+each line preceded with a line number,
+and explain what the section means.
+Missing line numbers correspond to blank lines in the output.
+.(b
+.ft CR
+1	ph stats Aug 10
+.ft
+.)b
+The first line gives the day for which the statistics pertain
+(August 10th).
+.(b
+.ft CR
+3	4480 sessions from 309 hosts.
+.ft
+.)b
+The next line totals the number of Nameserver sessions (4480),
+and the number of different hosts from which the sessions originated (309).
+.(b
+.ft CR
+5	uxa.cso.uiuc.edu          960 (21%)
+6	vmd.cso.uiuc.edu          112 (2%)
+7	uxc.cso.uiuc.edu          130 (2%)
+8	garcon.cso.uiuc.edu       683 (15%)
+9	ux1.cso.uiuc.edu          887 (19%)
+10	other (304 hosts)         1708 (38%)
+.ft
+.)b
+This section shows all hosts who had at least 50 Nameserver sessions that day,
+the number of sessions coming from each,
+and the percentage of the total number of sessions that number represents.
+Hosts making less than 50 queries are lumped together in the
+.q other
+category, with the number of such hosts placed in parentheses after the
+.q other
+label (in this case, there were 304 hosts who made less than 50 queries).
+This section is a good place to find potential Nameserver abuse;
+most hosts appearing here should be machines with a large user-base;
+single-person workstations making hundreds of queries is quite unusual.
+.(b
+.ft CR
+12	308 commands used 18638 times
+.ft
+.)b
+The next section lists the different commands and how many times they were
+used.
+First the total number of significant Nameserver commands (18638),
+as well as the number of
+.b different
+commands given (308).
+The latter number counts only command names, not arguments;
+.q "query john smith"
+and
+.q "query jane doe"
+are considered equivalent for this purpose.
+.(l
+.ft CR
+14	ph                 166 (0%)
+15	email               49 (0%)
+16	login:               8 (0%)
+17	quit               738 (3%)
+18	siteinfo             6 (0%)
+19	status             118 (0%)
+20	answer              58 (0%)
+21	attempting          13 (0%)
+22	login              146 (0%)
+23	clear               39 (0%)
+24	Password             7 (0%)
+25	fields              33 (0%)
+26	id                2532 (13%)
+27	query             5141 (27%)
+28	change             107 (0%)
+29	accting             25 (0%)
+30	help                80 (0%)
+31	weather             13 (0%)
+32	Done              4464 (23%)
+33	begin             4480 (24%)
+.ft
+.)l
+.lp
+The individual commands are listed,
+followed by the number of times they were issued,
+and the percentage of commands that number represents.
+Note that some commands (such as
+.q quit
+and
+.q id
+are automatically generated once per Nameserver session);
+one must be somewhat cautious in interpreting the numbers here.
+.uh "Everything You Always Wanted to Know, But Were Afraid to Ask"
+.lp
+The next section answers some often-asked questions about the Nameserver.
+The information presented is admittedly fragmentary;
+it may be useful nonetheless.
+.uh "How Do You Assign Passwords?"
+.lp
+The Nameserver tries to be accommodating with respect to passwords.
+First, find the definition for Hero in
+.c qi/commands.c .
+If there is no entry with this string as an alias,
+anyone may use the add command to add entries to the database,
+including adding a Hero entry to the database.
+Once the Hero entry exists,
+normal security is in force.
+.lp
+Normal security means that,
+when a login is attempted to a given alias,
+the entry is fetched;
+if a password field exists in the entry,
+that value should be used as the Nameserver password.
+If no password field exists,
+the last 8 characters of the id field are used as the password.
+If no id field is present,
+the password for the entry is
+.q secret .
+The moral of the story is not to generate an entry with an alias field
+but no id or password.
+.uh "Just What Is the Id Field Anyway?"
+.lp
+At the University of Illinois,
+we use the id field as a unique,
+immutable tag for entries.
+When we receive updated information from our administrative branch,
+we need to know which entry in our database to which the information applies.
+A name is insufficient for this purpose;
+names not only change,
+but they can be ambiguous.
+.lp
+The University already has a unique number for each student,
+faculty member, or staff member;
+unfortunately, this number is most often the person's social security number,
+and is considered fairly private information.
+.uh "What Field Descriptions Can We Change?"
+.lp
+The field descriptions in the supplied
+.i prod.cnf
+are broken into two categories;
+one that warns against changing the descriptions in it,
+and one that bears no such warning.
+The criteria for splitting the field descriptions is quite simple;
+if the number for the field description appears in
+field.h and is therefore used by number in the Nameserver source code,
+the field description is in the first, protected, category.
+Changes to such fields must be made with care,
+and only after looking at how they are used in the source.
+Changes to fields in the second category may be made with impunity,
+provided:
+.np
+you are willing to put up with inconsistencies you may thereby introduce
+(for example, shortening the maximum length of a field may
+leave entries in your database with values too long in those fields)
+and
+.np
+You don't change the Indexed property.
+If you add or remove the Indexed property, you
+.b must
+rebuild the Nameserver database with makei and build.

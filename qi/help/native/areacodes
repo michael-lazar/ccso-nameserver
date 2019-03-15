@@ -1,0 +1,39 @@
+PH AREA CODE INFORMATION
+
+The Nameserver database contains area codes for major cities and regions
+in the U.S.  The ph area code information comes from an old, pre-existing
+dataset and is only sporadically and haphazardly updated, so it may not
+be entirely up to date.
+
+EXAMPLES
+To find the area code for a particular U.S. city, set the "type" field
+specifier to "areacode" followed the name of the city.  (Note: The "type"
+field specifier [i.e. "type=areacode"] is not required, but its use in
+the selection clause of the query will limit the search to those items
+in the Nameserver database that are part of the area code dataset):
+
+   ph> ph type=areacode san francisco
+   ----------------------------------------
+         name: area code 415
+             : Oakland and San Francisco, (Bay Area)  California
+   ----------------------------------------
+
+The area code dataset does not include every city in the U.S.  If no
+matching entries are found using the name of a city, try using the name
+of the state instead, and the area codes for the major regions in the
+state will be displayed:
+
+   ph> ph type=areacode new jersey
+   ----------------------------------------
+         name: area code 201
+             : Morristown,  and Newark, (Northeast) New Jersey
+   ----------------------------------------
+         name: area code 609
+             : Atlantic City, Camden , and Trenton , (Southwest)
+             : New Jersey
+   ----------------------------------------
+         name: area code 908
+             : Elizabeth, and New Brunswick, (Central) New Jersey
+   ----------------------------------------
+
+SEE ALSO: query, type

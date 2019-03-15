@@ -1,0 +1,175 @@
+#!%PerlProg%
+#
+# h.unblock - unblock freshman tape
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @(#)$Id: h.unblock,v 1.3 1995/05/23 15:00:30 p-pomes Exp $
+
+# Layout is:
+# 9	ssn
+# 1	pad
+# 20	name
+# 1	pad
+# 18	permanent address
+# 1	pad
+# 18	permanent address
+# 1	pad
+# 24	permanent city, state, zip
+# 1	pad
+# a lot	salutation (name in mixed case)
+
+
+#
+# beginning of interesting stuff
+#
+
+#
+# usage
+if ($#ARGV<0) {print STDERR "usage: h.unblock prod.cnf [files]\n";exit 1;}
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+# 
+# Initialize the password arrays
+$DictFile = "/usr/share/lib/dict/words";
+open(DICT, "<$DictFile") || die "$DictFile: $!\n";
+while (<DICT>)
+{
+  chop;
+  next if (/\W/o || /[A-Z][A-Z]/o || /^ass$/o || /^butt$/o || /^crap$/o ||
+	   /^damn$/o || /^dyke$/o || /^fag$/o );
+  if (length == 3)
+  {
+    push(ThreeWord, $_);
+  }
+  elsif (length == 4)
+  {
+    push(FourWord, $_);
+  }
+}
+close(DICT);
+
+@Punct = (2..9, '!', '*', '#', '$', '%', '&', '-', '+', '=', '<', '>', '?');
+srand(time|$$);
+
+#
+# read prod.cnf
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  chop;
+  if (/^#/) {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@_ < 2) {next;}
+  $fid{$_[1]} = $_[0];
+}
+
+#
+# here we go...
+while (<>)
+{
+
+  #
+  # lowercase, sanitize, unblock
+  #
+  tr/A-Z/a-z/;
+  tr/ -~/ /c;
+  
+  ($id,$name,$permAddr,$permCSZ) = 
+    unpack("A9xA20xA18xA24",$_);
+  
+  #
+  # massage fields
+  #
+  $permAddr = &SepCat($permAddr,"\\n",$permCSZ);
+
+  #
+  # create default password
+  #
+  $Password = &GenPass();
+
+  #
+  # build output string
+  #
+  $out = "$fid{'id'}:$id\t$fid{'curriculum'}:incoming\t$fid{'type'}:person phone";
+  $out = &SepCat($out,"\t".$fid{"name"}.":",$name);
+  $out = &SepCat($out,"\t".$fid{"permanent_address"}.":",$permAddr);
+  $out = &SepCat($out,"\t".$fid{"created"}.":",$Date);
+  $out = &SepCat($out,"\t".$fid{"password"}.":",$Password);
+  
+  #
+  # and print it...
+  #
+  print $out . "\n";
+}
+
+sub SepCat
+{
+  ($str1,$sep,$str2) = @_;
+  ($str1 ne "" && $str2 ne "") ? ($str1 .= $sep . $str2) : ($str1 .= $str2);
+}
+
+sub GenPass
+{
+  local($i,$word1, $word2, $sep);
+  if (rand() < 0.5)
+  {
+    $word1 = $ThreeWord[rand(@ThreeWord)];
+    $word2 = $FourWord[rand(@FourWord)];
+  }
+  else
+  {
+    $word1 = $FourWord[rand(@FourWord)];
+    $word2 = $ThreeWord[rand(@ThreeWord)];
+  }
+  $sep = $Punct[rand(@Punct)];
+  $word1 .= $sep . $word2;
+
+  $i = 1;
+  $i = int(rand(8));
+  
+  $word2 = substr($word1, $i, 1);
+  $word2 =~ s/./\U$&/;
+  substr($word1, $i, 1) = $word2;
+
+  return($word1);
+}

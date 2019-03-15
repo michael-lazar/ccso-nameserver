@@ -1,0 +1,528 @@
+
+
+
+
+
+
+
+                 IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr
+
+                               by
+                Steven Dorner   s-dorner@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                          March 4, 1992
+
+
+                           updated by
+                Paul Pomes   paul-pomes@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                         August 2, 1992
+
+
+
+
+
+_I_n_t_r_o_d_u_c_t_i_o_n
+
+This document covers the installation of the CCSO Nameserver.
+Included are a description of the distribution, instructions on
+configuring the software, and some suggestions for building a
+database.  Detailed descriptions of the various parts are left
+for other documents.
+
+The Nameserver requires a UNIX system with a reasonable amount of
+Berkeley-ness.  If you have a pure System V machine, you're in
+for a lot of fun.  It also requires a C compiler (ANSI C pre-
+ferred), and perl.
+
+_A _W_o_r_d _A_b_o_u_t _S_u_p_p_o_r_t
+
+The word about support is, "no".  This software is provided as-
+is, and neither I nor the University of Illinois nor CSNet nor
+even your mother takes any responsibility for anything bad that
+happens because of it.
+
+On the other hand, we do use the software extensively, and are
+interested in bug reports and suggestions.  As time permits, I
+will answer email questions about the software, provided those
+questions aren't answered in the supplied documentation, or
+available through a quick perusal of the source code.
+
+
+____________________
+   Converted to portable n/troff format using the -me macros from
+funky Next WriteNow format (icch).
+
+
+
+
+
+
+
+
+
+
+
+
+22                                  IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr
+
+
+_T_h_e _D_i_s_t_r_i_b_u_t_i_o_n
+
+This section describes the various pieces of the distribution.
+Each piece is marked with one of several codes, which are listed
+in _b_o_l_d.  The codes and their meanings are:
+
+vviittaall     Things you must use/understand/modify to get the
+          Nameserver up and running.
+
+iimmppoorrttaanntt Things you had better become familiar with, but can be
+          safely skipped or taken for granted during initial
+          installation.
+
+ooppttiioonnaall  Things you may or may not wish to use someday.
+
+uuiiuucc      Things we use at UIUC that may be of little or no use
+          to you, except as models.
+
+Two general notes.  First, _M_a_k_e_f_i_l_e in the various subdirectories
+are generated from the _M_a_k_e_f_i_l_e._t_e_m_p_l files in those same direc-
+tories, by _C_o_n_f_i_g_u_r_e.  Second, the RCS subdirectories do contain
+RCS files, but there are almost no useful log messages; the files
+are used for checkpointing only.
+
+README.NOW  vviittaall        Release notes, general instructions,
+                         warnings, last-minute changes, etc.
+                         Please read it before you go any
+                         further.  Then, please read this entire
+                         document.
+
+buildmisc  uuiiuucc          This directory contains the Makefile we
+                         use to do database updates.  While it's
+                         certainly instructive, much of it is
+                         UIUC-specific.  Saying "touch s.tape.raw
+                         f.tape.raw s.tape.all old.dir old.dov;
+                         make -n" in this directory is a good way
+                         to get an idea of what our update pro-
+                         cess looks like.
+
+configs  vviittaall           This directory contains configuration
+                         files (perl fragments) for use in confi-
+                         guring the software.  These fragments
+                         are divided into two major classes;
+                         operating-system specific fragments and
+                         setup-specific fragments.  More about
+                         these in the Configure section below.
+
+configs/defaults  vviittaall  Defaults for the configuration process.
+
+configs/{aix,convex,dynix,next,ultrix}  iimmppoorrttaanntt
+                         These are OS-specific configuration
+                         files.  Use these to get basic parame-
+                         ters for the flavors of UNIX involved.
+
+
+
+
+
+
+
+
+
+
+IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr                                  33
+
+
+configs/{garcon,net-nav,ux2,uxa}  uuiiuucc
+                         These are specific configuration files
+                         for our setups.  They may be instruc-
+                         tive, but you'll not be able to use any
+                         of them directly.
+
+Configure  vviittaall         This perl script configures the source
+                         tree.  _N._B., you _m_u_s_t read the _C_o_n_f_i_g_u_r_e
+                         section below before trying to use _C_o_n_-
+                         _f_i_g_u_r_e; it's not like the Configure that
+                         comes with (eg) rn or perl.
+
+olddoc  ppttiioonnaall          This directory contains older documents,
+                         of varying relevance and utility, in a
+                         variety of formats.  This directory will
+                         be removed when its contents have been
+                         completely superseded.
+
+help  iimmppoorrttaanntt          A directory which contains help files
+                         for the server's use.
+
+help/native  iimmppoorrttaanntt   A directory of help files related to the
+                         server and its database, but not to any
+                         particular client.
+
+help/{macph,ph}  iimmppoorrttaanntt
+                         Directories for client-specific help.
+
+include  iimmppoorrttaanntt       This directory contains include files
+                         for the Nameserver.
+
+lib  iimmppoorrttaanntt           Some library routines for common use.
+
+Makefile  iimmppoorrttaanntt      This is the master Makefile for the
+                         whole system, and is generated by _C_o_n_-
+                         _f_i_g_u_r_e.
+
+doc  vviittaall               This directory contains the most up-to-
+                         date documents in n/troff format using
+                         the -me macro package.  The man pages,
+                         _p_h._1 and _q_i._8, use the -man macros.
+
+doc/install.me  vviittaall    You're reading it now.
+
+ph  iimmppoorrttaanntt            The UNIX _p_h client lives here.
+
+qi  iimmppoorrttaanntt            And here is the server.
+
+util  vviittaall              This directory contains files that are
+                         useful for building or manipulating
+                         Nameserver data.  You will probably have
+                         to modify some of these programs for use
+                         in building your own database.  Which
+
+
+
+
+
+
+
+
+
+
+44                                  IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr
+
+
+                         ones depend on your situation.
+
+util/age  uuiiuucc           We use this to get rid of people who
+                         have been in the database for a year
+                         after they've actually left UIUC.
+
+util/aliasassign  iimmppoorrttaanntt
+                         This is a perl script that takes the
+                         output of _a_l_i_a_s_p_r_e_p_a_r_e and assignes
+                         unique aliases (and kerberos fields).
+                         It produces a file in _m_a_k_e_d format (see
+                         below).
+
+util/aliasprepare  iimmppoorrttaanntt
+                         A perl script that takes input in _m_a_k_e_d
+                         format, and produces input for _a_l_i_a_s_a_s_-
+                         _s_i_g_n.
+
+util/border.c  iimmppoorrttaanntt This program reorders the bytes in a
+                         Nameserver database.  This allows data-
+                         bases to be moved between machines with
+                         VAX and 68000 byteorders.
+
+util/build.c  iimmppoorrttaanntt  Build takes the ._i_d_x and ._i_o_v files and
+                         generates from them the ._s_e_q and ._b_d_x
+                         files.
+
+util/credb.c  iimmppoorrttaanntt  Creates an empty database.
+
+util/f.unblock  uuiiuucc     Perl script that takes a UIUC staff
+                         dataset and puts it into _m_a_k_e_d format.
+
+util/id.c  uuiiuucc          Functions for dealing with real id <->
+                         fake id mapping.
+
+util/maggie  uuiiuucc        A perl script to produce input for the
+                         UIUC printed phone book.
+
+util/maked.c  iimmppoorrttaanntt  This program turns _m_a_k_e_d format files
+                         into ._d_i_r and ._d_o_v files.
+
+util/makei.c  iimmppoorrttaanntt  _M_a_k_e_i generates the hash table (._i_d_x and
+                         ._i_o_v) from the ._d_i_r and ._d_o_v files.
+
+util/mdump.c  iimmppoorrttaanntt  Dumps the database according to various
+                         criteria and into various forms.
+
+util/merge3  uuiiuucc        We use this perl script to reconcile the
+                         old database with new student and/or
+                         staff information.  Pray you never,
+                         ever, have to get near it.
+
+
+
+
+
+
+
+
+
+
+
+
+IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr                                  55
+
+
+util/nsck.c  iimmppoorrttaanntt   Runs some consistency checks on the
+                         database.
+
+util/phify  ooppttiioonnaall     A script that turns _m_a_k_e_d format data
+                         into something that looks like _p_h out-
+                         put.
+
+util/phoneaddr  uuiiuucc     Perl script that copies either office or
+                         home phone and address into phone and
+                         address fields.  Uses _m_a_k_e_d format.
+
+util/qierrs  ooppttiioonnaall    Perl script that sifts the output of _q_i,
+                         looking for errors.
+
+util/s.unblock  uuiiuucc     Perl script that takes a UIUC student
+                         dataset and puts it into _m_a_k_e_d format.
+
+util/ssndump.c  uuiiuucc     Dumps a dbm real id <-> fake id database
+                         into ASCII form.
+
+util/ssnid.c  uuiiuucc       Uses a dbm real id <-> fake id database
+                         to map real id's to fake id's, and to
+                         assign fake id's.
+
+util/ssnload.c  uuiiuucc     Loads a dbm real id <-> fake id database
+                         from ASCII form.
+
+util/testqi.csh  iimmppoorrttaanntt
+                         A script that tests _q_i, at least
+                         minimally.
+
+whoi  ooppttiioonnaall           A "whois" server that actually uses _q_i.
+
+xtra  ooppttiioonnaall           Stuff related to the Nameserver, but not
+                         integrated into the distribution.
+
+_C_o_n_f_i_g_u_r_e
+
+_C_o_n_f_i_g_u_r_e is a perl script that gets the source ready for compi-
+lation.  This process includes setting up compilation and linking
+options, choosing database locations, deciding where binaries go,
+and determining which features to enable.  It does this by build-
+ing _M_a_k_e_f_i_l_e from the _M_a_k_e_f_i_l_e._t_e_m_p_l and building the _c_o_n_f._h and
+_c_o_n_f._c source files.  _C_o_n_f_i_g_u_r_e makes use of files in the _c_o_n_f_i_g_s
+subdirectory.  It reads _c_o_n_f_i_g_s/_d_e_f_a_u_l_t_s first, and then read in
+turn each of its argument files.  These files should contain perl
+scripts.
+
+The scripts supplied are separated into three categories.  In the
+first category is defaults, which is read first, and contains
+global defaults.  Insofar as possible, I suggest you leave
+defaults alone; if you wish to alter the environment it creates,
+do so by overriding the defaults with your own configuration
+
+
+
+
+
+
+
+
+
+
+66                                  IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr
+
+
+files.
+
+The second category of scripts are OS-specific scripts.  These
+scripts set compiler options and defines for use with various
+flavors of UNIX.
+
+The third category are installation-specific scripts.  These
+scripts are used to define options for a particular databases.
+Use of these scripts make it easy to run multiple _q_i databases on
+a single host, with different features enabled on each database.
+
+The scripts you write should primarily set perl variables.  The
+values of these variables will later be used when _C_o_n_f_i_g_u_r_e is
+actually run.  The variables you may set and what you may set
+them to are described in the _d_e_f_a_u_l_t_s script.  I will highlight a
+few of the most important here.  You should, of course, review
+all the variables; just be doubly sure not to miss these.
+
+ o+ The @Features array can be used to enable optional features in
+   the code.  If you want to run with encrypted passwords, this
+   array is the place to say so.
+ o+ $CC is your C compiler.  This should be an ANSI C compiler; I
+   use gcc.
+ o+ $Owner and $Group own the nameserver binaries and database.
+ o+ If you have some extra libraries you need, put them in
+   $MoreLib.
+ o+ $ExecDir is where executables will be put.
+ o+ $DefineStrings{"Database"} is the name of your database, shorn
+   of suffices, but with the leading path component.
+ o+ $OtherDefines{"Drecsize"} and $OtherDefines{"Doversize"} must
+   be correct for your database, as must
+   $OtherDefines{"NIChars"}.
+
+_T_h_e _F_i_e_l_d _C_o_n_f_i_g_u_r_a_t_i_o_n _F_i_l_e
+
+The field configuration file is _q_i's key to interpreting your
+database.  In this file you associate names with field numbers,
+and determine the properties of fields.  The file should be named
+the same as your database, but with a ._c_n_f extension (older ver-
+sions of source and documents may refer to this as the _p_r_o_d._c_n_f
+file).  It consists of lines of the form:
+
+3:name:256:Full name.:FS:Indexed:Lookup:Public:Default:
+
+The first item is the field id (in this case, 3).  This number
+identifies the field in an entry, or in a _m_a_k_e_d format file.  The
+second item is the field name (in this case, "name"), which
+should be used in commands, and will be printed in query
+responses.  The third item is the maximum length of the field (in
+this case, 256 characters); maximum lengths should be less than
+4096 characters.  The fourth item is a brief description of the
+field.  The fifth item contains instructions for the _m_e_r_g_e_3 pro-
+gram; if you don't use _m_e_r_g_e_3, put an "O" in this item.  The
+
+
+
+
+
+
+
+
+
+
+IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr                                  77
+
+
+final items contain a list of field attributes.  Only the first
+character of the attributes are significant.  The attributes and
+their functions are:
+
+I    Indexed; the contents of this field will be put in the data-
+     base index.  At least one Indexed field must be included in
+     every query.
+
+L    Lookup; users may use this field in queries.
+
+P    Public; the contents of this field may be displayed to any-
+     one (but see "F" below).
+
+D    Default; this field will be returned for queries that do not
+     specify which fields to return.
+
+C    Change; users may change the contents of this field.
+
+F    ForcePub; users may not suppress this field.  Fields not
+     marked "F" may be hidden from view by putting something
+     (anything) in the F_SUPPRESS field.
+
+N    NoPeople; users may change this field, but only if their
+     F_TYPE field does not contain "person".
+
+E    Encrypt; this field may not cross the network, nohow, noway.
+
+W    Any (Wild); fields so marked may be searched collectively by
+     specifying an "any" field in a query.
+
+There are other defined attributes, but they are not used at this
+time.
+
+You have a great deal of freedom in how you manage your field
+configuration file.  You may have as many fields as you like, and
+give them whatever names, numbers, and attributes you like.
+There is, however, a relatively small set of "core" field names
+and numbers.  If you change these field names or numbers, or omit
+them from the database, you are likely to have to make changes to
+the source to accommodate the change.  These fields are:
+
+    2:email
+    3:name
+    4:type
+    5:id
+    6:alias
+    7:password
+    8:proxy
+    23:nickname
+    25:all
+    30:hero
+    43:suppress
+
+
+
+
+
+
+
+
+
+
+
+88                                  IInnssttaalllliinngg tthhee CCCCSSOO NNaammeesseerrvveerr
+
+
+Furthermore, there are some other fields that are used by some of
+the utilities, or auxilliary programs like _p_h_q_u_e_r_y.  If you
+modify these names or numbers, some such programs may have diffi-
+culty.
+
+    0:address
+    1:phone
+    9:department
+    10:title
+    11:curriculum
+    20:home_address
+    21:permanent_address
+    22:office_address
+    26:callsign
+    31:no_update
+    32:office_phone
+    33:home_phone
+    35:high_school
+    37:permanent_phone
+    42:left_uiuc  (_o_n_l_y _t_h_e _n_u_m_b_e_r _i_s _i_m_p_o_r_t_a_n_t _f_o_r _t_h_i_s _o_n_e)
+
+
+Our field configuration file is included in the _q_i distribution,
+for reference.
+
+This document is incomplete.  Sorry.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

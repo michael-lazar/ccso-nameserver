@@ -1,0 +1,52 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Made location of perl a Makefile option.
+@
+text
+@#!%PerlProg%
+while($#ARGV>=0)
+{
+  open(SSN,"ssnid <$ARGV[0]|") || die "ssnid: $!";
+  while (<SSN>)
+  {
+    chop;
+    s/5://;
+    split;
+    printf("%s%-50s\n",$_[0],$_[1]);
+  }
+  shift;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#!/usr/bin/perl
+@

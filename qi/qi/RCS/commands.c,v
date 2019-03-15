@@ -1,0 +1,8500 @@
+head	1.85;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.85
+date	95.06.28.20.32.53;	author p-pomes;	state Exp;
+branches;
+next	1.84;
+
+1.84
+date	95.06.23.19.20.20;	author p-pomes;	state Exp;
+branches;
+next	1.83;
+
+1.83
+date	95.06.23.15.53.27;	author p-pomes;	state Exp;
+branches;
+next	1.82;
+
+1.82
+date	95.06.23.03.21.11;	author p-pomes;	state Exp;
+branches;
+next	1.81;
+
+1.81
+date	95.06.23.02.53.17;	author p-pomes;	state Exp;
+branches;
+next	1.80;
+
+1.80
+date	95.06.19.23.28.05;	author p-pomes;	state Exp;
+branches;
+next	1.79;
+
+1.79
+date	95.06.10.17.02.16;	author p-pomes;	state Exp;
+branches;
+next	1.78;
+
+1.78
+date	95.06.08.22.09.14;	author p-pomes;	state Exp;
+branches;
+next	1.77;
+
+1.77
+date	95.06.07.18.36.33;	author p-pomes;	state Exp;
+branches;
+next	1.76;
+
+1.76
+date	95.06.06.21.01.11;	author p-pomes;	state Exp;
+branches;
+next	1.75;
+
+1.75
+date	95.03.05.16.39.10;	author p-pomes;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	95.03.04.02.31.58;	author p-pomes;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	95.03.03.01.08.55;	author p-pomes;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	95.03.01.20.07.51;	author p-pomes;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	95.02.28.19.47.40;	author p-pomes;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	94.12.17.14.45.21;	author p-pomes;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	94.06.09.19.06.49;	author paul;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	94.05.17.21.56.54;	author paul;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	94.03.21.13.21.31;	author paul;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	94.03.13.20.17.59;	author paul;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	94.03.13.20.11.07;	author paul;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	94.03.10.23.41.37;	author paul;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	94.03.06.20.47.29;	author paul;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	94.02.24.15.15.40;	author paul;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	94.01.31.21.00.32;	author paul;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	93.12.23.09.56.04;	author paul;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	93.12.19.20.45.42;	author paul;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	93.11.24.22.38.33;	author paul;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	93.11.23.16.27.57;	author paul;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	93.08.04.13.26.00;	author paul;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	93.08.04.12.59.04;	author paul;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	93.07.24.15.53.48;	author paul;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	93.06.16.22.53.41;	author paul;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	93.04.16.02.13.07;	author paul;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	93.04.06.16.53.10;	author paul;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	93.04.04.04.46.51;	author paul;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	93.04.03.23.53.14;	author paul;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	93.04.02.22.09.16;	author paul;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	93.04.01.20.41.54;	author paul;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	93.03.02.20.49.18;	author paul;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	93.02.26.20.35.36;	author paul;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	93.02.19.22.36.06;	author paul;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	93.02.15.17.23.41;	author paul;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	93.02.14.19.59.43;	author paul;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	92.12.16.23.27.41;	author paul;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	92.12.12.19.07.31;	author paul;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	92.07.27.03.11.26;	author paul;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	92.07.27.01.50.51;	author paul;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	92.07.27.01.45.51;	author paul;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	90.12.18.08.41.17;	author dorner;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	90.05.16.09.18.17;	author dorner;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	89.10.18.07.52.11;	author dorner;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	89.07.19.10.18.37;	author dorner;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	89.07.05.20.16.49;	author dorner;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	89.05.08.22.43.42;	author dorner;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	89.03.20.15.14.35;	author dorner;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	88.12.02.14.45.07;	author dorner;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	88.11.15.13.35.11;	author dorner;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	88.07.27.13.25.35;	author dorner;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	88.07.08.14.00.52;	author dorner;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	88.07.06.20.48.00;	author dorner;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	88.04.19.08.12.15;	author dorner;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	88.03.24.10.53.42;	author dorner;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	88.03.24.10.51.29;	author dorner;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	88.03.23.09.17.46;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	88.03.18.10.31.03;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	88.03.04.09.45.08;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	88.03.02.11.16.13;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	88.02.18.15.02.05;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	88.02.17.08.30.38;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.02.16.16.01.16;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.02.15.14.03.06;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.02.10.13.14.48;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	87.12.12.11.28.23;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	87.12.11.12.12.38;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	87.12.10.16.22.23;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	87.12.10.10.35.00;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.36;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.85
+log
+@Re-arranged a declaration to make HP-UX happy.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *              Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *      This product includes software developed by the Corporation for
+ *      Research and Educational Networking (CREN), the University of
+ *      Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.84 1995/06/23 19:20:20 p-pomes Exp p-pomes $";
+#endif /* !lint */
+
+#include "protos.h"
+
+#ifdef __STDC__
+#include <stdarg.h>
+#else
+#include <varargs.h>
+#endif
+#include <netdb.h>
+#include <sys/param.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+
+#ifdef FWTK_AUTH
+#include <firewall.h>			/* From the TIS Firewall Toolkit */
+static Cfg	*cfp = NULL;
+#endif /* FWTK_AUTH */
+
+#ifdef KRB4_AUTH
+#include <kerberosIV/des.h>
+#include <kerberosIV/krb.h>
+#endif /* KRB4_AUTH */
+
+#ifdef KRB5_AUTH
+#include <krb5/krb5.h>
+#include <krb5/ext-proto.h>
+#endif /* KRB5_AUTH */
+
+static ARG *s_args = NULL;
+
+static char *RandomString __P((int));
+static int UserMatch __P((char *));
+static void DoDelete __P((ARG *));
+static void DoFields __P((ARG *));
+static void DoId __P((ARG *));
+static void DoInfo __P((ARG *));
+static void DoLogin __P((ARG *));
+static void DoAnswer __P((ARG *));
+static void DoLogout __P((ARG *));
+static void DoXLogin __P((ARG *));
+static void DoFwtkLogin __P((char *));
+static void DoGssLogin(char *);
+static void DoKrbLogin __P((int, char *));
+static void DoStatus __P((ARG *));
+static void DumpOutput();
+static void ListAllFields();
+static void ListField __P((FDESC *));
+static void NotImplemented __P((ARG *));
+static int OkByEmail __P((QDIR, char *));
+static int OkFields __P((ARG *));
+static int OpenTempOut();
+static void PrintCommand __P((int, ARG *));
+static void SleepTil __P((INT32));
+
+#ifdef NO_STRSTR
+char *strstr __P((char *, char *));
+#endif /* NO_STRSTR */
+
+extern FILE *Input;		/* qi.c */
+extern FILE *Output;		/* qi.c */
+extern int InputType;		/* qi.c */
+extern char Foreign[80];	/* qi.c */
+extern char CommandText[];	/* language.l */
+extern char *CommandSpot;	/* language.l */
+extern int Daemon;		/* qi.c */
+extern int Quiet;		/* qi.c */
+extern int LocalUser;		/* qi.c */
+extern char *DBState;		/* qi.c */
+extern char Revision[];		/* version.c */
+
+#ifdef EMAIL_AUTH
+extern struct hostent TrustHp;	/* qi.c */
+#endif /* EMAIL_AUTH */
+
+FILE *TempOutput = NULL;
+static char *TFile = NULL;
+
+int  DiscardIt;
+void (*CommandTable[]) __P((ARG *)) =
+{
+    DoQuery,
+    DoChange,
+    DoLogin,
+    DoAnswer,
+    DoLogout,
+    DoFields,
+    DoAdd,
+    DoDelete,
+    DoSet,
+    DoQuit,
+    DoStatus,
+    DoId,
+    DoHelp,
+    DoAnswer,
+    DoInfo,
+    DoAnswer,
+    DoXLogin,
+    (void (*)__P((ARG *))) 0
+};
+
+QDIR User = NULL;		/* the currently logged in user */
+int  AmHero = 0;		/* is currently logged in user the Hero? */
+int  AmOpr = 0;			/* is currently logged in user the Operator? */
+char *UserAlias = NULL;		/* the alias of the currently logged in user */
+int  UserEnt = 0;		/* entry number of current user */
+char *ClaimUser = NULL;		/* the identity the user has claimed, but not
+				 * yet verified */
+char *Challenge = NULL;		/* challenge string */
+int  OkResponse = 0;		/* acceptable responses to a challenge */
+int  State = S_IDLE;
+
+/*
+ * Add a value to an argument list
+ */
+void
+AddValue(value, ttype)
+    char *value;
+    int  ttype;
+{
+    static ARG *LastArg = NULL;
+
+    if (value == NULL)
+	value = "";
+    if (!s_args) {
+	LastArg = s_args = FreshArg();
+	LastArg->aFirst = strdup(value);
+	LastArg->aType = ttype;
+    }
+    else {
+	if (LastArg->aType == VALUE && ttype & EQUAL)
+	    LastArg->aType |= ttype;
+	else if (LastArg->aType & EQUAL && !(LastArg->aType & VALUE2)) {
+	    LastArg->aType |= VALUE2;
+	    LastArg->aSecond = strdup(value);
+	}
+	else {
+	    LastArg->aNext = FreshArg();
+	    LastArg = LastArg->aNext;
+	    LastArg->aType = ttype;
+	    LastArg->aFirst = strdup(value);
+	}
+    }
+}
+
+/*
+ * Complain about extraneous junk
+ */
+void
+Unknown(junk)
+    char *junk;
+{
+    fprintf(Output, "%d:%s:%s\n", LR_NOCMD, junk, "Command not recognized.");
+}
+
+/*
+ * Execute a command
+ */
+void
+DoCommand(cmd)
+    int  cmd;
+{
+#define MAX_SYSLOG 100
+    char c;
+    int  which = cmd == C_CLEAR ? 6 : MAX_SYSLOG;
+
+    c = CommandText[which];
+    CommandText[which] = '\0';
+    *CommandSpot = '\0';
+    if (*CommandText && strstr(CommandText, "password=") == NULL)
+	IssueMessage(LOG_INFO, "%s", CommandText);
+    CommandText[which] = c;
+    if (!Quiet && (InputType == IT_FILE || InputType == IT_PIPE || OP_VALUE(ECHO_OP)))
+	PrintCommand(cmd, s_args);	/* echo the cmd */
+
+    if (Daemon && GetState()) {
+	fprintf(Output, "555:Database shut off (%s).\n", DBState);
+	exit(0);
+    }
+    if (TempOutput == NULL && !OpenTempOut()) {
+	fprintf(Output, "%d:couldn't open temp file.\n", LR_INTERNAL);
+	exit(0);
+    }
+    if (State == S_E_PENDING) {
+	if (DiscardIt || cmd != C_ANSWER && cmd != C_CLEAR && cmd != C_EMAIL) {
+	    DoReply(-LR_NOANSWER, "Expecting answer, clear, or email; login discarded.");
+	    State = S_IDLE;
+	    free(ClaimUser);
+	    ClaimUser = NULL;
+	    free(Challenge);
+	    Challenge = NULL;
+	}
+    }
+    if (DiscardIt)
+	DoReply(LR_SYNTAX, "Command not understood.");
+    else {
+	/* (*CommandTable[cmd - 1]) (s_args); */
+	void (*cmdP) __P((ARG *));
+	
+	if ((cmdP = *CommandTable[cmd - 1]) != NULL)
+	    (*cmdP) (s_args);
+	else
+	    DoReply(LR_SYNTAX, "Command not understood.");
+    }
+
+    DumpOutput();
+
+  done:
+    FreeArgs(s_args);
+    s_args = NULL;
+    DiscardIt = 0;
+}
+
+/*
+ * Free the argument list
+ */
+void
+FreeArgs(arg)
+    ARG *arg;
+{
+    ARG *narg;
+
+    if (arg)
+	for (narg = arg->aNext; arg; arg = narg) {
+	    narg = arg->aNext;
+	    if (arg->aFirst)
+		free(arg->aFirst);
+	    if (arg->aSecond)
+		free(arg->aSecond);
+	    free((char *) arg);
+	    arg = NULL;
+	}
+}
+
+/*
+ * create a fresh argument structure
+ */
+ARG *
+FreshArg()
+{
+    ARG *arg;
+
+    arg = (ARG *) malloc(sizeof (ARG));
+    memset((void *) arg, (char) 0, sizeof (ARG));
+    return (arg);
+}
+
+/*
+ * status--give the database status
+ */
+/*ARGSUSED */
+static void
+DoStatus(arg)
+    ARG *arg;
+{
+    char banner[MAXPATHLEN], vstr[MAXSTR];
+    FILE *bfp;
+
+    (void) sprintf(banner, "%s.bnr", Database);
+    if (bfp = fopen(banner, "r")) {
+	(void) sprintf(vstr, "Qi server %s", Revision);
+	DoReply(LR_PROGRESS, vstr);
+	while (fgets(banner, sizeof (banner) - 1, bfp)) {
+	    char *nl = strchr(banner, '\n');
+
+	    if (nl)
+		*nl = '\0';
+	    DoReply(LR_PROGRESS, banner);
+	}
+	(void) fclose(bfp);
+    }
+    if (ReadOnly)
+	DoReply(LR_RONLY, "Database ready, read only (%s).", DBState);
+    else
+	DoReply(LR_OK, "Database ready.");
+}
+
+/*
+ * id--this command is a no-op; the client issues it only to put
+ * the name of the calling user into the nameserver's logfiles.
+ */
+/*ARGSUSED */
+static void
+DoId(arg)
+    ARG *arg;
+{
+    DoReply(LR_OK, "Thanks.");
+}
+
+/*
+ * quit
+ */
+/*ARGSUSED */
+void
+DoQuit(arg)
+    ARG *arg;
+{
+    fprintf(Output, "%d:%s\n", LR_OK, "Bye!");
+    fflush(Output);
+    IssueMessage(LOG_INFO, "Done 0");
+#ifdef KDB
+    (void) krb5_db_fini();
+#endif /* KDB */
+    closelog();
+    exit(0);
+}
+
+/*
+ * info,  N.B., the ordering of the #define's for the authenticate section
+ * is the order that the server prefers the clients to use.  If a different
+ * order is preferred, the code sections must be moved around.
+ */
+/*ARGSUSED */
+static void
+DoInfo(arg)
+    ARG *arg;
+{
+    short n = 0;
+    char sbuf[8], authmethods[MAXSTR];
+
+#ifdef MAILDOMAIN
+    DoReply(-LR_OK, "%d:maildomain:%s", ++n, MAILDOMAIN);
+#endif /* MAILDOMAIN */
+    DoReply(-LR_OK, "%d:mailfield:%s", ++n, MAILFIELD);
+    DoReply(-LR_OK, "%d:administrator:%s", ++n, ADMIN);
+    DoReply(-LR_OK, "%d:passwords:%s", ++n, PASSW);
+    DoReply(-LR_OK, "%d:mailbox:%s", ++n, MAILBOX);
+#ifdef CHARSET
+    DoReply(-LR_OK, "%d:charset:%s", ++n, CHARSET);
+#endif /* CHARSET */
+    strcpy(authmethods, "authenticate");
+#ifdef KRB5_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_KRB5);
+    strcat(authmethods, sbuf);
+#endif /* KRB5_AUTH */
+#ifdef KRB4_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_KRB4);
+    strcat(authmethods, sbuf);
+#endif /* KRB4_AUTH */
+#ifdef GSS_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_GSS);
+    strcat(authmethods, sbuf);
+#endif /* GSS_AUTH */
+#ifdef PASS_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_PASSWORD);
+    strcat(authmethods, sbuf);
+#endif /* PASS_AUTH */
+#ifdef EMAIL_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_EMAIL);
+    strcat(authmethods, sbuf);
+#endif /* EMAIL_AUTH */
+#ifdef FWTK_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_FWTK);
+    strcat(authmethods, sbuf);
+#endif /* FWTK_AUTH */
+#ifdef CLEAR_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_CLEAR);
+    strcat(authmethods, sbuf);
+#endif /* CLEAR_AUTH */
+    DoReply(-LR_OK, "%d:%s", ++n, authmethods);
+    DoReply(LR_OK, "Ok.");
+}
+
+/*
+ * Not implemented
+ */
+static void
+NotImplemented(arg)
+    ARG *arg;
+{
+    DoReply(500, "%s:command not implemented.", arg->aFirst);
+}
+
+/*
+ * make a reply to a command
+ */
+/*VARARGS2 */
+void
+#ifdef __STDC__
+DoReply(int code, char *fmt,...)
+#else /* !__STDC__ */
+DoReply(code, fmt, va_alist)
+    int  code;
+    char *fmt;
+    va_dcl
+
+#endif /* __STDC__ */
+{
+    char scratchFormat[256];
+    char buf[4096];
+    va_list args;
+
+    (void) sprintf(scratchFormat, "%d:%s\n", code, fmt);
+
+#ifdef __STDC__
+    va_start(args, fmt);
+#else /* !__STDC__ */
+    va_start(args);
+#endif /* __STDC__ */
+    vsprintf(buf, scratchFormat, args);
+    va_end(args);
+    if (TempOutput == NULL && !OpenTempOut()) {
+	fprintf(Output, "%d:couldn't open temp file.\n", LR_INTERNAL);
+	return;
+    }
+    if (fprintf(TempOutput, "%s", buf) == EOF) {
+	IssueMessage(LOG_ERR, "DoReply: fprintf: %s", strerror(errno));
+	fprintf(Output, "%d:couldn't write to temp file.\n", LR_INTERNAL);
+	exit(0);
+    }
+    /* IssueMessage(LOG_DEBUG, "%s", buf); */
+}
+
+/*
+ * Select which authentication method to use.
+ */
+static void
+DoXLogin(arg)
+    ARG *arg;
+{
+    int  code;
+    char *me;
+    char *alias = NULL;
+
+    me = arg->aFirst;
+    if (!stricmp(me, "klogin"))	/* backward compatibility */
+	code = LQ_KRB4;
+    else {
+	if (!arg->aNext) {
+	    DoReply(LR_SYNTAX, "%s: No authentication method selected.", me);
+	    return;
+	}
+	arg = arg->aNext;
+	code = atoi(arg->aFirst);
+	if (!arg->aNext) {
+	    DoReply(LR_SYNTAX, "%s: No login alias specified.", me);
+	    return;
+	}
+	arg = arg->aNext;
+	alias = strdup(arg->aFirst);
+	if (arg->aNext) {
+	    DoReply(LR_SYNTAX, "%s: Too many arguments.", me);
+	    return;
+	}
+    }
+
+    switch (code) {
+#ifdef FWTK_AUTH
+    case LQ_FWTK:
+	DoFwtkLogin(alias);
+	break;
+#endif /* FWTK_AUTH */
+
+#ifdef KRB5_AUTH
+    case LQ_KRB5:
+	DoKrbLogin(code, alias);
+	break;
+#endif /* KRB5_AUTH */
+
+#ifdef GSS_AUTH
+    case LQ_GSS:
+	DoGssLogin(alias);
+	break;
+#endif /* GSS_AUTH */
+
+#ifdef KRB4_AUTH
+    case LQ_KRB4:
+	DoKrbLogin(code, alias);
+	break;
+#endif /* KRB4_AUTH */
+
+    default:
+	DoReply(LR_NOAUTH, "%s:Authentication method %d unavailable.",
+		me, code);
+	break;
+    }
+    if (alias)
+	free(alias);
+}
+
+/*
+ * Identify user, using TIS Firewall Toolkit authentication server.
+ */
+#ifdef FWTK_AUTH
+static void
+DoFwtkLogin(alias)
+    char *alias;
+{
+    char buf[MAXSTR];
+
+    if(cfp == NULL && (cfp = cfg_read("authenticate")) == (Cfg *)-1) {
+	IssueMessage(LOG_ERR, "DoFwtkLogin: cfg_read(): Cannot read config.");
+	DoReply(LR_INTERNAL, "DoFwtkLogin: cfg_read(): Cannot read config.");
+	return;
+    }
+
+    /* open connection to auth server */
+    if (auth_open(cfp)) {
+	IssueMessage(LOG_ERR, "DoFwtkLogin: auth_open(): Cannot connect.");
+	DoReply(LR_TEMP, "DoFwtkLogin: auth_open(): Cannot connect.");
+	return;
+    }
+
+    /* get welcome message from auth server */
+    if(auth_recv(buf, sizeof(buf)))
+	goto lostconn;
+
+    if (strncmp(buf, "Authsrv ready", 13)) {
+	IssueMessage(LOG_ERR, "DoFwtkLogin: auth_recv(): Unexpected greeting: %s.", buf);
+	DoReply(LR_INTERNAL, "DoFwtkLogin: auth_recv(): Unexpected greeting: %s.", buf);
+	auth_close();
+	return;
+    }
+
+    (void) sprintf(buf, "authorize %s", alias);
+    if (auth_send(buf))
+	goto lostconn;
+    if (auth_recv(buf, sizeof(buf)))
+	goto lostconn;
+
+    ClaimUser = strdup(alias);
+    AmHero = 0;
+    AmOpr = 0;
+    State = S_E_PENDING;
+    OkResponse = LQ_PASSWORD|LQ_FWTK;
+    if (User)
+	FreeDir(&User);
+
+    if (!strncmp(buf, "challenge ", 10))
+	fprintf(Output, "%d:%s\n", LR_XLOGIN, buf+10);
+    else
+	fprintf(Output, "%d:P!L0.C4XDW])0/0GI^2DZ>\"F]<T69*P.;B*_V;_E[N\n", LR_LOGIN);
+    fflush(Output);
+    return;
+
+lostconn:
+    auth_close();
+    IssueMessage(LOG_ERR, "DoFwtkLogin: Lost connection to auth server.");
+    DoReply(LR_TEMP, "DoFwtkLogin: Lost connection to auth server.");
+    return;
+}
+#endif /* FWTK_AUTH */
+
+/*
+ * Identify user, using GSS-API (v5 Kerberos) authentication.
+ */
+#ifdef GSS_AUTH
+static void
+DoGssLogin()
+{
+    struct sockaddr_in c_sock, s_sock;
+    int  namelen = sizeof (c_sock);
+
+    DoReply(LR_NOAUTH, "%s:Authentication method %d unavailable.",
+	    me, LQ_GSS);
+}
+#endif /* GSS_AUTH */
+
+/*
+ * Identify user, using v4 or v5 Kerberos authentication.
+ */
+#if defined(KRB4_AUTH) || defined(KRB5_AUTH)
+static void
+DoKrbLogin(select, alias)
+    int  select;
+    char *alias;
+{
+    struct sockaddr_in s_sock;		/* server's address */
+    struct sockaddr_in c_sock;		/* client's address */
+    int  namelen;
+    int  retval;
+    char myhost[MAXHOSTNAMELEN];
+    char *pname = NULL, *iname = NULL;
+
+#ifdef KRB4_AUTH
+    INT32 authopts;
+    AUTH_DAT auth_data;
+    KTEXT_ST clt_ticket;
+    Key_schedule sched;
+    char instance[INST_SZ];
+    char realm[REALM_SZ];
+    char version[9];
+    char srvtab[sizeof(KRB4SRVTAB)+1];
+#endif /* KRB4_AUTH */
+
+#ifdef KRB5_AUTH
+    krb5_data *comp, packet;
+    unsigned char pktbuf[BUFSIZ];
+    krb5_principal sprinc, cprinc;
+    krb5_ticket *ticket;
+    krb5_authenticator *authent;
+    krb5_tkt_authent *ad = NULL;
+    krb5_address peeraddr;
+    char *cp = NULL;
+    char *def_realm = NULL;
+    int realm_length;
+    char v5srvtab[sizeof(KRB5SRVTAB)+1];
+    int sock = 0;
+#endif /* KRB5_AUTH */
+
+    fprintf(Output, "%d:DoKrbLogin started; send Kerberos mutual authenticator.\n", LR_LOGIN);
+    fflush(Output);
+
+    /*
+     * To verify authenticity, we need to know the address of the
+     * client.
+     */
+    namelen = sizeof (c_sock);
+    if (getpeername(fileno(stdin), (struct sockaddr *) &c_sock, &namelen) < 0) {
+	IssueMessage(LOG_ERR, "DoKrbLogin:getpeername(): %s.",
+		     strerror(errno));
+	DoReply(LR_INTERNAL, "DoKrbLogin:getpeername(): %s",
+		strerror(errno));
+	return;
+    }
+
+    /* for mutual authentication, we need to know our address */
+    namelen = sizeof (s_sock);
+    if (getsockname(0, (struct sockaddr *) &s_sock, &namelen) < 0 &&
+      !QiAuthDebug) {
+	IssueMessage(LOG_ERR, "DoKrbLogin:getsockname(): %s.",
+		     strerror(errno));
+	DoReply(LR_INTERNAL, "DoKrbLogin:getsockname(): %s",
+		strerror(errno));
+	return;
+    }
+    (void) gethostname(myhost, MAXHOSTNAMELEN);
+
+#ifdef KRB4_AUTH
+    if (select == LQ_KRB4) {
+	/*
+	 * Read the authenticator and decode it.  Since we don't care
+	 * what the instance is, we use "*" so that krb_rd_req
+	 * will fill it in from the authenticator.
+	 */
+	(void) strcpy(instance, "*");
+
+	/* we want mutual authentication */
+	authopts = KOPT_DO_MUTUAL;
+	(void) strcpy(srvtab, KRB4SRVTAB);
+	retval = krb_recvauth(authopts, 0, &clt_ticket, KRB4SRV, instance,
+		     &c_sock, &s_sock, &auth_data, srvtab, sched, version);
+	if (retval != KSUCCESS) {
+	    IssueMessage(LOG_INFO, "DoKrbLogin:krb_recvauth(): %s.",
+			 krb_err_txt[retval]);
+	    DoReply(LR_ERROR, "DoKrbLogin:krb_recvauth(): %s.",
+		    krb_err_txt[retval]);
+	    return;
+	}
+	/* Check the version string (8 chars) */
+	if (strncmp(version, "VERSION9", 8)) {
+	    /*
+	     * didn't match the expected version.
+	     * could do something different, but we just
+	     * log an error and continue.
+	     */
+	    version[8] = '\0';	/* make null term */
+	    IssueMessage(LOG_ERR, "DoKrbLogin:Version mismatch: '%s' isn't 'VERSION9'",
+			 version);
+	}
+
+	/* Check to make sure it's in our local realm */
+	krb_get_lrealm(realm, 1);
+	if (strcmp(auth_data.prealm, realm)) {	/* if not equal */
+	    DoReply(LR_ERROR, "DoKrbLogin:Login failed (wrong realm).");
+	    IssueMessage(LOG_INFO, "DoKrbLogin:Realm %s not local realm.",
+			 auth_data.prealm);
+	    return;
+	}
+	pname = strdup(auth_data.pname);
+	iname = strdup(auth_data.pinst);
+	if (QiAuthDebug)
+	    fprintf(stderr, "KRB4: pname %s, iname %s\n",
+		    pname, (iname)?iname:"(nil)");
+    }
+    else
+#endif /* KRB4_AUTH */
+#ifdef KRB5_AUTH
+    if (select == LQ_KRB5) {
+	(void) strcpy(v5srvtab, KRB5SRVTAB);
+	if (retval = krb5_kt_default_name(v5srvtab, strlen(v5srvtab))) {
+	    DoReply(LR_INTERNAL, "DoKrbLogin:krb5_kt_default_name(%s): %s.",
+		v5srvtab, error_message(retval));
+	    IssueMessage(LOG_ERR, "DoKrbLogin:krb5_kt_default_name(%s): %s.",
+		 v5srvtab, error_message(retval));
+	    return;
+	}
+	if (retval = krb5_sname_to_principal(myhost, KRB5SRV, KRB5_NT_SRV_HST,
+					     &sprinc)) {
+	    DoReply(LR_INTERNAL, "DoKrbLogin:krb5_sname_to_principal(%s,%s): %s.",
+		myhost, KRB5SRV, error_message(retval));
+	    IssueMessage(LOG_ERR, "DoKrbLogin:krb5_sname_to_principal(%s,%s): %s.",
+		 myhost, KRB5SRV, error_message(retval));
+	    return;
+	}
+
+	/* Check authentication info */
+	peeraddr.addrtype = c_sock.sin_family;
+	peeraddr.length = sizeof(c_sock.sin_addr);
+	peeraddr.contents = (krb5_octet *)&c_sock.sin_addr;
+
+	if (retval = krb5_recvauth((krb5_pointer)&sock,
+			       KQI_VERSION, sprinc, &peeraddr,
+			       0, 0, 0,	/* no fetchfrom, keyproc or arg */
+			       0,	/* default rc type */
+			       0,	/* no flags */
+			       0,	/* don't need seq number */
+			       &cprinc,
+			       0,	/* don't need &ticket */
+			       0	/* don't need &authent */
+			       )) {
+	    DoReply(LR_INTERNAL, "DoKrbLogin:krb5_recvauth(): %s.",
+		    error_message(retval));
+	    IssueMessage(LOG_ERR, "DoKrbLogin:krb5_recvauth(): %s.",
+			 error_message(retval));
+	    return;
+	}
+	krb5_free_principal(sprinc);
+	if (retval = krb5_unparse_name(cprinc, &cp)) {
+	    DoReply(LR_INTERNAL, "DoKrbLogin:krb5_unparse_name(): %s.",
+		    error_message(retval));
+	    IssueMessage(LOG_ERR, "DoKrbLogin:krb5_unparse_name(): %s.",
+			 error_message(retval));
+	    return;
+	}
+	comp = krb5_princ_component(cprinc, 0);
+	pname = malloc(comp->length+1);
+	(void) strncpy(pname, comp->data, comp->length);
+	comp = krb5_princ_component(cprinc, 1);
+	iname = malloc(comp->length+1);
+	(void) strncpy(iname, comp->data, comp->length);
+
+	realm_length = krb5_princ_realm(cprinc)->length;
+	if (retval = krb5_get_default_realm(&def_realm)) {
+	    DoReply(LR_INTERNAL, "DoKrbLogin:krb5_get_default_realm(): %s.",
+		    error_message(retval));
+	    IssueMessage(LOG_ERR, "DoKrbLogin:krb5_get_default_realm(): %s.",
+			 error_message(retval));
+	    return;
+	}
+
+	if ((realm_length != strlen(def_realm)) ||
+	    (memcmp(def_realm, krb5_princ_realm(cprinc)->data, realm_length))) {
+	    DoReply(LR_ERROR, "DoKrbLogin:Login failed (wrong realm).");
+	    IssueMessage(LOG_INFO, "DoKrb5Login:Realm %*s not local realm.",
+			 realm_length, krb5_princ_realm(cprinc)->data);
+	    free(def_realm);
+	    return;
+	}	
+	free(def_realm);
+	if (QiAuthDebug)
+	    fprintf(stderr, "KRB5:pname %s, iname %s\n", pname, (iname)?iname:"(nil)");
+    }
+    else
+#endif /* KRB5_AUTH */
+    {
+	DoReply(LR_INTERNAL, "DoKrbLogin:Unknown Kerberos method %d.", select);
+	IssueMessage(LOG_ERR, "DoKrbLogin:Unknown Kerberos method %d.", select);
+	return;
+    }
+    /*
+     * The user has successfully authenticated, so check for matching alias,
+     * log in and send reply.
+     *
+     * Kerberos principal == our alias is pname
+     * Kerberos instance iname says whether it's a ph hero.
+     *
+     * Make sure the instance is a reasonable one (null or KRBHERO).
+     * Dissallow other instances, since who knows what level of
+     * privilege a particular instance means at a given site?
+     */
+    if (*iname && strcmp(iname, KRBHERO)) {
+	/* not null or phhero */
+	DoReply(LR_ERROR, "DoKrbLogin:Login failed (%s/%s: invalid instance).",
+	    pname, iname);
+	IssueMessage(LOG_INFO, "DoKrbLogin:%s/%s not accepted",
+	    pname, iname);
+	return;
+    }
+    if (User)
+	FreeDir(&User);
+#define WAIT_SECS	1
+    if (!GonnaRead("DoKrbLogin"))
+	/* Lock routines give their own errors */ ;
+    else {
+	INT32 xtime = time((INT32 *) NULL);
+
+	AmHero = 0;
+	UserAlias = NULL;
+	User = GetAliasDir(pname);
+	Unlock("DoKrbLogin");
+	if (!User) {
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_ERROR, "DoKrbLogin:Login failed (non-existent alias %s).", pname);
+	    IssueMessage(LOG_INFO, "DoKrbLogin:Alias %s does not exist", pname);
+	}
+	else {
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_OK, "%s:Hi how are you?", pname);
+	    LocalUser = 1;
+	    AmHero = !strcmp(iname, KRBHERO) &&
+	      *FINDVALUE(User, F_HERO);
+	    UserAlias = FINDVALUE(User, F_ALIAS);
+	    UserEnt = CurrentIndex();
+	    IssueMessage(LOG_INFO, "%s logged in", UserAlias);
+	}
+    }
+}
+#endif /* KRB4_AUTH || KRB5_AUTH */
+
+/*
+ * Identify user the old-fashioned way.
+ */
+static void
+DoLogin(arg)
+    ARG *arg;
+{
+    char *me;
+
+    me = arg->aFirst;
+    arg = arg->aNext;		/* skip the command name */
+    if (!arg)
+	DoReply(LR_SYNTAX, "%s:no name given.", me);
+    else if (arg->aType != VALUE)
+	DoReply(LR_SYNTAX, "%s:argument invalid.", me);
+    else if (arg->aNext)
+	DoReply(LR_SYNTAX, "%s:extra arguments.", me);
+    else {
+	Challenge = strdup(RandomString(42));
+	DoReply(LR_LOGIN, "%s", Challenge);
+	ClaimUser = strdup(arg->aFirst);
+	AmHero = 0;
+	AmOpr = 0;
+	State = S_E_PENDING;
+	OkResponse = 0;
+#ifdef PASS_AUTH
+	OkResponse |= LQ_PASSWORD;
+#endif /* PASS_AUTH */
+#ifdef EMAIL_AUTH
+	OkResponse |= LQ_EMAIL;
+#endif /* EMAIL_AUTH */
+#ifdef CLEAR_AUTH
+	OkResponse |= LQ_CLEAR;
+#endif /* CLEAR_AUTH */
+	if (User)
+	    FreeDir(&User);
+    }
+}
+
+/*
+ * handle the answer to a challenge
+ */
+#define WAIT_SECS 1
+static void
+DoAnswer(arg)
+    ARG *arg;
+{
+    char buf[MAXSTR], *me, *pass;
+    int method;
+    INT32 xtime;
+
+    me = arg->aFirst;
+    arg = arg->aNext;
+
+    if (!stricmp(me, "answer"))
+	method = LQ_PASSWORD;
+    else if (!stricmp(me, "email"))
+	method = LQ_EMAIL;
+    else if (!stricmp(me, "clear"))
+	method = LQ_CLEAR;
+    else {
+	DoReply(LR_SYNTAX, "%s:Unknown verb.", me);
+	goto badfw;
+    }
+    if (!ClaimUser)
+	DoReply(LR_SYNTAX, "%s:there is no outstanding login.", me);
+    else if (!arg)
+	DoReply(LR_SYNTAX, "%s:no argument given.", me);
+    else if (arg->aType != VALUE)
+	DoReply(LR_SYNTAX, "%s:invalid argument type.", me);
+    else if (! (OkResponse & method))
+	DoReply(LR_SYNTAX, "%s:Not allowed for challenge type(s) 0x%x.",
+	    me, OkResponse);
+    else {
+	if (!GonnaRead("DoAnswer"))
+	    /* Lock routines give their own errors */
+	    goto badfw;
+
+	AmHero = 0;
+	AmOpr = 0;
+	UserAlias = NULL;
+	xtime = time((INT32 *) NULL);
+	if (User = GetAliasDir(ClaimUser))
+	    pass = PasswordOf(User);
+	Unlock("DoAnswer");
+	if (!User) {
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_ERROR, "Login failed.");
+	    IssueMessage(LOG_INFO, "login: alias %s does not exist", ClaimUser);
+	    goto badfw;
+	}
+#ifdef FWTK_AUTH
+	if ((method & OkResponse) && (OkResponse & LQ_FWTK)) {
+	    if (strlen(arg->aFirst) > 64) {
+		auth_close();
+		DoReply(LR_SYNTAX, "Password response too long.");
+		goto badfw;
+	    }
+
+	    /* send response */
+	    sprintf(buf, "response '%s'", arg->aFirst);
+	    if (auth_send(buf)) {
+		auth_close();
+		IssueMessage(LOG_ERR, "DoAnswer: Lost connection to auth server.");
+		DoReply(LR_TEMP, "DoAnswer: Lost connection to auth server.");
+		goto badfw;
+	    }
+	    if (auth_recv(buf, sizeof(buf))) {
+		auth_close();
+		IssueMessage(LOG_ERR, "DoAnswer: Lost connection to auth server.");
+		DoReply(LR_TEMP, "DoAnswer: Lost connection to auth server.");
+	        goto badfw;
+	    }
+	    auth_close();
+
+	    /* failed */
+	    if (strncmp(buf, "ok", 2)) {
+		DoReply(LR_ERROR, "Login failed.");
+	        goto badfw;
+	    }
+	}
+	else
+#endif /* FWTK_AUTH */
+#ifdef PASS_AUTH
+	if (OkResponse & method & LQ_PASSWORD) {
+	    if (!UserMatch(arg->aFirst)) {
+		SleepTil(xtime + WAIT_SECS);
+		DoReply(LR_ERROR, "Login failed.");
+		IssueMessage(LOG_INFO, "Password incorrect for %s", ClaimUser);
+		goto badfw;
+	    }
+	}
+	else
+#endif /* PASS_AUTH */
+#ifdef EMAIL_AUTH
+	if (OkResponse & method & LQ_EMAIL) {
+	    if (!OkByEmail(User, arg->aFirst)) {
+		IssueMessage(LOG_INFO, "Email incorrect for %s", ClaimUser);
+		SleepTil(xtime + WAIT_SECS);
+		goto badfw;
+	    }
+	}
+	else
+#endif /* EMAIL_AUTH */
+#ifdef CLEAR_AUTH
+	if (OkResponse & method & LQ_CLEAR) {
+# ifdef PRE_ENCRYPT
+	    if (pass == NULL ||
+		strncmp(crypt(arg->aFirst, arg->aFirst), pass, 13))
+# else /* !PRE_ENCRYPT */
+	    if (pass == NULL || strcmp(arg->aFirst, pass))
+# endif /* PRE_ENCRYPT */
+	    {
+		SleepTil(xtime + WAIT_SECS);
+		DoReply(LR_ERROR, "Login failed.");
+		IssueMessage(LOG_INFO, "Clear password incorrect for %s", ClaimUser);
+		goto badfw;
+	    }
+	}
+	else
+#endif /* CLEAR_AUTH */
+	{
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_INTERNAL, "No login action! (method 0x%x, OkResponse 0x%x)", method, OkResponse);
+	    IssueMessage(LOG_ERR, "Fell through all login checks!");
+	    goto badfw;
+	}
+	{
+	    char *tpnt = FINDVALUE(User, F_HERO);
+
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_OK, "%s:Hi how are you?", ClaimUser);
+	    if (*tpnt != '\0') {
+		if (stricmp(tpnt, "opr") == 0 ||
+		    stricmp(tpnt, "oper") == 0 ||
+		    stricmp(tpnt, "operator") == 0)
+		    AmOpr = 1;
+		else
+		    AmHero = 1;
+	    }
+	    LocalUser = 1;
+	    UserAlias = FINDVALUE(User, F_ALIAS);
+	    UserEnt = CurrentIndex();
+	    IssueMessage(LOG_INFO, "%s logged in", UserAlias);
+	}
+    }
+badfw:
+    State = S_IDLE;
+    if (!UserAlias && User) {
+	free(User);
+	User = NULL;
+    }
+    if (ClaimUser) {
+	free(ClaimUser);
+	ClaimUser = NULL;
+    }
+    if (Challenge) {
+	free(Challenge);
+	Challenge = NULL;
+    }
+}
+
+/*
+ * sleep til a given time
+ */
+static void
+SleepTil(xtime)
+    INT32 xtime;
+{
+    unsigned span;
+
+    span = xtime - time((INT32 *) 0);
+    if (0 < span && span < 10000)
+	sleep(span);
+}
+
+/*
+ * return the dir entry of the requested alias
+ */
+QDIR
+GetAliasDir(fname)
+    char *fname;
+{
+    ARG *Alist;
+    ARG *arg;
+    INT32 *entry;
+    QDIR dirp;
+
+    arg = Alist = FreshArg();
+
+    arg->aType = COMMAND;
+    arg->aFirst = strdup("query");
+    arg->aNext = FreshArg();
+    arg = arg->aNext;
+    arg->aType = VALUE | EQUAL | VALUE2;
+    arg->aFirst = strdup("alias");	/* should be alias */
+    arg->aSecond = strdup(fname);
+    (void) ValidQuery(Alist, C_QUERY);
+
+    if ((entry = DoLookup(Alist)) != NULL && length(entry) == 1 &&
+	next_ent(*entry))
+	getdata(&dirp);
+    else
+	dirp = NULL;
+
+    if (entry)
+	free((char *) entry);
+    FreeArgs(Alist);
+
+    return (dirp);
+}
+
+/*
+ * de-identify the current user
+ */
+static void
+DoLogout(arg)
+    ARG *arg;
+{
+    if (arg->aNext)
+	DoReply(LR_SYNTAX, "argument given on logout command.");
+    else if (!User)
+	DoReply(LR_ERROR, "Not logged in.");
+    else {
+	FreeDir(&User);
+	AmHero = 0;
+	AmOpr = 0;
+	UserAlias = NULL;
+	UserEnt = 0;
+	DoReply(LR_OK, "Ok.");
+    }
+}
+
+/*
+ * list fields
+ */
+static void
+DoFields(arg)
+    ARG *arg;
+{
+    if (arg->aNext == NULL) {
+	ListAllFields();
+	DoReply(LR_OK, "Ok.");
+    }
+    else if (OkFields(arg->aNext)) {
+	for (arg = arg->aNext; arg; arg = arg->aNext)
+	    if (arg->aFD)
+		ListField(arg->aFD);
+	DoReply(LR_OK, "Ok.");
+    }
+    else
+	DoReply(LR_SYNTAX, "Invalid field request.");
+}
+
+/*
+ * List a single field
+ */
+static void
+ListField(fd)
+    FDESC *fd;
+{
+    char scratch[MAX_LEN];
+    char *cp;
+
+    (void) sprintf(scratch, "%d:%s:max %d", fd->fdId, fd->fdName, fd->fdMax);
+    cp = scratch + strlen(scratch);
+    if (fd->fdIndexed)
+	cp += strcpc(cp, " Indexed");
+    if (fd->fdLookup)
+	cp += strcpc(cp, " Lookup");
+    if (fd->fdNoMeta)
+	cp += strcpc(cp, " NoMeta");
+    if (fd->fdPublic)
+	cp += strcpc(cp, " Public");
+    if (fd->fdLocalPub)
+	cp += strcpc(cp, " LocalPub");
+    if (fd->fdDefault)
+	cp += strcpc(cp, " Default");
+    if (fd->fdAlways)
+	cp += strcpc(cp, " Always");
+    if (fd->fdAny)
+	cp += strcpc(cp, " Any");
+    if (fd->fdChange)
+	cp += strcpc(cp, " Change");
+    if (fd->fdSacred)
+	cp += strcpc(cp, " Sacred");
+    if (fd->fdTurn)
+	cp += strcpc(cp, " Turn");
+    if (fd->fdEncrypt)
+	cp += strcpc(cp, " Encrypt");
+    if (fd->fdNoPeople)
+	cp += strcpc(cp, " NoPeople");
+    *cp = '\0';
+    DoReply(-LR_OK, scratch);
+    strcpy(scratch, fd->fdHelp);
+    for (cp = strtok(scratch, "\n"); cp; cp = strtok((char *) NULL, "\n"))
+	DoReply(-LR_OK, "%d:%s:%s", fd->fdId, fd->fdName, cp);
+}
+
+/*
+ * list all fields
+ */
+static void
+ListAllFields()
+{
+    FDESC **fd;
+
+    for (fd = FieldDescriptors; *fd; fd++) {
+	if ((*fd)->fdLocalPub && !LocalUser)
+	    continue;
+	ListField(*fd);
+    }
+}
+
+/*
+ * validate arguments for field names
+ */
+static int
+OkFields(arg)
+    ARG *arg;
+{
+    int  bad = 0;
+    int  count = 0;
+    FDESC *fd;
+
+    for (; arg; arg = arg->aNext) {
+	count++;
+	if (arg->aType != VALUE) {
+	    DoReply(-LR_SYNTAX, "argument %d:is not a field name.", count);
+	    bad = 1;
+	}
+	else if (!(fd = FindFD(arg->aFirst)) || (!LocalUser && fd->fdLocalPub)) {
+	    DoReply(-LR_FIELD, "%s:unknown field.", arg->aFirst);
+	    bad = 1;
+	}
+	else
+	    arg->aFD = fd;
+    }
+    return (!bad);
+}
+
+/*
+ * delete entries
+ */
+static void
+DoDelete(arg)
+    ARG *arg;
+{
+    INT32 *entries, *entp;
+    int  haveError = 0;
+    int  count;
+    int  done;
+    QDIR dirp;
+
+    if (!AmHero && !User) {
+	DoReply(LR_NOTLOG, "Must be logged in to delete.");
+	return;
+    }
+    else if (!UserCanDelete()) {
+	DoReply(LR_ERROR, "You may not delete entries.");
+	IssueMessage(LOG_INFO, "%s is not authorized to delete entries", UserAlias);
+	return;
+    }
+    if (!ValidQuery(arg, C_DELETE)) {
+	DoReply(LR_SYNTAX, "Delete command not understood.");
+	return;
+    }
+    if (!GonnaWrite("DoDelete")) {
+	/* GonnaWrite will issue an error message */ ;
+	return;
+    }
+    if ((entries = DoLookup(arg)) == NULL) {
+	Unlock("DoDelete");
+	DoReply(LR_NOMATCH, "No entries matched specifications.");
+	return;
+    }
+    for (count = 1, done = 0, entp = entries; *entp; count++, entp++) {
+	if (!next_ent(*entp)) {
+	    DoReply(-LR_TEMP, "Internal error.");
+	    haveError = 1;
+	    continue;
+	}
+	getdata(&dirp);
+	if (!CanDelete(dirp)) {
+	    DoReply(-LR_ERROR, "%d:%s: you may not delete this entry.",
+		    count, FINDVALUE(dirp, F_ALIAS));
+	    haveError = 1;
+	    IssueMessage(LOG_INFO, "%s may not delete %s",
+			 UserAlias, FINDVALUE(dirp, F_ALIAS));
+	    FreeDir(&dirp);	/* XXX */
+	    continue;
+	}
+#ifdef KDB
+	if (*FINDVALUE(dirp, F_ALIAS))
+	    kdb_del_entry(FINDVALUE(dirp, F_ALIAS));
+#endif /* KDB */
+	/* delete the index entries */
+	MakeLookup(dirp, *entp, unmake_lookup);
+	FreeDir(&dirp);
+
+	/* mark it as dead and put it out to pasture */
+	SetDeleteMark();
+	set_date(1);
+	store_ent();
+	done++;
+    }
+
+    free((char *) entries);
+    Unlock("DoDelete");
+
+    if (haveError)
+	DoReply(LR_ERROR, "%d errors, %d successes on delete command.",
+		count - done, done);
+    else
+	DoReply(LR_OK, "%d entries deleted.", done);
+}
+
+/*
+ * open a temp file for output
+ */
+static int
+OpenTempOut()
+{
+    if (TFile == NULL) {
+	TFile = strdup(TEMPFILE);
+	mktemp(TFile);
+    }
+    if ((TempOutput = fopen(TFile, "w+")) == NULL) {
+	IssueMessage(LOG_ERR, "OpenTempOut: fopen(%s) failed: %s",
+		     TFile, strerror(errno));
+	free(TFile);
+	TFile = NULL;
+	return (0);
+    }
+    unlink(TFile);
+
+    return (1);
+}
+
+/*
+ * Dump a the stuff in TFile to output
+ */
+static void
+DumpOutput()
+{
+    int  c;
+
+    rewind(TempOutput);		/* back to the beginning */
+    {
+	while ((c = getc(TempOutput)) != EOF)
+	    putc(c, Output);
+    }
+    fclose(TempOutput);		/* close; already unlinked */
+    TempOutput = NULL;
+    fflush(Output);
+}
+
+/*
+ * print the current command
+ */
+static void
+PrintCommand(cmd, arg)
+    int  cmd;
+    ARG *arg;
+{
+    fprintf(Output, "%d: %s", LR_ECHO, arg->aFirst);
+    for (arg = arg->aNext;
+	 arg;
+	 arg = arg->aNext) {
+	putc(' ', Output);
+	if (arg->aType == RETURN)
+	    fputs(cmd == C_QUERY ? "return" : "make", Output);
+	else {
+	    if (arg->aType & VALUE)
+		fputs(arg->aFirst, Output);
+#ifdef DO_TILDE
+	    if (arg->aType & TILD_E)
+		putc('~', Output);
+	    else
+#endif
+	    if (arg->aType & EQUAL)
+		putc('=', Output);
+	    if (arg->aType & VALUE2)
+		fputs(arg->aSecond, Output);
+	}
+    }
+    putc('\n', Output);
+}
+
+/*
+ * was the returned string encrypted with the appropriate password?
+ */
+static int
+UserMatch(string)
+    char *string;
+{
+    char decrypted[MAXSTR];
+    char *pw = PasswordOf(User);
+
+    if (!*pw)
+	return (0);
+#ifdef PRE_ENCRYPT
+    crypt_start(crypt(pw,pw));
+#else
+    crypt_start(pw);
+#endif
+    (void) decrypt(decrypted, string);
+    return (!strcmp(decrypted, Challenge));
+}
+
+/*
+ * generate a random string
+ */
+static char *
+RandomString(byteCount)
+    int  byteCount;
+{
+    static char string[MAXSTR];
+    char *cp;
+    static int seeded = 0;
+
+    if (!seeded) {
+	seeded = 1;
+	srand((int) time((INT32 *) NULL) ^ getpid());
+    }
+    for (cp = string; byteCount; cp++, byteCount--)
+	*cp = (rand() & 0x3f) + 0x21;
+
+    return (string);
+}
+
+/*
+ * extract the password from a dir
+ */
+char *
+PasswordOf(User)
+    QDIR User;
+{
+    int  len;
+    char *password;
+
+    /* find the user's password */
+    if (!*(password = FINDVALUE(User, F_PASSWORD))) {
+#ifdef ID_FALLBACK
+	if (*(password = FINDVALUE(User, F_UNIVID))) {
+	    len = strlen(password);
+	    if (len > 8)
+		password += len - 8;
+	}
+	else
+#endif
+	    password = "";
+    }
+    return (password);
+}
+
+#ifdef EMAIL_AUTH
+/*
+ * figure out if a user is ok by his email address
+ */
+static int
+OkByEmail(User, username)
+    QDIR User;
+    char *username;
+{
+    char buf[256];
+    char *email = FINDVALUE(User, F_EMAIL);
+    char *new, *spnt, *epnt;
+    int  result;
+
+    /*
+     * Fix up email field by omitting leading whitespace and
+     * terminating it at the first white space.
+     */
+    new = spnt = strdup(email);
+    while (isspace(*spnt))
+	spnt++;
+    epnt = spnt;
+    while (*epnt && !isspace(*epnt))
+	epnt++;
+    *epnt = '\0';
+    if (!TrustHp.h_name || !*spnt)
+	result = 1;
+    else {
+	(void) sprintf(buf, "%s@@%s", username, TrustHp.h_name);
+	result = stricmp(spnt, buf);
+    }
+    free(new);
+    if (result)
+	DoReply(LR_NOEMAIL, "You can't login that way.");
+    return (!result);
+}
+
+#endif
+
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * Chris Torek.
+ *
+ * Redistribution and use in source and binary forms are permitted
+ * provided that: (1) source distributions retain this entire copyright
+ * notice and comment, and (2) distributions including binaries display
+ * the following acknowledgement:  ``This product includes software
+ * developed by the University of California, Berkeley and its contributors''
+ * in the documentation or other materials provided with the distribution
+ * and in all advertising materials mentioning features or use of this
+ * software. Neither the name of the University nor the names of its
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+#if defined(LIBC_SCCS) && !defined(lint)
+static char sccsid[] = "@@(#)strstr.c	5.1 (Berkeley) 5/15/90";
+
+#endif /* LIBC_SCCS and not lint */
+
+#ifdef NO_STRSTR
+
+/*
+ * Find the first occurrence of find in s.
+ */
+char *
+strstr(s, find)
+    register char *s, *find;
+{
+    register char c, sc;
+    register int len;
+
+    if ((c = *find++) != 0) {
+	len = strlen(find);
+	do {
+	    do {
+		if ((sc = *s++) == 0)
+		    return ((char *) 0);
+	    } while (sc != c);
+	} while (strncmp(s, find, len) != 0);
+	s--;
+    }
+    return ((char *) s);
+}
+
+#endif
+@
+
+
+1.84
+log
+@Really, really close.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.83 1995/06/23 15:53:27 p-pomes Exp p-pomes $";
+d237 3
+a239 3
+	void (*cmdP) __P((ARG *)) = *CommandTable[cmd - 1];
+
+	if (cmdP != NULL)
+d922 1
+a922 1
+	    OkResponse);
+@
+
+
+1.83
+log
+@Getting better all the time (better, better, better) Getting so much better
+all the time!
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.82 1995/06/23 03:21:11 p-pomes Exp p-pomes $";
+d375 4
+a382 4
+#ifdef KRB4_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_KRB4);
+    strcat(authmethods, sbuf);
+#endif /* KRB4_AUTH */
+d942 1
+a942 1
+	if (method & OkResponse & LQ_FWTK) {
+@
+
+
+1.82
+log
+@a somewhat cleaner version.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.81 1995/06/23 02:53:17 p-pomes Exp p-pomes $";
+a370 4
+#ifdef FWTK_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_FWTK);
+    strcat(authmethods, sbuf);
+#endif /* FWTK_AUTH */
+d391 4
+d942 1
+a942 1
+	if (OkResponse & LQ_FWTK) {
+d974 7
+a980 5
+	if (method & LQ_PASSWORD && !UserMatch(arg->aFirst)) {
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_ERROR, "Login failed.");
+	    IssueMessage(LOG_INFO, "Password incorrect for %s", ClaimUser);
+	    goto badfw;
+d985 6
+a990 4
+	if (method & LQ_EMAIL && !OkByEmail(User, arg->aFirst)) {
+	    IssueMessage(LOG_INFO, "Email incorrect for %s", ClaimUser);
+	    SleepTil(xtime + WAIT_SECS);
+	    goto badfw;
+d995 1
+d997 2
+a998 7
+	if (method & LQ_CLEAR &&
+	    (pass == NULL || strncmp(crypt(arg->aFirst, arg->aFirst), pass, 13)) {
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_ERROR, "Login failed.");
+	    IssueMessage(LOG_INFO, "Clear password incorrect for %s", ClaimUser);
+	    goto badfw;
+	}
+d1000 8
+a1007 6
+	if (method & LQ_CLEAR &&
+	    (pass == NULL || strcmp(arg->aFirst, pass))) {
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_ERROR, "Login failed.");
+	    IssueMessage(LOG_INFO, "Clear password incorrect for %s", ClaimUser);
+	    goto badfw;
+a1008 1
+# endif /* PRE_ENCRYPT */
+d1013 1
+a1013 1
+	    DoReply(LR_INTERNAL, "No login action!");
+@
+
+
+1.81
+log
+@working, if ugly, version.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.80 1995/06/19 23:28:05 p-pomes Exp p-pomes $";
+d912 1
+a912 2
+	State = S_IDLE;
+	return;
+d914 1
+a914 1
+    if (!ClaimUser) {
+d916 1
+a916 4
+	State = S_IDLE;
+	return;
+    }
+    if (!arg) {
+d918 1
+a918 4
+	State = S_IDLE;
+	return;
+    }
+    if (arg->aType != VALUE) {
+d920 1
+a920 4
+	State = S_IDLE;
+	return;
+    }
+    if (! (OkResponse & method)) {
+d923 4
+a926 3
+	State = S_IDLE;
+	return;
+    }
+d928 13
+a940 18
+    if (!GonnaRead("DoAnswer"))
+	/* Lock routines give their own errors */
+	return;
+
+    AmHero = 0;
+    AmOpr = 0;
+    UserAlias = NULL;
+    xtime = time((INT32 *) NULL);
+    if (User = GetAliasDir(ClaimUser))
+	pass = PasswordOf(User);
+    Unlock("DoAnswer");
+    if (!User) {
+	SleepTil(xtime + WAIT_SECS);
+	DoReply(LR_ERROR, "Login failed.");
+	IssueMessage(LOG_INFO, "login: alias %s does not exist", ClaimUser);
+	State = S_IDLE;
+	return;
+    }
+d942 21
+a962 2
+    if (OkResponse & LQ_FWTK) {
+	if (strlen(arg->aFirst) > 64) {
+a963 5
+	    DoReply(LR_SYNTAX, "Password response too long.");
+	    FreeDir(&User);
+	    State = S_IDLE;
+	    return;
+	}
+d965 5
+a969 9
+	/* send response */
+	sprintf(buf, "response '%s'", arg->aFirst);
+	if (auth_send(buf)) {
+	    auth_close();
+	    IssueMessage(LOG_ERR, "DoAnswer: Lost connection to auth server.");
+	    DoReply(LR_TEMP, "DoAnswer: Lost connection to auth server.");
+	    FreeDir(&User);
+	    State = S_IDLE;
+	    return;
+d971 5
+a975 12
+	if (auth_recv(buf, sizeof(buf))) {
+	    auth_close();
+	    IssueMessage(LOG_ERR, "DoAnswer: Lost connection to auth server.");
+	    DoReply(LR_TEMP, "DoAnswer: Lost connection to auth server.");
+	    FreeDir(&User);
+	    State = S_IDLE;
+	    return;
+	}
+	auth_close();
+
+	/* failed */
+	if (strncmp(buf, "ok", 2)) {
+d977 2
+a978 3
+	    FreeDir(&User);
+	    State = S_IDLE;
+	    return;
+d980 1
+a980 13
+    }
+    else
+#endif /* FWTK_AUTH */
+#ifdef PASS_AUTH
+    if (method & LQ_PASSWORD && !UserMatch(arg->aFirst)) {
+	SleepTil(xtime + WAIT_SECS);
+	DoReply(LR_ERROR, "Login failed.");
+	IssueMessage(LOG_INFO, "Password incorrect for %s", ClaimUser);
+	FreeDir(&User);
+	State = S_IDLE;
+	return;
+    }
+    else
+d983 6
+a988 8
+    if (method & LQ_EMAIL && !OkByEmail(User, arg->aFirst)) {
+	IssueMessage(LOG_INFO, "Email incorrect for %s", ClaimUser);
+	SleepTil(xtime + WAIT_SECS);
+	FreeDir(&User);
+	State = S_IDLE;
+	return;
+    }
+    else
+d992 7
+a998 9
+    if (method & LQ_CLEAR &&
+	(pass == NULL || strncmp(crypt(arg->aFirst, arg->aFirst), pass, 13)) {
+	SleepTil(xtime + WAIT_SECS);
+	DoReply(LR_ERROR, "Login failed.");
+	IssueMessage(LOG_INFO, "Clear password incorrect for %s", ClaimUser);
+	FreeDir(&User);
+	State = S_IDLE;
+	return;
+    }
+d1000 7
+a1006 9
+    if (method & LQ_CLEAR &&
+	(pass == NULL || strcmp(arg->aFirst, pass))) {
+	SleepTil(xtime + WAIT_SECS);
+	DoReply(LR_ERROR, "Login failed.");
+	IssueMessage(LOG_INFO, "Clear password incorrect for %s", ClaimUser);
+	FreeDir(&User);
+	State = S_IDLE;
+	return;
+    }
+d1008 1
+a1008 1
+    else
+d1010 24
+a1033 7
+    {
+	SleepTil(xtime + WAIT_SECS);
+	DoReply(LR_INTERNAL, "No login action!");
+	IssueMessage(LOG_ERR, "Fell through all login checks!");
+	FreeDir(&User);
+	State = S_IDLE;
+	return;
+d1035 5
+a1039 17
+    {
+	char *tpnt = FINDVALUE(User, F_HERO);
+
+	SleepTil(xtime + WAIT_SECS);
+	DoReply(LR_OK, "%s:Hi how are you?", ClaimUser);
+	if (*tpnt != '\0') {
+	    if (stricmp(tpnt, "opr") == 0 ||
+		stricmp(tpnt, "oper") == 0 ||
+		stricmp(tpnt, "operator") == 0)
+		AmOpr = 1;
+	    else
+		AmHero = 1;
+	}
+	LocalUser = 1;
+	UserAlias = FINDVALUE(User, F_ALIAS);
+	UserEnt = CurrentIndex();
+	IssueMessage(LOG_INFO, "%s logged in", UserAlias);
+a1048 1
+    State = S_IDLE;
+@
+
+
+1.80
+log
+@Seems to be working, but I wouldn't trust my system with it version.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.79 1995/06/10 17:02:16 p-pomes Exp p-pomes $";
+d54 1
+a54 1
+#ifdef SNK4_AUTH
+d57 1
+a57 1
+#endif /* SNK4_AUTH */
+d81 1
+a81 1
+static void DoSnk4Login __P((char *));
+d371 2
+a372 2
+#ifdef SNK4_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_SNK4);
+d374 1
+a374 5
+#endif /* SNK4_AUTH */
+#ifdef SECUREID_AUTH
+    (void) sprintf(sbuf, ":%d", LQ_SECUREID);
+    strcat(authmethods, sbuf);
+#endif /* SECUREID_AUTH */
+d487 3
+a489 3
+#ifdef SNK4_AUTH
+    case LQ_SNK4:
+	DoSnk4Login(alias);
+d491 1
+a491 1
+#endif /* SNK4_AUTH */
+d521 1
+a521 1
+ * Identify user, using Digital Pathways SNK/4 authenticator cards.
+d523 1
+a523 1
+#ifdef SNK4_AUTH
+d525 1
+a525 1
+DoSnk4Login(alias)
+d531 2
+a532 2
+	IssueMessage(LOG_ERR, "DoSnk4Login: cfg_read(): Cannot read config.");
+	DoReply(LR_INTERNAL, "DoSnk4Login: cfg_read(): Cannot read config.");
+d538 2
+a539 2
+	IssueMessage(LOG_ERR, "DoSnk4Login: auth_open(): Cannot connect.");
+	DoReply(LR_TEMP, "DoSnk4Login: auth_open(): Cannot connect.");
+d548 2
+a549 2
+	IssueMessage(LOG_ERR, "DoSnk4Login: auth_recv(): Unexpected greeting: %s.", buf);
+	DoReply(LR_INTERNAL, "DoSnk4Login: auth_recv(): Unexpected greeting: %s.", buf);
+a559 7
+    if (strncmp(buf, "challenge ", 10)) {
+	DoReply(LR_ERROR, "DoSnk4Login: auth_recv(): %s", buf);
+	auth_close();
+	return;
+    }
+    fprintf(Output, "%d:%s\n", LR_XLOGIN, buf+10);
+    fflush(Output);
+d564 1
+a564 1
+    OkResponse = LQ_PASSWORD|LQ_SNK4;
+d567 6
+d577 2
+a578 2
+    IssueMessage(LOG_ERR, "DoSnk4Login: Lost connection to auth server.");
+    DoReply(LR_TEMP, "DoSnk4Login: Lost connection to auth server.");
+d581 1
+a581 1
+#endif /* SNK4_AUTH */
+d912 1
+d917 1
+d922 1
+d927 1
+d933 1
+d952 1
+d955 2
+a956 2
+#ifdef SNK4_AUTH
+    if (OkResponse & LQ_SNK4) {
+d958 1
+d961 1
+d972 1
+d980 1
+d989 1
+d994 1
+a994 1
+#endif /* SNK4_AUTH */
+d1001 1
+d1011 1
+d1024 1
+d1034 1
+d1045 1
+@
+
+
+1.79
+log
+@Revised how crypt_start() is invoked.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.78 1995/06/08 22:09:14 p-pomes Exp p-pomes $";
+d54 5
+d80 4
+a83 3
+static void DoKLogin __P((ARG *));
+static void DoGssLogin();
+static void DoKrbLogin __P((int));
+d137 1
+a137 1
+    DoKLogin,
+d149 1
+d371 8
+d399 4
+d461 1
+a461 1
+DoKLogin(arg)
+d466 1
+d469 7
+a475 1
+    if (arg->aNext) {
+d478 10
+a487 2
+	if (arg->aNext)
+	    DoReply(LR_SYNTAX, "%s:extra arguments.", me);
+d489 1
+a489 2
+    else
+	code = LQ_KRB4;
+d491 6
+d499 1
+a499 1
+	DoKrbLogin(code);
+d505 1
+a505 1
+	DoGssLogin();
+d511 1
+a511 1
+	DoKrbLogin(code);
+d520 65
+d586 1
+d608 1
+a608 1
+DoKrbLogin(select)
+d610 1
+d720 1
+a720 1
+    else 
+d785 1
+a785 1
+    
+d879 10
+d902 2
+a903 1
+    char *me, *pass;
+d909 11
+a919 1
+    if (!ClaimUser)
+d921 3
+a923 1
+    else if (!arg)
+d925 3
+a927 1
+    else if (arg->aType != VALUE)
+d929 41
+a969 14
+    else if (!GonnaRead("DoAnswer"))
+	/* Lock routines give their own errors */ ;
+    else {
+	AmHero = 0;
+	AmOpr = 0;
+	UserAlias = NULL;
+	xtime = time((INT32 *) NULL);
+	if (User = GetAliasDir(ClaimUser))
+	    pass = PasswordOf(User);
+	Unlock("DoAnswer");
+	if (!User) {
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_ERROR, "Login failed.");
+	    IssueMessage(LOG_INFO, "login: alias %s does not exist", ClaimUser);
+d971 4
+a974 17
+	else if (((*me == 'a' || *me == 'A') && !UserMatch(arg->aFirst)) ||
+#ifdef EMAIL_AUTH
+	    ((*me == 'e' || *me == 'E') && !OkByEmail(User, arg->aFirst)) ||
+#endif
+#ifndef PRE_ENCRYPT
+		 (((*me == 'c' || *me == 'C') && *pass) &&
+		  strcmp(arg->aFirst, pass))
+#else
+		 (((*me == 'c' || *me == 'C') && *pass) &&
+		  strncmp(crypt(arg->aFirst, arg->aFirst), pass, 13))
+#endif
+	  ) {
+	    SleepTil(xtime + WAIT_SECS);
+	    if (*me != 'e' && *me != 'E') {
+		DoReply(LR_ERROR, "Login failed.");
+		IssueMessage(LOG_INFO, "Password incorrect for %s", ClaimUser);
+	    }
+d976 1
+d978 1
+a978 2
+	else {
+	    char *tpnt = FINDVALUE(User, F_HERO);
+d980 5
+a984 14
+	    SleepTil(xtime + WAIT_SECS);
+	    DoReply(LR_OK, "%s:Hi how are you?", ClaimUser);
+	    if (*tpnt != '\0') {
+		if (stricmp(tpnt, "opr") == 0 ||
+		    stricmp(tpnt, "oper") == 0 ||
+		    stricmp(tpnt, "operator") == 0)
+		    AmOpr = 1;
+		else
+		    AmHero = 1;
+	    }
+	    LocalUser = 1;
+	    UserAlias = FINDVALUE(User, F_ALIAS);
+	    UserEnt = CurrentIndex();
+	    IssueMessage(LOG_INFO, "%s logged in", UserAlias);
+d986 68
+@
+
+
+1.78
+log
+@a working version (V5 at least).
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.77 1995/06/07 18:36:33 p-pomes Exp p-pomes $";
+a510 1
+    char *heroinst = KRBHERO;
+d712 4
+a715 3
+	DoReply(LR_ERROR, "DoKrbLogin:Login failed (invalid instance).");
+	IssueMessage(LOG_INFO, "DoKrbLogin:%s.%s not accepted",
+		     pname, iname);
+d1202 2
+a1204 2
+#else
+    crypt_start(crypt(pw,pw));
+@
+
+
+1.77
+log
+@another checkpoint, another time-slice
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.76 1995/06/06 21:01:11 p-pomes Exp p-pomes $";
+d537 1
+d548 1
+a548 1
+    if (getpeername(0, (struct sockaddr *) &c_sock, &namelen) < 0) {
+d641 1
+a641 1
+	if (retval = krb5_recvauth((krb5_pointer)&c_sock,
+a664 1
+	krb5_free_principal(sprinc);
+d728 1
+a728 1
+	User = GetAliasDir(auth_data.pname);
+d732 2
+a733 2
+	    DoReply(LR_ERROR, "DoKrbLogin:Login failed (non-existent alias).");
+	    IssueMessage(LOG_INFO, "DoKrbLogin:Alias %s does not exist", auth_data.pname);
+d737 1
+a737 1
+	    DoReply(LR_OK, "%s:Hi how are you?", auth_data.pname);
+d739 1
+a739 1
+	    AmHero = !strcmp(auth_data.pinst, KRBHERO) &&
+@
+
+
+1.76
+log
+@Trying to figure out where the hell I left off.
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.75 1995/03/05 16:39:10 p-pomes Exp p-pomes $";
+d341 3
+a343 1
+ * info
+d405 1
+a405 1
+#else				/* !__STDC__ */
+d496 1
+a496 1
+#endif /* KRB5_AUTH */
+d529 2
+d559 1
+a559 1
+	IssueMessage(LOG_ERR, "DoKrb4Login:getsockname(): %s.",
+d561 1
+a561 1
+	DoReply(LR_INTERNAL, "DoKrb4Login:getsockname(): %s",
+d582 1
+a582 1
+	    IssueMessage(LOG_INFO, "KRB DoKrb4Login:krb_recvauth(): %s.",
+d584 1
+a584 1
+	    DoReply(LR_ERROR, "KRB DoKrb4Login:krb_recvauth(): %s.",
+d596 1
+a596 1
+	    IssueMessage(LOG_ERR, "DoKrb4Login:Version mismatch: '%s' isn't 'VERSION9'",
+d603 2
+a604 2
+	    DoReply(LR_ERROR, "KRB DoKrb4Login:Login failed (wrong realm).");
+	    IssueMessage(LOG_INFO, "KRB5 DoKrb4Login:Realm %s not local realm.",
+d614 1
+d617 1
+a617 1
+    else if (select == LQ_KRB5) {
+d620 1
+a620 1
+	    DoReply(LR_INTERNAL, "KRB5 DoKrb5Login:krb5_kt_default_name(%s): %s.",
+d622 1
+a622 1
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_kt_default_name(%s): %s.",
+d628 1
+a628 1
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_sname_to_principal(%s,%s): %s.",
+d630 1
+a630 1
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_sname_to_principal(%s,%s): %s.",
+d647 2
+a648 2
+			       0, 0	/* don't care about ticket or
+					   authenticator */
+d650 1
+a650 1
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_recvauth(): %s.",
+d652 1
+a652 1
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_recvauth(): %s.",
+d656 1
+d658 1
+a658 1
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_unparse_name(): %s.",
+d660 1
+a660 1
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_unparse_name(): %s.",
+d674 1
+a674 1
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_get_default_realm(): %s.",
+d676 1
+a676 1
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_get_default_realm(): %s.",
+d683 1
+a683 1
+	    DoReply(LR_ERROR, "DoKrb5Login:Login failed (wrong realm).");
+d693 1
+d695 1
+a695 1
+    else {
+d747 1
+a747 1
+#endif /* KRB4_AUTH */
+@
+
+
+1.75
+log
+@checkpoint
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.74 1995/03/04 02:31:58 p-pomes Exp p-pomes $";
+d520 1
+a520 1
+    char *srvtab;
+d532 1
+a532 1
+    char *v5srvtab;
+a534 2
+    srvtab = strdup(KRB4SRVTAB);
+    v5srvtab = strdup(KRB5SRVTAB);
+d543 1
+a543 2
+    if (getpeername(0, (struct sockaddr *) &c_sock, &namelen) < 0 &&
+      !QiAuthDebug) {
+d574 1
+d613 1
+d659 1
+a659 1
+	comp = krb5_princ_component(sprinc, 0);
+d662 1
+a662 1
+	comp = krb5_princ_component(sprinc, 1);
+d666 1
+a666 1
+	realm_length = krb5_princ_realm(sprinc)->length;
+d676 1
+a676 1
+	    (memcmp(def_realm, krb5_princ_realm(sprinc)->data, realm_length))) {
+d679 1
+a679 1
+			 realm_length, krb5_princ_realm(sprinc)->data);
+d1194 1
+d1196 3
+@
+
+
+1.74
+log
+@checkpoint
+@
+text
+@d38 1
+a38 1
+static char RcsId[] = "@@(#)$Id: commands.c,v 1.73 1995/03/03 01:08:55 p-pomes Exp p-pomes $";
+d526 1
+a526 1
+    krb5_principal sprinc;
+d528 1
+a528 1
+    krb5_address foreign_addr;
+d580 4
+a583 4
+	    IssueMessage(LOG_INFO, "DoKrb4Login:krb_recvauth() failure, (%d) %s.",
+			 retval, krb_err_txt[retval]);
+	    DoReply(LR_ERROR, "DoKrb4Login:krb_recvauth() failure, (%d) %s",
+		    retval, krb_err_txt[retval]);
+d601 2
+a602 2
+	    DoReply(LR_ERROR, "DoKrb4Login:Login failed (wrong realm).");
+	    IssueMessage(LOG_INFO, "DoKrb4Login:Realm %s not local realm.",
+d609 2
+a610 1
+	    fprintf(stderr, "KRB4:pname %s, iname %s\n", pname, (iname)?iname:"(nil)");
+d616 4
+a619 4
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_kt_default_name(%s) failure, code %d.",
+		v5srvtab, retval);
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_kt_default_name(%s) failure, code %d.",
+		 v5srvtab, retval);
+d624 4
+a627 4
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_sname_to_principal(%s,%s) failure, code %d.",
+		myhost, KRB5SRV, retval);
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_sname_to_principal(%s,%s) failure, code %d.",
+		 myhost, KRB5SRV, retval);
+a630 14
+	if (fgets((char *)pktbuf, BUFSIZ, Input) == NULL) {
+	    DoReply(LR_INTERNAL, "DoKrb5Login:fgets(): %s", strerror(errno));
+	    IssueMessage(LOG_ERR, "DoKrb5Login:fgets(): %s", strerror(errno));
+	    return;
+	}
+	packet.data = (krb5_pointer) pktbuf;
+	packet.length = strlen((char *)pktbuf);
+	if (QiAuthDebug)
+	    fprintf(stderr, "DoKrb5Login:Received %d bytes\n", packet.length);
+
+	foreign_addr.addrtype = c_sock.sin_family;
+	foreign_addr.length = sizeof(c_sock.sin_addr);
+	foreign_addr.contents = (krb5_octet *)&c_sock.sin_addr;
+
+d632 18
+a649 7
+	if (retval = krb5_rd_req_simple(&packet, sprinc,
+				    &foreign_addr,
+				    &ad)) {
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_rd_req_simple() failure, code %d.",
+		    retval);
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_rd_req_simple() failure, code %d.",
+			 retval);
+d652 5
+a656 5
+	if (retval = krb5_unparse_name(ad->ticket->enc_part2->client, &cp)) {
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_unparse_name() failure, code %d.",
+		    retval);
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_unparse_name() failure, code %d.",
+			 retval);
+d669 4
+a672 4
+	    DoReply(LR_INTERNAL, "DoKrb5Login:krb5_get_default_realm() failure, code %d.",
+		    retval);
+	    IssueMessage(LOG_ERR, "DoKrb5Login:krb5_get_default_realm() failure, code %d.",
+			 retval);
+@
+
+
+1.73
+log
+@checkpoint
+@
+text
+@d4 1
+a4 1
+ *		Dorner, and Paul Pomes
+d17 3
+a19 3
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+d38 2
+a39 2
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.72 1995/03/01 20:07:51 p-pomes Exp p-pomes $";
+#endif
+a49 1
+
+d53 1
+d59 5
+a65 5
+static void DoKLogin __P((ARG *));
+static void DoKrb5Login __P((char *));
+static void DoGssLogin __P((char *));
+static void DoKrb4Login __P((char *));
+static void DoAnswer __P((ARG *));
+d73 1
+d75 3
+d88 1
+d90 2
+a91 2
+       char *strstr __P((char *, char *));
+#endif
+d107 1
+a107 1
+#endif
+d109 1
+a109 1
+FILE	*TempOutput = NULL;
+d112 2
+a113 2
+int	DiscardIt;
+void	(*CommandTable[]) __P((ARG *)) =
+d115 18
+a132 18
+	DoQuery,
+	DoChange,
+	DoLogin,
+	DoAnswer,
+	DoLogout,
+	DoFields,
+	DoAdd,
+	DoDelete,
+	DoSet,
+	DoQuit,
+	DoStatus,
+	DoId,
+	DoHelp,
+	DoAnswer,
+	DoInfo,
+	DoAnswer,
+	DoKLogin,	
+	(void (*) __P((ARG *))) 0
+d135 6
+a140 7
+QDIR	User = NULL;		/* the currently logged in user */
+int	AmHero = 0;		/* is currently logged in user the Hero? */
+int	AmOpr = 0;		/* is currently logged in user the Operator? */
+char	*UserAlias = NULL;	/* the alias of the currently logged in user */
+int	UserEnt = 0;		/* entry number of current user */
+
+char	*ClaimUser = NULL;	/* the identity the user has claimed, but not
+d142 2
+a143 2
+char	*Challenge = NULL;	/* challenge string */
+int	State = S_IDLE;
+d148 1
+a148 1
+void 
+d150 2
+a151 2
+	char *value;
+	int ttype;
+d153 1
+a153 1
+	static ARG *LastArg = NULL;
+d155 19
+a173 22
+	if (value == NULL)
+		value = "";
+	if (!s_args)
+	{
+		LastArg = s_args = FreshArg();
+		LastArg->aFirst = strdup(value);
+		LastArg->aType = ttype;
+	} else
+	{
+		if (LastArg->aType == VALUE && ttype & EQUAL)
+			LastArg->aType |= ttype;
+		else if (LastArg->aType & EQUAL && !(LastArg->aType & VALUE2))
+		{
+			LastArg->aType |= VALUE2;
+			LastArg->aSecond = strdup(value);
+		} else
+		{
+			LastArg->aNext = FreshArg();
+			LastArg = LastArg->aNext;
+			LastArg->aType = ttype;
+			LastArg->aFirst = strdup(value);
+		}
+d175 1
+d181 1
+a181 1
+void 
+d183 1
+a183 1
+	char *junk;
+d185 1
+a185 1
+	fprintf(Output, "%d:%s:%s\n", LR_NOCMD, junk, "Command not recognized.");
+d191 1
+a191 1
+void 
+d193 1
+a193 1
+	int cmd;
+d196 2
+a197 2
+	char	c;
+	int	which = cmd == C_CLEAR ? 6 : MAX_SYSLOG;
+d199 35
+a233 33
+	c = CommandText[which];
+	CommandText[which] = '\0';
+	*CommandSpot = '\0';
+	if (*CommandText && strstr(CommandText, "password=") == NULL)
+		IssueMessage(LOG_INFO, "%s", CommandText);
+	CommandText[which] = c;
+	if (!Quiet && (InputType == IT_FILE || InputType == IT_PIPE || OP_VALUE(ECHO_OP)))
+		PrintCommand(cmd, s_args);	/* echo the cmd */
+
+	if (Daemon && GetState())
+	{
+		fprintf(Output, "555:Database shut off (%s).\n", DBState);
+		exit(0);
+	}
+	if (TempOutput == NULL && !OpenTempOut())
+	{
+		fprintf(Output, "%d:couldn't open temp file.\n", LR_INTERNAL);
+		exit(0);
+	}
+	if (State == S_E_PENDING)
+	{
+		if (DiscardIt || cmd != C_ANSWER && cmd != C_CLEAR && cmd != C_EMAIL)
+		{
+			DoReply(-LR_NOANSWER, "Expecting answer, clear, or email; login discarded.");
+			State = S_IDLE;
+			free(ClaimUser);
+			ClaimUser = NULL;
+			free(Challenge);
+			Challenge = NULL;
+		}
+	}
+	if (DiscardIt)
+		DoReply(LR_SYNTAX, "Command not understood.");
+d235 2
+a236 3
+	{
+		/* (*CommandTable[cmd - 1]) (s_args); */
+		void (*cmdP) __P((ARG *)) = *CommandTable[cmd - 1];
+d238 1
+a238 7
+		if (cmdP != NULL)
+			(*cmdP) (s_args);
+		else
+			DoReply(LR_SYNTAX, "Command not understood.");
+	}
+
+	DumpOutput();
+d240 4
+a243 4
+      done:
+	FreeArgs(s_args);
+	s_args = NULL;
+	DiscardIt = 0;
+d249 1
+a249 1
+void 
+d251 1
+a251 1
+	ARG *arg;
+d253 1
+a253 1
+	ARG	*narg;
+d255 10
+a264 11
+	if (arg)
+		for (narg = arg->aNext; arg; arg = narg)
+		{
+			narg = arg->aNext;
+			if (arg->aFirst)
+				free(arg->aFirst);
+			if (arg->aSecond)
+				free(arg->aSecond);
+			free((char *) arg);
+			arg = NULL;
+		}
+d273 1
+a273 1
+	ARG	*arg;
+d275 3
+a277 3
+	arg = (ARG *)malloc(sizeof(ARG));
+	memset((void *) arg, (char)0, sizeof (ARG));
+	return (arg);
+d283 2
+a284 2
+/*ARGSUSED*/
+static void 
+d286 1
+a286 1
+	ARG *arg;
+d288 2
+a289 2
+	char	banner[MAXPATHLEN], vstr[MAXSTR];
+	FILE	*bfp;
+d291 17
+a307 19
+	(void)sprintf(banner, "%s.bnr", Database);
+	if (bfp = fopen(banner, "r"))
+	{
+		(void)sprintf(vstr, "Qi server %s", Revision);
+		DoReply(LR_PROGRESS, vstr);
+		while (fgets(banner, sizeof (banner) - 1, bfp))
+		{
+			char	*nl = strchr(banner, '\n');
+
+			if (nl)
+				*nl = '\0';
+			DoReply(LR_PROGRESS, banner);
+		}
+		(void) fclose(bfp);
+	}
+	if (ReadOnly)
+		DoReply(LR_RONLY, "Database ready, read only (%s).", DBState);
+	else
+		DoReply(LR_OK, "Database ready.");
+d312 1
+a312 1
+ * the name of the calling user into the nameserver's logfiles
+d314 2
+a315 2
+/*ARGSUSED*/
+static void 
+d317 1
+a317 1
+	ARG *arg;
+d319 1
+a319 1
+	DoReply(LR_OK, "Thanks.");
+d325 2
+a326 2
+/*ARGSUSED*/
+void 
+d328 1
+a328 1
+	ARG *arg;
+d330 8
+a337 5
+	fprintf(Output, "%d:%s\n", LR_OK, "Bye!");
+	fflush(Output);
+	IssueMessage(LOG_INFO, "Done 0");
+	closelog();
+	exit(0);
+d343 2
+a344 2
+/*ARGSUSED*/
+static void 
+d346 1
+a346 1
+	ARG *arg;
+d348 2
+a349 2
+	short	n = 0;
+	char	sbuf[8], authmethods[MAXSTR];
+d352 1
+a352 1
+	DoReply(-LR_OK, "%d:maildomain:%s", ++n, MAILDOMAIN);
+d354 4
+a357 4
+	DoReply(-LR_OK, "%d:mailfield:%s", ++n, MAILFIELD);
+	DoReply(-LR_OK, "%d:administrator:%s", ++n, ADMIN);
+	DoReply(-LR_OK, "%d:passwords:%s", ++n, PASSW);
+	DoReply(-LR_OK, "%d:mailbox:%s", ++n, MAILBOX);
+d359 1
+a359 1
+	DoReply(-LR_OK, "%d:charset:%s", ++n, CHARSET);
+d361 1
+a361 1
+	strcpy(authmethods, "authenticate");
+d363 2
+a364 2
+	(void) sprintf(sbuf, ":%d", LQ_KRB5);
+	strcat(authmethods, sbuf);
+d367 2
+a368 2
+	(void) sprintf(sbuf, ":%d", LQ_GSS);
+	strcat(authmethods, sbuf);
+d371 2
+a372 2
+	(void) sprintf(sbuf, ":%d", LQ_KRB4);
+	strcat(authmethods, sbuf);
+d375 2
+a376 2
+	(void) sprintf(sbuf, ":%d", LQ_PASSWORD);
+	strcat(authmethods, sbuf);
+d379 2
+a380 2
+	(void) sprintf(sbuf, ":%d", LQ_EMAIL);
+	strcat(authmethods, sbuf);
+d382 2
+a383 2
+	DoReply(-LR_OK, "%d:%s", ++n, authmethods);
+	DoReply(LR_OK, "Ok.");
+d389 1
+a389 1
+static void 
+d391 1
+a391 1
+	ARG *arg;
+d393 1
+a393 1
+	DoReply(500, "%s:command not implemented.", arg->aFirst);
+d399 2
+a400 2
+/*VARARGS2*/
+void 
+d403 1
+a403 1
+#else /* !__STDC__ */
+d405 4
+a408 3
+	int code;
+	char *fmt;
+va_dcl
+d411 3
+a413 3
+	char	scratchFormat[256];
+	char	buf[4096];
+	va_list	args;
+d415 1
+a415 1
+	(void) sprintf(scratchFormat, "%d:%s\n", code, fmt);
+d418 1
+a418 1
+	va_start(args, fmt);
+d420 1
+a420 1
+	va_start(args);
+d422 12
+a433 13
+	vsprintf(buf, scratchFormat, args);
+	va_end(args);
+	if (TempOutput == NULL && !OpenTempOut())
+	{
+		fprintf(Output, "%d:couldn't open temp file.\n", LR_INTERNAL);
+		return;
+	}
+	if (fprintf(TempOutput, "%s", buf) == EOF) {
+		IssueMessage(LOG_ERR, "DoReply: fprintf: %s", strerror(errno));
+		fprintf(Output, "%d:couldn't write to temp file.\n", LR_INTERNAL);
+		exit(0);
+	}
+	/* IssueMessage(LOG_DEBUG, "%s", buf); */
+d439 1
+a439 1
+static void 
+d441 1
+a441 1
+	ARG *arg;
+d443 2
+a444 2
+	int	code;
+	char	*me;
+d446 10
+a455 10
+	me = arg->aFirst;
+	if (arg->aNext) {
+		arg = arg->aNext;
+		code = atoi(arg->aFirst);
+		if (arg->aNext)
+			DoReply(LR_SYNTAX, "%s:extra arguments.", me);
+	}
+	else
+		code = LQ_KRB4;
+	switch (code) {
+d457 3
+a459 3
+	    case LQ_KRB5:
+		DoKrb5Login(me);
+		break;
+d463 3
+a465 3
+	    case LQ_GSS:
+		DoGssLogin(me);
+		break;
+d469 3
+a471 3
+	    case LQ_KRB4:
+		DoKrb4Login(me);
+		break;
+d474 1
+a474 17
+	    default:
+		DoReply(LR_NOAUTH, "%s:Authentication method %d unavailable.",
+			me, code);
+		break;
+	}
+}
+
+/*
+ * Identify user, using v5 Kerberos authentication.
+ */
+#ifdef KRB5_AUTH
+static void 
+DoKrb5Login(me)
+	char *me;
+{
+	struct sockaddr_in peername, myname;
+	int	namelen = sizeof (peername);
+d476 3
+a478 1
+			me, LQ_KRB5);
+a479 1
+#endif /* KRB5_AUTH */
+d485 2
+a486 3
+static void 
+DoGssLogin(me)
+	char *me;
+d488 5
+a492 4
+	struct sockaddr_in peername, myname;
+	int	namelen = sizeof (peername);
+	DoReply(LR_NOAUTH, "%s:Authentication method %d unavailable.",
+			me, LQ_GSS);
+d497 1
+a497 1
+ * Identify user, using v4 Kerberos authentication.
+d499 13
+d513 9
+a521 22
+static void 
+DoKrb4Login(me)
+	char *me;
+{
+	struct sockaddr_in peername, myname;
+	int	namelen = sizeof (peername);
+	int	status;
+	INT32	authopts;
+	AUTH_DAT auth_data;
+	KTEXT_ST clt_ticket;
+	Key_schedule sched;
+	char	instance[INST_SZ];
+	char	realm[REALM_SZ];
+	char	version[9];
+#ifndef KRBSRVTAB
+#define KRBSRVTAB ""		/* use the Kerberos default (/etc/srvtab) */
+#endif
+#ifndef KRBHERO
+#define KRBHERO "phhero"	/* use the default instance */
+#endif
+	char	*srvtab = KRBSRVTAB;
+	char	*heroinst = KRBHERO;
+d523 11
+d535 30
+a564 26
+	fprintf(Output, "%d:Krb4Login started; send v4 Kerberos mutual authenticator.\n", LR_LOGIN);
+	fflush(Output);
+
+	/*
+	 * To verify authenticity, we need to know the address of the
+	 * client.
+	 */
+	if (getpeername(0, (struct sockaddr *) &peername, &namelen) < 0)
+	{
+		IssueMessage(LOG_ERR, "DoKrb4Login:getpeername: %s.",
+			strerror(errno));
+		DoReply(LR_INTERNAL, "DoKrb4Login:getpeername: %s",
+			strerror(errno));
+		return;
+	}
+
+	/* for mutual authentication, we need to know our address */
+	namelen = sizeof (myname);
+	if (getsockname(0, (struct sockaddr *) &myname, &namelen) < 0)
+	{
+		IssueMessage(LOG_ERR, "DoKrb4Login:getsockname: %s.",
+			strerror(errno));
+		DoReply(LR_INTERNAL, "DoKrb4Login:getsockname: %s",
+			strerror(errno));
+		return;
+	}
+d566 2
+d577 139
+a715 56
+	status = krb_recvauth(authopts, 0, &clt_ticket, "ns", instance,
+			&peername, &myname, &auth_data, srvtab, sched, version);
+	if (status != KSUCCESS)
+	{
+		IssueMessage(LOG_INFO, "DoKrb4Login failed: (%d) %s.",
+			status, krb_err_txt[status]);
+		DoReply(LR_ERROR, "DoKrb4Login failed: (%d) %s",
+			status, krb_err_txt[status]);
+	} else
+	{
+
+		/* Check the version string (8 chars) */
+		if (strncmp(version, "VERSION9", 8))
+		{
+			/*
+			 * didn't match the expected version.
+			 * could do something different, but we just
+			 * log an error and continue.
+			 */
+			version[8] = '\0';	/* make null term */
+			IssueMessage(LOG_ERR, "DoKrb4Login:Version mismatch: '%s' isn't 'VERSION9'",
+					    version);
+		}
+
+		/* Check to make sure it's in our local realm */
+		krb_get_lrealm(realm, 1);
+		if (strcmp(auth_data.prealm, realm))
+		{	/* if not equal */
+			DoReply(LR_ERROR, "Login failed (KRB4 wrong realm).");
+			IssueMessage(LOG_INFO, "DoKrb4Login:Realm %s not local realm.",
+				    auth_data.prealm);
+			return;
+		}
+		/*
+		 * Make sure the instance is a reasonable one (null or KRBHERO).
+		 * Dissallow other instances, since who knows what level of
+		 * privilege a particular instance means at a given site?
+		 */
+		if (*auth_data.pinst && strcmp(auth_data.pinst,KRBHERO)) {
+			/* not null or phhero */
+			DoReply(LR_ERROR, "Login failed (KRB4 invalid instance).");
+			IssueMessage(LOG_INFO, "DoKrb4Login:%s.%s not accepted", 
+				 auth_data.pname,auth_data.pinst);
+			return;
+		}
+
+		/*
+		 * The user has successfully authenticated, so check
+		 * for matching alias, log in and send reply.
+		 *
+		 * Kerberos principal == our alias is auth_data.pname
+		 * Kerberos instance auth_data.pinst says whether it's
+		 * a ph hero.
+		 */
+		if (User)
+			FreeDir(&User);
+d717 23
+a739 27
+		if (!GonnaRead("DoKrb4Login"))
+			/* Lock routines give their own errors */ ;
+		else
+		{
+			INT32	xtime = time((INT32 *) NULL);
+
+			AmHero = 0;
+			UserAlias = NULL;
+			User = GetAliasDir(auth_data.pname);
+			Unlock("DoKrb4Login");
+			if (!User)
+			{
+				SleepTil(xtime + WAIT_SECS);
+				DoReply(LR_ERROR, "Login failed (KRB4 non-existen alias).");
+				IssueMessage(LOG_INFO, "DoKrb4Login:Alias %s does not exist", auth_data.pname);
+			} else
+			{
+				SleepTil(xtime + WAIT_SECS);
+				DoReply(LR_OK, "%s:Hi how are you?", auth_data.pname);
+				LocalUser = 1;
+				AmHero = !strcmp(auth_data.pinst, KRBHERO) &&
+					   *FINDVALUE(User, F_HERO);
+				UserAlias = FINDVALUE(User, F_ALIAS);
+				UserEnt = CurrentIndex();
+				IssueMessage(LOG_INFO, "%s logged in", UserAlias);
+			}
+		}
+d741 1
+d748 1
+a748 1
+static void 
+d750 1
+a750 1
+	ARG *arg;
+d752 1
+a752 1
+	char	*me;
+d754 18
+a771 19
+	me = arg->aFirst;
+	arg = arg->aNext;	/* skip the command name */
+	if (!arg)
+		DoReply(LR_SYNTAX, "%s:no name given.", me);
+	else if (arg->aType != VALUE)
+		DoReply(LR_SYNTAX, "%s:argument invalid.", me);
+	else if (arg->aNext)
+		DoReply(LR_SYNTAX, "%s:extra arguments.", me);
+	else
+	{
+		Challenge = strdup(RandomString(42));
+		DoReply(LR_LOGIN, "%s", Challenge);
+		ClaimUser = strdup(arg->aFirst);
+		AmHero = 0;
+		AmOpr = 0;
+		State = S_E_PENDING;
+		if (User)
+			FreeDir(&User);
+	}
+d778 1
+a778 1
+static void 
+d780 1
+a780 1
+	ARG *arg;
+d782 2
+a783 2
+	char	*me, *pass;
+	INT32	xtime;
+d785 2
+a786 2
+	me = arg->aFirst;
+	arg = arg->aNext;
+d788 22
+a809 23
+	if (!ClaimUser)
+		DoReply(LR_SYNTAX, "%s:there is no outstanding login.", me);
+	else if (!arg)
+		DoReply(LR_SYNTAX, "%s:no argument given.", me);
+	else if (arg->aType != VALUE)
+		DoReply(LR_SYNTAX, "%s:invalid argument type.", me);
+	else if (!GonnaRead("DoAnswer"))
+		/* Lock routines give their own errors */ ;
+	else
+	{
+		AmHero = 0;
+		AmOpr = 0;
+		UserAlias = NULL;
+		xtime = time((INT32 *) NULL);
+		if (User = GetAliasDir(ClaimUser))
+			pass = PasswordOf(User);
+		Unlock("DoAnswer");
+		if (!User)
+		{
+			SleepTil(xtime + WAIT_SECS);
+			DoReply(LR_ERROR, "Login failed.");
+			IssueMessage(LOG_INFO, "login: alias %s does not exist", ClaimUser);
+		} else if (((*me == 'a' || *me == 'A') && !UserMatch(arg->aFirst)) ||
+d811 1
+a811 1
+			   ((*me == 'e' || *me == 'E') && !OkByEmail(User, arg->aFirst)) ||
+d814 2
+a815 2
+			   (((*me == 'c' || *me == 'C') && *pass) &&
+			    strcmp(arg->aFirst, pass))
+d817 2
+a818 2
+			   (((*me == 'c' || *me == 'C') && *pass) &&
+			    strncmp(crypt(arg->aFirst, arg->aFirst), pass, 13))
+d820 36
+a855 41
+		    )
+		{
+			SleepTil(xtime + WAIT_SECS);
+			if (*me != 'e' && *me != 'E')
+			{
+				DoReply(LR_ERROR, "Login failed.");
+				IssueMessage(LOG_INFO, "Password incorrect for %s", ClaimUser);
+			}
+			FreeDir(&User);
+		} else
+		{
+			char *tpnt = FINDVALUE(User, F_HERO);
+
+			SleepTil(xtime + WAIT_SECS);
+			DoReply(LR_OK, "%s:Hi how are you?", ClaimUser);
+			if (*tpnt != '\0')
+			{
+				if (stricmp(tpnt, "opr") == 0 ||
+				    stricmp(tpnt, "oper") == 0 ||
+				    stricmp(tpnt, "operator") == 0)
+					AmOpr = 1;
+				else
+					AmHero = 1;
+			}
+			LocalUser = 1;
+			UserAlias = FINDVALUE(User, F_ALIAS);
+			UserEnt = CurrentIndex();
+			IssueMessage(LOG_INFO, "%s logged in", UserAlias);
+		}
+	}
+	if (ClaimUser)
+	{
+		free(ClaimUser);
+		ClaimUser = NULL;
+	}
+	if (Challenge)
+	{
+		free(Challenge);
+		Challenge = NULL;
+	}
+	State = S_IDLE;
+d861 1
+a861 1
+static void 
+d863 1
+a863 1
+	INT32 xtime;
+d865 1
+a865 1
+	unsigned span;
+d867 3
+a869 3
+	span = xtime - time((INT32 *) 0);
+	if (0 < span && span < 10000)
+		sleep(span);
+d875 1
+a875 1
+QDIR 
+d877 1
+a877 1
+	char *fname;
+d879 25
+a903 25
+	ARG	*Alist;
+	ARG	*arg;
+	INT32	*entry;
+	QDIR	dirp;
+
+	arg = Alist = FreshArg();
+
+	arg->aType = COMMAND;
+	arg->aFirst = strdup("query");
+	arg->aNext = FreshArg();
+	arg = arg->aNext;
+	arg->aType = VALUE | EQUAL | VALUE2;
+	arg->aFirst = strdup("alias");	/* should be alias */
+	arg->aSecond = strdup(fname);
+	(void) ValidQuery(Alist, C_QUERY);
+
+	if ((entry = DoLookup(Alist)) != NULL && length(entry) == 1 &&
+	    next_ent(*entry))
+		getdata(&dirp);
+	else
+		dirp = NULL;
+
+	if (entry)
+		free((char *) entry);
+	FreeArgs(Alist);
+d905 1
+a905 1
+	return (dirp);
+d911 1
+a911 1
+static void 
+d913 1
+a913 1
+	ARG *arg;
+d915 12
+a926 13
+	if (arg->aNext)
+		DoReply(LR_SYNTAX, "argument given on logout command.");
+	else if (!User)
+		DoReply(LR_ERROR, "Not logged in.");
+	else
+	{
+		FreeDir(&User);
+		AmHero = 0;
+		AmOpr = 0;
+		UserAlias = NULL;
+		UserEnt = 0;
+		DoReply(LR_OK, "Ok.");
+	}
+d932 1
+a932 1
+static void 
+d934 1
+a934 1
+	ARG *arg;
+d936 12
+a947 12
+	if (arg->aNext == NULL)
+	{
+		ListAllFields();
+		DoReply(LR_OK, "Ok.");
+	} else if (OkFields(arg->aNext))
+	{
+		for (arg = arg->aNext; arg; arg = arg->aNext)
+			if (arg->aFD)
+				ListField(arg->aFD);
+		DoReply(LR_OK, "Ok.");
+	} else
+		DoReply(LR_SYNTAX, "Invalid field request.");
+d953 1
+a953 1
+static void 
+d955 1
+a955 1
+	FDESC *fd;
+d957 2
+a958 2
+	char	scratch[MAX_LEN];
+	char	*cp;
+d960 33
+a992 33
+	(void) sprintf(scratch, "%d:%s:max %d", fd->fdId, fd->fdName, fd->fdMax);
+	cp = scratch + strlen(scratch);
+	if (fd->fdIndexed)
+		cp += strcpc(cp, " Indexed");
+	if (fd->fdLookup)
+		cp += strcpc(cp, " Lookup");
+	if (fd->fdNoMeta)
+		cp += strcpc(cp, " NoMeta");
+	if (fd->fdPublic)
+		cp += strcpc(cp, " Public");
+	if (fd->fdLocalPub)
+		cp += strcpc(cp, " LocalPub");
+	if (fd->fdDefault)
+		cp += strcpc(cp, " Default");
+	if (fd->fdAlways)
+		cp += strcpc(cp, " Always");
+	if (fd->fdAny)
+		cp += strcpc(cp, " Any");
+	if (fd->fdChange)
+		cp += strcpc(cp, " Change");
+	if (fd->fdSacred)
+		cp += strcpc(cp, " Sacred");
+	if (fd->fdTurn)
+		cp += strcpc(cp, " Turn");
+	if (fd->fdEncrypt)
+		cp += strcpc(cp, " Encrypt");
+	if (fd->fdNoPeople)
+		cp += strcpc(cp, " NoPeople");
+	*cp = '\0';
+	DoReply(-LR_OK, scratch);
+	strcpy(scratch, fd->fdHelp);
+	for (cp = strtok(scratch, "\n"); cp; cp = strtok((char *) NULL, "\n"))
+		DoReply(-LR_OK, "%d:%s:%s", fd->fdId, fd->fdName, cp);
+d998 1
+a998 1
+static void 
+d1001 1
+a1001 1
+	FDESC **fd;
+d1003 5
+a1007 5
+	for (fd = FieldDescriptors; *fd; fd++) {
+		if ((*fd)->fdLocalPub && !LocalUser)
+			continue;
+		ListField(*fd);
+	}
+d1013 1
+a1013 1
+static int 
+d1015 1
+a1015 1
+	ARG *arg;
+d1017 13
+a1029 17
+	int	bad = 0;
+	int	count = 0;
+	FDESC *fd;
+
+	for (; arg; arg = arg->aNext)
+	{
+		count++;
+		if (arg->aType != VALUE)
+		{
+			DoReply(-LR_SYNTAX, "argument %d:is not a field name.", count);
+			bad = 1;
+		} else if (!(fd = FindFD(arg->aFirst)) || (!LocalUser && fd->fdLocalPub))
+		{
+			DoReply(-LR_FIELD, "%s:unknown field.", arg->aFirst);
+			bad = 1;
+		} else
+			arg->aFD = fd;
+d1031 4
+a1034 1
+	return (!bad);
+d1040 1
+a1040 1
+static void 
+d1042 1
+a1042 1
+	ARG *arg;
+d1044 44
+a1087 51
+	INT32	*entries, *entp;
+	int	haveError = 0;
+	int	count;
+	int	done;
+	QDIR	dirp;
+
+	if (!AmHero && !User)
+	{
+		DoReply(LR_NOTLOG, "Must be logged in to delete.");
+		return;
+	} else if (!UserCanDelete())
+	{
+		DoReply(LR_ERROR, "You may not delete entries.");
+		IssueMessage(LOG_INFO, "%s is not authorized to delete entries", UserAlias);
+		return;
+	}
+	if (!ValidQuery(arg, C_DELETE))
+	{
+		DoReply(LR_SYNTAX, "Delete command not understood.");
+		return;
+	}
+	if (!GonnaWrite("DoDelete"))
+	{
+		/* GonnaWrite will issue an error message */ ;
+		return;
+	}
+	if ((entries = DoLookup(arg)) == NULL)
+	{
+		Unlock("DoDelete");
+		DoReply(LR_NOMATCH, "No entries matched specifications.");
+		return;
+	}
+	for (count = 1, done = 0, entp = entries; *entp; count++, entp++)
+	{
+		if (!next_ent(*entp))
+		{
+			DoReply(-LR_TEMP, "Internal error.");
+			haveError = 1;
+			continue;
+		}
+		getdata(&dirp);
+		if (!CanDelete(dirp))
+		{
+			DoReply(-LR_ERROR, "%d:%s: you may not delete this entry.",
+				count, FINDVALUE(dirp, F_ALIAS));
+			haveError = 1;
+			IssueMessage(LOG_INFO, "%s may not delete %s",
+				     UserAlias, FINDVALUE(dirp, F_ALIAS));
+			FreeDir(&dirp);		/* XXX */
+			continue;
+		}
+d1089 2
+a1090 2
+		if (*FINDVALUE(dirp, F_ALIAS))
+			kdb_del_entry(FINDVALUE(dirp, F_ALIAS));
+d1092 19
+a1110 19
+		/* delete the index entries */
+		MakeLookup(dirp, *entp, unmake_lookup);
+		FreeDir(&dirp);
+
+		/* mark it as dead and put it out to pasture */
+		SetDeleteMark();
+		set_date(1);
+		store_ent();
+		done++;
+	}
+
+	free((char *) entries);
+	Unlock("DoDelete");
+
+	if (haveError)
+		DoReply(LR_ERROR, "%d errors, %d successes on delete command.",
+			count - done, done);
+	else
+		DoReply(LR_OK, "%d entries deleted.", done);
+d1116 1
+a1116 1
+static int 
+d1119 12
+a1130 14
+	if (TFile == NULL)
+	{
+		TFile = strdup(TEMPFILE);
+		mktemp(TFile);
+	}
+	if ((TempOutput = fopen(TFile, "w+")) == NULL)
+	{
+		IssueMessage(LOG_ERR, "OpenTempOut: fopen(%s) failed: %s",
+			TFile, strerror(errno));
+		free(TFile);
+		TFile = NULL;
+		return (0);
+	}
+	unlink(TFile);
+d1132 1
+a1132 1
+	return (1);
+d1138 1
+a1138 1
+static void 
+d1141 1
+a1141 1
+	int	c;
+d1143 8
+a1150 8
+	rewind(TempOutput);	/* back to the beginning */
+	{
+		while ((c = getc(TempOutput)) != EOF)
+			putc(c, Output);
+	}
+	fclose(TempOutput);	/* close; already unlinked */
+	TempOutput = NULL;
+	fflush(Output);
+d1156 1
+a1156 1
+static void 
+d1158 2
+a1159 2
+	int cmd;
+	ARG *arg;
+d1161 10
+a1170 12
+	fprintf(Output, "%d: %s", LR_ECHO, arg->aFirst);
+	for (arg = arg->aNext;
+	     arg;
+	     arg = arg->aNext)
+	{
+		putc(' ', Output);
+		if (arg->aType == RETURN)
+			fputs(cmd == C_QUERY ? "return" : "make", Output);
+		else
+		{
+			if (arg->aType & VALUE)
+				fputs(arg->aFirst, Output);
+d1172 3
+a1174 3
+			if (arg->aType & TILD_E)
+				putc('~', Output);
+			else
+d1176 4
+a1179 5
+			if (arg->aType & EQUAL)
+				putc('=', Output);
+			if (arg->aType & VALUE2)
+				fputs(arg->aSecond, Output);
+		}
+d1181 2
+a1182 1
+	putc('\n', Output);
+d1188 1
+a1188 1
+static int 
+d1190 1
+a1190 1
+	char *string;
+d1192 2
+a1193 2
+	char	decrypted[MAXSTR];
+	char	*pw = PasswordOf(User);
+d1195 5
+a1199 5
+	if (!*pw)
+		return (0);
+	crypt_start(pw);
+	(void) decrypt(decrypted, string);
+	return (!strcmp(decrypted, Challenge));
+d1207 1
+a1207 1
+	int byteCount;
+d1209 10
+a1218 3
+	static char string[MAXSTR];
+	char	*cp;
+	static int seeded = 0;
+d1220 1
+a1220 9
+	if (!seeded)
+	{
+		seeded = 1;
+		srand((int) time((INT32 *) NULL) ^ getpid());
+	}
+	for (cp = string; byteCount; cp++, byteCount--)
+		*cp = (rand() & 0x3f) + 0x21;
+
+	return (string);
+d1228 1
+a1228 1
+	QDIR User;
+d1230 2
+a1231 2
+	int	len;
+	char	*password;
+d1233 2
+a1234 3
+	/* find the user's password */
+	if (!*(password = FINDVALUE(User, F_PASSWORD)))
+	{
+d1236 6
+a1241 6
+		if (*(password = FINDVALUE(User, F_UNIVID)))
+		{
+			len = strlen(password);
+			if (len > 8)
+				password += len - 8;
+		} else
+d1243 3
+a1245 3
+			password = "";
+	}
+	return (password);
+d1252 1
+a1252 1
+static int 
+d1254 2
+a1255 2
+	QDIR User;
+	char *username;
+d1257 26
+a1282 27
+	char	buf[256];
+	char	*email = FINDVALUE(User, F_EMAIL);
+	char	*new, *spnt, *epnt;
+	int	result;
+
+	/*
+	 * Fix up email field by omitting leading whitespace and
+	 * terminating it at the first white space.
+	 */
+	new = spnt = strdup(email);
+	while (isspace(*spnt))
+		spnt++;
+	epnt = spnt;
+	while (*epnt && !isspace(*epnt))
+		epnt++;
+	*epnt = '\0';
+	if (!TrustHp.h_name || !*spnt)
+		result = 1;
+	else
+	{
+		(void) sprintf(buf, "%s@@%s", username, TrustHp.h_name);
+		result = stricmp(spnt, buf);
+	}
+	free(new);
+	if (result)
+		DoReply(LR_NOEMAIL, "You can't login that way.");
+	return (!result);
+d1311 1
+d1321 1
+a1321 1
+	register char *s, *find;
+d1323 2
+a1324 2
+	register char c, sc;
+	register int len;
+d1326 11
+a1336 11
+	if ((c = *find++) != 0) {
+		len = strlen(find);
+		do {
+			do {
+				if ((sc = *s++) == 0)
+					return ((char *) 0);
+			} while (sc != c);
+		} while (strncmp(s, find, len) != 0);
+		s--;
+	}
+	return ((char *)s);
+d1338 1
+@
+
+
+1.72
+log
+@working version checkpoint.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.71 1995/02/28 19:47:40 p-pomes Exp p-pomes $";
+a50 1
+#ifdef KRB4_AUTH
+d54 1
+d62 3
+d440 1
+a440 1
+ * identify user, using Kerberos authentication.
+a441 1
+#ifdef KRB4_AUTH
+d446 1
+d450 6
+a455 2
+	if (arg->aNext)
+		DoReply(LR_SYNTAX, "%s:extra arguments.", me);
+d457 75
+a531 10
+	{
+		struct sockaddr_in peername, myname;
+		int	namelen = sizeof (peername);
+		int	status;
+		INT32	authopts;
+		AUTH_DAT auth_data;
+		KTEXT_ST clt_ticket;
+		Key_schedule sched;
+		char	instance[INST_SZ];
+		char	version[9];
+d538 19
+a556 2
+		char	*srvtab = KRBSRVTAB;
+		char	*heroinst = KRBHERO;
+d558 10
+d569 19
+a587 2
+		fprintf(Output, "%d:Login started; send Kerberos mutual authenticator.\n", LR_LOGIN);
+		fflush(Output);
+d589 2
+a590 5
+		/*
+		 * To verify authenticity, we need to know the address of the
+		 * client.
+		 */
+		if (getpeername(0, (struct sockaddr *) &peername, &namelen) < 0)
+d592 17
+a608 3
+			IssueMessage(LOG_ERR, "DoKLogin: getpeername: %s",
+				strerror(errno));
+			DoReply(LR_INTERNAL, "getpeername: %s", strerror(errno));
+d611 10
+a620 8
+
+		/* for mutual authentication, we need to know our address */
+		namelen = sizeof (myname);
+		if (getsockname(0, (struct sockaddr *) &myname, &namelen) < 0)
+		{
+			IssueMessage(LOG_ERR, "DoKLogin: getsockname: %s",
+				strerror(errno));
+			DoReply(LR_INTERNAL, "getsockname: %s", strerror(errno));
+d625 6
+a630 3
+		 * Read the authenticator and decode it.  Since we don't care
+		 * what the instance is, we use "*" so that krb_rd_req
+		 * will fill it in from the authenticator.
+d632 6
+a637 8
+		(void) strcpy(instance, "*");
+
+		/* we want mutual authentication */
+		authopts = KOPT_DO_MUTUAL;
+		status = krb_recvauth(authopts, 0, &clt_ticket, "ns",
+				instance, &peername, &myname, &auth_data, 
+				 srvtab, sched, version);
+		if (status != KSUCCESS)
+d639 1
+a639 5
+			IssueMessage(LOG_INFO, "Login failed: (%d) %s", status, krb_err_txt[status]);
+			DoReply(LR_ERROR, "Login failed: (%d) %s", status, krb_err_txt[status]);
+		} else
+		{
+			char	realm[REALM_SZ];
+d641 5
+a645 2
+			/* Check the version string (8 chars) */
+			if (strncmp(version, "VERSION9", 8))
+d647 4
+a650 45
+				/*
+				 * didn't match the expected version.
+				 * could do something different, but we just
+				 * log an error and continue.
+				 */
+				version[8] = '\0';	/* make null term */
+				IssueMessage(LOG_ERR, "Version mismatch: '%s' isn't 'VERSION9'",
+					    version);
+			}
+
+			/* Check to make sure it's in our local realm */
+			krb_get_lrealm(realm, 1);
+			if (strcmp(auth_data.prealm, realm))
+			{	/* if not equal */
+				DoReply(LR_ERROR, "Login failed.");
+				IssueMessage(LOG_INFO, "login: realm %s not local realm.",
+					    auth_data.prealm);
+				return;
+			}
+			/*
+			 * Make sure the instance is a reasonable one (null or KRBHERO).
+			 * Dissallow other instances, since who knows what level of privilege
+			 * a particular instance means at a given site?
+			 */
+			if (*auth_data.pinst && strcmp(auth_data.pinst,KRBHERO)) {	/* not null or phhero */
+				DoReply(LR_ERROR, "Login failed.");
+				IssueMessage(LOG_INFO, "login: %s.%s not accepted", 
+							 auth_data.pname,auth_data.pinst);
+				return;
+			}
+
+			/*
+			 * The user has successfully authenticated, so check
+			 * for matching alias, log in and send reply.
+			 *
+			 * Kerberos principal == our alias is auth_data.pname
+			 * Kerberos instance auth_data.pinst says whether it's
+			 * a ph hero.
+			 */
+			if (User)
+				FreeDir(&User);
+#define WAIT_SECS	1
+			if (!GonnaRead("DoKlogin"))
+				/* Lock routines give their own errors */ ;
+			else
+d652 4
+a655 17
+				INT32	xtime = time((INT32 *) NULL);
+
+				AmHero = 0;
+				UserAlias = NULL;
+				User = GetAliasDir(auth_data.pname);
+				Unlock("DoKlogin");
+				if (!User)
+				{
+					SleepTil(xtime + WAIT_SECS);
+					DoReply(LR_ERROR, "Login failed.");
+					IssueMessage(LOG_INFO, "login: alias %s does not exist", auth_data.pname);
+				} else
+				{
+					SleepTil(xtime + WAIT_SECS);
+					DoReply(LR_OK, "%s:Hi how are you?", auth_data.pname);
+					LocalUser = 1;
+					AmHero = !strcmp(auth_data.pinst, KRBHERO) &&
+d657 3
+a659 4
+					UserAlias = FINDVALUE(User, F_ALIAS);
+					UserEnt = CurrentIndex();
+					IssueMessage(LOG_INFO, "%s logged in", UserAlias);
+				}
+a663 7
+#else /* KRB4_AUTH */
+static void 
+DoKLogin(arg)
+	ARG *arg;
+{
+	DoReply(LR_SYNTAX, "%s:klogin not available.", arg->aFirst);
+}
+d665 1
+a665 1
+
+d667 1
+a667 1
+ * identify user
+@
+
+
+1.71
+log
+@Delete Kerberos principal when alias is deleted.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.71 1995/02/22 01:05:15 p-pomes Exp p-pomes $";
+d51 1
+a51 1
+#ifdef KERBEROS
+d55 3
+a57 3
+#include <des.h>
+#include <krb.h>
+#endif /* KERBEROS */
+a98 1
+
+d349 1
+d353 1
+a353 1
+#endif
+d360 23
+a382 1
+#endif
+d439 1
+a439 8
+#ifndef KERBEROS
+static void 
+DoKLogin(arg)
+	ARG *arg;
+{
+	DoReply(LR_SYNTAX, "%s:Kerberos login not available.", arg->aFirst);
+}
+#else
+d590 8
+a598 1
+#endif /*KERBEROS*/
+d958 1
+a958 1
+#if defined(KERBEROS) && defined(KDB)
+d961 1
+a961 1
+#endif /* KERBEROS && KDB */
+@
+
+
+1.70
+log
+@Added support for NoMeta property to disallow lookups with metacharacters.
+Fields with it require an exact match.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.69 1994/09/09 20:17:03 p-pomes Exp p-pomes $";
+d446 1
+a446 1
+#define KRBSRVTAB ""		/* use the kerberos default (/etc/srvtab) */
+d455 1
+a455 1
+		fprintf(Output, "%d:Login started; send kerberos mutual authenticator.\n", LR_LOGIN);
+d538 2
+a539 2
+			 * kerberos principal == our alias is auth_data.pname
+			 * kerberos instance auth_data.pinst says whether it's
+d936 4
+@
+
+
+1.69
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.68 1994/06/09 19:06:49 paul Exp p-pomes $";
+d806 2
+@
+
+
+1.68
+log
+@Null pointer de-reference fix.
+
+/pbp
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.67 1994/05/17 21:56:54 paul Exp paul $";
+d80 1
+a80 1
+static void SleepTil __P((long));
+d439 1
+a439 1
+		long	authopts;
+d549 1
+a549 1
+				long	xtime = time((long *) NULL);
+d616 1
+a616 1
+	long	xtime;
+d634 1
+a634 1
+		xtime = time((long *) NULL);
+d702 1
+a702 1
+	long xtime;
+d706 1
+a706 1
+	span = xtime - time((long *) 0);
+d720 1
+a720 1
+	long	*entry;
+d883 1
+a883 1
+	long	*entries, *entp;
+d1062 1
+a1062 1
+		srand((int) time((long *) NULL) ^ getpid());
+@
+
+
+1.67
+log
+@Exit if any TempOutput related errors.  Otherwise state machines in other
+programs will get confused.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.66 1994/05/05 21:21:51 paul Exp paul $";
+d149 2
+@
+
+
+1.66
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.65 1994/03/21 13:21:31 paul Exp paul $";
+d210 1
+a210 1
+		goto done;
+d404 1
+a404 1
+	if (fprintf(TempOutput, "%s", buf) == EOF)
+d406 3
+@
+
+
+1.65
+log
+@Added function declaration in case of strstr().
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.64 1994/03/13 20:17:59 paul Exp paul $";
+a209 1
+		IssueMessage(LOG_INFO, "Couldn't open temp file.\n");
+d387 1
+d397 2
+a401 1
+		IssueMessage(LOG_INFO, "Couldn't open temp file.\n");
+d404 3
+a406 14
+	vfprintf(TempOutput, scratchFormat, args);
+	va_end(args);
+	{
+		char	buf[4096];
+
+#ifdef __STDC__
+		va_start(args, fmt);
+#else /* !__STDC__ */
+		va_start(args);
+#endif /* __STDC__ */
+		vsprintf(buf, scratchFormat, args);
+		va_end(args);
+		/* IssueMessage(LOG_DEBUG, "%s", buf); */
+	}
+d459 3
+a461 2
+			IssueMessage(LOG_ERR, "getpeername: %m");
+			DoReply(LR_INTERNAL, "getpeername: %m");
+d469 3
+a471 2
+			IssueMessage(LOG_ERR, "getsockname: %m");
+			DoReply(LR_INTERNAL, "getsockname: %m");
+d524 1
+a524 1
+				IssueMessage(LOG_INFO, "login: %s.%s not accepted.", 
+d554 1
+a554 1
+					IssueMessage(LOG_INFO, "login: alias %s does not exist.", auth_data.pname);
+d564 1
+a564 1
+					IssueMessage(LOG_INFO, "%s logged in.", UserAlias);
+d637 1
+a637 1
+			IssueMessage(LOG_INFO, "login: alias %s does not exist.", ClaimUser);
+d655 1
+a655 1
+				IssueMessage(LOG_INFO, "Password incorrect for %s.", ClaimUser);
+d676 1
+a676 1
+			IssueMessage(LOG_INFO, "%s logged in.", UserAlias);
+d891 1
+a891 1
+		IssueMessage(LOG_INFO, "%s is not authorized to delete entries.", UserAlias);
+d924 1
+a924 1
+			IssueMessage(LOG_INFO, "%s may not delete %s.",
+d963 2
+@
+
+
+1.64
+log
+@*** empty log message ***
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.63 1994/03/13 20:11:07 paul Exp paul $";
+d81 3
+@
+
+
+1.63
+log
+@Added strdup() source.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: commands.c,v 1.62 1994/03/12 00:24:45 paul Exp paul $";
+d193 1
+a193 1
+	if (*CommandText && !strstr(CommandText, "password="))
+@
+
+
+1.62
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d1132 52
+@
+
+
+1.61
+log
+@Don't log password changes.  Fixed a *nasty* little bug that caused
+malloc() arena corruption and unexpected "oops: lost connection to
+server" segmentation faults.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.60
+log
+@On the road to finding a malloc bug
+@
+text
+@d161 2
+a162 1
+	IssueMessage(LOG_INFO, "%s", CommandText);
+d1084 1
+a1084 1
+	while (!isspace(*epnt))
+@
+
+
+1.59
+log
+@Implement MAILDOMAIN and CHARSET siteinfo fields.
+Make fields marked as LocalPub invisible, not just un-searchable, to
+non-local users.
+@
+text
+@a27 1
+static ARG *LastArg;
+d67 2
+a68 2
+FILE	*TempOutput = 0;
+static char *TFile = 0;
+d93 1
+a93 1
+QDIR	User = 0;		/* the currently logged in user */
+d96 1
+a96 1
+char	*UserAlias = 0;		/* the alias of the currently logged in user */
+d99 1
+a99 1
+char	*ClaimUser = 0;		/* the identity the user has claimed, but not
+d101 1
+a101 1
+char	*Challenge = 0;		/* challenge string */
+d112 2
+d184 1
+a184 1
+			ClaimUser = 0;
+d186 1
+a186 1
+			Challenge = 0;
+d228 1
+d240 1
+a240 1
+	arg = NEW(ARG);
+d261 1
+a261 1
+		while (fgets(banner, sizeof (banner), bfp))
+d266 1
+a266 1
+				*nl = 0;
+d519 1
+a519 1
+				UserAlias = 0;
+d600 1
+a600 1
+		UserAlias = 0;
+d688 1
+a688 1
+	static QDIR dirp;
+d730 1
+a730 1
+		UserAlias = 0;
+d793 1
+a793 1
+	*cp = 0;
+d898 1
+d1072 1
+a1072 1
+	char	*pnt;
+d1079 8
+a1086 8
+	email = strcpy(malloc(strlen(email) + 1), email);
+	while (isspace(*email))
+		email++;
+	pnt = email;
+	while (!isspace(*pnt))
+		pnt++;
+	*pnt = '\0';
+	if (!TrustHp.h_name || !*email)
+d1091 1
+a1091 1
+		result = stricmp(email, buf);
+d1093 1
+@
+
+
+1.58
+log
+@*** empty log message ***
+@
+text
+@d51 4
+a54 4
+extern FILE *Input;		/* mqi.c */
+extern FILE *Output;		/* mqi.c */
+extern int InputType;		/* mqi.c */
+extern char Foreign[80];	/* mqi.c */
+d57 4
+a60 3
+extern int Daemon;		/* mqi.c */
+extern int Quiet;		/* mqi.c */
+extern char *DBState;		/* mqi.c */
+d312 1
+a313 2
+#ifndef MAILFIELD
+#define MAILFIELD "alias"
+d318 3
+a320 2
+#ifndef MAILBOX
+#define MAILBOX "email"
+a321 1
+	DoReply(-LR_OK, "%d:mailbox:%s", ++n, MAILBOX);
+d529 1
+d643 1
+d806 3
+a808 1
+	for (fd = FieldDescriptors; *fd; fd++)
+d810 1
+d831 1
+a831 1
+		} else if (!(fd = FindFD(arg->aFirst)))
+@
+
+
+1.57
+log
+@Replaced make_str() with strdup().
+@
+text
+@d318 4
+@
+
+
+1.56
+log
+@Fixed typo.
+@
+text
+@d115 1
+a115 1
+		LastArg->aFirst = make_str(value);
+d124 1
+a124 1
+			LastArg->aSecond = make_str(value);
+d130 1
+a130 1
+			LastArg->aFirst = make_str(value);
+d556 1
+a556 1
+		Challenge = make_str(RandomString(42));
+d558 1
+a558 1
+		ClaimUser = make_str(arg->aFirst);
+d685 1
+a685 1
+	arg->aFirst = make_str("query");
+d689 2
+a690 2
+	arg->aFirst = make_str("alias");	/* should be alias */
+	arg->aSecond = make_str(fname);
+d918 1
+a918 1
+		TFile = make_str(TEMPFILE);
+@
+
+
+1.55
+log
+@*** empty log message ***
+@
+text
+@d385 1
+a385 1
+		DoReply(LR_SYNTAX, "%s:Kerberos login not available.", me);
+@
+
+
+1.54
+log
+@Made TrustHp a real hostent instead of a pointer to one.
+@
+text
+@a29 1
+#ifdef KERBEROS
+a30 1
+#else /* !KERBEROS */
+a33 2
+#endif /* KERBEROS */
+
+a75 3
+#ifdef KERBEROS
+	DoKLogin,
+#else /* !KERBEROS */
+a76 1
+#endif /* KERBEROS */
+a85 5
+#ifdef KERBEROS 
+	(void (*) __P((ARG *))) 0,
+	DoInfo,
+	(void (*) __P((ARG *))) 0,
+#else /* !KERBEROS */
+d89 1
+a89 1
+#endif /* KERBEROS */
+a98 1
+#ifndef KERBEROS 
+a102 1
+#endif /* !KERBEROS */
+a153 3
+#ifdef KERBEROS
+	int which = MAX_SYSLOG;
+#else /* KERBEROS */
+a154 1
+#endif /* KERBEROS */
+a174 1
+#ifndef KERBEROS 
+a186 1
+#endif /* !KERBEROS */
+d312 4
+a315 1
+	DoReply(-LR_OK, "%d:mailfield:alias", ++n);
+a376 1
+#ifdef KERBEROS
+d378 1
+a378 1
+ * identify user
+d380 8
+d408 9
+d451 2
+a452 2
+				instance, &peername, &myname, &auth_data, "",
+				 sched, version);
+d483 11
+d525 1
+a525 1
+					AmHero = !strcmp(auth_data.pinst, "phhero") &&
+d536 1
+a536 11
+/*
+ * A non-kerberized client has tried to login, which we do not allow.
+ */
+static void 
+DoLogin(arg)
+	ARG *arg;
+{
+	DoReply(LR_SYNTAX, "This is a Kerberized name server; you must use a kerberized client to log in");
+}
+#else /* !KERBEROS */
+
+a654 1
+#endif /* !KERBEROS */
+d720 4
+a983 1
+#ifndef KERBEROS
+a1047 1
+#endif /* !KERBEROS */
+@
+
+
+1.53
+log
+@Comment out debug syslog.
+@
+text
+@d67 1
+a67 1
+extern struct hostent *TrustHp;	/* qi.c */
+d1074 1
+a1074 1
+	if (!TrustHp || !*email)
+d1078 1
+a1078 1
+		(void) sprintf(buf, "%s@@%s", username, TrustHp->h_name);
+@
+
+
+1.52
+log
+@GonnaWrite(), GonnaRead(), and Unlock() now take a char string arg.
+@
+text
+@d391 1
+a391 1
+		IssueMessage(LOG_DEBUG, "%s", buf);
+@
+
+
+1.51
+log
+@POSIX changes: bzero() -> memset(), index() -> strchr().
+@
+text
+@d497 1
+a497 1
+			if (!GonnaRead())
+d505 3
+a507 1
+				if (!(User = GetAliasDir(auth_data.pname)))
+d588 1
+a588 1
+	else if (!GonnaRead())
+d598 1
+a654 1
+	Unlock();
+d858 1
+a858 1
+	if (!GonnaWrite())
+d865 1
+a866 1
+		Unlock();
+d899 1
+a899 1
+	Unlock();
+@
+
+
+1.50
+log
+@Use temporary variable for password instead of multiple function calls.
+@
+text
+@d259 1
+a259 1
+	bzero((void *) arg, sizeof (ARG));
+d281 1
+a281 1
+			char	*nl = index(banner, '\n');
+@
+
+
+1.49
+log
+@Made Quiet a global so command echoing can be turned off for pipes
+in commands.c .
+@
+text
+@d574 1
+a574 1
+	char	*me;
+d594 3
+a596 1
+		if (!(User = GetAliasDir(ClaimUser)))
+d602 3
+d606 2
+a607 1
+			   ((*me == 'c' || *me == 'C') && strcmp(arg->aFirst, PasswordOf(User)))
+d609 2
+a610 5
+			   ((*me == 'c' || *me == 'C') &&
+			    strncmp(crypt(arg->aFirst, arg->aFirst), PasswordOf(User), 13))
+#endif
+#ifdef EMAIL_AUTH
+			   || ((*me == 'e' || *me == 'E') && !OkByEmail(User, arg->aFirst))
+@
+
+
+1.48
+log
+@Guard against NULL CommandTable entries.
+@
+text
+@d62 1
+d180 1
+a180 1
+	if (InputType == IT_FILE || InputType == IT_PIPE || OP_VALUE(ECHO_OP))
+@
+
+
+1.47
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d210 9
+a218 1
+		(*CommandTable[cmd - 1]) (s_args);
+@
+
+
+1.46
+log
+@Print server revision level when printing prod.bnr file.
+@
+text
+@d30 25
+d244 1
+a244 1
+ARG	*
+d258 1
+a258 1
+void 
+d291 1
+a291 1
+void 
+d317 1
+a317 1
+void 
+d333 1
+a333 1
+void 
+d390 1
+a390 1
+void 
+d519 1
+a519 1
+void 
+d530 1
+a530 1
+void 
+a534 1
+	char	*RandomString();
+d561 1
+a561 1
+void 
+d647 1
+a647 1
+void 
+d697 1
+a697 1
+void 
+d715 1
+a715 1
+void 
+d736 1
+a736 1
+void 
+d779 1
+a779 1
+void 
+d791 1
+a791 1
+int 
+d819 1
+a819 1
+void 
+d897 1
+a897 1
+int 
+d919 1
+a919 1
+void 
+d937 1
+a937 1
+void 
+d972 1
+a972 1
+int 
+d989 1
+a989 1
+char	*
+d1011 1
+a1011 1
+char	*
+d1039 1
+a1039 1
+int 
+@
+
+
+1.45
+log
+@Kerberos changes from Brown University.
+@
+text
+@d38 1
+d237 1
+a237 1
+	char	banner[MAXPATHLEN];
+d243 2
+@
+
+
+1.44
+log
+@Allow login to read-only database but disallow all changes.  This allows
+terminal server users to validate their passwords while the database is
+marked read-only for updates.
+@
+text
+@d19 8
+d53 3
+d57 1
+d67 5
+d75 1
+d85 1
+d90 1
+d142 3
+d146 1
+d167 1
+d180 1
+d358 141
+d615 1
+d941 1
+d1006 1
+@
+
+
+1.43
+log
+@Added LocalPub changes.
+@
+text
+@d394 1
+a394 4
+			if (ReadOnly)
+				DoReply(LR_READONLY, "login not allowed to read-only database.");
+			else
+				DoReply(LR_ERROR, "Login failed.");
+d411 2
+a412 7
+				if (ReadOnly)
+					DoReply(LR_READONLY, "login not allowed to read-only database.");
+				else
+				{
+					DoReply(LR_ERROR, "Login failed.");
+					IssueMessage(LOG_INFO, "Password incorrect for %s.", ClaimUser);
+				}
+a414 4
+		} else if (ReadOnly)
+		{
+			DoReply(LR_COULDA_BEEN, "login not allowed to read-only database.");
+			FreeDir(&User);
+d813 1
+a813 1
+ * extract the password form a dir
+d871 1
+a871 8
+	{
+		if (ReadOnly)
+		{
+			DoReply(LR_READONLY, "login not allowed to read-only database.");
+			result = 1;
+		} else
+			DoReply(LR_NOEMAIL, "You can't login that way.");
+	}
+@
+
+
+1.42
+log
+@Writing to constant strings is a *bad* thing.
+@
+text
+@d568 2
+@
+
+
+1.41
+log
+@Strip leading and trailing whitespace from email field for login
+purposes.
+@
+text
+@d866 1
+@
+
+
+1.40
+log
+@Make sure TempOutput is open() before writing to it.
+@
+text
+@d851 1
+a851 1
+ ************************************************************************/
+d859 1
+d862 10
+@
+
+
+1.39
+log
+@Make email authorization comparison case-insensitive.
+@
+text
+@d137 1
+a137 1
+	if (!OpenTempOut())
+d310 6
+d745 1
+@
+
+
+1.38
+log
+@Now supports the less-than-all-powerful hero.  If the hero field
+contains the string "opr", "oper", or "operator", then the user
+is allowed nearly unlimited proxy-like priviledges.  The exception
+is that the operator may not change an entry of any user that has
+a non-empty hero field.  Use is for consultants so that they can
+change passwords and email entries, but not name or id fields.
+In addition they can't add or delete entries.
+@
+text
+@d859 1
+a859 1
+		result = strcmp(email, buf);
+@
+
+
+1.37
+log
+@rand/srand are more commone than random/srandom.
+@
+text
+@d63 1
+d350 1
+d382 1
+d423 2
+d427 9
+a435 1
+			AmHero = *FINDVALUE(User, F_HERO);
+@
+
+
+1.36
+log
+@Up-cased all #define's.
+@
+text
+@d794 1
+a794 1
+		srandom((int) time((long *) NULL) ^ getpid());
+d797 1
+a797 1
+		*cp = (random() & 0x3f) + 0x21;
+@
+
+
+1.35
+log
+@Revised #include file list.
+@
+text
+@d196 1
+a196 1
+	arg = New(ARG);
+d212 1
+a212 2
+	strcpy(banner, Database);
+	strcat(banner, ".bnr");
+d268 1
+a268 1
+	DoReply(-LR_OK, "%d:maildomain:%s", ++n, MailDomain);
+d270 2
+a271 2
+	DoReply(-LR_OK, "%d:administrator:%s", ++n, Admin);
+	DoReply(-LR_OK, "%d:passwords:%s", ++n, Passw);
+d422 2
+a423 2
+			AmHero = *FindValue(User, F_HERO);
+			UserAlias = FindValue(User, F_ALIAS);
+d663 1
+a663 1
+				count, FindValue(dirp, F_ALIAS));
+d666 1
+a666 1
+				     UserAlias, FindValue(dirp, F_ALIAS));
+d698 1
+a698 1
+		TFile = make_str(Tempfile);
+d813 1
+a813 1
+	if (!*(password = FindValue(User, F_PASSWORD)))
+d816 1
+a816 1
+		if (*(password = FindValue(User, F_UNIVID)))
+d838 1
+a838 1
+	char	*email = FindValue(User, F_EMAIL);
+@
+
+
+1.34
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a10 3
+#include "conf.h"
+#include <stdio.h>
+#include <ctype.h>
+a17 4
+#include "commands.h"
+#include "options.h"
+#include "field.h"
+#include "qi.h"
+@
+
+
+1.33
+log
+@Random fixes.
+@
+text
+@a12 1
+#include <strings.h>
+@
+
+
+1.32
+log
+@*** empty log message ***
+@
+text
+@d15 1
+d17 3
+d48 1
+a48 1
+void	(*CommandTable[])(ARG *) =
+d66 1
+a66 1
+	(void (*)(ARG *)) 0
+d302 2
+a303 2
+DoReply(code, fmt, va_list)
+	int code
+d625 2
+a626 1
+DoDelete(ARG * arg)
+d703 1
+a703 1
+OpenTempOut(void)
+a704 3
+	char	*make_str();
+	char	*mktemp();
+
+d725 1
+a725 1
+DumpOutput(void)
+@
+
+
+1.31
+log
+@moved matching paren out if #ifdef wrapper.
+@
+text
+@d3 7
+a9 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d23 2
+a24 2
+static Arg *TheArgs = NULL;
+static Arg *LastArg;
+d26 9
+a34 8
+extern FILE *Input;       /* mqi.c */
+extern FILE *Output;      /* mqi.c */
+extern int InputType;       /* mqi.c */
+extern char Foreign[80];    /* mqi.c */
+extern char CommandText[];    /* language.l */
+extern char *CommandSpot;     /* language.l */
+extern int Daemon;        /* mqi.c */
+extern char *DBState;       /* mqi.c */
+d36 2
+a37 1
+extern struct hostent *TrustHostEnt; /* qi.c */
+d40 1
+a40 1
+FILE   *TempOutput = 0;
+d43 2
+a44 2
+int   DiscardIt;
+void   (*CommandTable[]) (Arg *theArg) =
+d46 17
+a62 17
+      DoQuery,
+      DoChange,
+      DoLogin,
+      DoAnswer,
+      DoLogout,
+      DoFields,
+      DoAdd,
+      DoDelete,
+      DoSet,
+      DoQuit,
+      DoStatus,
+      DoId,
+      DoHelp,
+      DoAnswer,
+      DoInfo,
+      DoAnswer,
+      (void (*)(Arg *theArg))0
+d65 57
+a121 52
+Dir   User = 0;         /* the currently logged in user */
+int   AmHero = 0;       /* is currently logged in user the Hero? */
+char   *UserAlias = 0;      /* the alias of the currently logged in user */
+int   UserEnt = 0;      /* entry number of current user */
+
+char   *ClaimUser = 0;      /* the identity the user has claimed, but not
+		 * yet verified */
+char   *Challenge = 0;      /* challenge string */
+int   State = S_IDLE;
+
+/***********************************************************************
+* Add a value to an argument list
+***********************************************************************/
+void AddValue(char *theValue,int theType)
+{
+  if (!TheArgs)
+  {
+    LastArg = TheArgs = FreshArg();
+    LastArg->aFirst = make_str(theValue);
+    LastArg->aType = theType;
+  }
+  else
+  {
+    if (LastArg->aType == VALUE && theType & EQUAL)
+      LastArg->aType |= theType;
+    else if (LastArg->aType&EQUAL && !(LastArg->aType&VALUE2))
+    {
+      LastArg->aType |= VALUE2;
+      LastArg->aSecond = make_str(theValue);
+    }
+    else
+    {
+      LastArg->aNext = FreshArg();
+      LastArg = LastArg->aNext;
+      LastArg->aType = theType;
+      LastArg->aFirst = make_str(theValue);
+    }
+  }
+}
+
+/***********************************************************************
+* Complain about extraneous junk
+***********************************************************************/
+void Unknown(char *theJunk)
+{
+  fprintf(Output, "%d:%s:%s\n", LR_NOCMD, theJunk, "Command not recognized.");
+}
+
+/***********************************************************************
+* Execute a command
+***********************************************************************/
+void DoCommand(int theCommand)
+d124 84
+a207 84
+  char c;
+  int which = theCommand == C_CLEAR ? 6 : MAX_SYSLOG;
+  
+  c = CommandText[which];
+  CommandText[which] = '\0';
+  *CommandSpot = '\0';
+  IssueMessage(LOG_INFO, "%s", CommandText);
+  CommandText[which] = c;
+  if (InputType == IT_FILE || InputType == IT_PIPE || OP_VALUE(ECHO_OP))
+    PrintCommand(theCommand, TheArgs);    /* echo the cmd */
+
+  if (Daemon && GetState())
+  {
+    fprintf(Output, "555:Database shut off (%s).\n", DBState);
+    exit(0);
+  }
+
+  if (!OpenTempOut())
+  {
+    fprintf(Output, "%d:couldn't open temp file.\n", LR_INTERNAL);
+    IssueMessage(LOG_INFO, "Couldn't open temp file.\n");
+    goto done;
+  }
+
+  if (State == S_E_PENDING)
+  {
+    if (DiscardIt || theCommand != C_ANSWER && theCommand != C_CLEAR && theCommand != C_EMAIL)
+    {
+      DoReply(-LR_NOANSWER, "Expecting answer, clear, or email; login discarded.");
+      State = S_IDLE;
+      free(ClaimUser);
+      ClaimUser = 0;
+      free(Challenge);
+      Challenge = 0;
+    }
+  }
+
+  if (DiscardIt)
+    DoReply(LR_SYNTAX, "Command not understood.");
+  else
+    (*CommandTable[theCommand - 1]) (TheArgs);
+
+  DumpOutput();
+
+done:
+  FreeArgs(TheArgs);
+  TheArgs = NULL;
+  DiscardIt = 0;
+}
+
+/***********************************************************************
+* Free the argument list
+***********************************************************************/
+void FreeArgs(Arg *theArg)
+{
+  Arg  *theNext;
+
+  if (theArg)
+    for (theNext=theArg->aNext; theArg; theArg=theNext)
+    {
+      theNext = theArg->aNext;
+      if (theArg->aFirst)
+	free(theArg->aFirst);
+      if (theArg->aSecond)
+	free(theArg->aSecond);
+      free((char *)theArg);
+    }
+}
+
+/***********************************************************************
+* create a fresh argument structure
+***********************************************************************/
+Arg *FreshArg()
+{
+  Arg  *theArg;
+
+  theArg = New(Arg);
+  bzero((void*)theArg,sizeof(Arg));
+  return (theArg);
+}
+
+/***********************************************************************
+* status--give the database status
+***********************************************************************/
+d209 31
+a239 26
+void DoStatus(Arg *theArg)
+{
+  char banner[MAXPATHLEN];
+  FILE *bfp;
+  
+  strcpy(banner,Database); strcat(banner,".bnr");
+  if (bfp=fopen(banner,"r"))
+  {
+    while (fgets(banner,sizeof(banner),bfp))
+    {
+      char *nl = index(banner,'\n');
+      if (nl) *nl = 0;
+      DoReply(LR_PROGRESS,banner);
+    }
+    fclose(bfp);
+  }
+  if (ReadOnly)
+    DoReply(LR_RONLY,"Database ready, read only (%s).", DBState);
+  else
+    DoReply(LR_OK,"Database ready.");
+}
+
+/***********************************************************************
+* id--this command is a no-op; the client issues it only to put
+* the name of the calling user into the nameserver's logfiles
+***********************************************************************/
+d241 3
+a243 1
+void DoId(Arg *theArg)
+d245 1
+a245 1
+  DoReply(LR_OK,"Thanks.");
+d248 3
+a250 3
+/***********************************************************************
+* quit
+***********************************************************************/
+d252 9
+a260 7
+void DoQuit(Arg *theArg)
+{
+  fprintf(Output,"%d:%s\n",LR_OK, "Bye!");
+  fflush(Output);
+  IssueMessage(LOG_INFO,"Done 0");
+  closelog();
+  exit(0);
+d263 3
+a265 3
+/***********************************************************************
+* info
+***********************************************************************/
+d267 3
+a269 1
+void DoInfo(Arg *theArg)
+d271 7
+a277 6
+  short n=0;
+  DoReply(-LR_OK,"%d:maildomain:%s",++n,MailDomain);
+  DoReply(-LR_OK,"%d:mailfield:alias",++n);
+  DoReply(-LR_OK,"%d:administrator:%s",++n,Admin);
+  DoReply(-LR_OK,"%d:passwords:%s",++n,Passw);
+  DoReply(LR_OK,"Ok.");
+d280 6
+a285 4
+/***********************************************************************
+* Not implemented
+***********************************************************************/
+void NotImplemented(Arg *theArg)
+d287 1
+a287 1
+  DoReply(500, "%s:command not implemented.", theArg->aFirst);
+d290 3
+a292 3
+/***********************************************************************
+* make a reply to a command
+***********************************************************************/
+d294 24
+a317 61
+void DoReply(int theCode,char *theFormat,...)
+{
+  char  scratchFormat[256];
+  va_list args;
+  
+  sprintf(scratchFormat, "%d:%s\n", theCode, theFormat);
+
+  va_start(args,theFormat);
+#ifdef NO_VFPRINTF
+  _doprnt(scratchFormat,args,TempOutput);
+#else
+  vfprintf(TempOutput,scratchFormat, args);
+#endif
+  va_end(args);
+  {
+    char buf[4096];
+    va_start(args,theFormat);
+    vsprintf(buf,scratchFormat,args);
+    va_end(args);
+    IssueMessage(LOG_DEBUG,"%s",buf);
+  }
+}
+
+/***********************************************************************
+* identify user
+***********************************************************************/
+void DoLogin(Arg *theArg)
+{
+  char   *me;
+  char   *RandomString();
+
+  me = theArg->aFirst;
+  theArg = theArg->aNext;   /* skip the command name */
+  if (!theArg)
+    DoReply(LR_SYNTAX, "%s:no name given.", me);
+  else
+  if (theArg->aType != VALUE)
+    DoReply(LR_SYNTAX, "%s:argument invalid.", me);
+  else
+  if (theArg->aNext)
+    DoReply(LR_SYNTAX, "%s:extra arguments.", me);
+  else
+  {
+    Challenge = make_str(RandomString(42));
+    DoReply(LR_LOGIN, "%s", Challenge);
+    ClaimUser = make_str(theArg->aFirst);
+    AmHero = 0;
+    State = S_E_PENDING;
+    if (User)
+      FreeDir(&User);
+  }
+}
+
+/***********************************************************************
+* handle the answer to a challenge
+***********************************************************************/
+#define WAIT_SECS 1
+void DoAnswer(Arg *theArg)
+{
+  char   *me;
+  long  time(), theTime;
+d319 40
+a358 2
+  me = theArg->aFirst;
+  theArg = theArg->aNext;
+d360 36
+a395 23
+  if (!ClaimUser)
+    DoReply(LR_SYNTAX, "%s:there is no outstanding login.", me);
+  else if (!theArg)
+    DoReply(LR_SYNTAX, "%s:no argument given.", me);
+  else if (theArg->aType != VALUE)
+    DoReply(LR_SYNTAX, "%s:invalid argument type.", me);
+  else if (!GonnaRead())
+     /* Lock routines give their own errors */ ;
+  else
+  {
+    AmHero = 0;
+    UserAlias = 0;
+    theTime = time((long *)NULL);
+    if (!(User = GetAliasDir(ClaimUser)))
+    {
+      SleepTil(theTime + WAIT_SECS);
+      if (ReadOnly)
+	DoReply(LR_READONLY, "login not allowed to read-only database.");
+      else
+        DoReply(LR_ERROR, "Login failed.");
+      IssueMessage(LOG_INFO, "login: alias %s does not exist.", ClaimUser);
+    }
+    else if (((*me=='a' || *me=='A') && !UserMatch(theArg->aFirst)) ||
+d397 1
+a397 1
+        ((*me=='c'||*me=='C') && strcmp(theArg->aFirst,PasswordOf(User)))
+d399 2
+a400 2
+        ((*me=='c'||*me=='C') &&
+	 strncmp(crypt(theArg->aFirst,theArg->aFirst),PasswordOf(User),13))
+d403 1
+a403 1
+	|| ((*me=='e'||*me=='E')&&!OkByEmail(User,theArg->aFirst))
+d405 285
+a689 7
+	)
+    {
+      SleepTil(theTime + WAIT_SECS);
+      if (*me!='e'&&*me!='E')
+      {
+	if (ReadOnly)
+	  DoReply(LR_READONLY, "login not allowed to read-only database.");
+d691 37
+d729 27
+a755 341
+	  DoReply(LR_ERROR, "Login failed.");
+          IssueMessage(LOG_INFO, "Password incorrect for %s.", ClaimUser);
+        }
+      }
+      FreeDir(&User);
+    }
+    else if (ReadOnly)
+    {
+      DoReply(LR_COULDA_BEEN, "login not allowed to read-only database.");
+      FreeDir(&User);
+    }
+    else
+    {
+      SleepTil(theTime + WAIT_SECS);
+      DoReply(LR_OK, "%s:Hi how are you?", ClaimUser);
+      AmHero = *FindValue(User, F_HERO);
+      UserAlias = FindValue(User, F_ALIAS);
+      UserEnt = CurrentIndex();
+      IssueMessage(LOG_INFO, "%s logged in.", UserAlias);
+    }
+  }
+  if (ClaimUser)
+  {
+    free(ClaimUser);
+    ClaimUser = NULL;
+  }
+  if (Challenge)
+  {
+    free(Challenge);
+    Challenge = NULL;
+  }
+  State = S_IDLE;
+  Unlock();
+}
+
+/***********************************************************************
+* sleep til a given time
+***********************************************************************/
+void SleepTil(long theTime)
+{
+  unsigned  theSpan;
+
+  theSpan = theTime - time((long *)0);
+  if (0 < theSpan && theSpan < 10000)
+    sleep(theSpan);
+}
+
+/***********************************************************************
+* return the dir entry of the requested alias
+***********************************************************************/
+Dir GetAliasDir(char *theName)
+{
+  Arg  *theArgList;
+  Arg  *theArg;
+  long *theEntry;
+  static Dir theDir;
+
+  theArg = theArgList = FreshArg();
+
+  theArg->aType = COMMAND;
+  theArg->aFirst = make_str("query");
+  theArg->aNext = FreshArg();
+  theArg = theArg->aNext;
+  theArg->aType = VALUE | EQUAL | VALUE2;
+  theArg->aFirst = make_str("alias"); /* should be alias */
+  theArg->aSecond = make_str(theName);
+  (void) ValidQuery(theArgList, C_QUERY);
+
+  if ((theEntry = DoLookup(theArgList)) != NULL && length(theEntry) == 1 &&
+    next_ent(*theEntry))
+    getdata(&theDir);
+  else
+    theDir = NULL;
+
+  if (theEntry)
+    free((char *)theEntry);
+  FreeArgs(theArgList);
+
+  return (theDir);
+}
+
+/***********************************************************************
+* de-identify the current user
+***********************************************************************/
+void DoLogout(Arg *theArg)
+{
+  if (theArg->aNext)
+    DoReply(LR_SYNTAX, "argument given on logout command.");
+  else
+  if (!User)
+    DoReply(LR_ERROR, "Not logged in.");
+  else
+  {
+    FreeDir(&User);
+    DoReply(LR_OK, "Ok.");
+  }
+}
+
+/***********************************************************************
+* list fields
+***********************************************************************/
+void DoFields(Arg *theArg)
+{
+  if (theArg->aNext == NULL)
+  {
+    ListAllFields();
+    DoReply(LR_OK, "Ok.");
+  }
+  else
+  if (OkFields(theArg->aNext))
+  {
+    for (theArg=theArg->aNext; theArg; theArg=theArg->aNext)
+      if (theArg->aFD)
+	ListField(theArg->aFD);
+    DoReply(LR_OK, "Ok.");
+  }
+  else
+    DoReply(LR_SYNTAX, "Invalid field request.");
+}
+
+/***********************************************************************
+* List a single field
+***********************************************************************/
+void ListField(FieldDesc *theFD)
+{
+  char  scratch[MAX_LEN];
+  char   *cp;
+  char   *strtok();
+
+  sprintf(scratch, "%d:%s:max %d", theFD->fdId, theFD->fdName, theFD->fdMax);
+  cp = scratch + strlen(scratch);
+  if (theFD->fdIndexed)
+    cp += strcpc(cp, " Indexed");
+  if (theFD->fdLookup)
+    cp += strcpc(cp, " Lookup");
+  if (theFD->fdPublic)
+    cp += strcpc(cp, " Public");
+  if (theFD->fdDefault)
+    cp += strcpc(cp, " Default");
+  if (theFD->fdAlways)
+    cp += strcpc(cp, " Always");
+  if (theFD->fdAny)
+    cp += strcpc(cp, " Any");
+  if (theFD->fdChange)
+    cp += strcpc(cp, " Change");
+  if (theFD->fdSacred)
+    cp += strcpc(cp, " Sacred");
+  if (theFD->fdTurn)
+    cp += strcpc(cp, " Turn");
+  if (theFD->fdEncrypt)
+    cp += strcpc(cp, " Encrypt");
+  if (theFD->fdNoPeople)
+    cp += strcpc(cp, " NoPeople");
+  *cp = 0;
+  DoReply(-LR_OK, scratch);
+  strcpy(scratch, theFD->fdHelp);
+  for (cp = strtok(scratch, "\n"); cp; cp = strtok((char *)NULL, "\n"))
+    DoReply(-LR_OK, "%d:%s:%s", theFD->fdId, theFD->fdName, cp);
+}
+
+/***********************************************************************
+* list all fields
+***********************************************************************/
+void ListAllFields(void)
+{
+  FieldDesc **theFD;
+
+  for (theFD = FieldDescriptors; *theFD; theFD++)
+    ListField(*theFD);
+}
+
+/***********************************************************************
+* validate arguments for field names
+***********************************************************************/
+int OkFields(Arg *theArgs)
+{
+  int   bad = 0;
+  int   count = 0;
+  FieldDesc *theFD;
+
+  for (; theArgs; theArgs = theArgs->aNext)
+  {
+    count++;
+    if (theArgs->aType != VALUE)
+    {
+      DoReply(-LR_SYNTAX, "argument %d:is not a field name.", count);
+      bad = 1;
+    }
+    else if (!(theFD = FindFD(theArgs->aFirst)))
+    {
+      DoReply(-LR_FIELD, "%s:unknown field.", theArgs->aFirst);
+      bad = 1;
+    }
+    else
+      theArgs->aFD = theFD;
+  }
+  return (!bad);
+}
+
+/***********************************************************************
+* delete entries
+***********************************************************************/
+void DoDelete(Arg *theArg)
+{
+  long *theEntries, *anEntry;
+  int   haveError = 0;
+  int   count;
+  int   done;
+  Dir   theDir;
+
+  if (!AmHero && !User)
+  {
+    DoReply(LR_NOTLOG, "Must be logged in to delete.");
+    return;
+  }
+  else
+  if (!UserCanDelete())
+  {
+    DoReply(LR_ERROR, "You may not delete entries.");
+    IssueMessage(LOG_INFO, "%s is not authorized to delete entries.", UserAlias);
+    return;
+  }
+
+  if (!ValidQuery(theArg, C_DELETE))
+  {
+    DoReply(LR_SYNTAX, "Delete command not understood.");
+    return;
+  }
+
+  if (!GonnaWrite())
+  {
+     /* GonnaWrite will issue an error message */ ;
+    return;
+  }
+
+  if ((theEntries = DoLookup(theArg)) == NULL)
+  {
+    DoReply(LR_NOMATCH, "No entries matched specifications.");
+    Unlock();
+    return;
+  }
+
+  for (count=1,done=0,anEntry=theEntries; *anEntry; count++, anEntry++)
+  {
+    if (!next_ent(*anEntry))
+    {
+      DoReply(-LR_TEMP, "Internal error.");
+      haveError = 1;
+      continue;
+    }
+    getdata(&theDir);
+    if (!CanDelete(theDir))
+    {
+      DoReply(-LR_ERROR, "%d:%s: you may not delete this entry.",
+	  count, FindValue(theDir, F_ALIAS));
+      haveError = 1;
+      IssueMessage(LOG_INFO, "%s may not delete %s.",
+	   UserAlias, FindValue(theDir, F_ALIAS));
+      continue;
+    }
+
+    /* delete the index entries */
+    MakeLookup(theDir, *anEntry, unmake_lookup);
+    FreeDir(&theDir);
+
+    /* mark it as dead and put it out to pasture */
+    SetDeleteMark();
+    set_date(1);
+    store_ent();
+    done++;
+  }
+
+  free((char *)theEntries);
+  Unlock();
+
+  if (haveError)
+    DoReply(LR_ERROR, "%d errors, %d successes on delete command.",
+	count - done, done);
+  else
+    DoReply(LR_OK, "%d entries deleted.", done);
+}
+
+/***********************************************************************
+* open a temp file for output
+***********************************************************************/
+int OpenTempOut(void)
+{
+  char   *make_str();
+  char   *mktemp();
+
+  if (TFile == NULL)
+  {
+    TFile = make_str(Tempfile);
+    mktemp(TFile);
+  }
+
+  if ((TempOutput = fopen(TFile, "w+")) == NULL)
+  {
+    free(TFile);
+    TFile = NULL;
+    return (0);
+  }
+
+  unlink(TFile);
+
+  return (1);
+}
+
+/***********************************************************************
+* Dump a the stuff in TFile to output
+***********************************************************************/
+void DumpOutput(void)
+{
+  int   c;
+
+  rewind(TempOutput);     /* back to the beginning */
+  {
+    while ((c = getc(TempOutput)) != EOF)
+      putc(c, Output);
+  }
+  fclose(TempOutput);     /* close; already unlinked */
+  fflush(Output);
+}
+
+/***********************************************************************
+* print the current command
+***********************************************************************/
+void PrintCommand(int theCommand,Arg *theArgs)
+{
+  fprintf(Output, "%d: %s", LR_ECHO, theArgs->aFirst);
+  for (theArgs = theArgs->aNext;
+     theArgs;
+     theArgs = theArgs->aNext)
+  {
+    putc(' ', Output);
+    if (theArgs->aType == RETURN)
+      fputs(theCommand == C_QUERY ? "return" : "make", Output);
+    else
+    {
+      if (theArgs->aType & VALUE)
+	fputs(theArgs->aFirst, Output);
+d757 3
+a759 3
+      if (theArgs->aType & TILD_E)
+	putc('~', Output);
+      else
+d761 61
+a821 56
+      if (theArgs->aType & EQUAL)
+	putc('=', Output);
+      if (theArgs->aType & VALUE2)
+	fputs(theArgs->aSecond, Output);
+    }
+  }
+  putc('\n', Output);
+}
+
+/***********************************************************************
+* was the returned string encrypted with the appropriate password?
+***********************************************************************/
+int UserMatch(char *string)
+{
+  char  decrypted[MAXSTR];
+  char  *decrypt();
+  char *pw = PasswordOf(User);
+
+  if (!*pw) return(0);
+  crypt_start(pw);
+  (void) decrypt(decrypted, string);
+  return (!strcmp(decrypted, Challenge));
+}
+
+/***********************************************************************
+* generate a random string
+***********************************************************************/
+char *RandomString(int byteCount)
+{
+  static char string[MAXSTR];
+  char   *cp;
+  static int seeded = 0;
+
+  if (!seeded)
+  {
+    seeded = 1;
+    srandom((int)time((long *)NULL) ^ getpid());
+  }
+
+  for (cp = string; byteCount; cp++, byteCount--)
+    *cp = (random() & 0x3f) + 0x21;
+
+  return (string);
+}
+
+/***********************************************************************
+* extract the password form a dir
+***********************************************************************/
+char *PasswordOf(Dir User)
+{
+  int   len;
+  char   *password;
+
+  /* find the user's password */
+  if (!*(password = FindValue(User, F_PASSWORD)))
+  {
+d823 6
+a828 7
+    if (*(password = FindValue(User, F_UNIVID)))
+    {
+      len = strlen(password);
+      if (len > 8)
+	password += len - 8;
+    }
+    else
+d830 3
+a832 3
+      password = "";
+  }
+  return (password);
+d836 1
+a836 1
+/************************************************************************
+d839 26
+a864 23
+int OkByEmail(Dir User,char *username)
+{
+  char buf[256];
+  char *email=FindValue(User,F_EMAIL);
+  int result;
+
+  if (!TrustHostEnt || !*email) result = 1;
+  else
+  {
+    sprintf(buf,"%s@@%s",username,TrustHostEnt->h_name);
+    result = strcmp(email,buf);
+  }
+  if (result)
+  {
+    if (ReadOnly)
+    {
+      DoReply(LR_READONLY, "login not allowed to read-only database.");
+      result = 1;
+    }
+    else
+      DoReply(LR_NOEMAIL,"You can't login that way.");
+  }
+  return(!result);
+d866 1
+a867 1
+  
+@
+
+
+1.30
+log
+@Last Dorner changes.
+@
+text
+@d2 1
+a2 1
+/***********************************************************************/
+d368 2
+a369 2
+	|| ((*me=='e'||*me=='E')&&!OkByEmail(User,theArg->aFirst)))
+#else
+a370 1
+#endif
+@
+
+
+1.29
+log
+@No help here.
+@
+text
+@d11 1
+d16 2
+a25 1
+extern char *Database;      /* conf.c */
+a29 1
+extern char *Tempfile;      /* conf.c */
+d34 3
+d58 2
+d86 1
+a86 1
+    if (LastArg->aType == 1 && theType == EQUAL)
+d88 1
+a88 2
+    else
+    if (LastArg->aType == EQUAL || LastArg->aType == (VALUE | EQUAL))
+d128 1
+a128 1
+  if (Daemon && GetState(Database))
+d143 1
+a143 1
+    if (DiscardIt || theCommand != C_ANSWER && theCommand != C_CLEAR)
+d145 1
+a145 1
+      DoReply(-LR_NOANSWER, "Expecting answer or clear; login discarded.");
+d194 1
+a194 1
+  bzero(theArg,sizeof(Arg));
+d204 14
+d248 14
+a285 2
+  if (theCode > 0)
+    IssueMessage(LOG_DEBUG, "%d", theCode);
+d287 7
+a314 3
+  if (ReadOnly)
+    DoReply(LR_READONLY, "login not allowed to read-only database.");
+  else
+d340 1
+a340 2
+  else
+  if (!theArg)
+d342 1
+a342 2
+  else
+  if (theArg->aType != VALUE)
+d344 1
+a344 2
+  else
+  if (!GonnaRead())
+d354 4
+a357 1
+      DoReply(LR_ERROR, "Login failed.");
+d360 12
+a371 3
+    else
+    if (((*me=='a' || *me=='A') && !UserMatch(theArg->aFirst)) ||
+        ((*me=='c'||*me=='C') && strcmp(theArg->aFirst,PasswordOf(User))))
+d374 15
+a388 2
+      DoReply(LR_ERROR, "Login failed.");
+      IssueMessage(LOG_INFO, "Password incorrect for %s.", ClaimUser);
+d531 1
+a531 1
+  if (theFD->fdEncrypt)
+d584 1
+a584 1
+  long *theEntries;
+d622 1
+a622 1
+  for (count = 1, done = 0; *theEntries; count++, theEntries++)
+d624 1
+a624 1
+    if (!next_ent(*theEntries))
+d642 1
+a642 1
+    MakeLookup(theDir, *theEntries, unmake_lookup);
+d721 5
+d782 1
+d790 1
+d795 31
+@
+
+
+1.28
+log
+@No help here.
+@
+text
+@d1 1
+d14 1
+a20 1
+static Arg *OldArgs = NULL;
+a21 5
+static int HasHistory = 0;
+char   *make_str();
+char   *PasswordOf();
+Arg  *FreshArg();
+char  **getdata();
+d38 1
+a38 1
+int   (*CommandTable[]) () =
+d54 1
+a54 1
+      0
+d70 1
+a70 3
+AddValue(theValue, theType)
+char   *theValue;
+int   theType;
+a71 4
+  Arg  *historyArgs;
+  Arg  *RememberArg();
+
+  HasHistory = HasHistory || *theValue == HISTORY;
+d74 3
+a76 14
+    if (*theValue == HISTORY && (TheArgs == RememberArg(theValue)))
+    {
+      /* RememberArg has given us an Arg list.  Point LastArg at end. */
+      for (LastArg->aNext = TheArgs;
+	 LastArg->aNext;
+	 LastArg = LastArg->aNext)
+	;
+    }
+    else
+    {
+      LastArg = TheArgs = FreshArg();
+      LastArg->aFirst = make_str(theValue);
+      LastArg->aType = theType;
+    }
+a78 1
+  if (*theValue == HISTORY && (historyArgs = RememberArg(theValue)))
+a79 6
+    /* RememberArg has given us an Arg list.  Point LastArg at the end. */
+    for (LastArg->aNext = historyArgs; LastArg->aNext; LastArg = LastArg->aNext)
+      ;
+  }
+  else
+  {
+d101 1
+a101 2
+Unknown(theJunk)
+char   *theJunk;
+d109 1
+a109 2
+DoCommand(theCommand)
+int   theCommand;
+d120 1
+a120 2
+  if (InputType == IT_FILE || InputType == IT_PIPE || OP_VALUE(ECHO_OP) ||
+    HasHistory)
+d157 1
+a157 2
+  FreeArgs(OldArgs);
+  OldArgs = TheArgs;
+d159 1
+a159 1
+  HasHistory = DiscardIt = 0;
+d165 1
+a165 2
+FreeArgs(theArg)
+Arg  *theArg;
+d184 1
+a184 2
+Arg  *
+FreshArg()
+d189 1
+a189 6
+  theArg->aFirst = NULL;
+  theArg->aSecond = NULL;
+  theArg->aType = NULL;
+  theArg->aKey = NULL;
+  theArg->aFD = NULL;
+  theArg->aNext = NULL;
+d197 1
+a197 2
+DoStatus(theArg)
+Arg  *theArg;
+d210 1
+a210 2
+DoId(theArg)
+Arg  *theArg;
+d219 1
+a219 2
+DoQuit(theArg)
+Arg  *theArg;
+d223 1
+d231 1
+a231 2
+NotImplemented(theArg)
+Arg  *theArg;
+d240 1
+a240 4
+DoReply(theCode, theFormat, theArgs)
+int   theCode;
+char   *theFormat;
+char   *theArgs;
+d243 2
+a244 1
+
+d247 6
+a252 1
+  _doprnt(scratchFormat, &theArgs, TempOutput);
+d254 2
+a255 1
+    IssueMessage(LOG_INFO, "%d", theCode);
+d261 1
+a261 2
+DoLogin(theArg)
+Arg  *theArg;
+d295 1
+a295 2
+DoAnswer(theArg)
+Arg  *theArg;
+d361 1
+a361 2
+SleepTil(theTime)
+long  theTime;
+d373 1
+a373 3
+Dir
+GetAliasDir(theName)
+char   *theName;
+d407 1
+a407 2
+DoLogout(theArg)
+Arg  *theArg;
+d424 1
+a424 2
+DoFields(theArg)
+Arg  *theArg;
+d446 1
+a446 2
+ListField(theFD)
+FieldDesc *theFD;
+d486 1
+a486 1
+ListAllFields()
+d497 1
+a497 2
+OkFields(theArgs)
+Arg  *theArgs;
+d525 1
+a525 2
+DoDelete(theArgs)
+Arg  *theArgs;
+a531 1
+  int   unmake_lookup();
+d546 1
+a546 1
+  if (!ValidQuery(theArgs, C_DELETE))
+d558 1
+a558 1
+  if ((theEntries = DoLookup(theArgs)) == NULL)
+d608 1
+a608 1
+OpenTempOut()
+d634 1
+a634 1
+DumpOutput()
+a647 154
+* retrieve specified argument(s) from the old argument list
+***********************************************************************/
+Arg  *
+RememberArg(theSelector)
+char   *theSelector;
+{
+  Arg  *theArgs;
+  Arg  *anArg;
+  Arg  *oldArg;
+  Arg  *CopyArg();
+  int   firstNumber;
+  int   n;
+
+  if (!OldArgs)
+    return (NULL);
+
+  theSelector++;        /* skip the ! */
+
+  switch (*theSelector)
+  {
+    case 'q':     /* request the query portion */
+    oldArg = OldArgs->aNext;
+    if (!oldArg)
+      return (NULL);
+
+    anArg = theArgs = CopyArg(oldArg);
+
+    for (oldArg = oldArg->aNext;
+       oldArg && oldArg->aType != RETURN;
+       oldArg = oldArg->aNext)
+    {
+      anArg->aNext = CopyArg(oldArg);
+      anArg = anArg->aNext;
+    }
+    break;
+
+    case 'r':     /* the return portion */
+    oldArg = OldArgs->aNext;
+    if (!oldArg)
+      return (NULL);
+
+    /* skip to the return token */
+    for (oldArg = oldArg->aNext;
+       oldArg && oldArg->aType != RETURN;
+       oldArg = oldArg->aNext);
+
+    if (!oldArg || !oldArg->aNext)
+      return (NULL);
+
+    oldArg = oldArg->aNext;
+    anArg = theArgs = CopyArg(oldArg);
+
+    for (oldArg = oldArg->aNext;
+       oldArg;
+       oldArg = oldArg->aNext)
+    {
+      anArg->aNext = CopyArg(oldArg);
+      anArg = anArg->aNext;
+    }
+    break;
+
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+    n = firstNumber = atoi(theSelector);
+
+    for (oldArg = OldArgs; n && oldArg; n--)
+      oldArg = oldArg->aNext;
+
+    if (!oldArg)
+      return (NULL);
+
+    while (isdigit(*theSelector))
+      theSelector++;
+
+    if (!*theSelector)
+      theArgs = CopyArg(oldArg);
+    else
+    if (*theSelector != '-')
+      return (NULL);    /* syntax error */
+    else
+    {
+      theSelector++;
+      if (!*theSelector)
+      {
+	/* copy'em all */
+	theArgs = anArg = CopyArg(oldArg);
+
+	for (oldArg = oldArg->aNext;
+	   oldArg;
+	   oldArg = oldArg->aNext)
+	{
+	  anArg->aNext = CopyArg(oldArg);
+	  anArg = anArg->aNext;
+	}
+      }
+      else
+      {
+	n = atoi(theSelector) - firstNumber;  /* how many? */
+
+	/* do we have that many? */
+	for (anArg = oldArg; n > 0 && anArg; n--, anArg = anArg->aNext);
+	if (n)
+	  return (NULL);    /* nope. */
+
+	n = atoi(theSelector) - firstNumber;  /* how many? */
+	theArgs = anArg = CopyArg(oldArg);
+	for (oldArg = oldArg->aNext;
+	   n;
+	   n--, oldArg = oldArg->aNext)
+	{
+	  anArg->aNext = CopyArg(oldArg);
+	  anArg = anArg->aNext;
+	}
+      }
+    }
+    break;
+
+    default:
+    return (NULL);
+  }
+
+  return (theArgs);
+}
+
+/***********************************************************************
+* make a copy of an argument structure
+***********************************************************************/
+Arg  *
+CopyArg(theArg)
+Arg  *theArg;
+{
+  Arg  *newArg;
+
+  newArg = FreshArg();
+  newArg->aType = theArg->aType;
+  newArg->aKey = theArg->aKey;
+  if (theArg->aFirst)
+    newArg->aFirst = make_str(theArg->aFirst);
+  if (theArg->aSecond)
+    newArg->aSecond = make_str(theArg->aSecond);
+  newArg->aFD = theArg->aFD;
+  newArg->aRating = newArg->aRating;
+  return (newArg);
+}
+
+/***********************************************************************
+d650 1
+a650 3
+PrintCommand(theCommand, theArgs)
+int   theCommand;
+Arg  *theArgs;
+d676 1
+a676 2
+UserMatch(string)
+char   *string;
+d691 1
+a691 3
+char   *
+RandomString(byteCount)
+int   byteCount;
+d712 1
+a712 3
+char   *
+PasswordOf(User)
+Dir   User;
+@
+
+
+1.27
+log
+@No help here.
+@
+text
+@d57 1
+d132 1
+a132 1
+  fprintf(Output, "%d:%s:%s\n", LR_SYNTAX, theJunk, "Command not recognized.");
+d141 6
+d149 1
+d169 1
+a169 1
+    if (DiscardIt || theCommand != C_ANSWER)
+d171 1
+a171 1
+      DoReply(-LR_NOANSWER, "Expecting answer; login discarded.");
+d323 1
+d366 2
+a367 1
+    if (!UserMatch(theArg->aFirst))
+d520 2
+d886 1
+d888 2
+a889 1
+  crypt_start(PasswordOf(User));
+d937 1
+a937 1
+      password = "secret";
+@
+
+
+1.26
+log
+@No help here.
+@
+text
+@d56 1
+d255 2
+a256 2
+  DoReply(LR_OK, "Bye!");
+  DumpOutput();
+d470 2
+a471 1
+      ListField(theArg->aFD);
+d548 1
+a548 1
+      DoReply(-LR_FIELD, "%d:unknown field.", theArgs->aFirst);
+@
+
+
+1.25
+log
+@No help here.
+@
+text
+@d13 4
+a16 4
+#include "../Include/commands.h"
+#include "../Include/options.h"
+#include "../Include/field.h"
+#include "../Include/qi.h"
+d162 1
+a162 1
+      DoReply(LR_SYNTAX, "Expecting answer; login discarded.");
+d194 1
+a194 3
+    for (theNext = theArg->aNext;
+       theArg;
+       theArg = theNext, theNext = theArg->aNext)
+d196 1
+d468 1
+a468 1
+    for (theArg = theArg->aNext; theArg; theArg = theArg->aNext)
+d496 4
+@
+
+
+1.24
+log
+@No help here.
+@
+text
+@d13 4
+a16 4
+#include "../include/commands.h"
+#include "../include/options.h"
+#include "../include/field.h"
+#include "../include/qi.h"
+@
+
+
+1.23
+log
+@No help here.
+@
+text
+@a68 3
+char   *Hero = "uiuc";      /* magic hero entry */
+Dir   HeroDir = 0;      /* Hero's Dir */
+
+d368 1
+a368 1
+      AmHero = !stricmp(ClaimUser, Hero);
+@
+
+
+1.22
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d143 1
+a143 1
+  syslog(LOG_INFO, "%s", CommandText);
+d157 1
+a157 1
+    syslog(LOG_INFO, "Couldn't open temp file.\n");
+d288 1
+a288 1
+    syslog(LOG_INFO, "%d", theCode);
+d357 1
+a357 1
+      syslog(LOG_INFO, "login: alias %s does not exist.", ClaimUser);
+d364 1
+a364 1
+      syslog(LOG_INFO, "Password incorrect for %s.", ClaimUser);
+d374 1
+a374 1
+      syslog(LOG_INFO, "%s logged in.", UserAlias);
+d577 1
+a577 1
+    syslog(LOG_INFO, "%s is not authorized to delete entries.", UserAlias);
+d614 1
+a614 1
+      syslog(LOG_INFO, "%s may not delete %s.",
+@
+
+
+1.21
+log
+@No help here.
+@
+text
+@d21 1
+a21 1
+Arg    *FreshArg();
+d24 10
+a33 10
+extern char *Database;		/* conf.c */
+extern FILE *Input;		/* mqi.c */
+extern FILE *Output;		/* mqi.c */
+extern int InputType;		/* mqi.c */
+extern char Foreign[80];	/* mqi.c */
+extern char *Tempfile;		/* conf.c */
+extern char CommandText[];	/* language.l */
+extern char *CommandSpot;	/* language.l */
+extern int Daemon;		/* mqi.c */
+extern char *DBState;		/* mqi.c */
+d38 2
+a39 2
+int     DiscardIt;
+int     (*CommandTable[]) () =
+d41 13
+a53 13
+            DoQuery,
+            DoChange,
+            DoLogin,
+            DoAnswer,
+            DoLogout,
+            DoFields,
+            DoAdd,
+            DoDelete,
+            DoSet,
+            DoQuit,
+	    DoStatus,
+	    DoId,
+            0
+d56 4
+a59 4
+Dir     User = 0;		/* the currently logged in user */
+int     AmHero = 0;		/* is currently logged in user the Hero? */
+char   *UserAlias = 0;		/* the alias of the currently logged in user */
+int     UserEnt = 0;		/* entry number of current user */
+d61 4
+a64 4
+char   *ClaimUser = 0;		/* the identity the user has claimed, but not
+				 * yet verified */
+char   *Challenge = 0;		/* challenge string */
+int     State = S_IDLE;
+d66 2
+a67 2
+char   *Hero = "uiuc";		/* magic hero entry */
+Dir     HeroDir = 0;		/* Hero's Dir */
+d74 1
+a74 1
+int     theType;
+d76 2
+a77 2
+    Arg    *historyArgs;
+    Arg    *RememberArg();
+d79 4
+a82 2
+    HasHistory = HasHistory || *theValue == HISTORY;
+    if (!TheArgs)
+d84 5
+a88 14
+	if (*theValue == HISTORY && (TheArgs == RememberArg(theValue)))
+	{
+	    /* RememberArg has given us an Arg list.  Point LastArg at end. */
+	    for (LastArg->aNext = TheArgs;
+		 LastArg->aNext;
+		 LastArg = LastArg->aNext)
+		;
+	}
+	else
+	{
+	    LastArg = TheArgs = FreshArg();
+	    LastArg->aFirst = make_str(theValue);
+	    LastArg->aType = theType;
+	}
+a90 1
+    if (*theValue == HISTORY && (historyArgs = RememberArg(theValue)))
+d92 3
+a94 3
+	/* RememberArg has given us an Arg list.  Point LastArg at the end. */
+	for (LastArg->aNext = historyArgs; LastArg->aNext; LastArg = LastArg->aNext)
+	    ;
+d96 12
+d109 1
+d111 2
+a112 15
+	if (LastArg->aType == 1 && theType == EQUAL)
+	    LastArg->aType |= theType;
+	else
+	if (LastArg->aType == EQUAL || LastArg->aType == (VALUE | EQUAL))
+	{
+	    LastArg->aType |= VALUE2;
+	    LastArg->aSecond = make_str(theValue);
+	}
+	else
+	{
+	    LastArg->aNext = FreshArg();
+	    LastArg = LastArg->aNext;
+	    LastArg->aType = theType;
+	    LastArg->aFirst = make_str(theValue);
+	}
+d114 8
+d130 1
+a130 1
+    fprintf(Output, "%d:%s:%s\n", LR_SYNTAX, theJunk, "Command not recognized.");
+d137 1
+a137 1
+int     theCommand;
+d139 5
+a143 2
+    char   *GetState();
+    char   *theState;
+d145 5
+a149 5
+    *CommandSpot = '\0';
+    syslog(LOG_INFO, "%s", CommandText);
+    if (InputType == IT_FILE || InputType == IT_PIPE || OP_VALUE(ECHO_OP) ||
+	HasHistory)
+	PrintCommand(theCommand, TheArgs);	/* echo the cmd */
+d151 6
+a156 5
+    if (Daemon && (theState = GetState(Database)))
+    {
+	fprintf(Output, "555:Database shut off (%s).\n", theState);
+	exit(0);
+    }
+d158 3
+a160 1
+    if (!OpenTempOut())
+d162 6
+a167 3
+	fprintf(Output, "%d:couldn't open temp file.\n", LR_INTERNAL);
+	syslog(LOG_INFO, "Couldn't open temp file.\n");
+	goto done;
+d169 1
+d171 4
+a174 12
+    if (State == S_E_PENDING)
+    {
+	if (DiscardIt || theCommand != C_ANSWER)
+	{
+	    DoReply(LR_SYNTAX, "Expecting answer; login discarded.");
+	    State = S_IDLE;
+	    free(ClaimUser);
+	    ClaimUser = 0;
+	    free(Challenge);
+	    Challenge = 0;
+	}
+    }
+d176 1
+a176 4
+    if (DiscardIt)
+	DoReply(LR_SYNTAX, "Command not understood.");
+    else
+	(*CommandTable[theCommand - 1]) (TheArgs);
+a177 2
+    DumpOutput();
+
+d179 4
+a182 4
+    FreeArgs(OldArgs);
+    OldArgs = TheArgs;
+    TheArgs = NULL;
+    HasHistory = DiscardIt = 0;
+d189 1
+a189 1
+Arg    *theArg;
+d191 1
+a191 1
+    Arg    *theNext;
+d193 11
+a203 11
+    if (theArg)
+	for (theNext = theArg->aNext;
+	     theArg;
+	     theArg = theNext, theNext = theArg->aNext)
+	{
+	    if (theArg->aFirst)
+		free(theArg->aFirst);
+	    if (theArg->aSecond)
+		free(theArg->aSecond);
+	    free((char *)theArg);
+	}
+d209 1
+a209 1
+Arg    *
+d212 1
+a212 1
+    Arg    *theArg;
+d214 8
+a221 8
+    theArg = New(Arg);
+    theArg->aFirst = NULL;
+    theArg->aSecond = NULL;
+    theArg->aType = NULL;
+    theArg->aKey = NULL;
+    theArg->aFD = NULL;
+    theArg->aNext = NULL;
+    return (theArg);
+d229 1
+a229 1
+Arg    *theArg;
+d231 4
+a234 4
+    if (ReadOnly)
+        DoReply(LR_RONLY,"Database ready, read only (%s).", DBState);
+    else
+        DoReply(LR_OK,"Database ready.");
+d243 1
+a243 1
+Arg    *theArg;
+d245 1
+a245 1
+    DoReply(LR_OK,"Thanks.");
+d253 1
+a253 1
+Arg    *theArg;
+d255 4
+a258 4
+    DoReply(LR_OK, "Bye!");
+    DumpOutput();
+    closelog();
+    exit(0);
+d265 1
+a265 1
+Arg    *theArg;
+d267 1
+a267 1
+    DoReply(500, "%s:command not implemented.", theArg->aFirst);
+d275 1
+a275 1
+int     theCode;
+d279 1
+a279 1
+    char    scratchFormat[256];
+d281 1
+a281 1
+    sprintf(scratchFormat, "%d:%s\n", theCode, theFormat);
+d283 3
+a285 3
+    _doprnt(scratchFormat, &theArgs, TempOutput);
+    if (theCode > 0)
+	syslog(LOG_INFO, "%d", theCode);
+d292 1
+a292 1
+Arg    *theArg;
+d294 2
+a295 2
+    char   *me;
+    char   *RandomString();
+d297 22
+a318 22
+    me = theArg->aFirst;
+    theArg = theArg->aNext;	/* skip the command name */
+    if (!theArg)
+	DoReply(LR_SYNTAX, "%s:no name given.", me);
+    else
+    if (theArg->aType != VALUE)
+	DoReply(LR_SYNTAX, "%s:argument invalid.", me);
+    else
+    if (theArg->aNext)
+	DoReply(LR_SYNTAX, "%s:extra arguments.", me);
+    else
+    if (ReadOnly)
+	DoReply(LR_READONLY, "login not allowed to read-only database.");
+    else
+    {
+	Challenge = make_str(RandomString(40));
+	DoReply(LR_LOGIN, "%s", Challenge);
+	ClaimUser = make_str(theArg->aFirst);
+	State = S_E_PENDING;
+	if (User)
+	    FreeDir(&User);
+    }
+d326 1
+a326 1
+Arg    *theArg;
+d328 2
+a329 2
+    char   *me;
+    long    time(), theTime;
+d331 2
+a332 2
+    me = theArg->aFirst;
+    theArg = theArg->aNext;
+d334 17
+a350 12
+    if (!ClaimUser)
+	DoReply(LR_SYNTAX, "%s:there is no outstanding login.", me);
+    else
+    if (!theArg)
+	DoReply(LR_SYNTAX, "%s:no argument given.", me);
+    else
+    if (theArg->aType != VALUE)
+	DoReply(LR_SYNTAX, "%s:invalid argument type.", me);
+    else
+    if (!GonnaRead())
+	 /* Lock routines give their own errors */ ;
+    else
+d352 3
+a354 26
+	AmHero = 0;
+	UserAlias = 0;
+	theTime = time(NULL);
+	if (!(User = GetAliasDir(ClaimUser)))
+	{
+	    SleepTil(theTime + WAIT_SECS);
+	    DoReply(LR_ERROR, "Login failed.");
+	    syslog(LOG_INFO, "login: alias %s does not exist.", ClaimUser);
+	}
+	else
+	if (!UserMatch(theArg->aFirst))
+	{
+	    SleepTil(theTime + WAIT_SECS);
+	    DoReply(LR_ERROR, "Login failed.");
+	    syslog(LOG_INFO, "Password incorrect for %s.", ClaimUser);
+	    FreeDir(&User);
+	}
+	else
+	{
+	    SleepTil(theTime + WAIT_SECS);
+	    DoReply(LR_OK, "%s:Hi how are you?", ClaimUser);
+	    AmHero = !stricmp(ClaimUser, Hero);
+	    UserAlias = FindValue(User, F_ALIAS);
+	    UserEnt = CurrentIndex();
+	    syslog(LOG_INFO, "%s logged in.", UserAlias);
+	}
+d356 2
+a357 1
+    if (ClaimUser)
+d359 4
+a362 2
+	free(ClaimUser);
+	ClaimUser = NULL;
+d364 1
+a364 1
+    if (Challenge)
+d366 6
+a371 2
+	free(Challenge);
+	Challenge = NULL;
+d373 13
+a385 2
+    State = S_IDLE;
+    Unlock();
+d392 1
+a392 1
+long    theTime;
+d394 1
+a394 1
+    unsigned  theSpan;
+d396 3
+a398 3
+    theSpan = theTime - time(0);
+    if (0 < theSpan && theSpan < 10000)
+	sleep(theSpan);
+d408 4
+a411 4
+    Arg    *theArgList;
+    Arg    *theArg;
+    unsigned long *theEntry;
+    static Dir theDir;
+d413 1
+a413 1
+    theArg = theArgList = FreshArg();
+d415 8
+a422 8
+    theArg->aType = COMMAND;
+    theArg->aFirst = make_str("query");
+    theArg->aNext = FreshArg();
+    theArg = theArg->aNext;
+    theArg->aType = VALUE | EQUAL | VALUE2;
+    theArg->aFirst = make_str("alias");	/* should be alias */
+    theArg->aSecond = make_str(theName);
+    ValidQuery(theArgList, C_QUERY);
+d424 5
+a428 5
+    if ((theEntry = DoLookup(theArgList)) != NULL && length(theEntry) == 1 &&
+	next_ent(*theEntry))
+	getdata(&theDir);
+    else
+	theDir = NULL;
+d430 3
+a432 3
+    if (theEntry)
+	free((char *)theEntry);
+    FreeArgs(theArgList);
+d434 1
+a434 1
+    return (theDir);
+d441 1
+a441 1
+Arg    *theArg;
+d443 10
+a452 10
+    if (theArg->aNext)
+	DoReply(LR_SYNTAX, "argument given on logout command.");
+    else
+    if (!User)
+	DoReply(LR_ERROR, "Not logged in.");
+    else
+    {
+	FreeDir(&User);
+	DoReply(LR_OK, "Ok.");
+    }
+d459 1
+a459 1
+Arg    *theArg;
+d461 14
+a474 14
+    if (theArg->aNext == NULL)
+    {
+	ListAllFields();
+	DoReply(LR_OK, "Ok.");
+    }
+    else
+    if (OkFields(theArg->aNext))
+    {
+	for (theArg = theArg->aNext; theArg; theArg = theArg->aNext)
+	    ListField(theArg->aFD);
+	DoReply(LR_OK, "Ok.");
+    }
+    else
+	DoReply(LR_SYNTAX, "Invalid field request.");
+d483 3
+a485 3
+    char    scratch[MAX_LEN];
+    char   *cp;
+    char   *strtok();
+d487 23
+a509 23
+    sprintf(scratch, "%d:%s:max %d", theFD->fdId, theFD->fdName, theFD->fdMax);
+    cp = scratch + strlen(scratch);
+    if (theFD->fdIndexed)
+	cp += strcpc(cp, " Indexed");
+    if (theFD->fdLookup)
+	cp += strcpc(cp, " Lookup");
+    if (theFD->fdPublic)
+	cp += strcpc(cp, " Public");
+    if (theFD->fdDefault)
+	cp += strcpc(cp, " Default");
+    if (theFD->fdChange)
+	cp += strcpc(cp, " Change");
+    if (theFD->fdSacred)
+	cp += strcpc(cp, " Sacred");
+    if (theFD->fdTurn)
+	cp += strcpc(cp, " Turn");
+    if (theFD->fdEncrypt)
+	cp += strcpc(cp, " Encrypt");
+    *cp = 0;
+    DoReply(-LR_OK, scratch);
+    strcpy(scratch, theFD->fdHelp);
+    for (cp = strtok(scratch, "\n"); cp; cp = strtok(NULL, "\n"))
+	DoReply(-LR_OK, "%d:%s:%s", theFD->fdId, theFD->fdName, cp);
+d517 1
+a517 1
+    FieldDesc **theFD;
+d519 2
+a520 2
+    for (theFD = FieldDescriptors; *theFD; theFD++)
+	ListField(*theFD);
+d527 1
+a527 1
+Arg    *theArgs;
+d529 3
+a531 3
+    int     bad = 0;
+    int     count = 0;
+    FieldDesc *theFD;
+d533 4
+a536 1
+    for (; theArgs; theArgs = theArgs->aNext)
+d538 2
+a539 14
+	count++;
+	if (theArgs->aType != VALUE)
+	{
+	    DoReply(-LR_SYNTAX, "argument %d:is not a field name.", count);
+	    bad = 1;
+	}
+	else
+	if (!(theFD = FindFD(theArgs->aFirst)))
+	{
+	    DoReply(-LR_FIELD, "%d:unknown field.", theArgs->aFirst);
+	    bad = 1;
+	}
+	else
+	    theArgs->aFD = theFD;
+d541 9
+a549 1
+    return (!bad);
+d556 1
+a556 1
+Arg    *theArgs;
+d558 6
+a563 6
+    unsigned long *theEntries;
+    int     haveError = 0;
+    int     count;
+    int     done;
+    Dir     theDir;
+    int     unmake_lookup();
+d565 12
+a576 12
+    if (!AmHero && !User)
+    {
+	DoReply(LR_NOTLOG, "Must be logged in to delete.");
+	return;
+    }
+    else
+    if (!UserCanDelete())
+    {
+	DoReply(LR_ERROR, "You may not delete entries.");
+	syslog(LOG_INFO, "%s is not authorized to delete entries.", UserAlias);
+	return;
+    }
+d578 5
+a582 5
+    if (!ValidQuery(theArgs, C_DELETE))
+    {
+	DoReply(LR_SYNTAX, "Delete command not understood.");
+	return;
+    }
+d584 16
+a599 1
+    if (!GonnaWrite())
+d601 3
+a603 2
+	 /* GonnaWrite will issue an error message */ ;
+	return;
+d605 2
+a606 2
+
+    if ((theEntries = DoLookup(theArgs)) == NULL)
+d608 6
+a613 3
+	DoReply(LR_NOMATCH, "No entries matched specifications.");
+	Unlock();
+	return;
+d616 3
+a618 18
+    for (count = 1, done = 0; *theEntries; count++, theEntries++)
+    {
+	if (!next_ent(*theEntries))
+	{
+	    DoReply(-LR_TEMP, "Internal error.");
+	    haveError = 1;
+	    continue;
+	}
+	getdata(&theDir);
+	if (!CanDelete(theDir))
+	{
+	    DoReply(-LR_ERROR, "%d:%s: you may not delete this entry.",
+		    count, FindValue(theDir, F_ALIAS));
+	    haveError = 1;
+	    syslog(LOG_INFO, "%s may not delete %s.",
+		   UserAlias, FindValue(theDir, F_ALIAS));
+	    continue;
+	}
+d620 6
+a625 3
+	/* delete the index entries */
+	MakeLookup(theDir, *theEntries, unmake_lookup);
+	FreeDir(&theDir);
+d627 2
+a628 5
+	/* mark it as dead and put it out to pasture */
+	SetDeleteMark();
+	store_ent();
+	done++;
+    }
+d630 5
+a634 8
+    free((char *)theEntries);
+    Unlock();
+
+    if (haveError)
+	DoReply(LR_ERROR, "%d errors, %d successes on delete command.",
+		count - done, done);
+    else
+	DoReply(LR_OK, "%d entries deleted.", done);
+d642 2
+a643 2
+    char   *make_str();
+    char   *mktemp();
+d645 5
+a649 5
+    if (TFile == NULL)
+    {
+	TFile = make_str(Tempfile);
+	mktemp(TFile);
+    }
+d651 6
+a656 6
+    if ((TempOutput = fopen(TFile, "w+")) == NULL)
+    {
+	free(TFile);
+	TFile = NULL;
+	return (0);
+    }
+d658 1
+a658 1
+    unlink(TFile);
+d660 1
+a660 1
+    return (1);
+d668 1
+a668 1
+    int     c;
+d670 7
+a676 7
+    rewind(TempOutput);		/* back to the beginning */
+    {
+	while ((c = getc(TempOutput)) != EOF)
+	    putc(c, Output);
+    }
+    fclose(TempOutput);		/* close; already unlinked */
+    fflush(Output);
+d682 1
+a682 1
+Arg    *
+d686 6
+a691 6
+    Arg    *theArgs;
+    Arg    *anArg;
+    Arg    *oldArg;
+    Arg    *CopyArg();
+    int     firstNumber;
+    int     n;
+d693 2
+a694 2
+    if (!OldArgs)
+	return (NULL);
+d696 1
+a696 1
+    theSelector++;		/* skip the ! */
+d698 12
+a709 1
+    switch (*theSelector)
+d711 4
+a714 4
+      case 'q':		/* request the query portion */
+	oldArg = OldArgs->aNext;
+	if (!oldArg)
+	    return (NULL);
+d716 4
+a719 1
+	anArg = theArgs = CopyArg(oldArg);
+d721 4
+a724 8
+	for (oldArg = oldArg->aNext;
+	     oldArg && oldArg->aType != RETURN;
+	     oldArg = oldArg->aNext)
+	{
+	    anArg->aNext = CopyArg(oldArg);
+	    anArg = anArg->aNext;
+	}
+	break;
+d726 2
+a727 4
+      case 'r':		/* the return portion */
+	oldArg = OldArgs->aNext;
+	if (!oldArg)
+	    return (NULL);
+d729 2
+a730 4
+	/* skip to the return token */
+	for (oldArg = oldArg->aNext;
+	     oldArg && oldArg->aType != RETURN;
+	     oldArg = oldArg->aNext);
+d732 8
+a739 2
+	if (!oldArg || !oldArg->aNext)
+	    return (NULL);
+d741 11
+a751 2
+	oldArg = oldArg->aNext;
+	anArg = theArgs = CopyArg(oldArg);
+d753 2
+a754 8
+	for (oldArg = oldArg->aNext;
+	     oldArg;
+	     oldArg = oldArg->aNext)
+	{
+	    anArg->aNext = CopyArg(oldArg);
+	    anArg = anArg->aNext;
+	}
+	break;
+d756 2
+a757 11
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+	n = firstNumber = atoi(theSelector);
+d759 2
+a760 2
+	for (oldArg = OldArgs; n && oldArg; n--)
+	    oldArg = oldArg->aNext;
+d762 12
+a773 2
+	if (!oldArg)
+	    return (NULL);
+d775 3
+a777 9
+	while (isdigit(*theSelector))
+	    theSelector++;
+
+	if (!*theSelector)
+	    theArgs = CopyArg(oldArg);
+	else
+	if (*theSelector != '-')
+	    return (NULL);	/* syntax error */
+	else
+d779 7
+a785 5
+	    theSelector++;
+	    if (!*theSelector)
+	    {
+		/* copy'em all */
+		theArgs = anArg = CopyArg(oldArg);
+d787 4
+a790 11
+		for (oldArg = oldArg->aNext;
+		     oldArg;
+		     oldArg = oldArg->aNext)
+		{
+		    anArg->aNext = CopyArg(oldArg);
+		    anArg = anArg->aNext;
+		}
+	    }
+	    else
+	    {
+		n = atoi(theSelector) - firstNumber;	/* how many? */
+d792 8
+a799 15
+		/* do we have that many? */
+		for (anArg = oldArg; n > 0 && anArg; n--, anArg = anArg->aNext);
+		if (n)
+		    return (NULL);	/* nope. */
+
+		n = atoi(theSelector) - firstNumber;	/* how many? */
+		theArgs = anArg = CopyArg(oldArg);
+		for (oldArg = oldArg->aNext;
+		     n;
+		     n--, oldArg = oldArg->aNext)
+		{
+		    anArg->aNext = CopyArg(oldArg);
+		    anArg = anArg->aNext;
+		}
+	    }
+d801 1
+a801 4
+	break;
+
+      default:
+	return (NULL);
+d803 1
+d805 5
+a809 1
+    return (theArgs);
+d815 1
+a815 1
+Arg    *
+d817 1
+a817 1
+Arg    *theArg;
+d819 1
+a819 1
+    Arg    *newArg;
+d821 10
+a830 10
+    newArg = FreshArg();
+    newArg->aType = theArg->aType;
+    newArg->aKey = theArg->aKey;
+    if (theArg->aFirst)
+	newArg->aFirst = make_str(theArg->aFirst);
+    if (theArg->aSecond)
+	newArg->aSecond = make_str(theArg->aSecond);
+    newArg->aFD = theArg->aFD;
+    newArg->aRating = newArg->aRating;
+    return (newArg);
+d837 2
+a838 2
+int     theCommand;
+Arg    *theArgs;
+d840 9
+a848 4
+    fprintf(Output, "%d: %s", LR_ECHO, theArgs->aFirst);
+    for (theArgs = theArgs->aNext;
+	 theArgs;
+	 theArgs = theArgs->aNext)
+d850 6
+a855 12
+	putc(' ', Output);
+	if (theArgs->aType == RETURN)
+	    fputs(theCommand == C_QUERY ? "return" : "make", Output);
+	else
+	{
+	    if (theArgs->aType & VALUE)
+		fputs(theArgs->aFirst, Output);
+	    if (theArgs->aType & EQUAL)
+		putc('=', Output);
+	    if (theArgs->aType & VALUE2)
+		fputs(theArgs->aSecond, Output);
+	}
+d857 2
+a858 1
+    putc('\n', Output);
+d867 2
+a868 2
+    char    decrypted[MAXSTR];
+    char    *decrypt();
+d870 3
+a872 3
+    crypt_start(PasswordOf(User));
+    (void) decrypt(decrypted, string);
+    return (!strcmp(decrypted, Challenge));
+d880 1
+a880 1
+int     byteCount;
+d882 3
+a884 3
+    static char string[MAXSTR];
+    char   *cp;
+    static int seeded = 0;
+d886 5
+a890 5
+    if (!seeded)
+    {
+	seeded = 1;
+	srandom(time(NULL) ^ getpid());
+    }
+d892 2
+a893 2
+    for (cp = string; byteCount; cp++, byteCount--)
+	*cp = (random() & 0x3f) + 0x21;
+d895 1
+a895 1
+    return (string);
+d903 1
+a903 1
+Dir     User;
+d905 2
+a906 2
+    int     len;
+    char   *password;
+d908 4
+a911 2
+    /* find the user's password */
+    if (!*(password = FindValue(User, F_PASSWORD)))
+d913 3
+a915 8
+	if (*(password = FindValue(User, F_UNIVID)))
+	{
+	    len = strlen(password);
+	    if (len > 8)
+		password += len - 8;
+	}
+	else
+	    password = "secret";
+d917 4
+a920 1
+    return (password);
+@
+
+
+1.20
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d10 4
+a13 4
+#include "commands.h"
+#include "options.h"
+#include "field.h"
+#include "qi.h"
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d27 1
+d45 2
+a143 1
+	fprintf(Output, "### 555 Database shut off (%s).\n", theState);
+d222 24
+a254 2
+    fprintf(Output, "###\n");
+    fflush(Output);
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@a133 1
+#ifndef ultrix
+a134 1
+#endif
+a148 1
+#ifndef ultrix
+a149 1
+#endif
+a227 1
+#ifndef ultrix
+a228 1
+#endif
+a256 1
+#ifndef ultrix
+a258 1
+#endif
+a326 1
+#ifndef ultrix
+a327 1
+#endif
+a333 1
+#ifndef ultrix
+a334 1
+#endif
+a343 1
+#ifndef ultrix
+a344 1
+#endif
+a547 1
+#ifndef ultrix
+a548 1
+#endif
+a584 1
+#ifndef ultrix
+a586 1
+#endif
+@
+
+
+1.17
+log
+@*** empty log message ***
+@
+text
+@d134 1
+d136 1
+d151 1
+d153 1
+d232 1
+d234 1
+d263 1
+d266 1
+d335 1
+d337 1
+d344 1
+d346 1
+d356 1
+d358 1
+d490 2
+d562 1
+d564 1
+d601 1
+d604 1
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@d2 1
+d9 2
+a10 2
+static Arg *TheArgs=NULL;
+static Arg *OldArgs=NULL;
+d12 5
+a16 5
+static int DropIt=0;
+static int HasHistory=0;
+char *make_str();
+char *PasswordOf();
+Arg *FreshArg();
+d18 3
+a20 3
+extern char *Database;	/* conf.c */
+extern FILE *Input;	/* mqi.c */
+extern FILE *Output;	/* mqi.c */
+d23 1
+a23 1
+extern char *Tempfile;	/* conf.c */
+d28 2
+a29 2
+FILE *TempOutput=0;
+static char *TFile=0;
+d31 2
+a32 2
+int DiscardIt;
+int (*CommandTable[])()=
+d34 11
+a44 11
+    DoQuery,
+    DoChange,
+    DoLogin,
+    DoAnswer,
+    DoLogout,
+    DoFields,
+    DoAdd,
+    DoDelete,
+    DoSet,
+    DoQuit,
+    0
+d47 4
+a50 4
+Dir User=0;		/* the currently logged in user */
+int AmHero = 0;		/* is currently logged in user the Hero? */
+char *UserAlias=0;	/* the alias of the currently logged in user */
+int UserEnt=0;		/* entry number of current user */
+d52 4
+a55 4
+char *ClaimUser=0;	/* the identity the user has claimed, but not yet
+			   verified */
+char *Challenge=0;	/* challenge string */
+int State=S_IDLE;
+d57 2
+a58 2
+char *Hero="uiuc";	/* magic hero entry */
+Dir HeroDir=0;		/* Hero's Dir */
+d63 3
+a65 3
+AddValue(theValue,theType)
+char *theValue;
+int theType;
+d67 2
+a68 2
+    Arg *historyArgs;
+    Arg *RememberArg();
+d70 1
+a70 1
+    HasHistory = HasHistory || *theValue==HISTORY;
+d73 1
+a73 1
+	if (*theValue==HISTORY && (TheArgs==RememberArg(theValue)))
+d76 1
+a76 1
+	    for (LastArg->aNext=TheArgs;
+d78 1
+a78 1
+		 LastArg=LastArg->aNext)
+d83 1
+a83 1
+	    LastArg=TheArgs=FreshArg();
+d88 2
+a89 1
+    else if (*theValue==HISTORY && (historyArgs=RememberArg(theValue)))
+d92 1
+a92 3
+	for (LastArg->aNext=historyArgs;
+	     LastArg->aNext;
+	     LastArg=LastArg->aNext)
+d97 1
+a97 1
+	if (LastArg->aType==1 && theType==EQUAL)
+d99 2
+a100 1
+	else if (LastArg->aType==EQUAL || LastArg->aType==(VALUE|EQUAL))
+d119 1
+a119 1
+char *theJunk;
+d121 1
+a121 1
+    fprintf(Output,"%d:%s:%s\n",LR_SYNTAX,theJunk,"Command not recognized.");
+d128 1
+a128 1
+int theCommand;
+d130 2
+a131 2
+    char *GetState();
+    char *theState;
+d134 2
+a135 2
+    syslog(LOG_INFO,"%s",CommandText);
+    if (InputType==IT_FILE || InputType==IT_PIPE || OP_VALUE(ECHO_OP) ||
+d137 1
+a137 1
+	PrintCommand(theCommand,TheArgs); /* echo the cmd */
+d139 1
+a139 1
+    if (Daemon && (theState=GetState(Database)))
+d141 2
+a142 2
+	fprintf(Output,"### 555 Database shut off (%s).\n",theState);
+	fprintf(Output,"555:Database shut off (%s).\n",theState);
+d148 2
+a149 2
+	fprintf(Output,"%d:couldn't open temp file.\n",LR_INTERNAL);
+	syslog(LOG_INFO,"Couldn't open temp file.\n");
+d153 1
+a153 1
+    if (State==S_E_PENDING)
+d157 1
+a157 1
+	    DoReply(LR_SYNTAX,"Expecting answer; login discarded.");
+d167 1
+a167 1
+	DoReply(LR_SYNTAX,"Command not understood.");
+d169 1
+a169 1
+	(*CommandTable[theCommand-1])(TheArgs);
+d184 1
+a184 1
+Arg *theArg;
+d186 1
+a186 1
+    Arg *theNext;
+d189 3
+a191 3
+	for (theNext=theArg->aNext;
+		theArg;
+		theArg=theNext,theNext=theArg->aNext)
+d193 5
+a197 3
+	    if (theArg->aFirst) free(theArg->aFirst);
+	    if (theArg->aSecond) free(theArg->aSecond);
+	    free(theArg);
+d204 2
+a205 1
+Arg *FreshArg()
+d207 1
+a207 1
+    Arg *theArg;
+d216 1
+a216 1
+    return(theArg);
+d222 1
+d224 1
+a224 1
+Arg *theArg;
+d226 1
+a226 1
+    DoReply(LR_OK,"Bye!");
+d229 1
+a229 1
+    fprintf(Output,"###\n");
+d238 1
+a238 1
+Arg *theArg;
+d240 1
+a240 1
+    DoReply(500,"%s:command not implemented.",theArg->aFirst);
+d246 5
+a250 4
+DoReply(theCode,theFormat,theArgs)
+int theCode;
+char *theFormat;
+char *theArgs;
+d252 1
+a252 1
+    char scratchFormat[256];
+d254 1
+a254 1
+    sprintf(scratchFormat,"%d:%s\n",theCode,theFormat);
+d257 2
+a258 2
+    if (theCode>0)
+	syslog(LOG_INFO,"%d",theCode);
+d265 1
+a265 1
+Arg *theArg;
+d267 2
+a268 3
+    char *who;
+    char *me;
+    char *RandomString();
+d273 1
+a273 7
+	DoReply(LR_SYNTAX,"%s:no name given.",me);
+    else if (theArg->aType!=VALUE)
+	DoReply(LR_SYNTAX,"%s:argument invalid.",me);
+    else if (theArg->aNext)
+	DoReply(LR_SYNTAX,"%s:extra arguments.",me);
+    else if (ReadOnly)
+	DoReply(LR_READONLY,"login not allowed to read-only database.");
+d275 9
+d286 1
+a286 1
+	DoReply(LR_LOGIN,"%s",Challenge);	/* this needs to change... */
+d288 1
+a288 1
+	State=S_E_PENDING;
+d299 1
+a299 1
+Arg *theArg;
+d301 2
+a302 2
+    char *me;
+    long time(),theTime;
+d308 1
+a308 7
+	DoReply(LR_SYNTAX,"%s:there is no outstanding login.",me);
+    else if (!theArg)
+	DoReply(LR_SYNTAX,"%s:no argument given.",me);
+    else if (theArg->aType!=VALUE)
+	DoReply(LR_SYNTAX,"%s:invalid argument type.",me);
+    else if (!GonnaRead())
+	/* Lock routines give their own errors */;
+d310 9
+d323 1
+a323 1
+	if (!(User=GetAliasDir(ClaimUser))) 
+d325 3
+a327 3
+	    SleepTil(theTime+WAIT_SECS);
+	    DoReply(LR_ERROR,"Login failed.");
+	    syslog(LOG_INFO,"login: alias %s does not exist.",ClaimUser);
+d329 2
+a330 1
+	else if (!UserMatch(theArg->aFirst))
+d332 3
+a334 3
+	    SleepTil(theTime+WAIT_SECS);
+	    DoReply(LR_ERROR,"Login failed.");
+	    syslog(LOG_INFO,"Password incorrect for %s.",ClaimUser);
+d339 4
+a342 4
+	    SleepTil(theTime+WAIT_SECS);
+	    DoReply(LR_OK,"%s:Hi how are you?",ClaimUser);
+	    AmHero = !stricmp(ClaimUser,Hero);
+	    UserAlias = FindValue(User,F_ALIAS);
+d344 1
+a344 1
+	    syslog(LOG_INFO,"%s logged in.",UserAlias);
+d347 10
+a356 2
+    if (ClaimUser) {free(ClaimUser);ClaimUser=NULL;}
+    if (Challenge) {free(Challenge);Challenge=NULL;}
+d365 1
+a365 1
+long theTime;
+d367 1
+a367 1
+    int theSpan;
+d379 1
+a379 1
+char *theName;
+d381 2
+a382 2
+    Arg *theArgList;
+    Arg *theArg;
+d393 1
+a393 1
+    theArg->aFirst = make_str("alias");		/* should be alias */
+d395 1
+a395 1
+    ValidQuery(theArgList,C_QUERY);
+d397 1
+a397 1
+    if ((theEntry=DoLookup(theArgList))!=NULL && length(theEntry)==1 &&
+d403 2
+a404 1
+    if (theEntry) free(theEntry);
+d407 1
+a407 1
+    return(theDir);
+d414 1
+a414 1
+Arg *theArg;
+d417 1
+a417 3
+	DoReply(LR_SYNTAX,"argument given on logout command.");
+    else if (!User)
+	DoReply(LR_ERROR,"Not logged in.");
+d419 3
+d424 1
+a424 1
+	DoReply(LR_OK,"Ok.");
+d432 1
+a432 1
+Arg *theArg;
+d434 1
+a434 1
+    if (theArg->aNext==NULL)
+d437 1
+a437 1
+	DoReply(LR_OK,"Ok.");
+d439 2
+a440 1
+    else if (OkFields(theArg->aNext))
+d442 1
+a442 1
+	for (theArg=theArg->aNext;theArg;theArg=theArg->aNext)
+d444 1
+a444 1
+	DoReply(LR_OK,"Ok.");
+d447 1
+a447 1
+	DoReply(LR_SYNTAX,"Invalid field request.");
+d456 3
+a458 3
+    char scratch[MAX_LEN];
+    char *cp;
+    char *strtok();
+d460 1
+a460 1
+    sprintf(scratch,"%d:%s:max %d",theFD->fdId,theFD->fdName,theFD->fdMax);
+d462 14
+a475 7
+    if (theFD->fdIndexed) cp += strcpc(cp," Indexed");
+    if (theFD->fdLookup) cp += strcpc(cp," Lookup");
+    if (theFD->fdPublic) cp += strcpc(cp," Public");
+    if (theFD->fdDefault) cp += strcpc(cp," Default");
+    if (theFD->fdChange) cp += strcpc(cp," Change");
+    if (theFD->fdSacred) cp += strcpc(cp," Sacred");
+    if (theFD->fdTurn) cp += strcpc(cp," Turn");
+d477 4
+a480 4
+    DoReply(-LR_OK,scratch);
+    strcpy(scratch,theFD->fdHelp);
+    for (cp=strtok(scratch,"\n");cp;cp=strtok(NULL,"\n"))
+	DoReply(-LR_OK,"%d:%s:%s",theFD->fdId,theFD->fdName,cp);
+d490 1
+a490 1
+    for (theFD=FieldDescriptors;*theFD;theFD++)
+d498 1
+a498 1
+Arg *theArgs;
+d500 2
+a501 2
+    int bad=0;
+    int count=0;
+d504 1
+a504 1
+    for (;theArgs;theArgs=theArgs->aNext)
+d509 1
+a509 1
+	    DoReply(-LR_SYNTAX,"argument %d:is not a field name.",count);
+d512 2
+a513 1
+	else if (!(theFD=FindFD(theArgs->aFirst)))
+d515 1
+a515 1
+	    DoReply(-LR_FIELD,"%d:unknown field.",theArgs->aFirst);
+d528 1
+a528 1
+Arg *theArgs;
+d531 5
+a535 5
+    int haveError=0;
+    int count;
+    int done;
+    Dir theDir;
+    int unmake_lookup();
+d539 1
+a539 1
+	DoReply(LR_NOTLOG,"Must be logged in to delete.");
+d542 2
+a543 1
+    else if (!UserCanDelete(User))
+d545 2
+a546 2
+	DoReply(LR_ERROR,"You may not delete entries.");
+	syslog(LOG_INFO,"%s is not authorized to delete entries.",UserAlias);
+d549 2
+a550 2
+    
+    if (!ValidQuery(theArgs,C_DELETE))
+d552 1
+a552 1
+	DoReply(LR_SYNTAX,"Delete command not understood.");
+d558 1
+a558 1
+	/* GonnaWrite will issue an error message */;
+d562 1
+a562 1
+    if ((theEntries=DoLookup(theArgs))==NULL)
+d564 1
+a564 1
+	DoReply(LR_NOMATCH,"No entries matched specifications.");
+d569 1
+a569 1
+    for (count=1,done=0;*theEntries;count++,theEntries++)
+d573 1
+a573 1
+	    DoReply(-LR_TEMP,"Internal error.");
+d580 2
+a581 2
+	    DoReply(-LR_ERROR,"%d:%s: you may not delete this entry.",
+		count,FindValue(theDir,F_ALIAS));
+d583 2
+a584 2
+	    syslog(LOG_INFO,"%s may not delete %s.",
+		    UserAlias,FindValue(theDir,F_ALIAS));
+d589 1
+a589 1
+	MakeLookup(theDir,*theEntries,unmake_lookup);
+d598 1
+a598 1
+    free(theEntries);
+d602 2
+a603 2
+	DoReply(LR_ERROR,"%d errors, %d successes on delete command.",
+	    count-done,done);
+d605 1
+a605 1
+	DoReply(LR_OK,"%d entries deleted.",done);
+d613 2
+a614 1
+    char *make_str();
+d616 1
+a616 1
+    if (TFile==NULL)
+d618 1
+a618 1
+	TFile=make_str(Tempfile);
+d622 1
+a622 1
+    if ((TempOutput=fopen(TFile,"w+"))==NULL)
+d626 1
+a626 1
+	return(0);
+d631 1
+a631 1
+    return(1);
+d639 1
+a639 1
+    int c;
+d643 2
+a644 2
+	while ((c=getc(TempOutput))!=EOF)
+	    putc(c,Output);
+d653 1
+a653 1
+Arg *
+d655 1
+a655 1
+char *theSelector;
+d657 6
+a662 7
+    Arg *theArgs;
+    Arg *anArg;
+    Arg *oldArg;
+    Arg *CopyArg();
+    int firstNumber;
+    int lastNumber;
+    int n;
+d665 1
+a665 1
+	return(NULL);
+d671 4
+a674 4
+	case 'q':		/* request the query portion */
+	    oldArg = OldArgs->aNext;
+	    if (!oldArg)
+		return(NULL);
+d676 1
+a676 1
+	    anArg=theArgs=CopyArg(oldArg);
+d678 8
+a685 8
+	    for (oldArg=oldArg->aNext;
+		 oldArg && oldArg->aType!=RETURN;
+		 oldArg=oldArg->aNext)
+	    {
+		anArg->aNext = CopyArg(oldArg);
+		anArg=anArg->aNext;
+	    }
+	    break;
+d687 4
+a690 4
+	case 'r':		/* the return portion */
+	    oldArg = OldArgs->aNext;
+	    if (!oldArg)
+		return(NULL);
+d692 4
+a695 4
+	    /* skip to the return token */
+	    for (oldArg=oldArg->aNext;
+		 oldArg && oldArg->aType!=RETURN;
+		 oldArg=oldArg->aNext);
+d697 2
+a698 2
+	    if (!oldArg || !oldArg->aNext)
+		return(NULL);
+d700 2
+a701 2
+	    oldArg=oldArg->aNext;
+	    anArg=theArgs=CopyArg(oldArg);
+d703 8
+a710 8
+	    for (oldArg=oldArg->aNext;
+		 oldArg;
+		 oldArg=oldArg->aNext)
+	    {
+		anArg->aNext = CopyArg(oldArg);
+		anArg=anArg->aNext;
+	    }
+	    break;
+d712 11
+a722 17
+	case '0':
+	case '1':
+	case '2':
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+	case '8':
+	case '9':
+	    n = firstNumber = atoi(theSelector);
+		
+	    for (oldArg=OldArgs;n && oldArg;n--)
+		oldArg=oldArg->aNext;
+	    
+	    if (!oldArg)
+		return(NULL);
+d724 2
+a725 1
+	    while (isdigit(*theSelector)) theSelector++;
+d727 14
+a741 4
+		theArgs = CopyArg(oldArg);
+	    else if (*theSelector!='-')
+		return(NULL);		/* syntax error */
+	    else
+d743 6
+a748 2
+		theSelector++;
+		if (!*theSelector)
+d750 2
+a751 10
+		    /* copy'em all */
+		    theArgs=anArg=CopyArg(oldArg);
+
+		    for (oldArg=oldArg->aNext;
+			 oldArg;
+			 oldArg=oldArg->aNext)
+		    {
+			anArg->aNext = CopyArg(oldArg);
+			anArg=anArg->aNext;
+		    }
+d753 4
+a756 3
+		else
+		{
+		    n = atoi(theSelector) - firstNumber;	/* how many? */
+d758 4
+a761 4
+		    /* do we have that many? */
+		    for (anArg=oldArg;n>0 && anArg;n--,anArg=anArg->aNext);
+		    if (n)
+			return(NULL);	/* nope. */
+d763 8
+a770 9
+		    n = atoi(theSelector) - firstNumber;	/* how many? */
+		    theArgs=anArg=CopyArg(oldArg);
+		    for (oldArg=oldArg->aNext;
+			 n;
+			 n--,oldArg=oldArg->aNext)
+		    {
+			anArg->aNext = CopyArg(oldArg);
+			anArg = anArg->aNext;
+		    }
+d773 2
+a774 1
+	    break;
+d776 2
+a777 2
+	default:
+	    return(NULL);
+d780 1
+a780 1
+    return(theArgs);
+d786 1
+a786 1
+Arg *
+d788 1
+a788 1
+Arg *theArg;
+d790 1
+a790 1
+    Arg *newArg;
+d801 1
+a801 1
+    return(newArg);
+d807 3
+a809 3
+PrintCommand(theCommand,theArgs)
+int theCommand;
+Arg *theArgs;
+d811 2
+a812 2
+    fprintf(Output,"%d: %s",LR_ECHO,theArgs->aFirst);
+    for (theArgs=theArgs->aNext;
+d814 1
+a814 1
+	 theArgs=theArgs->aNext)
+d816 3
+a818 3
+	putc(' ',Output);
+	if (theArgs->aType==RETURN)
+	    fputs(theCommand==C_QUERY ? "return" : "make",Output);
+d822 1
+a822 1
+		fputs(theArgs->aFirst,Output);
+d824 1
+a824 1
+		putc('=',Output);
+d826 1
+a826 1
+		fputs(theArgs->aSecond,Output);
+d829 1
+a829 1
+    putc('\n',Output);
+d836 1
+a836 1
+char *string;
+d838 2
+a839 1
+    char decrypted[MAXSTR];
+d842 2
+a843 2
+    decrypt(decrypted,string);
+    return(!strcmp(decrypted,Challenge));
+d849 1
+a849 1
+char *
+d851 1
+a851 1
+int byteCount;
+d854 2
+a855 2
+    char *cp;
+    static int seeded=0;
+d859 1
+a859 1
+	seeded=1;
+a861 3
+    
+    for (cp=string;byteCount;cp++,byteCount--)
+	*cp = (random()&0x3f) + 0x21;
+d863 4
+a866 1
+    return(string);
+d872 1
+a872 1
+char *
+d874 1
+a874 1
+Dir User;
+d876 2
+a877 2
+    int len;
+    char *password;
+d880 1
+a880 1
+    if (!*(password=FindValue(User,F_PASSWORD)))
+d882 1
+a882 1
+	if (*(password=FindValue(User,F_UNIVID)))
+d885 2
+a886 1
+	    if (len > 8) password += len-8;
+d889 1
+a889 1
+	    password="secret";
+d891 1
+a891 1
+    return(password);
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d252 1
+a252 1
+	syslog("%d",theCode);
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@d251 2
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d47 1
+a47 1
+int AmHero = 1;		/* is currently logged in user the Hero? */
+d307 1
+a307 1
+	AmHero = 1;
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d47 1
+a47 1
+int AmHero = 0;		/* is currently logged in user the Hero? */
+d307 1
+a307 1
+	AmHero = 0;
+d504 1
+a504 1
+    if (!User)
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d14 1
+a802 2
+    char *password;
+    int len;
+d804 1
+a804 12
+    /* find the user's password */
+    if (!*(password=FindValue(User,F_PASSWORD)))
+    {
+	if (*(password=FindValue(User,F_UNIVID)))
+	{
+	    len = strlen(password);
+	    if (len > 8) password += len-8;
+	}
+	else
+	    password="secret";
+    }
+    crypt_start(password);
+d830 24
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d312 1
+a312 1
+	    DoReply(LR_ERROR,"Die, hacker scum!");
+d318 1
+a318 1
+	    DoReply(LR_ERROR,"Die, hacker scum!");
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d326 1
+a326 1
+	    AmHero = !strcmp(ClaimUser,Hero);
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d55 1
+a55 1
+char *Hero="s-dorner";	/* magic hero entry */
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d55 1
+a55 1
+char *Hero="uiuc";	/* magic hero entry */
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d260 1
+d274 1
+a274 1
+	Challenge = make_str("secret");
+d315 1
+a315 1
+	else if (strcmp(theArg->aFirst,Challenge))
+d793 49
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d2 1
+d9 1
+d12 1
+d65 4
+d71 14
+a84 3
+	LastArg=TheArgs=FreshArg();
+	LastArg->aFirst = make_str(theValue);
+	LastArg->aType = theType;
+d86 8
+d133 3
+a135 2
+    if (InputType==IT_FILE || InputType==IT_PIPE || OP_VALUE(ECHO_OP))
+	fprintf(Output,"%s",CommandText);		/* echo the cmd */
+d172 2
+a173 1
+    FreeArgs(TheArgs);
+d175 1
+a175 1
+    DiscardIt = 0;
+d247 1
+a247 4
+    if (theCode<0)
+	sprintf(scratchFormat,"%d-:%s\n",-theCode,theFormat);
+    else
+	sprintf(scratchFormat,"%d:%s\n",theCode,theFormat);
+d611 181
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d3 1
+d107 2
+a108 2
+    if (InputType==IT_FILE || InputType==IT_PIPE)
+	fprintf(Output,"%s\n",CommandText);		/* echo the cmd */
+a184 5
+
+/***********************************************************************
+* command stubs
+***********************************************************************/
+DoSet(theArg) Arg *theArg; {NotImplemented(theArg);}
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@a590 8
+
+/***********************************************************************
+* complain about an old version of ph
+***********************************************************************/
+ComplainOld()
+{
+    syslog(LOG_INFO,"Old ph.");
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d22 1
+a22 1
+static FILE *TempOutput=0;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d12 1
+d20 1
+d101 3
+d108 8
+@

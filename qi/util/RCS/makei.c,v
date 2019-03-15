@@ -1,0 +1,741 @@
+head	1.15;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.15
+date	94.09.09.20.17.46;	author p-pomes;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.07.22.21.54.49;	author p-pomes;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.07.18.19.48.36;	author p-pomes;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.03.11.21.26.14;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.01.07.18.04.25;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	93.11.24.22.40.56;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	93.04.16.02.11.11;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	93.04.02.16.14.43;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	93.04.01.16.27.58;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.07.29.04.15.49;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.07.28.16.14.12;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.28.05.04.09;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.27.22.20.02;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.27.21.37.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.15
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: makei.c,v 1.14 1994/07/22 21:54:49 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+/*
+ * these thing keep ld happy
+ */
+int	InputType;
+int	Daemon;
+FILE	*Input, *Output;
+char	*DBState;
+
+/*
+ * end of ld pacification
+ */
+extern int Quiet;		/* qi/qi.c */
+extern int ReadOnly;
+extern int DoTree;
+int	CheckMeta;
+static char *Me;		/* the name of this program */
+extern int DoTree;
+static int pipe_fd1[2], pipe_fd2[2];
+static FILE *to_sort, *from_sort;
+static void flush_key __P((char *,PTRTYPE *,PTRTYPE));
+static int debug = 0;
+extern void printarry __P((INT32 *));
+extern int getient __P((register char *, struct iindex *));
+
+main(argc, argv)
+	int	argc;
+	char   **argv;
+{
+	char inbuf[MAX_KEY_LEN+50];
+	char curkey[MAX_KEY_LEN+1];
+	PTRTYPE curmaxlen = NIPTRS, recidx = 0;
+	PTRTYPE *reclist = (PTRTYPE *) calloc(curmaxlen,PTRSIZE);
+	int count = 0, keys = 0;
+#ifdef SA_FULLDUMP
+	/* AIX does not provide the data section in a core dump by default. */
+	struct sigaction handlr;
+
+	handlr.sa_handler = NULL;
+	handlr.sa_flags = SA_FULLDUMP;
+	sigaction(SIGQUIT, &handlr, NULL);
+	sigaction(SIGILL, &handlr, NULL);
+	sigaction(SIGBUS, &handlr, NULL);
+	sigaction(SIGSEGV, &handlr, NULL);
+	sigaction(SIGIOT, &handlr, NULL);
+#endif /* SA_FULLDUMP */
+
+	/* when you're strange, no one remembers your name */
+	Me = *argv;
+	*curkey = '\0';
+
+	OP_VALUE(NOLOG_OP) = strdup("");
+	ReadOnly = 0;
+	DoTree = 0;
+	while (--argc > 0 && **(++argv) == '-')
+	  {
+		char *equal, **opt;
+
+		(*argv)++;
+		if (**argv == 'q')
+			Quiet++;
+		else if (equal = (char *)strchr(*argv, '='))
+		{
+			*equal++ = 0;
+			for (opt = Strings; *opt; opt += 2)
+				if (!strcmp(opt[0], *argv))
+				{
+					opt[1] = equal;
+					break;
+				}
+			if (*opt == '\0')
+			{
+				fprintf(stderr, "%s: %s: unknown string.\n",
+					Me, *argv);
+				exit(1);
+			}
+		} else
+		{
+			fprintf(stderr, "%s: %s: unknown option.\n", Me, *argv);
+			exit(1);
+		}
+	}
+	Database = (argc > 0) ? *argv : DATABASE;
+	if (!Quiet)
+		printf("%s: indexing database %s\n", Me, Database);
+	sleep(5);
+	setbuf(stdout, NULL);
+
+	DoSysLog(0);		/* report errors to stderr */
+
+	dbd_init(Database);
+	get_dir_head();
+	if (!GetFieldConfig())
+		exit(1);
+	/* bintree_init(Database); *//* forget bintree here */
+	DoTree = 0;
+	print_head();
+
+	/* set up the neccessary mechanism to talk to sort */
+	pipe(pipe_fd1);
+	pipe(pipe_fd2);
+
+	if (fork() == 0)
+	  {
+		  dup2(pipe_fd1[0], 0);
+		  dup2(pipe_fd2[1], 1);
+		  
+		  close(pipe_fd1[1]);
+		  close(pipe_fd2[0]);
+		  
+		  execlp("sort", "sort", "-t\t", "+0", "-1", "+1n", 0);
+		  perror("Execl in makei");
+		  exit(1);
+	  }
+	close(pipe_fd1[0]);
+	close(pipe_fd2[1]);
+	
+	to_sort = fdopen(pipe_fd1[1], "w");
+	from_sort = fdopen(pipe_fd2[0], "r");
+	
+	
+	if (fork() == 0)
+	  {		/* read from .dir file and write to sort */
+		fclose(from_sort);
+		printf("sent indicies for %d dir entries to sort.\n", make_index());
+		exit(0);
+	  } else
+	    {		/* read from sort and insert into .idx file */
+		    fclose(to_sort);
+		    
+		    if (!dbi_init(Database)) {
+			    fprintf(stderr,"%s: couldn't init\n",Database);
+			    exit(1);
+		    }
+		    while (fgets(inbuf,sizeof(inbuf),from_sort)) {
+			    char *rp = (char *)strchr(inbuf,'\t');
+			    if (rp == NULL) {
+				fprintf(stderr,"%s: no tab in =%s=\n",
+				    Database, inbuf);
+				exit(1);
+			    }
+			    *rp++ = '\0';
+			    count++;
+			    if (!Quiet && count % 1000 == 1)
+			      printf("%d from sort.\n", count);
+			    if (strcmp(inbuf,curkey)) {	/* new key */
+				    flush_key(curkey,reclist,recidx); /* flush the old one */
+				    recidx = 0;
+				    reclist[0] = 0;
+				    strncpy(curkey,inbuf,sizeof(curkey));
+				    keys++;
+			    }
+			    if (recidx >= curmaxlen-1)
+			      reclist = (PTRTYPE *) realloc(reclist, (curmaxlen += NOPTRS)*PTRSIZE);
+			    reclist[recidx++] = atoi(rp);
+		    }
+		    flush_key(curkey,reclist,recidx); /* flush the final one */
+		    if (!Quiet)
+		      printf("%d from sort\n", count);
+	    }
+	printf("indexed %d unique strings out of %d total.\n",keys,count);
+	
+	exit(0);
+}
+
+extern int TrySum;
+extern int TryTimes;
+extern int WordsIndexed;
+extern int MaxIdx;
+
+make_index()
+{
+	QDIR	dirp;
+	INT32	ent;
+	extern struct dirhead DirHead;
+	int	entries_done;
+	void sort_lookup();
+
+
+	entries_done = 0;
+
+	for (ent = 1; ent < DirHead.nents; ent++)
+	{
+		if (!next_ent(ent))
+		{
+			/* printf("didn't do %d\n",ent); */
+			continue;
+		}
+		getdata(&dirp);	/* setup entry */
+
+		/* for all make the index entries */
+
+		MakeLookup(dirp, ent, sort_lookup);
+		if ((entries_done++ % 1000) == 0)
+			printf("%d to sort\n", entries_done);
+		FreeDir(&dirp);
+	}
+	return (ent);
+}
+
+print_head()
+{
+	extern struct dirhead DirHead;
+
+	printf("nents = %d\n", DirHead.nents);
+	printf("next_id = %d\n", DirHead.next_id);
+}
+
+void
+sort_lookup(str,ent)
+char *str;
+int ent;
+{
+  char	buf[MAX_LEN];
+  char	*cp;
+  char *strlncpy();
+#ifdef DEBUG
+  static FILE *out = NULL;
+  if (out == NULL) {
+    if ((out = fopen("./debug.index","w")) == NULL) {
+      perror("./debug.index");
+      exit(1);
+    }
+  }
+#endif  
+  (void) strlncpy(buf, str, MAX_LEN);
+  for (cp = strtok(buf, IDX_DELIM); cp; cp = strtok(0, IDX_DELIM)) {
+    if (cp[1] != '\0') {	/* has to be at least 2 letters! */
+      fprintf(to_sort,"%.*s\t%d\n", MAX_KEY_LEN, cp,ent);
+#ifdef DEBUG
+      fprintf(out,"%.*s\t%d\n",MAX_KEY_LEN,cp,ent);
+#endif
+    }
+  }
+}
+
+char *
+strlncpy(to, from, max)
+char *to, *from;
+int max;
+{
+  char *save = to;
+
+  while ((max-- > 0) && (*to++ = isupper(*from) ? tolower(*from) : *from))
+    from++;
+  
+  return (save);
+}
+
+/*
+ * Flush the key and the entire list of records it is in.
+ */
+
+static void
+flush_key(key,reclist,nelem)
+char *key;
+PTRTYPE *reclist, nelem;
+{
+  struct iindex x;
+  INT32 i, j, iloc;
+
+  if (!*key)
+    return;
+  reclist[nelem] = 0;		/* make sure it's zero-terminated */
+  key[MAX_KEY_LEN] = '\0';	/* just in case it isn't */
+
+  if (!putstrarry(key, reclist)) {
+    fprintf(stderr,"putstrarry failed for key %s (%d elements)\n",key,nelem);
+    return;
+  }
+}
+@
+
+
+1.14
+log
+@Check for sort keys w.o. tabs, try not to write bad keys to sort in the
+first place.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: makei.c,v 1.13 1994/07/18 19:48:36 p-pomes Exp p-pomes $";
+d64 1
+a64 1
+extern void printarry __P((long *));
+d215 1
+a215 1
+	long	ent;
+d301 1
+a301 1
+  long i, j, iloc;
+@
+
+
+1.13
+log
+@Initialize curkey explicitly since non-ANSI compilers don't like
+aggregate initializations.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: makei.c,v 1.12 1994/03/12 00:59:25 paul Exp p-pomes $";
+d76 13
+d178 5
+d270 1
+a270 1
+      fprintf(to_sort,"%s\t%d\n",cp,ent);
+d272 1
+a272 1
+      fprintf(out,"%s\t%d\n",cp,ent);
+@
+
+
+1.12
+log
+@New copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d72 1
+a72 1
+	char curkey[MAX_KEY_LEN+1] = "";
+d78 1
+@
+
+
+1.11
+log
+@Replace DontLog with Option setting macro.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.10
+log
+@Replaced index() with strchr().
+@
+text
+@a21 1
+extern int DontLog;
+d47 1
+a47 1
+	DontLog = 0;
+@
+
+
+1.9
+log
+@Improvements from Alan Crosswell <alan@@curta.cc.columbia.edu>.
+@
+text
+@d58 1
+a58 1
+		else if (equal = index(*argv, '='))
+d132 1
+a132 1
+			    char *rp = index(inbuf,'\t');
+@
+
+
+1.8
+log
+@Quiet now a global in qi/qi.c .
+@
+text
+@d25 1
+d29 6
+d40 5
+d48 1
+a48 1
+	DontLog = 1;
+d50 1
+d52 1
+a52 1
+	{
+d81 1
+a81 1
+		fprintf(stderr, "%s: indexing database %s\n", Me, Database);
+a86 1
+	dbi_init(Database);
+d94 60
+a153 1
+	printf("made indicies for %d dir entries\n", make_index());
+d168 2
+a169 1
+	long	start_time, end_time;
+a170 1
+	(void) time(&start_time);
+a182 1
+		MakeLookup(dirp, ent, make_lookup);
+d184 3
+a186 9
+		if ((entries_done++ % 100) == 0)
+		{
+			(void) time(&end_time);
+			printf("%d %ld %d %d %d %d\n", entries_done,
+			       end_time - start_time,
+			       TrySum, TryTimes, WordsIndexed, MaxIdx);
+			MaxIdx = TrySum = TryTimes = 0;
+			start_time = end_time;
+		}
+d198 64
+@
+
+
+1.7
+log
+@Announce which database is being smashed, uhhhh built, and pause 5 seconds.
+@
+text
+@d23 1
+a32 2
+	int Quiet = 0;
+
+@
+
+
+1.6
+log
+@Now can modify Strings[] like qi, e.g. prog -DATABASE=/tmp/foo .
+@
+text
+@d68 3
+@
+
+
+1.5
+log
+@Deleted extraneous #include's.
+@
+text
+@d25 1
+d32 5
+d39 1
+a39 1
+	if (argc != 2)
+d41 25
+a65 2
+		printf("usage: %s database.\n", argv[0]);
+		exit(1);
+d67 1
+d72 2
+a73 2
+	dbi_init(argv[1]);
+	dbd_init(argv[1]);
+d77 1
+a77 1
+	/* bintree_init(argv[1]); *//* forget bintree here */
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 2
+a9 7
+
+#include <ctype.h>
+#include <stdio.h>
+#include "protos.h"
+#include "qi.h"
+#include "db.h"
+#include "field.h"
+@
+
+
+1.3
+log
+@Random fixes.
+@
+text
+@d11 1
+a14 1
+#include "protos.h"
+@
+
+
+1.2
+log
+@Re-formatted for clarity
+@
+text
+@d14 1
+d66 1
+a66 1
+	DIR	dirp;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 7
+a7 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d15 11
+a25 11
+/***********************************************************************
+* these thing keep ld happy
+***********************************************************************/
+int   InputType;
+int   Daemon;
+FILE   *Input, *Output;
+char *DBState;
+
+/***********************************************************************
+* end of ld pacification
+***********************************************************************/
+d28 1
+a28 1
+int   CheckMeta;
+d32 2
+a33 2
+int   argc;
+char  **argv;
+d35 21
+a55 20
+  DontLog = 1;
+  ReadOnly = 0;
+  if (argc != 2)
+  {
+    printf("usage: %s database.\n", argv[0]);
+    exit(1);
+  }
+  setbuf(stdout, NULL);
+
+  DoSysLog(0);		/* report errors to stderr */
+
+  dbi_init(argv[1]);
+  dbd_init(argv[1]);
+  get_dir_head();
+  if (!GetFieldConfig()) exit(1);
+  /* bintree_init(argv[1]); *//* forget bintree here */
+  DoTree = 0;
+  print_head();
+  printf("made indicies for %d dir entries\n", make_index());
+  exit(0);
+d65 33
+a97 34
+  Dir   dir;
+  long   ent;
+  extern struct dirhead DirHead;
+  int   entries_done;
+  long  start_time, end_time;
+  int   make_lookup();
+
+  (void) time(&start_time);
+  entries_done = 0;
+
+  for (ent = 1; ent < DirHead.nents; ent++)
+  {
+    if (!next_ent(ent))
+    {
+      /* printf("didn't do %d\n",ent); */
+      continue;
+    }
+    getdata(&dir);      /* setup entry */
+
+    /* for all make the index entries */
+    MakeLookup(dir, ent, make_lookup);
+
+    if ((entries_done++ % 100) == 0)
+    {
+      (void) time(&end_time);
+      printf("%d %ld %d %d %d %d\n", entries_done,
+	   end_time - start_time,
+	   TrySum, TryTimes, WordsIndexed, MaxIdx);
+      MaxIdx = TrySum = TryTimes = 0;
+      start_time = end_time;
+    }
+    FreeDir(&dir);
+  }
+  return (ent);
+d102 1
+a102 1
+  extern struct dirhead DirHead;
+d104 2
+a105 2
+  printf("nents = %d\n", DirHead.nents);
+  printf("next_id = %d\n", DirHead.next_id);
+@

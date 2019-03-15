@@ -1,0 +1,390 @@
+head	1.2;
+access;
+symbols;
+locks
+	p-pomes:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	95.05.23.15.00.30;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.03.29.05.44.43;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Revised GenPass().
+@
+text
+@#!%PerlProg%
+#
+# n.unblock - unblock a network ID file from AISS
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: n.unblock,v 1.1 1995/03/29 05:44:43 p-pomes Exp p-pomes $
+
+# Layout is:		Len	Col
+#ssn			9	1
+#current-full-name	40	10
+#previous-ssn		9	50
+#permanent-addr-line1	30	59
+#permanent-addr-line2	30	89
+#permanent-addr-street	30	119
+#permanent-addr-city	15	149
+#permanent-addr-state	2	164
+#permanent-addr-zip	9	166
+#campus-addr-line1	30	175
+#campus-addr-line2	30	205
+#campus-addr-street	30	235
+#campus-addr-city	15	265
+#campus-addr-state	2	280
+#campus-addr-zip	9	282
+#last-auth-date		8	291
+#network-id		8	299
+#new-status		1	307
+#class-code		1	308
+#coll-enr-category	1	309
+#college		2	310
+#curriculum		4	312
+#hs-name		30	316
+
+%dorms = (
+"ceramics","105 S Goodwin Ave\\nUrbana, IL 61801",
+"altgeld","1409 W Green St\\nUrbana, IL 61801",
+"an sci","1207 W Gregory Dr\\nUrbana, IL 61801",
+"educ bldg","1310 S Sixth St\\nChampaign, IL 61820",
+"clark","1203 S Fourth St\\nChampaign, IL 61820",
+"lincoln","1005 S Lincoln Ave\\nUrbana, IL 61801",
+"lar","1005 S Lincoln Ave\\nUrbana, IL 61801",
+"for lang","707 S Mathews Ave\\nUrbana, IL 61801",
+"gregory hall","810 S Wright St\\nUrbana, IL 61801",
+"adams lab","600 S Mathews Dr\\nUrbana, IL 61801",
+"armory","505 E Armory Ave\\nChampaign, IL 61820",
+"beckman inst","405 N Mathews Ave\\nUrbana, IL 61801",
+"bevier","905 S Goodwin Ave\\nUrbana, IL 61801",
+"burrill","407 S Goodwin Ave\\nUrbana, IL 61801",
+"com w","1206 S Sixth St\\nChampaign, IL 61820",
+"comm w","1206 S Sixth St\\nChampaign, IL 61820",
+"csl","1101 W Springfield Ave\\nUrbana, IL 61801",
+"csrl","1308 W Main St\\nUrbana, IL 61801",
+"davenport","607 S Mathews Ave\\nUrbana, IL 61801",
+"dcl","1304 W Springfield Ave\\nUrbana, IL 61801",
+"dkh","1407 W Gregory Dr\\nUrbana, IL 61801",
+"flb","707 S Mathews Ave\\nUrbana, IL 61801",
+"freer","906 S Goodwin Ave\\nUrbana, IL 61801",
+"huff","1206 S Fourth St\\nChampaign, IL 61820",
+"intnl stu bldg","910 S Fifth St\\nChampaign, IL 61820",
+"loomis","1110 W Green St\\nUrbana, IL 61801",
+"mech eng","1206 W Green St\\nUrbana, IL 61801",
+"morrill","505 S Goodwin Ave\\nUrbana, IL 61801",
+"mumford","1301 W Gregory\\nUrbana, IL 61801",
+"nat his","1301 W Green St\\nUrbana, IL 61801",
+"newmark","205 N Mathews Ave\\nUrbana, IL 61801",
+"noyes","505 S Mathews Ave\\nUrbana, IL 61801",
+"pabl","1201 W Gregory Dr\\nUrbana, IL 61801",
+"psych","603 E Daniel St\\nChampaign, IL 61820",
+"ral","600 S Mathews Ave\\nUrbana, IL 61801",
+"talbot","104 S Wright St\\nUrbana, IL 61801",
+"trans","104 S Mathews Ave\\nUrbana, IL 61801",
+"turner","1102 S Goodwin Ave\\nUrbana, IL 61801",
+"allen","1005 W Gregory Dr\\nUrbana, IL 61801",
+"busey","1111 W Nevada St\\nUrbana, IL 61801",
+"evans","1115 W Nevada St\\nUrbana, IL 61801",
+"babcock","906 W College Ct\\nUrbana, IL 61801",
+"blaisdell","906 W College Ct\\nUrbana, IL 61801",
+"carr","906 W College Ct\\nUrbana, IL 61801",
+"oglesby","1001 W College Ct\\nUrbana, IL 61801",
+"saunders","906 W College Ct\\nUrbana, IL 61801",
+"trelease","1001 W College Ct\\nUrbana, IL 61801",
+"barton","1205 S Fourth St\\nChampaign, IL 61820",
+"forbes","101 E Gregory Dr\\nChampaign, IL 61820",
+"garner","201 E Gregory Dr\\nChampaign, IL 61820",
+"hopkins","103 E Gregory Dr\\nChampaign, IL 61820",
+"lundgren","1201 S Fourth St\\nChampaign, IL 61820",
+"townsend","1010 W ILlinois St\\nUrbana, Il 61801",
+"wardall","1010 W ILlinois St\\nUrbana, Il 61801",
+"scott","202 E Peabody Dr\\nChampaign, IL 61820",
+"snyder","206 E Peabody Dr\\nChampaign, IL 61820",
+"taft","1213 S Fourth St\\nChampaign, IL 61820",
+"weston","204 E Peabody Dr\\nChampaign, IL 61820",
+"vandoren","1213 S Fourth St\\nChampaign, IL 61820",
+"van doren","1213 S Fourth St\\nChampaign, IL 61820",
+"daniels","1010 W Green St\\nUrbana, IL 61801",
+"sherman","909 S Fifth St\\nChampaign, IL 61820"
+);
+
+#
+# beginning of interesting stuff
+#
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+# 
+# Initialize the password arrays
+$DictFile = "/usr/share/dict/words";
+open(DICT, "<$DictFile") || die "$DictFile: $!\n";
+while (<DICT>)
+{
+  chop;
+  next if (/\W/o || /[A-Z][A-Z]/o || /^ass$/o || /^butt$/o || /^crap$/o ||
+	   /^damn$/o || /^dyke$/o || /^fag$/o );
+  if (length == 3)
+  {
+    push(ThreeWord, $_);
+  }
+  elsif (length == 4)
+  {
+    push(FourWord, $_);
+  }
+}
+close(DICT);
+
+@@Punct = (2..9, '!', '*', '#', '$', '%', '&', '-', '+', '=', '<', '>', '?');
+srand(time|$$);
+
+#
+# read prod.cnf
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  chop;
+  if (/^#/) {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@@_ < 2) {next;}
+  $fid{$_[1]} = $_[0];
+}
+close(CONFIG);
+
+#
+# here we go...
+while (<>)
+{
+
+  #
+  # lowercase, sanitize, unblock
+  #
+  tr/A-Z/a-z/;
+  tr/ -~/ /c;
+
+  ($id,$name,$prevId,$p1,$p2,$pstreet,$pcity,$pstate,$pzip,
+   $c1,$c2,$cstreet,$ccity,$cstate,$czip,
+   $lastterm,$netid,$status,$class,$category,$college,$curric,$hsName)
+    = unpack("A9A40A9A30A30A30A15A2A9A30A30A30A15A2A9A8A8A1A1A1A2A4A30",$_);
+
+# print "status $status, class $class, category $category, college $college, curric $curric\n";
+  #
+  # massage fields
+  #
+  if ($ccity eq "campus")
+  {
+    foreach $d (keys(%dorms))
+    {
+      if ($cstreet =~ /$d/)
+      {
+        $ccity = $dorms{$d};
+	$cstate = $czip = "";
+	last;
+      }
+    }
+  }
+  if ($pcity eq "campus")
+  {
+    foreach $d (keys(%dorms))
+    {
+      if ($pstreet =~ /$d/)
+      {
+        $pcity = $dorms{$d};
+	$pstate = $pzip = "";
+	last;
+      }
+    }
+  }
+
+  #
+  # Clean up and create the campus address
+  if ($c1 ne "")
+  {
+    $campusAddr = $c1;
+    $campusAddr = &SepCat($campusAddr,"\\n",$c2);
+    $campusAddr = &SepCat($campusAddr,"\\n",$cstreet);
+  }
+  elsif ($c2 ne "")
+  {
+    $campusAddr = $c2;
+    $campusAddr = &SepCat($campusAddr,"\\n",$cstreet);
+  }
+  else
+  {
+    $campusAddr = $cstreet;
+  }
+  $campusAddr = &SepCat($campusAddr,"\\n",$ccity);
+  $campusAddr = &SepCat($campusAddr,", ",$cstate);
+  $campusAddr = &SepCat($campusAddr,"  ",$czip);
+
+  #
+  # Clean up and create the permanent address
+  if ($p1 ne "")
+  {
+    $permAddr = $p1;
+    $permAddr = &SepCat($permAddr,"\\n",$p2);
+    $permAddr = &SepCat($permAddr,"\\n",$pstreet);
+  }
+  elsif ($p2 ne "")
+  {
+    $permAddr = $p2;
+    $permAddr = &SepCat($permAddr,"\\n",$pstreet);
+  }
+  else
+  {
+    $permAddr = $pstreet;
+  }
+  $permAddr = &SepCat($permAddr,"\\n",$pcity);
+  $permAddr = &SepCat($permAddr,", ",$pstate);
+  $permAddr = &SepCat($permAddr,"  ",$pzip);
+
+  if ($campusAddr eq $permAddr)
+  {
+    $permAddr = "";
+  }
+
+  foreach $junk ("high school","school","high","sch","schl","h","s","hs","il")
+  {
+    $hsName =~ s/\b$junk\b//;
+  }
+  $hsName =~ s/^ +//;
+  $hsName =~ s/ +$//;
+  $hsName =~ s/  +/ /;
+
+  if ($lastterm ne "")
+  {
+    ($lastyear = $lastterm) =~ s/^(....).*/$1/;
+    ($lastmonth = $lastterm) =~ s/^....(..).*/$1/;
+    $lastmonth =~ s/^0//;
+    $lastterm = $lastmonth."/".$lastyear;
+  }
+  $Password = &GenPass();
+
+  #
+  # build output string
+  #
+  $out = $fid{"id"} . ":" . $id . "\t4:person phone";
+  $out = &SepCat($out,"\t".$fid{"name"}.":",$name);
+  $out = &SepCat($out,"\t".$fid{"college"}.":",$college);
+  $out = &SepCat($out,"\t".$fid{"curriculum"}.":",$curric);
+  $out = &SepCat($out,"\t".$fid{"high_school"}.":",$hsName);
+  if ($campusAddr ne "ng") {
+    $out = &SepCat($out,"\t".$fid{"home_address"}.":",$campusAddr);
+  }
+  if ($permAddr ne "ng") {
+    $out = &SepCat($out,"\t".$fid{"permanent_address"}.":",$permAddr);
+  }
+  $out = &SepCat($out,"\t".$fid{"last_term"}.":",$lastterm);
+  $out = &SepCat($out,"\t".$fid{"created"}.":",$Date);
+  $out = &SepCat($out,"\t".$fid{"left_uiuc"}.":",$Date);
+  $out = &SepCat($out,"\t".$fid{"password"}.":",$Password);
+
+  #
+  # and print it...
+  #
+  print $out . "\n";
+}
+
+sub SepCat
+{
+  ($str1,$sep,$str2) = @@_;
+  ($str1 ne "" && $str2 ne "") ? ($str1 .= $sep . $str2)							: ($str1 .= $str2);
+}
+
+sub GenPass
+{
+  local($i,$word1, $word2, $sep);
+  if (rand() < 0.5)
+  {
+    $word1 = $ThreeWord[rand(@@ThreeWord)];
+    $word2 = $FourWord[rand(@@FourWord)];
+  }
+  else
+  {
+    $word1 = $FourWord[rand(@@FourWord)];
+    $word2 = $ThreeWord[rand(@@ThreeWord)];
+  }
+  $sep = $Punct[rand(@@Punct)];
+  $word1 .= $sep . $word2;
+
+  $i = 1;
+  $i = int(rand(8));
+  
+  $word2 = substr($word1, $i, 1);
+  $word2 =~ s/./\U$&/;
+  substr($word1, $i, 1) = $word2;
+
+  return($word1);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d39 1
+a39 1
+# @@(#)$Id: s.unblock,v 1.2 1995/01/11 00:07:47 p-pomes Exp $
+d148 2
+a149 1
+  next if (/\W/ || /[A-Z][A-Z]/);
+d321 1
+a321 1
+  local($word1, $word2, $sep);
+d334 8
+@

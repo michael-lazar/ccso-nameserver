@@ -1,0 +1,50 @@
+SUMMARY
+The "alias" field contains information that uniquely identifies a person
+to the Nameserver.  Usually, the contents of the "alias" field consists
+of a person's first initial, a hyphen, and complete last name.  For
+example, "Paul B. Pomes" has an alias of "p-pomes".
+
+Some people share the same first initial and last name; these people
+typically have a number added to the ends of their aliases, so that
+their aliases remain unique.  For example, "John Doe" might have an
+alias of "j-doe1", and "Jane Doe" might have an alias of "j-doe2".
+
+It is possible for the owner of a ph entry to change his or her alias
+by logging into ph and using the "edit" or "make" command; thus, some
+people have aliases that do not follow the conventions just described,
+such as the alias "SueG".
+
+RESTRICTIONS ON ALIASES
+If you decide to edit your alias field, you should be aware of certain
+restrictions placed on the field:
+
+1) The alias field is limited to the characters a-z (uppercase is
+permitted, but ignored during ph lookups), 0-9, and the hyphen (-).
+
+2) The alias field must not contain a space.
+
+3) An alias must not be someone else's real name or nickname.
+
+4) The contents of the alias field must be unique; if you try to change
+your alias to one already in use, ph will reject it.
+
+CHANGING YOUR ALIAS
+To change your alias, you must first login to ph.  Then use the "make"
+or "edit" command to effect the desired changes:
+
+  EXAMPLES:
+
+  make alias="PaulP"
+
+  edit alias   (You will be placed in the default text editor, usually vi.
+                Make the desired changes and save the file.)
+
+If your change was successful, you should see the message:  "200:1 entry
+changed".  If you violated one of the restrictions listed above, an
+error message will appear.
+
+For more information on the "alias" field and how it is used by the
+Nameserver, see the ph help for "aliases" and "e-mail".
+
+SEE ALSO: aliases, e-mail, email, edit, make, fields, login, introduction,
+vi

@@ -1,0 +1,45 @@
+SYNTAX: make name-of-field="value-of-field"...
+
+SUMMARY
+The "make" command allows you to change fields in your own Nameserver
+entry.  To use the "make" command, you must first login to the Nameserver
+(see help on "login").  Then, to change any field in your entry (or to
+add a field that doesn't appear in your entry), simply give the command:
+
+   make name-of-field="value-of-field"
+
+The field(s) named in the "make" command will be given the value(s)
+specified.  Note that the "value-of-field" part of the command should
+be enclosed in double quotation marks.
+
+If you wish to remove a field from your entry, use the "make" command
+and give the field an empty value by typing two consecutive double
+quotation marks for "value-of-field" (e.g., make email="").  Ph will
+then remove the field from your entry.
+
+A useful command in conjunction with "make" is "me".  When you are logged
+in to the Nameserver, the "me" command can be used to view each and
+every field in your entry and to verify that the changes you made were
+what you expected.
+
+EXAMPLES
+In the following example, Paul Pomes changes his "email" field to
+paul@uxc.cso.uiuc.edu:
+
+   ph> make email="paul@uxc.cso.uiuc.edu"
+   200:1 entry changed.
+
+In the next example, Paul removes his phone number (and, thus, the
+"phone" field) from his entry in the Nameserver database:
+
+   ph> make phone=""
+   200:1 entry changed.
+
+It is possible to change more than one field at a time with the "make"
+command.  In the last example, Paul changes his email address and
+deletes his phone field with a single command:
+
+   ph> make email="paul@uxc.cso.uiuc.edu" make phone=""
+   200:1 entry changed.
+
+SEE ALSO: change, edit, passwd, me, login, alias, register

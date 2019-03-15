@@ -1,0 +1,15 @@
+malloc.c is included as a debugging aid from 4.3 BSD-tahoe.
+
+phquery is a fuzzy address backend for sendmail.  It relies on the
+presence of a network QI (Query Interpreter) server.  QI is a variant
+of the CSnet central name server.  At UIUC it contains the campus
+phone book plus several other fields including the preferred Email
+address.  phquery converts either a alias (guaranteed unique),
+full-name, or amateur radio callsign into a email address.  See the
+phquery man page and the man page for ph (QI client) in /net/ph
+(via anon-FTP).
+
+phquery should be installed as LIBDIR/phquery where LIBDIR is defined
+by the *.m4 files in ../ida/cf.  The default is /usr/local/libdata/mail .
+
+Paul Pomes, CSO

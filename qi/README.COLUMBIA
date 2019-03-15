@@ -1,0 +1,138 @@
+11/11/93 ###########################
+
+Columbia University changes to QI 2.2
+Alan Crosswell, alan@columbia.edu.
+
+util/makei 40x speedup or so.  Now finishes in under 15 minutes what used
+to take 10 hours.  Also, makei no longer *silently* fails to index a word
+because the index is too small.  
+
+Kerberos login (klogin) and conventional/email Qi login now coexist in
+the same Qi server (that is, they are no longer mutually exclusive).
+To do a Kerberos login, send the "klogin" command.  Regular/email login
+uses the "login" command.  klanguage.l eliminated.
+
+klogin only accepts the null or KRBHERO (phhero) instance ID.  Random
+other instance ID's (we have one called "simple") will not be accepted.
+
+Bug fix in qi/query.c: MAX_LOOKUP_CPU is hardcoded as 7, ignoring what is
+purportedly set in the 'defaults' file as CPU_LIMIT.
+
+Users of fdTurn will be happy to see that "*wordone wordtwo wortthree"
+is now indexed as "wordone", "wordtwo", "wordthree" which will make
+"wordone" a lot more findable (by heros).
+
+Security fix for "logout" of a previously logged-in hero:  Qi remembered
+you were a hero even after you logged out.
+
+Documentation TODO:
+- It has to be made clear the Any has to be defined as an Indexed:Lookup:
+  field before "query any=..." will work.
+- PERSONLIMIT only works if the type field starts with the letter "p"
+  (as in person) whereas the sample prod.cnf's description of the
+  field says: Staff, Student, Organization, etc.
+- KERBEROS install needs to be documented.  Point out that this is only
+  Kerberos V4 and that interrealm authentication is not implemented.  Also,
+  mutual authentication is used, so a readable (and correct!) srvtab
+  file has to exist on the Qi server host.  Also, while there is a 'kerberos'
+  field, the implementation does not currently use it to find the kerberos
+  name to QI alias mapping, rather, the assumption is made that the kerberos 
+  name is <alias>@<realm>.  Readers of Kerberos source code will find this
+  quite consistent with the distributed V4 implementation of krb_kntoln(:-).
+
+libapi now has LoginQi()/LogoutQi() functions which, subject to the
+@Features, will attempt to do Kerberos, Email, and conventional Qi
+logins.  Ph changed to login/logout using the new functions.  N.B.
+only LoginQi/LogoutQi are used.  Old ContactQI, etc. are still used
+rather than API calls since they have slightly different functionality
+and it didn't seem worth the effort at this point.
+[A suggested change to the API is to combine (Host,ToQI,FromQI,etc.) into
+a typedef QI and pass that around as the handle for a Qi session.]
+
+More configurable stuff and improvements to Configure for KERBEROS
+feature (all necessary libraries, #defines, etc. are added to the
+appropriate places such as $MoreLib, $PhFlags, $Cflags).  Note that
+where a Qi 2.2 hardcoded value has been made configurable, the default
+when the value is not supplied is always what the hardcoded valued was
+in 2.2, so you *do not* need to change your perl config file unless
+you want to use one of the new features.
+
+@Features:
+
+ EMAIL_ANYOK	Any value is allowed for email field (even *@maildomain).
+		Leave it out and get the default behavior which disallows
+		setting an email address which ends in @maildomain.  We
+		do our email stuff a little differently here.  Based on
+		some recent posts on the list, a couple others apparently
+		want this too.
+
+%DefineStrings:
+ 
+ DEFQUERY	Which field is searched by default when a query command
+		is given with no field name (e.g. "query paul pomes").
+		If undefined, this defaults to "query name=..." as in 2.2.
+                We use "query any=..." and have a number of fields defined
+		with the Wild (==fdAny -- sheesh!) attribute (alias, email,
+		name, nickname, oldname).
+
+ KRBHERO	Kerberos hero instance ID (default phhero; we use a
+	    	different one).  You must login using the hero
+		instance in order to actually become a hero -- in
+		addition to having a hero field.  Probably making
+		KRBHERO="" is reasonable for sites that don't care to
+		have seperate hero and regular passwords.
+
+ KRBSRVTAB	Path for Kerberos srvtab (default /etc/srvtab).  Qi needs
+		to know it's own password, but does not need to see root's,
+		so we use a /nameserv/db/srvtab which is readable by the
+		nameserv user.
+
+ MAILFIELD	Name of the mailfield returned by "siteinfo" (default alias).
+		Like I said above, we do it differently.  Our email field
+		is the actual email field and not alias@maildomain.  Of
+		course, no clients currently do anything useful with siteinfo,
+		so this is a moot point.
+
+OtherDefines:
+
+ QueryLimit	Limits the maximum number of entries of any type that can
+		be returned in a single query.  (Like PersonLimit, but for
+		all types, not just type:p*).
+
+Various scalars:
+
+$KrbIncDir	location of Kerberos include files (if not in usual cpp
+		search path.) (Results in $CFLAGS .= "-I$KrbIncDir")
+
+$KrbLibDir	location of Kerberos libkrb.a and libdes.a (Results in
+		$LDFLAGS .= "-L$KrbLibDir".
+
+
+Here's a summary of the new/deleted/changed files:
+
+New files:
+
+./README.COLUMBIA	This file.
+./api/LoginQi.c		new login API function.
+./api/apitest.c		small test program for LoginQi.
+./configs/columbia	sample that uses some of the new features.
+
+Deleted file:
+
+./qi/klanguage.l	see language.l.
+
+Changed files:
+
+./Configure		Kerberos customization improvements
+./api/OpenQi.c		get a privileged port if effective uid is 0.
+./api/Makefile		added LoginQi, apitest.
+./include/commands.h	Kerberos
+./include/qiapi.h	added LoginQi
+./ph/Makefile.templ	switched order of QiApi (made first) and MoreLib.
+./ph/ph.c		many lines of code moved to ./api/LoginQi.c
+./qi/commands.c		Kerberos; mailfield; logout bugfix.
+./qi/dbi.c		added putstrarry() function.
+./qi/language.l		Kerberos
+./qi/lookup.c		if a Turn field, don't index the initial asterisk
+./qi/query.c		CPU_LIMIT; QUERYLIMIT; DEFQUERY.
+./util/makei.c		speedup, using putstrarry().

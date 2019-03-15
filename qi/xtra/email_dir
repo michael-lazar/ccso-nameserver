@@ -1,0 +1,10 @@
+#! /bin/sh
+NAMEBIN=/var/apps/nameserv/bin
+rm -f /tmp/email_dir.$$
+touch /tmp/email_dir.$$
+chmod 600 /tmp/email_dir.$$
+$NAMEBIN/mdump email_dir 2> /dev/null > /tmp/email_dir.$$
+Mail -s CCSO_Directory jtolar@bfamail.oba.uiuc.edu < /tmp/email_dir.$$
+$NAMEBIN/splitmail -s CCSO_Directory 150 promain@uicvmc.aiss.uiuc.edu < /tmp/email_dir.$$
+rm -f /tmp/email_dir.$$
+exit 0

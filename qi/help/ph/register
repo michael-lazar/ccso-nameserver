@@ -1,0 +1,26 @@
+SYNTAX: register
+
+SUMMARY
+The "register" command registers the account from which you logged in
+to ph as the electronic mail address in your ph entry.  For example, if
+you logged in to ph from the CCSO mainframe "ux1" and your login ID on
+"ux1" was "smythe", the "register" command would put the following
+information into your "email" field:  "smythe@ux1.cso.uiuc.edu".
+
+To use "register", you must first login to the Nameserver (see help on
+"login").  Then, simply type "register" at the "ph>" prompt. The account
+into which you are currently logged will automatically be entered into
+your "email" field.  If a different address was already in your "email"
+field, the "register" command will overwrite it with your current account
+information.
+
+The "register" command only works with the ph client for Unix systems.
+Other clients generally do not recognize or support this command.
+
+A useful command in conjunction with "register" is "me".  When you are
+logged in to the Nameserver, the "me" command can be used to view each
+and every field in your entry and to verify that the changes you made
+were what you intended.
+
+SEE ALSO: make, edit, passwd, me, login, alias, aliases, email, e-mail,
+clients

@@ -1,0 +1,501 @@
+.\" Process with "troff -me install.me | whatever" or more simply
+.\"		 "groff -me install.me | lpr -Pps"
+.\" @(#)$Id: install.me,v 1.1 1992/08/06 22:06:56 paul Exp $
+.if n .na
+.if n .ll 6.5i
+.(l C
+.sz 18
+.ft B
+Installing the CCSO Nameserver
+.sp
+.sz
+.ft
+by
+Steven Dorner\ \ \ s\-dorner@uiuc.edu
+Computer and Communications Services Office
+University of Illinois at Urbana
+.sp
+March 4, 1992
+.sp 2
+updated by
+Paul Pomes\ \ \ paul\-pomes@uiuc.edu
+Computer and Communications Services Office
+University of Illinois at Urbana
+.sp
+August 2, 1992
+.(f
+Converted to portable n/troff format using the -me macros from funky
+Next WriteNow format (icch).
+.)f
+.)l
+.eh '%''Installing the CCSO Nameserver'
+.oh 'Installing the CCSO Nameserver''%'
+.sp 3
+.uh Introduction
+.lp
+This document covers the installation of the CCSO Nameserver.
+Included are a description of the distribution,
+instructions on configuring the software,
+and some suggestions for building a database.
+Detailed descriptions of the various parts are left for other documents.
+.lp
+The Nameserver requires a
+.sm UNIX
+system with a reasonable amount of Berkeley-ness.
+If you have a pure System V machine,
+you're in for a lot of fun.
+It also requires a C compiler (\c
+.sm "ANSI C"
+preferred), and perl.
+.lp
+.uh "A Word About Support"
+.lp
+The word about support is,
+.q no .
+This software is provided as-is,
+and neither I nor the University of Illinois nor CSNet nor even your
+mother takes any responsibility for anything bad that happens because of it.
+.lp
+On the other hand,
+we do use the software extensively,
+and are interested in bug reports and suggestions.
+As time permits,
+I will answer email questions about the software,
+provided those questions aren't answered in the supplied documentation,
+or available through a quick perusal of the source code.
+.uh "The Distribution"
+.lp
+This section describes the various pieces of the distribution.
+Each piece is marked with one of several codes,
+which are listed in
+.b bold .
+The codes and their meanings are:
+.nr ii 10n
+.ip \fBvital\fP
+Things you must use/understand/modify to get the Nameserver up and running.
+.ip \fBimportant\fP
+Things you had better become familiar with,
+but can be safely skipped or taken for granted during initial installation.
+.ip \fBoptional\fP
+Things you may or may not wish to use someday.
+.ip \fBuiuc\fP
+Things we use at UIUC that may be of little or no use to you,
+except as models.
+.lp
+Two general notes.
+First,
+.i Makefile
+in the various subdirectories are generated from the
+.i Makefile.templ
+files in those same directories, by
+.i Configure .
+Second, the RCS subdirectories do contain RCS files,
+but there are almost no useful log messages;
+the files are used for checkpointing only.
+.nr ii \w'help/{macph,ph}\ \fBimportant\fP'u
+.ip \s-1README.NOW\s0\ \ \fBvital\fP
+Release notes, general instructions, warnings, last-minute changes, etc.
+Please read it before you go any further.
+Then, please read this entire document.
+.ip buildmisc\ \ \fBuiuc\fP
+This directory contains the Makefile we use to do database updates.
+While it's certainly instructive,
+much of it is UIUC-specific.
+Saying
+.q "touch s.tape.raw f.tape.raw s.tape.all old.dir old.dov; make \-n"
+in this directory is a good way to get an idea of what our update process looks like.
+.ip configs\ \ \fBvital\fP
+This directory contains configuration files (perl fragments)
+for use in configuring the software.
+These fragments are divided into two major classes;
+operating-system specific fragments and setup-specific fragments.
+More about these in the Configure section below.
+.ip configs/defaults\ \ \fBvital\fP
+Defaults for the configuration process.
+.ip configs/{aix,convex,dynix,next,ultrix}\ \ \fBimportant\fP
+These are OS-specific configuration files.
+Use these to get basic parameters for the flavors of
+.sm UNIX
+involved.
+.ip configs/{garcon,net\-nav,ux2,uxa}\ \ \fBuiuc\fP
+These are specific configuration files for our setups.
+They may be instructive, but you'll not be able to use any of them directly.
+.ip Configure\ \ \fBvital\fP
+This perl script configures the source tree.
+.b N.B. ,
+you
+.b must
+read the
+.b Configure
+section below before trying to use
+.i Configure ;
+it's not like the Configure that comes with (eg) rn or perl.
+.ip olddoc\ \ \fBptional\fP
+This directory contains older documents,
+of varying relevance and utility,
+in a variety of formats.
+This directory will be removed when its contents have been
+completely superseded.
+.ip help\ \ \fBimportant\fP
+A directory which contains help files for the server's use.
+.ip help/native\ \ \fBimportant\fP
+A directory of help files related to the server and its database,
+but not to any particular client.
+.lp
+.ip help/{macph,ph}\ \ \fBimportant\fP
+Directories for client-specific help.
+.ip include\ \ \fBimportant\fP
+This directory contains include files for the Nameserver.
+.ip lib\ \ \fBimportant\fP
+Some library routines for common use.
+.ip Makefile\ \ \fBimportant\fP
+This is the master Makefile for the whole system,
+and is generated by
+.i Configure .
+.ip doc\ \ \fBvital\fP
+This directory contains the most up-to-date documents in n/troff format
+using the \-me macro package.
+The man pages,
+.i ph.1
+and
+.i qi.8 ,
+use the \-man macros.
+.ip doc/install.me\ \ \fBvital\fP
+You're reading it now.
+.ip ph\ \ \fBimportant\fP
+The
+.sm UNIX
+.i ph
+client lives here.
+.ip qi\ \ \fBimportant\fP
+And here is the server.
+.ip util\ \ \fBvital\fP
+This directory contains files that are useful for building or
+manipulating Nameserver data.
+You will probably have to modify some of these programs for
+use in building your own database.
+Which ones depend on your situation.
+.ip util/age\ \ \fBuiuc\fP
+We use this to get rid of people who have been in the
+database for a year after they've actually left UIUC.
+.ip util/aliasassign\ \ \fBimportant\fP
+This is a perl script that takes the output of
+.i aliasprepare
+and assignes unique aliases (and kerberos fields).
+It produces a file in
+.i maked
+format (see below).
+.ip util/aliasprepare\ \ \fBimportant\fP
+A perl script that takes input in
+.i maked
+format, and produces input for
+.i aliasassign .
+.ip util/border.c\ \ \fBimportant\fP
+This program reorders the bytes in a Nameserver database.
+This allows databases to be moved between machines with VAX
+and 68000 byteorders.
+.ip util/build.c\ \ \fBimportant\fP
+Build takes the
+.i .idx
+and
+.i .iov
+files and generates from them the
+.i .seq
+and
+.i .bdx
+files.
+.ip util/credb.c\ \ \fBimportant\fP
+Creates an empty database.
+.ip util/f.unblock\ \ \fBuiuc\fP
+Perl script that takes a UIUC staff dataset and puts it into
+.i maked
+format.
+.ip util/id.c\ \ \fBuiuc\fP
+Functions for dealing with real id <\-> fake id mapping.
+.ip util/maggie\ \ \fBuiuc\fP
+A perl script to produce input for the UIUC printed phone book.
+.ip util/maked.c\ \ \fBimportant\fP
+This program turns
+.i maked
+format files into
+.i .dir
+and
+.i .dov
+files.
+.ip util/makei.c\ \ \fBimportant\fP
+.i Makei
+generates the hash table (\fI.idx\fP and
+.i .iov )
+from the
+.i .dir
+and
+.i .dov
+files.
+.ip util/mdump.c\ \ \fBimportant\fP
+Dumps the database according to various criteria and into various forms.
+.ip util/merge3\ \ \fBuiuc\fP
+We use this perl script to reconcile the old database with new student
+and/or staff information.
+Pray you never, ever, have to get near it.
+.ip util/nsck.c\ \ \fBimportant\fP
+Runs some consistency checks on the database.
+.ip util/phify\ \ \fBoptional\fP
+A script that turns
+.i maked
+format data into something that looks like
+.i ph
+output.
+.ip util/phoneaddr\ \ \fBuiuc\fP
+Perl script that copies either office or home phone and address
+into phone and address fields.
+Uses
+.i maked
+format.
+.ip util/qierrs\ \ \fBoptional\fP
+Perl script that sifts the output of
+.i qi ,
+looking for errors.
+.ip util/s.unblock\ \ \fBuiuc\fP
+Perl script that takes a UIUC student dataset and puts it into
+.i maked
+format.
+.ip util/ssndump.c\ \ \fBuiuc\fP
+Dumps a dbm real id <\-> fake id database into
+.sm ASCII
+form.
+.ip util/ssnid.c\ \ \fBuiuc\fP
+Uses a dbm real id <\-> fake id database to map real id's to fake id's,
+and to assign fake id's.
+.ip util/ssnload.c\ \ \fBuiuc\fP
+Loads a dbm real id <\-> fake id database from
+.sm ASCII
+form.
+.ip util/testqi.csh\ \ \fBimportant\fP
+A script that tests
+.i qi ,
+at least minimally.
+.ip whoi\ \ \fBoptional\fP
+A
+.q whois
+server that actually uses
+.i qi .
+.ip xtra\ \ \fBoptional\fP
+Stuff related to the Nameserver,
+but not integrated into the distribution.
+.uh Configure
+.lp
+.i Configure
+is a perl script that gets the source ready for compilation.
+This process includes setting up compilation and linking options,
+choosing database locations, deciding where binaries go,
+and determining which features to enable.
+It does this by building
+.i Makefile
+from the
+.i Makefile.templ
+and building the
+.i conf.h
+and
+.i conf.c
+source files.
+.i Configure
+makes use of files in the
+.i configs
+subdirectory.
+It reads
+.i configs/defaults
+first, and then read in turn each of its argument files.
+These files should contain perl scripts.
+.lp
+The scripts supplied are separated into three categories.
+In the first category is defaults, which is read first,
+and contains global defaults.
+Insofar as possible, I suggest you leave defaults alone;
+if you wish to alter the environment it creates,
+do so by overriding the defaults with your own configuration files.
+.lp
+The second category of scripts are OS-specific scripts.
+These scripts set compiler options and defines for use
+with various flavors of
+.sm UNIX .
+.lp
+The third category are installation-specific scripts.
+These scripts are used to define options for a particular databases.
+Use of these scripts make it easy to run multiple
+.i qi
+databases on a single host,
+with different features enabled on each database.
+.lp
+The scripts you write should primarily set perl variables.
+The values of these variables will later be used when
+.i Configure
+is actually run.
+The variables you may set and what you may set them to are described in the
+.i defaults
+script.
+I will highlight a few of the most important here.
+You should, of course, review all the variables;
+just be doubly sure not to miss these.
+.bu
+The @Features array can be used to enable optional features in the code.
+If you want to run with encrypted passwords,
+this array is the place to say so.
+.bu
+$CC is your C compiler.
+This should be an
+.sm "ANSI C"
+compiler;
+I use gcc.
+.bu
+$Owner and $Group own the nameserver binaries and database.
+.bu
+If you have some extra libraries you need,
+put them in $MoreLib.
+.bu
+$ExecDir is where executables will be put.
+.bu
+$DefineStrings{"Database"} is the name of your database,
+shorn of suffices, but with the leading path component.
+.bu
+$OtherDefines{"Drecsize"} and $OtherDefines{"Doversize"}
+must be correct for your database, as must $OtherDefines{"NIChars"}.
+.uh "The Field Configuration File"
+.lp
+The field configuration file is
+.i qi 's
+key to interpreting your database.
+In this file you associate names with field numbers,
+and determine the properties of fields.
+The file should be named the same as your database,
+but with a
+.i .cnf
+extension (older versions of source and documents may refer to this as the
+.i prod.cnf
+file).
+It consists of lines of the form:
+.lp
+.ft CR
+3:name:256:Full name.:FS:Indexed:Lookup:Public:Default:
+.ft
+.lp
+The first item is the field id (in this case, 3).
+This number identifies the field in an entry,
+or in a
+.i maked
+format file.
+The second item is the field name (in this case, \*(lqname\*(rq),
+which should be used in commands,
+and will be printed in query responses.
+The third item is the maximum length of the field
+(in this case, 256 characters);
+maximum lengths should be less than 4096 characters.
+The fourth item is a brief description of the field.
+The fifth item contains instructions for the
+.i merge3
+program;
+if you don't use
+.i merge3 ,
+put an
+.q O
+in this item.
+The final items contain a list of field attributes.
+Only the first character of the attributes are significant.
+The attributes and their functions are:
+.nr ii 5n
+.ip I
+Indexed; the contents of this field will be put in the database index.
+At least one Indexed field must be included in every query.
+.ip L
+Lookup; users may use this field in queries.
+.ip P
+Public; the contents of this field may be displayed to anyone (but see
+.q F
+below).
+.ip D
+Default; this field will be returned for queries that do not specify
+which fields to return.
+.ip C
+Change; users may change the contents of this field.
+.ip F
+ForcePub; users may not suppress this field.
+Fields not marked
+.q F
+may be hidden from view by putting something (anything) in the
+.sm F_SUPPRESS
+field.
+.ip N
+NoPeople; users may change this field,
+but only if their
+.sm F_TYPE
+field does not contain
+.q person .
+.ip E
+Encrypt; this field may not cross the network,
+nohow, noway.
+.ip W
+Any (Wild); fields so marked may be searched collectively by specifying an
+.q any
+field in a query.
+.lp
+There are other defined attributes,
+but they are not used at this time.
+.lp
+You have a great deal of freedom in how you manage
+your field configuration file.
+You may have as many fields as you like,
+and give them whatever names, numbers,
+and attributes you like.
+There is, however, a relatively small set of
+.q core
+field names and numbers.
+If you change these field names or numbers,
+or omit them from the database,
+you are likely to have to make changes to the source to accommodate the change.
+These fields are:
+.(l
+.ft CR
+2:email
+3:name
+4:type
+5:id
+6:alias
+7:password
+8:proxy
+23:nickname
+25:all
+30:hero
+43:suppress
+.ft
+.)l
+.lp
+Furthermore, there are some other fields that are used by some of the utilities,
+or auxilliary programs like
+.i phquery .
+If you modify these names or numbers,
+some such programs may have difficulty.
+.(l
+.ft CR
+0:address
+1:phone
+9:department
+10:title
+11:curriculum
+20:home_address
+21:permanent_address
+22:office_address
+26:callsign
+31:no_update
+32:office_phone
+33:home_phone
+35:high_school
+37:permanent_phone
+42:left_uiuc  \fI(only the number is important for this one)\fP
+.ft
+.)l
+.lp
+Our field configuration file is included in the
+.i qi
+distribution, for reference.
+.lp
+This document is incomplete.
+Sorry.

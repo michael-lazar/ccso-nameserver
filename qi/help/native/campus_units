@@ -1,0 +1,42 @@
+PH CAMPUS UNIT INFORMATION
+
+The Nameserver database contains information for every campus unit (i.e.,
+departments, colleges, schools, administrative offices, etc.) that
+appears in the printed version of the "Student/Staff Directory."  The
+"name" field of a campus unit entry contains the official name of the
+unit as it is given in the printed directory.  The "phone" and "address"
+fields contain the main telephone number and address for the unit.  Any
+additional information about the unit that appears in the printed
+directory (e.g., the names, phone numbers, and addresses of personnel
+within the unit; the names, addresses, and phone numbers of offices,
+divisions, special programs, or special facilities within the unit;
+etc.) are listed in the "text" field.
+
+EXAMPLE
+To do a lookup on a campus unit, set the "type" field specifier to "unit"
+followed by the name (or partial name) of the unit.  (Note:  The "type"
+field specifier [i.e., "type=unit"] is not required, but its use in the
+selection clause of the query will limit the search to those items in
+the Nameserver database that are explicitly campus units.  Since the
+names of campus units often have words in common with the names of
+courses in the university timetable, the "type" field specifier is
+especially useful for filtering out unwanted timetable entries that
+would otherwise match the query expression.):
+
+   ph> ph type=unit landscape architecture
+   ----------------------------------------
+     name: Landscape Architecture, Dept of
+    phone: 333-0176
+  address: 214 Mumford Hall, 1301 W Gregory, U, MC-710
+     text: Head: Vincent J. Bellafiore, 214 Mumford Hall, MC-710,
+         :  333-0176
+         :   Staff secy: Ada Siler, 214 Mumford Hall, MC-710,
+         :    244-1698
+         : Asst head: Natalie B. Alpert, 202 Mumford Hall, MC-710,
+         :  244-1701
+         : Grad coord: Terence Harkness, 1205 W Nevada, U, MC-710,
+         :  333-3612
+         : Library: 203 Mumford Hall, MC-710, 333-0424
+   ----------------------------------------
+
+SEE ALSO: query, type

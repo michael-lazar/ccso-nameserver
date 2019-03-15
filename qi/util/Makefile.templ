@@ -1,0 +1,127 @@
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @(#)$Id: Makefile.templ,v 1.9 1995/06/28 17:37:35 p-pomes Exp $
+
+SHELL = /bin/sh
+
+######################################################################
+# variables set by Configure
+######################################################################
+CC	= _CC_
+CFLAGS	= _Cflags_
+LFLAGS	= _Lflags_
+######################################################################
+# other variables
+######################################################################
+SRCS	= border.c build.c credb.c id.c kpwchk.c maked.c \
+	  makei.c maket.c mdump.c nsck.c ssnid.c ssnload.c ssndump.c
+
+OBJS	= \
+  border.o build.o credb.o kpwchk.o id.o \
+  maked.o makei.o maket.o mdump.o \
+  nsck.o ssnid.o ssnload.o ssndump.o brute2.o
+
+BINS	= \
+  border build credb kpwchk maked	\
+  makei mdump nsck ssnid	\
+  ssnload ssndump brute
+
+SCRIPTS = addnickname allage studage aliasassign aliasprepare \
+	a.unblock d.unblock f.unblock h.unblock n.unblock s.unblock \
+	froshlog merge3 pg phify phoneaddr qierrs sizedb zaplist
+
+ALLLIB = _QiLib_ _NsLib_ _ApiLib_
+all:_Para_$(BINS)
+######################################################################
+# specific targets
+######################################################################
+brute:_Para_ brute2.o
+	$(CC) $(LFLAGS) -o brute brute2.o
+	
+build:_Para_ build.o maket.o
+	$(CC) $(LFLAGS) -o build build.o maket.o $(ALLLIB) _MoreLib_ _DbmLib_
+	
+maked :_Para_ maked.o
+	$(CC) $(LFLAGS) -o maked  maked.o $(ALLLIB) _MoreLib_ _DbmLib_
+
+kpwchk :_Para_ kpwchk.o
+	$(CC) $(LFLAGS) -o kpwchk  kpwchk.o -ll _MoreLib_
+
+mdump :_Para_ mdump.o
+	$(CC) $(LFLAGS) -o mdump  mdump.o $(ALLLIB) _MoreLib_ _DbmLib_
+
+nsck :_Para_ nsck.o ../qi/conf.o
+	$(CC) $(LFLAGS) -o nsck  nsck.o $(ALLLIB) _MoreLib_
+
+border : border.o
+	$(CC) $(LFLAGS) -o border  border.o
+
+ssnid : ssnid.o id.o
+	$(CC) $(LFLAGS) -o ssnid  ssnid.o id.o _DbmLib_
+
+ssndump : ssndump.o id.o
+	$(CC) $(LFLAGS) -o ssndump  ssndump.o id.o _DbmLib_
+
+ssnload : ssnload.o id.o
+	$(CC) $(LFLAGS) -o ssnload  ssnload.o id.o _DbmLib_
+
+makei :_Para_ makei.o
+	$(CC) $(LFLAGS) -o makei  makei.o $(ALLLIB) _MoreLib_ _DbmLib_
+
+credb :	credb.o
+	$(CC) $(LFLAGS) -o credb  credb.o $(ALLLIB) _MoreLib_
+
+######################################################################
+# standard targets
+######################################################################
+install:_Para_$(BINS) $(SCRIPTS)
+	-mkdir _QiUtilDir_
+	for b in $(BINS) ; do \
+	  _SrcDir_/bin/install.sh -m _Mode_ -o _Owner_ -g  _Group_ $$b _QiUtilDir_; done
+	for b in $(SCRIPTS) ; do \
+	  sed -e 's,%PerlProg%,_Perl_,' < $$b > _QiUtilDir_/$$b; done
+	cd _QiUtilDir_; chmod _Mode_ $(SCRIPTS); chown _Owner_ $(SCRIPTS); \
+	  chgrp _Group_ $(SCRIPTS)
+	touch install
+
+rcs:	$(SRCS)
+	_Ci_ $?
+	touch rcs
+
+clean:
+	rm -f $(BINS) $(OBJS) tags install
+depend: 
+	perl -i -e 'while(<>){print;if (/^# DO NOT DELETE/) {last;}}' Makefile
+	$(CC) _Depend_ $(CFLAGS) $(SRCS) >> Makefile

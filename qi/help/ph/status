@@ -1,0 +1,16 @@
+SYNTAX: status
+
+SUMMARY
+The "status" command prints a message about the current status of the
+Nameserver database.  In order to use the "status" command, you must be
+in ph's interactive mode. Once inside ph, type "status" from the "ph>"
+prompt, and the status message will be displayed.
+
+The ph status message contains information of potential interest to
+users, such as changes in policy or procedures, announcements of database
+updates, notification of the temporary locking of the Nameserver database
+(preventing users from changing their entries), etc.  Ordinarily the
+current status message is displayed immediately upon entering ph's
+interactive mode.
+
+SEE ALSO: manpage, interactive_mode

@@ -1,0 +1,60 @@
+# $Header: /amd/watsun/w/src1/common/qi-2.2/qi/configs/RCS/columbia,v 1.2 93/11/06 20:02:56 alan Exp $
+# See 'defaults' for documentation of this stuff (which overrides them)
+
+@Features = ("KRB4_AUTH","EMAIL_ANYOK");
+$Krb4IncDir = "/usr/local/athena/include";
+$Krb4LibDir = "/usr/local/athena/lib";
+
+# xxx - Think about limiting access. For now, leave it open.
+#@OkAddrs = (".columbia.edu" "128.59." "129.236." "156.111." "192.12.82." );
+#@LocalAddrs = (".columbia.edu" "128.59." "129.236." "156.111." "192.12.82." );
+
+$CC = "gcc";
+$Cflags .= " -g -DCOLUMBIA";
+$User = "nameserv";
+$Group = "wheel";
+
+$QiExecDir = "/nameserv/bin";
+
+@PHLinks = ();
+
+%DefineStrings=(
+  "DATABASE",	"/nameserv/db/prod",	# Where the database lives, by default
+  "MAILDOMAIN",	"columbia.edu",		# Mail domain for phquery
+  "ADMIN",	"consultant@columbia.edu",	# Database administrator
+  "PASSW",	"consultant@columbia.edu",	# Mail here for passwords (deprecated)
+  "RUNDIR",	"/nameserv/qi",		# Where QI should chdir() to at run-time
+  "HELPDIR",	"/nameserv/help",		# Where the help lives
+  "NATIVESUBDIR","native",		# non-client-specific help
+  "NOHELP",	"nohelp",		# file printed when no help topic
+  "TEMPFILE",	"/tmp/qiXXXXXX",	# temporary file template
+  "KRBSRVTAB",	"/nameserv/db/srvtab",	# location of Kerberos srvtab
+  "KRBHERO",	"admin",		# use admin instance for heros
+  "DEFQUERY",	"any",			# default "field=" for "query foo"
+  "MAILFIELD",	"email",		# what our mail field is.
+);
+
+%OtherDefines=(
+  "Log_Qilog",	"LOG_LOCAL1",		# Syslog facility
+  "Sig_Type",	"void",			# signal() return type
+  "Mem_Type",	"char",			# *malloc() return type
+  "Cpu_Limit",	"20",			# limit for CPU time
+  "Drecsize",	384,			# size of .dir record
+  "Dovrsize",	384,			# size of .dov record
+  "Max_Key_len",16,			# max # chars to index
+  "NIChars",	32,			# size of .idx record
+  "NOChars",	1024,			# size of .iov record
+  "PersonLimit",15,			# max # of people to return
+  "QueryLimit", 15,			# max # of any kind of entry to return
+#  "Use_Uid",	"10",			# setuid to this
+#  "Use_Gid",	"15",			# setgid to this
+);
+
+%PhFlags=(
+  "NsService",	"ns",			# name of ns service
+  "FallBackAddr","128.59.40.151",	# ns host ip address
+  "FallBackPort","105",			# ns port number
+  "MailDomain",	$DefineStrings{"MAILDOMAIN"},	# same as above
+  "Host",	"ns.columbia.edu",		# default qi host
+#  "Email_Auth",	"1",			# Use email authorization
+);

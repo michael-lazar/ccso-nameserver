@@ -1,0 +1,660 @@
+head	1.26;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.26
+date	94.12.17.14.11.26;	author p-pomes;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	94.05.23.21.44.36;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	94.03.11.23.29.48;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.01.07.17.58.56;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.07.26.17.52.27;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.04.01.16.35.08;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	92.12.12.19.14.37;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	92.07.29.15.25.03;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	92.07.29.03.26.29;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.07.28.05.01.43;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.07.22.15.56.40;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.22.15.52.55;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	90.12.18.08.40.55;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	90.05.16.09.18.08;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	89.07.19.10.18.14;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	89.05.08.22.43.34;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.03.20.15.14.12;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	88.12.02.14.41.02;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.11.15.13.30.46;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.07.06.20.48.08;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.04.19.08.12.28;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.04.04.14.40.44;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.02.15.14.03.15;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.01.27.15.00.48;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	87.12.10.16.22.32;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.53;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.26
+log
+@Added NoMeta flag to disallow wildcard matches.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * @@(#)$Id: field.h,v 1.25 1994/05/23 21:44:36 paul Exp p-pomes $
+ */
+
+#ifndef FIELD_H
+#define FIELD_H
+#include "conf.h"
+#define MAX_LINE 4096		/* maximum length of config file line */
+#define MAX_HELP 240		/* maximum length of config file help */
+#define MAX_LEN 4096		/* maximum length for any field */
+#define MAX_IDVAL 100		/* highest field id number */
+#define F_LEADER 15		/* width of field used to print field names */
+
+/*
+ * Field descriptor.  describes the attributes of a field
+ */
+struct fielddesc
+{
+	short	fdId;		/* id # of the field */
+	short	fdMax;		/* maximum length of the field */
+	int	fdIndexed;	/* do we index this field? */
+	int	fdLookup;	/* do we let just anyone do lookups with this? */
+	int	fdNoMeta;	/* meta characters aren't allowed for matches */
+	int	fdPublic;	/* is field publicly viewable? */
+	int	fdLocalPub;	/* is field publicly viewable off-site? */
+	int	fdDefault;	/* print the field by default? */
+	int	fdAlways;	/* print the always fields ? */
+	int	fdAny;		/* the search field/property any */
+	int	fdTurn;		/* can the user turn off display of this field? */
+	int	fdChange;	/* is field changeable by the user? */
+	int	fdSacred;	/* field requires great holiness of changer */
+	int	fdEncrypt;	/* field requires encryption when it passes the net */
+	int	fdNoPeople;	/* field may not be changed for "people"
+				 * entries, but can for others */
+	int	fdForcePub;	/* field is public, no matter what F_SUPPRESS is */
+	char	*fdName;	/* name of the field */
+	char	*fdHelp;	/* help for this field */
+	char	*fdMerge;	/* merge instructions for this field */
+};
+typedef struct fielddesc FDESC;
+
+/*
+ * predefined fields.  these correspond to the ``don't touch'' fields
+ * in fields.config
+ */
+#define F_ADDRESS	0
+#define F_PHONE		1
+#define F_EMAIL		2
+#define F_NAME		3
+#define F_TYPE		4
+#define F_UNIVID	5
+#define F_ALIAS		6
+#define F_PASSWORD	7
+#define F_PROXY		8
+#define F_DEPARTMENT	9
+#define F_TITLE		10
+#define F_CURRICULUM	11
+#define F_LOCKED	12
+#define F_SOUND		13
+#define F_MAILCODE	18
+#define F_NICKNAME	23
+#define F_HERO		30
+#define F_HIGH		35
+#define F_HOMEADDR	20
+#define F_PERMADDR	21
+#define F_HOMEPHONE	33
+#define F_PAPER		38
+#define F_SUPPRESS	43
+
+/*
+ * merge flags
+ */
+#define OLD_FIELD	'O'
+#define STUDENT_FIELD	'S'
+#define STAFF_FIELD	'F'
+#define CONDITIONAL	'C'
+
+static int F_TempValue;
+
+#define FIELDVALUE(dir,select)	(strchr(dir[select],':')+1)
+#define FINDVALUE(dir,f)	\
+    (((F_TempValue=FindField(dir,f))>=0)?FIELDVALUE(dir,F_TempValue):"")
+
+extern FDESC **FieldDescriptors;
+
+#endif
+@
+
+
+1.25
+log
+@Added MAX_IDVAL (maximum value of fielddesc.fdId).
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: field.h,v 1.24 1994/03/11 23:29:48 paul Exp paul $
+d57 1
+d59 1
+a59 1
+	int	fdLocalPub;	/* is field publicly viewable off-campus? */
+@
+
+
+1.24
+log
+@New copyright message.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: options.h,v 1.8 1994/03/11 23:23:48 paul Exp $
+d45 1
+@
+
+
+1.23
+log
+@Replaced index() with strchr() in FIELDVALUE macro.
+@
+text
+@d2 35
+a36 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d38 1
+@
+
+
+1.22
+log
+@Changed F_CLASSCO to F_LOCKED.
+@
+text
+@d81 1
+a81 1
+#define FIELDVALUE(dir,select)	(index(dir[select],':')+1)
+@
+
+
+1.21
+log
+@Added fdLocalPub for on-campus viewable information (home address, etc).
+@
+text
+@d59 1
+a59 1
+#define F_CLASSCO	12
+@
+
+
+1.20
+log
+@Up-cased all #define's.
+@
+text
+@d26 1
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d80 3
+a82 3
+#define FieldValue(dir,select)	(index(dir[select],':')+1)
+#define FindValue(dir,f)	\
+    (((F_TempValue=FindField(dir,f))>=0)?FieldValue(dir,F_TempValue):"")
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@a77 4
+#ifndef New
+#define New(type)		((type *)(malloc(sizeof(type))))
+#endif
+
+@
+
+
+1.17
+log
+@Random fixes.
+@
+text
+@a83 1
+#include <strings.h>
+@
+
+
+1.16
+log
+@Re-formatted for clarity.
+@
+text
+@d40 1
+a40 1
+typedef struct fielddesc FieldDesc;
+d89 1
+a89 1
+extern FieldDesc **FieldDescriptors;
+@
+
+
+1.15
+log
+@Last Dorner changes.
+@
+text
+@d1 7
+a7 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d13 1
+a13 1
+#define MAX_LEN	4096		/* maximum length for any field */
+d15 2
+a16 1
+/***********************************************************************
+d18 1
+a18 1
+ ***********************************************************************/
+d21 18
+a38 18
+    short   fdId;	/* id # of the field */
+    short   fdMax;	/* maximum length of the field */
+    int     fdIndexed;	/* do we index this field? */
+    int     fdLookup;	/* do we let just anyone do lookups with this? */
+    int     fdPublic;	/* is field publicly viewable? */
+    int     fdDefault;	/* print the field by default? */
+    int     fdAlways;	/* print the always fields ? */
+    int     fdAny;	/* the search field/property any */
+    int     fdTurn;	/* can the user turn off display of this field? */
+    int     fdChange;	/* is field changeable by the user? */
+    int     fdSacred;	/* field requires great holiness of changer */
+    int     fdEncrypt;	/* field requires encryption when it passes the net */
+    int     fdNoPeople;	/* field may not be changed for "people" 
+    				 * entries, but can for others */
+    int     fdForcePub;	/* field is public, no matter what F_SUPPRESS is */
+    char   *fdName;	/* name of the field */
+    char   *fdHelp;	/* help for this field */
+    char   *fdMerge;	/* merge instructions for this field */
+d42 4
+a45 4
+/***********************************************************************
+* predefined fields.  these correspond to the ``don't touch'' fields
+* in fields.config
+***********************************************************************/
+@
+
+
+1.14
+log
+@No help here.
+@
+text
+@d11 1
+d21 2
+a22 2
+    short   fdId;		/* id # of the field */
+    short   fdMax;		/* maximum length of the field */
+d24 2
+a25 3
+    int     fdLookup;		/* do we let just anyone do lookups with
+				 * this? */
+    int     fdPublic;		/* is field publicly viewable? */
+d27 6
+a32 9
+    int     fdAlways;		/* print the always fields ? */
+    int     fdAny;		/* the search field/property any */
+    int     fdTurn;		/* can the user turn off display of this
+				 * field? */
+    int     fdChange;		/* is field changeable by the user? */
+    int     fdSacred;		/* does field require great holiness of
+				 * changer? */
+    int     fdEncrypt;	/* does field require encryption when it
+				 * passes the net? */
+d35 4
+a38 2
+    char   *fdName;		/* name of the field */
+    char   *fdHelp;		/* help for this field */
+d67 10
+@
+
+
+1.13
+log
+@No help here.
+@
+text
+@a72 1
+char   *index();
+d75 1
+a78 3
+
+FieldDesc *FindFD();
+FieldDesc *FindFDI();
+@
+
+
+1.12
+log
+@No help here.
+@
+text
+@d14 1
+a14 1
+#define F_LEADER 14		/* width of field used to print field names */
+d22 2
+a23 2
+    int     fdIndexed:1;	/* do we index this field? */
+    int     fdLookup:1;		/* do we let just anyone do lookups with
+d25 5
+a29 5
+    int     fdPublic:1;		/* is field publicly viewable? */
+    int     fdDefault:1;	/* print the field by default? */
+    int     fdAlways:1;		/* print the always fields ? */
+    int     fdAny:1;		/* the search field/property any */
+    int     fdTurn:1;		/* can the user turn off display of this
+d31 2
+a32 2
+    int     fdChange:1;		/* is field changeable by the user? */
+    int     fdSacred:1;		/* does field require great holiness of
+d34 1
+a34 1
+    int     fdEncrypt:1;	/* does field require encryption when it
+d36 2
+d64 4
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@a8 1
+
+d27 2
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d60 1
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d52 1
+a52 1
+#define F_OWNER		8
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d7 2
+a8 2
+#ifndef FIELD_DOT_H
+#define FIELD_DOT_H
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d55 1
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d49 1
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d12 16
+a27 12
+    short fdId;		/* id # of the field */
+    short fdMax;	/* maximum length of the field */
+    int fdIndexed: 1;	/* do we index this field? */
+    int fdLookup: 1;	/* do we let just anyone do lookups with this? */
+    int fdPublic : 1;	/* is field publicly viewable? */
+    int fdDefault: 1;	/* print the field by default? */
+    int fdTurn: 1;	/* can the user turn off display of this field? */
+    int fdChange : 1;	/* is field changeable by the user? */
+    int fdSacred : 1;	/* does field require great holiness of changer? */
+    int fdEncrypt : 1;	/* does field require encryption when it passes the net? */
+    char *fdName;	/* name of the field */
+    char *fdHelp;	/* help for this field */
+d54 1
+a54 1
+char *index();
+d56 1
+d65 1
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d44 1
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d53 1
+a53 1
+    ((F_TempValue=FindField(dir,f))?FieldValue(dir,F_TempValue):"")
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d43 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d40 3
+@

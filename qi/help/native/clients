@@ -1,0 +1,71 @@
+Ph client programs permit users of desktop computers and
+workstations connected to the campus network (UIUCnet) to use the
+CCSO Nameserver without logging on to a CCSO mainframe.  They
+provide convenient access to server data without requiring
+knowledge of unfamiliar operating systems or text editors. At
+least one ph client program is available for each of the desktop
+platforms commonly found on the UIUC campus.  A table of the ph
+clients available at the time of this writing (July 1992) is given
+below.  The table lists the platform/operating system for which
+the client is intended, the name of the client program, its
+anonymous ftp location, the name of the directory in which it
+resides, and the filename(s) of the program and documentation.
+When using the table, it is important to keep in mind that the
+names, version numbers, and locations of programs and files on
+anonymous ftp servers may change frequently.  Up-to-date
+information about ph clients can often be found in the Netnews
+(USENET) newsgroup "info.ph" or by querying the "archie" anonymous
+ftp database.
+
+PH CLIENT SOFTWARE PROGRAMS
+
+Platform/OS: Macintosh
+Client:      Ph 1.1
+FTP Site:    casbah.acns.nwu.edu
+Directory:   pub/ph/mac
+Filename(s): ph-1.1.sea.hqx
+             doc.sea.hqx
+             README
+
+
+Platform/OS: NeXT
+Client:      NeXT-Ph  2.04
+FTP Site:    cs.orst.edu
+Directory:   pub/next/sources/next-interface
+Filename(s): Ph2.04.tar.Z
+
+
+Platform/OS: PC (DOS)
+Client:      pcph  1.0b4
+FTP Site:    uxc.cso.uiuc.edu
+Directory:   net/ph/pc
+Filename(s): pcph.com
+             pcph.README
+
+
+Platform/OS: Unix
+Client:      ph
+FTP Site:    uxc.cso.uiuc.edu
+Directory:   net/ph/unix
+Filename(s): Makefile
+             cryptit.c
+             ph.1
+             ph.c
+             replies.h
+
+
+Platform/OS: VAX (VMS)
+Client:      vms-ph
+FTP Site:    uxc.cso.uiuc.edu
+Directory:   net/ph/vms
+Filename(s): vms-ph.shar
+
+
+Platform/OS: X Windows
+Client:      xph 2.3.2
+FTP Site:    eng.ufl.edu
+Directory:   pub/ph/x
+Filename(s): README
+             xph-2.3.2.tar.Z
+             xph-help.tar.Z
+

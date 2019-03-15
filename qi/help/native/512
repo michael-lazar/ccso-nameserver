@@ -1,0 +1,4 @@
+You attempted to change a field to an improper value.  Some fields have
+restrictions on what their contents may be.  For more information about
+what each field can/should contain, use the "fields" command and see
+help on "fields".

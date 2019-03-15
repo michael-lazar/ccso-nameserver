@@ -1,0 +1,81 @@
+######################################################################
+# This file contains descriptions of the fields supported in the UI
+# nameserver database.  Numeric fields MUST be specified in decimal.
+#
+# Some nameserver source depends on the identities of some fields.
+# Care should be taken in redefining them.
+######################################################################
+6:alias:32:Unique name for user.:O:Indexed:Lookup:Public:Default:ForcePub:
+3:name:256:Full name.:FS:Indexed:Lookup:Public:Default:
+2:email:128:Account to receive electronic mail.:O:Indexed:Lookup:Public:Default:Change:ForcePub:
+# SO for summer update, S for all others.  See also suppress.
+11:curriculum:64:University curriculum:S:Lookup:Public:Default:
+#
+# phone numbers
+#
+1:phone:64:Preferred telephone number.:C:Lookup:Public:Default:Change:
+32:office_phone:60:Office telephone number.:CFO:Lookup:Public:Change:Indexed:
+33:home_phone:60:Home telephone number.:CFS:Lookup:LocalPub:Change:
+36:fax:60:Facsimile telephone number.:O:Lookup:Public:Change:
+37:permanent_phone:60:Permanent phone (students).:CS:Lookup:LocalPub:Change:
+#
+# addresses
+#
+0:address:128:Preferred paper mail address.:C:Lookup:Public:Default:Change:
+22:office_address:128:Paper mail address of office.:CFO:Lookup:Public:Change:
+19:office_location:128:Physical location of office.:O:Lookup:Public:Default:Change:
+20:home_address:128:Home paper mail address.:CFS:Lookup:LocalPub:Change:
+21:permanent_address:128:Permanent home address (students).:CS:Lookup:LocalPub:Change:
+#
+# N.B., The write field must *not* be made Public.  If it is, then it's
+# included in the default list of fields the listed alias(es) can change.
+18:write:128:Who can modify what fields in this entry.:O:LocalPub:Indexed:Lookup:
+41:read:128:Who can read what fields in this entry.:O:
+8:proxy:64:Alias of other users who may change this entry.:O:LocalPub:Change:Indexed:Lookup:
+23:nickname:120:Nicknames:O:Lookup:Public:Change:Indexed:
+38:paper:10:Instructions about the paper directory.:O:Change:LocalPub:
+31:no_update:10:Don't update this entry from directory tape.:O:LocalPub:Change:
+9:department:64:University department.:CFO:Lookup:Public:Default:Change:
+10:title:64:University job title.:CFO:Lookup:Public:Change:Default:
+14:hours:256:Office hours.:O:Public:Default:Change:Lookup:
+15:project:256:Current project(s).:O:Public:Change:Lookup:
+16:other:1024:Other info the user finds important.:O:Public:Default:Change:Lookup:
+48:www:256:URL for WWW use.:O:Public:Default:Change:Lookup:
+# The callsign was made read-only 12Jan94.  It will be used to store the
+# aliases of those users that had to be shortened.  The callsign is checked
+# by phquery immediately after the alias.  Since no one can set their alias
+# to be longer than 8 characters, making callsign read-only prevents anyone
+# else from stealing/bouncing email.  Can be made Change'able again 1Jan96
+# -pbp
+26:callsign:16:HAM radio callsign.:O:Lookup:Public:Indexed:ForcePub:
+27:pager:64:The infamous 'beeper'. Put public numbers in Other.:O:Lookup:Change:
+28:family:256:Family members.:O:Lookup:Public:Change:
+29:birthday:24:Birthday.:O:Lookup:Public:Change:
+35:high_school:30:High School attended:OS:Public:Indexed:Lookup:Change:
+39:colleges:120:Other colleges attended:O:Public:Lookup:Change:
+#
+# for internal use
+#
+53:CHANGE_NOTHING:1:A message to CCSO Accounting::
+4:type:80:Person, Phone, Outsider, Unit, Food, Weather, etc.:SFO:Lookup:Public:
+5:id:16:Nameserver id code.:SF:Indexed:Lookup
+47:group:4:Nameserver group (department code):SF:
+17:college:4:College code:SF:
+12:campus:2:Campus code:SF:
+7:password:16:User's nameserver password.:OSF:Change:Encrypt:
+25:all:1:reserved:
+13:acl:128:Privilege Access Control List.:O::
+30:hero:10:Is a ph hero.:O::
+50:file:1:For phify's benefit.:::
+42:left_uiuc:10:Month and year ph noticed the person left the University:O:Public:Default:Lookup:
+44:terminate:10:Month and year the ph entry is good to:S:LocalPub:Lookup:
+45:created:10:Month and year the ph entry was created:OSF:LocalPub:Lookup:
+51:CCSO-accounts:4095:CCSO Accounts:O:Indexed:
+52:CCSO-comments:4095:CCSO Comments:O::
+46:remote:128:TACACS access field.:O:Indexed:
+34:text:4095:Miscellaneous text:O:Public:Default:Lookup:NoPeople:
+#
+# Suppress should be "O" for the summer update, empty otherwise.  See also
+# curriculum.
+#
+43:suppress:10:For the paranoid:::

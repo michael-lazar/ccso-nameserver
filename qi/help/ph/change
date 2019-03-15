@@ -1,0 +1,48 @@
+SYNTAX: change [name-of-field=]value-of-field make name-of-
+field="value-of-field"...
+
+SUMMARY
+This command is used to change one or more fields to the values
+specified.  The "change" command consists of two clauses, the "change"
+clause and the "make" clause.  The "change" clause determines which
+entries will be affected by the command.  It uses the same arguments as
+the selection clause of a "query" command.  The "make" clause specifies
+which field(s) will be changed and the new value(s) of the specified
+field(s).
+
+You must be logged in to use "change".
+
+"Change" differs from the "make" command in that it can modify multiple
+ph entries simultaneously.  This command can be useful for individuals
+with proxy rights to more than one ph entry.  All matching entries for
+which the logged in user has proxy will be affected by the command.
+
+The "change" command obeys the Nameserver "limit" option, which can be
+used to prevent changing the field contents of more entries than
+intended.  To change the limit option from its default of 2 to a smaller
+or larger number, type the command "set limit=#", where "#" equals the
+maximum number of entries that can be changed.
+
+EXAMPLE
+The following hypothetical scenario illustrates how, under special
+circumstances, "change" can be used as a convenient substitute for the
+"make" or "edit" command:
+
+John Doe is a network administrator with proxy rights to the ph entries
+for most or all of the faculty and staff in his building.  All of his
+users receive their faxes on a single fax machine in the building and
+would like the phone number of the fax machine added to their ph entries.
+Instead of modifying the "fax" field for each user individually, John
+can use the the "change" command to edit the fax fields of all entries
+for which he has proxy.  Before doing so, however, he must set the
+"limit" option to a number equal to or greater than the number of entries
+he intends to modify.  John's ph session might look something like this:
+
+ph> login j-doe1
+200:j-doe1:Hi how are you?
+ph> set limit=50
+200:Done.
+ph> change proxy=j-doe1 make fax="(217) 333-3333"
+200:33 entries changed.
+
+SEE ALSO: edit, add, delete, login, query, make

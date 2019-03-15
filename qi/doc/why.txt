@@ -1,0 +1,934 @@
+
+
+
+
+
+
+
+                   TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??
+
+                               by
+                Steven Dorner   s-dorner@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                        December 7, 1989
+
+
+                           updated by
+                Paul Pomes   paul-pomes@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                         August 2, 1992
+
+
+
+
+
+_I_n_t_r_o_d_u_c_t_i_o_n
+
+There are several documents that describe the function, implemen-
+tation, and use of the CCSO Nameserver.  This paper has a
+slightly different thrust; it endeavors to answer the question,
+"Why?" Why did we want a Nameserver?  Why did we put in the
+features we did, and not others?  Why did we develop our own
+rather than use someone else's?  Why did we choose the CSnet
+server as a starting point, and what are the differences between
+our Nameserver and the CSnet server?
+
+This paper should be of most use to those contemplating a name
+service for their own organization.  We hope it will at least
+point such people at some of the questions to ask about a name
+service; we do not pretend that they will reach the same conclu-
+sions as we did.
+
+Necessary to the understanding of this paper is _T_h_e _C_C_S_O
+_N_a_m_e_s_e_r_v_e_r - _A _D_e_s_c_r_i_p_t_i_o_n.  _A _D_e_s_c_r_i_p_t_i_o_n explains exactly what
+our Nameserver is, and how it operates.  We will assume that the
+reader is familiar with that information, and will not attempt
+here to duplicate the explanations offered in _A _D_e_s_c_r_i_p_t_i_o_n.
+
+The CCSO Nameserver is, like many systems, the product of design,
+accident, and evolution.  Not everything panned out as we had
+hoped; some things we thought were important were eventually dis-
+carded; some things we tried did not succeed.  Special note will
+____________________
+   Converted to portable n/troff format using the -me macros from
+funky Next WriteNow format (icch).
+
+
+
+
+
+
+
+
+
+
+
+
+22                                      TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??
+
+
+be made where the reality differs radically from the intention.
+These places merit close scrutiny, since they indicate a place
+where the "right" choice is probably not very clear.
+
+_W_h_y _H_a_v_e _a _N_a_m_e _S_e_r_v_i_c_e?
+
+The first question to be answered is, why do this thing at all?
+What are the real benefits of a name service like the CCSO
+Nameserver?  We had several reasons for expending the effort to
+create our Nameserver.
+
+ o+ _E_l_e_c_t_r_o_n_i_c _m_a_i_l _d_i_r_e_c_t_o_r_y.  First and foremost, we wanted some
+   way for people in our University to find one another's elec-
+   tronic mail addresses.  There are hundreds of computers in
+   many different departments, and finding somebody's email
+   address was like looking for a needle in a haystack.  A name
+   service would provide a central collection and inquiry point
+   for electronic mail addresses.  We have found the Nameserver
+   to be very useful in this regard, although it has been diffi-
+   cult to collect the electronic mail addresses.
+ o+ _A_u_t_o_m_a_t_i_c _m_a_i_l _f_o_r_w_a_r_d_i_n_g.  Another reason, ironically, that
+   we wanted a Nameserver was to eliminate the need for explicit
+   electronic mail addresses.  A central repository of specific
+   email addresses would give us the capability to accept very
+   general addresses, such as "Steve.Dorner@uiuc.edu", turn them
+   into proper electronic mail addresses, and deliver them.  This
+   would not only eliminate the need for correspondents to know
+   email addresses, but would also allow people to move from
+   machine to machine without having to retrain everyone who
+   sends them mail.  It would only be necessary to change the
+   electronic mail address in the name service to change the
+   account that receives a person's mail.  In practice, we have
+   found this to be a very convenient service.
+ o+ _E_l_e_c_t_r_o_n_i_c Phone Another function of a name service would be
+   as a replacement for the paper phone book.  It could be used
+   to look up mailing addresses and phone numbers of people or
+   campus organizations, just like a regular phone book.  Unlike
+   a regular phone book, it would be ready at the fingertips of
+   anyone on our campus network, not across the room on a
+   bookshelf.  Also unlike a regular phone book, it could be kept
+   up to date as people move around in the University.  We are a
+   little suprised that this is _t_h_e big hit of our Nameserver,
+   and the major reason that people use it.
+ o+ _U_s_e_r _v_a_l_i_d_a_t_i_o_n.  Given a name service that keeps some infor-
+   mation about everyone on campus, it is reasonable to contem-
+   plate using it as a central point for authentication.  A user
+   would identify himself to the name server, and other systems
+   would accept the name server's word that the user was who he
+   said he was, eliminating the burden on the user of remembering
+   many different passwords, as well as ensuring security.  This
+   was not to be part of our initial implementation, however.
+   [_R_e_a_l_i_t_y:  _T_h_i_s _h_a_s _b_e_e_n _p_u_t _o_n _h_o_l_d _u_n_t_i_l _M_I_T'_s _K_e_r_b_e_r_o_s
+   _c_e_a_s_e_s _t_o _b_e _a _m_o_v_i_n_g _t_a_r_g_e_t.]
+
+
+
+
+
+
+
+
+
+
+TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??                                      33
+
+
+ o+ _A_c_c_o_u_n_t_i_n_g.  The name service could serve as a central reposi-
+   tory for accounting information.
+
+What is has come down to for us is: the Nameserver is a very good
+substitute for the paper phone book, a substitute that people
+really like; the Nameserver is the only way to find out someone's
+email address; and the Nameserver is very useful for forwarding
+mail.
+
+_W_h_a_t _D_i_d _W_e _W_a_n_t _I_n _a _N_a_m_e_s_e_r_v_e_r, _a_n_d _W_h_y _D_i_d _W_e _W_a_n_t _I_t?
+
+We had definite ideas about some of the features we wanted in our
+name service.  The following items were considered essential:
+
+ o+ _F_l_e_x_i_b_i_l_i_t_y.  We wanted our name service to be a fairly gen-
+   eral tool.  Rather than try to think of all possible uses of
+   it beforehand, our goal was to come up with a design that
+   would give us the freedom to add new data items or new
+   categories of entries.  The keeping of tagged fields and the
+   use of field properties in our Nameserver have met this goal
+   completely.
+ o+ _L_a_r_g_e _C_a_p_a_c_i_t_y.  Obviously, we needed a database that could
+   handle the fifty to one hundred thousand entries we were
+   expecting.  This is actually a rather magic range; in the mid-
+   dle of the range, one exceeds the capacity of 16 bit pointers.
+   Our Nameserver uses 32 bit pointers, and so is quite safe from
+   a size standpoint.
+ o+ _H_i_g_h _P_e_r_f_o_r_m_a_n_c_e.  The system has to be very fast if it is
+   going to be used; no one is going to want to wait a long time
+   to look up a phone number.  Moreover, low delay is absolutely
+   essential if a name service is going to be involved in mail
+   handling.  Response time for our Nameserver on a typical query
+   is 1 second, and most of that is spent on network setup, so we
+   are pleased with performance.
+ o+ _O_n_l_i_n_e _U_p_d_a_t_e _b_y _U_s_e_r_s.  We wanted a name service in which
+   individuals could update their own information.  There were
+   basically three reasons for this; two practical and one philo-
+   sophical.  The practical reasons are that we didn't want to
+   bear the large clerical burden of keeping the database up-to-
+   date, and we didn't want to incur the inevitable time and
+   accuracy penalty that goes with the aforesaid clerical burden.
+   The philosophical reason is we'd rather users have control of
+   their own information, unless there was a good reason for them
+   not to do so.  We allow anyone to change most information
+   about themselves in our Nameserver; they can do it any time
+   they wish, and the changes are instantly available to others.
+ o+ _N_e_t_w_o_r_k-_b_a_s_e_d.  Obviously, a large database that is being
+   dynamically updated is going to have to be accessed over a
+   network.  Even if the database wasn't too large to be repli-
+   cated on each computer, the fact that updates are possible at
+   any time would mean the databases would be out of date immedi-
+   ately.  A distributed system such as that used by the Internet
+
+
+
+
+
+
+
+
+
+
+
+44                                      TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??
+
+
+   Domain Name Server[1] could have been used; both implementa-
+   tion restraints and security concerns made us decide in favor
+   of a single, centralized database.
+
+We feel that our Nameserver has met all of the essential require-
+ments listed above.  We also had a list of items that would be
+nice, but were not considered essential, for a name service.  Our
+track record with these items is less good; some of them were not
+done because we changed our minds about their worth, others
+because we just didn't have the time to implement them.
+
+ o+ _T_h_e _O_w_n_i_n_g _A_c_c_o_u_n_t.  This idea came from the CSnet Name
+   Server;[2] the gist of it is that each user has a single
+   account which "own" his or her entry.  The name service only
+   requires that the host on which the account resides verify
+   that the account accessing the entry is indeed what it is
+   claimed to be; no passwords are required of the user.  [_R_e_a_l_-
+   _i_t_y:  _W_e _n_e_v_e_r _d_i_d _t_h_i_s.  _I_t _r_e_q_u_i_r_e_s _t_h_a_t _t_h_e _h_o_s_t_s _o_n _w_h_i_c_h
+   _o_w_n_i_n_g _a_c_c_o_u_n_t_s _r_e_s_i_d_e _h_a_v_e _a _h_i_g_h _d_e_g_r_e_e _o_f _c_o_o_p_e_r_a_t_i_o_n _w_i_t_h
+   _t_h_e _n_a_m_e _s_e_r_v_i_c_e, _s_o_m_e_t_h_i_n_g _w_e _d_i_d _n_o_t _f_e_e_l _w_e _c_o_u_l_d _g_e_t _f_r_o_m
+   _a_l_l _t_h_e _U_n_i_v_e_r_s_i_t_y _c_o_m_p_u_t_e_r_s.  _W_e _c_o_u_l_d _d_o _t_h_i_s _f_o_r _t_h_o_s_e _w_e
+   _a_d_m_i_n_i_s_t_e_r _o_u_r_s_e_l_v_e_s, _b_u_t _h_a_v_e _n_o_t _f_e_l_t _a _g_r_e_a_t _n_e_e_d _t_o _d_o _s_o.
+   _I_n_s_t_e_a_d, _w_e _a_s_s_i_g_n _p_a_s_s_w_o_r_d_s _t_o _a_n_y_o_n_e _w_h_o _w_i_s_h_e_s _t_o _c_h_a_n_g_e
+   _h_i_s _o_r _h_e_r _i_n_f_o_r_m_a_t_i_o_n.]
+ o+ _D_o_m_a_i_n-_b_a_s_e_d _A_u_t_h_o_r_i_z_a_t_i_o_n.  Along with the concept of the
+   owning account came the idea of domain-based authorization.
+   In short, one viewed the owning account as being composed of
+   several domains, each of which would have its own Nameserver
+   entry.  Further, each of these domains would be allowed to do
+   updates on the information kept about anyone whose owning
+   account was in its domain.  For example, if the owning account
+   for my entry was "dorner@garcon.cso.uiuc.edu", there would be
+   five "people" who could update my entry:
+
+
+       dorner@garcon.cso.uiuc.edu   (me)
+       garcon.cso.uiuc.edu          (my system administrator)
+       cso.uiuc.edu                 (my department)
+       uiuc.edu                     (my University)
+       edu                          (the super-user)
+
+
+
+This would allow us to restrict some fields in our name service
+to being changed at certain levels; for example, only my depart-
+ment (or above) could change my job title.  This would maintain
+the integrity of the database (I couldn't lie about myself), and
+____________________
+   [1] See RFC-1035, _D_o_m_a_i_n _N_a_m_e_s - _I_m_p_l_e_m_e_n_t_a_t_i_o_n _a_n_d _S_p_e_c_i_f_i_c_a-
+_t_i_o_n, P. Mockapetris.
+   [2]  See  _T_h_e  _C_S_N_e_t _N_a_m_e _S_e_r_v_e_r, M. Solomon, L. Landweber, D.
+Neuhengen.
+
+
+
+
+
+
+
+
+
+
+
+TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??                                      55
+
+
+at the same time would not place the burden of upkeep on any sin-
+gle area; each domain would handle its own.  [_R_e_a_l_i_t_y:  _W_e _n_e_v_e_r
+_i_m_p_l_e_m_e_n_t_e_d _t_h_i_s _s_c_h_e_m_e.  _M_o_s_t _d_a_t_a _e_l_e_m_e_n_t_s _a_r_e _c_h_a_n_g_e_a_b_l_e _b_y
+_t_h_e _i_n_d_i_v_i_d_u_a_l_s _i_n_v_o_l_v_e_d; _i_f _t_h_e_y _w_i_s_h _t_o _l_i_e, _t_h_e_y _m_a_y _d_o _s_o.
+_A_b_o_u_t _t_h_e _o_n_l_y _t_h_i_n_g _t_h_a_t _i_s _r_e_s_t_r_i_c_t_e_d _i_s _t_h_e _n_a_m_e _o_f _t_h_e _p_e_r_-
+_s_o_n; _c_h_a_n_g_e_s _t_o _n_a_m_e_s _a_r_e _h_a_n_d_l_e_d _b_y _m_e _p_e_r_s_o_n_a_l_l_y _a_t _t_h_i_s _t_i_m_e.
+_I _h_a_d _t_o _m_a_k_e _f_i_v_e _c_h_a_n_g_e_s _i_n _a _y_e_a_r _o_f _o_p_e_r_a_t_i_o_n.]
+
+ o+ _W_i_d_e _A_v_a_i_l_a_b_i_l_i_t_y _o_f _C_l_i_e_n_t _S_o_f_t_w_a_r_e.  To quote from one of
+   our early design documents:
+
+       People should be able to access  the  nameserver  from
+       just about anything short of an Edsel.
+
+   We wanted a name service that was available to anyone on our
+   campus network.  In this we have done fairly well; we have
+   clients for UNIX, VMS,[3] DOS,[4] Macintosh,[5] as well as a
+   limited VM/CMS client.
+
+ o+ _E_a_s_y _E_n_t_r_y _o_f _I_n_f_o_r_m_a_t_i_o_n.  With at least 50,000 entries
+   expected, we had to have an automated way of entering informa-
+   tion; "just type it in" was right out.  In this our NameServer
+   gets mixed reviews.  Automated entry is used, but it is not
+   very pleasant; witness the document, _R_e_b_u_i_l_d_i_n_g _a _N_a_m_e_s_e_r_v_e_r
+   _D_a_t_a_b_a_s_e _I_n _2_4 _E_a_s_y _S_t_e_p_s.
+ o+ _D_o_n'_t _P_a_s_s _P_a_s_s_w_o_r_d_s _O_v_e_r _t_h_e _N_e_t_w_o_r_k.  With cheap ethernet
+   devices available, it is fairly easy for the asocial person to
+   tap an ethernet and grab packets.  This would allow such a
+   miscreant to steal passwords; to avoid this, we wanted no
+   password to traverse our networks "in the clear".  Our
+   Nameserver uses a random challenge scheme that meets this
+   requirement.
+
+_W_h_y _D_i_d _W_e _D_e_v_e_l_o_p _O_u_r _O_w_n?
+
+Some organizations suffer from NIHS (Not Invented Here Syndrome);
+if someone else did it, it's not good enough for us.  We'd like
+to think that does not describe us.  While we were thinking about
+criteria for a name service, we also surveyed the field to see if
+any of the name servers then in existence were appropriate for
+out task.  We looked initially at two; the CSnet Name Server and
+
+____________________
+   [3] The VMS  client  was  contributed  by  Mark  Sandrock  (m-
+sandrock@uiuc.edu)  of  the  University's School of Chemical Sci-
+ences.
+   [4] The DOS client was contributed by Gary Jacobs of  Qualcomm
+Corp (gjacobs@qualcomm.com).
+   [5] The Macintosh client  was  contributed  by  John  Norstad,
+Academic  Computing and Network Services, Northwestern University
+(j-norstad@nwu.edu).
+
+
+
+
+
+
+
+
+
+
+
+
+66                                      TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??
+
+
+White Pages from Andrew;[6] later, we examined NetDB from Stan-
+ford.[7] In tabular form, this is what we found:[8]
+
+
+______________________________________________________________________
+ CCrriitteerriiaa                   CCSSNNEETT        WWhhiittee PPaaggeess        NNeettDDBB
+____________________________________________________________________________________________________________________________________________
+______________________________________________________________________
+ Flexible?                   No              No              No
+______________________________________________________________________
+ Large Capacity?                                             Yes
+
+                        No;  16   bit
+                        pointers.
+
+
+                                        No;   perfor-
+                                        mance   prob-
+                                        lems     with
+                                        only   a  few
+                                        thousand  en-
+                                        tries.
+______________________________________________________________________
+ Performance?                Yes
+
+                                        Problems with
+                                        a         few
+                                        thousand  en-
+                                        tries
+
+
+
+
+                                                        Not evaluated
+
+
+
+______________________________________________________________________
+ Online Updates?             Yes             No
+
+                                                        Clerical
+                                                        staff only
+______________________________________________________________________
+ Network-based?              Yes             Yes             Yes
+______________________________________________________________________
+ Owning Account?             Yes             N/A             N/A
+______________________________________________________________________
+ Domain Auth?                No              N/A           Sort of
+______________________________________________________________________
+ Widely Avail Client?        Yes                             Yes
+
+                                        No; need  An-
+                                        drew
+______________________________________________________________________
+ Easy Info Entry?            Yes           Unknown           Yes
+______________________________________________________________________
+ Secure Passwords?           Yes             N/A             N/A
+______________________________________________________________________
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+                     |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+                                     |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+                                                     |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+                                                                     |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                TTaabbllee 11..  Name Server Comparison
+
+
+____________________
+   [6] See _A_n _O_v_e_r_v_i_e_w _o_f _t_h_e _A_n_d_r_e_w _M_e_s_s_a_g_e  _S_y_s_t_e_m,  J.  Rosen-
+berg, C. Everhart, N. Borenstein.
+   [7]  See _U_s_e_r'_s _G_u_i_d_e _f_o_r _N_e_t_D_B, Networking and Communications
+Systems, Stanford University.
+   [8] The information in this table was taken from before  cited
+documents describing the three name servers, as well as from oth-
+er documents and source code in the case of the CSnet server.
+
+
+
+
+
+
+
+
+
+
+
+TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??                                      77
+
+
+The above comparison made it clear to us that we couldn't use any
+of the three candidates as they were.  They simply didn't have
+the features we felt were essential.  Therefore, we decided to
+roll our own.
+
+_W_h_y _D_i_d _W_e _U_s_e _t_h_e _C_S_n_e_t _S_e_r_v_e_r _A_s _a _S_t_a_r_t_i_n_g _P_o_i_n_t?
+
+We did not start completely from scratch.  We decided that the
+CSnet Name Server would make a good starting point for our own
+name server.  Take a look at Table 1 again.  The CSnet server met
+three out of five of our essential criteria, and four out of five
+of our list of non-essentials.  It fell down in three areas:
+flexibility, by keeping a fixed set of information about each
+entry; capacity, by using 16 bit pointers; and the domain author-
+ization scheme, which it did not use.
+
+Examination of the CSnet source code revealed that the two major
+deficiencies, the 16 bit pointers and the inflexibility, could be
+remedied very easily.  The underlying database was actually
+fairly general, and adapted itself easily to tagged fields and 32
+bit pointers.  That left only the domain authorization scheme,
+which we decided we could add easily enough at a later date.
+[_R_e_a_l_i_t_y:  _A_s _w_a_s _m_e_n_t_i_o_n_e_d _b_e_f_o_r_e, _w_e _n_e_v_e_r _d_i_d _d_o _t_h_i_s.]
+
+_W_h_a_t'_s _t_h_e _D_i_f_f_e_r_e_n_c_e?
+
+In the process of adapting the CSnet Name Server to our purposes,
+we wound up making many changes.  In fact, while we still use a
+modified version of the CSnet server's database code, the overly-
+ing software is all new.  For the benefit of those familiar with
+the CSnet server, let us outline the differences between the
+CSnet software and our own:
+
+ o+ _P_o_i_n_t_e_r_s _e_x_p_a_n_d_e_d _t_o _3_2 _b_i_t_s.  16 bits translates into 65,000
+   entries (or 32,000 for signed pointers), and was not enough.
+   We therefore increased the pointer size.
+ o+ _F_i_x_e_d _f_i_e_l_d_s _r_e_p_l_a_c_e_d _w_i_t_h _t_a_g_g_e_d _f_i_e_l_d_s.  The CSnet server
+   had a half dozen or so null-terminated ASCII fields.  Each
+   field had to be present in every entry, although a field could
+   be empty.  The database proper (as opposed to the higher lev-
+   els of the server) _d_i_d allow an arbitrary number of null-
+   terminated fields; a little surgery was done to exploit this
+   basic orientation.  As mentioned elswhere, each entry in our
+   database has only non-empty fields, tagged with what kind of
+   field each is.
+ o+ _O_n_e-_t_i_e_r _a_u_t_h_o_r_i_z_a_t_i_o_n.  The CSnet server thought in terms of
+   user, host, site triples.  A user could change his informa-
+   tion.  A host could change the information of any user whose
+   entry was "owned" by an account on that host.  A site could
+   change the entry of any host identified with that site.
+   Finally, there was a "super-user" entry.  Further, each host
+   and site had a password that was used for client-server com-
+   munication.  We removed this entire structure; in our
+
+
+
+
+
+
+
+
+
+
+88                                      TThhee CCCCSSOO NNaammeesseerrvveerr -- WWhhyy??
+
+
+   Nameserver, each user has his own password, and can use it to
+   change his own entry.  Some users have "hero" privileges,
+   which allow them to change anything in any entry.
+ o+ _R_e_m_o_v_a_l _o_f _p_i_p_e _a_n_d _e_m_a_i_l _i_n_t_e_r_f_a_c_e_s.  The CSnet server had a
+   client that could talk to it via the network, a pipe, or elec-
+   tronic mail.  We remove the latter two capabilities (although
+   our server _c_a_n be talked to through a pipe by server adminis-
+   trators).  The pipe was a simple special case of network
+   access, and was removed without loss of functionality (nor
+   efficiency, since our server is on a machine with no real
+   users).  The email interface could be done, but we have had no
+   incentive to do it; network access has so far been suffi-
+   cient.[9]
+ o+ _R_e_m_o_v_a_l _o_f _m_a_i_l _f_o_r_w_a_r_d_i_n_g _p_r_o_g_r_a_m_s.  The CSnet server looked
+   at mail forwarding very differently than do we; we therefore
+   removed that portion of the code.  Mail forwarding is done
+   outside of the Nameserver _p_e_r _s_e, in other programs.  These
+   programs use the Nameserver to look up information, but are
+   otherwise unrelated to it.
+ o+ _N_e_w _C_l_i_e_n_t_s.  Our client software is completely different.
+   The ideas are basically the same, but the commands and other
+   operational issues have all been addressed afresh.
+ o+ Our Nameserver is talked to very differently than the CSnet
+   server.  We found the CSnet protocol somewhat confusing, and
+   rather difficult for a human to use; ours can actually be used
+   by a _h_o_m_o _s_a_p_i_e_n_s without great grief.
+
+There are of course many other differences.  The list above is
+only intended to hit the "high spots", places where we differ in
+a significant manner from the CSnet product.  Note that we have
+not necessarily _i_m_p_r_o_v_e_d on CSnet's work; we have _a_d_a_p_t_e_d some of
+it to fit our needs and desires.  It may well be that the CSnet
+server would be more appropriate for any given organization.  For
+example, if network connections are not universal our server is a
+bit awkward; the built-in email interface of the CSnet server
+would be quite useful in such a case.
+
+_C_o_n_c_l_u_s_i_o_n
+
+We are quite pleased with our Nameserver.  It meets most of our
+needs, and we are confident that its flexibility and good perfor-
+mance will serve us well as we use it for more purposes.  Organi-
+zations considering a name service are welcome to evaluate ours,
+and use it if they wish (subject to the distribution conditions
+outlined in _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _A _D_e_s_c_r_i_p_t_i_o_n, which are
+liberal).  There are however other excellent choices; your choice
+will depend on your needs.
+____________________
+   [9]  There  is  actually  one  quasi-mail  interface  to   our
+Nameserver;  it  runs on our VM/CMS machine and translates BITnet
+messages into Nameserver queries.
+
+
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+#  Most defaults are suitable for BSD 4.3
+$Cflags .= " -DNO_STRERROR -DNO_MEMMOVE -DNO_STRDUP -DNO_STRSTR";
+$OtherDefines{"Sig_Type"} = "int";
+1

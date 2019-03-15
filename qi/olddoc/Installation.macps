@@ -1,0 +1,3708 @@
+%!PS-Adobe-2.0
+%%CreationDate: Monday, April 9, 1990
+%%Pages: (atend)
+%%BoundingBox: ? ? ? ?
+%%PageBoundingBox: 30 31 582 761
+%%IncludeProcSet: "(AppleDict md)" 68 0
+%%EndProlog
+%%BeginDocumentSetup
+md begin
+
+T T -31 -30 761 582 100 72 72 1 F F F F T T T psu
+(dorner; document: Unspecified)jn
+0 mf
+od
+%%EndDocumentSetup
+%%Page: ? 1
+op
+0 0 xl
+1 1 pen
+0 0 gm
+(nc 0 0 730 552 6 rc)kp
+83 163 gm
+1 setTxMode
+1 fs
+bu fc
+{}mark T /Helvetica-Bold /|______Helvetica-Bold 0 rf
+bn
+22 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver)show
+115 170 gm
+(Guide to Installation)show
+145 204 gm
+16 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(December 22, 1988)show
+184 229 gm
+2 fs
+bu fc
+{}mark T /Helvetica-Oblique /|______Helvetica-Oblique 0 rf
+bn
+12 fz
+bu fc
+2 F /|______Helvetica-Oblique fnt
+bn
+(by Steven Dorner)show
+200 204 gm
+(Computing Services Office)show
+216 163 gm
+(University of Illinois at Urbana-Champaign)show
+248 41 gm
+1 fs
+bu fc
+{}mark T /Times-Bold /|______Times-Bold 0 rf
+bn
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.02935 0.(Introduction)ashow
+264 60 gm
+0 fs
+bu fc
+{}mark T /Times-Roman /|______Times-Roman 0 rf
+bn
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.31372 0. 32 0.03137 0.(This document provides instructions,)awidthshow
+264 241 gm
+1.15264 0. 32 0.11526 0.( general and specific, for installing the programs that)awidthshow
+280 41 gm
+-0.00985 0.(make up CSO Nameserver.  To decide if you want to install the CSO Nameserver at all, I)ashow
+280 470 gm
+( suggest)show
+296 41 gm
+-0.08073 0.(you read )ashow
+296 86 gm
+2 fs
+bu fc
+{}mark T /Times-Italic /|______Times-Italic 0 rf
+bn
+bu fc
+2 F /|______Times-Italic fnt
+bn
+-0.49856 0.(The)ashow
+296 104 gm
+0.48965 0. 32 0.04896 0.( CSO Nameserver, A Description)awidthshow
+296 268 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.60440 0. 32 0.06044 0.(.  For detailed information on the inner workings)awidthshow
+312 41 gm
+1.05316 0. 32 0.10531 0.(of the Nameserver, you should read )awidthshow
+2 fs
+bu fc
+2 F /|______Times-Italic fnt
+bn
+1.35467 0. 32 0.13546 0.(The CSO Nameserver, A)awidthshow
+312 351 gm
+1.32461 0. 32 0.13246 0.( Programmer\325s Guide)awidthshow
+312 463 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+2.10891 0. 32 0.21089 0.(.  If you)awidthshow
+328 41 gm
+0.38681 0. 32 0.03868 0.(follow the procedures in)awidthshow
+328 161 gm
+1.30630 0. 32 0.13063 0.( this document, you will end up with the right programs in the right)awidthshow
+344 41 gm
+-0.01181 0.(places; you will not yet have a functioning system. )ashow
+344 288 gm
+0.66146 0. 32 0.06614 0.( You must first come up with data, and form)awidthshow
+360 41 gm
+0.55969 0. 32 0.05596 0.(that data into a valid Nameserver database.  For)awidthshow
+360 278 gm
+1.23016 0. 32 0.12301 0.( an example procedure to build a Nameserver)awidthshow
+376 41 gm
+2.21847 0. 32 0.22184 0.(database, )awidthshow
+2 fs
+bu fc
+2 F /|______Times-Italic fnt
+bn
+2.01080 0. 32 0.20108 0.(Rebuilding a Nameserver Database, In 24 Easy Steps)awidthshow
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.56280 0. 32 0.15628 0.( should be perused.  Your)awidthshow
+392 41 gm
+(procedure is)show
+392 101 gm
+1.30096 0. 32 0.13009 0.( likely to differ from ours, since you will undoubtedly have your data in a form)awidthshow
+408 41 gm
+-0.04641 0.(unlike our own.)ashow
+424 60 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.14094 0.(Do read )ashow
+424 104 gm
+7 fs
+bu fc
+{}mark T /Times-BoldItalic /|______Times-BoldItalic 0 rf
+bn
+bu fc
+2 F /|______Times-BoldItalic fnt
+bn
+11.99993 ul
+-0.33401 0.(all)ashow
+424 117 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.01840 0.( of this document before beginning your installation.)ashow
+456 41 gm
+-0.02481 0.(Prerequisites)ashow
+472 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+2.14324 0. 32 0.21432 0.(The system you choose to run the server portion of the Nameserver should meet the)awidthshow
+488 41 gm
+-0.02847 0.(following requirements:)ashow
+504 60 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(1.)show
+504 78 gm
+0.64483 0. 32 0.06448 0.(BSD UNIX or equivalent.)awidthshow
+504 213 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.36016 0. 32 0.13601 0.(  The server portion of the Nameserver has been run on a)awidthshow
+520 41 gm
+-0.00340 0.(4.3bsd system and an Ultrix 2.2 system.  4.3bsd is the preferred system.)ashow
+536 60 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(2.)show
+536 78 gm
+-0.05868 0.(The 4.3bsd )ashow
+bu fc
+{}mark T /Courier-Bold /|______Courier-Bold 0 rf
+bn
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.07875 0.(syslog)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.04519 0.( facility.)ashow
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05235 0.(  If you are)ashow
+536 273 gm
+0.63583 0. 32 0.06358 0.( not using a 4.3bsd system, you will either have)awidthshow
+552 41 gm
+0.21163 0. 32 0.02116 0.(to port)awidthshow
+552 74 gm
+0.76766 0. 32 0.07676 0.( the 4.3 )awidthshow
+bu fc
+{}mark T /Courier /|______Courier 0 rf
+bn
+bu fc
+2 F /|______Courier fnt
+bn
+0.55741 0.(syslog)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.20422 0. 32 0.12042 0.( to your system \(we have done this for ourselves in order to run the)awidthshow
+568 41 gm
+-0.01681 0.(Nameserver on an Ultrix VAX\), or change the calls to )ashow
+568 304 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06678 0.(syslog)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04861 0.( within the Nameserver.)ashow
+584 60 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(3.)show
+584 78 gm
+0.83511 0. 32 0.08351 0.(Disk space.)awidthshow
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.50018 0. 32 0.05001 0.(  We use about 40 megabytes)awidthshow
+584 283 gm
+1.27944 0. 32 0.12794 0.( to hold our database \(60,000 persons\).  The)awidthshow
+600 41 gm
+0.46615 0. 32 0.04661 0.(Nameserver could be tuned to be somewhat less wasteful of space, if you care to do so.  In any)awidthshow
+616 41 gm
+-0.05348 0.(case, you will need)ashow
+616 133 gm
+0.63690 0. 32 0.06369 0.( at least twice the disk space the database will eventually occupy in order to)awidthshow
+632 41 gm
+-0.01806 0.(conveniently create the database.)ashow
+648 60 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(4.)show
+648 78 gm
+-0.10768 0.(Processor.)ashow
+648 131 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.00595 0. 32 0.00059 0.(  The running database causes minimal system load.  Building a database takes)awidthshow
+664 41 gm
+-0.01806 0.(quite a few cycles, however; five)ashow
+664 200 gm
+0.64331 0. 32 0.06433 0.( hours on a fast super-mini the last time we built our database.)awidthshow
+718 42 gm
+bu fc
+{}mark T /Helvetica /|______Helvetica 0 rf
+bn
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(1)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 2
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+65 41 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01042 0.(Fortunately, this need only be done when mass quantities of entries are to be added.)ashow
+81 60 gm
+1.52328 0. 32 0.15232 0.(The client software can be run without modification on bsd UNIX systems, HP-UX, or)awidthshow
+97 41 gm
+-0.04627 0.(VAX/VMS.)ashow
+129 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.04417 0.(Overview)ashow
+145 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01086 0.(The CSO Nameserver is a relatively straightforward program to install.  There)ashow
+145 436 gm
+0.54122 0. 32 0.05412 0.( are four major)awidthshow
+161 41 gm
+1.67770 0. 32 0.16777 0.(pieces; the server program itself \()awidthshow
+161 217 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.64276 0.(qi)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.51153 0. 32 0.15115 0.(\), the client program \()awidthshow
+161 348 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.57554 0.(ph)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.41937 0. 32 0.14193 0.(\), database utilities \(a set)awidthshow
+161 493 gm
+2.50564 0. 32 0.25056 0.( of)awidthshow
+177 41 gm
+0.62042 0. 32 0.06204 0.(programs used to build, dump, and otherwise manipulate the database\), and statistics programs)awidthshow
+193 41 gm
+-0.00271 0.(\(that help make sense of the voluminous logs produced by the Nameserver\).)ashow
+209 60 gm
+-0.01803 0.(The basic plan for installation is:)ashow
+225 60 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(1.)show
+225 78 gm
+-0.00938 0.(Create a userid for the Nameserver, and become that user.)ashow
+241 60 gm
+(2.)show
+241 78 gm
+-0.01986 0.(Untar the files.)ashow
+257 60 gm
+(3.)show
+257 78 gm
+-0.12402 0.(Edit the )ashow
+257 122 gm
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.15113 0.(configure)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.10592 0.( script.)ashow
+273 60 gm
+(4.)show
+273 78 gm
+-0.14212 0.(Run the )ashow
+273 122 gm
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.15113 0.(configure)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.10592 0.( script.)ashow
+289 60 gm
+(5.)show
+289 78 gm
+-0.03503 0.(Make any binary directories you mentioned in the )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.04766 0.(configure)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.03341 0.( script.)ashow
+305 60 gm
+(6.)show
+305 78 gm
+-0.16578 0.(Do a )ashow
+305 105 gm
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.11422 0.(make install)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.08161 0.( \(as super-user\).)ashow
+321 60 gm
+(7.)show
+321 78 gm
+-0.05668 0.(Create a database.)ashow
+337 60 gm
+(8.)show
+337 78 gm
+-0.11087 0.(Put an )ashow
+337 115 gm
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.15080 0.(ns)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09704 0.( entry in )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.15080 0.(/etc/services)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(.)show
+353 60 gm
+(9.)show
+353 78 gm
+-0.11148 0.(Teach )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.14025 0.(/etc/syslog.conf)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09835 0.( about )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.14025 0.(qi)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09449 0.(, and kick )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.14025 0.(syslogd)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(.)show
+369 60 gm
+(10.)show
+369 78 gm
+-0.10798 0.(Teach )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.13586 0.(/etc/inetd.conf)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09527 0.( about )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.13586 0.(qi)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09153 0.(, and kick )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.13586 0.(inetd)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(.)show
+385 60 gm
+(11.)show
+385 78 gm
+-0.00973 0.(Install the client software on any other system\(s\) you wish.)ashow
+401 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01501 0.(The rest of this document will deal with each step in detail.)ashow
+433 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.01641 0.(Creating A Userid For The Nameserver)ashow
+449 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.87600 0. 32 0.08760 0.(If you have a 4.3bsd system, you should create a userid for use by the Nameserver.  )awidthshow
+449 487 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.22525 0.(This)ashow
+465 41 gm
+-0.02224 0.(userid should have sole access)ashow
+465 194 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05583 0.( to the Nameserver)ashow
+465 285 gm
+0.52963 0. 32 0.05296 0.( database and the utility and server programs.)awidthshow
+481 41 gm
+-0.08038 0.(If you have a)ashow
+481 104 gm
+0.61935 0. 32 0.06193 0.( 4.2 bsd system, it is sufficient that the super-user have access to the database and)awidthshow
+497 41 gm
+0.24444 0. 32 0.02444 0.(related files \(although it will do no harm to have a Nameserver userid that owns the Nameserver)awidthshow
+513 41 gm
+0.14038 0. 32 0.01403 0.(files\).  The distinction is made because the 4.3bsd )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.05920 0.(inetd)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.15930 0. 32 0.01593 0.( networking daemon allows a userid to)awidthshow
+529 41 gm
+-0.01187 0.(be specified for the programs it runs; the 4.2bsd )ashow
+529 274 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06611 0.(inetd)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04412 0.( runs its programs as the super-user.)ashow
+545 60 gm
+-0.01342 0.(If you create a Nameserver userid, you should become that userid)ashow
+545 375 gm
+0.60287 0. 32 0.06028 0.( for most of the installation)awidthshow
+561 41 gm
+-0.13993 0.(process.)ashow
+593 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.04614 0.(Untar The Files)ashow
+609 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00605 0.(The Nameserver is normally distributed as a compressed tar archive.  The command:)ashow
+626 41 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20408 0.(uncompress -c <ph.tar.Z | tar xvf -)ashow
+641 41 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.37765 0. 32 0.03776 0.(will uncompress and extract the files from ph.tar.Z, which can then be removed.  The following)awidthshow
+657 41 gm
+-0.00268 0.(directories and files will appear in your current working directory:)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(2)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 3
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+73 77 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(Makefile)ashow
+88 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.57403 0. 32 0.05740 0.(The top-level makefile for the Nameserver.  This makefile mostly runs make)awidthshow
+104 95 gm
+-0.02122 0.(in the various subdirectories.)ashow
+121 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(configure)ashow
+136 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.09277 0. 32 0.00927 0.(This script is used to configure the Nameserver to run on your system.  This is)awidthshow
+152 95 gm
+1.04125 0. 32 0.10412 0.(done by editting the various Makefiles)awidthshow
+152 290 gm
+1.63284 0. 32 0.16328 0.( and installing proper definitions in)awidthshow
+168 95 gm
+-0.06504 0.(them.  The )ashow
+168 150 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.05941 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03846 0.( script edits only some variable lines at the top of each)ashow
+184 95 gm
+0.41442 0. 32 0.04144 0.(Makefile, and )awidthshow
+184 167 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.41365 0.(qi/conf.c)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.87799 0. 32 0.08779 0.(; it does not touch any other source code or the)awidthshow
+200 95 gm
+-0.04145 0.(bodies of the Makefiles.)ashow
+217 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(lintlint)ashow
+232 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.43884 0. 32 0.04388 0.(This file contains )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.17936 0.(sed)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.51055 0. 32 0.05105 0.( commands to delete unwanted complaints from )awidthshow
+232 446 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(lint)ashow
+248 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.11131 0.(output.)ashow
+265 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(doc)ashow
+280 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00753 0.(This directory contains various documents pertaining to the Nameserver.)ashow
+297 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(include)ashow
+312 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02284 0.(The Nameserver\325s #include files go here.)ashow
+329 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(lib)ashow
+344 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02790 0.(A few ubiquitous library functions.)ashow
+361 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.39651 0.(ph)ashow
+376 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05320 0.(The client program.)ashow
+393 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.39651 0.(qi)ashow
+408 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03375 0.(The server program.)ashow
+425 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(stats)ashow
+440 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01298 0.(Programs for dealing with the Nameserver log.)ashow
+457 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(util)ashow
+472 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01232 0.(Miscellaneous other goodies.  Thes programs build)ashow
+472 341 gm
+0.59112 0. 32 0.05911 0.( and dump the Nameserver)awidthshow
+488 95 gm
+-0.01213 0.(database, as well as do other nifty little things.)ashow
+520 41 gm
+-0.01258 0.(See Appendix A for an explanation of each file in the subdirectories.)ashow
+552 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09924 0.(The )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.12422 0.(configure)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09872 0.( Script)ashow
+568 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.21875 0.(The )ashow
+568 82 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.12850 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.08454 0.( script will aid you)ashow
+568 235 gm
+0.62515 0. 32 0.06251 0.( in localizing the Nameserver for your site.  It does this)awidthshow
+584 41 gm
+0.73059 0. 32 0.07305 0.(in two ways; it edits the various Makefiles, inserting proper values for variables defining such)awidthshow
+600 41 gm
+0.44357 0. 32 0.04435 0.(things as C compiler flags, special #defines, etc.; it also edits )awidthshow
+600 345 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.11555 0.(qi/conf.c)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.21850 0. 32 0.02185 0.(, a C source file that)awidthshow
+616 41 gm
+-0.01029 0.(gives the locations of various important files \(such as the Nameserver database\).)ashow
+632 60 gm
+-0.01176 0.(The configure script consists of three parts; the)ashow
+632 286 gm
+0.56838 0. 32 0.05683 0.( prologue, which you should edit; the code to)awidthshow
+648 41 gm
+-0.02423 0.(change Makefiles; and the code to edit )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.03613 0.(conf.c)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02221 0.(.  The prologue itself is in two parts; the first part,)ashow
+664 41 gm
+-0.02029 0.(that sets variables for Makefiles; and the second part, that sets file names for )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.03196 0.(qi/conf.c)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(3)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 4
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+65 60 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.87683 0. 32 0.18768 0.(In editing the prologue, bear in mind that the c-shell \()awidthshow
+65 347 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.44670 0.(csh)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(\))show
+65 372 gm
+2.61596 0. 32 0.26159 0.( is going to be executing)awidthshow
+81 41 gm
+-0.01942 0.(configure; be sure to protect things from the shell.  Also bear in mind that )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.03021 0.(sed)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02047 0.( is going to)ashow
+81 472 gm
+0.49880 0. 32 0.04988 0.( be run;)awidthshow
+97 41 gm
+0.51986 0. 32 0.05198 0.(you may have to experiment)awidthshow
+97 182 gm
+1.28097 0. 32 0.12809 0.( with the placement of quotes and escapes to get the results you)awidthshow
+113 41 gm
+1.21887 0. 32 0.12188 0.(want.  Never fear, however; you can\325t break anything with )awidthshow
+113 345 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.26997 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.58319 0. 32 0.05831 0.( that can\325t be easily)awidthshow
+129 41 gm
+-0.04849 0.(repaired with )ashow
+129 108 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.18946 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+147 60 gm
+-0.00167 0.(Here are the variables in the prologue of config, along with example settings,  explanations of)ashow
+163 41 gm
+-0.02072 0.(what they mean, and what you can do with them:)ashow
+180 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20619 0.(set mainbin=/usr/local/bin)ashow
+196 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01341 0.(This is a directory where ph will be placed.)ashow
+196 303 gm
+0.64483 0. 32 0.06448 0.(  It should be in the search path of)awidthshow
+211 95 gm
+-0.13063 0.(users.)ashow
+228 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20651 0.(set utilbin=/nameserv/bin)ashow
+244 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.28442 0. 32 0.02844 0.(This is a directory where the other binaries will be placed.  Woe is the system)awidthshow
+259 95 gm
+-0.01470 0.(that lets the casual user execute these.)ashow
+276 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21478 0.(set otherlib=)ashow
+292 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.04623 0. 32 0.00462 0.(If there is a library that shoudl be appended to loader runs, put it here.  We use)awidthshow
+307 95 gm
+-0.04316 0.(it to see that )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.07600 0.(qi)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04742 0.( gets the 4.3 version of )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.07600 0.(syslog\(3\))ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05278 0.( on our Ultrix system.)ashow
+324 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21350 0.(set otherlint=)ashow
+340 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01596 0.(If you give this a value, you can help )ashow
+340 276 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22198 0.(lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.22349 0.( when)ashow
+340 333 gm
+0.60363 0. 32 0.06036 0.( dealing with the library you)awidthshow
+355 95 gm
+1.20040 0. 32 0.12004 0.(gave for )awidthshow
+355 142 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.73820 0.(otherlib)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.36154 0. 32 0.13615 0.(.  This assumes you have a built a )awidthshow
+355 388 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.37794 0.(lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.88012 0. 32 0.08801 0.( library for)awidthshow
+372 95 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.18847 0.(otherlib)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+388 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21350 0.(set cc=/bin/cc)ashow
+404 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02558 0.(Your favorite C compiler.)ashow
+420 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20588 0.(set lint="/usr/bin/lint -u")ashow
+436 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03720 0.(How you care to invoke )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.05206 0.(lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+452 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20408 0.(set ci='ci -q -l -m"No help here."')ashow
+468 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01779 0.(This will be invoked when you do a \322)ashow
+468 276 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.19375 0.(make rcs)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.14607 0.(\323 in any)ashow
+468 370 gm
+0.60760 0. 32 0.06076 0.( directory.  It will be)awidthshow
+483 95 gm
+-0.00724 0.(given a list of files that probably need to have their revisions controlled.)ashow
+500 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20486 0.(set defs=\(LOG_QILOG=LOG_LOCAL0\))ashow
+516 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.02075 0. 32 0.00207 0.(You can #define anything you want here.  If you give more than one word, put)awidthshow
+531 95 gm
+0.10253 0. 32 0.01025 0.(the words in parentheses, per shell syntax.  You should define )awidthshow
+531 398 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.10433 0.(LOG_QILOG)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.08940 0.( to)ashow
+547 95 gm
+-0.05317 0.(be the proper )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.08084 0.(syslog)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05589 0.( facility number.)ashow
+564 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21478 0.(set depend=-M)ashow
+580 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03445 0.(This should be the flag that )ashow
+580 229 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.19155 0.(cc)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.47363 0. 32 0.04736 0.( should be given to generate a dependency list.)awidthshow
+595 95 gm
+-0.03596 0.(On most UNIX systems it is \322)ashow
+595 239 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.09028 0.(-M)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05828 0.(\323.  Ultrix requires \322)ashow
+595 346 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.04965 0.(-Em)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03218 0.(\323 \(don\325t look at me...\).)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(4)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 5
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+73 77 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20391 0.(set host='\\\\"garcon.cso.uiuc.edu\\\\"')ashow
+89 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.28366 0. 32 0.02836 0.(The host that the server program \(qi\) runs on.  This is used only by the client,)awidthshow
+104 95 gm
+-0.07511 0.(ph.  \(Note the)ashow
+104 161 gm
+0.64102 0. 32 0.06410 0.( \322tricky\323 use of quotes and escapes; the end result is a constant)awidthshow
+120 95 gm
+-0.06542 0.(string in ph.c.\))ashow
+137 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20588 0.(set fallbackaddr=0x80ae053a)ashow
+153 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01220 0.(The address of the aforementioned host, in case)ashow
+153 324 gm
+0.63140 0. 32 0.06314 0.( it can\325t be found in host table)awidthshow
+168 95 gm
+-0.01971 0.(or domain system.)ashow
+185 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20687 0.(set nsservice='\\\\"ns\\\\"')ashow
+201 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00360 0.(The name of the UNIX service that is the CSO Nameserver.)ashow
+217 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20869 0.(set fallbackport=105)ashow
+233 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+2.68020 0. 32 0.26802 0.(The port number to use if the aforementioned service is not found in)awidthshow
+249 95 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.19210 0.(/etc/services)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+265 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20286 0.(set admin='\\\\"dorner@garcon.cso.uiuc.edu\\\\"')ashow
+281 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01902 0.(The CSO Nameserver adminstrator.)ashow
+297 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20297 0.(set passw='\\\\"nameserv@uxg.cso.uiuc.edu\\\\"')ashow
+313 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00498 0.(The person who gives out CSO Nameserver passwords.)ashow
+329 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20426 0.(set lockfile=/nameserv/db/LockFile)ashow
+345 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01211 0.(The lock file for the main database.  This file )ashow
+345 315 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.08665 0.(must)ashow
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.06248 0.( exist for )ashow
+345 386 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.10687 0.(qi)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.07279 0.( to run.)ashow
+361 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20619 0.(set tempfile=/tmp/qiXXXXXX)ashow
+377 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.07855 0.(Template for )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.11257 0.(mktemp\(3\))ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+393 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20376 0.(set fieldconfig=/nameserv/db/prod.cnf)ashow
+409 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00866 0.(The file that describes the tagged fields used by the database.)ashow
+425 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20509 0.(set database=/nameserv/db/prod)ashow
+441 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.22650 0. 32 0.12265 0.(The prefix for the main database files.  The six suffices)awidthshow
+441 380 gm
+0.64071 0. 32 0.06407 0.( are )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.55851 0.(.dir)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.38803 0. 32 0.03880 0.(, )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.55851 0.(.dov)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(,)show
+457 95 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.16398 0.(.idx)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.06834 0.(, )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.16398 0.(.iov)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.06834 0.(, )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.16398 0.(.seq)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.10627 0.( and )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.16398 0.(.bdx)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+473 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20486 0.(set idlock=/nameserv/db/Id.Lock)ashow
+489 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.27166 0. 32 0.12716 0.(The lock file for the id database.  This file need only be present when the)awidthshow
+505 95 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.10433 0.(ssnid)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.07406 0.( program is run.)ashow
+521 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20559 0.(set idfile=/nameserv/db/IdDB)ashow
+537 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.95825 0. 32 0.09582 0.(The prefix for the id database files.  The two suffices are )awidthshow
+537 388 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.17913 0.(.pag)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.23223 0. 32 0.02322 0.( and )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.17913 0.(.dir)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+552 95 gm
+-0.02810 0.(This database need only be present when the )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.04096 0.(ssnid)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02908 0.( program is run.)ashow
+568 60 gm
+2.24761 0. 32 0.22476 0.(Running )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.65681 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.53961 0. 32 0.15396 0.( will install)awidthshow
+568 239 gm
+4.17312 0. 32 0.41731 0.( these definitions in the various Makefiles and)awidthshow
+585 41 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.07633 0.(qi/conf.c)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04653 0.(.  While it is running, )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.07633 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05158 0.( will write on the standard output the name of)ashow
+585 491 gm
+0.26138 0. 32 0.02613 0.( the)awidthshow
+600 41 gm
+-0.02050 0.(directory it is working on.  If there are any)ashow
+600 245 gm
+0.51666 0. 32 0.05166 0.( errors running configure, simply edit )awidthshow
+600 434 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.10433 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.08940 0.( to)ashow
+616 41 gm
+-0.01937 0.(fix the error, and run it again;)ashow
+616 183 gm
+0.64636 0. 32 0.06463 0.( it is not desctructive, nor is there any cleanup that has to be done)awidthshow
+632 41 gm
+-0.02923 0.(after a partial run.  You may wish to set the echo flag \()ashow
+bu fc
+2 F /|______Courier fnt
+bn
+(x)show
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(\))show
+632 314 gm
+0.28182 0. 32 0.02818 0.( in the first line of )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.18627 0.(configure)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.34500 0. 32 0.03450 0.( to help)awidthshow
+648 41 gm
+-0.01995 0.(you find errors.)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(5)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 6
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+72 41 gm
+12 fz
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(Running Make)show
+88 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03985 0.(Before discussing)ashow
+88 146 gm
+0.57067 0. 32 0.05706 0.( the actual installation of the Nameserver, let me digress into a discussion)awidthshow
+104 41 gm
+-0.13063 0.(of the)ashow
+104 69 gm
+0.53344 0. 32 0.05334 0.( top-level \(and the subdirectory\) Makefiles.  They provide several standardized targets, in)awidthshow
+120 41 gm
+0.52932 0. 32 0.05293 0.(addition to the targets particular to each directory.  For the most part, running )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.22583 0.(make)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.30487 0. 32 0.03048 0.( at)awidthshow
+120 470 gm
+1.11328 0. 32 0.11132 0.( the top)awidthshow
+136 41 gm
+-0.03851 0.(level will simply )ashow
+136 125 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.07479 0.(make)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04817 0.( the specified target in)ashow
+136 260 gm
+0.55953 0. 32 0.05595 0.( all the subdirectories; exceptions are noted below.)awidthshow
+152 41 gm
+-0.01097 0.(The standard targets are:)ashow
+169 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(all)ashow
+185 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.28631 0. 32 0.12863 0.(Everything that needs to be compiled and loaded.  This is always the first)awidthshow
+200 95 gm
+-0.02247 0.(target in the Makefile, so that a simple \322)ashow
+200 288 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06228 0.(make)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04151 0.(\323 has the same effect as a \322)ashow
+200 446 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(make)ashow
+217 95 gm
+-0.08764 0.(all)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05662 0.(\323.  Note that this does )ashow
+217 223 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.33209 0.(not)ashow
+217 240 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.51239 0. 32 0.05123 0.( install the programs in their proper directories;)awidthshow
+232 95 gm
+-0.03132 0.(it only compiles and loads them.)ashow
+249 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(install)ashow
+265 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01057 0.(Installs the programs in their proper binary directories.  This target has \322all\323)ashow
+265 460 gm
+( as)show
+280 95 gm
+-0.00540 0.(a dependency, so it will compile if necessary.)ashow
+297 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(clean)ashow
+313 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01530 0.(This removes everything but the source. )ashow
+313 291 gm
+0.53970 0. 32 0.05397 0.( Object files, binary libraries, backup)awidthshow
+328 95 gm
+-0.08084 0.(copies of)ashow
+328 139 gm
+0.59417 0. 32 0.05941 0.( Makefiles, compiled \(but not installed\) programs, etc.  Do a \322make)awidthshow
+344 95 gm
+-0.01620 0.(clean\323 to save some disk space when you do not plan to be)ashow
+344 377 gm
+0.45562 0. 32 0.04556 0.( doing development)awidthshow
+360 95 gm
+-0.02017 0.(on the Nameserver for a while.)ashow
+377 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(depend)ashow
+393 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00402 0.(This will add #include file dependencies to the Makefiles.)ashow
+409 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(rcs)ashow
+425 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.27166 0. 32 0.12716 0.(This performs a checkin of all files that look like they have been changed)awidthshow
+440 95 gm
+-0.00582 0.(since the last recorded checkin was done.)ashow
+457 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(lint)ashow
+473 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.16772 0.(Runs )ashow
+473 123 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.14234 0.(lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.28884 0. 32 0.02888 0.( on all the programs, and leaves the output in the file )awidthshow
+473 414 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.02603 0.(LINT)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.04165 0. 32 0.00416 0.( in the)awidthshow
+488 95 gm
+-0.01713 0.(subdirectories.  The Nameserver is not well-liked by )ashow
+488 350 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06338 0.(lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04415 0.(, but I do make sure)ashow
+504 95 gm
+-0.01455 0.(that there are no serious errors in it.  )ashow
+504 272 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.07325 0.(Lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05165 0.(\325s complaints about the)ashow
+504 412 gm
+( Nameserver)show
+520 95 gm
+-0.01127 0.(are just nits that do no real harm.  If you care to cast every occurrence of )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.02372 0.(NULL)ashow
+536 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.44921 0. 32 0.04492 0.(to the proper pointer type, you may be my guest...  In the top-level directory,)awidthshow
+552 95 gm
+-0.09106 0.(running )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.13005 0.(make lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.07946 0.( will first run )ashow
+552 264 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.12654 0.(lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.28472 0. 32 0.02847 0.( in all the subdirectories, then cat the)awidthshow
+569 95 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.17617 0.(LINT)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.39093 0. 32 0.03909 0.( files together and run them through the )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.17617 0.(sed)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.45364 0. 32 0.04536 0.( script)awidthshow
+569 376 gm
+0.05950 0. 32 0.00595 0.( )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.15695 0.(lintlint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.48141 0. 32 0.04814 0.(, which)awidthshow
+584 95 gm
+0.60119 0. 32 0.06011 0.(removes a lot of )awidthshow
+584 180 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.02877 0.(lint)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.11306 0. 32 0.01130 0.(\325s unnecessary messages,)awidthshow
+584 332 gm
+1.29394 0. 32 0.12939 0.( and leaves the result in the)awidthshow
+600 95 gm
+-0.24684 0.(file )ashow
+600 114 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.08238 0.(LINT)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05253 0.( in the top level directory.)ashow
+617 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(tape)ashow
+633 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.21200 0. 32 0.12120 0.(First cleans the directory, then makes a tar archive out of the Nameserver.)awidthshow
+648 95 gm
+-0.01063 0.(This target is present in the top-lev el Makefile only.)ashow
+665 77 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(print)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(6)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 7
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+65 95 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.39190 0. 32 0.13919 0.(Prints the Nameserver source.)awidthshow
+65 248 gm
+2.64068 0. 32 0.26406 0.(  Be sure you have the Makefile variable)awidthshow
+81 95 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.23648 0.(PRINTER)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.50323 0. 32 0.05032 0.( set to a program that knows how to print its standard input.  Top-)awidthshow
+96 95 gm
+-0.05053 0.(level Makefile only.)ashow
+112 60 gm
+-0.08297 0.(Running \322)ashow
+112 110 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.94421 0. 32 0.09442 0.(make install)awidthshow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.41809 0. 32 0.04180 0.(\323 will compile, load, and copy into the binary directories all the)awidthshow
+128 41 gm
+-0.01129 0.(programs that make up the Nameserver.  It does not )ashow
+128 293 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+0.13442 0.(create)ashow
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.47897 0. 32 0.04789 0.( the directories, however; be sure you)awidthshow
+144 41 gm
+-0.05775 0.(have done so before you run )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.08358 0.(make install)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+176 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.03860 0.(Create A Database)ashow
+192 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.85861 0. 32 0.08586 0.(This is the step for which I can give you the least help.  Read the document )awidthshow
+192 446 gm
+2 fs
+bu fc
+2 F /|______Times-Italic fnt
+bn
+0.63888 0. 32 0.06388 0.(Rebuilding a)awidthshow
+208 41 gm
+-0.01736 0.(Nameserver Database In 24 Easy Steps)ashow
+208 231 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02705 0.( to see how I do it here)ashow
+208 341 gm
+0.60714 0. 32 0.06071 0.( at the University of Illinois.  You)awidthshow
+224 41 gm
+-0.01338 0.(will probably be able to modify the procedures and programs used in)ashow
+224 372 gm
+0.61798 0. 32 0.06179 0.( our process to fit your own)awidthshow
+240 41 gm
+-0.04502 0.(data and data formats.)ashow
+272 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.10330 0.(Put An )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.13235 0.(ns)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.09254 0.( Entry In )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.14338 0.(/etc/services)ashow
+288 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.53680 0. 32 0.05368 0.(The CSO Nameserver uses the same service name)awidthshow
+288 308 gm
+1.31698 0. 32 0.13169 0.( and port number \(\322ns\323 and 105\) as the)awidthshow
+304 41 gm
+-0.02670 0.(CSNET Name Server.  The )ashow
+304 176 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.11972 0.(/etc/services)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.08348 0.( entry should be:)ashow
+321 60 gm
+10 fz
+bu fc
+2 F /|______Courier fnt
+bn
+0.00198 0. 32 0.00019 0.(ns              105/tcp         ns              # CSO  nameserver)awidthshow
+336 41 gm
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04544 0.(This )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06721 0.(/etc/services)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04556 0.( entry should be present on the server machine as well as on)ashow
+336 444 gm
+0.33126 0. 32 0.03312 0.( any machine)awidthshow
+352 41 gm
+-0.01856 0.(that will run the client program, )ashow
+352 197 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.16409 0.(ph)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+384 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.13723 0.(Teach )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.17266 0.(/etc/syslog.conf)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.15191 0.( About )ashow
+384 225 gm
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.39651 0.(qi)ashow
+400 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01734 0.(As part of editing configure, you should have arrived)ashow
+400 315 gm
+0.66757 0. 32 0.06675 0.( at a choice for the syslog facility to be)awidthshow
+416 41 gm
+-0.00161 0.(used for the Nameserver.  Enter the facility and a log file for it in your /etc/syslogd.conf:)ashow
+432 60 gm
+10 fz
+bu fc
+2 F /|______Courier fnt
+bn
+0.00427 0. 32 0.00042 0.(local0.warning;local0.info;local0.debug                 /nameserv/log)awidthshow
+448 41 gm
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.12197 0. 32 0.11219 0.(The Nameserver uses the )awidthshow
+448 173 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.37168 0.(INFO)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.87814 0. 32 0.08781 0.( level for most messages; it)awidthshow
+448 342 gm
+2.13592 0. 32 0.21359 0.( uses )awidthshow
+448 375 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.61837 0.(WARN)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.35452 0. 32 0.13545 0.( for errors that need)awidthshow
+464 41 gm
+-0.04058 0.(prompt attention.)ashow
+480 60 gm
+-0.02935 0.(You should now send an )ashow
+480 182 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.02877 0.(HUP)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01840 0.( signal to syslogd to make it reread its configuration file.)ashow
+496 41 gm
+1 fs
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.13644 0.(Teach )ashow
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.17167 0.(/etc/inetd.conf)ashow
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.15104 0.( About )ashow
+496 218 gm
+bu fc
+2 F /|______Courier-Bold fnt
+bn
+-0.39651 0.(qi)ashow
+512 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03199 0.(The server program, )ashow
+512 161 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.22889 0.(qi)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.46463 0. 32 0.04646 0.(, is written to read from and write to standard input.  It relies on the)awidthshow
+528 41 gm
+1.20101 0. 32 0.12010 0.(network daemon )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.36323 0.(inetd)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.82717 0. 32 0.08271 0.( to listen for, make, and pass connections to it.  Therefore, you must)awidthshow
+544 41 gm
+1.75750 0. 32 0.17575 0.(enter the Nameserver in )awidthshow
+544 171 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.36773 0.(inetd)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.04705 0. 32 0.10470 0.(\325s configuration table, )awidthshow
+544 324 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.12927 0.(/etc/inetd.conf)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.17700 0. 32 0.01770 0.(.  On)awidthshow
+544 459 gm
+2.50244 0. 32 0.25024 0.( a 4.3bsd)awidthshow
+560 41 gm
+-0.01414 0.(system, you would have:)ashow
+576 60 gm
+10 fz
+bu fc
+2 F /|______Courier fnt
+bn
+0.00411 0. 32 0.00041 0.(shell   stream  tcp     nowait  nameserv  /nameserv/bin/qi  qi -d)awidthshow
+592 41 gm
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00920 0.(On a 4.2bsd system, you should say:)ashow
+608 60 gm
+10 fz
+bu fc
+2 F /|______Courier fnt
+bn
+0.00305 0. 32 0.00030 0.(ns      stream  tcp     nowait  /nameserv/bin/qi        qi -d)awidthshow
+624 41 gm
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.93383 0. 32 0.09338 0.(Since there is a bug in some versions of 4.3bsd )awidthshow
+624 284 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.43078 0.(inetd)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.00067 0. 32 0.10006 0.(, be sure to put the Nameserver entry)awidthshow
+640 41 gm
+-0.03875 0.(before the first )ashow
+640 115 gm
+2 fs
+bu fc
+2 F /|______Times-Italic fnt
+bn
+-0.14212 0.(internal)ashow
+640 153 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.06092 0.( service in )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.10061 0.(/etc/inetd.conf)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.07159 0.( on a 4.3bsd system.)ashow
+640 420 gm
+7.31704 0. 32 0.73170 0.( 
+ 
+ 
+ 
+ 
+ 
+ )awidthshow
+656 60 gm
+-0.02935 0.(You should now send an )ashow
+656 182 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.16683 0.(HUP)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.10893 0.( signal to )ashow
+656 250 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06129 0.(inetd)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03901 0.( to make it reread its configuration file.)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(7)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 8
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+66 41 gm
+12 fz
+bu fc
+2 F /|______Times-Bold fnt
+bn
+-0.05749 0.(Install the Client)ashow
+82 60 gm
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.21875 0.(The )ashow
+82 82 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.03668 0.(ph)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02647 0.( subdirectory may be copied to whatever machine)ashow
+82 335 gm
+0.20019 0. 32 0.02001 0.( you wish; a )awidthshow
+bu fc
+2 F /|______Courier fnt
+bn
+0.67932 0. 32 0.06793 0.(make install)awidthshow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.30059 0. 32 0.03005 0.( \(and)awidthshow
+98 41 gm
+-0.05052 0.(the proper entry in )ashow
+98 133 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06886 0.(/etc/services)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04438 0.(\) will suffice to make it run on the target system. )ashow
+98 461 gm
+0.58013 0. 32 0.05801 0.( Note that)awidthshow
+114 41 gm
+-0.02047 0.(ph requires no privilege at all, so no special)ashow
+114 250 gm
+0.61843 0. 32 0.06184 0.( userid is needed on a system that will run the client)awidthshow
+130 41 gm
+-0.08345 0.(only.)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(8)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 9
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+69 156 gm
+16 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(Appendix A\321Nameserver Files)show
+0 0 gm
+(nc 89 67 515 520 6 rc)kp
+64 gr
+253 69 317 214 1 rc
+0 gr
+253.5 69.5 316.5 213.5 0 rc
+64 gr
+253 69 272 214 1 rc
+0 gr
+253.5 69.5 271.5 213.5 0 rc
+267 119 gm
+(nc 257 69 271 213 6 rc)kp
+1 setTxMode
+0 fs
+12 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(top-level)show
+285 113 gm
+(nc 275 73 311 208 6 rc)kp
+bu fc
+2 F /|______Courier fnt
+bn
+(Makefile)show
+297 109 gm
+(configure)show
+309 113 gm
+(lintlint)show
+(nc 89 67 515 520 6 rc)kp
+64 gr
+155 375 210 520 1 rc
+0 gr
+155.5 375.5 209.5 519.5 0 rc
+64 gr
+155 375 174 520 1 rc
+0 gr
+155.5 375.5 173.5 519.5 0 rc
+170 428 gm
+(nc 160 375 174 519 6 rc)kp
+1 setTxMode
+bu fc
+2 F /|______Helvetica fnt
+bn
+(include)show
+187 380 gm
+(nc 178 379 202 514 6 rc)kp
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Include files used by )show
+199 380 gm
+(Nameserver programs.)show
+164 375 gm
+(nc 89 67 515 520 6 rc)kp
+0 gr
+262 213 lin
+64 gr
+220 375 275 520 1 rc
+0 gr
+220.5 375.5 274.5 519.5 0 rc
+64 gr
+220 375 239 520 1 rc
+0 gr
+220.5 375.5 238.5 519.5 0 rc
+234 441 gm
+(nc 224 375 238 519 6 rc)kp
+1 setTxMode
+12 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(lib)show
+251 380 gm
+(nc 242 379 266 514 6 rc)kp
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Some general-purpose )show
+263 380 gm
+(routines.)show
+229 375 gm
+(nc 89 67 515 520 6 rc)kp
+0 gr
+262 213 lin
+64 gr
+284 375 330 520 1 rc
+0 gr
+284.5 375.5 329.5 519.5 0 rc
+64 gr
+284 375 303 520 1 rc
+0 gr
+284.5 375.5 302.5 519.5 0 rc
+299 441 gm
+(nc 289 375 303 519 6 rc)kp
+1 setTxMode
+12 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(ph)show
+316 380 gm
+(nc 307 379 319 514 6 rc)kp
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(The client program lives here.)show
+293 375 gm
+(nc 89 67 515 520 6 rc)kp
+0 gr
+262 213 lin
+64 gr
+340 375 386 520 1 rc
+0 gr
+340.5 375.5 385.5 519.5 0 rc
+64 gr
+340 375 359 520 1 rc
+0 gr
+340.5 375.5 358.5 519.5 0 rc
+354 443 gm
+(nc 344 375 358 519 6 rc)kp
+1 setTxMode
+12 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(qi)show
+371 380 gm
+(nc 362 379 374 514 6 rc)kp
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(The server program.)show
+349 375 gm
+(nc 89 67 515 520 6 rc)kp
+0 gr
+262 213 lin
+64 gr
+395 375 450 520 1 rc
+0 gr
+395.5 375.5 449.5 519.5 0 rc
+64 gr
+395 375 414 520 1 rc
+0 gr
+395.5 375.5 413.5 519.5 0 rc
+410 435 gm
+(nc 400 375 414 519 6 rc)kp
+1 setTxMode
+12 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(stats)show
+427 380 gm
+(nc 418 379 442 514 6 rc)kp
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(For gathering statistics from )show
+439 380 gm
+(the Nameserver\325s log.)show
+404 375 gm
+(nc 89 67 515 520 6 rc)kp
+0 gr
+261 213 lin
+64 gr
+91 375 146 520 1 rc
+0 gr
+91.5 375.5 145.5 519.5 0 rc
+64 gr
+91 375 110 520 1 rc
+0 gr
+91.5 375.5 109.5 519.5 0 rc
+105 438 gm
+(nc 95 375 109 519 6 rc)kp
+1 setTxMode
+12 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(doc)show
+122 380 gm
+(nc 113 379 137 514 6 rc)kp
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Documentation for the )show
+134 380 gm
+(Nameserver.)show
+100 375 gm
+(nc 89 67 515 520 6 rc)kp
+0 gr
+262 213 lin
+64 gr
+460 375 515 520 1 rc
+0 gr
+460.5 375.5 514.5 519.5 0 rc
+64 gr
+460 375 479 520 1 rc
+0 gr
+460.5 375.5 478.5 519.5 0 rc
+474 440 gm
+(nc 464 375 478 519 6 rc)kp
+1 setTxMode
+12 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(util)show
+491 380 gm
+(nc 482 379 506 514 6 rc)kp
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Programs that aid in database )show
+503 380 gm
+(creation and maintenance.)show
+469 375 gm
+(nc 89 67 515 520 6 rc)kp
+0 gr
+262 213 lin
+542 209 gm
+(nc 0 0 730 552 6 rc)kp
+1 setTxMode
+1 fs
+12 fz
+bu fc
+2 F /|______Times-Bold fnt
+bn
+(Figure 1. Directory Organization)show
+575 60 gm
+0 fs
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(doc:)ashow
+591 78 gm
+-0.20927 0.(Installation.macbin)ashow
+607 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01478 0.(This WriteNow for the Macintosh document.)ashow
+623 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20927 0.(Introduction.macbin)ashow
+639 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.50399 0. 32 0.05039 0.(A WriteNow for the Macintosh document that provides a tutorial introduction to the)awidthshow
+654 95 gm
+-0.03550 0.(client program, )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.05360 0.(ph)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+(.)show
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 273 gm
+(9)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 10
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+73 78 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20991 0.(Description.wn.Bin)ashow
+89 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+2.35748 0. 32 0.23574 0.(A WriteNow for the Macintosh document that gives an overview of the CSO)awidthshow
+104 95 gm
+-0.09552 0.(Nameserver.)ashow
+121 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20927 0.(Installation.wn.Bin)ashow
+137 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01622 0.(A WriteNow for the Macintosh document which explains the)ashow
+137 389 gm
+0.39871 0. 32 0.03987 0.( Nameserver distribution)awidthshow
+152 95 gm
+-0.00811 0.(and how to install the Nameserver.)ashow
+169 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.20927 0.(Introduction.wn.Bin)ashow
+185 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00982 0.(A WriteNow for the Macintosh document providing a tutorial for end users.)ashow
+bu fc
+2 F /|______Courier fnt
+bn
+( )show
+201 78 gm
+-0.21064 0.(Programmer.wn.Bin)ashow
+217 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.50689 0. 32 0.05068 0.(A WriteNow for the Macintosh)awidthshow
+217 250 gm
+1.15509 0. 32 0.11550 0.( document giving further guidance to the benighted)awidthshow
+232 95 gm
+-0.01217 0.(Nameserver programmer.)ashow
+249 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21241 0.(Protocol.wn.Bin)ashow
+265 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.53176 0. 32 0.05317 0.(A WriteNow for the Macintosh document describing the)awidthshow
+265 374 gm
+1.21902 0. 32 0.12190 0.( protocol used by the CSO)awidthshow
+280 95 gm
+-0.09552 0.(Nameserver.)ashow
+297 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21350 0.(Rebuild.wn.Bin)ashow
+313 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01112 0.(A WriteNow for the Macintosh document describing how)ashow
+313 373 gm
+0.47317 0. 32 0.04731 0.( we rebuild our Nameserver)awidthshow
+328 95 gm
+-0.01173 0.(database each semester.)ashow
+345 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22027 0.(Why.wn.Bin)ashow
+361 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01039 0.(A WriteNow for the Macintosh document that explains the design process we used for)ashow
+376 95 gm
+-0.06770 0.(our Nameserver.)ashow
+393 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21241 0.(Description.rtf)ashow
+409 78 gm
+-0.21147 0.(Installation.rtf)ashow
+425 78 gm
+-0.21147 0.(Introduction.rtf)ashow
+441 78 gm
+-0.21350 0.(Programmer.rtf)ashow
+457 78 gm
+-0.21627 0.(Protocol.rtf)ashow
+473 78 gm
+-0.21807 0.(Rebuild.rtf)ashow
+489 78 gm
+-0.23129 0.(Why.rtf)ashow
+505 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00837 0.(These documents are Rich Text Format versions of their namesakes.)ashow
+521 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(ph.1)ashow
+537 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.21875 0.(The )ashow
+537 117 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06491 0.(ph)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04324 0.( manual page, ready for the )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06491 0.(man)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05236 0.( macros.)ashow
+553 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(qi.8)ashow
+569 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.21875 0.(The )ashow
+569 117 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06491 0.(qi)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04324 0.( manual page, ready for the )ashow
+bu fc
+2 F /|______Courier fnt
+bn
+-0.06491 0.(man)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05236 0.( macros.)ashow
+601 60 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(include:)ashow
+617 78 gm
+-0.22657 0.(Makefile)ashow
+633 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.43762 0. 32 0.04376 0.(This Makefile doesn\325t shake the)awidthshow
+633 253 gm
+1.28326 0. 32 0.12832 0.( earth, since it\325s in an include file directory, but it)awidthshow
+648 95 gm
+-0.02436 0.(does know how to use rcs...)ashow
+665 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(RCS)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 270 gm
+(10)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 11
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+73 95 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00550 0.(RCS\325ed versions of the include files live here.)ashow
+89 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(bintree.h)ashow
+105 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.87051 0. 32 0.08705 0.(Include file for)awidthshow
+105 171 gm
+1.60736 0. 32 0.16073 0.( programs using metacharacter-ful searches, or building the index)awidthshow
+120 95 gm
+-0.01193 0.(required for such things.)ashow
+137 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22027 0.(commands.h)ashow
+153 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+2.38143 0. 32 0.23814 0.(Include file used by qi for definitions required when)awidthshow
+153 378 gm
+2.71011 0. 32 0.27101 0.( writing functions which)awidthshow
+168 95 gm
+-0.00659 0.(implement Nameserver protocol commands.)ashow
+185 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(db.h)ashow
+201 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00811 0.(Include file for dealing with the Nameserver database and index.)ashow
+217 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(field.h)ashow
+233 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01509 0.(Include file for handling tagged fields.)ashow
+249 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(ll.h)ashow
+265 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01374 0.(Include file for linked lists \(used only by a statistics program\).)ashow
+281 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(options.h)ashow
+297 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01039 0.(Nameserver options defined.)ashow
+313 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(qi.h)ashow
+329 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00852 0.(General definitions for the server portion of the Nameserver.)ashow
+345 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(replies.h)ashow
+361 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04214 0.(Nameserver reply codes.)ashow
+393 60 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(lib:)ashow
+409 78 gm
+-0.22657 0.(Makefile)ashow
+425 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01878 0.(Need I say more?)ashow
+441 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(RCS)ashow
+457 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02490 0.(This directory has an obvious function.)ashow
+473 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(anyof.c)ashow
+489 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.42907 0. 32 0.04290 0.(Contains a function that decides)awidthshow
+489 253 gm
+1.31973 0. 32 0.13197 0.( if any of the characters from one string appear in)awidthshow
+504 95 gm
+-0.02198 0.(another string.)ashow
+521 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(pmatch.c)ashow
+537 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01037 0.(Contains functions that do globbing-style pattern matching.)ashow
+553 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(str.c)ashow
+569 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00567 0.(Various interesting and boring string functions.)ashow
+585 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22027 0.(strbuild.c)ashow
+601 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00637 0.(Functions for building unlimited-length strings.)ashow
+617 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(util.c)ashow
+633 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02365 0.(Miscellaneous useful stuff.)ashow
+665 60 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(ph:)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 270 gm
+(11)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 12
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+65 78 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(Makefile)ashow
+81 78 gm
+-0.29737 0.(RCS)ashow
+97 78 gm
+-0.22303 0.(cryptit.c)ashow
+113 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04080 0.({En,de}crypting code.)ashow
+129 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(ph.c)ashow
+145 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00769 0.(The definitive Nameserver client.)ashow
+161 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(replies.h)ashow
+177 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.36016 0. 32 0.13601 0.(Nameserver reply codes, reprised for the benefit of systems other than the server)awidthshow
+192 95 gm
+-0.05468 0.(system.)ashow
+225 60 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.29737 0.(qi:)ashow
+241 78 gm
+-0.22657 0.(Makefile)ashow
+257 78 gm
+-0.29737 0.(RCS)ashow
+273 78 gm
+-0.24781 0.(add.c)ashow
+289 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00428 0.(The Nameserver \322add\323 command is implemented here.)ashow
+305 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(auth.c)ashow
+321 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02183 0.(User authorization functions.)ashow
+337 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(bintree.c)ashow
+353 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00207 0.(Functions to deal with the tree index to the Nameserver database\325s hash table index.)ashow
+369 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(change.c)ashow
+385 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01029 0.(Functions implementing the Nameserver \322change\323 command.)ashow
+401 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22027 0.(commands.c)ashow
+417 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.68594 0. 32 0.16859 0.(The top level of the Nameserver command interpreter, and miscellaneous trivial)awidthshow
+432 95 gm
+-0.12344 0.(commands.)ashow
+449 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(conf.c)ashow
+465 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02220 0.(The locations of database and other files.)ashow
+481 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(cryptit.c)ashow
+497 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.04080 0.({En,de}crypting code.)ashow
+513 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(dbd.c)ashow
+529 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01440 0.(Functions that handle the database proper.)ashow
+545 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(dbi.c)ashow
+561 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00425 0.(Functions that handle the hash table index to the database.)ashow
+577 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(dbm.c)ashow
+593 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00679 0.(This file contains functions that deal with the database )ashow
+2 fs
+bu fc
+2 F /|______Times-Italic fnt
+bn
+(in toto)show
+0 fs
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00726 0.(; index and data.)ashow
+609 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(field.c)ashow
+625 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01011 0.(If you want to deal with tagged fields, come here first.)ashow
+641 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22027 0.(language.l)ashow
+657 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01573 0.(Parser for the Nameserver protocol.  )ashow
+657 273 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.14894 0.(Lex)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.09655 0.( this.)ashow
+673 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(lock.c)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 270 gm
+(12)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 13
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+73 95 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.02420 0.(Controls advisory locks on the database.)ashow
+89 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(lookup.c)ashow
+105 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.61004 0. 32 0.06100 0.(Give the functions in this file a list of index entries, and they\325ll give you the entries)awidthshow
+120 95 gm
+-0.01889 0.(that are implied.)ashow
+137 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(phoneme.c)ashow
+153 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.68756 0. 32 0.06875 0.(Some phonetic code that isn\325t too impressive for the Nameserver\325s purposes, and is)awidthshow
+168 95 gm
+-0.01875 0.(currently unused.)ashow
+185 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(qi.c)ashow
+201 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.05183 0.(The server\325s )ashow
+201 158 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.05360 0.(main)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03514 0.( lives here, along with other minor details.)ashow
+217 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(query.c)ashow
+233 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.53854 0. 32 0.15385 0.(This file implements the Nameserver )awidthshow
+233 290 gm
+bu fc
+2 F /|______Courier fnt
+bn
+0.34609 0.(query)ashow
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.13922 0. 32 0.11392 0.( command, including validation and)awidthshow
+248 95 gm
+-0.01626 0.(post-index matching.)ashow
+265 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(rules.c)ashow
+281 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.03610 0.(More defunct phonetic code.)ashow
+297 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(set.c)ashow
+313 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00492 0.(If you want to set an option, you\325ll wind up in this file.)ashow
+329 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(version.c)ashow
+345 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00801 0.(Check this in if you want the Nameserver\325s version number to change.)ashow
+377 60 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(stats:)ashow
+393 78 gm
+-0.22657 0.(Makefile)ashow
+409 78 gm
+-0.29737 0.(RCS)ashow
+425 78 gm
+-0.22657 0.(follow.c)ashow
+441 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.57449 0. 32 0.05744 0.(This program reads the Nameserver log, and \322follows\323 any Nameserver session that)awidthshow
+456 95 gm
+-0.03790 0.(matches the given pattern.)ashow
+473 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(hour.awk)ashow
+489 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+0.57220 0. 32 0.05722 0.(Awk script that figures out when people use)awidthshow
+489 314 gm
+1.11175 0. 32 0.11117 0.( the Nameserver, from the Nameserver)awidthshow
+504 95 gm
+-0.11134 0.(log.)ashow
+521 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(ll.c)ashow
+537 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01911 0.(Linked list handling functions \(used by follow.c\).)ashow
+553 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(phstats)ashow
+569 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01425 0.(Performs reductions on the Nameserver log, and gives statistics)ashow
+569 400 gm
+0.61340 0. 32 0.06134 0.( on what hosts use the)awidthshow
+584 95 gm
+0.24993 0. 32 0.02499 0.(Nameserver, how many times they use it, when the Nameserver is used, and what the)awidthshow
+600 95 gm
+-0.07064 0.(command mix is.)ashow
+617 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22027 0.(qicmds.awk)ashow
+633 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01586 0.(Awk script that tallies commands from the Nameserver log.)ashow
+649 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22303 0.(qiuse.awk)ashow
+665 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00926 0.(Awk script that preprocesses the Nameserver log for qiuse.)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 270 gm
+(13)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 14
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+65 78 gm
+0 fs
+12 fz
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(qiuse.c)ashow
+81 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00798 0.(Program that figures out the names of hosts that use the Nameserver.)ashow
+113 60 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.24781 0.(util:)ashow
+129 78 gm
+-0.22657 0.(Makefile)ashow
+145 78 gm
+-0.29737 0.(RCS)ashow
+161 78 gm
+-0.22303 0.(alias.awk)ashow
+177 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00346 0.(Awk script that assigns Nameserver alia to those who have none.)ashow
+193 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.21350 0.(aliasprepare.c)ashow
+209 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00378 0.(Prepares a Nameserver database dump for alias.awk.)ashow
+225 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(border.c)ashow
+241 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+1.05575 0. 32 0.10557 0.(Reverses byte order in)awidthshow
+241 209 gm
+1.94869 0. 32 0.19486 0.( a Nameserver database; used to move a database from a)awidthshow
+256 95 gm
+-0.01226 0.(normal machine to a VAX.)ashow
+273 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(build.c)ashow
+289 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00447 0.(Builds the bintree index to the Nameserver database.)ashow
+305 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(credb.c)ashow
+321 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01333 0.(Creates a new, empty, Nameserver database.)ashow
+337 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(emailp)ashow
+353 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00289 0.(Processes the output qi produces when given a massaged /etc/passwd file.)ashow
+369 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(f.pb.c)ashow
+385 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00309 0.(Program that interprets the University of Illinois staff data tape.)ashow
+401 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.26434 0.(id.c)ashow
+417 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00364 0.(Functions that deal with the dbm\(3\) database of University Id\325s.)ashow
+433 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(maked.c)ashow
+449 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00596 0.(Program that makes a .dir file \(Nameserver database\) out of an ascii data file.)ashow
+465 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(makei.c)ashow
+481 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00285 0.(Functions for the initial creation of the Nameserver hash table index.)ashow
+497 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(maket.c)ashow
+513 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01321 0.(Functions that aid build in making the bintree index to the hash table.)ashow
+529 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(mdump.c)ashow
+545 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00677 0.(Program that dumps the Nameserver database in ascii form onto standard output.)ashow
+561 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23789 0.(s.pb.c)ashow
+577 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00340 0.(Program that deals with the University of Illinois student data tape.)ashow
+593 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.23129 0.(ssnid.c)ashow
+609 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.01325 0.(Program that uses id.c to assign random id\325s to Nameserver entries.)ashow
+625 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(stastu.c)ashow
+641 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00946 0.(Program that merges the staff and student ascii data files.)ashow
+657 78 gm
+bu fc
+2 F /|______Courier fnt
+bn
+-0.22657 0.(tmerge.c)ashow
+673 95 gm
+bu fc
+2 F /|______Times-Roman fnt
+bn
+-0.00471 0.(Program that merges a database dump with new data.)ashow
+718 42 gm
+10 fz
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 270 gm
+(14)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Page: ? 15
+op
+0 0 xl
+1 1 pen
+1536 510 gm
+(nc 0 0 730 552 6 rc)kp
+17 172 gm
+1 setTxMode
+1 fs
+10 fz
+bu fc
+2 F /|______Helvetica-Bold fnt
+bn
+(The CSO Nameserver, Guide To Installation)show
+718 42 gm
+0 fs
+bu fc
+2 F /|______Helvetica fnt
+bn
+(Steven Dorner)show
+718 270 gm
+(15)show
+718 400 gm
+(Printed Mon, Apr 9, 1990)show
+F T cp
+%%Trailer
+cd
+end
+%%Pages: 15 0
+
+% *EOF*
+

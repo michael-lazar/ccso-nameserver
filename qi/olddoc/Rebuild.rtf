@@ -1,0 +1,480 @@
+{\rtf0\mac {\fonttbl {\f0 \fswiss Chicago;}{\f1 \fnil Geneva;}{\f2 \fmodern New York;}
+{\f3 \fswiss Geneva;}{\f4 \fmodern Monaco;}{\f5 \fnil Venice;}{\f12 \fnil Los Angeles;}
+{\f13 \fnil Zapf Dingbats;}{\f14 \fnil Bookman;}{\f15 \fnil N Helvetica Narrow;}
+{\f16 \fnil Palatino;}{\f18 \fnil Zapf Chancery;}{\f20 \froman Times;}{\f21 \fswiss Helvetica;}
+{\f22 \fmodern Courier;}{\f23 \ftech Symbol;}{\f24 \fnil Mobile;}{\f33 \fnil Avant Garde;}
+{\f34 \fnil New Century Schlbk;}{\f129 \fnil .Dec;}{\f156 \fnil SIGMA;}{\f158
+\fnil SIGMA BOLD;}{\f176 \fnil OMICRON BOLD;}{\f181 \fnil RHO SEMIBOLD;}{\f200
+\fnil Mishawaka;}{\f201 \fnil Mishawaka Bold;}{\f242 \fnil APL;}}\paperh15840
+\paperw12240 \margl620 \margr1440 \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540 \tx7300
+\pgnstart1 \ftnstart1 \cols1 \colsx0 \sbknone \linemod0 \linex0 \ftnbj {\header \pard \li0
+\ri360 \fi0 \qc \sl320 \pard \li0 \ri0 \fi0 \ql \sl360 \tx1180 \tqr \tx10180
+\f21 \fs20 \par \par \par }{\footer \pard \li0 \ri360 \fi0 \qc \sl320 \par \pard \li0
+\ri0 \fi0 \ql \sl360 \tx1180 \tqc \tx5500 \tqr \tx10180 Steven Dorner\tab {\chpgn }\tab Printed {\chdate }\par \pard \li0
+\ri0 \fi0 \ql \sl360 \tx1180 \tqr \tx10180 \par }\pard \li0 \ri0 \fi0 \qc \sl640
+\tx1180 \tqr \tx10180 \f3 \fs20 \f21 \fs44 \b Rebuilding a Nameserver Database\par In 24 Easy Steps\par \f21
+\fs32 \b December 13, 1988\f21 \fs52 \b \par \pard \li0 \ri0 \fi0 \qc \sl240
+\tqr \tx10180 \f21 \fs40 \b \par \pard \li0 \ri0 \fi0 \qc \sl320 \tqr \tx10180
+\f21 \fs24 \b0 \i by Steven Dorner\par Computing Services Office\par University of Illinois at Urbana-Champaign\f20
+\fs24 \i \par \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \f20 \fs24
+\i0 \par \pard \li0 \ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 \f20 \fs24 \b Introduction\f20
+\fs24 \b0 \par \tab At the beginning of each semester, it is necessary to rebuild the database used by the CSO Nameserver.  The purpose of this annual ritual is to add to the database students and staff\up8
+\f20 \fs20 \chftn {\footnote \pard \li0 \ri0 \fi0 \qj \sl280 \tx1980 \tx8920
+\up6 \f20 \fs18 {\chftn }\up0 \f20 \fs20 New staff members are added only once per year, in the fall.\par }
+\up0 \up0 \f20 \fs24  members who have joined the University since the last database was installed, and also to remove those who have left.\par \tab The process could in theory be done on a running database through use of the Nameserver \f22
+\fs24 add\f20 \fs24 , \f22 \fs24 delete\f20 \fs24 , and \f22 \fs24 change\f20
+\fs24  commands.  This approach has several drawbacks: due to indexing demands, it is slow; ph performance suffers tremendously during the process; deleted entries are only marked as deleted, not removed from the database.  In order to avoid these things, rebuilding of the nameserver database is done by first dumping the contents of the database into ascii files, then combining these files with files produced by reading the tapes supplied by AISS\up8
+\f20 \fs20 \chftn {\footnote \up6 \f20 \fs16 {\chftn }\up0 \f20 \fs20 Adminstrative Information Systems and Services; for details on how to get the tapes, see \f20
+\fs20 \i Getting Directory Tapes\f20 \fs20 \i0 .\par }\up0 \up0 \f20 \fs24 .\par \tab This method is not without its drawbacks.  It takes a long time, it involves many steps, the nameserver database has to be locked throughout most of the process, and it takes quite a bit of disk space.  On the positive side, the steps themselves are usually fairly simple, and, since the build is taking place separately from the installed database, it can be done on any convenient machine with lots of processor and disk space\up8
+\f20 \fs20 \chftn {\footnote \up6 \f20 \fs16 {\chftn }\up0 \f20 \fs20 You will need at least twice the disk space required to hold your database in order to build it comfortably.\par }
+\up0 \f20 \fs24 .\par \par \f20 \fs24 \b Overview\f20 \fs24 \b0 \par \tab The process begins with three databases; the extant Nameserver database, the Staff directory tape, and the Student directory tape:\par \pard \li0
+\ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \par \keep \pard \keep \li0 \ri0 \fi0
+\qc \sl320 \tx1540 \tqr \tx9820 {\pict \macpict \pich87 \picw364 \picscaled 
+024fffffffff0056016b1101a00082a0008c01000affffffff0056016b090000000000
+0000005100060001003d003809ffffffffffffffff5809000000000000000051001800
+13002b002609ffffffffffffffff582200210037001ba0008da0008c09882288228822
+8822510025012100400169070002000209ffffffffffffffff50002401200041016a09
+882288228822882251001c01210037016909ffffffffffffffff50001b01200038016a
+0988228822882288225100130121002e016909ffffffffffffffff5000120120002f01
+6a09882288228822882251000a01210025016909ffffffffffffffff50000901200026
+016aa0008c0988228822882288225100010121001c016909ffffffffffffffff500000
+0120001d016a09000000000000000051000a01370013015209ffffffffffffffff5000
+09013600140153a0008da0008da0008c0900000000000000005100060095003d00cc07
+0001000109ffffffffffffffff5809000000000000000051001800a7002b00ba09ffff
+ffffffffffff5822002100cb001ba0008da10096000c020000000200000000000000a1
+009a0008fffc00000016000001000a004800040055003303000f0d000c2b05520a5374
+6166662054617065a00097a10096000c020000000200000000000000a1009a0008fffc
+0000001d000001000a00480094005500d529920c53747564656e742054617065a00097
+a10096000c020000000200000000000000a1009a0008fffc00000023000001000a0048
+011b0055016529850f457874616e74204461746162617365a00097a00083ff}
+\par \pard \li0 \ri0 \fi0 \qc \sl320 \tx1540 \tqr \tx9820 \f20 \fs24 \b Figure 1.  The Starting Point\f20
+\fs24 \b0 \par \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 The extant database is locked, and three sets of data are extracted from it; the extant students, the extant staff, and other entries:\par \keep \pard \keep \li0
+\ri0 \fi0 \qc \sl320 \tx1540 \tqr \tx9820 {\pict \macpict \pich231 \picw382 \picscaled 
+057dffffffff00e6017d1101a00082a0008ca0008c01000affffffff00e6017d098822
+882288228822510025009a004000e2070002000209ffffffffffffffff500024009900
+4100e309882288228822882251001c009a003700e209ffffffffffffffff50001b0099
+003800e3098822882288228822510013009a002e00e209ffffffffffffffff50001200
+99002f00e309882288228822882251000a009a002500e209ffffffffffffffff500009
+0099002600e3a0008c098822882288228822510001009a001c00e209ffffffffffffff
+ff5000000099001d00e309000000000000000051000a00b1001300cc09ffffffffffff
+ffff50000900b0001400cda0008da0008da10096000c020000000200000000000000a1
+009a0008fffc00000023000001000a00480099005500e303000f0d000c2b9a520f4578
+74616e74204461746162617365a00097a0008da0008ca0008c01000affffffff00e601
+7d0988228822882288225100b5000100d0004909ffffffffffffffff5000b4000000d1
+004a0988228822882288225100ac000100c7004909ffffffffffffffff5000ab000000
+c8004a0988228822882288225100a3000100be004909ffffffffffffffff5000a20000
+00bf004a09882288228822882251009a000100b5004909ffffffffffffffff50009900
+0000b6004aa0008c098822882288228822510091000100ac004909ffffffffffffffff
+500090000000ad004a09000000000000000051009a001800a3003309ffffffffffffff
+ff500099001700a40034a0008da0008da10096000c020000000200000000000000a100
+9a0008fffc00000019000001000a00d8000000e5004a2800e2000c0c457874616e7420
+5374616666a00097a0008da0008ca0008c01000affffffff00e6017d09882288228822
+88225100b5009a00d000e209ffffffffffffffff5000b4009900d100e3098822882288
+2288225100ac009a00c700e209ffffffffffffffff5000ab009900c800e30988228822
+882288225100a3009a00be00e209ffffffffffffffff5000a2009900bf00e309882288
+228822882251009a009a00b500e209ffffffffffffffff500099009900b600e3a0008c
+098822882288228822510091009a00ac00e209ffffffffffffffff500090009900ad00
+e309000000000000000051009a00b100a300cc09ffffffffffffffff50009900b000a4
+00cda0008da0008da10096000c020000000200000000000000a1009a0008fffc000000
+21000001000a00d8009900e500e329900f457874616e742053747564656e7473a00097
+a0008da0008ca0008c01000affffffff00e6017d0988228822882288225100b5013300
+d0017b09ffffffffffffffff5000b4013200d1017c0988228822882288225100ac0133
+00c7017b09ffffffffffffffff5000ab013200c8017c0988228822882288225100a301
+3300be017b09ffffffffffffffff5000a2013200bf017c09882288228822882251009a
+013300b5017b09ffffffffffffffff500099013200b6017ca0008c0988228822882288
+22510091013300ac017b09ffffffffffffffff500090013200ad017c09000000000000
+000051009a014a00a3016509ffffffffffffffff500099014900a40166a0008da0008d
+a10096000c020000000200000000000000a1009a0008fffc0000001e000001000a00d8
+013200e5017c299d0d457874616e74204f7468657273a00097a0008da0008c01000aff
+ffffff00e6017d71001e008e00520097005e00970052008e005b0091005c0094005e00
+970052070001000122005800be9e39a0008da0008c71001e007900bb008500c1008500
+be007900bb007900be007900c1008500be22005800be0021a0008da0008c71001e008e
+011e0097012a0097012a008e0121009101200094011e0097012a22005800be6239a000
+8da00083ff}
+\par \pard \li0 \ri0 \fi0 \qc \sl320 \tx1540 \tqr \tx9820 \f20 \fs24 \b Figure 2.  Steps 7-11\f20
+\fs24 \b0 \par \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 \tab Then, the Staff tape and the Extant Staff are merged, as are the Student tape and the Extant Students.  During this merge, students or staff members appearing only in the extant database, and not on the tapes, are deleted.\par \pard \li0
+\ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \par \keep \pard \keep \li0 \ri0 \fi0
+\qc \sl320 \tx1540 \tqr \tx9820 {\pict \macpict \pich222 \picw382 \picscaled 
+066dffffffff00dd017d1101a00082a0008ca0008c01000affffffff00dd017d090000
+0000000000005100030001003a003809ffffffffffffffff5809000000000000000051
+001500130028002609ffffffffffffffff5822001e0037001ba0008da10096000c0200
+00000200000000000000a1009a0008fffc00000016000001000a004600040053003303
+000f0d000c2b05500a53746166662054617065a00097a0008da0008ca0008c01000aff
+ffffff00dd017d09000000000000000051000300dd003a011409ffffffffffffffff58
+09000000000000000051001500ef0028010209ffffffffffffffff5822001e0113001b
+a0008da10096000c020000000200000000000000a1009a0008fffc0000001d00000100
+0a004600dc0053011d29da0c53747564656e742054617065a00097a0008da0008ca000
+8c01000affffffff00dd017d098822882288228822510025005b004000a30700020002
+09ffffffffffffffff500024005a004100a409882288228822882251001c005b003700
+a309ffffffffffffffff50001b005a003800a4098822882288228822510013005b002e
+00a309ffffffffffffffff500012005a002f00a409882288228822882251000a005b00
+2500a309ffffffffffffffff500009005a002600a4a0008c0988228822882288225100
+01005b001c00a309ffffffffffffffff500000005a001d00a409000000000000000051
+000a00710013008c09ffffffffffffffff50000900700014008da0008da0008da10096
+000c020000000200000000000000a1009a0008fffc00000019000001000a0048005a00
+5500a428005200660c457874616e74205374616666a00097a0008da0008ca0008c0100
+0affffffff00dd017d09882288228822882251002501330040017b09ffffffffffffff
+ff50002401320041017c09882288228822882251001c01330037017b09ffffffffffff
+ffff50001b01320038017c0988228822882288225100130133002e017b09ffffffffff
+ffffff5000120132002f017c09882288228822882251000a01330025017b09ffffffff
+ffffffff50000901320026017ca0008c0988228822882288225100010133001c017b09
+ffffffffffffffff5000000132001d017c09000000000000000051000a014900130164
+09ffffffffffffffff500009014800140165a0008da0008da10096000c020000000200
+000000000000a1009a0008fffc00000022000001000a004801320055017c29cf0f4578
+74616e742053747564656e7473a00097a0008da0008c01000affffffff00dd017d0988
+228822882288225100ac002e00c7007609ffffffffffffffff5000ab002d00c8007709
+88228822882288225100a3002e00be007609ffffffffffffffff5000a2002d00bf0077
+09882288228822882251009a002e00b5007609ffffffffffffffff500099002d00b600
+77098822882288228822510091002e00ac007609ffffffffffffffff500090002d00ad
+0077a0008c098822882288228822510088002e00a3007609ffffffffffffffff500087
+002d00a400770900000000000000005100910044009a005f09ffffffffffffffff5000
+900043009b0060a0008da0008da10096000c020000000200000000000000a1009a0008
+fffc00000009000001000a00cf002d00dc00772800d90048055374616666a00097a000
+8c01000affffffff00dd017d0988228822882288225100ac010600c7014e09ffffffff
+ffffffff5000ab010500c8014f0988228822882288225100a3010600be014e09ffffff
+ffffffffff5000a2010500bf014f09882288228822882251009a010600b5014e09ffff
+ffffffffffff500099010500b6014f098822882288228822510091010600ac014e09ff
+ffffffffffffff500090010500ad014fa0008c098822882288228822510088010600a3
+014e09ffffffffffffffff500087010500a4014f090000000000000000510091011c00
+9a013709ffffffffffffffff500090011b009b0138a0008da0008da10096000c020000
+000200000000000000a1009a0008fffc00000012000001000a00cf010500dc014f29cf
+0853747564656e7473a0009701000affffffff00dd017d0700010001220058001c361b
+a0008c71001e0079004f00850055008500520079004f00790052007900550085005223
+0006a0008d2200580088ca1b22005800f4361ba0008c71001e007901270085012d0085
+012a007901270079012a0079012d0085012a230006a0008d2200580160ca1ba00083ff
+}
+\par \pard \li0 \ri0 \fi0 \qc \sl320 \tx1540 \tqr \tx9820 \f20 \fs24 \b Figure 3.  Steps 1-6 and 12-13\f20
+\fs24 \b0 \par \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \tab \par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 \tab The Staff and Student databases are now merged; this is to avoid duplicating entries for students who happen to be employees of the University\-Qthese students will appear on both the Staff and Student tapes.\par \pard \li0
+\ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \par \keep \pard \keep \li0 \ri0 \fi0
+\qc \sl320 \tx1540 \tqr \tx9820 {\pict \macpict \pich249 \picw292 \picscaled 
+03e1ffffffff00f801231101a00082a0008c01000affffffff00f80123098822882288
+228822510025000100400049070002000209ffffffffffffffff50002400000041004a
+09882288228822882251001c00010037004909ffffffffffffffff50001b0000003800
+4a0988228822882288225100130001002e004909ffffffffffffffff5000120000002f
+004a09882288228822882251000a00010025004909ffffffffffffffff500009000000
+26004aa0008c0988228822882288225100010001001c004909ffffffffffffffff5000
+000000001d004a09000000000000000051000a00180013003309ffffffffffffffff50
+0009001700140034a0008da0008da10096000c020000000200000000000000a1009a00
+08fffc0000000a000001000a004800000055004a03000f0d000c2b1b52055374616666
+a00097a0008c01000affffffff00f8012309882288228822882251002500d900400121
+09ffffffffffffffff50002400d80041012209882288228822882251001c00d9003701
+2109ffffffffffffffff50001b00d80038012209882288228822882251001300d9002e
+012109ffffffffffffffff50001200d8002f012209882288228822882251000a00d900
+25012109ffffffffffffffff50000900d800260122a0008c0988228822882288225100
+0100d9001c012109ffffffffffffffff50000000d8001d012209000000000000000051
+000a00f00013010b09ffffffffffffffff50000900ef0014010ca0008da0008da10096
+000c020000000200000000000000a1009a0008fffc00000013000001000a004800d800
+55012229cf0853747564656e7473a00097a0008c01000affffffff00f8012309882288
+22882288225100c7006d00e200b509ffffffffffffffff5000c6006c00e300b6098822
+8822882288225100be006d00d900b509ffffffffffffffff5000bd006c00da00b60988
+228822882288225100b5006d00d000b509ffffffffffffffff5000b4006c00d100b609
+88228822882288225100ac006d00c700b509ffffffffffffffff5000ab006c00c800b6
+a0008c0988228822882288225100a3006d00be00b509ffffffffffffffff5000a2006c
+00bf00b60900000000000000005100ac008400b5009f09ffffffffffffffff5000ab00
+8300b600a0a0008da0008da10096000c020000000200000000000000a1009a0008fffc
+00000015000001000a00ea006c00f700b62800f4007c084e65772044617461a00097a0
+008c01000affffffff00f8012371001e0094008e00a0009400a000910094008e009400
+910094009400a00091070001000122008e00910006a0008da0008c22005800256c3622
+005800fd9436a0008da00083ff}
+\par \f20 \fs24 \b Figure 4.  Steps 14-16\f20 \fs24 \b0 \par \pard \li0 \ri0
+\fi0 \qc \sl320 \tx1540 \tqr \tx9820 \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540
+\tqr \tx9820 \tab \par \pard \li0 \ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180
+\tab Now, the resulting data is made into a Nameserver database, and the miscellaneous data taken from the old database is added into the new database by Nameserver \f22
+\fs24 add\f20 \fs24  commands:\par \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820
+\par \keep \pard \keep \li0 \ri0 \fi0 \qc \sl320 \tx1540 \tqr \tx9820 {\pict \macpict \pich208
+\picw364 \picscaled 
+0411ffffffff00cf016b1101a00082a0008c01000affffffff00cf016b098822882288
+228822510025000100400049070002000209ffffffffffffffff50002400000041004a
+09882288228822882251001c00010037004909ffffffffffffffff50001b0000003800
+4a0988228822882288225100130001002e004909ffffffffffffffff5000120000002f
+004a09882288228822882251000a00010025004909ffffffffffffffff500009000000
+26004aa0008c0988228822882288225100010001001c004909ffffffffffffffff5000
+000000001d004a09000000000000000051000a00180013003309ffffffffffffffff50
+0009001700140034a0008da0008da10096000c020000000200000000000000a1009a00
+08fffc00000015000001000a004800000055004a03000f0d000c2b1052084e65772044
+617461a00097a0008c01000affffffff00cf016b098822882288228822510088012100
+a3016909ffffffffffffffff500087012000a4016a09882288228822882251007f0121
+009a016909ffffffffffffffff50007e0120009b016a09882288228822882251007601
+210091016909ffffffffffffffff50007501200092016a09882288228822882251006d
+01210088016909ffffffffffffffff50006c01200089016aa0008c0988228822882288
+225100640121007f016909ffffffffffffffff50006301200080016a09000000000000
+000051006d01380076015309ffffffffffffffff50006c013700770154a0008da0008d
+a10096000c020000000200000000000000a1009a0008fffc0000001e000001000a00ab
+012000b8016a2800b501270d457874616e74204f7468657273a00097a0008c01000aff
+ffffff00cf016b098822882288228822510088006d00a300b509ffffffffffffffff50
+0087006c00a400b609882288228822882251007f006d009a00b509ffffffffffffffff
+50007e006c009b00b6098822882288228822510076006d009100b509ffffffffffffff
+ff500075006c009200b609882288228822882251006d006d008800b509ffffffffffff
+ffff50006c006c008900b6a0008c098822882288228822510064006d007f00b509ffff
+ffffffffffff500063006c008000b609000000000000000051006d00840076009f09ff
+ffffffffffffff50006c0083007700a0a0008da0008da10096000c0200000002000000
+00000000a1009a0008fffc00000020000001000a00ab006c00b800b62800b500710c4e
+6577204461746162617365a00097a0008c01000affffffff00cf016b71001e006c0058
+007300640073006400710058006e0059006c005a007300640700010001220058002534
+16a0008da0008c71001e008200c7008800d3008500c7008200d3008500d3008800d300
+8500c7220085010fc400a0008d50003d004900ce00daa00083ff}
+\par \pard \li0 \ri0 \fi0 \qc \sl320 \tx1540 \tqr \tx9820 \f20 \fs24 \b Figure 5.  Steps 17-24\f20
+\fs24 \b0 \par \pard \li0 \ri0 \fi0 \ql \sl320 \tx1540 \tqr \tx9820 \par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 The new database is ready for use by the Nameserver.\par \par \f20
+\fs24 \b Introduction to the Detailed Description\f20 \fs24 \b0 \par \tab As complicated as the above description is, it leaves out many steps and details.  The rest of this document will explain in detail everything that is involved in the creation of a new Nameserver database.  A few things that will help you follow the discussion are:\par \pard \li0
+\ri0 \fi-180 \qj \sl320 \tx1000 \tqr \tx9800 %\tab The process involves many temporary files.  These files follow a distinct naming scheme.  The prefix R\f22
+\fs24 \b f\f20 \fs24 \b0 S means the data pertains to staff; the prefix R\f22
+\fs24 \b s\f20 \fs24 \b0 S means the data pertains to students.  The prefix R\f22
+\fs24 \b sf\f20 \fs24 \b0 S means the data is student and staff data combined.  A postfix or infix R\f22
+\fs24 \b tape\f20 \fs24 \b0 S means the data came from one of the directory tapes.  A postfix or infix R\f22
+\fs24 \b old\f20 \fs24 \b0 S means the data came from the extant database.  A postfix or infix R\f22
+\fs24 \b new\f20 \fs24 \b0 S means the data will be put in the new database.\par %\tab At many stages of the process, temporary files may be omitted in favor of pipelines.  This will allow the build to take place in less disk space; you stand to lose more processing time if something goes wrong, however.  The frequent use of temporary files allows automatic RcheckpointingS of the build process; if a step fails, you need only go back as far as the last temporary file to restart.  Let your confidence be your guide...\par %\tab Most data files are tab-separated lists of fields.  Each field begins with its Nameserver field number followed by a colon.  When files are not in this format, a note will be made.  During the build process, it is convenient to have the nameserver \f22
+\fs24 prod.cnf\f20 \fs24  file handy for ready reference.\par \pard \li0 \ri0
+\fi-180 \qj \sl320 \tx1000 \tqr \tx9800 \pard \li0 \ri0 \fi-180 \qj \sl320 \tx1540
+\tqr \tx9820 \par \keep \pard \keep \li0 \ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180
+\f20 \fs24 \b The 24-Way Path to Nirvana\f20 \fs24 \b0 \par \pard \keep \li0
+\ri0 \fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \tab \tab AISS produces 1600 bpi, unlabelled tapes in ebcdic, with the data elements in fixed-width fields\up6
+\f20 \fs20 \chftn {\footnote \up6 \f20 \fs16 {\chftn }\up0 \f20 \fs20 See Appendix A for layout of AISS data fields and mapping to Nameserver data fields.\par }
+\up0 \f20 \fs24 , one record per person, and multiple records per block.  The UNIX utility \f22
+\fs24 dd\f20 \fs24  is used to read these tapes onto disk, doing unblocking and character set conversion.  \f22
+\fs24 \i Student.tape\f20 \fs24 \i0  and \f22 \fs24 \i staff.tape\f20 \fs24 \i0  should be the names of devices on which the student and staff tapes are mounted.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 1.\f20 \fs24 \b0 \tab \f22 \fs24 dd ibs=12100 cbs=121 conv=ascii,lcase <\f22
+\fs24 \i student.tape\f22 \fs24 \i0  >s.tape.raw\f20 \fs24 \par \dn6 \f20 \fs28
+\b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 2.\f20 \fs24 \b0 \tab \f22 \fs24 dd ibs=3500 cbs=350 conv=ascii,lcase <\f22
+\fs24 \i staff.tape\f22 \fs24 \i0  >f.tape.raw\f20 \fs24 \par \pard \li0 \ri0
+\fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \par \keep \tab \tab Now, the tapes are converted from fixed-width lines into tab-separated lines, and the proper field numbers are prepended to each field.  For students only, the AISS data element that encodes class and college is expanded into the Nameserver field RcurriculumS.  The programs \f22
+\fs24 s.pb\f20 \fs24  and \f22 \fs24 f.pb\f20 \fs24  perform these marvels.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 3\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 s.pb <s.tape.raw >s.tape.id\f20 \fs24
+\par \dn6 \f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 4\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 f.pb <f.tape.raw >f.tape.id\f20 \fs24
+\par \pard \li0 \ri0 \fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \par \tab \tab Next,  the University idUs in the data files are converted by \f22
+\fs24 ssnid\f20 \fs24  into random Nameserver idUs.  This is done with the help of the \f22
+\fs24 dbm\f20 \fs24  database \f22 \fs24 IdDB\up6 \f22 \fs20 \chftn {\footnote \up6
+\f20 \fs16 {\chftn }\up0 \f20 \fs20 The name of this database is kept in \f22
+\fs20 conf.c\f20 \fs20 , and compiled into \f22 \fs20 ssnid\f20 \fs20 .\par }
+\up0 \up0 \f20 \fs24 , which remembers the mappings from University to Nameserver idUs.  University idUs which have been encountered before will be mapped into whatever they were mapped into last time; those not appearing in the database will be assigned at random, and the choice recorded in \f22
+\fs24 IdDB\f20 \fs24 .  The resulting files are sorted on their first fields, the Nameserver idUs.  IdDB should be read in from tape, the programs run, and then \f22
+\fs24 IdDB\f20 \fs24  should be written back out to tape and removed from disk.  This will assure privacy of University idUs.\par \keep \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 5\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 ssnid <s.tape.id | sort >s.tape\f20
+\fs24 \par \dn6 \f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 6\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 ssnid <f.tape.id | sort >f.tape\f20
+\fs24 \par \pard \li0 \ri0 \fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \par \keep \tab \tab At this point, the running Nameserver database must be made read-only by placing a line beginning with RreadS in the \f22
+\fs24 .sta\f20 \fs24  file (\f22 \fs24 /nameserv/db/prod.sta\f20 \fs24  on our system).\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 7\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 echo read for database update >/nameserv/db/prod.sta\f20
+\fs24 \par \pard \li0 \ri0 \fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \dn6 \up0
+\par \tab \tab Once the database is protected from modification,  its contents should be dumped with \f22
+\fs24 mdump\f20 \fs24 .  This dumping is done into four different files; one for staff members, one for students\up8
+\f22 \fs20 \chftn {\footnote \up6 \f20 \fs16 {\chftn }\up0 \f22 \fs20 Mdump\up0
+\f20 \fs20  classifies everyone as a student who is a student.  Thus, staff members who are also students will be classified as students, and show up only in \f22
+\fs20 s.old\f20 \fs20 , not \f22 \fs20 f.old\f20 \fs20 .\par }\up0 \f20 \fs24
+, one for campus units, and one for other entries.  Each dump may contain a different set of fields; for example, the RstudentsS dump contains only fields that cannot be found on the student tape, whereas the RotherS dump dumps all fields.  In all cases, \f22
+\fs24 mdump\f20 \fs24  outputs the RidS field first for each entry; \f22 \fs24
+mdump\f20 \fs24  will manufacture a blank RidS field if none is present.  The RotherS dump is constructed to select those entries not selected by the other dumps.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 8\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 mdump students | sort >s.old\f20
+\fs24 \par \dn6 \f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 9\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 mdump staff | sort >f.old\f20 \fs24
+\par \dn6 \f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 10.\f20 \fs24 \b0 \tab \f22 \fs24 mdump other | sort >other.old\f20 \fs24
+\par \dn6 \f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 11\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 mdump units >units.old\f20 \fs24
+\par \par \tab \tab It is now time to reconcile the old data with the new data; this is done with \f22
+\fs24 tmerge\f20 \fs24 .  The idea is twofold; to drop from the database persons who do not appear on the new tapes, and to bring along from the old database any fields that are not found on the tapes themselves (e.g., email addresses).\par \tab \tab \f22
+\fs24 Tmerge\f20 \fs24  takes four arguments; the name of the file with data from the tape, the name of the file with data from the extant database, the name of the file for the merged data, and (optionally) the name of a file into which to put entries from the old database that are not going into the new database.  This last argument we do not use; such entries slip quietly into oblivion.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 12\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 tmerge s.tape s.old s.new\f20 \fs24
+\par \dn6 \f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 13\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 tmerge f.tape f.old f.new\f20 \fs24
+\par \keep \tab \tab Now,  the \f22 \fs24 stastu\f20 \fs24  program is used to merge the staff and student files.  For staff members who are also students, some fields will appear in each file (e.g., address).  In such cases, the field from the staff file is given preference.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 14\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 stastu f.new s.new >sf.new\f20 \fs24
+\par \pard \li0 \ri0 \fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \par \tab \tab It is necessary to compute Nameserver aliases for the new database.  To do this, we extract the current alias (if there is no alias, we use the magic cookie R{none}S) and the base name for an assigned alias (the last name and the first letter of the first name).  These two items are prepended to each entry from \f22
+\fs24 sf.new\f20 \fs24 , and the whole is sorted into reverse order.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 15.\f20 \fs24 \b0 \tab \f22 \fs24 aliasprepare <sf.new | sort >sf.prealias\f20
+\fs24 \par \par \tab \tab \f22 \fs24 Awk\f20 \fs24  handily if slowly assigns our aliases.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 16.\f20 \fs24 \b0 \tab \f22 \fs24 awk -f alias.awk sf.prealias >sf.alias\f20
+\fs24 \par \par \tab \tab WeUre getting close now.  Use \f22 \fs24 credb\f20
+\fs24  to create a new, empty database.  The integer argument is the number of slots to use in the hash table; we use approximately 5 slots per entry.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 17.\f20 \fs24 \b0 \tab \f22 \fs24 credb prod 300007\f20 \fs24 \par \par \tab \tab \f22
+\fs24 Maked\f20 \fs24  takes our tab-separated ascii file and makes it into Nameserver \f22
+\fs24 .dir\f20 \fs24  and \f22 \fs24 .dov\f20 \fs24  files.\par \dn6 \f20 \fs28
+\b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 18.\f20 \fs24 \b0 \tab \f22 \fs24 maked prod <sf.alias\f20 \fs24 \par \par \tab \tab It is now time to build the index for the database.  This step takes many hours (six the last time I did it, on our dual-processor Gould super-mini, in the dead of night).  It is very disk-intensive.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 19.\f20 \fs24 \b0 \tab \f22 \fs24 makei prod\f20 \fs24 \par \par \keep \tab \tab Now we make an index to the index, to facilitate wildcard searches.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 20\up0 .\f20 \fs24 \b0 \tab \f22 \fs24 build -s prod\par \pard \li0 \ri0
+\fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \par \f20 \fs24 \tab \tab This step is optional.  If you have been doing the build on a machine with normal byteorder, and intend to use the database on a machine with reversed byteorder (like a VAX or 80x86), you must reverse the appropriate bytes in the database.  The \f22
+\fs24 border\f20 \fs24  program does this; it may be run on either the normal or the byte-perversed machine.\par \keep \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+00e2ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020f060a882288228822882274002a00010001001300130005
+00010005000a0001000a000a00130013000a000e000a000e00010005000101000a0000
+0000000000000700010001220005000109002300002300fc23000023090923000023f7
+092300002300fb23000023f7002300002300f723000084000a0000000000000000a000
+a301000affffffff0014001484000a00000000000000002309002300fc23090923f709
+2300fb23f7002300f7a000a1a00083ff}
+ \up0 21.\f20 \fs24 \b0 \tab \f22 \fs24 border prod\tab \f20 \fs28 \b (Optional)\f20
+\fs24 \b0 \par \pard \li0 \ri0 \fi-800 \qj \sl320 \tx1180 \tqr \tx9820 \par \tab \tab It is now time to move the database into place; turn off the Nameserver completely, move the files into place, and let Uer rip.\par \dn6
+\f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 22.\f20 \fs24 \b0 \tab \f22 \fs24 echo stop installing new database... >/nameserv/db/prod.sta\f20
+\fs24 \par \dn6 \f20 \fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 23.\f20 \fs24 \b0 \tab \f22 \fs24 mv prod.* /nameserv/db\par \dn6 \f20
+\fs28 \b {\pict \macpict \pich21 \picw21 \picscaled 
+0098ffffffff001400141101a0008201000affffffff00140014070000000022000500
+0a0000a000a0a100a400020dfc01000a00000000000000000700010001220005000109
+002300002300fc23000023090923000023f7092300002300fb23000023f70023000023
+00f7230000a000a301000affffffff001400142309002300fc23090923f7092300fb23
+f7002300f7a000a1a00083ff}
+ \up0 24.\f20 \fs24 \b0 \tab \f22 \fs24 rm /nameserv/db/prod.sta\f20 \fs24 \par \up0
+\par \tab \tab Now that the database is up and running, we use normal Nameserver commands (via \f22
+\fs24 qi\f20 \fs24 ) to add in the entries from \f22 \fs24 units.old\f20 \fs24
+ and anything interesting from \f22 \fs24 other.old\f20 \fs24 .  We then hope that the next semester wonUt come for a long time...\par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 \par \pard \li0 \ri0 \fi-800 \qj \sl320
+\tx1180 \tqr \tx9820 \par \page \pard \li0 \ri0 \fi0 \qc \sl320 \tx1540 \tqr \tx10180
+\f20 \fs36 \b Appendix A\par Data Tape Formats and Fields\f20 \fs24 \b0 \par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx1540 \tqr \tx10180 \pard \li0 \ri0 \fi-940 \qj \sl320
+\tx1540 \tqr \tx10180 \pard \li0 \ri0 \fi-940 \qj \sl320 \tx1540 \tqr \tx10180
+\pard \li0 \ri0 \fi-940 \qj \sl320 \tx1540 \tqr \tx9820 \par \pard \li0 \ri0
+\fi0 \qj \sl320 \tx1180 \tqr \tx10180 \f20 \fs24 \b Students\f20 \fs24 \b0 \par \tab The student tape consists of blocks of 100 records, each record 121 bytes long.  The tape is in ebcdic, and the layout is as follows:\par \pard \li0
+\ri0 \fi-940 \qj \sl320 \tx1540 \tqr \tx9820 \par \pard \li0 \ri0 \fi0 \qj \sl320
+\tqc \tx1980 \tqc \tx2840 \tqc \tx3700 \tqc \tx5880 \tqc \tx8700 \f20 \fs24 \b \tab Start\tab Stop\tab \tab \tab Nameserver\par \tab Col.\tab Col.\tab Length\tab Description\tab Field\par \f20
+\fs24 \b0 \tab 1\tab 9\tab 9\tab University id\tab id\up6 \f20 \fs20 \chftn {\footnote \up6
+\f20 \fs16 {\chftn }\up0 \f22 \fs20 Ssnid\f20 \fs20  will change the University Id into a Nameserver Id.\par }
+\up0 \f20 \fs24 \par \tab 10\tab 29\tab 20\tab name\tab name\par \tab 30\tab 47\tab 18\tab street address\tab address\par \tab 48\tab 65\tab 18\tab city\tab address\par \up0
+\tab 66\tab 70\tab 5\tab zip code\par \tab 71\tab 77\tab 7\tab telephone number\tab phone\par \tab 78\tab 118\tab 41\tab home address\tab \par \tab 119\tab 121\tab 3\tab class and college\tab curriculum\up6
+\f20 \fs20 \chftn {\footnote \up6 \f20 \fs16 {\chftn }\up0 \f20 \fs20 This is actually a three digit number; one digit for the class, two for the college.  They are translated according to the following table:\par \pard \li0
+\ri0 \fi380 \qj \sl280 \tx1540 \tx3700 \tx4040 \tx7300 \tx7660 \f15 \fs20 1\tab freshman\tab 4\tab senior\tab 7\tab grad i\par 2\tab sophomore\tab 5\tab non-degree\tab 8\tab grad iii\par 3\tab junior\tab 6\tab second baccalaureate\par \par 15\tab agriculture\tab 32\tab liberal arts and sciences\tab 44\tab veterinary medicine\par 17\tab commerce\tab 34\tab nursing\tab 46\tab clinical medicine--rockford\par 19\tab dentistry\tab 35\tab pharmacy\tab 48\tab associated medical sciences\par 20\tab education\tab 36\tab applied life studies\tab 51\tab hospital\par 22\tab engineering\tab 37\tab public health\tab 52\tab aviation\par 24\tab fine arts\tab 38\tab basic medical sciences\tab 65\tab environmental studies\par 26\tab graduate\tab 39\tab clinical medicine--abraham lincoln\tab 68\tab social work\par 28\tab communications\tab 41\tab clinical medicine--metropolitan\tab 72\tab summer session\par 30\tab law\tab 42\tab clinical medicine--peoria\tab 76\tab urban studies\f15
+\fs20 \expnd-6 \par }\up0 \up0 \f20 \fs24 \expnd0 \par \pard \li0 \ri0 \fi0 \qj \sl320
+\tx1180 \tqr \tx10180 \up0 \par \page \pard \li0 \ri0 \fi-940 \qj \sl320 \tx1540
+\tqr \tx9820 \par \pard \li0 \ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 \f20
+\fs24 \b Staff\f20 \fs24 \b0 \par \tab The staff tape consists of blocks of 10 records, each record 350 bytes long.  The tape is in ebcdic, and the layout is as follows:\par \pard \li0
+\ri0 \fi-940 \qj \sl320 \tx1540 \tqr \tx9820 \par \pard \li0 \ri0 \fi0 \qj \sl320
+\tqc \tx1980 \tqc \tx2840 \tqc \tx3700 \tqc \tx5880 \tqc \tx8700 \f20 \fs24 \b \tab Start\tab Stop\tab \tab \tab Nameserver\par \tab Col.\tab Col.\tab Length\tab Description\tab Field\par \f20
+\fs24 \b0 \tab 1\tab 9\tab 9\tab University id\tab id\up6 \f20 \fs20 \chftn {\footnote \up6
+\pard \li0 \ri0 \fi0 \qj \sl280 \tx1540 \tx3700 \tx4040 \tx7300 \tx7660 \pard \li0
+\ri0 \fi0 \qj \sl280 \tx1860 \tx3700 \tx4040 \tx6740 \tx7060 \f15 \fs16 \expnd-6
+{\chftn }\up0 \f22 \fs20 \expnd0 Ssnid\f20 \fs20  will change the University Id into a Nameserver Id.\par }
+\par \tab \up0 \f20 \fs24 10\tab 10\tab 1\tab padding\par \tab 11\tab 33\tab 23\tab last name\tab name\par \tab 34\tab 48\tab 15\tab first name\tab name\par \tab 49\tab 63\tab 15\tab middle name\tab name\par \tab 64\tab 78\tab 15\tab spouse name\par \tab 79\tab 153\tab 75\tab job title\tab title\par \tab 154\tab 178\tab 25\tab employing department\tab department\par \tab 179\tab 203\tab 25\tab office number\tab address\par \tab 204\tab 228\tab 25\tab office street\tab address\par \tab 229\tab 244\tab 16\tab office city\par \tab 245\tab 246\tab 2\tab office state\par \tab 247\tab 251\tab 5\tab office zip code\par \tab 252\tab 254\tab 3\tab office mailcode\tab address\par \tab 255\tab 264\tab 10\tab office phone number\tab phone\par \tab 265\tab 265\tab 1\tab suppress home address\tab \up6
+\f20 \fs20 \chftn {\footnote \up6 \f20 \fs16 {\chftn }\up0 \f20 \fs20 If this field contains an asterisk (*), the person does not want his or her home address in the database.\par }
+\up0 \f20 \fs24 \par \tab 266\tab 315\tab 50\tab home street address\tab address\par \tab 316\tab 330\tab 15\tab home city\tab address\par \tab 331\tab 332\tab 2\tab home state\up0
+\par \tab 333\tab 337\tab 5\tab home zip code\par \tab 338\tab 338\tab 1\tab suppress home phone number\tab \up6
+\f20 \fs20 \chftn {\footnote \up6 \f20 \fs16 {\chftn }\up0 \f20 \fs20 If this field contains an asterisk (*), the person does not want his or her home phone number in the database.\par }
+\up0 \f20 \fs24 \par \tab 339\tab 348\tab 10\tab home phone number\tab phone\par \tab 349\tab 350\tab 2\tab padding\par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx1180 \tqr \tx10180 \par }

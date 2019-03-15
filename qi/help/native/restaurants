@@ -1,0 +1,114 @@
+PH RESTAURANT, PIZZA PARLOR, TAVERN, AND DONUT SHOP INFORMATION
+
+The ph entries relating to restaurants, pizza parlors, taverns and donut
+shops are organized as follows:
+
+The "name", "address", and "phone" fields are set to the proper name,
+the address (possibly with description), and the phone number or the
+establishment respectively.
+
+The "nickname" field is set to one or more of the following types of
+eating establishments:
+
+   restaurant  - An establishment that is primarily a restaurant, deli,
+                 sweet shop, or bar that serves or delivers food other
+                 than pizza.
+   bar         - An establishment that has a sit-down bar or lounge where
+                 liquor is served, but also serves food.
+   pizza       - An establishment that serves or delivers pizza.
+   tavern      - An establishment that serves liquor only, no food.
+   donut       - An establishment that is primarily a donut shop.
+
+If the establishment is a restaurant that also serves pizza, it has both
+restaurant and pizza in the "nickname" field.  If the establishment is
+a restaurant with a bar or lounge, then both restaurant and bar appear
+in the "nickname" field, and so on.
+
+The "hours" field is set to the hours that food is served in the case
+of establishments that serve or deliver food.  It is set to the hours
+that liquor is served in the case of taverns.  If the establishment is
+a restaurant with a bar, the bar hours are listed in the "text" field.
+Hours are listed as day of the week (Su, Mo, Tu, We, Th, Fr, and Sa)
+followed by the time of day from 0:00 (midnight) to 23:59.  Hours for
+a given day are listed with the day in which the establishment opened;
+i.e,. if the restaurant closes after midnight, there is not a separate
+listing for the new day.
+
+The "other" field contains a more specific description of the type of
+establishment and can be helpful for narrowing down searches for
+particular types of food, drink, or services.  If the "nickname" refers
+to the establishment as a restaurant, then the "other" field will first
+either refer to it as finedining, family, fast, deli, sweets, tavern,
+or carryout and deliver.  It then will attempt to describe its cuisine.
+At present the possibilities include: american, bavarian, cajun, creole,
+chinese, eclectic, italian, french, mexican, middle-eastern, pizza, and
+viennese.  If the "nickname" field is set to pizza or donut, then this
+is reiterated in the "other" field.
+
+The "text" field gives a more detailed description of the establishment.
+It attempts to describe specialties, special hours (for example, of the
+lounge), whether you can get a full meal or perhaps just breakfast.  It
+also attempts to list what beers are on tap and what the bar specialties
+may be.  If reservations are accepted or recommended, this is listed
+too.  Finally it indicates whether checks or credit cards (listed as
+CC) are accepted.  Checks may be limited to local checks with quite a
+bit of ID and credit cards may be limited to a few special cards.
+
+The "revision" field, if present, states when this information was
+gathered or last revised.
+
+The "type" field for all items in the Nameserver restaurant guide is
+always set to "food" and "phone".
+
+The restaurant information in the Nameserver was mainly obtained from
+the "Guide to Dining in Champaign-Urbana" published by the Champaign-
+Urbana Visitors' Bureau.  Some information also comes from the Champaign
+County City Clerk's Office.  New restaurants were discovered by driving
+and walking around town.  All of this information was verified and
+expanded upon either by telephone calls or in-person visits.  The
+restaurant information has not been updated since summer of 1991.  Some
+restaurant data may, therefore, be out of date.
+
+EXAMPLES
+If you already know the name of the restaurant you want to locate, set
+the "type" field specifier to "food" followed by all or part of the name
+of the restaurant.  (Note: The "type" field specifier [i.e. "type=food"]
+is not required, but its use in the selection clause of the query will
+limit the search to those items in the Nameserver database that are part
+of the restaurant guide):
+
+   ph type=food yen ching
+
+   ph type=food original pancake house
+
+If you want to locate all restaurants that serve a certain type of
+cuisine or offer a particular type of service, set the "other" field
+specifier to indicate the type of food or service in which you are
+interested.  In such cases, you must also either give a name or indicate
+one of the five types of eating establishments used in the nickname
+field of the database: restaurant, bar, pizza, tavern, or donut:
+
+  ph type=food other=chinese restaurant
+
+  ph type=food other=finedining restaurant
+
+Creative use of additional field specifiers in the selection clause of
+the query can help you identify establishments that meet rather rigid
+or broad criteria as shown below.
+
+The following example finds all restaurants that serve Italian food and
+accept credit cards:
+
+  ph restaurant other=italian text=CC
+
+The next example finds all bars in Champaign that serve Michelob Dry
+beer:
+
+  ph bar text=michelob text=dry address=champaign
+
+The final example finds all Urbana pizza parlors that offer thick-crust
+pizza and deliver:
+
+  ph pizza text=thick text=delivery address=urbana
+
+SEE ALSO: query, type

@@ -1,0 +1,151 @@
+COMMAND MODE SYNTAX:
+ph [-s server] [-p port] [-t type] [-f field1,field2,...]
+[-mMrRbBTlLF] query
+
+ph [-s server] [-p port] [-t type] [-f field1,field2,...]
+[-mMnNrRbBTlLFcC]
+
+INTERACTIVE MODE SYNTAX:
+query [name-of-field=]value-of-field... [return {all|name-of-
+field...}]
+
+SUMMARY
+The function of the "ph" command varies according to whether it is
+used in "command-line mode" (from the operating system prompt) or
+"interactive mode" (from inside ph at the "ph>" prompt).
+
+THE "PH" COMMAND IN COMMAND-LINE MODE
+In command-line mode, "ph" is the name of the program (executable file)
+that permits users to do Nameserver lookups (queries) directly from the
+operating system prompt.  The query is processed and the results are
+printed to the screen (or can be redirected to a file or another output
+device).
+
+The example below shows how one can issue a Nameserver query in
+command-line mode using the "ph" command. (Note that the session begins
+at the operating system prompt.  Once the matching entries are printed,
+the user is returned to the system prompt.):
+
+   ux1 3> ph paul pomes
+   ----------------------------------------
+              name: pomes paul
+             phone: (217) 333-6262
+           address: 1429 dcl, MC 256
+                  : 1304 w springfield
+                  : urbana, il 61801
+        department: computing services office
+             title: sr res programmer
+          email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+   ----------------------------------------
+   ux1 4>
+
+If the "ph" command is issued at the operating system prompt without
+any arguments (i.e., a query expression), it takes the user to
+interactive mode where s/he is presented with the "ph>" prompt.  Once
+inside ph, users can take advantage of the wide variety of Nameserver
+commands available in interactive mode (see help on "commands").  To
+use the "ph" command to enter interactive mode, simply type "ph" by
+itself.  For example:
+
+   ux1 4> ph
+   $Date: 1992/08/17 13:35:39 $$Revision: 5.7 $
+   100:Ph passwords may be obtained at CCSO Accounting, 1420 DCL.
+   100:Be sure to bring your University Id Card. You may not need
+   100:a password if you are using the login in your email field.
+   200:Database ready.
+
+   ph> [ph is ready and waiting for you to enter a command]
+
+COMMAND-LINE MODE OPTIONS AND SWITCHES
+The "ph" command accepts many options and switches in command-line mode.
+All such options are explained in full in the help file called "manpage"
+(the Unix online manual page for ph).
+
+Ph options and switches can be used both when doing Nameserver lookups
+from the operating system prompt or when using the "ph" command to enter
+interactive mode.  For instance, the "-t type" option tells ph to only
+display entries matching the data type specified.  When used with an
+argument (a query expression), only those entries matching the specified
+type will be printed.  The example below illustrates the use of the "t
+type" option in command-line mode (where "food" is the specified type
+and "king" is the argument):
+
+   ux1 9> ph -t food king
+   ----------------------------------------
+            name: Burger King
+           phone: 398-8906
+         address: 2105 W Springfield, Champaign
+           hours: Su-Th 7:00-23:00, Fr-Sa 7:00-1:00
+           other: fast american
+            text: beef, fish, chicken, BBQ, salsa burgers,
+                : drive-thru
+   ----------------------------------------
+            name: Burger King
+           phone: 384-1029
+         address: 309 E Green, Champaign
+           hours: Su-We 7:00-2:00, Th 7:00-3:00, Fr-Sa 7:00-4:00
+           other: fast american
+            text: beef, fish, chicken, BBQ, salsa burgers,
+                : drive-thru
+   ----------------------------------------
+            name: Hunan King
+           phone: 344-0252
+         address: 313 E Green, Champaign
+           hours: Fr-Su 11:00-23:00, Mo-Th 11:00-22:00
+           other: fast chinese
+            text: full course meals
+   ----------------------------------------
+   ux1 10>
+
+When used without an argument, the "-t type" option takes the user to
+interactive mode and sets the specified type as the default for queries.
+The example below sets the default data type to "food" and takes the
+user to interactive mode:
+
+   ux1 11> ph -t food
+   $Date: 1992/08/17 13:35:39 $$Revision: 5.7 $
+   100:Ph passwords may be obtained at CCSO Accounting, 1420 DCL.
+   100:Be sure to bring your University Id Card. You may not need
+   100:a password if you are using the login in your email field.
+   200:Database ready.
+
+   ph>
+
+Once in interactive mode, only entries matching the default type
+("food") will be printed:
+
+   ph> ph king
+   ----------------------------------------
+            name: Burger King
+           phone: 398-8906
+         address: 2105 W Springfield, Champaign
+           hours: Su-Th 7:00-23:00, Fr-Sa 7:00-1:00
+           other: fast american
+            text: beef, fish, chicken, BBQ, salsa burgers,
+                : drive-thru
+   ----------------------------------------
+            name: Burger King
+           phone: 384-1029
+         address: 309 E Green, Champaign
+           hours: Su-We 7:00-2:00, Th 7:00-3:00, Fr-Sa 7:00-4:00
+           other: fast american
+            text: beef, fish, chicken, BBQ, salsa burgers,
+                : drive-thru
+   ----------------------------------------
+            name: Hunan King
+           phone: 344-0252
+         address: 313 E Green, Champaign
+           hours: Fr-Su 11:00-23:00, Mo-Th 11:00-22:00
+           other: fast chinese
+            text: full course meals
+   ----------------------------------------
+   ph>
+
+THE "PH" COMMAND IN INTERACTIVE MODE
+In interactive mode, the "ph" command is a synonym for and completely
+interchangeable with the "query" command, which is used to look up
+information in the Nameserver database.  For more information on how
+the "ph" command is used in interactive mode, see help on "query".
+
+SEE ALSO: command-line_mode, interactive_mode, manpage, query, commands,
+type, switches

@@ -1,0 +1,4 @@
+# See the garcon file for one work-around for the limited syslog on ultrix
+$Cflags .= " -DNO_STRERROR -DNO_VFPRINTF -DNO_MEMMOVE -DNO_STRDUP -DNO_STRSTR";
+$OtherDefines{"Stupid_Enums"} = 1;
+1;

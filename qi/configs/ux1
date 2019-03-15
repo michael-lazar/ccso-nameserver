@@ -1,0 +1,9 @@
+# ux1 - a Sequent Symmetry running Dynix v3.1.1
+@Features = ("PASS_AUTH","EMAIL_AUTH");
+$CC = "gcc -fpcc-struct-return -gstabs";
+$Cflags .= " -DKRBNSREALM=\\\"UIUC.EDU\\\"";
+@WantDirs=("include","lib","api","ph");
+$Krb4IncDir = "/usr/local/include";
+$Krb4LibDir = "/usr/local/lib";
+$Owner = "root";
+$Group = "daemon";

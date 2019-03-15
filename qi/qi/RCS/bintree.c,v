@@ -1,0 +1,2936 @@
+head	1.30;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.30
+date	95.01.09.13.14.21;	author p-pomes;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	94.03.03.16.52.29;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	93.09.21.17.19.30;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	93.07.24.15.52.28;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	93.04.06.16.51.55;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.04.02.17.50.41;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	92.10.02.13.21.41;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	92.08.16.17.02.22;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	92.07.30.03.43.49;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.26.19.53.01;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	90.12.18.08.41.13;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	89.10.18.07.52.09;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	89.07.19.10.18.30;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.07.05.20.16.44;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.03.20.15.14.30;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.12.02.14.44.58;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.11.15.13.35.05;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.07.08.14.00.56;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.07.06.20.48.04;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.04.27.12.56.52;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.04.20.15.31.09;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.19.08.12.19;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.48;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.30
+log
+@Renamed delete() to qidelete().
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: bintree.c,v 1.29 1994/09/09 20:17:03 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#define GRANULE 64
+#define INCR(x) ((unsigned)((x+=GRANULE)*sizeof(INT32)))
+
+QHEADER	header;			/* header from .seq file */
+IDX	last_node;		/* */
+NODE	*node_buf = NULL;	/* array containing all NODEs */
+LEAF_DES *leaf_des_buf;		/* array containing all LEAF_DESs */
+static LEAF Leaf;		/* leaf currently in memory */
+static int Leaf_dirty;		/* has Leaf been modified? */
+int	seq_fd;			/* fd of .seq file */
+
+static void flush_leaf();
+static void simple_insert __P((LEAF *, int, ITEM *, int));
+static IDX start_point __P((char *));
+static char *to_low_str __P((char *));
+
+/*
+ * convert a string to lower case
+ */
+static char *
+to_low_str(string)
+	char *string;
+{
+	register char *s;
+
+	for (s = string; *s; s++)
+		if (*s >= 'A' && *s <= 'A')
+			*s += 'a' - 'A';
+	return (string);
+}
+
+/*
+ * initialize; open and read in the header of the .seq (leaf) file
+ */
+void 
+bintree_init(fname)
+	char *fname;
+{
+	char	buf[100];
+
+	(void) sprintf(buf, "%s.seq", fname);
+
+	if ((seq_fd = open(buf, 2)) < 0)
+	{
+		IssueMessage(LOG_ERR, "bintree_init: open(%s): %s",
+			buf, strerror(errno));
+		cleanup(-1);
+	}
+	get_tree_head();
+}
+
+/*
+ * cleanup; close the .seq file
+ */
+void 
+close_tree()
+{
+	(void) close(seq_fd);
+}
+
+/*
+ * read the header from the .seq file
+ */
+void 
+get_tree_head()
+{
+	if (lseek(seq_fd, 0L, 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "get_tree_head: lseek(%d,0L,0): %s",
+			seq_fd, strerror(errno));
+		cleanup(-1);
+	}
+	else if (read(seq_fd, (char *) &header, HEADSIZE) != HEADSIZE)
+	{
+		IssueMessage(LOG_ERR, "get_tree_head: read: %s",
+			strerror(errno));
+		cleanup(-1);
+	}
+}
+
+/*
+ * make sure that the given leaf contains the leaf numbered num
+ */
+void 
+read_leaf(num, leaf)
+	IDX num;
+	LEAF *leaf;
+{
+	INT32	offset;
+
+	if (&Leaf == leaf)	/* are we filling Leaf? */
+	{
+		if (Leaf.leaf_no == num)	/* is the right leaf already there? */
+		{
+			return;
+		}
+		flush_leaf();	/* write Leaf out if it's dirty */
+	}
+	offset = NODE_OFFSET(num);	/* turn index into disk address */
+	if (lseek(seq_fd, offset, 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "read_leaf: lseek(%d,%ld,0): %s",
+			seq_fd, offset, strerror(errno));
+		cleanup(-1);
+	}
+	else if (read(seq_fd, (char *) leaf, LBSIZE) != LBSIZE)
+	{
+		IssueMessage(LOG_ERR, "read_leaf: read: %s", strerror(errno));
+		IssueMessage(LOG_ERR, "leaf index was %d, offset was %d", num, offset);
+		cleanup(-1);
+	}
+}
+
+/*
+ * write out Leaf IFF it is dirty
+ */
+static void 
+flush_leaf()
+{
+	if (Leaf_dirty)
+		write_leaf(&Leaf);
+	Leaf_dirty = 0;
+}
+
+/*
+ * write out the given leaf
+ */
+void 
+write_leaf(leaf)
+	LEAF *leaf;
+{
+	if (lseek(seq_fd, NODE_OFFSET(leaf->leaf_no), 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "write_leaf: lseek(%d,%ld,0): %s",
+			seq_fd, NODE_OFFSET(leaf->leaf_no), strerror(errno));
+		cleanup(-1);
+	}
+	else if (write(seq_fd, (char *) leaf, LBSIZE) != LBSIZE)
+	{
+		IssueMessage(LOG_ERR, "write_leaf: write: %s", strerror(errno));
+		cleanup(-1);
+	}
+}
+
+/*
+ * copy an ITEM.  Since an item is an IDX followed by a null-terminated
+ * string, we first copy an IDX' worth, then copy until we find a null
+ * or hit the ITEM size limit. Returns the number of bytes copied.
+ */
+int 
+icopy(dest, src)
+	char *dest, *src;
+{
+	register int i;
+
+	/*
+	 * copy the first few bytes (the index)
+	 */
+	for (i = 0; i < sizeof (IDX); i++)
+		*dest++ = *src++;
+
+	/*
+	 * copy the string until NULL or size limit
+	 */
+	while ((*dest++ = *src++) && (i < sizeof (ITEM)))
+		i++;
+	if (i >= sizeof (ITEM))
+	{
+		/* uh-oh */
+		IssueMessage(LOG_ERR, "icopy: failed, item full");
+		cleanup(-1);
+	}
+	return ++i;
+}
+
+/*
+ * find the first leaf that might possibly contain the given key
+ */
+static IDX 
+start_point(key)
+	char *key;
+{
+	IDX	idx;
+	char	simp_key[256], *ptr;
+
+	/* no node tree (.bdx), we have to start with the first leaf node */
+	if (!node_buf)
+		return header.seq_set;
+
+	/* get substring of the key which doesn't include any meta characters */
+	(void) strcpy(simp_key, key);
+	if (ptr = strchr(simp_key, '*'))
+		*ptr = '\0';
+	if (ptr = strchr(simp_key, '?'))
+		*ptr = '\0';
+	if (ptr = strchr(simp_key, '['))
+		*ptr = '\0';
+
+	/* search NODEs: postitve ptrs go to more nodes, neg to leaves */
+	idx = header.index_root;/* start at the top */
+	while (idx > 0)
+	{
+		if (strncmp(simp_key, node_buf[idx].key, KEY_SIZE) <= 0)
+			idx = node_buf[idx].l_ptr;
+		else
+			idx = node_buf[idx].r_ptr;
+	}
+
+	/* something wrong if null ptr, but can still search whole seq set */
+	if (idx == 0)
+	{
+		IssueMessage(LOG_WARNING, "start_point: index search led to a NULL leaf");
+		return header.seq_set;
+	}
+	return (-idx);
+}
+
+/*
+ * find a key in the leaves (or a needle in a haystack...)
+ * no metacharacters in key
+ */
+int 
+search(key, leaf, offset)
+	char *key;
+	LEAF *leaf;
+	int *offset;
+{
+	IDX	cur_idx;
+	int	result;
+
+	cur_idx = start_point(key);	/* use .bdx to find first possible leaf */
+	/*
+	 * loop through leaf string
+	 */
+	while (cur_idx)
+	{
+
+		read_leaf(cur_idx, leaf);	/* read it in */
+		*offset = 0;
+		/*
+		 * loop through all the ITEMs in the leaf
+		 */
+		while (*offset < leaf -> n_bytes)
+		{
+			result = stricmp(&leaf -> data[*offset + IDX_SIZE], key);
+			if (result < 0)
+			{
+				/* ITEM too small; next one will be bigger; try it */
+				*offset += sizeof (IDX);
+				while (leaf -> data[(*offset)++])
+					;
+			} else if (result == 0)
+			{
+				return MATCH;	/* we found it! */
+			} else
+			{
+				return NO_MATCH;	/* not here, but belongs here */
+			}
+		}
+		cur_idx = leaf -> next; /* on to the next leaf */
+	}
+	/*
+	 * not found in whole leaf string; belongs on the end of the last leaf
+	 * in the string
+	 */
+	return NO_MATCH;
+}
+
+/*
+ * ``remove'' the ITEM belonging to a string; actually just sets its
+ * pointer to NULL to indicate that it's dead; does not actually delete
+ * the string.  the appropriate leaf will be left in Leaf.
+ */
+int 
+qidelete(key)
+	char *key;
+{
+	int	offset;	/* byte offset where found */
+	ITEM	item;		/* scratch item */
+
+	/* Find the key and null out its data */
+	if (search(key, &Leaf, &offset) == MATCH)
+	{
+		(void) icopy(item.raw, &Leaf.data[offset]);
+		item.i_num = 0;
+		(void) icopy(&Leaf.data[offset], item.raw);
+		Leaf_dirty++;
+		return (1);
+	} else
+	{
+		IssueMessage(LOG_ERR, "qidelete: non-existent key (%s)", key);
+		return (0);
+	}
+}
+
+/*
+ * add a key to the .seq file.  MUST not be there already.
+ */
+void 
+insert(key, data)
+	char *key;
+	IDX data;
+{
+	ITEM	new_item;
+	int	offset, item_size, code;
+
+	/* Set leaf and offset to where this key belongs */
+	code = search(key, &Leaf, &offset);
+
+	/*
+	 * if we found the string, it should be because we have deleted
+	 * it before, and the data should be null.  In that case, all
+	 * we have to do is set the data to what it should be
+	 */
+	if (code == MATCH)
+	{
+		(void) icopy(new_item.raw, &Leaf.data[offset]);
+		if (new_item.i_num)
+			IssueMessage(LOG_ERR, "insert: \"%s\" already in tree", key);
+		else
+		{
+			new_item.i_num = data;
+			(void) icopy(&Leaf.data[offset], new_item.raw);
+			Leaf_dirty++;
+		}
+		return;
+	}
+	/*
+	 * key not in .seq file.  put it into an item to be put into a leaf
+	 */
+	new_item.i_num = data;
+	strcpy(new_item.i_key, to_low_str(key));
+	item_size = strlen(key) + 1 + sizeof (IDX);
+
+	/*
+	 * stick our pretty new ITEM into Leaf
+	 */
+	if (item_size + Leaf.n_bytes <= DATA_SIZE)
+		/* we can just tack it onto the end */
+		simple_insert(&Leaf, offset, &new_item, item_size);
+	else
+		/* no room--split up the leaf and then insert the item */
+		expand(&Leaf, offset, &new_item);
+}
+
+/*
+ * insert a new ITEM into a LEAF at the proper spot.  There is room in
+ * the LEAF.
+ */
+static void 
+simple_insert(leaf, offset, item, item_size)
+	LEAF *leaf;
+	ITEM *item;
+	int offset, item_size;
+{
+	register int src, dest;
+
+	/* move existing data over to allow room for new_item */
+	src = leaf -> n_bytes - 1;
+	dest = src + item_size;
+	while (src >= offset)
+		leaf -> data[dest--] = leaf -> data[src--];
+
+	/* put in the new item && write out the leaf */
+	(void) icopy(&leaf -> data[offset], item -> raw);
+	leaf -> n_bytes += item_size;
+	Leaf_dirty++;
+}
+
+/*
+ * split a leaf in two and then insert the item into one of the halves
+ */
+void 
+expand(leaf, offset, item)
+	LEAF *leaf;
+	int offset;
+	ITEM *item;
+{
+	LEAF	new_leaf;	/* room for the newly split leaf */
+	char	buf[2 * DATA_SIZE];	/* some space */
+	int	size, buf_size;
+	register int src, dest;
+
+	/* link in the new leaf */
+	new_leaf.leaf_no = allocate_leaf();
+	new_leaf.next = leaf -> next;
+	leaf -> next = new_leaf.leaf_no;
+
+	/* collect all the data into buf */
+	src = 0;
+	dest = 0;
+	while (src < offset)
+		buf[dest++] = leaf -> data[src++];
+	dest += icopy(&buf[dest], item -> raw);
+	while (src < leaf -> n_bytes)
+		buf[dest++] = leaf -> data[src++];
+	buf_size = dest;
+
+	/* put the first half of the data into original leaf */
+	for (src = 0, dest = 0; dest < DATA_SIZE / 2;)
+	{
+		src += icopy(&leaf -> data[src], &buf[src]);
+		dest = src;
+	}
+	leaf -> n_bytes = dest;
+	Leaf_dirty++;
+
+	/* put the second half of the data into the new leaf */
+	for (dest = 0; src < buf_size;)
+	{
+		size = icopy(&new_leaf.data[dest], &buf[src]);
+		src += size;
+		dest += size;
+	}
+	new_leaf.n_bytes = dest;
+
+	/* write the new leaf out, but let Leaf_dirty do the trick for Leaf */
+	write_leaf(&new_leaf);
+}
+
+/*
+ * find all entries that match a string with metacharacters in it
+ */
+INT32 *
+find_all(key)
+	char *key;
+{
+	int	offset = 0;	/* offset in leaf */
+	ITEM	item;		/* space for an item */
+	char	lcase_key[256];/* the key in lower case */
+	INT32	*array = NULL;	/* our result */
+
+	/*
+	 * make a lower-case copy of the string
+	 */
+	strcpy(lcase_key, key);
+	to_low_str(lcase_key);
+
+	/*
+	 * find the first leaf that might contain the key, and read it in
+	 */
+	read_leaf(start_point(lcase_key), &Leaf);
+	for (;;)
+	{
+		if (offset >= Leaf.n_bytes)	/* out of data in this leaf? */
+		{
+			/* on to the next leaf, if there is one */
+			if (Leaf.next)
+			{
+				read_leaf(Leaf.next, &Leaf);
+				offset = 0;
+			} else
+				break;	/* all done */
+		}
+		/*
+		 * grab the next ITEM
+		 */
+		offset += icopy(item.raw, &Leaf.data[offset]);
+
+		/*
+		 * compare
+		 */
+		switch (pmatch(item.i_key, lcase_key))
+		{
+		    case MATCH:
+			if (item.i_num)
+			{
+				/*
+				 * we found a match, and the item has not been
+				 * deleted.  add the entries pointed to by the
+				 * .idx file entry pointed to by i_num to our
+				 * current list.
+				 */
+				array = merge(array, get_dir_ptrs(item.i_num));
+			}
+			break;
+		    case NO_MATCH:
+			return array;	/* all done */
+		    case CONTINUE:
+			break;
+		}
+	}
+	return array;
+}
+
+/*
+ * Write out the current file header and close.
+ */
+void 
+put_tree_head()
+{
+
+	if (lseek(seq_fd, 0L, 0) < 0)
+		IssueMessage(LOG_ERR, "put_tree_head: lseek(%d,0L,0): %s",
+			seq_fd, strerror(errno));
+	else if ((write(seq_fd, (char *) &header, HEADSIZE)) != HEADSIZE)
+		IssueMessage(LOG_ERR, "put_tree_head: write: %s",
+			strerror(errno));
+	flush_leaf();
+	close(seq_fd);
+}
+
+/*
+ * add a leaf on the end of the .seq file.  The actual adding to the file
+ * will happen when the leaf is written
+ */
+IDX 
+allocate_leaf()
+{
+	return (++header.last_leaf);
+}
+
+/*
+ * read the entire .bdx (node) file into node_buf
+ */
+void 
+read_index(fname)
+	char *fname;
+{
+	FILE	*fp;
+	int	n_read, n_items;
+	unsigned int ask = (2 * header.last_leaf * NODE_SIZE);
+	char	buf[100];
+
+	(void) sprintf(buf, "%s.bdx", fname);
+
+	if ((fp = fopen(buf, "r")) == NULL)
+	{
+		IssueMessage(LOG_ERR, "read_index: fopen(%s): %s",
+			buf, strerror(errno));
+		cleanup(-1);
+	}
+	if (node_buf)
+	{
+		free(node_buf);
+		node_buf = NULL;
+	}
+	if ((node_buf = (NODE *) malloc(ask)) == NULL)
+	{
+		IssueMessage(LOG_ERR, "read_index: malloc(%d): %s",
+			ask, strerror(errno));
+		cleanup(-1);
+	}
+	memset((void *) node_buf, (char)0, ask);
+	(void) fseek(fp, 0L, 2);
+	n_items = ftell(fp) / NODE_SIZE;
+	if (ask < NODE_SIZE * n_items)
+	{
+		IssueMessage(LOG_ERR, "read_index: malloc(%d) too small (%d)",
+			ask, NODE_SIZE * n_items);
+		cleanup(-1);
+	}
+	rewind(fp);
+	n_read = fread((char *) node_buf, NODE_SIZE, n_items, fp);
+	if (n_read != n_items)
+	{
+		IssueMessage(LOG_ERR, "read_index: fread: %s",
+			n_items, n_read, strerror(errno));
+		cleanup(-1);
+	}
+	(void) fclose(fp);
+}
+
+/*
+ * Merge together 2 array of INT32.  The inputs are assumed to be
+ * already sorted and null terminted.  Each input array is assumed not to
+ * contain dupes, although the same number may occur in both inputs.  The
+ * output has dups elided.
+ */
+INT32 *
+merge(ary1, ary2)
+	INT32 *ary1, *ary2;
+{
+	INT32	*out, *orig_1, *orig_2;
+	register int i = 0;
+	unsigned size = 0;
+
+	/* Check for null inputs, note that output may be null */
+	if (ary1 == NULL)
+		return ary2;
+	if (ary2 == NULL)
+		return ary1;
+
+	/* Save inputs for later freeing, allocate space for output */
+	orig_1 = ary1;
+	orig_2 = ary2;
+	out = (INT32 *) malloc(INCR(size));
+
+	/* put min ele from either input onto output til one input exhausted */
+	while (*ary1 && *ary2)
+	{
+		if (i >= size - 2)
+			out = (INT32 *) realloc((char *) out, INCR(size));
+		if (*ary1 < *ary2)
+			out[i++] = *ary1++;
+		else
+			out[i++] = *ary2++;
+		if (*ary1 == out[i - 1])
+			ary1++;
+	}
+
+	/* move whatever is left of ary1 to output */
+	while (*ary1)
+	{
+		if (i >= size - 2)
+			out = (INT32 *) realloc((char *) out, INCR(size));
+		out[i++] = *ary1++;
+	}
+
+	/* move whatever is left of ary2 to output */
+	while (*ary2)
+	{
+		if (i >= size - 2)
+			out = (INT32 *) realloc((char *) out, INCR(size));
+		out[i++] = *ary2++;
+	}
+
+	/* null terminate output, and free inputs */
+	out[i] = 0;
+	free((char *) orig_1);
+	free((char *) orig_2);
+	orig_1 = orig_2 = 0;
+	return out;
+}
+@
+
+
+1.29
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: bintree.c,v 1.28 1994/05/05 21:21:51 paul Exp p-pomes $";
+d317 1
+a317 1
+delete(key)
+d333 1
+a333 1
+		IssueMessage(LOG_ERR, "delete: non-existent key (%s)", key);
+@
+
+
+1.28
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: bintree.c,v 1.27 1994/03/12 00:24:45 paul Exp $";
+d44 1
+a44 1
+#define INCR(x) ((unsigned)((x+=GRANULE)*sizeof(long)))
+d131 1
+a131 1
+	long	offset;
+d466 1
+a466 1
+long *
+d473 1
+a473 1
+	long	*array = NULL;	/* our result */
+d607 1
+a607 1
+ * Merge together 2 array of long.  The inputs are assumed to be
+d612 1
+a612 1
+long *
+d614 1
+a614 1
+	long *ary1, *ary2;
+d616 1
+a616 1
+	long	*out, *orig_1, *orig_2;
+d629 1
+a629 1
+	out = (long *) malloc(INCR(size));
+d635 1
+a635 1
+			out = (long *) realloc((char *) out, INCR(size));
+d648 1
+a648 1
+			out = (long *) realloc((char *) out, INCR(size));
+d656 1
+a656 1
+			out = (long *) realloc((char *) out, INCR(size));
+@
+
+
+1.27
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d87 2
+a88 2
+		(void) sprintf(buf, "Cannot open \"%s.seq\" in init()", fname);
+		perror(buf);
+d111 2
+a112 1
+		perror("lseek() to file header failed in init()");
+d115 1
+a115 1
+	if (read(seq_fd, (char *) &header, HEADSIZE) != HEADSIZE)
+d117 2
+a118 1
+		perror("Read() of file header failed in init()");
+d142 1
+a142 1
+	if (lseek(seq_fd, NODE_OFFSET(num), 0) < 0)
+d144 2
+a145 1
+		IssueMessage(LOG_ERR, "lseek() failed in read_leaf():seq_fd=%d,num=%d: %s", seq_fd, num, strerror(errno));
+d148 1
+a148 1
+	if (read(seq_fd, (char *) leaf, LBSIZE) != LBSIZE)
+d150 2
+a151 3
+		IssueMessage(LOG_ERR, "Read() failed in read_leaf(): %s",
+			strerror(errno));
+		IssueMessage(LOG_ERR, "Leaf index was %d, offset was %d", num, offset);
+d174 1
+a174 1
+	if (lseek(seq_fd, NODE_OFFSET(leaf -> leaf_no), 0) < 0)
+d176 2
+a177 1
+		perror("lseek() failed in write_leaf()");
+d180 1
+a180 1
+	if (write(seq_fd, (char *) leaf, LBSIZE) != LBSIZE)
+d182 1
+a182 1
+		perror("write() failed in write_leaf()");
+d212 1
+a212 1
+		IssueMessage(LOG_ERR, "icopy failed, item full");
+d254 1
+a254 1
+		IssueMessage(LOG_INFO, "Warning: index search led to a NULL leaf");
+d333 1
+a333 1
+		IssueMessage(LOG_ERR, "Error: delete of non_existent key (%s)", key);
+d361 1
+a361 1
+			IssueMessage(LOG_ERR, "Error: \"%s\" already in tree", key);
+d536 5
+a540 7
+	{
+		perror("Lseek() failed in put_tree_head()");
+	}
+	if ((write(seq_fd, (char *) &header, HEADSIZE)) != HEADSIZE)
+	{
+		perror("Write() failed in put_tree_head()");
+	}
+d571 2
+a572 1
+		perror("fopen() failed in read_index(): ");
+d582 1
+a582 1
+		IssueMessage(LOG_ERR, "malloc(%d) failed in read_index(): %s",
+d591 1
+a591 1
+		IssueMessage(LOG_ERR, "malloc(%d) too small (%d) in read_index()",
+d599 1
+a599 1
+		IssueMessage(LOG_ERR, "fread() failed in read_index(), asked %d got %d: %s",
+@
+
+
+1.26
+log
+@zero freed pointers.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.25
+log
+@INCONSISTENCY
+queries containing metas don't return the same answers for equivalent targets.
+queries 74?[0-9], 74??, 74?*, 74[0-9]?, 74[0-9]*, 74[0-9][0-9]
+        returned 5 answers
+viz     7453 7457 7436 7456 7461
+
+queries 74*, 74*?, and 74*[0-9]
+        returned 24 answers which should have been found by the first queries.
+viz     7425 7417 7406 7401 7416 7407 7453 ... 7457 ... 7436 7456 ... 7461 ...
+
+Submitted buy Tony.Grainger@@its.utas.edu.au
+@
+text
+@d630 1
+@
+
+
+1.24
+log
+@POSIX changes to use strchr() instead of index(), memset() instead of
+bzero().
+@
+text
+@d210 1
+a210 1
+		if (strncmp(key, node_buf[idx].key, KEY_SIZE) <= 0)
+@
+
+
+1.23
+log
+@Replaced instances of fprintf(stderr, ...) with IssueMessage(LOG_ERR, ...)
+@
+text
+@d199 1
+a199 1
+	if (ptr = index(simp_key, '*'))
+d201 1
+a201 1
+	if (ptr = index(simp_key, '?'))
+d203 1
+a203 1
+	if (ptr = index(simp_key, '['))
+d552 1
+a552 1
+	bzero((void *) node_buf, ask);
+@
+
+
+1.22
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d18 2
+a19 2
+LEAF	Leaf;			/* leaf currently in memory */
+int	Leaf_dirty;		/* has Leaf been modified? */
+d110 1
+a110 1
+		fprintf(stderr, "lseek() failed in read_leaf():seq_fd=%d,num=%d\n", seq_fd, num);
+d115 3
+a117 2
+		fprintf(stderr, "Read() failed in read_leaf()\n");
+		fprintf(stderr, "Leaf index was %d, offset was %d\n", num, offset);
+d177 1
+a177 1
+		fprintf(stderr, "icopy failed, item full\n");
+d219 1
+a219 1
+		IssueMessage(LOG_INFO, "Warning: index search led to a NULL leaf\n");
+d298 1
+a298 1
+		fprintf(stderr, "Error: delete of non_existent key (%s)\n", key);
+d326 1
+a326 1
+			fprintf(stderr, "Error: \"%s\" already in tree\n", key);
+d548 2
+a549 2
+		fprintf(stderr, "malloc(%d) failed in read_index():", ask);
+		perror("");
+d557 1
+a557 1
+		fprintf(stderr, "malloc(%d) too small (%d) in read_index()\n",
+d565 2
+a566 2
+		fprintf(stderr, "fread() failed in read_index(), asked %d got %d\n",
+			n_items, n_read);
+@
+
+
+1.21
+log
+@Changed HEADER to QHEADER.
+@
+text
+@d22 5
+d30 1
+a30 1
+char *
+d57 1
+a57 1
+		cleanup();
+d80 1
+a80 1
+		cleanup();
+d85 1
+a85 1
+		cleanup();
+d111 1
+a111 1
+		cleanup();
+d117 1
+a117 1
+		cleanup();
+d124 1
+a124 1
+void 
+d142 1
+a142 1
+		cleanup();
+d147 1
+a147 1
+		cleanup();
+d177 1
+a177 1
+		cleanup();
+d185 1
+a185 1
+IDX 
+d356 1
+a356 1
+void 
+d538 1
+a538 1
+		cleanup();
+d549 1
+a549 1
+		cleanup();
+d558 1
+a558 1
+		cleanup();
+d566 1
+a566 1
+		cleanup();
+@
+
+
+1.20
+log
+@moved extern int errno to include/protos.h
+@
+text
+@d14 1
+a14 1
+HEADER	header;			/* header from .seq file */
+@
+
+
+1.19
+log
+@Zero the malloced space for node_buf.
+@
+text
+@a10 2
+extern int errno;
+
+@
+
+
+1.18
+log
+@Renamed BSIZE to LBSIZE.
+@
+text
+@d548 1
+@
+
+
+1.17
+log
+@Revised #include file list.
+@
+text
+@d110 1
+a110 1
+	if (read(seq_fd, (char *) leaf, BSIZE) != BSIZE)
+d141 1
+a141 1
+	if (write(seq_fd, (char *) leaf, BSIZE) != BSIZE)
+@
+
+
+1.16
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a10 4
+#include <stdio.h>
+#include "qi.h"
+#include "log.h"
+#include "bintree.h"
+@
+
+
+1.15
+log
+@Random fixes.
+@
+text
+@d531 1
+d536 5
+d546 1
+a546 2
+	node_buf = (NODE *) malloc((unsigned) (2 * header.last_leaf * NODE_SIZE));
+	if ((fp = fopen(buf, "r")) == NULL)
+d548 2
+a549 1
+		perror("fopen() failed in read_index(): ");
+d554 6
+@
+
+
+1.14
+log
+@Re-formatted for clarity.
+@
+text
+@a571 1
+	char	*realloc();
+@
+
+
+1.13
+log
+@No help here.
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d3 8
+d20 249
+a268 428
+HEADER  header;         /* header from .seq file */
+IDX   last_node;        /* */
+NODE   *node_buf=NULL;         /* array containing all NODEs */
+LEAF_DES *leaf_des_buf;     /* array containing all LEAF_DESs */
+LEAF  Leaf;           /* leaf currently in memory */
+int   Leaf_dirty;       /* has Leaf been modified? */
+int   seq_fd;         /* fd of .seq file */
+long *merge(), *get_dir_ptrs();
+
+/***********************************************************************
+* convert a string to lower case
+***********************************************************************/
+char *to_low_str(char *string)
+{
+  register char *s;
+
+  for (s = string; *s; s++)
+    if (*s >= 'A' && *s <= 'A')
+      *s += 'a' - 'A';
+  return (string);
+}
+
+/***********************************************************************
+* initialize; open and read in the header of the .seq (leaf) file
+***********************************************************************/
+void bintree_init(char *filename)
+{
+  char  buf[100];
+
+  sprintf(buf, "%s.seq", filename);
+
+  if ((seq_fd = open(buf, 2)) < 0)
+  {
+    sprintf(buf, "Cannot open \"%s.seq\" in init()", filename);
+    perror(buf);
+    cleanup();
+  }
+  get_tree_head();
+}
+
+/***********************************************************************
+* cleanup; close the .seq file
+***********************************************************************/
+void close_tree(void)
+{
+  close(seq_fd);
+}
+
+/***********************************************************************
+* read the header from the .seq file
+***********************************************************************/
+void get_tree_head(void)
+{
+  if (lseek(seq_fd, 0L, 0) < 0)
+  {
+    perror("lseek() to file header failed in init()");
+    cleanup();
+  }
+  if (read(seq_fd, (char *) &header, HEADSIZE) != HEADSIZE)
+  {
+    perror("Read() of file header failed in init()");
+    cleanup();
+  }
+}
+
+/***********************************************************************
+* make sure that the given leaf contains the leaf numbered num
+***********************************************************************/
+void read_leaf(IDX num,LEAF *leaf)
+{
+  long  offset;
+
+  if (&Leaf == leaf)          /* are we filling Leaf? */
+  {
+    if (Leaf.leaf_no == num)    /* is the right leaf already there? */
+    {
+      return;
+    }
+    flush_leaf();       /* write Leaf out if it's dirty */
+  }
+  offset = NODE_OFFSET(num);  /* turn index into disk address */
+  if (lseek(seq_fd, NODE_OFFSET(num), 0) < 0)
+  {
+    fprintf(stderr, "lseek() failed in read_leaf():seq_fd=%d,num=%d\n", seq_fd, num);
+    cleanup();
+  }
+  if (read(seq_fd, (char *) leaf, BSIZE) != BSIZE)
+  {
+    fprintf(stderr, "Read() failed in read_leaf()\n");
+    fprintf(stderr, "Leaf index was %d, offset was %d\n", num, offset);
+    cleanup();
+  }
+}
+
+/***********************************************************************
+* write out Leaf IFF it is dirty
+***********************************************************************/
+void flush_leaf(void)
+{
+  if (Leaf_dirty)
+    write_leaf(&Leaf);
+  Leaf_dirty = 0;
+}
+
+/***********************************************************************
+* write out the given leaf
+***********************************************************************/
+void write_leaf(LEAF *leaf)
+{
+  if (lseek(seq_fd, NODE_OFFSET(leaf->leaf_no), 0) < 0)
+  {
+    perror("lseek() failed in write_leaf()");
+    cleanup();
+  }
+  if (write(seq_fd, (char *) leaf, BSIZE) != BSIZE)
+  {
+    perror("write() failed in write_leaf()");
+    cleanup();
+  }
+}
+
+/***********************************************************************
+* copy an ITEM.  Since an item is an IDX followed by a null-terminated
+* string, we first copy an IDX' worth, then copy until we find a null
+* or hit the ITEM size limit. Returns the number of bytes copied.
+***********************************************************************/
+int icopy(register char *dest,register char *src)
+{
+  register int i;
+
+  /*
+   * copy the first few bytes (the index)
+   */
+  for (i = 0; i < sizeof(IDX); i++)
+    *dest++ = *src++;
+
+  /*
+   * copy the string until NULL or size limit
+   */
+  while ((*dest++ = *src++) && (i < sizeof(ITEM)))
+    i++;
+  if (i >= sizeof(ITEM))
+  {
+    /* uh-oh */
+    fprintf(stderr, "icopy failed, item full\n");
+    cleanup();
+  }
+  return ++i;
+}
+
+/***********************************************************************
+* find the first leaf that might possibly contain the given key
+***********************************************************************/
+IDX start_point(char *key)
+{
+  IDX   idx;
+  char  simp_key[256], *ptr;
+
+  /* no node tree (.bdx), we have to start with the first leaf node */
+  if (!node_buf)
+    return header.seq_set;
+
+  /* get substring of the key which doesn't include any meta characters */
+  strcpy(simp_key, key);
+  if (ptr = index(simp_key, '*'))
+    *ptr = '\0';
+  if (ptr = index(simp_key, '?'))
+    *ptr = '\0';
+  if (ptr = index(simp_key, '['))
+    *ptr = '\0';
+
+  /* search NODEs: postitve ptrs go to more nodes, neg to leaves */
+  idx = header.index_root;  /* start at the top */
+  while (idx > 0)
+  {
+    if (strncmp(key, node_buf[idx].key, KEY_SIZE) <= 0)
+      idx = node_buf[idx].l_ptr;
+    else
+      idx = node_buf[idx].r_ptr;
+  }
+
+  /* something wrong if null ptr, but can still search whole seq set */
+  if (idx == 0)
+  {
+    IssueMessage(LOG_INFO, "Warning: index search led to a NULL leaf\n");
+    return header.seq_set;
+  }
+
+  return (-idx);
+}
+
+/***********************************************************************
+* find a key in the leaves (or a needle in a haystack...)
+* no metacharacters in key
+***********************************************************************/
+int search(char *key,LEAF *leaf,int *offset)
+{
+  IDX   cur_idx;
+  int   result;
+
+  cur_idx = start_point(key); /* use .bdx to find first possible leaf */
+  /*
+   * loop through leaf string
+   */
+  while (cur_idx)
+  {
+
+    read_leaf(cur_idx, leaf);     /* read it in */
+    *offset = 0;
+    /*
+     * loop through all the ITEMs in the leaf
+     */
+    while (*offset < leaf->n_bytes)
+    {
+      result = stricmp(&leaf->data[*offset + IDX_SIZE], key);
+      if (result < 0)
+      {
+	/* ITEM too small; next one will be bigger; try it */
+	*offset += sizeof(IDX);
+	while (leaf->data[(*offset)++])
+	  ;
+      }
+      else if (result == 0)
+      {
+	return MATCH;   /* we found it! */
+      }
+      else
+      {
+	return NO_MATCH;    /* not here, but belongs here */
+      }
+    }
+    cur_idx = leaf->next;       /* on to the next leaf */
+  }
+  /*
+   * not found in whole leaf string; belongs on the end of the last leaf
+   * in the string
+   */
+  return NO_MATCH;
+}
+
+/***********************************************************************
+* ``remove'' the ITEM belonging to a string; actually just sets its
+* pointer to NULL to indicate that it's dead; does not actually delete
+* the string.
+* the appropriate leaf will be left in Leaf
+***********************************************************************/
+int delete(char *key)
+{
+  int   offset;   /* byte offset where found */
+  ITEM  item;     /* scratch item */
+
+  /* Find the key and null out its data */
+  if (search(key, &Leaf, &offset) == MATCH)
+  {
+    (void) icopy(item.raw, &Leaf.data[offset]);
+    item.i_num = 0;
+    (void) icopy(&Leaf.data[offset], item.raw);
+    Leaf_dirty++;
+    return (1);
+  }
+  else
+  {
+    fprintf(stderr, "Error: delete of non_existent key (%s)\n", key);
+    return (0);
+  }
+}
+
+/***********************************************************************
+* add a key to the .seq file.  MUST not be there already.
+***********************************************************************/
+void insert(char *key,IDX data)
+{
+  ITEM  new_item;
+  int   offset, item_size, code;
+
+  /* Set leaf and offset to where this key belongs */
+  code = search(key, &Leaf, &offset);
+
+  /*
+   * if we found the string, it should be because we have deleted
+   * it before, and the data should be null.  In that case, all
+   * we have to do is set the data to what it should be
+   */
+  if (code == MATCH)
+  {
+    (void) icopy(new_item.raw, &Leaf.data[offset]);
+    if (new_item.i_num)
+      fprintf(stderr, "Error: \"%s\" already in tree\n", key);
+    else
+    {
+      new_item.i_num = data;
+      (void) icopy(&Leaf.data[offset], new_item.raw);
+      Leaf_dirty++;
+    }
+    return;
+  }
+
+  /*
+   * key not in .seq file.  put it into an item to be put into a leaf
+   */
+  new_item.i_num = data;
+  strcpy(new_item.i_key, to_low_str(key));
+  item_size = strlen(key) + 1 + sizeof(IDX);
+
+  /*
+   * stick our pretty new ITEM into Leaf
+   */
+  if (item_size + Leaf.n_bytes <= DATA_SIZE)
+    /* we can just tack it onto the end */
+    simple_insert(&Leaf, offset, &new_item, item_size);
+  else
+    /* no room--split up the leaf and then insert the item */
+    expand(&Leaf, offset, &new_item);
+}
+
+/***********************************************************************
+* insert a new ITEM into a LEAF at the proper spot.  There is room in
+* the LEAF.
+***********************************************************************/
+void simple_insert(LEAF *leaf,int offset,ITEM *item,int item_size)
+{
+  register int src, dest;
+
+  /* move existing data over to allow room for new_item */
+  src = leaf->n_bytes - 1;
+  dest = src + item_size;
+  while (src >= offset)
+    leaf->data[dest--] = leaf->data[src--];
+
+  /* put in the new item && write out the leaf */
+  (void) icopy(&leaf->data[offset], item->raw);
+  leaf->n_bytes += item_size;
+  Leaf_dirty++;
+}
+
+/***********************************************************************
+* split a leaf in two and then insert the item into one of the halves
+***********************************************************************/
+void expand(LEAF *leaf,int offset,ITEM *item)
+{
+  LEAF  new_leaf;       /* room for the newly split leaf */
+  char  buf[2 * DATA_SIZE]; /* some space */
+  int   size, buf_size;
+  register int src, dest;
+
+  /* link in the new leaf */
+  new_leaf.leaf_no = allocate_leaf();
+  new_leaf.next = leaf->next;
+  leaf->next = new_leaf.leaf_no;
+
+  /* collect all the data into buf */
+  src = 0;
+  dest = 0;
+  while (src < offset)
+    buf[dest++] = leaf->data[src++];
+  dest += icopy(&buf[dest], item->raw);
+  while (src < leaf->n_bytes)
+    buf[dest++] = leaf->data[src++];
+  buf_size = dest;
+
+  /* put the first half of the data into original leaf */
+  for (src = 0, dest = 0; dest < DATA_SIZE / 2;)
+  {
+    src += icopy(&leaf->data[src], &buf[src]);
+    dest = src;
+  }
+  leaf->n_bytes = dest;
+  Leaf_dirty++;
+
+  /* put the second half of the data into the new leaf */
+  for (dest = 0; src < buf_size;)
+  {
+    size = icopy(&new_leaf.data[dest], &buf[src]);
+    src += size;
+    dest += size;
+  }
+  new_leaf.n_bytes = dest;
+
+  /* write the new leaf out, but let Leaf_dirty do the trick for Leaf */
+  write_leaf(&new_leaf);
+}
+
+/***********************************************************************
+* find all entries that match a string with metacharacters in it
+***********************************************************************/
+long *find_all(char *key)
+{
+  int   offset = 0;         /* offset in leaf */
+  ITEM  item;             /* space for an item */
+  char  lcase_key[256];       /* the key in lower case */
+  long *array = NULL;    /* our result */
+
+  /*
+   * make a lower-case copy of the string
+   */
+  strcpy(lcase_key, key);
+  to_low_str(lcase_key);
+
+  /*
+   * find the first leaf that might contain the key, and read it in
+   */
+  read_leaf(start_point(lcase_key), &Leaf);
+  for (;;)
+  {
+    if (offset >= Leaf.n_bytes)   /* out of data in this leaf? */
+    {
+      /* on to the next leaf, if there is one */
+      if (Leaf.next)
+      {
+	read_leaf(Leaf.next, &Leaf);
+	offset = 0;
+      }
+      else
+	break;      /* all done */
+    }
+    /*
+     * grab the next ITEM
+     */
+    offset += icopy(item.raw, &Leaf.data[offset]);
+
+    /*
+     * compare
+     */
+    switch (pmatch(item.i_key, lcase_key))
+    {
+      case MATCH:
+      if (item.i_num)
+      {
+d270 2
+a271 3
+	 * we found a match, and the item has not been deleted.
+	 * add the entries pointed to by the .idx file entry
+	 * pointed to by i_num to our current list
+d273 346
+a618 133
+	array = merge(array, get_dir_ptrs(item.i_num));
+      }
+      break;
+      case NO_MATCH:
+      return array;         /* all done */
+      case CONTINUE:
+      break;
+    }
+  }
+  return array;
+}
+
+/***********************************************************************
+* Write out the current file header and close. 
+***********************************************************************/
+void put_tree_head(void)
+{
+
+  if (lseek(seq_fd, 0L, 0) < 0)
+  {
+    perror("Lseek() failed in put_tree_head()");
+  }
+  if ((write(seq_fd, (char *) &header, HEADSIZE)) != HEADSIZE)
+  {
+    perror("Write() failed in put_tree_head()");
+  }
+  flush_leaf();
+  close(seq_fd);
+}
+
+/***********************************************************************
+* add a leaf on the end of the .seq file.  The actual adding to the file
+* will happen when the leaf is written
+***********************************************************************/
+IDX allocate_leaf(void)
+{
+  return (++header.last_leaf);
+}
+
+/***********************************************************************
+* read the entire .bdx (node) file into node_buf
+***********************************************************************/
+void read_index(char *filename)
+{
+  FILE   *fp;
+  int   n_read, n_items;
+  char  buf[100];
+
+  sprintf(buf, "%s.bdx", filename);
+
+  if (node_buf)
+  {
+    free(node_buf);
+    node_buf = NULL;
+  }
+  node_buf = (NODE *) malloc((unsigned)(2 * header.last_leaf * NODE_SIZE));
+  if ((fp = fopen(buf, "r")) == NULL)
+  {
+    perror("fopen() failed in read_index(): ");
+    cleanup();
+  }
+  (void) fseek(fp, 0L, 2);
+  n_items = ftell(fp) / NODE_SIZE;
+  rewind(fp);
+  n_read = fread((char *) node_buf, NODE_SIZE, n_items, fp);
+  if (n_read != n_items)
+  {
+    fprintf(stderr, "fread() failed in read_index(), asked %d got %d\n",
+	n_items, n_read);
+    cleanup();
+  }
+  (void) fclose(fp);
+}
+
+
+/*
+ * Merge together 2 array of long.  The inputs are assumed to be 
+ * already sorted and null terminted.  Each input array is assumed not to 
+ * contain dupes, although the same number may occur in both inputs.  The 
+ * output has dups elided. 
+ */
+long *merge(long *ary1,long *ary2)
+{
+  long *out, *orig_1, *orig_2;
+  register int i = 0;
+  unsigned size = 0;
+  char *realloc();
+
+  /* Check for null inputs, note that output may be null */
+  if (ary1 == NULL)
+    return ary2;
+  if (ary2 == NULL)
+    return ary1;
+
+  /* Save inputs for later freeing, allocate space for output */
+  orig_1 = ary1;
+  orig_2 = ary2;
+  out = (long *) malloc(INCR(size));
+
+  /* put min ele from either input onto output til one input exhausted */
+  while (*ary1 && *ary2)
+  {
+    if (i >= size - 2)
+      out = (long *) realloc((char *) out, INCR(size));
+    if (*ary1 < *ary2)
+      out[i++] = *ary1++;
+    else
+      out[i++] = *ary2++;
+    if (*ary1 == out[i - 1])
+      ary1++;
+  }
+
+  /* move whatever is left of ary1 to output */
+  while (*ary1)
+  {
+    if (i >= size - 2)
+      out = (long *) realloc((char *) out, INCR(size));
+    out[i++] = *ary1++;
+  }
+
+  /* move whatever is left of ary2 to output */
+  while (*ary2)
+  {
+    if (i >= size - 2)
+      out = (long *) realloc((char *) out, INCR(size));
+    out[i++] = *ary2++;
+  }
+
+  /* null terminate output, and free inputs */
+  out[i] = 0;
+  free((char *) orig_1);
+  free((char *) orig_2);
+  return out;
+@
+
+
+1.12
+log
+@No help here.
+@
+text
+@d1 1
+d32 1
+a32 3
+char   *
+to_low_str(string)
+char   *string;
+d45 1
+a45 2
+bintree_init(filename)
+char   *filename;
+d63 1
+a63 1
+close_tree()
+d71 1
+a71 1
+get_tree_head()
+d88 1
+a88 3
+read_leaf(num, leaf)
+IDX   num;      /* the goal leaf number */
+LEAF   *leaf;       /* storage for the leaf */
+d117 1
+a117 1
+flush_leaf()
+d127 1
+a127 2
+write_leaf(leaf)
+LEAF   *leaf;
+d146 1
+a146 3
+icopy(dest, src)
+register char *dest;  /* where it goes */
+register char *src;   /* whence it comes */
+d173 1
+a173 3
+IDX
+start_point(key)
+char   *key;      /* the string we're looking for */
+d215 1
+a215 4
+search(key, leaf, offset)
+char   *key;      /* the string we're searching for */
+LEAF   *leaf;       /* the leaf where it belongs */
+int  *offset;     /* the byte offset in the leaf where it belongs */
+d266 1
+a266 2
+delete(key)
+char   *key;  /* the string we're looking for */
+d275 1
+a275 1
+    item.i_num = NULL;
+d290 1
+a290 3
+insert(key, data)
+char   *key;      /* the string */
+IDX   data;       /* pointer to entry for key in .idx file */
+d339 1
+a339 5
+simple_insert(leaf, offset, item, item_size)
+LEAF   *leaf;       /* the leaf to put it in */
+int   offset;     /* position in leaf to put it */
+ITEM   *item;       /* the item */
+int   item_size;    /* how big it is */
+d358 1
+a358 4
+expand(leaf, offset, item)
+LEAF   *leaf;       /* the leaf in question */
+int   offset;     /* the position where it belongs */
+ITEM   *item;       /* the item */
+d405 1
+a405 3
+long *
+find_all(key)
+char   *key;  /* the meta-charactered string */
+d468 1
+a468 1
+put_tree_head()
+d487 1
+a487 2
+IDX
+allocate_leaf()
+d495 1
+a495 2
+read_index(filename)
+char   *filename;
+d534 1
+a534 3
+long *
+merge(ary1, ary2)
+register long *ary1, *ary2;
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d21 1
+a21 1
+NODE   *node_buf;         /* array containing all NODEs */
+d529 5
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d11 3
+a13 7
+#include "../Include/qi.h"
+#ifdef ULTRIX43LOG
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+#include "../Include/bintree.h"
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d11 1
+a11 1
+#include "../include/qi.h"
+d17 1
+a17 1
+#include "../include/bintree.h"
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d217 1
+a217 1
+    syslog(LOG_INFO, "Warning: index search led to a NULL leaf\n");
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d8 2
+a9 1
+#ifdef ultrix
+d18 1
+a18 1
+#define INCR(x) ((unsigned)((x+=GRANULE)*sizeof(unsigned long)))
+d20 8
+a27 8
+HEADER  header;			/* header from .seq file */
+IDX     last_node;		/* */
+NODE   *node_buf;		/* array containing all NODEs */
+LEAF_DES *leaf_des_buf;		/* array containing all LEAF_DESs */
+LEAF    Leaf;			/* leaf currently in memory */
+int     Leaf_dirty;		/* has Leaf been modified? */
+int     seq_fd;			/* fd of .seq file */
+unsigned long * merge(), *get_dir_ptrs();
+d33 1
+a33 1
+to_lower(string)
+d36 1
+a36 1
+    register char *s;
+d38 4
+a41 4
+    for (s = string; *s; s++)
+	if (*s >= 'A' && *s <= 'A')
+	    *s += 'a' - 'A';
+    return (string);
+d50 1
+a50 1
+    char    buf[100];
+d52 1
+a52 1
+    sprintf(buf, "%s.seq", filename);
+d54 7
+a60 7
+    if ((seq_fd = open(buf, 2)) < 0)
+    {
+	sprintf(buf, "Cannot open \"%s.seq\" in init()", filename);
+	perror(buf);
+	cleanup();
+    }
+    get_tree_head();
+d68 1
+a68 1
+    close(seq_fd);
+d76 10
+a85 10
+    if (lseek(seq_fd, 0L, 0) < 0)
+    {
+	perror("lseek() to file header failed in init()");
+	cleanup();
+    }
+    if (read(seq_fd, (char *) &header, HEADSIZE) != HEADSIZE)
+    {
+	perror("Read() of file header failed in init()");
+	cleanup();
+    }
+d92 2
+a93 2
+IDX     num;		/* the goal leaf number */
+LEAF   *leaf;		/* storage for the leaf */
+d95 1
+a95 1
+    long    offset;
+d97 3
+a99 1
+    if (&Leaf == leaf)			/* are we filling Leaf? */
+d101 1
+a101 5
+	if (Leaf.leaf_no == num)	/* is the right leaf already there? */
+	{
+	    return;
+	}
+	flush_leaf();		/* write Leaf out if it's dirty */
+d103 14
+a116 12
+    offset = NODE_OFFSET(num);	/* turn index into disk address */
+    if (lseek(seq_fd, NODE_OFFSET(num), 0) < 0)
+    {
+	fprintf(stderr, "lseek() failed in read_leaf():seq_fd=%d,num=%d\n", seq_fd, num);
+	cleanup();
+    }
+    if (read(seq_fd, (char *) leaf, BSIZE) != BSIZE)
+    {
+	fprintf(stderr, "Read() failed in read_leaf()\n");
+	fprintf(stderr, "Leaf index was %d, offset was %d\n", num, offset);
+	cleanup();
+    }
+d124 3
+a126 3
+    if (Leaf_dirty)
+	write_leaf(&Leaf);
+    Leaf_dirty = 0;
+d135 10
+a144 10
+    if (lseek(seq_fd, NODE_OFFSET(leaf->leaf_no), 0) < 0)
+    {
+	perror("lseek() failed in write_leaf()");
+	cleanup();
+    }
+    if (write(seq_fd, (char *) leaf, BSIZE) != BSIZE)
+    {
+	perror("write() failed in write_leaf()");
+	cleanup();
+    }
+d153 2
+a154 2
+register char *dest;	/* where it goes */
+register char *src;	/* whence it comes */
+d156 1
+a156 1
+    register int i;
+d158 5
+a162 5
+    /*
+     * copy the first few bytes (the index)
+     */
+    for (i = 0; i < sizeof(IDX); i++)
+	*dest++ = *src++;
+d164 12
+a175 12
+    /*
+     * copy the string until NULL or size limit
+     */
+    while ((*dest++ = *src++) && (i < sizeof(ITEM)))
+	i++;
+    if (i >= sizeof(ITEM))
+    {
+	/* uh-oh */
+	fprintf(stderr, "icopy failed, item full\n");
+	cleanup();
+    }
+    return ++i;
+d183 1
+a183 1
+char   *key;		/* the string we're looking for */
+d185 2
+a186 2
+    IDX     idx;
+    char    simp_key[256], *ptr;
+d188 3
+a190 3
+    /* no node tree (.bdx), we have to start with the first leaf node */
+    if (!node_buf)
+	return header.seq_set;
+d192 8
+a199 8
+    /* get substring of the key which doesn't include any meta characters */
+    strcpy(simp_key, key);
+    if (ptr = index(simp_key, '*'))
+	*ptr = '\0';
+    if (ptr = index(simp_key, '?'))
+	*ptr = '\0';
+    if (ptr = index(simp_key, '['))
+	*ptr = '\0';
+d201 9
+a209 9
+    /* search NODEs: postitve ptrs go to more nodes, neg to leaves */
+    idx = header.index_root;	/* start at the top */
+    while (idx > 0)
+    {
+	if (strncmp(key, node_buf[idx].key, KEY_SIZE) <= 0)
+	    idx = node_buf[idx].l_ptr;
+	else
+	    idx = node_buf[idx].r_ptr;
+    }
+d211 6
+a216 6
+    /* something wrong if null ptr, but can still search whole seq set */
+    if (idx == 0)
+    {
+	syslog(LOG_INFO, "Warning: index search led to a NULL leaf\n");
+	return header.seq_set;
+    }
+d218 1
+a218 1
+    return (-idx);
+d226 3
+a228 3
+char   *key;		/* the string we're searching for */
+LEAF   *leaf;		/* the leaf where it belongs */
+int    *offset;		/* the byte offset in the leaf where it belongs */
+d230 2
+a231 2
+    IDX     cur_idx;
+    int     result;
+d233 9
+a241 1
+    cur_idx = start_point(key);	/* use .bdx to find first possible leaf */
+d243 1
+a243 1
+     * loop through leaf string
+d245 1
+a245 1
+    while (cur_idx)
+d247 16
+a262 26
+
+	read_leaf(cur_idx, leaf);	/* read it in */
+	*offset = 0;
+	/*
+	 * loop through all the ITEMs in the leaf
+	 */
+	while (*offset < leaf->n_bytes)
+	{
+	    result = stricmp(&leaf->data[*offset + IDX_SIZE], key);
+	    if (result < 0)
+	    {
+		/* ITEM too small; next one will be bigger; try it */
+		*offset += sizeof(IDX);
+		while (leaf->data[(*offset)++])
+		    ;
+	    }
+	    else if (result == 0)
+	    {
+		return MATCH;	/* we found it! */
+	    }
+	    else
+	    {
+		return NO_MATCH;	/* not here, but belongs here */
+	    }
+	}
+	cur_idx = leaf->next;		/* on to the next leaf */
+d264 7
+a270 5
+    /*
+     * not found in whole leaf string; belongs on the end of the last leaf
+     * in the string
+     */
+    return NO_MATCH;
+d280 1
+a280 1
+char   *key;	/* the string we're looking for */
+d282 2
+a283 2
+    int     offset;	/* byte offset where found */
+    ITEM    item;	/* scratch item */
+d285 14
+a298 14
+    /* Find the key and null out its data */
+    if (search(key, &Leaf, &offset) == MATCH)
+    {
+	(void) icopy(item.raw, &Leaf.data[offset]);
+	item.i_num = NULL;
+	(void) icopy(&Leaf.data[offset], item.raw);
+	Leaf_dirty++;
+	return (1);
+    }
+    else
+    {
+	fprintf(stderr, "Error: delete of non_existent key (%s)\n", key);
+	return (0);
+    }
+d305 2
+a306 2
+char   *key;		/* the string */
+IDX     data;		/* pointer to entry for key in .idx file */
+d308 2
+a309 2
+    ITEM    new_item;
+    int     offset, item_size, code;
+d311 2
+a312 2
+    /* Set leaf and offset to where this key belongs */
+    code = search(key, &Leaf, &offset);
+d314 11
+a324 6
+    /*
+     * if we found the string, it should be because we have deleted
+     * it before, and the data should be null.  In that case, all
+     * we have to do is set the data to what it should be
+     */
+    if (code == MATCH)
+d326 3
+a328 10
+	(void) icopy(new_item.raw, &Leaf.data[offset]);
+	if (new_item.i_num)
+	    fprintf(stderr, "Error: \"%s\" already in tree\n", key);
+	else
+	{
+	    new_item.i_num = data;
+	    (void) icopy(&Leaf.data[offset], new_item.raw);
+	    Leaf_dirty++;
+	}
+	return;
+d330 2
+d333 6
+a338 6
+    /*
+     * key not in .seq file.  put it into an item to be put into a leaf
+     */
+    new_item.i_num = data;
+    strcpy(new_item.i_key, to_lower(key));
+    item_size = strlen(key) + 1 + sizeof(IDX);
+d340 9
+a348 9
+    /*
+     * stick our pretty new ITEM into Leaf
+     */
+    if (item_size + Leaf.n_bytes <= DATA_SIZE)
+	/* we can just tack it onto the end */
+	simple_insert(&Leaf, offset, &new_item, item_size);
+    else
+	/* no room--split up the leaf and then insert the item */
+	expand(&Leaf, offset, &new_item);
+d356 4
+a359 4
+LEAF   *leaf;		/* the leaf to put it in */
+int     offset;		/* position in leaf to put it */
+ITEM   *item;		/* the item */
+int     item_size;	/* how big it is */
+d361 1
+a361 1
+    register int src, dest;
+d363 5
+a367 5
+    /* move existing data over to allow room for new_item */
+    src = leaf->n_bytes - 1;
+    dest = src + item_size;
+    while (src >= offset)
+	leaf->data[dest--] = leaf->data[src--];
+d369 4
+a372 4
+    /* put in the new item && write out the leaf */
+    (void) icopy(&leaf->data[offset], item->raw);
+    leaf->n_bytes += item_size;
+    Leaf_dirty++;
+d379 3
+a381 3
+LEAF   *leaf;		/* the leaf in question */
+int     offset;		/* the position where it belongs */
+ITEM   *item;		/* the item */
+d383 4
+a386 4
+    LEAF    new_leaf;		/* room for the newly split leaf */
+    char    buf[2 * DATA_SIZE];	/* some space */
+    int     size, buf_size;
+    register int src, dest;
+d388 4
+a391 4
+    /* link in the new leaf */
+    new_leaf.leaf_no = allocate_leaf();
+    new_leaf.next = leaf->next;
+    leaf->next = new_leaf.leaf_no;
+d393 9
+a401 9
+    /* collect all the data into buf */
+    src = 0;
+    dest = 0;
+    while (src < offset)
+	buf[dest++] = leaf->data[src++];
+    dest += icopy(&buf[dest], item->raw);
+    while (src < leaf->n_bytes)
+	buf[dest++] = leaf->data[src++];
+    buf_size = dest;
+d403 8
+a410 8
+    /* put the first half of the data into original leaf */
+    for (src = 0, dest = 0; dest < DATA_SIZE / 2;)
+    {
+	src += icopy(&leaf->data[src], &buf[src]);
+	dest = src;
+    }
+    leaf->n_bytes = dest;
+    Leaf_dirty++;
+d412 8
+a419 8
+    /* put the second half of the data into the new leaf */
+    for (dest = 0; src < buf_size;)
+    {
+	size = icopy(&new_leaf.data[dest], &buf[src]);
+	src += size;
+	dest += size;
+    }
+    new_leaf.n_bytes = dest;
+d421 2
+a422 2
+    /* write the new leaf out, but let Leaf_dirty do the trick for Leaf */
+    write_leaf(&new_leaf);
+d428 1
+a428 1
+unsigned long *
+d430 1
+a430 1
+char   *key;	/* the meta-charactered string */
+d432 4
+a435 4
+    int     offset = 0;			/* offset in leaf */
+    ITEM    item;			/* space for an item */
+    char    lcase_key[256];		/* the key in lower case */
+    unsigned long *array = NULL;	/* our result */
+d437 23
+d461 1
+a461 1
+     * make a lower-case copy of the string
+d463 1
+a463 2
+    strcpy(lcase_key, key);
+    to_lower(lcase_key);
+d466 1
+a466 1
+     * find the first leaf that might contain the key, and read it in
+d468 1
+a468 2
+    read_leaf(start_point(lcase_key), &Leaf);
+    for (;;)
+d470 3
+a472 11
+	if (offset >= Leaf.n_bytes)	/* out of data in this leaf? */
+	{
+	    /* on to the next leaf, if there is one */
+	    if (Leaf.next)
+	    {
+		read_leaf(Leaf.next, &Leaf);
+		offset = 0;
+	    }
+	    else
+		break;		/* all done */
+	}
+d474 3
+a476 1
+	 * grab the next ITEM
+d478 7
+a484 23
+	offset += icopy(item.raw, &Leaf.data[offset]);
+
+	/*
+	 * compare
+	 */
+	switch (pmatch(item.i_key, lcase_key))
+	{
+	  case MATCH:
+	    if (item.i_num)
+	    {
+		/*
+		 * we found a match, and the item has not been deleted.
+		 * add the entries pointed to by the .idx file entry
+		 * pointed to by i_num to our current list
+		 */
+		array = merge(array, get_dir_ptrs(item.i_num));
+	    }
+	    break;
+	  case NO_MATCH:
+	    return array;		/* all done */
+	  case CONTINUE:
+	    break;
+	}
+d486 2
+a487 1
+    return array;
+d496 10
+a505 10
+    if (lseek(seq_fd, 0L, 0) < 0)
+    {
+	perror("Lseek() failed in put_tree_head()");
+    }
+    if ((write(seq_fd, (char *) &header, HEADSIZE)) != HEADSIZE)
+    {
+	perror("Write() failed in put_tree_head()");
+    }
+    flush_leaf();
+    close(seq_fd);
+d515 1
+a515 1
+    return (++header.last_leaf);
+d524 3
+a526 3
+    FILE   *fp;
+    int     n_read, n_items;
+    char    buf[100];
+d528 1
+a528 1
+    sprintf(buf, "%s.bdx", filename);
+d530 17
+a546 17
+    node_buf = (NODE *) malloc((unsigned)(2 * header.last_leaf * NODE_SIZE));
+    if ((fp = fopen(buf, "r")) == NULL)
+    {
+	perror("fopen() failed in read_index(): ");
+	cleanup();
+    }
+    (void) fseek(fp, 0L, 2);
+    n_items = ftell(fp) / NODE_SIZE;
+    rewind(fp);
+    n_read = fread((char *) node_buf, NODE_SIZE, n_items, fp);
+    if (n_read != n_items)
+    {
+	fprintf(stderr, "fread() failed in read_index(), asked %d got %d\n",
+		n_items, n_read);
+	cleanup();
+    }
+    (void) fclose(fp);
+d551 3
+a553 3
+ * * Merge together 2 array of unsigned long.  The inputs are assumed to be *
+ * already sorted and null terminted.  Each input array is assumed not to *
+ * contain dupes, although the same number may occur in both inputs.  The *
+d556 1
+a556 1
+unsigned long *
+d558 1
+a558 1
+register unsigned long *ary1, *ary2;
+d560 4
+a563 4
+    unsigned long *out, *orig_1, *orig_2;
+    register int i = 0;
+    unsigned size = 0;
+    char *realloc();
+d565 5
+a569 5
+    /* Check for null inputs, note that output may be null */
+    if (ary1 == NULL)
+	return ary2;
+    if (ary2 == NULL)
+	return ary1;
+d571 4
+a574 4
+    /* Save inputs for later freeing, allocate space for output */
+    orig_1 = ary1;
+    orig_2 = ary2;
+    out = (unsigned long *) malloc(INCR(size));
+d576 12
+a587 12
+    /* put min ele from either input onto output til one input exhausted */
+    while (*ary1 && *ary2)
+    {
+	if (i >= size - 2)
+	    out = (unsigned long *) realloc((char *) out, INCR(size));
+	if (*ary1 < *ary2)
+	    out[i++] = *ary1++;
+	else
+	    out[i++] = *ary2++;
+	if (*ary1 == out[i - 1])
+	    ary1++;
+    }
+d589 7
+a595 7
+    /* move whatever is left of ary1 to output */
+    while (*ary1)
+    {
+	if (i >= size - 2)
+	    out = (unsigned long *) realloc((char *) out, INCR(size));
+	out[i++] = *ary1++;
+    }
+d597 7
+a603 7
+    /* move whatever is left of ary2 to output */
+    while (*ary2)
+    {
+	if (i >= size - 2)
+	    out = (unsigned long *) realloc((char *) out, INCR(size));
+	out[i++] = *ary2++;
+    }
+d605 5
+a609 5
+    /* null terminate output, and free inputs */
+    out[i] = 0;
+    free((char *) orig_1);
+    free((char *) orig_2);
+    return out;
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d13 1
+a13 1
+#include "bintree.h"
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d2 3
+d6 1
+a206 1
+#ifndef ultrix
+a207 1
+#endif
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d203 1
+d205 1
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d9 8
+a16 9
+HEADER  header;
+IDX     last_node;
+NODE   *node_buf;
+LEAF_DES *leaf_des_buf;
+LEAF    Leaf;
+int     Leaf_dirty;
+int     seq_fd;
+unsigned long *
+merge(), *get_dir_ptrs();
+d18 3
+d33 3
+d52 3
+d60 3
+d77 3
+d81 2
+a82 2
+IDX     num;
+LEAF   *leaf;
+d86 1
+a86 1
+    if (&Leaf == leaf)
+d88 1
+a88 1
+	if (Leaf.leaf_no == num)
+d92 1
+a92 5
+	if (Leaf_dirty)
+	{
+	    write_leaf(&Leaf);
+	}
+	Leaf_dirty = 0;
+d94 1
+a94 1
+    offset = NODE_OFFSET(num);
+d108 3
+d118 3
+d136 5
+d142 2
+a143 2
+register char *dest;
+register char *src;
+d147 3
+d152 4
+d160 1
+d167 3
+d172 1
+a172 1
+char   *key;
+d177 1
+a177 1
+    /* no index, we have to start with the first leaf node */
+d190 2
+a191 2
+    /* search index - postitve ptrs go to interior nodes, neg to leaves */
+    idx = header.index_root;
+d207 1
+a207 1
+    return -idx;
+d210 4
+d215 3
+a217 3
+char   *key;
+LEAF   *leaf;
+int    *offset;
+d222 4
+a225 1
+    cur_idx = start_point(key);
+d229 1
+a229 1
+	read_leaf(cur_idx, leaf);
+d231 3
+d239 1
+d244 1
+a244 2
+	    else
+	    if (result == 0)
+d246 1
+a246 1
+		return MATCH;
+d250 1
+a250 1
+		return NO_MATCH;
+d253 1
+a253 1
+	cur_idx = leaf->next;
+d255 4
+d262 6
+d269 1
+a269 1
+char   *key;
+d271 2
+a272 2
+    int     offset;
+    ITEM    item;
+d290 3
+d294 2
+a295 2
+char   *key;
+IDX     data;
+d303 5
+a307 1
+    /* Should have null data if already there, just put in the new data */
+d322 3
+a324 1
+    /* package up the new item */
+d329 3
+a331 1
+    /* insert it */
+d333 1
+d336 1
+d340 4
+d345 4
+a348 4
+LEAF   *leaf;
+int     offset;
+ITEM   *item;
+int     item_size;
+d358 1
+a358 1
+    /* put in the new item write out the leaf */
+d364 3
+d368 3
+a370 3
+LEAF   *leaf;
+int     offset;
+ITEM   *item;
+d372 2
+a373 2
+    LEAF    new_leaf;
+    char    buf[2 * DATA_SIZE];
+d409 2
+d414 3
+a416 1
+
+d419 1
+a419 1
+char   *key;
+d421 4
+a424 4
+    int     offset = 0;
+    ITEM    item;
+    char    lcase_key[256];
+    unsigned long *array = NULL;
+d426 3
+d432 3
+d438 1
+a438 1
+	if (offset >= Leaf.n_bytes)
+d440 1
+d447 1
+a447 1
+		break;
+d449 3
+d453 4
+d462 5
+d471 1
+a471 1
+	    return array;
+d479 3
+a481 3
+/*
+ * * Write out the current file header and close. 
+ */
+d497 4
+d507 3
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d2 1
+d171 1
+a171 1
+	fprintf(stderr, "Warning: index search led to a NULL leaf\n");
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+a6 1
+#define INCR(x) ((x+=GRANULE)*sizeof(unsigned long))
+d8 3
+a10 3
+HEADER header;
+IDX last_node;
+NODE *node_buf;
+d12 3
+a14 3
+LEAF Leaf;
+int Leaf_dirty;
+int seq_fd;
+d18 1
+a18 1
+char *
+d20 1
+a20 1
+char *string;
+d31 1
+a31 1
+char *filename;
+d33 1
+a33 1
+    char buf[100];
+d41 1
+a41 1
+	cleanup(1);
+d56 1
+a56 1
+	cleanup(1);
+d61 1
+a61 1
+	cleanup(1);
+d66 2
+a67 2
+IDX num;
+LEAF *leaf;
+d69 1
+a69 1
+    long offset;
+d87 1
+a87 1
+	cleanup(1);
+d93 1
+a93 1
+	cleanup(1);
+d105 1
+a105 1
+LEAF *leaf;
+d110 1
+a110 1
+	cleanup(1);
+d115 1
+a115 1
+	cleanup(1);
+d132 1
+a132 1
+	cleanup(1);
+d139 1
+a139 1
+char *key;
+d141 2
+a142 2
+    IDX idx;
+    char simp_key[256], *ptr;
+d178 3
+a180 3
+char *key;
+LEAF *leaf;
+int *offset;
+d182 2
+a183 2
+    IDX cur_idx;
+    int result;
+d216 1
+a216 1
+char *key;
+d218 2
+a219 2
+    int offset;
+    ITEM item;
+d238 2
+a239 2
+char *key;
+IDX data;
+d241 2
+a242 2
+    ITEM new_item;
+    int offset, item_size, code;
+d275 4
+a278 4
+LEAF *leaf;
+int offset;
+ITEM *item;
+int item_size;
+d295 3
+a297 3
+LEAF *leaf;
+int offset;
+ITEM *item;
+d299 3
+a301 3
+    LEAF new_leaf;
+    char buf[2 * DATA_SIZE];
+    int size, buf_size;
+d342 1
+a342 1
+char *key;
+d344 3
+a346 3
+    int offset = 0;
+    ITEM item;
+    char lcase_key[256];
+d367 1
+a367 1
+    {
+d378 1
+a379 1
+    }
+d384 2
+a385 2
+** Write out the current file header and close.
+*/
+d408 1
+a408 1
+char *filename;
+d410 3
+a412 3
+    FILE *fp;
+    int n_read, n_items;
+    char buf[100];
+d416 1
+a416 1
+    node_buf = (NODE *) malloc((unsigned) 2 * header.last_leaf * NODE_SIZE);
+d420 1
+a420 1
+	cleanup(1);
+d430 1
+a430 1
+	cleanup(1);
+d437 5
+a441 5
+** Merge together 2 array of unsigned long.  The inputs are assumed to be
+** already sorted and null terminted.  Each input array is assumed not to
+** contain dupes, although the same number may occur in both inputs.  The
+** output has dups elided.
+*/
+d449 1
+@

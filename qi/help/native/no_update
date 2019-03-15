@@ -1,0 +1,48 @@
+SUMMARY
+The "no_update" field controls whether or not your Nameserver entry is
+overwritten with data held by the Office of Payroll (for faculty and
+staff) or the the Office of Admissions and Records (for students).
+
+By default, the update process that occurs once a year for faculty/staff
+and four times a year for students overwrites the contents of certain
+fields in the ph database with information provided by the two
+above-named offices.  If you have customized your ph entry and do not
+want your modifications to be overwritten during an update, use the
+"make" or "edit" command to enter some text into the "no_update" field
+of your ph entry.  The presence of any data in the "no_update" field
+will prevent all but the "name" and "curriculum" fields from being
+updated (the latter two fields are always updated and are, in any case,
+not changeable by the owner of the entry).
+
+EXAMPLES
+To change your "no_update" field, you must first login to the Nameserver
+(see help on "login").  Then, to prevent your ph entry from being updated
+automatically, use one of the following commands:
+
+   make no_update="yes"
+
+or
+
+   edit no_update   (You will be placed in the default text
+                    editor, usually vi on Unix systems.  Insert
+                    any text into the empty file and save the
+                    file.)
+
+If your "no_update" field contains data, and you wish to remove it in
+order to permit the periodic update of your ph entry, use one of the
+following commands:
+
+   make no_update=""
+
+or
+
+   edit no_update   (You will be placed in the default text
+                    editor, usually vi on Unix systems.  Delete
+                    all text in the file and save your changes.)
+
+Note: The methods described above for modifying your "no_update" field
+apply specifically to the Unix ph client and may or may not work with
+the ph client you use.  The "edit" command works with most clients that
+have been modelled on the Unix client.
+
+SEE ALSO: edit, make, policy, update, fields, vi

@@ -1,0 +1,60 @@
+THE UNIVERSITY OF ILLINOIS AT URBANA-CHAMPAIGN
+The UIUC ph server is installed on a VAXserver 3500 running Ultrix 3.0.
+Its fully-qualified domain name is "garcon.cso.uiuc.edu" (also aliased
+as "ns.uiuc.edu").  The Nameserver database contains information on some
+70,000 students, faculty, and staff. It also contains the phone numbers,
+personnel, and addresses of major UI departments; information on
+restaurants in the C-U area; up-to-date weather information; US telephone
+area codes; and the current UIUC class timetable.
+
+OTHER SITES
+Many other universities have adopted the ph program to maintain their
+own student/staff directory and e-mail routing information.  Several ph
+clients are capable of querying these remote ph Nameservers for name,
+phone number, address, and e-mail address information.  To see a current
+list of ph servers and associated sites, do a Nameserver lookup on
+"ns-servers".  For example:
+
+   ph ns-servers
+
+The list of ph sites and servers at the time of this writing was:
+
+Site                                        Ph Server
+----------                                  ---------
+U of Illinois at Urbana-Champaign           ns.uiuc.edu
+Northwestern University                     ns.nwu.edu
+Eastern Illinois University                 ux1.cts.eiu.edu
+Princeton University                        princeton.edu
+Texas A&M University                        ns.tamu.edu
+University of Arizona                       ns.arizona.edu
+University of Chicago                       prism.uchicago.edu
+University of Florida                       ns.eng.ufl.edu
+University of Laval, Quebec, Canada         ns.gel.ulaval.ca
+University of Minnesota                     ns.acs.umn.edu
+University of Utah                          ph.cc.utah.edu
+University of Waterloo, Ontario, Canada     ns.waterloo.edu
+University of Wisconsin at Madison          wisc.edu
+University of Iowa                          ns.uiowa.edu
+Roskilde Universitetscenter                 ns.ruc.dk
+Notre Dame University                       ns.nd.edu
+Brown University                            ns.brown.edu
+
+To query another server using the Unix ph client (and clients similar
+to it), get to the operating system prompt and use the syntax:
+
+   ph -s server.name query
+
+For example, to get ph information for a "John Smith" at Princeton
+University, one would type the command:
+
+   ph -s princeton.edu john smith
+
+The query will be directed to the ph server specified after the "-s"
+option (Princeton University, in the above example), instead of the
+local ph server, and all matching entries will be displayed.
+
+Note: Not all ph clients are able to query remote servers, and the method
+of doing so varies from client to client.
+
+SEE ALSO: areacodes, campus_units, people, restaurants, timetable,
+weather, query, clients, type

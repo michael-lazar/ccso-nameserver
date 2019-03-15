@@ -1,0 +1,1058 @@
+=====installation=====
+.lg 0
+.wh 0 hh
+.de hh
+.sp 97p
+..
+.wh -73p ff
+.de ff
+.bp
+..
+'vs 32
+'ad c
+'in 0p
+'ll 468p
+'ta 18p 468pR
+\fB\s18The CSO Nameserver
+.br
+Guide to Installation
+.br
+\fB\s13December 22, 1988
+.br
+.sp
+'vs 16
+'ad c
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fI\s10by Steven Dorner
+.br
+Computing Services Office
+.br
+University of Illinois at Urbana\-Champaign
+.br
+.sp
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 37p 469pR
+\fB\s10Introduction
+.br
+\fR\s10	This document provides instructions, general and specific, for installing the programs that make up CSO Nameserver.  To decide if you want to install the CSO Nameserver at all, I suggest you read \fI\s10The CSO Nameserver, A Description\fR\s10.  For detailed information on the inner workings of the Nameserver, you should read \fI\s10The CSO Nameserver, A Programmer's Guide\fR\s10.  If you follow the procedures in this document, you will end up with the right programs in the right places; you will not yet have a functioning system.  You must first come up with data, and form that data into a valid Nameserver database.  For an example procedure to build a Nameserver database, \fI\s10Rebuilding a Nameserver Database, In 24 Easy Steps\fR\s10 should be perused.  Your procedure is likely to differ from ours, since you will undoubtedly have your data in a form unlike our own.
+.br
+\&	\fB\s10Do read \f(BI\s10\o'_a'\o'_l'\o'_l'\fB\s10 of this document before beginning your installation.
+.br
+.sp
+Prerequisites
+.br
+\fR\s10	The system you choose to run the server portion of the Nameserver should meet the following requirements:
+.br
+\&	\fB\s101.	BSD UNIX or equivalent.\fR\s10  The server portion of the Nameserver has been run on a 4.3bsd system and an Ultrix 2.2 system.  4.3bsd is the preferred system.
+.br
+\&	\fB\s102.	The 4.3bsd syslog facility.\fR\s10  If you are not using a 4.3bsd system, you will either have to port the 4.3 syslog to your system (we have done this for ourselves in order to run the Nameserver on an Ultrix VAX), or change the calls to syslog within the Nameserver.
+.br
+\&	\fB\s103.	Disk space.\fR\s10  We use about 40 megabytes to hold our database (60,000 persons).  The Nameserver could be tuned to be somewhat less wasteful of space, if you care to do so.  In any case, you will need at least twice the disk space the database will eventually occupy in order to conveniently create the database.
+.br
+\&	\fB\s104.	Processor.\fR\s10  The running database causes minimal system load.  Building a database takes quite a few cycles, however; five hours on a fast super\-mini the last time we built our database.  Fortunately, this need only be done when mass quantities of entries are to be added.
+.br
+\&	The client software can be run without modification on bsd UNIX systems, HP\-UX, or VAX/VMS.
+.br
+.sp
+\fB\s10Overview
+.br
+\fR\s10	The CSO Nameserver is a relatively straightforward program to install.  There are four major pieces; the server program itself (qi), the client program (ph), database utilities (a set of programs used to build, dump, and otherwise manipulate the database), and statistics programs (that help make sense of the voluminous logs produced by the Nameserver).
+.br
+\&	The basic plan for installation is:
+.br
+\&	\fB\s101.	Create a userid for the Nameserver, and become that user.
+.br
+\&	2.	Untar the files.
+.br
+\fR\s10	\fB\s103.	Edit the configure script.
+.br
+\&	4.	Run the configure script.
+.br
+\&	5.	Make any binary directories you mentioned in the configure script.
+.br
+\&	6.	Do a make install (as super\-user).
+.br
+\&	7.	Create a database.
+.br
+\&	8.	Put an ns entry in /etc/services.
+.br
+\&	9.	Teach /etc/syslog.conf about qi, and kick syslogd.
+.br
+\&	10.	Teach /etc/inetd.conf about qi, and kick inetd.
+.br
+\&	11.	Install the client software on any other system(s) you wish.
+.br
+\fR\s10	The rest of this document will deal with each step in detail.
+.br
+.sp
+\fB\s10Creating A Userid For The Nameserver
+.br
+\fR\s10	If you have a 4.3bsd system, you should create a userid for use by the Nameserver.  \fB\s10This userid should have sole access\fR\s10 to the Nameserver database and the utility and server programs.  If you have a 4.2 bsd system, it is sufficient that the super\-user have access to the database and related files (although it will do no harm to have a Nameserver userid that owns the Nameserver files).  The distinction is made because the 4.3bsd inetd networking daemon allows a userid to be specified for the programs it runs; the 4.2bsd inetd runs its programs as the super\-user.
+.br
+\&	If you create a Nameserver userid, you should become that userid for most of the installation process.
+.br
+.sp
+\fB\s10Untar The Files
+.br
+\fR\s10	The Nameserver is normally distributed as a compressed tar archive.  The command:
+.br
+uncompress \-c <ph.tar.Z | tar xvf \-
+.br
+will uncompress and extract the files from ph.tar.Z, which can then be removed.  The following directories and files will appear in your current working directory:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 432p
+'ta 18p 415pR
+'ti -18p
+Makefile
+.br
+'ti -18p
+\&	The top\-level makefile for the Nameserver.  This makefile mostly runs make in the various subdirectories.
+.br
+'ti -18p
+configure
+.br
+'ti -18p
+\&	This script is used to configure the Nameserver to run on your system.  This is done by editting the various Makefiles and installing proper definitions in them.  The configure script edits only some variable lines at the top of each Makefile, and qi/conf.c; it does not touch any other source code or the bodies of the Makefiles.
+.br
+'ti -18p
+lintlint
+.br
+'ti -18p
+\&	This file contains sed commands to delete unwanted complaints from lint output.
+.br
+'ti -18p
+doc
+.br
+'ti -18p
+\&	This directory contains various documents pertaining to the Nameserver.
+.br
+'ti -18p
+include
+.br
+'ti -18p
+\&	The Nameserver's #include files go here.
+.br
+'ti -18p
+lib
+.br
+'ti -18p
+\&	A few ubiquitous library functions.
+.br
+'ti -18p
+ph
+.br
+'ti -18p
+\&	The client program.
+.br
+'ti -18p
+qi
+.br
+'ti -18p
+\&	The server program.
+.br
+'ti -18p
+stats
+.br
+'ti -18p
+\&	Programs for dealing with the Nameserver log.
+.br
+'ti -18p
+util
+.br
+'ti -18p
+\&	Miscellaneous other goodies.  Thes programs build and dump the Nameserver database, as well as do other nifty little things.
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 37p 469pR
+See Appendix A for an explanation of each file in the subdirectories.
+.br
+.sp
+\fB\s10The configure Script
+.br
+\fR\s10	The configure script will aid you in localizing the Nameserver for your site.  It does this in two ways; it edits the various Makefiles, inserting proper values for variables defining such things as C compiler flags, special #defines, etc.; it also edits qi/conf.c, a C source file that gives the locations of various important files (such as the Nameserver database).
+.br
+\&	The configure script consists of three parts; the prologue, which you should edit; the code to change Makefiles; and the code to edit conf.c.  The prologue itself is in two parts; the first part, that sets variables for Makefiles; and the second part, that sets file names for qi/conf.c.
+.br
+\&	In editing the prologue, bear in mind that the c\-shell (csh) is going to be executing configure; be sure to protect things from the shell.  Also bear in mind that sed is going to be run;  you may have to experiment with the placement of quotes and escapes to get the results you want.  Never fear, however; you can't break anything with configure that can't be easily repaired with configure.
+.br
+\fB\s13	\fR\s10Here are the variables in the prologue of config, along with example settings,  explanations of what they mean, and what you can do with them:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 432p
+'ta 18p 415pR
+'ti -18p
+set mainbin=/usr/local/bin
+.br
+'ti -18p
+\&	This is a directory where ph will be placed.  It should be in the search path of users.
+.br
+'ti -18p
+set utilbin=/nameserv/bin
+.br
+'ti -18p
+\&	This is a directory where the other binaries will be placed.  Woe is the system that lets the casual user execute these.
+.br
+'ti -18p
+set otherlib=
+.br
+'ti -18p
+\&	If there is a library that shoudl be appended to loader runs, put it here.  We use it to see that qi gets the 4.3 version of syslog(3) on our Ultrix system.
+.br
+'ti -18p
+set otherlint=
+.br
+'ti -18p
+\&	If you give this a value, you can help lint when dealing with the library you gave for otherlib.  This assumes you have a built a lint library for otherlib.
+.br
+'ti -18p
+set cc=/bin/cc
+.br
+'ti -18p
+\&	Your favorite C compiler.
+.br
+'ti -18p
+set lint="/usr/bin/lint \-u"
+.br
+'ti -18p
+\&	How you care to invoke lint.
+.br
+'ti -18p
+set ci='ci \-q \-l \-m"No help here."'
+.br
+'ti -18p
+\&	This will be invoked when you do a ``make rcs'' in any directory.  It will be given a list of files that probably need to have their revisions controlled.
+.br
+'ti -18p
+set defs=(LOG_QILOG=LOG_LOCAL0)
+.br
+'ti -18p
+\&	You can #define anything you want here.  If you give more than one word, put the words in parentheses, per shell syntax.  You should define LOG_QILOG to be the proper syslog facility number.
+.br
+'ti -18p
+set depend=\-M
+.br
+'ti -18p
+\&	This should be the flag that cc should be given to generate a dependency list.  On most UNIX systems it is ``\-M''.  Ultrix requires ``\-Em'' (don't look at me...).
+.br
+'ti -18p
+set host='\\\\"garcon.cso.uiuc.edu\\\\"'
+.br
+'ti -18p
+\&	The host that the server program (qi) runs on.  This is used only by the client, ph.  (Note the ``tricky'' use of quotes and escapes; the end result is a constant string in ph.c.)
+.br
+'ti -18p
+set fallbackaddr=0x80ae053a
+.br
+'ti -18p
+\&	The address of the aforementioned host, in case it can't be found in host table or domain system.
+.br
+'ti -18p
+set nsservice='\\\\"ns\\\\"'
+.br
+'ti -18p
+\&	The name of the UNIX service that is the CSO Nameserver.
+.br
+'ti -18p
+set fallbackport=105
+.br
+'ti -18p
+\&	The port number to use if the aforementioned service is not found in /etc/services.
+.br
+'ti -18p
+set admin='\\\\"dorner@garcon.cso.uiuc.edu\\\\"'
+.br
+'ti -18p
+\&	The CSO Nameserver adminstrator.
+.br
+'ti -18p
+set passw='\\\\"nameserv@uxg.cso.uiuc.edu\\\\"'
+.br
+'ti -18p
+\&	The person who gives out CSO Nameserver passwords.
+.br
+'ti -18p
+set lockfile=/nameserv/db/LockFile
+.br
+'ti -18p
+\&	The lock file for the main database.  This file \fB\s10must\fR\s10 exist for qi to run.
+.br
+'ti -18p
+set tempfile=/tmp/qiXXXXXX
+.br
+'ti -18p
+\&	Template for mktemp(3).
+.br
+'ti -18p
+set fieldconfig=/nameserv/db/prod.cnf
+.br
+'ti -18p
+\&	The file that describes the tagged fields used by the database.
+.br
+'ti -18p
+set database=/nameserv/db/prod
+.br
+'ti -18p
+\&	The prefix for the main database files.  The six suffices are .dir, .dov, .idx, .iov, .seq and .bdx.
+.br
+'ti -18p
+set idlock=/nameserv/db/Id.Lock
+.br
+'ti -18p
+\&	The lock file for the id database.  This file need only be present when the ssnid program is run.
+.br
+'ti -18p
+set idfile=/nameserv/db/IdDB
+.br
+'ti -18p
+\&	The prefix for the id database files.  The two suffices are .pag and .dir.  This database need only be present when the ssnid program is run.
+.br
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 37p 469pR
+\&	Running configure will install these definitions in the various Makefiles and qi/conf.c.  While it is running, configure will write on the standard output the name of the directory it is working on.  If there are any errors running configure, simply edit configure to fix the error, and run it again; it is not desctructive, nor is there any cleanup that has to be done after a partial run.  You may wish to set the echo flag (x) in the first line of configure to help you find errors.
+.br
+.sp
+\fB\s10Running Make
+.br
+\fR\s10	Before discussing the actual installation of the Nameserver, let me digress into a discussion of the top\-level (and the subdirectory) Makefiles.  They provide several standardized targets, in addition to the targets particular to each directory.  For the most part, running make at the top level will simply make the specified target in all the subdirectories; exceptions are noted below.  The standard targets are:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 432p
+'ta 18p 415pR
+'ti -18p
+all
+.br
+'ti -18p
+\&	Everything that needs to be compiled and loaded.  This is always the first target in the Makefile, so that a simple ``make'' has the same effect as a ``make all''.  Note that this does \fB\s10not\fR\s10 install the programs in their proper directories; it only compiles and loads them.
+.br
+'ti -18p
+install
+.br
+'ti -18p
+\&	Installs the programs in their proper binary directories.  This target has ``all'' as a dependency, so it will compile if necessary.
+.br
+'ti -18p
+clean
+.br
+'ti -18p
+\&	This removes everything but the source.  Object files, binary libraries, backup copies of Makefiles, compiled (but not installed) programs, etc.  Do a ``make clean'' to save some disk space when you do not plan to be doing development on the Nameserver for a while.
+.br
+'ti -18p
+depend
+.br
+'ti -18p
+\&	This will add #include file dependencies to the Makefiles.
+.br
+'ti -18p
+rcs
+.br
+'ti -18p
+\&	This performs a checkin of all files that look like they have been changed since the last recorded checkin was done.
+.br
+'ti -18p
+lint
+.br
+'ti -18p
+\&	Runs lint on all the programs, and leaves the output in the file LINT in the subdirectories.  The Nameserver is not well\-liked by lint, but I do make sure that there are no serious errors in it.  Lint's complaints about the Nameserver are just nits that do no real harm.  If you care to cast every occurrence of NULL to the proper pointer type, you may be my guest...  In the top\-level directory, running make lint will first run lint in all the subdirectories, then cat the LINT files together and run them through the sed script lintlint, which removes a lot of lint's unnecessary messages, and leaves the result in the file LINT in the top level directory.
+.br
+'ti -18p
+tape
+.br
+'ti -18p
+\&	First cleans the directory, then makes a tar archive out of the Nameserver.  This target is present in the top\-lev el Makefile only.
+.br
+'ti -18p
+print
+.br
+'ti -18p
+\&	Prints the Nameserver source.  Be sure you have the Makefile variable PRINTER set to a program that knows how to print its standard input.  Top\-level Makefile only.
+.br
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 37p 469pR
+\&	Running ``make install'' will compile, load, and copy into the binary directories all the programs that make up the Nameserver.  It does not \fB\s10create\fR\s10 the directories, however; be sure you have done so before you run make install.
+.br
+.sp
+\fB\s10Create A Database
+.br
+\fR\s10	This is the step for which I can give you the least help.  Read the document \fI\s10Rebuilding a Nameserver Database In 24 Easy Steps\fR\s10 to see how I do it here at the University of Illinois.  You will probably be able to modify the procedures and programs used in our process to fit your own data and data formats.
+.br
+.sp
+\fB\s10Put An ns Entry In /etc/services
+.br
+\fR\s10	The CSO Nameserver uses the same service name and port number (``ns'' and 105) as the CSNET Name Server.  The /etc/services entry should be:
+.br
+\&	\fR\s8ns              105/tcp         ns              # CSO  nameserver
+.br
+\fR\s10This /etc/services entry should be present on the server machine as well as on any machine that will run the client program, ph.
+.br
+.sp
+\fB\s10Teach /etc/syslog.conf About qi
+.br
+\fR\s10	As part of editing configure, you should have arrived at a choice for the syslog facility to be used for the Nameserver.  Enter the facility and a log file for it in your /etc/syslogd.conf:
+.br
+\fR\s8	local0.warning;local0.info;local0.debug                 /nameserv/log
+.br
+\fR\s10The Nameserver uses the INFO level for most messages; it uses WARN for errors that need prompt attention.
+.br
+\&	You should now send an HUP signal to syslogd to make it reread its configuration file.
+.br
+\fB\s10Teach /etc/inetd.conf About qi
+.br
+\fR\s10	The server program, qi, is written to read from and write to standard input.  It relies on the network daemon inetd to listen for, make, and pass connections to it.  Therefore, you must enter the Nameserver in inetd's configuration table, /etc/inetd.conf.  On a 4.3bsd system, you would have:
+.br
+\&	\fR\s8shell   stream  tcp     nowait  nameserv  /nameserv/bin/qi  qi \-d
+.br
+\fR\s10On a 4.2bsd system, you should say:
+.br
+\&	\fR\s8ns      stream  tcp     nowait  /nameserv/bin/qi        qi \-d
+.br
+\fR\s10Since there is a bug in some versions of 4.3bsd inetd, be sure to put the Nameserver entry before the first \fI\s10internal\fR\s10 service in /etc/inetd.conf on a 4.3bsd system.	You should now send an HUP signal to inetd to make it reread its configuration file.
+.br
+.sp
+\fB\s10Install the Client
+.br
+\fR\s10	The ph subdirectory may be copied to whatever machine you wish; a make install (and the proper entry in /etc/services) will suffice to make it run on the target system.  Note that ph requires no privilege at all, so no special userid is needed on a system that will run the client only.
+.br
+.ff
+'vs 16
+'ad c
+'in 0p
+'ll 468p
+'ta 19p 37p 469pR
+\fB\s13Appendix A\(emNameserver Files
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+.sp
+'vs 16
+'ad c
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+.sp
+\fB\s10
+'ti -18p
+Figure 1. Directory Organization
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+\fR\s10
+'ti -18p
+doc:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 468p
+'ta 17p -35p 415pR
+'ti -17p
+Installation.macbin
+.br
+'ti -17p
+\&	This WriteNow for the Macintosh document.
+.br
+'ti -17p
+Introduction.macbin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document that provides a tutorial introduction to the client program, ph.
+.br
+'ti -17p
+Description.wn.Bin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document that gives an overview of the CSO Nameserver.
+.br
+'ti -17p
+Installation.wn.Bin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document which explains the Nameserver distribution and how to install the Nameserver.
+.br
+'ti -17p
+Introduction.wn.Bin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document providing a tutorial for end users. 
+.br
+'ti -17p
+Programmer.wn.Bin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document giving further guidance to the benighted Nameserver programmer.
+.br
+'ti -17p
+Protocol.wn.Bin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document describing the protocol used by the CSO Nameserver.
+.br
+'ti -17p
+Rebuild.wn.Bin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document describing how we rebuild our Nameserver database each semester.
+.br
+'ti -17p
+Why.wn.Bin
+.br
+'ti -17p
+\&	A WriteNow for the Macintosh document that explains the design process we used for our Nameserver.
+.br
+'ti -17p
+Description.rtf
+.br
+'ti -17p
+Installation.rtf
+.br
+'ti -17p
+Introduction.rtf
+.br
+'ti -17p
+Programmer.rtf
+.br
+'ti -17p
+Protocol.rtf
+.br
+'ti -17p
+Rebuild.rtf
+.br
+'ti -17p
+Why.rtf
+.br
+'ti -17p
+\&	These documents are Rich Text Format versions of their namesakes.
+.br
+'ti -17p
+ph.1
+.br
+'ti -17p
+\&	The ph manual page, ready for the man macros.
+.br
+'ti -17p
+qi.8
+.br
+'ti -17p
+\&	The qi manual page, ready for the man macros.
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+'ti -18p
+include:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 468p
+'ta 17p -35p 415pR
+'ti -17p
+Makefile
+.br
+'ti -17p
+\&	This Makefile doesn't shake the earth, since it's in an include file directory, but it does know how to use rcs...
+.br
+'ti -17p
+RCS
+.br
+'ti -17p
+\&	RCS'ed versions of the include files live here.
+.br
+'ti -17p
+bintree.h
+.br
+'ti -17p
+\&	Include file for programs using metacharacter\-ful searches, or building the index required for such things.
+.br
+'ti -17p
+commands.h
+.br
+'ti -17p
+\&	Include file used by qi for definitions required when writing functions which implement Nameserver protocol commands.
+.br
+'ti -17p
+db.h
+.br
+'ti -17p
+\&	Include file for dealing with the Nameserver database and index.
+.br
+'ti -17p
+field.h
+.br
+'ti -17p
+\&	Include file for handling tagged fields.
+.br
+'ti -17p
+ll.h
+.br
+'ti -17p
+\&	Include file for linked lists (used only by a statistics program).
+.br
+'ti -17p
+options.h
+.br
+'ti -17p
+\&	Nameserver options defined.
+.br
+'ti -17p
+qi.h
+.br
+'ti -17p
+\&	General definitions for the server portion of the Nameserver.
+.br
+'ti -17p
+replies.h
+.br
+'ti -17p
+\&	Nameserver reply codes.
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+'ti -18p
+lib:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 468p
+'ta 17p -35p 415pR
+'ti -17p
+Makefile
+.br
+'ti -17p
+\&	Need I say more?
+.br
+'ti -17p
+RCS
+.br
+'ti -17p
+\&	This directory has an obvious function.
+.br
+'ti -17p
+anyof.c
+.br
+'ti -17p
+\&	Contains a function that decides if any of the characters from one string appear in another string.
+.br
+'ti -17p
+pmatch.c
+.br
+'ti -17p
+\&	Contains functions that do globbing\-style pattern matching.
+.br
+'ti -17p
+str.c
+.br
+'ti -17p
+\&	Various interesting and boring string functions.
+.br
+'ti -17p
+strbuild.c
+.br
+'ti -17p
+\&	Functions for building unlimited\-length strings.
+.br
+'ti -17p
+util.c
+.br
+'ti -17p
+\&	Miscellaneous useful stuff.
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+'ti -18p
+ph:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 468p
+'ta 17p -35p 415pR
+'ti -17p
+Makefile
+.br
+'ti -17p
+RCS
+.br
+'ti -17p
+cryptit.c
+.br
+'ti -17p
+\&	{En,de}crypting code.
+.br
+'ti -17p
+ph.c
+.br
+'ti -17p
+\&	The definitive Nameserver client.
+.br
+'ti -17p
+replies.h
+.br
+'ti -17p
+\&	Nameserver reply codes, reprised for the benefit of systems other than the server system.
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+'ti -18p
+qi:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 468p
+'ta 17p -35p 415pR
+'ti -17p
+Makefile
+.br
+'ti -17p
+RCS
+.br
+'ti -17p
+add.c
+.br
+'ti -17p
+\&	The Nameserver ``add'' command is implemented here.
+.br
+'ti -17p
+auth.c
+.br
+'ti -17p
+\&	User authorization functions.
+.br
+'ti -17p
+bintree.c
+.br
+'ti -17p
+\&	Functions to deal with the tree index to the Nameserver database's hash table index.
+.br
+'ti -17p
+change.c
+.br
+'ti -17p
+\&	Functions implementing the Nameserver ``change'' command.
+.br
+'ti -17p
+commands.c
+.br
+'ti -17p
+\&	The top level of the Nameserver command interpreter, and miscellaneous trivial commands.
+.br
+'ti -17p
+conf.c
+.br
+'ti -17p
+\&	The locations of database and other files.
+.br
+'ti -17p
+cryptit.c
+.br
+'ti -17p
+\&	{En,de}crypting code.
+.br
+'ti -17p
+dbd.c
+.br
+'ti -17p
+\&	Functions that handle the database proper.
+.br
+'ti -17p
+dbi.c
+.br
+'ti -17p
+\&	Functions that handle the hash table index to the database.
+.br
+'ti -17p
+dbm.c
+.br
+'ti -17p
+\&	This file contains functions that deal with the database \fI\s10in toto\fR\s10; index and data.
+.br
+'ti -17p
+field.c
+.br
+'ti -17p
+\&	If you want to deal with tagged fields, come here first.
+.br
+'ti -17p
+language.l
+.br
+'ti -17p
+\&	Parser for the Nameserver protocol.  Lex this.
+.br
+'ti -17p
+lock.c
+.br
+'ti -17p
+\&	Controls advisory locks on the database.
+.br
+'ti -17p
+lookup.c
+.br
+'ti -17p
+\&	Give the functions in this file a list of index entries, and they'll give you the entries that are implied.
+.br
+'ti -17p
+phoneme.c
+.br
+'ti -17p
+\&	Some phonetic code that isn't too impressive for the Nameserver's purposes, and is currently unused.
+.br
+'ti -17p
+qi.c
+.br
+'ti -17p
+\&	The server's main lives here, along with other minor details.
+.br
+'ti -17p
+query.c
+.br
+'ti -17p
+\&	This file implements the Nameserver query command, including validation and post\-index matching.
+.br
+'ti -17p
+rules.c
+.br
+'ti -17p
+\&	More defunct phonetic code.
+.br
+'ti -17p
+set.c
+.br
+'ti -17p
+\&	If you want to set an option, you'll wind up in this file.
+.br
+'ti -17p
+version.c
+.br
+'ti -17p
+\&	Check this in if you want the Nameserver's version number to change.
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+'ti -18p
+stats:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 468p
+'ta 17p -35p 415pR
+'ti -17p
+Makefile
+.br
+'ti -17p
+RCS
+.br
+'ti -17p
+follow.c
+.br
+'ti -17p
+\&	This program reads the Nameserver log, and ``follows'' any Nameserver session that matches the given pattern.
+.br
+'ti -17p
+hour.awk
+.br
+'ti -17p
+\&	Awk script that figures out when people use the Nameserver, from the Nameserver log.
+.br
+'ti -17p
+ll.c
+.br
+'ti -17p
+\&	Linked list handling functions (used by follow.c).
+.br
+'ti -17p
+phstats
+.br
+'ti -17p
+\&	Performs reductions on the Nameserver log, and gives statistics on what hosts use the Nameserver, how many times they use it, when the Nameserver is used, and what the command mix is.
+.br
+'ti -17p
+qicmds.awk
+.br
+'ti -17p
+\&	Awk script that tallies commands from the Nameserver log.
+.br
+'ti -17p
+qiuse.awk
+.br
+'ti -17p
+\&	Awk script that preprocesses the Nameserver log for qiuse.
+.br
+'ti -17p
+qiuse.c
+.br
+'ti -17p
+\&	Program that figures out the names of hosts that use the Nameserver.
+.br
+.sp
+'vs 16
+'ad b
+'in 36p
+'ll 468p
+'ta 18p -18p 0p 17p 432pR
+'ti -18p
+util:
+.br
+'vs 16
+'ad b
+'in 53p
+'ll 468p
+'ta 17p -35p 415pR
+'ti -17p
+Makefile
+.br
+'ti -17p
+RCS
+.br
+'ti -17p
+alias.awk
+.br
+'ti -17p
+\&	Awk script that assigns Nameserver alia to those who have none.
+.br
+'ti -17p
+aliasprepare.c
+.br
+'ti -17p
+\&	Prepares a Nameserver database dump for alias.awk.
+.br
+'ti -17p
+border.c
+.br
+'ti -17p
+\&	Reverses byte order in a Nameserver database; used to move a database from a normal machine to a VAX.
+.br
+'ti -17p
+build.c
+.br
+'ti -17p
+\&	Builds the bintree index to the Nameserver database.
+.br
+'ti -17p
+credb.c
+.br
+'ti -17p
+\&	Creates a new, empty, Nameserver database.
+.br
+'ti -17p
+emailp
+.br
+'ti -17p
+\&	Processes the output qi produces when given a massaged /etc/passwd file.
+.br
+'ti -17p
+f.pb.c
+.br
+'ti -17p
+\&	Program that interprets the University of Illinois staff data tape.
+.br
+'ti -17p
+id.c
+.br
+'ti -17p
+\&	Functions that deal with the dbm(3) database of University Id's.
+.br
+'ti -17p
+maked.c
+.br
+'ti -17p
+\&	Program that makes a .dir file (Nameserver database) out of an ascii data file.
+.br
+'ti -17p
+makei.c
+.br
+'ti -17p
+\&	Functions for the initial creation of the Nameserver hash table index.
+.br
+'ti -17p
+maket.c
+.br
+'ti -17p
+\&	Functions that aid build in making the bintree index to the hash table.
+.br
+'ti -17p
+mdump.c
+.br
+'ti -17p
+\&	Program that dumps the Nameserver database in ascii form onto standard output.
+.br
+'ti -17p
+s.pb.c
+.br
+'ti -17p
+\&	Program that deals with the University of Illinois student data tape.
+.br
+'ti -17p
+ssnid.c
+.br
+'ti -17p
+\&	Program that uses id.c to assign random id's to Nameserver entries.
+.br
+'ti -17p
+stastu.c
+.br
+'ti -17p
+\&	Program that merges the staff and student ascii data files.
+.br
+'ti -17p
+tmerge.c
+.br
+'ti -17p
+\&	Program that merges a database dump with new data.
+.br
+.sp

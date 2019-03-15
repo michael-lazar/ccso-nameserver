@@ -1,0 +1,42 @@
+SHELL = /bin/sh
+
+######################################################################
+# variables set by Configure
+######################################################################
+CC	= _CC_
+CFLAGS	= _Cflags_
+LFLAGS	= _Lflags_
+######################################################################
+# other variables
+######################################################################
+SRCS	= whoi.c
+OBJS	= whoi.o
+BINS	= whoi
+
+all:$(BINS)
+######################################################################
+# specific targets
+######################################################################
+whoi	:_Para_ $(OBJS) _NsLib_
+	$(CC) $(CFLAGS) -o $@ $(OBJS) _NsLib_ _MoreLib_
+	chmod 770 $@
+
+######################################################################
+# standard targets
+######################################################################
+install:_Para_ $(BINS)
+	-mkdir _PhExecDir_
+	for b in $? ; do \
+	  _SrcDir_/bin/install.sh -m _Mode_ -o _Owner_ -g  _Group_ $$b _PhExecDir_; done
+	touch install
+
+rcs:	$(SRCS)
+	_Ci_ $?
+	touch rcs
+
+clean:
+	rm -f $(BINS) $(OBJS) libqi.a tags install
+
+depend: 
+	perl -i -e 'while(<>){print;if (/^# DO NOT DELETE/) {last;}}' Makefile
+	$(CC) _Depend_ $(CFLAGS) $(SRCS) >> Makefile

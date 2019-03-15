@@ -1,0 +1,5 @@
+You did not specify an Indexed field in the query part of your command.
+Each and every Nameserver query (or "change", "add", or "delete" command)
+must use at least one Indexed field (such as "name", "alias", "email",
+etc.) as part of its entry selection criteria.  To see a list of
+Nameserver fields and their attributes, use the "fields" command.

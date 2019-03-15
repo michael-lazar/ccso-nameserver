@@ -1,0 +1,769 @@
+head	1.15;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.15
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.03.10.23.44.45;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	93.12.23.09.57.02;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	92.07.27.21.33.25;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	92.07.27.21.27.10;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	90.12.18.08.41.49;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.07.19.10.19.07;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	89.07.05.20.17.16;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	89.03.20.15.15.05;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.12.02.14.45.49;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.11.15.13.35.45;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.19.08.12.05;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.12.11.28.22;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.15
+log
+@Added new copyright statement.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id$";
+#endif
+
+#include "protos.h"
+
+OPTION	OptionList[] =
+{
+	"echo", 0,	/* echo commands before execution */
+	"limit", 0,	/* limit the number of entries a command may affect */
+	"verbose", 0,	/* I don't remember */
+	"addonly", 0,	/* do not change fields that contain information */
+	"nolog", 0,	/* do not issue syslog information */
+	0, 0
+};
+
+static OPTION *FindOption __P((char *));
+static void SetOption __P((OPTION *, char *));
+
+/*
+ * do a set command
+ */
+void 
+DoSet(argp)
+	ARG *argp;
+{
+	OPTION	*option;
+	int	successes = 0;
+
+	argp = argp->aNext;
+	if (!argp)
+	{
+		/* list the current options */
+		for (option = OptionList; option->opName; option++)
+			DoReply(-LR_OK, "%s:%s", option->opName,
+			      option->opValue ? (*option->opValue ?
+				       option->opValue : "on") : "off");
+		DoReply(LR_OK, "Done.");
+	} else
+	{
+		for (; argp; argp = argp->aNext)
+		{
+			if (option = FindOption(argp->aFirst))
+			{
+				successes++;
+				if (argp->aType & VALUE2)
+					SetOption(option, argp->aSecond);
+				else if (argp->aType & EQUAL)
+					SetOption(option, "off");
+				else
+					SetOption(option, "on");
+			} else
+				DoReply(-LR_OPTION, "%s:unknown option", argp->aFirst);
+		}
+		if (successes)
+			DoReply(LR_OK, "Done.");
+		else
+			DoReply(LR_OPTION, "No option recognized.");
+	}
+}
+
+/*
+ * find an option in the list
+ */
+static OPTION	*
+FindOption(name)
+	char *name;
+{
+	OPTION	*option;
+
+	for (option = OptionList; option->opName; option++)
+		if (!strcmp(option->opName, name))
+			return (option);
+
+	return (NULL);
+}
+
+/*
+ * set an option to a value
+ */
+static void 
+SetOption(option, value)
+	OPTION *option;
+	char *value;
+{
+	if (option->opValue)
+		free(option->opValue);
+
+	if (!value || !strcmp(value, "off") || !(*value))
+	{
+		option->opValue = NULL;
+		if (OP_VALUE(VERBOSE_OP))
+			DoReply(LR_PROGRESS, "%s=off", option->opName);
+	} else if (!strcmp(value, "on"))
+	{
+		option->opValue = strdup("");
+		if (OP_VALUE(VERBOSE_OP))
+			DoReply(LR_PROGRESS, "%s=on", option->opName);
+	} else
+	{
+		option->opValue = strdup(value);
+		if (OP_VALUE(VERBOSE_OP))
+			DoReply(LR_PROGRESS, "%s=%s", option->opName, value);
+	}
+}
+
+/*
+ * initialize the options
+ */
+void 
+InitializeOptions()
+{
+	SetOption(&OptionList[LIMIT_OP], "2");
+}
+@
+
+
+1.14
+log
+@Added nolog option that will require subsequent permission checks.
+Needed now by weather updates.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.13
+log
+@Replaced make_str() with strdup().
+@
+text
+@d17 1
+@
+
+
+1.12
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@a88 2
+	char	*make_str();
+
+d99 1
+a99 1
+		option->opValue = make_str("");
+d104 1
+a104 1
+		option->opValue = make_str(value);
+@
+
+
+1.11
+log
+@Revised #include file list.
+@
+text
+@d20 3
+d68 1
+a68 1
+OPTION	*
+d84 1
+a84 1
+void 
+@
+
+
+1.10
+log
+@Re-formatted for clarity.
+@
+text
+@a10 4
+#include <stdio.h>
+#include "options.h"
+#include "commands.h"
+
+@
+
+
+1.9
+log
+@Last Dorner changes.
+@
+text
+@a1 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d3 8
+d15 1
+a15 1
+Option  OptionList[] =
+d17 5
+a21 5
+ "echo", 0,       /* echo commands before execution */
+ "limit", 0,      /* limit the number of entries a command may affect */
+ "verbose", 0,      /* I don't remember */
+ "addonly", 0,      /* do not change fields that contain information */
+ 0, 0
+d24 6
+a29 6
+Option *FindOption();
+
+/***********************************************************************
+* do a set command
+***********************************************************************/
+void DoSet(Arg *theArg)
+d31 2
+a32 2
+  Option *theOption;
+  int   successes = 0;
+d34 30
+a63 33
+  theArg = theArg->aNext;
+  if (!theArg)
+  {
+    /* list the current options */
+    for (theOption = OptionList; theOption->opName; theOption++)
+      DoReply(-LR_OK, "%s:%s", theOption->opName,
+	  theOption->opValue ? (*theOption->opValue ?
+		    theOption->opValue : "on") : "off");
+    DoReply(LR_OK, "Done.");
+  }
+  else
+  {
+    for (; theArg; theArg = theArg->aNext)
+    {
+      if (theOption = FindOption(theArg->aFirst))
+      {
+	successes++;
+	if (theArg->aType & VALUE2)
+	  SetOption(theOption, theArg->aSecond);
+	else
+	if (theArg->aType & EQUAL)
+	  SetOption(theOption, "off");
+	else
+	  SetOption(theOption, "on");
+      }
+      else
+	DoReply(-LR_OPTION, "%s:unknown option", theArg->aFirst);
+    }
+    if (successes)
+      DoReply(LR_OK, "Done.");
+    else
+      DoReply(LR_OPTION, "No option recognized.");
+  }
+d66 6
+a71 4
+/***********************************************************************
+* find an option in the list
+***********************************************************************/
+Option *FindOption(char *theName)
+d73 1
+a73 1
+  Option *theOption;
+d75 3
+a77 3
+  for (theOption = OptionList; theOption->opName; theOption++)
+    if (!strcmp(theOption->opName, theName))
+      return (theOption);
+d79 1
+a79 1
+  return (NULL);
+d82 7
+a88 4
+/***********************************************************************
+* set an option to a value
+***********************************************************************/
+void SetOption(Option *theOption,char *theValue)
+d90 1
+a90 1
+  char   *make_str();
+d92 2
+a93 2
+  if (theOption->opValue)
+    free(theOption->opValue);
+d95 16
+a110 18
+  if (!theValue || !strcmp(theValue, "off") || !(*theValue))
+  {
+    theOption->opValue = NULL;
+    if (OP_VALUE(VERBOSE_OP))
+      DoReply(LR_PROGRESS, "%s=off", theOption->opName);
+  }
+  else if (!strcmp(theValue, "on"))
+  {
+    theOption->opValue = make_str("");
+    if (OP_VALUE(VERBOSE_OP))
+      DoReply(LR_PROGRESS, "%s=on", theOption->opName);
+  }
+  else
+  {
+    theOption->opValue = make_str(theValue);
+    if (OP_VALUE(VERBOSE_OP))
+      DoReply(LR_PROGRESS, "%s=%s", theOption->opName, theValue);
+  }
+d113 5
+a117 4
+/***********************************************************************
+* initialize the options
+***********************************************************************/
+void InitializeOptions(void)
+d119 1
+a119 1
+  SetOption(&OptionList[LIMIT_OP], "2");
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d14 1
+a14 1
+Option  TheOptions[] =
+d37 1
+a37 1
+    for (theOption = TheOptions; theOption->opName; theOption++)
+d75 1
+a75 1
+  for (theOption = TheOptions; theOption->opName; theOption++)
+d117 1
+a117 1
+  SetOption(&TheOptions[LIMIT_OP], "2");
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d1 1
+d28 1
+a28 2
+DoSet(theArgs)
+Arg  *theArgs;
+d33 2
+a34 2
+  theArgs = theArgs->aNext;
+  if (!theArgs)
+d45 1
+a45 1
+    for (; theArgs; theArgs = theArgs->aNext)
+d47 1
+a47 1
+      if (theOption = FindOption(theArgs->aFirst))
+d50 2
+a51 2
+	if (theArgs->aType & VALUE2)
+	  SetOption(theOption, theArgs->aSecond);
+d53 1
+a53 1
+	if (theArgs->aType & EQUAL)
+d59 1
+a59 1
+	DoReply(-LR_OPTION, "%s:unknown option", theArgs->aFirst);
+d71 1
+a71 3
+Option *
+FindOption(theName)
+char   *theName;
+d85 1
+a85 3
+SetOption(theOption, theValue)
+Option *theOption;
+char   *theValue;
+d115 1
+a115 1
+InitializeOptions()
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d10 2
+a11 2
+#include "../Include/options.h"
+#include "../Include/commands.h"
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d10 2
+a11 2
+#include "../include/options.h"
+#include "../include/commands.h"
+d102 1
+a102 2
+  else
+  if (!strcmp(theOption->opValue, "on"))
+@
+
+
+1.4
+log
+@No help here.
+@
+text
+@d1 8
+a8 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+@
+
+
+1.3
+log
+@No help here.
+@
+text
+@d13 4
+a16 4
+ "echo", 0,		/* echo commands before execution */
+ "limit", 0,		/* limit the number of entries a command may affect */
+ "verbose", 0,		/* I don't remember */
+ "addonly", 0,		/* do not change fields that contain information */
+d26 1
+a26 1
+Arg    *theArgs;
+d28 2
+a29 2
+    Option *theOption;
+    int     successes = 0;
+d31 13
+a43 2
+    theArgs = theArgs->aNext;
+    if (!theArgs)
+d45 13
+a57 6
+	/* list the current options */
+	for (theOption = TheOptions; theOption->opName; theOption++)
+	    DoReply(-LR_OK, "%s:%s", theOption->opName,
+		    theOption->opValue ? (*theOption->opValue ?
+					theOption->opValue : "on") : "off");
+	DoReply(LR_OK, "Done.");
+d59 2
+d62 2
+a63 22
+    {
+	for (; theArgs; theArgs = theArgs->aNext)
+	{
+	    if (theOption = FindOption(theArgs->aFirst))
+	    {
+		successes++;
+		if (theArgs->aType & VALUE2)
+		    SetOption(theOption, theArgs->aSecond);
+		else
+		if (theArgs->aType & EQUAL)
+		    SetOption(theOption, "off");
+		else
+		    SetOption(theOption, "on");
+	    }
+	    else
+		DoReply(-LR_OPTION, "%s:unknown option", theArgs->aFirst);
+	}
+	if (successes)
+	    DoReply(LR_OK, "Done.");
+	else
+	    DoReply(LR_OPTION, "No option recognized.");
+    }
+d73 1
+a73 1
+    Option *theOption;
+d75 3
+a77 3
+    for (theOption = TheOptions; theOption->opName; theOption++)
+	if (!strcmp(theOption->opName, theName))
+	    return (theOption);
+d79 1
+a79 1
+    return (NULL);
+d89 1
+a89 1
+    char   *make_str();
+d91 2
+a92 2
+    if (theOption->opValue)
+	free(theOption->opValue);
+d94 19
+a112 19
+    if (!theValue || !strcmp(theValue, "off") || !(*theValue))
+    {
+	theOption->opValue = NULL;
+	if (OP_VALUE(VERBOSE_OP))
+	    DoReply(LR_PROGRESS, "%s=off", theOption->opName);
+    }
+    else
+    if (!strcmp(theOption->opValue, "on"))
+    {
+	theOption->opValue = make_str("");
+	if (OP_VALUE(VERBOSE_OP))
+	    DoReply(LR_PROGRESS, "%s=on", theOption->opName);
+    }
+    else
+    {
+	theOption->opValue = make_str(theValue);
+	if (OP_VALUE(VERBOSE_OP))
+	    DoReply(LR_PROGRESS, "%s=%s", theOption->opName, theValue);
+    }
+d120 1
+a120 1
+    SetOption(&TheOptions[LIMIT_OP], "2");
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d8 2
+a9 2
+#include "options.h"
+#include "commands.h"
+d13 4
+a16 3
+ "echo", 0,
+ "limit", 0,
+ "verbose", 0,
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 1
+a5 1
+Option TheOptions[]=
+d7 4
+a10 4
+    "echo",0,
+    "limit",0,
+    "verbose",0,
+    0,0
+d19 1
+a19 1
+Arg *theArgs;
+d22 1
+a22 1
+    int successes=0;
+d28 5
+a32 5
+	for (theOption=TheOptions;theOption->opName;theOption++)
+	    DoReply(-LR_OK,"%s:%s",theOption->opName,
+		theOption->opValue ? (*theOption->opValue ?
+		    theOption->opValue : "on") : "off");
+	DoReply(LR_OK,"Done.");
+d36 1
+a36 1
+	for (;theArgs;theArgs=theArgs->aNext)
+d42 1
+a42 3
+		    SetOption(theOption,theArgs->aSecond);
+		else if (theArgs->aType & EQUAL)
+		    SetOption(theOption,"off");
+d44 4
+a47 1
+		    SetOption(theOption,"on");
+d50 1
+a50 1
+		DoReply(-LR_OPTION,"%s:unknown option",theArgs->aFirst);
+d53 1
+a53 1
+	    DoReply(LR_OK,"Done.");
+d55 1
+a55 1
+	    DoReply(LR_OPTION,"No option recognized.");
+d64 1
+a64 1
+char *theName;
+d68 5
+a72 5
+    for (theOption=TheOptions;theOption->opName;theOption++)
+	if (!strcmp(theOption->opName,theName))
+	    return(theOption);
+    
+    return(NULL);
+d78 1
+a78 1
+SetOption(theOption,theValue)
+d80 1
+a80 1
+char *theValue;
+d82 1
+a82 1
+    char *make_str();
+d84 2
+a85 1
+    if (theOption->opValue) free(theOption->opValue);
+d87 1
+a87 1
+    if (!theValue || !strcmp(theValue,"off") || !(*theValue))
+d91 1
+a91 1
+	    DoReply(LR_PROGRESS,"%s=off",theOption->opName);
+d93 2
+a94 1
+    else if (!strcmp(theOption->opValue,"on"))
+d98 1
+a98 1
+	    DoReply(LR_PROGRESS,"%s=on",theOption->opName);
+d104 1
+a104 1
+	    DoReply(LR_PROGRESS,"%s=%s",theOption->opName,theValue);
+d113 1
+a113 1
+    SetOption(&TheOptions[LIMIT_OP],"2");
+@

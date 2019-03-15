@@ -1,0 +1,283 @@
+#!%PerlProg%
+#
+# s.unblock - unblock student tape
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @(#)$Id: s.unblock,v 1.3 1995/05/23 15:00:30 p-pomes Exp $
+
+# Layout is:
+# 9	ssn
+# 20	name
+# 30	high school name
+# 28	high school city, state, zip
+# 4	curriculum
+# 18	campus address
+# 24	campus city, state, zip
+# 7	campus phone
+# 18	permanent address
+# 24	permanent city, state, zip
+
+%dorms = (
+"ceramics","105 S Goodwin Ave\\nUrbana, IL 61801",
+"altgeld","1409 W Green St\\nUrbana, IL 61801",
+"an sci","1207 W Gregory Dr\\nUrbana, IL 61801",
+"educ bldg","1310 S Sixth St\\nChampaign, IL 61820",
+"clark","1203 S Fourth St\\nChampaign, IL 61820",
+"lincoln","1005 S Lincoln Ave\\nUrbana, IL 61801",
+"lar","1005 S Lincoln Ave\\nUrbana, IL 61801",
+"for lang","707 S Mathews Ave\\nUrbana, IL 61801",
+"gregory hall","810 S Wright St\\nUrbana, IL 61801",
+"adams lab","600 S Mathews Dr\\nUrbana, IL 61801",
+"armory","505 E Armory Ave\\nChampaign, IL 61820",
+"beckman inst","405 N Mathews Ave\\nUrbana, IL 61801",
+"bevier","905 S Goodwin Ave\\nUrbana, IL 61801",
+"burrill","407 S Goodwin Ave\\nUrbana, IL 61801",
+"com w","1206 S Sixth St\\nChampaign, IL 61820",
+"comm w","1206 S Sixth St\\nChampaign, IL 61820",
+"csl","1101 W Springfield Ave\\nUrbana, IL 61801",
+"csrl","1308 W Main St\\nUrbana, IL 61801",
+"davenport","607 S Mathews Ave\\nUrbana, IL 61801",
+"dcl","1304 W Springfield Ave\\nUrbana, IL 61801",
+"dkh","1407 W Gregory Dr\\nUrbana, IL 61801",
+"flb","707 S Mathews Ave\\nUrbana, IL 61801",
+"freer","906 S Goodwin Ave\\nUrbana, IL 61801",
+"huff","1206 S Fourth St\\nChampaign, IL 61820",
+"intnl stu bldg","910 S Fifth St\\nChampaign, IL 61820",
+"loomis","1110 W Green St\\nUrbana, IL 61801",
+"mech eng","1206 W Green St\\nUrbana, IL 61801",
+"morrill","505 S Goodwin Ave\\nUrbana, IL 61801",
+"mumford","1301 W Gregory\\nUrbana, IL 61801",
+"nat his","1301 W Green St\\nUrbana, IL 61801",
+"newmark","205 N Mathews Ave\\nUrbana, IL 61801",
+"noyes","505 S Mathews Ave\\nUrbana, IL 61801",
+"pabl","1201 W Gregory Dr\\nUrbana, IL 61801",
+"psych","603 E Daniel St\\nChampaign, IL 61820",
+"ral","600 S Mathews Ave\\nUrbana, IL 61801",
+"talbot","104 S Wright St\\nUrbana, IL 61801",
+"trans","104 S Mathews Ave\\nUrbana, IL 61801",
+"turner","1102 S Goodwin Ave\\nUrbana, IL 61801",
+"allen","1005 W Gregory Dr\\nUrbana, IL 61801",
+"busey","1111 W Nevada St\\nUrbana, IL 61801",
+"evans","1115 W Nevada St\\nUrbana, IL 61801",
+"babcock","906 W College Ct\\nUrbana, IL 61801",
+"blaisdell","906 W College Ct\\nUrbana, IL 61801",
+"carr","906 W College Ct\\nUrbana, IL 61801",
+"oglesby","1001 W College Ct\\nUrbana, IL 61801",
+"saunders","906 W College Ct\\nUrbana, IL 61801",
+"trelease","1001 W College Ct\\nUrbana, IL 61801",
+"barton","1205 S Fourth St\\nChampaign, IL 61820",
+"forbes","101 E Gregory Dr\\nChampaign, IL 61820",
+"garner","201 E Gregory Dr\\nChampaign, IL 61820",
+"hopkins","103 E Gregory Dr\\nChampaign, IL 61820",
+"lundgren","1201 S Fourth St\\nChampaign, IL 61820",
+"townsend","1010 W ILlinois St\\nUrbana, Il 61801",
+"wardall","1010 W ILlinois St\\nUrbana, Il 61801",
+"scott","202 E Peabody Dr\\nChampaign, IL 61820",
+"snyder","206 E Peabody Dr\\nChampaign, IL 61820",
+"taft","1213 S Fourth St\\nChampaign, IL 61820",
+"weston","204 E Peabody Dr\\nChampaign, IL 61820",
+"vandoren","1213 S Fourth St\\nChampaign, IL 61820",
+"van doren","1213 S Fourth St\\nChampaign, IL 61820",
+"daniels","1010 W Green St\\nUrbana, IL 61801",
+"sherman","909 S Fifth St\\nChampaign, IL 61820"
+);
+
+#
+# beginning of interesting stuff
+#
+
+#
+# usage
+if ($#ARGV<0) {print STDERR "usage: s.unblock prod.cnf [files]\n";exit 1;}
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+# 
+# Initialize the password arrays
+$DictFile = "/usr/share/lib/dict/words";
+open(DICT, "<$DictFile") || die "$DictFile: $!\n";
+while (<DICT>)
+{
+  chop;
+  next if (/\W/o || /[A-Z][A-Z]/o || /^ass$/o || /^butt$/o || /^crap$/o ||
+	   /^damn$/o || /^dyke$/o || /^fag$/o );
+  if (length == 3)
+  {
+    push(ThreeWord, $_);
+  }
+  elsif (length == 4)
+  {
+    push(FourWord, $_);
+  }
+}
+close(DICT);
+
+@Punct = (2..9, '!', '*', '#', '$', '%', '&', '-', '+', '=', '<', '>', '?');
+srand(time|$$);
+
+#
+# read prod.cnf
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  chop;
+  if (/^#/) {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@_ < 2) {next;}
+  $fid{$_[1]} = $_[0];
+}
+close(CONFIG);
+
+#
+# here we go...
+while (<>)
+{
+
+  #
+  # lowercase, sanitize, unblock
+  #
+  tr/A-Z/a-z/;
+  tr/ -~/ /c;
+  
+  ($id,$name,$hsName,$hsCSZ,$curric,$campAddr,$campCSZ,$campPhone,
+   $permAddr,$permCSZ) = 
+    unpack("A9xA20xA30xA28xA4xA18xA24xA7xA18xA24",$_);
+  
+  #
+  # massage fields
+  #
+  if ($campCSZ eq "campus")
+  {
+    foreach $d (keys(%dorms))
+    {
+      if ($campAddr =~ /$d/)
+      {
+        $campCSZ = $dorms{$d};
+	last;
+      }
+    }
+  }
+  $campAddr = &SepCat($campAddr,"\\n",$campCSZ);
+
+  $permAddr = &SepCat($permAddr,"\\n",$permCSZ);
+  
+  $campPhone = &FixPhone($campPhone);
+  
+  foreach $junk ("high school","school","high","sch","schl","h","s","hs","il")
+  {
+    $hsName =~ s/\b$junk\b//;
+  }
+  $hsName =~ s/^ +//;
+  $hsName =~ s/ +$//;
+  $hsName =~ s/  +/ /;
+  @csz = split(' ',$hsCSZ);
+  $hsName = &SepCat($hsName," ",$csz[$#csz]);
+
+  #
+  # create default password
+  #
+  $Password = &GenPass();
+
+  #
+  # build output string
+  #
+  $out = $fid{"id"} . ":" . $id . "\t4:person phone";
+  $out = &SepCat($out,"\t".$fid{"name"}.":",$name);
+  $out = &SepCat($out,"\t".$fid{"curriculum"}.":",$curric);
+  $out = &SepCat($out,"\t".$fid{"high_school"}.":",$hsName);
+  $out = &SepCat($out,"\t".$fid{"home_address"}.":",$campAddr);
+  $out = &SepCat($out,"\t".$fid{"permanent_address"}.":",$permAddr);
+  $out = &SepCat($out,"\t".$fid{"home_phone"}.":",$campPhone);
+  $out = &SepCat($out,"\t".$fid{"created"}.":",$Date);
+  $out = &SepCat($out,"\t".$fid{"password"}.":",$Password);
+  
+  #
+  # and print it...
+  #
+  print $out . "\n";
+}
+
+sub FixPhone
+{
+  $phone = $_[0];
+  if (length($phone)==7)
+  {
+    $phone =~ s/.../(217) $&-/;
+  }
+  elsif (length($phone)==10)
+  {
+    $phone =~ s/(...)(...)/($1) $2-/;
+  }
+  $phone;
+}
+
+sub SepCat
+{
+  ($str1,$sep,$str2) = @_;
+  ($str1 ne "" && $str2 ne "") ? ($str1 .= $sep . $str2) : ($str1 .= $str2);
+}
+
+sub GenPass
+{
+  local($i,$word1, $word2, $sep);
+  if (rand() < 0.5)
+  {
+    $word1 = $ThreeWord[rand(@ThreeWord)];
+    $word2 = $FourWord[rand(@FourWord)];
+  }
+  else
+  {
+    $word1 = $FourWord[rand(@FourWord)];
+    $word2 = $ThreeWord[rand(@ThreeWord)];
+  }
+  $sep = $Punct[rand(@Punct)];
+  $word1 .= $sep . $word2;
+
+  $i = 1;
+  $i = int(rand(8));
+  
+  $word2 = substr($word1, $i, 1);
+  $word2 =~ s/./\U$&/;
+  substr($word1, $i, 1) = $word2;
+
+  return($word1);
+}

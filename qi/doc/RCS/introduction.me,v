@@ -1,0 +1,1175 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@.\" @;
+
+
+1.2
+date	92.09.05.18.20.49;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.08.06.22.06.56;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Revisions from Lynn Ward, CCSO.
+@
+text
+@.\" Process with "tbl introduction.me | troff -me | whatever" or more simply
+.\"		 "groff -t -me introduction.me | lpr -Pps"
+.\" @@(#)$Id: introduction.me,v 1.1 1992/08/06 22:06:56 paul Exp paul $
+.if n .na
+.if n .ll 6.5i
+.if n .fp 1 CR
+.if n .fp 3 CB
+.(l C
+.sz 18
+.ft B
+The CCSO Nameserver \- An Introduction
+.sp
+.sz
+.ft
+by
+Steven Dorner\ \ \ s\-dorner@@uiuc.edu
+Computer and Communications Services Office
+University of Illinois at Urbana
+.sp
+March 29, 1990
+.sp 2
+updated by
+Paul Pomes\ \ \ paul\-pomes@@uiuc.edu
+Computer and Communications Services Office
+University of Illinois at Urbana
+.sp
+August 2, 1992
+.(f
+Converted to portable n/troff format using the -me macros from funky
+Next WriteNow format (icch).
+.)f
+.)l
+.eh '%''The CCSO Nameserver \- An Introduction'
+.oh 'The CCSO Nameserver \- An Introduction''%'
+.sp 3
+.(b L
+\f(CR%\fP \f(CBph steven dorner\fP
+.ft CR
+----------------------------------------
+      name: dorner steven c
+     phone: 244-1765
+   address: 181 dcl
+          : CAMPUS MC 256
+department: computing services office
+     title: res programmer
+     hours: 7-5, four days per week.
+  email to: s\-dorner@@uiuc.edu (dorner@@ux1.cso.uiuc.edu)
+----------------------------------------
+.ft
+.)b
+.uh "What is the CCSO Nameserver?"
+.lp
+The CCSO Nameserver could be considered a database containing
+information about people and things at the University of Illinois.
+It is designed to be extremely flexible in terms of the information it keeps
+and also to provide fast access to that information.
+Currently, most of the information in the Nameserver database
+comes from the University
+.i "Student/Staff Directory"
+(the printed phone book).
+The database also holds several additional categories of
+information such as the complete university course timetable
+for the fall, spring, and summer semesters;
+a guide to local restaurants;
+area codes for major cities and regions in the U.S.;
+up-to-the-hour weather condition and forecast information for many
+Illinois cities and larger metropolitan areas throughout the country;
+and special entries created on request such as
+organizations within departments and student clubs and groups.
+.lp
+The CCSO Nameserver could also be regarded as a pair of programs:
+one that manages the actual data (this program is called
+.i qi ,
+for
+.i q uery
+.i i nterpreter),
+and another program (or rather a group of programs \-
+one for each computing platform on the campus network)
+that handles end-user requests.
+The programs that handle user requests are usually called
+.i ph
+(or
+.i ph
+clients), which stands for phone book.
+Because
+.i ph
+is the name of the software familiar to most end-users,
+many people refer to the Nameserver itself as
+.i ph
+or use the terms Nameserver and
+.i ph
+interchangeably.
+.uh "Where is it?"
+.lp
+The database for the Nameserver is installed on a
+VAXServer 3500 that runs the UNIX operating system (Ultrix 3.0);
+the name of this CCSO computer is garcon.cso.uiuc.edu with the alias
+ns.uiuc.edu.
+The program that manages the database (\c
+.i qi )
+also runs on this machine.
+.i Qi
+allows programs running on other computers to access the database
+by serving as an intermediary between them and the actual database.
+.lp
+The Nameserver functions on a
+.q server-client
+basis.
+This means that the database and query interpreter reside on a single
+computer (the VAXserver described above), which functions as the
+.q "server" .
+Mainframes and desktop computers can transparently access server data
+over UIUCnet, the campus network, using special software designed to
+communicate with the server.
+Machines running such software (and the end-user software itself)
+are typically referred to as ph
+.q clients .
+.i Ph
+client programs have been developed for almost all of the mainframe
+and desktop computing platforms and operating systems found on the
+UIUC campus including UNIX, VM/CMS, VMS, PC (DOS), Macintosh, Next,
+and X Windows.
+Some of these clients were developed locally,
+while others have been developed by programmers at other institutions.
+.lp
+A full-featured
+.i ph
+client is available on all CCSO-administered UNIX computers.
+A slightly less robust client can be found on the CCSO IBM mainframe VMD.
+.i Ph
+client software is also installed on hundreds of desktop computers
+and workstations on the campus network.
+Client software for desktop computers such as IBM PCs and Macs provides
+convenient access to server data without requiring a mainframe account
+or special knowledge of an unfamiliar operating system or text editor.
+For a list of ph clients and information on where to get them,
+see ph's on-line help for
+.q clients .
+.uh "What Services Does the Nameserver Offer?"
+.lp
+The Nameserver can be used to find the phone numbers and addresses of
+University faculty, students, and staff members,
+just like the printed version of the
+.i "Student/Staff Directory" ;
+but the Nameserver is not a mere electronic copy of the campus phone book.
+For one thing,
+it contains the electronic mail addresses for thousands of faculty,
+students, and staff.
+It also includes additional information about some individuals
+such as office hours, birthdays, vacation plans, facsimile numbers, etc.
+Information of the latter sort is usually entered manually by the owner
+of the entry and is, thus, available for some people in the database and
+not others.
+.lp
+The Nameserver also contains entire categories of information not found
+in the
+.i "Student/Staff Directory" ;
+e.g., weather conditions, local restaurants, national area codes,
+the university course timetable, etc.
+For information on how to extract such information from the Nameserver,
+see
+.i ph 's
+on-line help for
+.q people ,
+.q campus_units ,
+.q weather ,
+.q areacodes ,
+.q restaurants ,
+and
+.q timetable .
+.lp
+A key thing to know about the Nameserver is that,
+if you use a computer that has a full-featured
+.i ph
+client installed on it,
+you can change the information the Nameserver keeps about you.
+For example, if your office address or phone number changes
+in the middle of the year,
+you can put your correct address and phone number in the Nameserver immediately
+so that people can use
+.i ph
+to find up-to-date information about you.
+.lp
+Another very important function of the Nameserver is electronic mail forwarding.
+If you tell the Nameserver where you read your electronic mail by recording
+this information in your
+.q email
+field,
+then anyone wishing to send mail to you can send the mail to
+.i alias@@uiuc.edu ,
+where
+.i alias
+is your Nameserver alias (a unique name by which the Nameserver knows you,
+generally formed by your first initial, a hyphen, and your full last name).
+If someone doesn't know your Nameserver alias,
+s/he can send mail to
+.i your\-name@@uiuc.edu ,
+and the Nameserver will try to find you.
+In either case,
+the Nameserver will send your mail to the address listed in the
+.q email
+field of your nameserver entry.
+For example,
+you can send mail to Steven Dorner (author of the UNIX
+.i ph
+program)
+using the address: s-dorner@@uiuc.edu (\c
+.q s\-dorner
+is Steve's Nameserver alias),
+or steven\-dorner@@uiuc.edu (Steve's real-life name).
+Either way,
+the mail will be forwarded by the Nameserver to
+.q dorner@@ux1.cso.uiuc.edu ,
+which is where Steve currently reads his mail.
+For more information on e-mail forwarding, see the
+.i ph
+on-line help for
+.q e-mail .
+.uh "Nameserver Restrictions and Limitations"
+.lp
+There are some things the Nameserver is not meant to do.
+One thing that should be mentioned right away is that the Nameserver
+can't be used to generate mailing lists for junk mail.
+The server is designed so that queries that generate more than 25
+responses are refused.
+So, you don't have to worry about getting junk mail because you
+appear in the Nameserver's database.
+.lp
+Also, the Namserver cannot be used to notify the University
+about changes of address, phone number, and/or other personal or
+official information about yourself.
+Although you can change this kind of information in your Nameserver entry,
+such changes are not automatically sent to your department,
+the Office of Admissions and Records,  Payroll, or anywhere else.
+You must notify these offices individually by filling out the
+appropriate paperwork.
+.uh "Using Ph to Find Information"
+.lp
+.i Ph
+can be used to look up information about people or things in
+the Nameserver database or to change information in your own entry.
+The specific procedures involved will depend on the
+.i ph
+client you use.
+To use
+.i ph
+to find out information about a person, type
+.q ph
+and the name of the person you want to know about
+(note: some
+.i ph
+clients do not require the user to type the command
+.q ph
+before the name);
+.i ph
+will respond with information about that person.
+For example:
+.(b
+\f(CR%\fP \f(CBph steven dorner\fP
+.ft CR
+----------------------------------------
+      name: dorner steven c
+     phone: 244-1765
+   address: 181 dcl
+          : CAMPUS MC 256
+department: computing services office
+     title: res programmer
+     hours: 7-5, four days per week.
+  email to: s\-dorner@@uiuc.edu (dorner@@ux1.cso.uiuc.edu)
+----------------------------------------
+.ft
+.)b
+.lp
+If there are lots of people who have the name you asked for,
+.i ph
+will let you view the list a screenful at a time;
+just hit the spacebar to move to the next screen.
+(Here again, the method of advancing from one screen to the next
+will depend on the client you use.
+Most
+.i ph
+clients take advantage of the native characteristics of the platform
+on which they are installed.
+Thus, the Macintosh client requires you to use the scroll bar in
+order to move to the next screen, the VM/CMS client waits for you
+to press the "clear" key, etc.)
+.lp
+If you do not know the exact spelling of a name,
+you can use special symbols in the name to take the place of one or more
+unknown characters.
+These symbols are called
+.q metacharacters .
+I won't say anything more about metacharacters here;
+see the on-line help for
+.q manpage
+and
+.q query
+for more information.
+.lp
+Sometimes, you will ask
+.i ph
+for a name, and it will refuse to give you information
+because too many people have that name.
+For example:
+.(b
+\f(CR%\fP \f(CBph steven\fP
+.ft CR
+502:Too many entries to print.
+.ft
+.)b
+.lp
+.i Ph
+does this so that no one can use it to create mailing lists
+for junk mail or other nefarious purposes.
+If you really want to find the person,
+you will have to know something else about them,
+like part of their last name
+(or first name, if you know their last name),
+their phone number,\**
+.(f
+\** See the
+.i ph
+manual page for information on how to search for people with a
+certain phone number or address.
+.)f
+or some other piece of information that has been recorded in their
+Nameserver entry.
+Suppose, for example you know this fellow named Steven who works in DCL,
+but you don't know his last name.
+You could say:
+.(b
+\f(CR%\fP \f(CBph steven address=dcl\fP
+.)b
+and all of the
+.q steven s
+who have
+.q dcl
+in their
+.i address
+field would be displayed.
+.uh "Using Ph to Change Information"
+.lp
+.i Ph
+can also be used to change information.
+Not all
+.i ph
+clients, however, permit the user to access his or her own entry and edit it.
+The following discussion focuses on the UNIX
+.i ph
+client and clients similar to it such as the VMS, VM/CMS, and DOS client.
+(The Macintosh
+.i ph
+client also allows a user to login and change his or her entry,
+but the procedure is entirely different from that described here.
+Full documentation is available for the Mac client.)
+.lp
+If you want to change the information the Nameserver keeps about you,
+type
+.q ph
+at the operating system prompt.
+.i Ph
+won't look up a name,
+but will instead give you a special 
+.q ph>
+prompt.
+There are many possible commands you can type once at
+the 
+.q ph>
+prompt;
+they are described in full in the
+.i ph
+manual page and also in the
+.i ph
+on-line help for
+.q commands .
+You will only need to know four commands to change your information:
+.b login ,
+.b me ,
+.b edit ,
+and
+.b quit .
+Before actually using
+.i ph
+to change your entry, you will have to make some preparations.
+.lp
+The first thing you need to do is find out your Nameserver
+.i alias .
+This is a unique name assigned to you by the Nameserver.
+A person's alias is usually formed by combining his or her first
+initial, a hyphen, and complete last name.
+For example,
+.q "Steven C. Dorner"
+has an alias of
+.q s-dorner .
+Some people share the same first initial and last name;
+these people typically have a number added to the ends of their
+aliases so that their aliases remain unique.
+For example,
+.q "John Doe"
+might have an alias of
+.q j-doe1 ,
+and
+.q "Jane Doe"
+might have an alias of
+.q j-doe2 .
+The easiest way to find your alias is to look up your name with
+.i ph .
+.lp
+Once your know your alias,
+you need to find out your Nameserver password.
+To do this, come to the CCSO Resource Center in Room 1420 DCL and present
+a valid University ID at the Accounting Desk.
+We cannot give out passwords via email or phone to prevent disclosure to
+unauthorized persons.
+In cases where
+a)
+.i ph
+is being used by the same user-id on the same machine that's listed in the
+email field, and
+b)
+.i ph
+has been installed
+.q "setuid root" ,
+and c) the
+.i ph
+version is 5.2 or greater, then no password is needed to login.
+.lp
+Now, it's time to use
+.i ph
+to change your information.
+Type
+.q ph
+and the
+.q return
+key.
+You will get a 
+.q ph>
+prompt.
+Now, type
+.q "\f(CBlogin alias\fP"
+(but use your real alias, not the word
+.q alias !)
+and a return.
+.i Ph
+will ask for your password; type your password and a return.
+You should get a greeting from the Nameserver, and another prompt.
+For example:
+.(b
+\f(CR%\fP \f(CBph\fP
+.ft CR
+$Date: 1992/08/06 22:06:56 $$Revision: 5.7 $
+100:Ph passwords may be obtained at CCSO Accounting, 1420 DCL.
+100:Be sure to bring your University Id Card. You may not need
+100:a password if you are using the login in your email field.
+200:Database ready.
+.ft
+.)b
+.(b
+\f(CRph>\fP \f(CBlogin s\-dorner\fP
+.ft CR
+Enter nameserver password:
+200:s\-dorner:Hi how are you?
+ph>
+.ft
+.)b
+.lp
+You are now ready to change your information.
+Your Nameserver entry is organized into
+.q fields ,
+each one containing a different piece of information.
+There is a field for your name, your address, your phone numbers, etc.\**
+.(f
+\** The
+.i ph
+command
+.b fields
+will give a complete list of Nameserver fields.
+.)f
+To see all of the fields in your entry, type the command
+.b me
+at the 
+.q ph>
+prompt.
+It's always a good idea to use the
+.b me
+command before and after changing an entry to verify the original
+and new contents of your entry.
+.lp
+To change a particular field, type
+.q "\f(CBedit field\fP"
+and a return,
+substituting the name of the field you wish to change for
+.q field .
+For example, if you want to change your phone number, type
+.q "\f(CBedit phone\fP" .
+You will be placed in your favorite UNIX editor,\**
+.(f
+\** Unless you take pains to change it,
+that editor will be
+.i vi (1);
+see Appendix A if you've never used
+.i vi
+before.
+.)f
+with the current contents of the field you specified displayed.
+If the field was empty,
+you will be presented with an empty file into which ypu can insert text.
+Make whatever changes you wish, save your changes, and exit the editor.
+.i Ph
+will then change the information in the field specified for you.
+.lp
+If you aren't familiar with your machines's text editor,
+you may prefer to use the
+.b make
+command instead.
+.b N.B. ,
+the
+.b make
+command does not work properly with the VM/CMS client.
+After you login to
+.i ph ,
+just type,
+.ft CB
+make name-of-field="value-of-field"
+.ft
+.(b
+\f(CRph>\fP \f(CBmake email="dorner@@ux1.cso.uiuc.edu"\fP
+.ft CR
+200:1 entry changed.
+ph>
+.ft
+.)b
+.lp
+When using the
+.b make
+command, be sure to enclose the
+.q value-of-field
+information is double quotation marks (").
+.lp
+Some field information cannot be changed;
+the
+.q name
+field, for example.
+If you need to change such a field,
+arrangements can be made with the staff at the CCSO Accounting
+and Distribution Office in 1420 DCL.
+.lp
+Once you are finished changing your information,
+type
+.b quit
+and a return.
+You will be logged out of
+.i ph
+and returned to the operating system prompt.
+.uh "Suppose I Don't Have Access to a Ph Client?"
+.lp
+If your computer doesn't have a
+.i ph
+client installed on it, but you would like to use
+.i ph
+to look up addresses or change your information,
+you can still do so.
+Connect to the CCSO's Sequent computer ux1
+by using telnet (\c
+.q telnet ux1.cso.uiuc.edu" ),
+sytek (\c
+.q "call 1600" ),
+or by dialup (333-4000, ux1).
+When you see the
+.q login:
+prompt,
+type
+.q phones
+and a return.
+You will then be prompted for your terminal type.
+If you have a vt100 terminal or terminal emulator,
+you can just type a return;
+if you have some other terminal, type its name.\**
+.(f
+\** If you have trouble finding the right name to use for your terminal,
+call the CCSO Consultants at 333-6133.
+.)f
+You will eventually get a 
+.q ph>
+prompt, and can use
+.i ph
+to lookup and change information.
+.uh "Where Can I Find More Information About Ph?"
+.lp
+.i Ph
+has an extensive on-line help system.
+UNIX users can access it by entering
+.i ph 's
+interactive mode, and typing,
+.b help .
+.(b
+\f(CR%\fP \f(CBph\fP
+.ft CR
+$Date: 1992/08/06 22:06:56 $$Revision: 5.7 $
+100:Ph passwords may be obtained at CCSO Accounting, 1420 DCL.
+100:Be sure to bring your University Id Card. You may not need
+100:a password if you are using the login in your email field.
+200:Database ready.
+.ft
+.)b
+.(l
+\f(CRph>\fP \f(CBhelp\fP
+.ft CR
+----------------------------------------
+ These "ph" help topics are available:
+ add                     interactive_mode        query
+ change                  login                   quit
+ command-line_mode       logout                  register
+ commands                make                    status
+ delete                  manpage                 switch
+ edit                    me                      vi
+ fields                  passwd
+ help                    ph
+ To view one of these topics, type "help name-of-topic-you-want".
+----------------------------------------
+ These ``native'' help topics are also available:
+ 100           501           514           aliases       ph_news
+ 101           502           515           areacodes     policy
+ 102           503           516           campus_units  protocol
+ 200           504           517           clients       proxy
+ 201           505           518           e-mail        restaurants
+ 300           506           519           email         sites
+ 301           507           520           forwarding    timetable
+ 400           508           521           introduction  type
+ 401           509           522           nickname      weather
+ 402           510           523           no_update
+ 403           511           598           paper
+ 475           512           599           password
+ 500           513           alias         people
+ To view one of these topics, type "help native name-of-topic-you-want".
+----------------------------------------
+.ft
+.)l
+.lp
+CMS users of
+.i ph
+should give the command,
+.q "\f(CBph help\fP" ,
+and subsequently
+.q "\f(CBph help name-of-topic\fP"
+(e.g.,
+.q "\f(CBph help email\fP" ).
+.lp
+.uh "What If I Have Trouble?"
+.lp
+If you have problems or questions that are not resolved by
+reading this document, the
+.i ph
+on-line help, or
+.i "The CCSO Nameserver, Server\-Client Protocol" ,
+document, call the CCSO SYstems Consulting Office at 333-6133.
+.++ A
+.+c "A Rank Beginner's Guide to VI"
+.ba 0
+.lp
+This page describes a few
+.i vi
+commands to accomplish simple editing tasks.
+Full documentation for
+.i vi
+can be found in
+.i "The UNIX User's Manual Supplementary Documents" ,
+chapter 15 (really advanced users should read chapter 16 as well).
+Two thing to keep in mind:  First, the editor is pronounced
+.q "vee eye" ;
+if you pronounce it,
+.q vie ,
+UNIX gurus will laugh at you, though not out loud.
+Secondly,
+.i vi
+is case-sensitive;
+be sure to use upper or lower case commands as appropriate.
+.uh Modes
+.lp
+.i Vi
+is a modal editor;
+what you can do depends on what mode you are in.
+The two modes of interest to us are
+.i command
+mode and
+.i insert
+mode.
+You type most commands in command mode;
+all you do in insert mode is type your text.
+You get out of insert mode by typing
+.i escape ,
+usually marked
+.q esc
+on keyboards;
+on some keyboards, you may have
+to hold down the control or alt key and press
+.q [ .
+If you type escape in command mode,
+.i vi
+will beep at you; so if you get confused,
+just type escape until
+.i vi
+beeps; then you'll be back in command mode.
+.(b L
+.uh "Moving Around"
+.lp
+Here are some motion commands in
+.i vi .
+They are typed in command mode, and leave the editor in command mode.
+.lp
+.TS
+center;
+lb cw(4i)b
+l lw(4i).
+Command	What it does
+_
+control-h	Moves the cursor \fBleft\fP one character.
+h	Moves the cursor \fBleft\fP one character.
+j	Moves the cursor \fBdown\fP one line.
+k	Moves the cursor \fBup\fP one line.
+l	Moves the cursor \fBright\fP one character.
+w	T{
+Moves the cursor \fBforward\fP to the beginning of the next word.
+T}
+b	T{
+Moves the cursor \fBbackward\fP to the beginning of the previous word.
+T}
+.TE
+.)b
+.(b L
+.uh "Deleting Text"
+.lp
+Here are some commands to get rid of stuff.
+Type them in command mode;
+they will leave the editor in command mode.
+.lp
+.TS
+center;
+lb cw(4i)b
+l lw(4i).
+Command	What it does
+_
+dd	Deletes the current line.
+x	T{
+Deletes the character at the cursor,
+and moves the rest of the line to fill the hole.
+T}
+.TE
+.)b
+.(b L
+.uh "Adding Text"
+.lp
+The following commands all put you into insert mode and let you type text.
+Type escape when you are finished adding text,
+and you will be returned to command mode.
+.lp
+.TS
+center;
+lb cw(4i)b
+l lw(4i).
+Command	What it does
+_
+i	T{
+Start inserting characters \fBbefore\fP the character the cursor is on.
+T}
+a	T{
+Start inserting characters \fBafter\fP the character the cursor is on.
+T}
+O	T{
+Create a new line above the cursor,
+and start inserting at the beginning of that line.
+Note that this command is a capital "O", not zero.
+T}
+.TE
+.)b
+.(b L
+.uh "Getting Out"
+.lp
+The following commands exit
+.i vi .
+They work in command mode.
+.lp
+.TS
+center;
+lb cw(4i)b
+l lw(4i).
+Command	What it does
+_
+ZZ	T{
+Exit \fIvi\fP, and save the changes you have made.
+Those are capital Z's!
+T}
+:q!<cr>	T{
+Exit \fIvi\fP, but don't save changes (the "<cr>" means to type return).
+T}
+.TE
+.)b
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+a3 1
+.\" @@(#)$Id: introduction.me,v 1.1 1992/08/06 20:36:12 paul Exp $
+d6 2
+d47 1
+a47 1
+  email to: s\-dorner@@uiuc.edu (dorner@@pequod.cso.uiuc.edu)
+d51 1
+a51 1
+.uh "What is it?"
+d55 1
+a55 1
+It is designed to be extremely flexible in what information it keeps,
+d57 2
+a58 1
+Currently, most of the information in it comes from the University
+d60 10
+a69 1
+(the phone book).
+d71 1
+a71 1
+The CCSO Nameserver could also be considered to be a pair of programs;
+d77 16
+a92 10
+and another one that handles user requests
+(the program CCSO provides for this is called
+.i ph ,
+for
+.i ph one
+book).
+To most people, the CCSO Nameserver will be exactly this second program,
+.i ph ,
+which gives them access to the University
+.i Directory .
+d95 4
+a98 3
+The database for the Nameserver resides on a CCSO minicomputer
+(a VAXServer 3500) that runs the UNIX operating system;
+the name of this computer is garcon.cso.uiuc.edu.
+d101 1
+a101 1
+runs on this machine.
+a104 5
+It communicates with such programs using the campus network, UIUCnet.\**
+.(f
+\** UIUCnet is a multi-protocol, multi-media network.
+Access to the Nameserver is via TCP/IP only.
+.)f
+d106 12
+d119 8
+a126 4
+(the program that is usually used to communicate with
+.i qi )
+is installed on all of CCSO's UNIX computers.
+A simple version of
+d128 26
+a153 12
+is available on CCSO's main IBM computer, and
+.i ph
+is installed on hundreds of non-CCSO computers across the campus.
+A full-featured version of
+.i ph
+is available for VAX computers running VMS, if they have Wollongong TCP/IP
+software.
+Versions also exist for Macintosh, PC, and VM/CMS.
+Later, I'll discuss how you can get
+.i ph
+installed on your system.
+.uh "What is it good for?"
+d155 2
+a156 3
+The Nameserver is good for looking up phone numbers and addresses of
+University faculty, students or staff members,
+just like the
+d158 13
+a170 16
+but the Nameserver is good for more than just that.
+For one thing,
+the Nameserver knows the electronic mail address for thousands of faculty,
+students and staff;
+this information is more up to date that the
+.i "Student/Staff Directory" .
+It knows other things about some people,
+such as office hours or vacation plans.
+Ph also has some other things in it not found in the
+.i Directory ;
+up-to-the-hour weather information (e.g.,
+.q "ph type=weather champaign" ),
+the current UIUC timetable (e.g.,
+.q "ph cs101" ),
+and an extensive listing of local restaurants (e.g.,
+.q "ph restaurant other=italian" ).
+d173 1
+a173 1
+if you use a computer that has
+d175 5
+a179 3
+installed on it, you can change the information the Nameserver keeps about you.
+For example, if you change offices in the middle of the year,
+you can put your correct address and phone number in the Nameserver immediately,
+d185 4
+a188 1
+If you tell the Nameserver where you read your electronic mail,
+d193 2
+a194 2
+is your Nameserver alias (a unique name by which the Nameserver knows you;
+see below).
+d200 3
+a202 1
+the Nameserver will send your mail to the address you have told it.
+d204 4
+a207 1
+you can send me mail with the addresses: s-dorner@@uiuc.edu (\c
+d209 2
+a210 2
+is my alias),
+or steven\-dorner@@uiuc.edu (my name).
+d212 8
+a219 4
+the mail will be sent by the Nameserver to
+.q dorner@@pequod.cso.uiuc.edu ,
+which is where I'm currently reading my mail.
+.uh "What isn't it good for?"
+d223 4
+a226 2
+can't be used to generate mailing lists for junk mail;
+you don't have to worry about getting junk mail because you
+d229 9
+a237 18
+Another thing it isn't good for is notifying the University
+of changes of address.
+Changes you make to your information in the Nameserver are
+.b not
+automatically sent to your department,
+or the Office of Admissions and Records, or Payroll, or anywhere else;
+you must notify these places of changes in your address separately.
+.uh "How can I have ph installed on my computer?"
+.lp
+If one of the computers you use runs UNIX or VMS and is connected to UIUCnet,
+you can probably have
+.i ph
+installed on it.
+Tell the person who manages your computer that s/he can get the
+source code for ph by anonymous ftp to uxc.cso.uiuc.edu,
+in the net/ph subdirectory or the compressed tar archive in pub/ph.tar.Z
+(don't worry s/he'll know what that means).
+.uh "How do I use ph?"
+d239 6
+a244 12
+There are two different ways to use
+.i ph .
+One way is good for finding information about people,
+and the other is good for changing the information the
+Nameserver keeps about you.
+I will give you a brief idea of how both these ways work;
+for more detailed information,
+you should read the "manual page" for
+.i ph ,
+which you can read (if your computer runs UNIX) by typing the command,
+.q "man ph" .
+.lp
+d247 6
+a252 1
+to find out information, you should type
+d254 1
+a254 1
+and the name of the person you want to know about;
+d256 2
+a257 1
+will respond with information about that person:
+d269 1
+a269 1
+  email to: s\-dorner@@uiuc.edu (dorner@@pequod.cso.uiuc.edu)
+d274 1
+a274 1
+If there are a lot of people who have the name you asked for,
+d278 21
+a298 6
+.lp
+You don't have to know the exact spelling of a name to find information;
+you can put special symbols in the name for which you are searching
+that tell the Nameserver to find names that you only know a few letters of.
+I won't say anything more about that here;
+look in the manual page if you are interested in the details.
+d302 3
+a304 2
+for a name, and it will refuse to give you information,
+because too many people have that name:
+d313 1
+a313 1
+does this so that no one can use it to get mailing lists
+d319 1
+a319 1
+or their phone number:\**
+d326 5
+d332 1
+a332 13
+\f(CR%\fP \f(CBph steven office_phone=244-1765\fP
+.ft CR
+----------------------------------------
+      name: dorner steven c
+     phone: 244-1765
+   address: 181 dcl
+          : CAMPUS MC 256
+department: computing services office
+     title: res programmer
+     hours: 7-5, four days per week.
+  email to: s\-dorner@@uiuc.edu (dorner@@pequod.cso.uiuc.edu)
+----------------------------------------
+.ft
+d334 22
+d358 3
+a360 2
+you should just type
+.q ph .
+d362 8
+a369 3
+won't look up a name, but will instead give you a prompt.
+There are many possible commands you can type to
+.i ph ;
+d372 5
+a376 2
+manual page.
+You will only need to know three commands to change your information:
+d378 1
+d384 1
+a384 1
+for this, you will have to make some preparations.
+d386 1
+a386 1
+The first thing you have to do is find your Nameserver
+d389 17
+a405 5
+It is usually your first initial, followed by a dash,
+followed by your last name.
+If there is more than one person with the same first initial
+and last name as yours,
+there may be number tacked onto the end of your alias.
+d433 5
+a437 3
+and a return.
+You will get a
+.q "\f(CRph>\fP"
+d447 1
+d451 1
+a451 2
+$Date: 1992/08/06 20:36:12 $$Revision: 1.1 $
+100:
+d468 1
+a468 1
+Your information is organized into
+d479 11
+a489 2
+To change a particular field,
+type
+d494 1
+a494 1
+For example, if you want to change your phone numbers, type
+d500 1
+a500 1
+.i vi ;
+d505 4
+a508 2
+with the contents of the field you asked for as the text.
+Make whatever changes you wish, and exit the editor.
+d510 1
+a510 1
+will then change the information for you.
+d512 1
+a512 1
+If you aren't familiar with a UNIX text editor,
+d515 5
+a519 1
+command.
+d527 1
+a527 1
+\f(CRph>\fP \f(CBmake email="dorner@@pequod.cso.uiuc.edu"\fP
+d534 7
+a540 1
+Some information cannot be changed;
+d545 2
+a546 2
+you should send mail to nameserv@@uiuc.edu;
+arrangements can be made.
+d548 1
+a548 1
+Once you are done changing your information,
+d552 4
+a555 1
+.uh "Suppose I can't use ph from my computer?"
+d557 1
+a557 1
+If your computer doesn't have
+d559 1
+a559 1
+installed on it, but you would like to use
+d563 9
+a571 4
+Connect to the CCSO's Sequent ux1,
+by using telnet (telnet ux1.cso.uiuc.edu),
+sytek (call 1600), or by dialup (333-4000, ux1).
+When you are prompted for login:,
+d583 2
+a584 2
+You will receive a
+.q "\f(CRph>\fP"
+d586 3
+a588 2
+.i ph .
+.uh "Where can I find more information?"
+d599 1
+a599 2
+$Date: 1992/08/06 20:36:12 $$Revision: 1.1 $
+100:
+d611 8
+a618 5
+ 511          edit         login        passwd       type
+ add          email        make         password     uiuc.general
+ alias        fields       manpage      query        vi
+ commands     help         nickname     register
+ delete       introduction paper        switch
+d622 13
+a634 10
+ 100          403          508          518          policy
+ 101          475          509          519          protocol
+ 102          500          510          520          proxy
+ 200          501          511          521          restaurant
+ 201          502          512          522          site
+ 300          503          513          523          type
+ 301          504          514          598          update
+ 400          505          515          599
+ 401          506          516          forwarding
+ 402          507          517          password
+d649 1
+a649 1
+.uh "What if I have trouble?"
+d654 1
+a654 1
+help, or
+d656 1
+a656 1
+feel free to ask me by sending mail to s\-dorner@@uiuc.edu.
+@

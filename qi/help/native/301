@@ -1,0 +1,4 @@
+This is not an error, but a request for you to answer a Nameserver
+challenge.  If you see this code, you may ignore it; your client is
+supposed to handle it for you.  You can't possibly come up with the
+right answer, as it requires encrypting a string.

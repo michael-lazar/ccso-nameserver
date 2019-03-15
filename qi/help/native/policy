@@ -1,0 +1,93 @@
+Here follow some of the policies regarding the CCSO Nameserver and
+the data contained therein:
+
+NAMESERVER UPDATES
+Updates for people are done four times per year.  An update can
+include one or all of the following steps:
+
+  1. New staff and students are added to the database.
+
+  2. Fields that originate from official data are set to official
+     values.  These fields are:
+          name, phone, office_phone, home_phone, address,
+          office_address, home_address, permanent_address,
+          department, title, curriculum, high_school
+     All other fields are left strictly alone.
+
+  3. Staff and students that have left the University are removed
+     after a one year "grace period".
+
+The step listed in #2 above may be avoided.  If you do not wish this
+update to occur on your entry, put something in your "no_update" field.
+If you have something in your "no_update" field, your entry will not be
+touched by step #2, except for the "name" and "curriculum" fields, which
+are ALWAYS updated. For more information, see help on "no_update".
+
+The approximate schedule for student/faculty/staff updates is as follows:
+     January    Step 1 and Step 2, students only
+     June       Step 1 and Step 2, students only
+     September  Step 1 and Step 2, students only
+     October    Steps 1, 2, and 3 for students, faculty, and staff
+
+The University Timetable information is updated three times a year.
+The fall timetable is available in early March, the spring timetable
+comes online in early October, and the summer timetable is available in
+the middle of February.
+
+The ph restaurant guide has not been updated since summer 1991.  Two
+volunteers have come forward to update it.
+
+Telephone area code information in ph comes from an old, pre-existing
+dataset and is only sporadically and haphazardly updated.
+
+Weather information is updated in real-time as it arrives on the data feed.
+
+MAILING LISTS
+The Nameserver is not to be used as to generate mailing lists.  For this
+reason, queries resulting in more than 25 persons are rejected.  This
+is not negotiable.
+
+Sites from which users attempt to circumvent this restriction may be
+placed on the "reject list".  The Nameserver will not accept queries
+from such sites.
+
+PROXY RIGHTS FOR NETWORK ADMINISTRATORS
+To facilitate the process of keeping ph entries up to date, CCSO now
+offers proxy rights to network administrators, so they can systematically
+enter e-mail address information for their users into the Nameserver
+database and make other modifications upon request.
+
+Network administrators who wish to obtain proxy rights for a group of
+users should send an e-mail request to "nameserv@uiuc.edu". The request
+should contain the administrator's own name and ph alias and a list of
+ph aliases for the entries to which s/he wants to gain proxy.  Once
+proxy rights to a ph entry are granted, the administrator can edit any
+changeable field in the entry.
+
+Note: It is incumbent upon the administrator to get permission from his
+or her end-users before requesting proxy rights from CCSO.  Users who
+don't want their network admins to be able to change their information
+should put "no!" in their own "proxy" fields.  To do so, login to ph
+(see help on "login") and type:
+
+  make proxy=no!
+
+Network administrators who would prefer not to bear the burden of
+managing multiple ph entries, but nevertheless want to have their users'
+"email" fields filled in or updated, can send a list of ph aliases and
+associated e-mail addresses to "nameserv@uiuc.edu".  The e-mail addresses
+in such a list should be in the format "user@fully.qualified.domain.name"
+(for example, "paul@uxc.cso.uiuc.edu"), rather than an alias-based
+address such as "p-pomes@uiuc.edu".
+
+For more information on proxy rights, see help on "proxy".
+
+ABUSE
+Anyone who makes repeated queries to the Nameserver under program control
+in order to circumvent normal restrictions on queries will be treated
+as an abuser of the database.  Such persons will be subject to suspension
+of CCSO service privileges and such other penalties as deemed appropriate
+by the University.
+
+SEE ALSO: areacodes, restaurants, timetable, weather, people, update,
+proxy, edit, alias, aliases, interactive mode, no_update, login

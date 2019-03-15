@@ -1,0 +1,132 @@
+
+
+
+QI(8L)              UNIX Programmer's Manual               QI(8L)
+
+
+
+NNAAMMEE
+     qi - the CCSO Nameserver server (on-line phone book)
+
+SSYYNNOOPPSSIISS
+     qqii [--ww] [--dd]
+
+DDEESSCCRRIIPPTTIIOONN
+     _Q_i manages the database of the CCSO Nameserver.  It is the
+     "server" program of the server-client pair that make up the
+     CCSO Nameserver (the client program is _p_h(1)).
+
+     If given the --ww option, _q_i will run in read-only mode; com-
+     mands that would change the database are not allowed.  If
+     given the --dd option, _q_i will be run as though invoked by a
+     daemon; in this case, _q_i will limit the amount of cpu time
+     it will consume.
+
+     _Q_i operates in "super-user" mode when run with its standard
+     input is a terminal, file, or pipe.  If its standard input
+     is none of the above (implying the connection comes from
+     over the network) it runs in anonymous mode, and the opera-
+     tions that may be performed are limited.
+
+     _Q_i's availability may be controlled by the file
+     /_n_a_m_e_s_e_r_v/_d_b/_p_r_o_d._s_t_a.  If this file exists, and the first
+     word in it is "read", then all invocations of _q_i will be in
+     read-only mode; no writing of the database will be allowed.
+     If the first word of the file is not "read", _q_i will refuse
+     to run at all.  In either case, the remainder of
+     /_n_a_m_e_s_e_r_v/_d_b/_p_r_o_d._s_t_a will be printed by _q_i as the reason
+     the database is unavailable.
+
+FFIILLEESS
+     /nameserver/db/prod.{dir,dov,idx,iov,seq,bdx} - the database
+     /nameserver/db/LockFile - _f_l_o_c_k(3) lock file for the data-
+     base
+     /nameserv/db/prod.sta - control file for the database.
+
+SSEEEE AALLSSOO
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _A_n _I_n_t_r_o_d_u_c_t_i_o_n, by Steven Dorner;
+     updated by Paul Pomes.
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _A _D_e_s_c_r_i_p_t_i_o_n, by Steven Dorner;
+     updated by Paul Pomes.
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _W_h_y, by Steven Dorner; updated by Paul
+     Pomes.
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _S_e_r_v_e_r-_C_l_i_e_n_t _P_r_o_t_o_c_o_l, by Steven
+     Dorner; updated by Paul Pomes.
+     _H_o_w _T_o _R_e_b_u_i_l_d _A _N_a_m_e_s_e_r_v_e_r _D_a_t_a_b_a_s_e, _I_n _2_4 _E_a_s_y _S_t_e_p_s, by
+     Steven Dorner; updated by Paul Pomes.
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _G_u_i_d_e _T_o _I_n_s_t_a_l_l_a_t_i_o_n, by Steven
+     Dorner; updated by Paul Pomes.
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _A _P_r_o_g_r_a_m_m_e_r'_s _G_u_i_d_e, by Steven
+
+
+
+Printed 8/30/92            30-Jul-1992                          1
+
+
+
+
+
+
+QI(8L)              UNIX Programmer's Manual               QI(8L)
+
+
+
+     Dorner; updated by Paul Pomes.
+     _p_h(1)
+
+AAUUTTHHOORR
+     Parts written by Steven Dorner (sdorner@qualcomm.com), Qual-
+     comm, Inc.  (formerly at the University of Illinois Comput-
+     ing and Communications Services Office)
+
+     Parts derived from the CSNET Name Server.
+
+     Code is now maintained by Paul Pomes (p-pomes@uiuc.edu),
+     University of Illinois Computing and Communications Services
+     Office.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Printed 8/30/92            30-Jul-1992                          2
+
+
+

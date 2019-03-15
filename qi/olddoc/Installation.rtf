@@ -1,0 +1,333 @@
+{\rtf0\mac {\fonttbl {\f0 \fswiss Chicago;}{\f1 \fnil Geneva;}{\f2 \fmodern New York;}
+{\f3 \fswiss Geneva;}{\f4 \fmodern Monaco;}{\f5 \fnil Venice;}{\f12 \fnil Los Angeles;}
+{\f13 \fnil Zapf Dingbats;}{\f14 \fnil Bookman;}{\f15 \fnil N Helvetica Narrow;}
+{\f16 \fnil Palatino;}{\f18 \fnil Zapf Chancery;}{\f20 \froman Times;}{\f21 \fswiss Helvetica;}
+{\f22 \fmodern Courier;}{\f23 \ftech Symbol;}{\f24 \fnil Mobile;}{\f33 \fnil Avant Garde;}
+{\f34 \fnil New Century Schlbk;}{\f129 \fnil .Dec;}{\f156 \fnil SIGMA;}{\f158
+\fnil SIGMA BOLD;}{\f176 \fnil OMICRON BOLD;}{\f181 \fnil RHO SEMIBOLD;}{\f200
+\fnil Mishawaka;}{\f201 \fnil Mishawaka Bold;}{\f242 \fnil APL;}}\paperh15840
+\paperw12240 \margl1420 \margr1440 \pard \li0 \ri0 \fi0 \ql \sl320 \tx740 \tx6500
+\pgnstart1 \ftnstart1 \cols1 \colsx0 \sbknone \linemod0 \linex0 \ftnbj {\header \pard \li0
+\ri360 \fi0 \qc \sl320 \pard \li0 \ri0 \fi0 \ql \sl360 \tx380 \tqr \tx9380 \f21
+\fs20 \par \par \par }{\footer \pard \li0 \ri360 \fi0 \qc \sl320 \par \pard \li0
+\ri0 \fi0 \ql \sl360 \tx380 \tqc \tx4700 \tqr \tx9380 Steven Dorner\tab {\chpgn }\tab Printed {\chdate }\par \pard \li0
+\ri0 \fi0 \ql \sl360 \tx380 \tqr \tx9380 \par }\pard \li0 \ri0 \fi0 \qc \sl640
+\tx380 \tqr \tx9380 \f20 \fs20 \f21 \fs44 \b The CSO Nameserver\par Guide to Installation\par \f21
+\fs32 \b December 22, 1988\f21 \fs24 \b0 \par \pard \li0 \ri0 \fi0 \qc \sl320
+\tx380 \tqr \tx9380 \f21 \fs24 \i \par by Steven Dorner\par Computing Services Office\par University of Illinois at Urbana-Champaign\f20
+\fs24 \i0 \par \pard \li0 \ri0 \fi0 \qj \sl320 \tx380 \tx740 \tqr \tx9380 \par \f20
+\fs24 \b Introduction\f20 \fs24 \b0 \par \tab This document provides instructions, general and specific, for installing the programs that make up CSO Nameserver.  To decide if you want to install the CSO Nameserver at all, I suggest you read \f20
+\fs24 \i The CSO Nameserver, A Description\f20 \fs24 \i0 .  For detailed information on the inner workings of the Nameserver, you should read \f20
+\fs24 \i The CSO Nameserver, A ProgrammerUs Guide\f20 \fs24 \i0 .  If you follow the procedures in this document, you will end up with the right programs in the right places; you will not yet have a functioning system.  You must first come up with data, and form that data into a valid Nameserver database.  For an example procedure to build a Nameserver database, \f20
+\fs24 \i Rebuilding a Nameserver Database, In 24 Easy Steps\f20 \fs24 \i0  should be perused.  Your procedure is likely to differ from ours, since you will undoubtedly have your data in a form unlike our own.\par \tab \f20
+\fs24 \b Do read \f20 \fs24 \b \i \ul all\f20 \fs24 \b \i0 \ulnone  of this document before beginning your installation.\f20
+\fs24 \b0 \par \par \f20 \fs24 \b Prerequisites\par \up0 \f20 \fs24 \b0 \tab The system you choose to run the server portion of the Nameserver should meet the following requirements:\par \tab \f20
+\fs24 \b 1.\tab BSD UNIX or equivalent.\f20 \fs24 \b0   The server portion of the Nameserver has been run on a 4.3bsd system and an Ultrix 2.2 system.  4.3bsd is the preferred system.\par \tab \f20
+\fs24 \b 2.\tab The 4.3bsd \f22 \fs24 \b syslog\f20 \fs24 \b  facility.\f20 \fs24
+\b0   If you are not using a 4.3bsd system, you will either have to port the 4.3 \f22
+\fs24 syslog\f20 \fs24  to your system (we have done this for ourselves in order to run the Nameserver on an Ultrix VAX), or change the calls to \f22
+\fs24 syslog\f20 \fs24  within the Nameserver.\par \tab \f20 \fs24 \b 3.\tab Disk space.\f20
+\fs24 \b0   We use about 40 megabytes to hold our database (60,000 persons).  The Nameserver could be tuned to be somewhat less wasteful of space, if you care to do so.  In any case, you will need at least twice the disk space the database will eventually occupy in order to conveniently create the database.\par \tab \f20
+\fs24 \b 4.\tab Processor.\f20 \fs24 \b0   The running database causes minimal system load.  Building a database takes quite a few cycles, however; five hours on a fast super-mini the last time we built our database.  Fortunately, this need only be done when mass quantities of entries are to be added.\par \tab The client software can be run without modification on bsd UNIX systems, HP-UX, or VAX/VMS.\par \par \f20
+\fs24 \b Overview\f20 \fs24 \b0 \par \tab The CSO Nameserver is a relatively straightforward program to install.  There are four major pieces; the server program itself (\f22
+\fs24 qi\f20 \fs24 ), the client program (\f22 \fs24 ph\f20 \fs24 ), database utilities (a set of programs used to build, dump, and otherwise manipulate the database), and statistics programs (that help make sense of the voluminous logs produced by the Nameserver).\par \tab The basic plan for installation is:\par \tab \f20
+\fs24 \b 1.\tab Create a userid for the Nameserver, and become that user.\par \tab 2.\tab Untar the files.\f20
+\fs24 \b0 \par \tab \f20 \fs24 \b 3.\tab Edit the \f22 \fs24 \b configure\f20
+\fs24 \b  script.\par \tab 4.\tab Run the \f22 \fs24 \b configure\f20 \fs24 \b  script.\par \tab 5.\tab Make any binary directories you mentioned in the \f22
+\fs24 \b configure\f20 \fs24 \b  script.\par \tab 6.\tab Do a \f22 \fs24 \b make install\f20
+\fs24 \b  (as super-user).\par \tab 7.\tab Create a database.\par \tab 8.\tab Put an \f22
+\fs24 \b ns\f20 \fs24 \b  entry in \f22 \fs24 \b /etc/services\f20 \fs24 \b .\par \tab 9.\tab Teach \f22
+\fs24 \b /etc/syslog.conf\f20 \fs24 \b  about \f22 \fs24 \b qi\f20 \fs24 \b , and kick \f22
+\fs24 \b syslogd\f20 \fs24 \b .\par \tab 10.\tab Teach \f22 \fs24 \b /etc/inetd.conf\f20
+\fs24 \b  about \f22 \fs24 \b qi\f20 \fs24 \b , and kick \f22 \fs24 \b inetd\f20
+\fs24 \b .\par \tab 11.\tab Install the client software on any other system(s) you wish.\f20
+\fs24 \b0 \par \tab The rest of this document will deal with each step in detail.\par \par \f20
+\fs24 \b Creating A Userid For The Nameserver\f20 \fs24 \b0 \par \tab If you have a 4.3bsd system, you should create a userid for use by the Nameserver.  \f20
+\fs24 \b This userid should have sole access\f20 \fs24 \b0  to the Nameserver database and the utility and server programs.  If you have a 4.2 bsd system, it is sufficient that the super-user have access to the database and related files (although it will do no harm to have a Nameserver userid that owns the Nameserver files).  The distinction is made because the 4.3bsd \f22
+\fs24 inetd\f20 \fs24  networking daemon allows a userid to be specified for the programs it runs; the 4.2bsd \f22
+\fs24 inetd\f20 \fs24  runs its programs as the super-user.\par \tab If you create a Nameserver userid, you should become that userid for most of the installation process.\par \par \f20
+\fs24 \b Untar The Files\f20 \fs24 \b0 \par \tab The Nameserver is normally distributed as a compressed tar archive.  The command:\par \f22
+\fs24 uncompress -c <ph.tar.Z | tar xvf -\f20 \fs24 \par will uncompress and extract the files from ph.tar.Z, which can then be removed.  The following directories and files will appear in your current working directory:\par \keep \pard \keep \li0
+\ri0 \fi-360 \qj \sl320 \tqr \tx9380 \f22 \fs24 Makefile\f20 \fs24 \par \tab The top-level makefile for the Nameserver.  This makefile mostly runs make in the various subdirectories.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep configure\f20
+\fs24 \par \tab This script is used to configure the Nameserver to run on your system.  This is done by editting the various Makefiles and installing proper definitions in them.  The \f22
+\fs24 configure\f20 \fs24  script edits only some variable lines at the top of each Makefile, and \f22
+\fs24 qi/conf.c\f20 \fs24 ; it does not touch any other source code or the bodies of the Makefiles.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep lintlint\f20
+\fs24 \par \tab This file contains \f22 \fs24 sed\f20 \fs24  commands to delete unwanted complaints from \f22
+\fs24 lint\f20 \fs24  output.\f22 \fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320
+\tqr \tx9380 \keep doc\f20 \fs24 \par \tab This directory contains various documents pertaining to the Nameserver.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep include\f20
+\fs24 \par \tab The NameserverUs #include files go here.\f22 \fs24 \par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep lib\f20 \fs24 \par \tab A few ubiquitous library functions.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep ph\f20 \fs24
+\par \tab The client program.\f22 \fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320
+\tqr \tx9380 \keep qi\f20 \fs24 \par \tab The server program.\f22 \fs24 \par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep stats\f20 \fs24 \par \tab Programs for dealing with the Nameserver log.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep util\f20 \fs24
+\par \tab Miscellaneous other goodies.  Thes programs build and dump the Nameserver database, as well as do other nifty little things.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tqr \tx9380 \pard \li0 \ri0 \fi-360
+\qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 \par \pard \li0 \ri0 \fi0 \qj \sl320
+\tx380 \tx740 \tqr \tx9380 \f20 \fs24 See Appendix A for an explanation of each file in the subdirectories.\par \par \f20
+\fs24 \b The \f22 \fs24 \b configure\f20 \fs24 \b  Script\up0 \f20 \fs24 \b0 \par \tab The \f22
+\fs24 configure\f20 \fs24  script will aid you in localizing the Nameserver for your site.  It does this in two ways; it edits the various Makefiles, inserting proper values for variables defining such things as C compiler flags, special #defines, etc.; it also edits \f22
+\fs24 qi/conf.c\f20 \fs24 , a C source file that gives the locations of various important files (such as the Nameserver database).\par \tab The configure script consists of three parts; the prologue, which you should edit; the code to change Makefiles; and the code to edit \f22
+\fs24 conf.c\f20 \fs24 .  The prologue itself is in two parts; the first part, that sets variables for Makefiles; and the second part, that sets file names for \f22
+\fs24 qi/conf.c\f20 \fs24 .\par \tab In editing the prologue, bear in mind that the c-shell (\f22
+\fs24 csh\f20 \fs24 ) is going to be executing configure; be sure to protect things from the shell.  Also bear in mind that \f22
+\fs24 sed\f20 \fs24  is going to be run;  you may have to experiment with the placement of quotes and escapes to get the results you want.  Never fear, however; you canUt break anything with \f22
+\fs24 configure\f20 \fs24  that canUt be easily repaired with \f22 \fs24 configure\f20
+\fs24 .\par \f20 \fs32 \b \tab \f20 \fs24 \b0 Here are the variables in the prologue of config, along with example settings,  explanations of what they mean, and what you can do with them:\par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tqr \tx9380 \f22 \fs24 set mainbin=/usr/local/bin\par \tab \f20
+\fs24 This is a directory where ph will be placed.  It should be in the search path of users.\par \f22
+\fs24 set utilbin=/nameserv/bin\par \tab \f20 \fs24 This is a directory where the other binaries will be placed.  Woe is the system that lets the casual user execute these.\par \f22
+\fs24 set otherlib=\par \tab \f20 \fs24 If there is a library that shoudl be appended to loader runs, put it here.  We use it to see that \f22
+\fs24 qi\f20 \fs24  gets the 4.3 version of \f22 \fs24 syslog(3)\f20 \fs24  on our Ultrix system.\par \f22
+\fs24 set otherlint=\par \tab \f20 \fs24 If you give this a value, you can help \f22
+\fs24 lint\f20 \fs24  when dealing with the library you gave for \f22 \fs24 otherlib\f20
+\fs24 .  This assumes you have a built a \f22 \fs24 lint\f20 \fs24  library for \f22
+\fs24 otherlib\f20 \fs24 .\par \f22 \fs24 set cc=/bin/cc\par \tab \f20 \fs24
+Your favorite C compiler.\par \f22 \fs24 set lint="/usr/bin/lint -u"\par \tab \f20
+\fs24 How you care to invoke \f22 \fs24 lint\f20 \fs24 .\par \f22 \fs24 set ci='ci -q -l -m"No help here."'\par \tab \f20
+\fs24 This will be invoked when you do a R\f22 \fs24 make rcs\f20 \fs24 S in any directory.  It will be given a list of files that probably need to have their revisions controlled.\par \f22
+\fs24 set defs=(LOG_QILOG=LOG_LOCAL0)\par \tab \f20 \fs24 You can #define anything you want here.  If you give more than one word, put the words in parentheses, per shell syntax.  You should define \f22
+\fs24 LOG_QILOG\f20 \fs24  to be the proper \f22 \fs24 syslog\f20 \fs24  facility number.\par \keep \f22
+\fs24 set depend=-M\par \tab \f20 \fs24 This should be the flag that \f22 \fs24
+cc\f20 \fs24  should be given to generate a dependency list.  On most UNIX systems it is R\f22
+\fs24 -M\f20 \fs24 S.  Ultrix requires R\f22 \fs24 -Em\f20 \fs24 S (donUt look at me...).\par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tqr \tx9380 \keep \f22 \fs24 set host='\\"garcon.cso.uiuc.edu\\"'\par \tab \f20
+\fs24 The host that the server program (qi) runs on.  This is used only by the client, ph.  (Note the RtrickyS use of quotes and escapes; the end result is a constant string in ph.c.)\f22
+\fs24 \par set fallbackaddr=0x80ae053a\par \tab \f20 \fs24 The address of the aforementioned host, in case it canUt be found in host table or domain system.\f22
+\fs24 \par set nsservice='\\"ns\\"'\par \tab \f20 \fs24 The name of the UNIX service that is the CSO Nameserver.\f22
+\fs24 \par set fallbackport=105\par \tab \f20 \fs24 The port number to use if the aforementioned service is not found in \f22
+\fs24 /etc/services\f20 \fs24 .\f22 \fs24 \par set admin='\\"dorner@garcon.cso.uiuc.edu\\"'\par \tab \f20
+\fs24 The CSO Nameserver adminstrator.\f22 \fs24 \par set passw='\\"nameserv@uxg.cso.uiuc.edu\\"'\par \tab \f20
+\fs24 The person who gives out CSO Nameserver passwords.\par \pard \li0 \ri0
+\fi-360 \qj \sl320 \tqr \tx9380 \f22 \fs24 set lockfile=/nameserv/db/LockFile\par \tab \f20
+\fs24 The lock file for the main database.  This file \f20 \fs24 \b must\f20
+\fs24 \b0  exist for \f22 \fs24 qi\f20 \fs24  to run.\par \keep \f22 \fs24 set tempfile=/tmp/qiXXXXXX\par \tab \f20
+\fs24 Template for \f22 \fs24 mktemp(3)\f20 \fs24 .\par \f22 \fs24 set fieldconfig=/nameserv/db/prod.cnf\par \tab \f20
+\fs24 The file that describes the tagged fields used by the database.\par \f22
+\fs24 set database=/nameserv/db/prod\par \tab \f20 \fs24 The prefix for the main database files.  The six suffices are \f22
+\fs24 .dir\f20 \fs24 , \f22 \fs24 .dov\f20 \fs24 , \f22 \fs24 .idx\f20 \fs24
+, \f22 \fs24 .iov\f20 \fs24 , \f22 \fs24 .seq\f20 \fs24  and \f22 \fs24 .bdx\f20
+\fs24 .\par \f22 \fs24 set idlock=/nameserv/db/Id.Lock\par \tab \f20 \fs24 The lock file for the id database.  This file need only be present when the \f22
+\fs24 ssnid\f20 \fs24  program is run.\par \f22 \fs24 set idfile=/nameserv/db/IdDB\par \tab \f20
+\fs24 The prefix for the id database files.  The two suffices are \f22 \fs24
+.pag\f20 \fs24  and \f22 \fs24 .dir\f20 \fs24 .  This database need only be present when the \f22
+\fs24 ssnid\f20 \fs24  program is run.\par \pard \li0 \ri0 \fi-360 \qj \sl320
+\tqr \tx9380 \pard \li0 \ri0 \fi0 \qj \sl320 \tx380 \tx740 \tqr \tx9380 \pard \li0
+\ri0 \fi0 \qj \sl320 \tx380 \tx740 \tqr \tx9380 \tab Running \f22 \fs24 configure\f20
+\fs24  will install these definitions in the various Makefiles and \f22 \fs24
+qi/conf.c\f20 \fs24 .  While it is running, \f22 \fs24 configure\f20 \fs24  will write on the standard output the name of the directory it is working on.  If there are any errors running configure, simply edit \f22
+\fs24 configure\f20 \fs24  to fix the error, and run it again; it is not desctructive, nor is there any cleanup that has to be done after a partial run.  You may wish to set the echo flag (\f22
+\fs24 x\f20 \fs24 ) in the first line of \f22 \fs24 configure\f20 \fs24  to help you find errors.\par \par \f20
+\fs24 \b Running Make\f20 \fs24 \b0 \par \tab Before discussing the actual installation of the Nameserver, let me digress into a discussion of the top-level (and the subdirectory) Makefiles.  They provide several standardized targets, in addition to the targets particular to each directory.  For the most part, running \f22
+\fs24 make\f20 \fs24  at the top level will simply \f22 \fs24 make\f20 \fs24
+ the specified target in all the subdirectories; exceptions are noted below.  The standard targets are:\par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tqr \tx9380 \f22 \fs24 all\par \tab \f20 \fs24 Everything that needs to be compiled and loaded.  This is always the first target in the Makefile, so that a simple R\f22
+\fs24 make\f20 \fs24 S has the same effect as a R\f22 \fs24 make all\f20 \fs24
+S.  Note that this does \f20 \fs24 \b not\f20 \fs24 \b0  install the programs in their proper directories; it only compiles and loads them.\par \f22
+\fs24 install\par \tab \f20 \fs24 Installs the programs in their proper binary directories.  This target has RallS as a dependency, so it will compile if necessary.\par \f22
+\fs24 clean\par \tab \f20 \fs24 This removes everything but the source.  Object files, binary libraries, backup copies of Makefiles, compiled (but not installed) programs, etc.  Do a Rmake cleanS to save some disk space when you do not plan to be doing development on the Nameserver for a while.\par \f22
+\fs24 depend\par \tab \f20 \fs24 This will add #include file dependencies to the Makefiles.\par \f22
+\fs24 rcs\par \tab \f20 \fs24 This performs a checkin of all files that look like they have been changed since the last recorded checkin was done.\par \f22
+\fs24 lint\par \tab \f20 \fs24 Runs \f22 \fs24 lint\f20 \fs24  on all the programs, and leaves the output in the file \f22
+\fs24 LINT\f20 \fs24  in the subdirectories.  The Nameserver is not well-liked by \f22
+\fs24 lint\f20 \fs24 , but I do make sure that there are no serious errors in it.  \f22
+\fs24 Lint\f20 \fs24 Us complaints about the Nameserver are just nits that do no real harm.  If you care to cast every occurrence of \f22
+\fs24 NULL\f20 \fs24  to the proper pointer type, you may be my guest...  In the top-level directory, running \f22
+\fs24 make lint\f20 \fs24  will first run \f22 \fs24 lint\f20 \fs24  in all the subdirectories, then cat the \f22
+\fs24 LINT\f20 \fs24  files together and run them through the \f22 \fs24 sed\f20
+\fs24  script \f22 \fs24 lintlint\f20 \fs24 , which removes a lot of \f22 \fs24
+lint\f20 \fs24 Us unnecessary messages, and leaves the result in the file \f22
+\fs24 LINT\f20 \fs24  in the top level directory.\par \f22 \fs24 tape\par \tab \f20
+\fs24 First cleans the directory, then makes a tar archive out of the Nameserver.  This target is present in the top-lev el Makefile only.\par \f22
+\fs24 print\par \tab \f20 \fs24 Prints the Nameserver source.  Be sure you have the Makefile variable \f22
+\fs24 PRINTER\f20 \fs24  set to a program that knows how to print its standard input.  Top-level Makefile only.\par \pard \li0
+\ri0 \fi0 \qj \sl320 \tx380 \tx740 \tqr \tx9380 \tab Running R\f22 \fs24 make install\f20
+\fs24 S will compile, load, and copy into the binary directories all the programs that make up the Nameserver.  It does not \f20
+\fs24 \b create\f20 \fs24 \b0  the directories, however; be sure you have done so before you run \f22
+\fs24 make install\f20 \fs24 .\par \par \f20 \fs24 \b Create A Database\f20 \fs24
+\b0 \par \tab This is the step for which I can give you the least help.  Read the document \f20
+\fs24 \i Rebuilding a Nameserver Database In 24 Easy Steps\f20 \fs24 \i0  to see how I do it here at the University of Illinois.  You will probably be able to modify the procedures and programs used in our process to fit your own data and data formats.\par \par \f20
+\fs24 \b Put An \f22 \fs24 \b ns\f20 \fs24 \b  Entry In \f22 \fs24 \b /etc/services\f22
+\fs24 \b0 \par \f20 \fs24 \tab The CSO Nameserver uses the same service name and port number (RnsS and 105) as the CSNET Name Server.  The \f22
+\fs24 /etc/services\f20 \fs24  entry should be:\par \f22 \fs24 \tab \f22 \fs20
+ns              105/tcp         ns              # CSO  nameserver\f20 \fs24 \par This \f22
+\fs24 /etc/services\f20 \fs24  entry should be present on the server machine as well as on any machine that will run the client program, \f22
+\fs24 ph\f20 \fs24 .\par \par \f20 \fs24 \b Teach \f22 \fs24 \b /etc/syslog.conf\f20
+\fs24 \b  About \f22 \fs24 \b qi\up0 \f20 \fs24 \b0 \par \tab As part of editing configure, you should have arrived at a choice for the syslog facility to be used for the Nameserver.  Enter the facility and a log file for it in your /etc/syslogd.conf:\par \f22
+\fs20 \tab local0.warning;local0.info;local0.debug                 /nameserv/log\f20
+\fs24 \par The Nameserver uses the \f22 \fs24 INFO\f20 \fs24  level for most messages; it uses \f22
+\fs24 WARN\f20 \fs24  for errors that need prompt attention.\par \tab You should now send an \f22
+\fs24 HUP\f20 \fs24  signal to syslogd to make it reread its configuration file.\f20
+\fs24 \b \par Teach \f22 \fs24 \b /etc/inetd.conf\f20 \fs24 \b  About \f22 \fs24
+\b qi\up0 \f20 \fs24 \b0 \par \tab The server program, \f22 \fs24 qi\f20 \fs24
+, is written to read from and write to standard input.  It relies on the network daemon \f22
+\fs24 inetd\f20 \fs24  to listen for, make, and pass connections to it.  Therefore, you must enter the Nameserver in \f22
+\fs24 inetd\f20 \fs24 Us configuration table, \f22 \fs24 /etc/inetd.conf\f20
+\fs24 .  On a 4.3bsd system, you would have:\par \tab \f22 \fs20 shell   stream  tcp     nowait  nameserv  /nameserv/bin/qi  qi -d\f20
+\fs24 \par On a 4.2bsd system, you should say:\par \tab \f22 \fs20 ns      stream  tcp     nowait  /nameserv/bin/qi        qi -d\f20
+\fs24 \par Since there is a bug in some versions of 4.3bsd \f22 \fs24 inetd\f20
+\fs24 , be sure to put the Nameserver entry before the first \f20 \fs24 \i internal\f20
+\fs24 \i0  service in \f22 \fs24 /etc/inetd.conf\f20 \fs24  on a 4.3bsd system.\tab \tab You should now send an \f22
+\fs24 HUP\f20 \fs24  signal to \f22 \fs24 inetd\f20 \fs24  to make it reread its configuration file.\par \par \f20
+\fs24 \b Install the Client\f20 \fs24 \b0 \par \tab The \f22 \fs24 ph\f20 \fs24
+ subdirectory may be copied to whatever machine you wish; a \f22 \fs24 make install\f20
+\fs24  (and the proper entry in \f22 \fs24 /etc/services\f20 \fs24 ) will suffice to make it run on the target system.  Note that ph requires no privilege at all, so no special userid is needed on a system that will run the client only.\par \page \up0
+\pard \li0 \ri0 \fi0 \qc \sl320 \tx380 \tx740 \tqr \tx9380 \f21 \fs32 \b Appendix AQNameserver Files\f22
+\fs24 \b0 \par \pard \li0 \ri0 \fi-360 \qc \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380
+\pard \li0 \ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 \par \keep \pard \keep \li0
+\ri0 \fi-360 \qc \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 {\pict \macpict \pich426
+\picw453 \picscaled 
+0749ffffffff01a901c41101a00082a0008c01000affffffff01a901c4090000000000
+0000003100a3000100e3009209ffffffffffffffff380900000000000000003100a300
+0100b6009209ffffffffffffffff38a10096000c020000000200000000000000a1009a
+0008fffc00000015000001000a00a7000100b500910300150d000c2b33b109746f702d
+6c6576656ca00097a10096000c020000000200000000000000a1009a00080007000000
+1b000001000a00b9000500dd008c0300162800c3002d094d616b6566696c650d2800cf
+00290a636f6e6669677572650d2b040c086c696e746c696e74a00097a0008da0008c01
+000affffffff01a901c40900000000000000003100410133007801c409ffffffffffff
+ffff380900000000000000003100410133005401c409ffffffffffffffff38a1009600
+0c020000000200000000000000a1009a0008fffd00000012000001000a004601330054
+01c3030015280050016807696e636c756465a00097a10096000c010000000200000000
+000000a1009a0008000300000042000001000a00580137007001be0d000a2800610138
+16496e636c7564652066696c65732075736564206279202a0c144e616d657365727665
+722070726f6772616d732ea00097a0008d01000affffffff01a901c420004a013300ac
+0091a0008c090000000000000000310082013300b901c409ffffffffffffffff380900
+000000000000003100820133009501c409ffffffffffffffff38a10096000c02000000
+0200000000000000a1009a0008fffd00000005000001000a00860133009401c30d000c
+2b3d23036c6962a00097a10096000c010000000200000000000000a1009a0008000300
+000042000001000a0098013700b001be0d000a2800a1013815536f6d652067656e6572
+616c2d707572706f7365202a0c09726f7574696e65732ea00097a0008d01000affffff
+ff01a901c420008b013300ac0091a0008c0900000000000000003100c2013300f001c4
+09ffffffffffffffff380900000000000000003100c2013300d501c409ffffffffffff
+ffff38a10096000c020000000200000000000000a1009a0008fffc0000000500000100
+0a00c7013300d501c30d000c2b3d24027068a00097a10096000c010000000200000000
+000000a1009a0008fffc00000042000001000a00d9013700e501be0d000a2800e20138
+1e54686520636c69656e742070726f6772616d206c6976657320686572652ea00097a0
+008d01000affffffff01a901c42000cb013300ac0091a0008c09000000000000000031
+00fa0133012801c409ffffffffffffffff380900000000000000003100fa0133010d01
+c409ffffffffffffffff38a10096000c020000000200000000000000a1009a0008fffd
+00000003000001000a00fe0133010c01c30d000c2b3f26027169a00097a10096000c01
+0000000200000000000000a1009a0008fffd00000042000001000a01100137011c01be
+0d000a280119013813546865207365727665722070726f6772616d2ea00097a0008d01
+000affffffff01a901c4200103013300ac0091a0008c09000000000000000031013101
+33016801c409ffffffffffffffff380900000000000000003101310133014401c409ff
+ffffffffffffff38a10096000c020000000200000000000000a1009a0008fffd000000
+0b000001000a01360133014401c30d000c2b3727057374617473a00097a10096000c01
+0000000200000000000000a1009a0008000300000042000001000a01480137016001be
+0d000a28015101381e466f7220676174686572696e6720737461746973746963732066
+726f6d202a0c15746865204e616d65736572766572d573206c6f672ea00097a0008d01
+000affffffff01a901c420013a013300ab0091a0008c09000000000000000031000101
+33003801c409ffffffffffffffff380900000000000000003100010133001401c409ff
+ffffffffffffff38a10096000c020000000200000000000000a1009a0008fffc000000
+08000001000a00050133001301c30d000c28000f017203646f63a00097a10096000c01
+0000000200000000000000a1009a0008000200000042000001000a00170137002f01be
+0d000a280020013816446f63756d656e746174696f6e20666f7220746865202a0c0b4e
+616d657365727665722ea00097a0008d01000affffffff01a901c420000a013300ac00
+91a0008c090000000000000000310172013301a901c409ffffffffffffffff38090000
+0000000000003101720133018501c409ffffffffffffffff38a10096000c0200000002
+00000000000000a1009a0008fffd00000006000001000a01760133018401c30d000c28
+01800174047574696ca00097a10096000c010000000200000000000000a1009a000800
+0300000042000001000a0188013701a001be0d000a28019101381e50726f6772616d73
+20746861742061696420696e206461746162617365202a0c196372656174696f6e2061
+6e64206d61696e74656e616e63652ea00097a0008d01000affffffff01a901c420017b
+013300ac0091a00083ff}
+\par \f20 \fs24 \b \par Figure 1. Directory Organization\f22 \fs24 \b0 \par \pard \keep \li0
+\ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 \par doc:\par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 \pard \li0 \ri0 \fi-340
+\qj \sl320 \tx380 \tqr \tx9380 Installation.macbin\par \tab \f20 \fs24 This WriteNow for the Macintosh document.\f22
+\fs24 \par Introduction.macbin\par \tab \f20 \fs24 A WriteNow for the Macintosh document that provides a tutorial introduction to the client program, \f22
+\fs24 ph\f20 \fs24 .\f22 \fs24 \par \keep Description.wn.Bin\par \tab \f20 \fs24
+A WriteNow for the Macintosh document that gives an overview of the CSO Nameserver.\f22
+\fs24 \par \pard \li0 \ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 \keep Installation.wn.Bin\par \tab \f20
+\fs24 A WriteNow for the Macintosh document which explains the Nameserver distribution and how to install the Nameserver.\f22
+\fs24 \par \pard \li0 \ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 \keep Introduction.wn.Bin\par \tab \f20
+\fs24 A WriteNow for the Macintosh document providing a tutorial for end users.\f22
+\fs24  \par Programmer.wn.Bin\par \tab \f20 \fs24 A WriteNow for the Macintosh document giving further guidance to the benighted Nameserver programmer.\f22
+\fs24 \par \pard \li0 \ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 \keep Protocol.wn.Bin\par \tab \f20
+\fs24 A WriteNow for the Macintosh document describing the protocol used by the CSO Nameserver.\f22
+\fs24 \par Rebuild.wn.Bin\par \tab \f20 \fs24 A WriteNow for the Macintosh document describing how we rebuild our Nameserver database each semester.\f22
+\fs24 \par Why.wn.Bin\par \tab \f20 \fs24 A WriteNow for the Macintosh document that explains the design process we used for our Nameserver.\f22
+\fs24 \par Description.rtf\par Installation.rtf\par Introduction.rtf\par Programmer.rtf\par Protocol.rtf\par Rebuild.rtf\par Why.rtf\par \tab \f20
+\fs24 These documents are Rich Text Format versions of their namesakes\f20 \fs24
+.\f22 \fs24 \par \pard \li0 \ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 ph.1\par \tab \f20
+\fs24 The \f22 \fs24 ph\f20 \fs24  manual page, ready for the \f22 \fs24 man\f20
+\fs24  macros.\f22 \fs24 \par qi.8\par \tab \f20 \fs24 The \f22 \fs24 qi\f20
+\fs24  manual page, ready for the \f22 \fs24 man\f20 \fs24  macros.\f22 \fs24
+\par \pard \li0 \ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 \par include:\par \pard \li0
+\ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 Makefile\par \tab \f20 \fs24 This Makefile doesnUt shake the earth, since itUs in an include file directory, but it does know how to use rcs...\f22
+\fs24 \par RCS\par \tab \f20 \fs24 RCSUed versions of the include files live here.\f22
+\fs24 \par bintree.h\par \tab \f20 \fs24 Include file for programs using metacharacter-ful searches, or building the index required for such things.\f22
+\fs24 \par commands.h\par \tab \f20 \fs24 Include file used by qi for definitions required when writing functions which implement Nameserver protocol commands.\f22
+\fs24 \par db.h\par \tab \f20 \fs24 Include file for dealing with the Nameserver database and index.\f22
+\fs24 \par field.h\par \tab \f20 \fs24 Include file for handling tagged fields.\f22
+\fs24 \par ll.h\par \tab \f20 \fs24 Include file for linked lists (used only by a statistics program).\f22
+\fs24 \par options.h\par \tab \f20 \fs24 Nameserver options defined.\f22 \fs24
+\par qi.h\par \tab \f20 \fs24 General definitions for the server portion of the Nameserver.\f22
+\fs24 \par replies.h\par \tab \f20 \fs24 Nameserver reply codes.\f22 \fs24 \par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 \par lib:\par \pard \li0
+\ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 Makefile\par \tab \f20 \fs24 Need I say more?\f22
+\fs24 \par RCS\par \tab \f20 \fs24 This directory has an obvious function.\f22
+\fs24 \par anyof.c\par \tab \f20 \fs24 Contains a function that decides if any of the characters from one string appear in another string.\f22
+\fs24 \par pmatch.c\par \tab \f20 \fs24 Contains functions that do globbing-style pattern matching.\f22
+\fs24 \par str.c\par \tab \f20 \fs24 Various interesting and boring string functions.\f22
+\fs24 \par strbuild.c\par \tab \f20 \fs24 Functions for building unlimited-length strings.\f22
+\fs24 \par util.c\par \tab \f20 \fs24 Miscellaneous useful stuff.\f22 \fs24 \par \pard \li0
+\ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380 \par ph:\par \pard \li0
+\ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 Makefile\par RCS\par cryptit.c\par \tab \f20
+\fs24 {En,de}crypting code.\f22 \fs24 \par ph.c\par \tab \f20 \fs24 The definitive Nameserver client.\f22
+\fs24 \par replies.h\par \tab \f20 \fs24 Nameserver reply codes, reprised for the benefit of systems other than the server system.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380
+\par qi:\par \pard \li0 \ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 Makefile\par RCS\par add.c\par \tab \f20
+\fs24 The Nameserver RaddS command is implemented here.\f22 \fs24 \par auth.c\par \tab \f20
+\fs24 User authorization functions.\f22 \fs24 \par bintree.c\par \tab \f20 \fs24
+Functions to deal with the tree index to the Nameserver databaseUs hash table index.\f22
+\fs24 \par change.c\par \tab \f20 \fs24 Functions implementing the Nameserver RchangeS command.\f22
+\fs24 \par commands.c\par \tab \f20 \fs24 The top level of the Nameserver command interpreter, and miscellaneous trivial commands.\f22
+\fs24 \par conf.c\par \tab \f20 \fs24 The locations of database and other files.\f22
+\fs24 \par cryptit.c\par \tab \f20 \fs24 {En,de}crypting code.\f22 \fs24 \par dbd.c\par \tab \f20
+\fs24 Functions that handle the database proper.\f22 \fs24 \par dbi.c\par \tab \f20
+\fs24 Functions that handle the hash table index to the database.\f22 \fs24 \par dbm.c\par \tab \f20
+\fs24 This file contains functions that deal with the database \f20 \fs24 \i in toto\f20
+\fs24 \i0 ; index and data.\f22 \fs24 \par field.c\par \tab \f20 \fs24 If you want to deal with tagged fields, come here first.\f22
+\fs24 \par language.l\par \tab \f20 \fs24 Parser for the Nameserver protocol.  \f22
+\fs24 Lex\f20 \fs24  this.\f22 \fs24 \par lock.c\par \tab \f20 \fs24 Controls advisory locks on the database.\f22
+\fs24 \par lookup.c\par \tab \f20 \fs24 Give the functions in this file a list of index entries, and theyUll give you the entries that are implied.\f22
+\fs24 \par phoneme.c\par \tab \f20 \fs24 Some phonetic code that isnUt too impressive for the NameserverUs purposes, and is currently unused.\f22
+\fs24 \par qi.c\par \tab \f20 \fs24 The serverUs \f22 \fs24 main\f20 \fs24  lives here, along with other minor details.\f22
+\fs24 \par query.c\par \tab \f20 \fs24 This file implements the Nameserver \f22
+\fs24 query\f20 \fs24  command, including validation and post-index matching.\f22
+\fs24 \par rules.c\par \tab \f20 \fs24 More defunct phonetic code.\f22 \fs24
+\par set.c\par \tab \f20 \fs24 If you want to set an option, youUll wind up in this file.\f22
+\fs24 \par version.c\par \tab \f20 \fs24 Check this in if you want the NameserverUs version number to change.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380
+\par stats:\par \pard \li0 \ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 Makefile\par RCS\par follow.c\par \tab \f20
+\fs24 This program reads the Nameserver log, and RfollowsS any Nameserver session that matches the given pattern.\f22
+\fs24 \par hour.awk\par \tab \f20 \fs24 Awk script that figures out when people use the Nameserver, from the Nameserver log.\f22
+\fs24 \par ll.c\par \tab \f20 \fs24 Linked list handling functions (used by follow.c).\f22
+\fs24 \par phstats\par \tab \f20 \fs24 Performs reductions on the Nameserver log, and gives statistics on what hosts use the Nameserver, how many times they use it, when the Nameserver is used, and what the command mix is.\f22
+\fs24 \par qicmds.awk\par \tab \f20 \fs24 Awk script that tallies commands from the Nameserver log.\f22
+\fs24 \par qiuse.awk\par \tab \f20 \fs24 Awk script that preprocesses the Nameserver log for qiuse.\f22
+\fs24 \par qiuse.c\par \tab \f20 \fs24 Program that figures out the names of hosts that use the Nameserver.\f22
+\fs24 \par \pard \li0 \ri0 \fi-360 \qj \sl320 \tx380 \tx740 \tx1080 \tqr \tx9380
+\par util:\par \pard \li0 \ri0 \fi-340 \qj \sl320 \tx380 \tqr \tx9380 Makefile\par RCS\par alias.awk\par \tab \f20
+\fs24 Awk script that assigns Nameserver alia to those who have none.\f22 \fs24
+\par aliasprepare.c\par \tab \f20 \fs24 Prepares a Nameserver database dump for alias.awk.\f22
+\fs24 \par border.c\par \tab \f20 \fs24 Reverses byte order in a Nameserver database; used to move a database from a normal machine to a VAX.\f22
+\fs24 \par build.c\par \tab \f20 \fs24 Builds the bintree index to the Nameserver database.\f22
+\fs24 \par credb.c\par \tab \f20 \fs24 Creates a new, empty, Nameserver database.\f22
+\fs24 \par emailp\par \tab \f20 \fs24 Processes the output qi produces when given a massaged /etc/passwd file.\f22
+\fs24 \par f.pb.c\par \tab \f20 \fs24 Program that interprets the University of Illinois staff data tape.\par \f22
+\fs24 id.c\par \tab \f20 \fs24 Functions that deal with the dbm(3) database of University IdUs.\f22
+\fs24 \par maked.c\par \tab \f20 \fs24 Program that makes a .dir file (Nameserver database) out of an ascii data file.\f22
+\fs24 \par makei.c\par \tab \f20 \fs24 Functions for the initial creation of the Nameserver hash table index.\f22
+\fs24 \par maket.c\par \tab \f20 \fs24 Functions that aid build in making the bintree index to the hash table.\f22
+\fs24 \par mdump.c\par \tab \f20 \fs24 Program that dumps the Nameserver database in ascii form onto standard output.\f22
+\fs24 \par s.pb.c\par \tab \f20 \fs24 Program that deals with the University of Illinois student data tape.\f22
+\fs24 \par ssnid.c\par \tab \f20 \fs24 Program that uses id.c to assign random idUs to Nameserver entries.\f22
+\fs24 \par stastu.c\par \tab \f20 \fs24 Program that merges the staff and student ascii data files.\f22
+\fs24 \par tmerge.c\par \tab \f20 \fs24 Program that merges a database dump with new data.\f22
+\fs24 \par \up0 \par }

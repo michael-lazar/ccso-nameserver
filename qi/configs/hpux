@@ -1,0 +1,6 @@
+#  The defaults are suitable for HP-UX
+$CC = "cc -Aa -Dhpux -D_HPUX_SOURCE";
+$Cflags .= " -DFCNTL_LOCK";
+$Depend = "";		# Anyone know how to get dependencies?
+$DbmLib = "-ldbm";
+1

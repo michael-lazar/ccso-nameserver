@@ -1,0 +1,75 @@
+WHAT IS AN ALIAS?
+The Nameserver contains entries for all staff, faculty, and students at
+the University.  Each one of these people is identified by a special
+name, the alias.  No two people have the same alias; therefore, a
+person's alias uniquely identifies him or her.  This is the most
+important thing to remember about aliases:  an alias is always enough
+information to identify a person in the Nameserver database.
+
+A person's alias is usually formed by combining his or her first initial,
+a hyphen, and complete last name.  For example, "Paul B. Pomes" has an
+alias of "p-pomes".  Some people share the same first initial and last
+name; these people typically have a number added to the ends of their
+aliases, so that their aliases remain unique.  For example, "John Doe"
+might have an alias of "j-doe1", and "Jane Doe" might have an alias of
+"j-doe2".  It is possible for the owner of a ph entry to change his or
+her alias by logging into ph and using the "edit" or "make" command;
+thus, some people have aliases that do not follow the conventions just
+described, such as the alias "SueG".
+
+WHAT IS THE FUNCTION OF AN ALIAS?
+Aliases serve two functions.  First, they are used as "login names" for
+the Nameserver.  If you wish to make changes to your Nameserver entry,
+you must first tell ph your alias so that it knows who is trying to log
+in.  Second, they can be used as a convenient means of sending a person
+electronic mail.  Instead of sending mail to a person's specific e-mail
+address, you can send mail to "ph-alias@uiuc.edu", where ph-alias is
+the person's alias.  For example, you could send mail to "p-pomes@uiuc.edu",
+and the mail would be delivered to Paul Pomes.
+
+Using alias-based addresses to send mail has a couple of advantages over
+using specific e-mail addresses: 1) alias-based addresses are often
+shorter and much easier to remember than specific e-mail addresses; and
+2) the alias of a user never changes (unless the owner of the ph entry
+deliberately modifies his or her alias), whereas it is quite common for
+the specific address at which a person receives electronic mail to
+change.  By keeping the "email" field in your ph entry up to date and
+encouraging friends and colleagues to use your alias-based address rather
+than your specific e-mail address, your electronic mail will always be
+delivered to your current address, eliminating the need to notify people
+if your specific e-mail address should change.  For this reason, its a
+good idea to use your alias-based address on business cards and other
+printed or electronic media that advertise your e-mail address.  See
+the ph help for "email" and "e-mail" for further information on the
+Nameserver and e-mail addresses.
+
+HOW DO I FIND AN ALIAS?
+Ph prints aliases by default when you do a lookup.  The manner in
+which it prints them is somewhat confusing, however, and bears
+some explanation.  Here is an sample ph query that will help:
+
+% ph john doe
+----------------------------------------
+           name: doe john
+   office_phone: 333-3333
+ office_address: 194 DCL, MC 256
+     department: computing services office
+       email to: j-doe@uiuc.edu (doe@garcon.cso.uiuc.edu)
+----------------------------------------
+
+By default, ph combines the contents of the "alias" and "email" fields
+into a single line or pseudo-field called "email to".  The alias is the
+first thing in the "email to" line, before the "@uiuc.edu".  In the
+above example, the alias is "j-doe".
+
+A more direct way to find an alias is to specify the fields you want to
+see by using a "return clause" in the query.  Only fields that follow
+the word "return" will be displayed, as shown below:
+
+% ph john doe return name alias
+----------------------------------------
+           name: doe john
+          alias: j-doe
+----------------------------------------
+
+SEE ALSO: login, email, e-mail, introduction, edit, make, alias

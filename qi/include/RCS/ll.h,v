@@ -1,0 +1,208 @@
+head	1.6;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.6
+date	92.07.24.17.02.19;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.07.22.16.03.35;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	90.12.18.08.40.56;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	89.03.20.15.14.13;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.12.02.14.41.06;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	88.11.15.13.30.48;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.6
+log
+@Re-formatted for clarity.
+@
+text
+@/*
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+ */
+
+#ifndef LL_H
+#define LL_H
+#include <cdefs.h>
+#ifndef NULL
+#define NULL 0
+#endif
+
+#define FORWARD 1
+#define BACKWARD (-1)
+struct ListItem
+{
+	struct ListItem *prevItem;		/* previous item in chain */
+	struct ListItem *nextItem;		/* next item in chain */
+};
+typedef struct ListItem L_ITEM;
+
+struct List
+{
+	struct ListItem *firstItem;
+	struct ListItem *lastItem;
+	int	listCount;
+};
+typedef struct List LIST;
+
+LIST *CreateList __P((char *));
+L_ITEM *InsertItem __P((LIST *, L_ITEM *, L_ITEM *));
+L_ITEM *DeleteItem __P((LIST *, L_ITEM *));
+L_ITEM *FindItem __P((LIST *, L_ITEM *, int, int(*)(), char *));
+L_ITEM *PopItem __P((LIST *));
+L_ITEM *PushItem __P((LIST *, L_ITEM *));
+L_ITEM *QueueItem __P((LIST *, L_ITEM *));
+int RecountList __P((LIST *));
+
+#define ListIsEmpty(x)	((x)->firstItem==NULL)
+#endif
+@
+
+
+1.5
+log
+@Re-formatted for clarity.
+@
+text
+@d20 2
+a21 2
+	ListItem *prevItem;		/* previous item in chain */
+	ListItem *nextItem;		/* next item in chain */
+d23 1
+a23 1
+typedef struct ListItem ListItem;
+d27 2
+a28 2
+	ListItem *firstItem;
+	ListItem *lastItem;
+d31 1
+a31 1
+typedef struct List List;
+d33 8
+a40 8
+List *CreateList __P((char *));
+ListItem *InsertItem __P((List *, ListItem *, ListItem *));
+ListItem *DeleteItem __P((List *, ListItem *));
+ListItem *FindItem __P((List *, ListItem *, int, int(*)(), char *));
+ListItem *PopItem __P((List *));
+ListItem *PushItem __P((List *, ListItem *));
+ListItem *QueueItem __P((List *, ListItem *));
+int RecountList __P((List *));
+@
+
+
+1.4
+log
+@No help here.
+@
+text
+@d1 7
+a7 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d11 1
+a17 1
+typedef struct ListItem ListItem;
+d20 2
+a21 2
+    ListItem *prevItem;		/* previous item in chain */
+    ListItem *nextItem;		/* next item in chain */
+d23 1
+a24 1
+typedef struct List List;
+d27 3
+a29 3
+    ListItem *firstItem;
+    ListItem *lastItem;
+    int     listCount;
+d31 10
+a40 8
+List *CreateList(char *storage);
+ListItem *InsertItem(List *theList,ListItem *theSpot,ListItem *theItem);
+ListItem *DeleteItem(List *theList,ListItem *theItem);
+ListItem *FindItem(List *theList,ListItem *startItem,int direction,int (*Yes) (),char *yesArg);
+ListItem *PopItem(List *theList);
+ListItem *PushItem(List *theList,ListItem *theItem);
+ListItem *QueueItem(List *theList,ListItem *theItem);
+int RecountList(List *theList);
+d42 1
+a42 1
+#define ListIsEmpty(theList)    ((theList)->firstItem==NULL)
+@
+
+
+1.3
+log
+@No help here.
+@
+text
+@d31 8
+a38 9
+
+List   *CreateList();		/* initialize a new list */
+ListItem *InsertItem();		/* insert an item in a list */
+ListItem *DeleteItem();		/* delete an item from the list */
+ListItem *FindItem();		/* find an item with certain properties */
+ListItem *PopItem();		/* remove and return the first item */
+ListItem *PushItem();		/* add an item at front of list */
+ListItem *QueueItem();		/* add an item to the end of a list */
+int     RecountList();		/* recount the number of items in a list */
+@
+
+
+1.2
+log
+@No help here.
+@
+text
+@d1 8
+@
+
+
+1.1
+log
+@No help here.
+@
+text
+@d1 2
+a2 2
+#ifndef LL
+#define LL
+@

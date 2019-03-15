@@ -1,0 +1,5 @@
+$Cflags .= " -DFCNTL_LOCK -DSYSV -DWAIT_INT";
+$Depend = "-xM";
+$MoreLib .= " -L/usr/local/lib -lresolv -lsocket -lnsl";
+$Lex = "lex -e";
+$Ranlib = "echo";

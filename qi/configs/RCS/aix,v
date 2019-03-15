@@ -1,0 +1,71 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	95.06.26.22.05.03;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.06.09.16.17.29;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.06.09.16.06.35;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@Deleted Install target.
+@
+text
+@#  Most defaults are suitable for AIX 3.2+
+$OtherDefines{"Mem_Type"} = "void";
+# Note that kerberos authentication fails using "csnet-ns".  If you wish to
+# use kerberos, set service instead to just "ns" and edit /etc/services
+# to include ns in the csnet-ns entry.
+$PhFlags{"NsService"} = "csnet-ns";
+$CC = "xlc";
+$Cflags .= " -D_ALL_SOURCE -DFCNTL_LOCK -DWAIT_INT";
+$DbmLib = "-ldbm";
+# -M flag to xlc puts dependencies in a foo.u file instead of stdout.  It
+# also compiles the module even if only dependencies are wanted.  Thanks IBM!
+$Depend = "";
+1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@a8 1
+$Install = "/usr/ucb/install -c";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+a6 2
+#$PhFlags{"NsService"} = "csnet-ns";
+$PhFlags{"NsService"} = "ns";
+d8 1
+a8 1
+$Cflags .= " -D_ALL_SOURCE -DNSSERVICE=\\\"ns\\\" -DFCNTL_LOCK -DWAIT_INT";
+@

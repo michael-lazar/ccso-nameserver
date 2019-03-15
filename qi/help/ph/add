@@ -1,0 +1,24 @@
+SYNTAX: add name-of-field=value-of-field...
+
+SUMMARY
+This command is used to add new entries to the Nameserver database.
+Most users are not allowed to use the "add" command. You must be logged
+into ph and have special privileges to use "add".
+
+Note that the "add" command adds entire ph ENTRIES; to add one or more
+FIELDS to an entry, use the "edit", "change", or "make" command.
+
+"Add" creates a new entry and gives its fields the values specified in
+the command.
+
+EXAMPLE
+ph> add name="doe john" id="123456789" alias="j-doe"
+200:Ok.
+ph>
+
+WORD TO THE WISE
+Make sure you give your new entry at least one indexed field, or it
+will be impossible to query the Nameserver for information contained
+in the entry.
+
+SEE ALSO: edit, change, make, delete, login, fields

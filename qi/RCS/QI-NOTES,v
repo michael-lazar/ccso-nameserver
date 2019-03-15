@@ -1,0 +1,558 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	95.02.09.16.18.24;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.08.05.14.22.44;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.07.27.19.05.00;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@$Id: QI-NOTES,v 1.2 1994/08/05 14:22:44 p-pomes Exp p-pomes $
+
+This file was created for a job with Illinois State University.  Some
+notes are specific for their installation, others are more general.
+
+1) Installed Products
+
+Source code is currently rooted at /usr/local/ph.  The qi server and
+UNIX ph client are both located under qi in that directory.  A "make install"
+from qi creates
+
+	/usr/local/libexec/qi		The server
+	/usr/local/include/qiapi.h	Definitions for the qi API
+	/usr/local/include/qicode.h	Response codes used by the qi protocol
+	/usr/local/include/sys/cdefs.h	Prototype wrapper for non-ANSI cc
+	/usr/local/lib/libqiapi.a	The API library
+	/usr/local/bin/ph		The user client w. numerous links
+	/var/apps/nameserv/bin		Maintenance utilities
+
+Run-time directories
+
+	/var/apps/nameserv/db		The prod.* files of the database
+
+The other utility installed is phquery for alias-based email re-direction.
+It's packaged with the UIUC-IDA sendmail package stored under sendmail-5.67b.
+Only phquery, from sendmail-5.67b/uiuc, was installed.  A "make install"
+from there creates
+
+	/usr/local/libexec/phquery	The ph->email executeable
+
+
+2) System Changes
+
+Installing phquery required a change to the DNS and to /etc/sendmail.cf
+on aixa.  The DNS change was the insertion of a MX record linking the
+ph domain, ph.ilstu.edu, with a specific host, aixa.cmp.ilstu.edu.  N.B.,
+this must be a MX record to preserve the address foo@@ph.ilstu.edu when
+other hosts relay messages to aixa.  If a CNAME is used sendmail will
+canonicalize the right hand side to aixa.cmp.ilstu.edu.  The left hand
+side of the address will then become a local lookup instead of the
+intended ph lookup.
+
+The change to sendmail.cf is almost as trivial.  The mailer must first
+be defined using the 'M' key:
+
+#
+Mlocal, P=/bin/bellmail, F=lsDFMmn, S=10, R=20, A=mail -F $g $u
+Mprog,  P=/bin/sh,	F=lsDFM,	S=10, R=20, A=sh -c $u
+
++ # Phquery specification
++ MPH,  P=/usr/local/libexec/phquery, F=DFMhnmur, A=phquery $u
+
+Second, a rule to test for addresses with a RHS of ph.ilstu.edu needs
+to be inserted after the address is passed through ruleset 3 (S3 keyword
+in sendmail.cf) and canonicalized, but before any relay or local mailers
+are invoked.
+
+#  Canonicalize anything else which has an @@focus.  This excludes simple names,
+#  which are local.
+#
+R$*<@@$+>$*		$:$1<@@$[$2$]>$3
+
++ # Try canonicalized name in the ph domain.  If true, ship it off to phquery
++ # and let it re-write the SMTP envelope address.
++ R$*<@@ph.ilstu.edu>	$#PH $@@ph.ilstu.edu $:$1
+
+#
+#  Send domain address to tcp.  This includes domain literals [IP quads].
+#  User is full focused path.
+
+
+Any change to sendmail.cf requires a subsystem refresh before it becomes
+effective (refresh -s sendmail).
+
+For use in sendmail v8.6.9 I use the following m4 file (cf/cf/uiuc-ph.mc)
+====
+divert(-1)
+
+include(`../m4/cf.m4')
+VERSIONID(`@@(#)$Id: uiuc-ph.mc,v 1.6 1995/02/04 18:43:50 p-pomes Exp $')
+OSTYPE(aix3)dnl
+FEATURE(always_add_domain)dnl
+FEATURE(redirect)dnl
+FEATURE(notsticky)dnl
+define(`confPRIVACY_FLAGS', `authwarnings,restrictqrun,restrictmailq')dnl
+define(`confMESSAGE_TIMEOUT', `5d/12h')dnl
+define(`confMAX_HOP', `23')dnl
+define(`UUCP_RELAY', smtp:uucp.cso.uiuc.edu)dnl
+MAILER(local)dnl
+MAILER(smtp)dnl
+MAILER(uiuc)dnl
+
+# If RHS is this domain, deliver through phquery
+DDuiuc.edu
+
+# Sender name re-writing database.  Format is "maildrop<tab>replacement", e.g.,
+# p-pomes@@mirage.cso.uiuc.edu	Paul Pomes <P-Pomes@@uiuc.edu>
+# The database is built from the source file with the command
+#	makemap btree generics < generics
+# The source can be generated with the "mdump generics" command.
+Kgenerics btree -o /var/apps/mail/generics
+
+LOCAL_RULE_0
+# Send ph-type addresses through phquery
+R$+ < @@ $D . >		$#PH $@@ $j $: $1
+
+LOCAL_RULE_1
+# Re-write LHS of senders.
+R$-			$1 < @@ $j . >
+R$- < @@ $+ . >		$: $>3 $(generics $1@@$2 $)
+
+LOCAL_RULE_3
+# Strip off route addresses through the ph domain
+R$* < @@ $D > : $+	$: $>3 $1 < $2 >
+
+# Ditto for the percent-hack
+R$+ $=O $+ < @@ $D >	$: $>3 $1$2$3
+====
+
+The UIUC mailer definition file is under cf/mailer/uiuc.m4
+====
+PUSHDIVERT(-1)
+#
+# Copyright (c) 1994 by Paul Pomes and the University of Illinois Board
+# of Trustees.  
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the University of
+#	Illinois, Urbana and its contributors.
+# 4. Neither the name of the University nor the names of its contributors
+#    may be used to endorse or promote products derived from this software
+#    without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# Email:	P-Pomes@@uiuc.edu	USMail:	Paul Pomes
+# ICBM:	40 06 47 N / 88 13 35 W			University of Illinois - CCSO
+#						1304 West Springfield Avenue
+#						Urbana, Illinois,  61801-2910
+#
+ifdef(`PH_MAILER_PATH',,
+	`define(`PH_MAILER_PATH', /var/apps/mail/phquery)')
+ifdef(`PH_MAILER_MAX',,
+	`define(`PH_MAILER_MAX', 1000000)')
+ifdef(`FAX_MAILER_PATH',,
+	`define(`FAX_MAILER_PATH', /var/apps/mail/faxmail)')
+ifdef(`FAX_MAILER_MAX',,
+	`define(`FAX_MAILER_MAX', 100000)')
+ifdef(`PAGER_MAILER_PATH',,
+	`define(`PAGER_MAILER_PATH', /var/apps/mail/pmail)')
+ifdef(`PAGER_MAILER_MAX',,
+	`define(`PAGER_MAILER_MAX', 1000)')
+ifdef(`FRED_MAILER_PATH',,
+	`define(`FRED_MAILER_PATH', /var/apps/mail/fmailer)')
+ifdef(`FRED_MAILER_MAX',,
+	`define(`FRED_MAILER_MAX', 100000)')
+POPDIVERT
+######################################
+###   UIUC Mailer specifications   ###
+######################################
+
+VERSIONID(`@@(#)$Id: uiuc.m4,v 1.4 1995/01/20 20:18:04 p-pomes Exp p-pomes $')
+
+# For the first-lastname@@uiuc.edu mail system (qi/ph).
+# Add -p flag to phquery to copy postmaster on error bounces.
+MPH,	P=PH_MAILER_PATH, F=DFMhnmur, M=PH_MAILER_MAX, S=11/31, R=61, D=$z:/,
+	A=phquery $u
+
+# For the email to fax gateway.
+MFAX,	P=FAX_MAILER_PATH, F=DFMShur, M=FAX_MAILER_MAX, E=\n, S=11/31, R=61,
+	A=faxmail $u
+
+# For the Internet/Frednet (K12) gateway.
+MFRED,	P=FRED_MAILER_PATH, F=DFMhnmus, M=FRED_MAILER_MAX< S=11/31, R=61,
+	A=fmailer $h $u $t
+
+# For email->pager gateway
+MPAGER,  P=PAGER_MAILER_PATH, F=DFMhmnu, M=PAGER_MAILER_MAX, S=11/31, R=61,
+	D=$z:/, A=pmail $u
+====
+
+
+3) The prod.cnf file - merge3 flags
+
+The operation of merge3 is controlled by flags in prod.cnf.  Understanding
+these flags is crucial to controlling how merge3 operates.
+
+Sample from prod.cnf:
+
+6:alias:32:Unique name for user.:O:Indexed:Lookup:Public:Default:ForcePub:
+
+The first field is the field key.  This key is also the label for the
+field in the flat file produced by mdump.  The field name is next,
+its maximum length, and its description.  The 'O' is the merge3 flag.
+Other values that can appear in various combinations are 'C', 'S', and 'F'.
+Following the merge3 flag(s) are field properties.
+
+The merge3 flags are defined as
+	O:	Use the information in the extant database for this field
+	S:	Use the information in the student dataset to update this field
+	F:	As above but use the faculty/staff dataset
+	C:	If the "no_update" field is non-empty for this entry, use the
+		information in the extant database.
+
+Now let's analyze the merge3 actions for various combinations of flags.
+
+3:name:256:Full name.:FS:Indexed:Lookup:Public:Default:
+
+The name is always reset to the values in the update file(s).
+
+2:email:128:Account to receive electronic mail.:O:Indexed:Lookup:Public:Default:Change:ForcePub:
+
+Always keep the value of the email field from the extant database.
+
+# SO for summer update, S for all others.  See also suppress.
+11:curriculum:64:University curriculum:S:Lookup:Public:Default:
+
+Always reset the curriculum field from the student dataset.  This is changed
+to "SO" for the summer update to preserve the field for the bulk of students
+who don't take classes then.
+
+32:office_phone:60:Office telephone number.:CSO:Lookup:Public:Indexed:
+
+Leave office_phone alone if "no_update" is set, otherwise set it to the
+value found in student dataset.  If not present in the student dataset,
+leave the current value alone (it would be cleared otherwise).  At UIUC
+this is CFO.
+
+7:password:16:User's nameserver password.:OSF:Change:Encrypt:
+
+Leave the password alone if present in the extant database, otherwise
+set it to the value from either the student or faculty/staff datasets.
+
+
+4) The prod.cnf file - field properties
+
+From the examples above note the field property flags.  These are
+
+Indexed:	can be a primary search key
+Lookup:		non-heros can search on this field.  If it's also Indexed,
+		it can be the primary search key.  Otherwise it acts as a
+		descriminant in concert with another search key.  Example,
+		"department" is Lookup but not Indexed.  A query of
+		"ph department=ccso" fails but "ph name=paul department=ccso"
+		succeeds as "name" is Indexed and Lookup.
+Public:		The field is viewable by all.
+LocalPub:	The field is viewable only by "local" users.  Local is
+		defined at compile time by @@LocalAddrs() in the qi/configs/*
+		files.
+Default:	Field is shown by default for queries lacking a return clause.
+ForcePub:	Force field to be public even if the "suppress" field is set.
+Change:		User may change this field after logging in.
+Encrypt:	Only used for "password" field.
+NoPeople:	Entries with a type "person" may not edit this field.
+NoMeta		In conjunction with Lookup, NoMeta disallows wildcards on
+		searches of the named field.  Otherwise successive lookups
+		of the form "ph alias=p-pomes id=1*"
+			    "ph alias=p-pomes id=2*"
+		could be used to determine the user's ID number even if the
+		ID isn't Public.
+
+
+5) Database generation
+
+The working directory for database operations is /var/apps/nameserv/work.
+The filesystem hosting this directory needs plenty of free space as a
+database rebuild creates several large temporary files.  Any build failure
+should first be investigated as a disk-full condition.  Having kernel.err
+(/etc/syslog.conf) messages sent to the login-id of the database maintainer
+can be be very helpful.
+
+An update consists of dumping the existing database to a flat file,
+merging the update into it, then re-creating the database.
+
+The starting files include the existing database in the files
+/var/apps/nameserv/db/prod.* and the update file.  This update file
+should be named /var/apps/nameserv/work/i.tape.raw .  Other files and
+links are
+
+	Makefile	obvious
+	old.dir		the old .dir file (symlink to ../db/prod.dir)
+	old.dov		the old .dov file (symlink to ../db/prod.dov)
+	old.cnf 	the old .cnf file (symlink to ../db/prod.cnf)
+	prod.cnf	the new .cnf file (symlink to ../db/prod.cnf)
+	i.tape.raw	the update information as received
+
+First step is to include the directory of maintenance tools in the search
+path of the rebuilder.  This can be done in .profile or on the fly with
+
+	export PATH=/var/apps/nameserv/bin:$PATH
+
+N.B., many of the files created and used during the update have very long
+lines.  Some UNIX tools either fail, or far worse, silently truncate lines.
+Only perl and some special purpose programs included with the qi package
+can be trusted without extensive testing.
+
+To keep the database from being modified while the update is being done,
+create the file /var/apps/nameserv/db/prod.sta with the single line
+
+read update in progress
+
+The word "read" is significant.  If qi is invoked with the -q argument in
+/etc/inetd.conf, it will mark the database read-only if "read" is at the
+beginning of prod.sta.  The other significant lead word is "off".  If that
+is present, qi will respond to clients with a "555 Database unavailable"
+message.  The latter is useful when the underlying database files are being
+moved or re-built in place.
+
+I like to use "make -n" a lot to see what the next step will be and then
+proceed with a single step, e.g., "make other.old" or "make sf.prephone".
+This way I can check the intermediate files for errors.  What follows
+is a general outline of the update generation.
+
+i.tape:
+	i.unblock prod.cnf i.tape.raw | brute > i.tape
+
+The raw tape is unblocked, fields are tab separated, and labeled with
+key values taken from prod.cnf.  Brute is a special purpose sort program
+w.o. line length limits.  The first field in i.tape must be the SSN for
+sorting purposes.
+
+sf.old:
+	mdump people old | perl -p -e 's/\t11:incoming//;' | brute > sf.old
+
+The database is dumped of all records that have "person" in the type field.
+This is to distinguish entries that are eligible for the update process,
+people in this case, from those that are not, e.g., entries for departments,
+restaurants, bus schedules, etc.
+
+The perl script resets any curriculum field that has the string "incoming".
+At UIUC pre-registered freshmen are given that curriculum so that any
+that fail to complete registration can be removed more quickly.  Otherwise
+entries are allowed to stay on an inactive status for an additional year.
+This causes no harm here and may be useful later.  This file is also sorted
+by SSN.
+
+sf.comb:
+	merge3 prod.cnf sf.old i.tape /dev/null sf.comb sf.kill
+	age prod.cnf sf.kill sf.kill.dead >> sf.comb
+
+This is the key step of the update process where the information from the
+extant database is combined with the update information.  At UIUC merge3
+handles 3 input datasets (thus its name): extant data, student data, and
+faculty/staff data.  Student information originates from the Office of
+Admissions and Records while faculty/staff information originates from
+Payroll.  At ilstu there is a single file.  For the purposes of merge3
+it's handled as the "student" file.  The /dev/null above is the place holder
+for the "faculty/staff" data.
+
+If a update has complete information on all faculty/staff/students, then
+the age command will mark all entries not appearing in the update with a
+"left_ilstu" field.  Entries that already had "left_ilstu" fields with
+dates 10 months or more in the past are removed and placed in sf.kill.dead.
+
+If the update only affects some of the active members, then the age command
+in Makefile should be commented out and
+
+	cat sf.kill >> sf.comb
+
+used instead.
+
+other.old:
+	mdump other old > other.old
+	mdump time old | pg -v "\t4:timetable	" | \
+		pg -v "\t4:timetable summer" >> other.old
+
+Now the non-person entries of the database are dumped.  The "time" type
+is for timetable entries.  "pg" is a perl-based grep that handles long lines.
+The two pgs omit the out-dated timetable entries.  N.B., "summer" should
+be replaced with the appropriate semester.
+
+rejects.old:
+	mdump rejects old > rejects.old
+	pg '^5:\t' sf.old >> rejects.old
+	pg -v '\t4:outsider phone' other.old | \
+	pg -v '\t4:unit phone' | pg -v '\t4:other phone' | \
+	pg -v '\t4:weather' | pg -v '\t4:serverlist' | \
+	pg -v '\t4:food' | pg -v '\t4:timetable' | \
+	pg -v '\t4:areacode'  >> rejects.old
+
+Through a process of elimination, locate entries that have invalid types.
+These will often be due to typographic errors in manually created entries.
+At UIUC typical errors are missing name fields and type fields of either
+"person,phone" or "person-phone" instead of the correct "person phone".
+
+sf.prephone:
+	aliasprepare prod.cnf < sf.comb |brute > lop
+	aliasprepare prod.cnf < other.old | pg -v '6:~~~~' |brute > loper
+	aliasassign prod.cnf loper lop > sf.prephone
+	rm -f lop loper
+
+Build sf.prephone, which is data for all the people, but without the
+phone and address fields.  This step uses aliasprepare and aliasassign
+to assign aliases to those people who don't have them.  aliasassign
+also needs to know about any aliases in other.old but only assigns aliases
+to entries with type person.
+
+sf.prefrosh:
+	phoneaddr sf.prephone | addnickname prod.cnf > sf.prefrosh
+
+Build sf.prefrosh, which is the data for all people in the database.
+This step runs phoneaddr to copy either the work or home phone & address
+into the default phone & address fields.  addnickname sets the nickname
+field for the most common 70 or so English names (alex for alexander, etc).
+At UIUC we use a separate list of all non FERPA suppressed SSNs to set
+the "suppress" field for those entries.  This step is present in the Makefile
+but commented out.
+
+sf.new:
+	froshlog prod.cnf sf.new frosh.logins sf.prefrosh > frosh.problems
+
+This is essentially a no-op at ilstu and could be replaced by having the
+previous step create sf.new instead of sf.prefrosh.  At UIUC it produces
+both sf.new and the frosh.logins file.  The latter is sent to the sysadmin
+of the free student account machines for login generation.
+
+db-size:
+	echo `cat sf.new other.old | wc -l` " 5 * p" | dc | \
+		primes | head -1 > db-size
+
+Calculate the size of the database.  This is a prime number roughly five
+times the number of combined entries in sf.new and other.old.
+
+prod.dir:
+	rm -rf prod.dir prod.dov
+	credb `cat db-size` prod
+	rm prod.idx prod.iov
+	cat sf.new other.old | maked prod
+
+This produces the main database, using maked on the concatenation of
+sf.new (the merged student, staff, and old data) and other.old (non-people
+data from the old database).  The results from this step are prod.dir
+(the first 400 bytes of each entry) and prod.dov (the remainder of entries
+longer than 400 bytes).
+
+idx-size:
+	sizedb prod.cnf sf.new other.old > idx-size
+
+sizedb calculates the size of the index.  It counts the number of unique,
+indexable words, then determines a prime number roughly twice as great
+as that.  This step can take a long time depending on the speed of perl
+on your machine and the amount of free memory.
+
+prod.idx:
+	cd scratch; credb `cat ../idx-size` prod; mv prod.idx prod.iov ..; \
+		rm prod.*; cd ..
+	makei prod
+
+This step builds the index files prod.idx and the index overflow file
+prod.iov.
+
+prod.bdx:
+	build -s prod
+
+This builds the .bdx and .seq files from the nameserver index.
+
+This completes the build of the database.
+
+
+6) Testing and Installation
+
+Type "nsck prod".  This checks for several kinds of errors.  Any problems
+with ownerships and permissions will be taken care of during the install
+step.  For reasons I've never tracked down, it will always print one
+complaint about the last entry in the database.  Unreferenced entries
+elsewhere are likely to have empty or missing name fields.
+
+qi can also be invoked with the -DATABASE argument to override the compile-
+time setting of the database files.  In this case the command would be
+
+	/usr/local/libexec/qi -DATABASE=/var/apps/nameserv/work/prod
+
+Once satisfied that the database is in good shape, type "make install"
+as root.  This fixes modes and ownerships, then moves the files into
+position.  At this time prod.sta can be removed to make the database
+read/write again.
+
+Paul Pomes	<p-pomes@@uiuc.edu>
+Wed Jul 27 14:02:30 CDT 1994
+@
+
+
+1.2
+log
+@Added comments about rejects.old step.
+@
+text
+@d1 1
+a1 1
+$Id: QI-NOTES,v 1.1 1994/07/27 19:05:00 p-pomes Exp p-pomes $
+d75 126
+d274 6
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+$Id$
+d256 16
+a271 1
+The two greps omit the out-dated timetable entries.
+@

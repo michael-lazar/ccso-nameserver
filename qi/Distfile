@@ -1,0 +1,50 @@
+HOSTS=(	
+	max.cecer.army.mil
+	isis
+	sequel
+	uxh
+	ux2
+	garcon
+	)
+
+( Configure README.NOW) -> ${HOSTS}
+	install /usr/local/src/net/qi ;
+
+( buildmisc configs help include api lib ph qi stats util whoi xtra ) -> ${HOSTS}
+	install /usr/local/src/net/qi ;
+	except tags ;
+	except */*.o ;
+	except */*.a ;
+	except */Makefile ;
+	except api/RCS ;
+	except doc/RCS ;
+	except include/RCS ;
+	except lib/RCS ;
+	except ph/RCS ;
+	except qi/RCS ;
+	except util/RCS ;
+	except whoi/RCS ;
+	except include/Makefile ;
+	except include/conf.h ;
+	except lib/Makefile ;
+	except api/Makefile ;
+	except ph/Makefile ;
+	except qi/Makefile ;
+	except qi/conf.c ;
+	except util/Makefile ;
+	except whoi/Makefile ;
+	except ph/ph ;
+	except qi/qi ;
+	except qi/lex.yy.c ;
+	except qi/temp.l ;
+	except util/border ;
+	except util/build ;
+	except util/credb ;
+	except util/maked ;
+	except util/makei ;
+	except util/mdump ;
+	except util/nsck ;
+	except util/ssnid ;
+	except util/ssnload ;
+	except util/ssndump ;
+	except util/brute ;

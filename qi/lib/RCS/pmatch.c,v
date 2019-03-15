@@ -1,0 +1,544 @@
+head	1.10;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.10
+date	94.03.12.00.06.47;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	92.07.29.04.11.26;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	92.07.28.01.15.09;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	92.07.23.14.00.11;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	92.07.23.13.53.39;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	90.12.18.08.41.01;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	89.03.20.15.14.21;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.12.02.14.44.44;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.11.15.13.34.49;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.08.10.44.58;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.10
+log
+@New copyright statement.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id$";
+#endif
+
+#include "protos.h"
+
+/*LINTLIBRARY*/
+
+static int meta_found = 0;
+static int brkt_err = 0;
+static int star_match __P((char *, char *));
+
+int
+pmatch(str, pat)
+	char *str, *pat;
+{
+	register int range_cc, str_cc, in_range;
+	int	c, low_lim;
+	int	answer;
+
+	str_cc = isupper(*str) ? tolower(*str) : *str;
+	low_lim = 077777;
+	switch (c = isupper(*pat) ? tolower(*pat) : *pat)
+	{
+	    case '[':
+		in_range = 0;
+		meta_found = 1;
+		while (range_cc = *++pat)
+		{
+			if (range_cc == ']')
+			{
+				if (in_range)
+					answer = pmatch(++str, ++pat);
+				else
+					answer = NO_MATCH;
+				break;
+			} else if (range_cc == '-')
+			{
+				if (low_lim <= str_cc & str_cc <= pat[1])
+					in_range++;
+				if (pat[1] != ']')
+					range_cc = pat[1];
+			}
+			if (str_cc == (low_lim = range_cc))
+				in_range++;
+		}
+		if (range_cc != ']')
+		{
+			brkt_err = 1;
+			answer = NO_MATCH;
+		}
+		break;
+
+	    case '?':
+		meta_found = 1;
+		if (str_cc)
+			answer = pmatch(++str, ++pat);
+		else
+			answer = CONTINUE;
+		break;
+
+	    case '*':
+		meta_found = 1;
+		answer = star_match(str, ++pat);
+		break;
+
+	    case 0:
+		if (!str_cc)
+			answer = MATCH;
+		else
+			answer = NO_MATCH;
+		break;
+	default:
+		if (str_cc == c)
+			answer = pmatch(++str, ++pat);
+		else if (str_cc < c)
+			answer = CONTINUE;
+		else
+			answer = NO_MATCH;
+		break;
+	}
+
+	if (answer != MATCH)
+		answer = meta_found ? CONTINUE : answer;
+	meta_found = 0;
+	brkt_err = 0;
+	return answer;
+}
+
+static int
+star_match(str, pat)
+	char *str, *pat;
+{
+	if (*pat == 0)
+		return (MATCH);
+	while (*str)
+		if (pmatch(str++, pat) == MATCH)
+			return (MATCH);
+	return brkt_err ? NO_MATCH : CONTINUE;
+}
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@a1 2
+#include "conf.h"
+#include "bintree.h"
+d8 1
+a8 1
+ * You may direct questions to dorner@@garcon.cso.uiuc.edu.
+a11 2
+#include <stdio.h>
+#include <ctype.h>
+@
+
+
+1.7
+log
+@Re-formatted for clarity.
+@
+text
+@d19 1
+a19 1
+static int star_match(char *str, char *pat);
+@
+
+
+1.6
+log
+@Last Dorner changes.
+@
+text
+@a3 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d5 8
+d19 1
+a19 1
+static int star_match(char *str,char *pat);
+d21 3
+a23 1
+int pmatch(char *str,char *pat)
+d25 71
+a95 71
+  register int range_cc, str_cc, in_range;
+  int   c, low_lim;
+  int   answer;
+
+  str_cc = isupper(*str) ? tolower(*str) : *str;
+  low_lim = 077777;
+  switch (c = isupper(*pat) ? tolower(*pat) : *pat)
+  {
+    case '[':
+    in_range = 0;
+    meta_found = 1;
+    while (range_cc = *++pat)
+    {
+      if (range_cc == ']')
+      {
+	if (in_range)
+	  answer = pmatch(++str, ++pat);
+	else
+	  answer = NO_MATCH;
+	break;
+      }
+      else
+      if (range_cc == '-')
+      {
+	if (low_lim <= str_cc & str_cc <= pat[1])
+	  in_range++;
+	if (pat[1] != ']')
+	  range_cc = pat[1];
+      }
+      if (str_cc == (low_lim = range_cc))
+	in_range++;
+    }
+    if (range_cc != ']')
+    {
+      brkt_err = 1;
+      answer = NO_MATCH;
+    }
+    break;
+    case '?':
+    meta_found = 1;
+    if (str_cc)
+      answer = pmatch(++str, ++pat);
+    else
+      answer = CONTINUE;
+    break;
+    case '*':
+    meta_found = 1;
+    answer = star_match(str, ++pat);
+    break;
+    case 0:
+    if (!str_cc)
+      answer = MATCH;
+    else
+      answer = NO_MATCH;
+    break;
+    default:
+    if (str_cc == c)
+      answer = pmatch(++str, ++pat);
+    else
+    if (str_cc < c)
+      answer = CONTINUE;
+    else
+      answer = NO_MATCH;
+    break;
+  }
+
+  if (answer != MATCH)
+    answer = meta_found ? CONTINUE : answer;
+  meta_found = 0;
+  brkt_err = 0;
+  return answer;
+d98 3
+a100 1
+static int star_match(char *str,char *pat)
+d102 6
+a107 6
+  if (*pat == 0)
+    return (MATCH);
+  while (*str)
+    if (pmatch(str++, pat) == MATCH)
+      return (MATCH);
+  return brkt_err ? NO_MATCH : CONTINUE;
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d2 2
+a15 3
+#define MATCH       0
+#define NO_MATCH    1
+#define CONTINUE    -1
+@
+
+
+1.4
+log
+@No help here.
+@
+text
+@d1 1
+d20 1
+d22 1
+a22 3
+pmatch(str, pat)        /* does pat match str? using standard shell
+		 * metas in pat */
+char   *str, *pat;
+d97 1
+a97 3
+static
+star_match(str, pat)
+char   *str, *pat;
+@
+
+
+1.3
+log
+@No help here.
+@
+text
+@d1 9
+a10 8
+/***********************************************************************
+* Portions of this software Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  Portions of this software
+* orginally written for CSNET; copyright status unclear at this time.  No
+* warranties expressed or implied, no support provided.  Please do not
+* redistribute it in its present form.  Contact me for details
+* (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+@
+
+
+1.2
+log
+@No help here.
+@
+text
+@d1 1
+d12 3
+a14 3
+#define MATCH           0
+#define NO_MATCH        1
+#define CONTINUE        -1
+d19 2
+a20 2
+pmatch(str, pat)		/* does pat match str? using standard shell
+				 * metas in pat */
+d23 3
+a25 3
+    register int range_cc, str_cc, in_range;
+    int     c, low_lim;
+    int     answer;
+d27 8
+a34 3
+    str_cc = isupper(*str) ? tolower(*str) : *str;
+    low_lim = 077777;
+    switch (c = isupper(*pat) ? tolower(*pat) : *pat)
+d36 4
+a39 34
+      case '[':
+	in_range = 0;
+	meta_found = 1;
+	while (range_cc = *++pat)
+	{
+	    if (range_cc == ']')
+	    {
+		if (in_range)
+		    answer = pmatch(++str, ++pat);
+		else
+		    answer = NO_MATCH;
+		break;
+	    }
+	    else
+	    if (range_cc == '-')
+	    {
+		if (low_lim <= str_cc & str_cc <= pat[1])
+		    in_range++;
+		if (pat[1] != ']')
+		    range_cc = pat[1];
+	    }
+	    if (str_cc == (low_lim = range_cc))
+		in_range++;
+	}
+	if (range_cc != ']')
+	{
+	    brkt_err = 1;
+	    answer = NO_MATCH;
+	}
+	break;
+      case '?':
+	meta_found = 1;
+	if (str_cc)
+	    answer = pmatch(++str, ++pat);
+d41 1
+a41 1
+	    answer = CONTINUE;
+d43 11
+a53 19
+      case '*':
+	meta_found = 1;
+	answer = star_match(str, ++pat);
+	break;
+      case 0:
+	if (!str_cc)
+	    answer = MATCH;
+	else
+	    answer = NO_MATCH;
+	break;
+      default:
+	if (str_cc == c)
+	    answer = pmatch(++str, ++pat);
+	else
+	if (str_cc < c)
+	    answer = CONTINUE;
+	else
+	    answer = NO_MATCH;
+	break;
+d55 33
+d89 5
+a93 5
+    if (answer != MATCH)
+	answer = meta_found ? CONTINUE : answer;
+    meta_found = 0;
+    brkt_err = 0;
+    return answer;
+d100 6
+a105 6
+    if (*pat == 0)
+	return (MATCH);
+    while (*str)
+	if (pmatch(str++, pat) == MATCH)
+	    return (MATCH);
+    return brkt_err ? NO_MATCH : CONTINUE;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 8
+d10 1
+d20 1
+a20 1
+char *str, *pat;
+d23 2
+a24 2
+    int c, low_lim;
+    int answer;
+d26 1
+a26 1
+    str_cc = *str;
+d28 2
+a29 2
+    switch (c = *pat)
+{
+d86 1
+a86 1
+}
+d97 1
+a97 1
+char *str, *pat;
+@

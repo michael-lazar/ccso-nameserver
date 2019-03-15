@@ -1,0 +1,1563 @@
+head	1.25;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.25
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.04.05.22.17.54;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	92.09.22.16.48.38;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	92.08.16.17.26.46;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.07.27.14.30.08;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.27.14.18.39;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	90.12.18.08.41.24;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	89.10.18.07.52.15;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	89.07.19.10.18.44;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	89.07.05.20.16.55;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.05.13.13.02.41;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.05.12.09.18.10;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.05.08.22.43.47;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.03.20.15.14.42;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.12.02.14.45.18;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.11.15.13.35.21;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.07.08.14.00.55;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.07.06.20.48.02;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.19.08.12.18;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.47;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.25
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: dbd.c,v 1.24 1994/05/05 21:21:51 paul Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+static int	debug;
+
+int	dirfd;			/* file descriptor for the directory file
+				 * used also in dbm.c */
+static int dovfd;		/* file descriptor for the directory overflow
+				 * file */
+static int DIRSIZE;		/* size of the directory file, in records */
+static int DOVSIZE;		/* size of the directory overflow file, in
+				 * records */
+
+static int d_oread __P((DOVR *, int));
+static int d_owrite __P((DOVR *, int));
+static int d_read __P((DREC *, INT32));
+static int d_write __P((DREC *, INT32));
+static int newdovr();
+
+/*
+ * This function returns a pointer to a directory entry which is gotten by
+ * indexing into the directory file with parameter entry.
+ */
+
+DREC *
+getdirent(entry)
+	INT32 entry;
+{
+	DOVR	morestrs;
+	DREC	*area;
+	int	asize, nextrec, i, indx;
+
+	if ((area = (DREC *) malloc(sizeof (DREC))) == NULL)
+	{
+		IssueMessage(LOG_ERR, "getdirent: malloc: %s",
+			strerror(errno));
+		cleanup(-1);
+	}
+	if (!d_read(area, entry))
+	{
+		IssueMessage(LOG_ERR, "getdirent: d_read failed");
+		return (0);
+	}
+	asize = area->d_datalen - NDCHARS;
+	if (asize > 0)
+	{			/* there's more folks */
+		area = (DREC *) realloc((char *) area, (unsigned) (sizeof (DREC)
+				       + (asize / NDOCHARS + 1) * NDOCHARS));
+		nextrec = area->d_ovrptr;
+
+		indx = NDCHARS;
+		do
+		{		/* we're going to tack the rest on the end of
+			       * area */
+
+			if (!d_oread(&morestrs, nextrec))
+			{
+				IssueMessage(LOG_ERR, "getdirent: d_oread failed");
+				return (0);
+			}
+			for (i = 0; i < NDOCHARS && asize-- > 0; i++, indx++)
+				area->d_data[indx] = morestrs.d_mdata[i];
+
+		}
+		while (asize > 0 && (nextrec = morestrs.d_nextptr));
+	}
+	return (area);
+}
+
+/*
+ * This function takes the directory structure pointed to by dirp and puts
+ * it in the directory file at offset entry.
+ */
+
+void 
+putdirent(entry, dirp)
+	INT32 entry;
+	DREC *dirp;
+{
+	int	stringsize, i, indx, nextovr;
+	DOVR ovrarea;
+
+	/* figure out how INT32 it is */
+	stringsize = dirp->d_datalen;
+	stringsize -= NDCHARS;
+	if (stringsize > 0)
+	{			/* record larger than DREC */
+		indx = NDCHARS;
+		if (!dirp->d_ovrptr)
+			dirp->d_ovrptr = newdovr();
+		nextovr = dirp->d_ovrptr;
+		do
+		{
+			ovrarea.d_nextptr = 0;
+			d_oread(&ovrarea, nextovr);
+			for (i = 0; stringsize; i++, indx++, stringsize--)
+			{
+				if (i == NDOCHARS)
+					break;
+				ovrarea.d_mdata[i] = dirp->d_data[indx];
+			}
+			if (stringsize && !ovrarea.d_nextptr)
+				ovrarea.d_nextptr = newdovr();
+			if (d_owrite(&ovrarea, nextovr) == 0)
+				IssueMessage(LOG_ERR, "putdirent: d_owrite failed");
+
+			nextovr = ovrarea.d_nextptr;
+		}
+		while (stringsize);
+	}
+	if (d_write(dirp, entry) == 0)
+		IssueMessage(LOG_ERR, "putdirent: d_write failed");
+#ifdef PARANOID
+	{
+		char	*oldData = malloc(dirp->d_datalen);
+		register char *np, *op;
+
+		for (op = oldData, np = dirp->d_data; np - dirp->d_data < dirp->d_datalen; np++, op++)
+			*op = *np;
+		if (getdirent(dirp) == NULL)
+		{
+			IssueMessage(LOG_ERR, "putdirent: PARANOID getdirent() failed");
+			return;
+		}
+		for (op = oldData, np = dirp->d_data; np - dirp->d_data < dirp->d_datalen; np++, op++)
+			if (*op != *np)
+			{
+				system("Mail -s \"big trouble in ph\" paul < /dev/null");
+				IssueMessage(LOG_ERR, "putdirent: PARANOID detects mismatch");
+				break;
+			}
+	}
+#endif
+}
+
+static int 
+d_write(x, dloc)
+	DREC *x;
+	INT32 dloc;
+{
+	if (lseek(dirfd, (int) (dloc * (sizeof *x)), 0) != dloc * (sizeof *x))
+	{
+		IssueMessage(LOG_ERR, "d_write: lseek(%d,%ld,0): %s",
+			dirfd, (int) (dloc * (sizeof *x)), strerror(errno));
+		return (0);
+	}
+	if (write(dirfd, (char *) x, sizeof *x) < 0)
+	{
+		IssueMessage(LOG_ERR, "d_write: write() at %ld: %s",
+			dloc, strerror(errno));
+	}
+	return (1);
+}
+
+static int 
+d_read(x, dloc)
+	DREC *x;
+	INT32 dloc;
+{
+	if (lseek(dirfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+	{
+		IssueMessage(LOG_ERR, "d_read: lseek(%d,%ld,0): %s",
+			dirfd, (int) (dloc * (sizeof *x)), strerror(errno));
+		return (0);
+	}
+	if (read(dirfd, (char *) x, sizeof *x) == -1)
+	{
+		IssueMessage(LOG_INFO, "d_read: read: %s", strerror(errno));
+		return (0);
+	}
+	return (1);
+}
+
+static int 
+d_oread(x, dloc)
+	DOVR *x;
+	int dloc;
+{
+	if (lseek(dovfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+	{
+
+		IssueMessage(LOG_ERR, "d_oread: lseek(%d,%ld,0): %s",
+			dovfd, dloc * (sizeof *x), strerror(errno));
+		return (0);
+	}
+	if (read(dovfd, x, sizeof *x) == -1)
+	{
+		IssueMessage(LOG_ERR, "d_oread: read: %s", strerror(errno));
+		return (0);
+	}
+	return (1);
+}
+
+static int 
+d_owrite(x, dloc)
+	DOVR *x;
+	int dloc;
+{
+	if (lseek(dovfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+	{
+		IssueMessage(LOG_ERR, "d_owrite: lseek(%d,%ld,0): %s",
+			dovfd, dloc * (sizeof *x), strerror(errno));
+		return (0);
+	}
+	if (write(dovfd, x, sizeof *x) == -1)
+	{
+		IssueMessage(LOG_ERR, "d_owrite: write: %s", strerror(errno));
+		return (0);
+	}
+	return (1);
+}
+
+static int 
+newdovr()
+{
+	char	i = 0;
+	DOVR	*x;
+
+	if (lseek(dovfd, (sizeof *x * (DOVSIZE + 1)) - 1, 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "newdovr: lseek(%d,%ld,0): %s",
+			dovfd, (sizeof *x * (DOVSIZE + 1)) - 1, strerror(errno));
+		return (-1);
+	}
+	if (write(dovfd, &i, 1) < 0)
+	{
+		IssueMessage(LOG_ERR, "newdovr: write: %s", strerror(errno));
+	}
+	return (DOVSIZE++);
+}
+
+int 
+dbd_init(file)
+	char *file;
+{
+	DREC	*x;
+	DOVR	*y;
+	char	dirname[100], dovname[100];
+	static int firstTime = 1;
+
+	/* make file names */
+	(void) strcpy(dirname, file);
+	(void) strcat(dirname, ".dir");
+	(void) strcpy(dovname, file);
+	(void) strcat(dovname, ".dov");
+
+	if (firstTime && (dirfd = open(dirname, 2)) < 0)
+	{
+		IssueMessage(LOG_ERR, "dbd_init: open(%s): %s",
+			dirname, strerror(errno));
+		return (0);
+	}
+	DIRSIZE = lseek(dirfd, 0L, 2) / sizeof *x;
+
+	if (firstTime && (dovfd = open(dovname, 2)) < 0)
+	{
+		IssueMessage(LOG_ERR, "dbd_init: open(%s): %s", dovname, strerror(errno));
+		return (0);
+	}
+	DOVSIZE = lseek(dovfd, 0L, 2) / (sizeof *y);
+	if (DOVSIZE == 0)
+		newdovr();
+	if (debug)
+		printf("dinit: DIRSIZE= %d, DOVSIZE= %d\n", DIRSIZE, DOVSIZE);
+	firstTime = 0;
+	return (1);
+}
+@
+
+
+1.24
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: dbd.c,v 1.23 1994/03/12 00:24:45 paul Exp paul $";
+d55 2
+a56 2
+static int d_read __P((DREC *, long));
+static int d_write __P((DREC *, long));
+d66 1
+a66 1
+	long entry;
+d116 1
+a116 1
+	long entry;
+d122 1
+a122 1
+	/* figure out how long it is */
+d178 1
+a178 1
+	long dloc;
+d197 1
+a197 1
+	long dloc;
+@
+
+
+1.23
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d74 2
+a75 1
+		perror("malloc() failed in getdirent():");
+d80 1
+a80 1
+		IssueMessage(LOG_WARNING, "getdirent: d_read failed.");
+d97 1
+a97 1
+				IssueMessage(LOG_WARNING, "getdirent: d_oread failed");
+d144 1
+a144 1
+				IssueMessage(LOG_WARNING, "putdirent: d_owrite failed.");
+d151 1
+a151 1
+		IssueMessage(LOG_WARNING, "putdirent: d_write failed.");
+d161 1
+a161 1
+			IssueMessage(LOG_WARNING, "putdirent: PARANOID getdirent failed.");
+d167 2
+a168 2
+				system("mail -s \"big trouble in ph\" paul");
+				IssueMessage(LOG_WARNING, "putdirent: PARANOID detects mismatch");
+d182 2
+a183 1
+		IssueMessage(LOG_INFO, "d_write %s", strerror(errno));
+d188 2
+a189 1
+		IssueMessage(LOG_WARNING, "d_write: %ld: %s", dloc, strerror(errno));
+d201 2
+a202 1
+		IssueMessage(LOG_INFO, "d_read %s", strerror(errno));
+d207 1
+a207 1
+		IssueMessage(LOG_INFO, "d_read %s", strerror(errno));
+d221 2
+a222 1
+		IssueMessage(LOG_INFO, "d_oread lseek: %s", strerror(errno));
+d227 1
+a227 1
+		IssueMessage(LOG_INFO, "d_oread read: %s", strerror(errno));
+d240 2
+a241 1
+		IssueMessage(LOG_INFO, "d_owrite %s", strerror(errno));
+d246 1
+a246 1
+		IssueMessage(LOG_INFO, "d_owrite %s", strerror(errno));
+d260 2
+a261 1
+		IssueMessage(LOG_WARNING, "newdovr: lseek: %s", strerror(errno));
+d266 1
+a266 1
+		IssueMessage(LOG_WARNING, "newdovr: write: %s", strerror(errno));
+d288 2
+a289 1
+		IssueMessage(LOG_INFO, "dbd_init %s %s", dirname, strerror(errno));
+d296 1
+a296 1
+		IssueMessage(LOG_INFO, "dbd_init %s %s", dovname, strerror(errno));
+@
+
+
+1.22
+log
+@Mark some globals as static.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.21
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d11 1
+a11 1
+int	debug;
+d13 3
+a15 2
+int	dirfd;			/* file descriptor for the directory file */
+int	dovfd;			/* file descriptor for the directory overflow
+d17 2
+a18 2
+int	DIRSIZE;		/* size of the directory file, in records */
+int	DOVSIZE;		/* size of the directory overflow file, in
+@
+
+
+1.20
+log
+@Replaced instances of %m in IssueMessage with strerror(errno).
+@
+text
+@d20 6
+d42 1
+a42 1
+		cleanup();
+d141 1
+a141 1
+int 
+d158 1
+a158 1
+int 
+d176 1
+a176 1
+int 
+d195 1
+a195 1
+int 
+d213 1
+a213 1
+int 
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d142 1
+a142 1
+		IssueMessage(LOG_INFO, "d_write %m");
+d147 1
+a147 1
+		IssueMessage(LOG_WARNING, "d_write: %ld: %m", dloc);
+d159 1
+a159 1
+		IssueMessage(LOG_INFO, "d_read %m");
+d164 1
+a164 1
+		IssueMessage(LOG_INFO, "d_read %m");
+d178 1
+a178 1
+		IssueMessage(LOG_INFO, "d_oread lseek: %m");
+d183 1
+a183 1
+		IssueMessage(LOG_INFO, "d_oread read: %m");
+d196 1
+a196 1
+		IssueMessage(LOG_INFO, "d_owrite %m");
+d201 1
+a201 1
+		IssueMessage(LOG_INFO, "d_owrite %m");
+d215 1
+a215 1
+		IssueMessage(LOG_WARNING, "newdovr: lseek: %m");
+d220 1
+a220 1
+		IssueMessage(LOG_WARNING, "newdovr: write: %m");
+d242 1
+a242 1
+		IssueMessage(LOG_INFO, "dbd_init %s %m", dirname);
+d249 1
+a249 1
+		IssueMessage(LOG_INFO, "dbd_init %s %m", dovname);
+@
+
+
+1.18
+log
+@Revised #include file list.
+@
+text
+@d178 1
+a178 1
+		IssueMessage(LOG_INFO, "d_oread %m");
+d183 1
+a183 1
+		IssueMessage(LOG_INFO, "d_oread %m");
+@
+
+
+1.17
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a1 1
+#include "conf.h"
+a9 5
+
+#include <stdio.h>
+#include "log.h"
+#include "db.h"
+#include "replies.h"
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@a12 1
+#include <strings.h>
+d39 5
+a43 1
+	area = (DREC *) malloc(sizeof (DREC));	/* get initial segment */
+@
+
+
+1.15
+log
+@last dorner changes
+@
+text
+@a2 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d4 8
+d18 1
+a18 1
+int   debug;
+d20 6
+a25 6
+int   dirfd;          /* file descriptor for the directory file */
+int   dovfd;          /* file descriptor for the directory overflow
+		 * file */
+int   DIRSIZE;        /* size of the directory file, in records */
+int   DOVSIZE;        /* size of the directory overflow file, in
+		 * records */
+d29 1
+a29 1
+ * indexing into the directory file with parameter entry. 
+d32 3
+a34 1
+D_record *getdirent(long entry)
+d36 34
+a69 34
+  D_ovrflo morestrs;
+  D_record *area;
+  int   asize, nextrec, i, index;
+
+  area = (D_record *) malloc(sizeof(D_record));     /* get initial segment */
+  if (!d_read(area, entry))
+  {
+    IssueMessage(LOG_WARNING,"getdirent: d_read failed.");
+    return(0);
+  }
+
+  asize = area->d_datalen - NDCHARS;
+  if (asize > 0)
+  {               /* there's more folks */
+    area = (D_record *) realloc((char *) area, (unsigned) (sizeof(D_record)
+	+ (asize / NDOCHARS + 1) * NDOCHARS));
+    nextrec = area->d_ovrptr;
+
+    index = NDCHARS;
+    do
+    {             /* we're going to tack the rest on the end of
+		 * area */
+
+      if (!d_oread(&morestrs, nextrec))
+      {
+	IssueMessage(LOG_WARNING,"getdirent: d_oread failed");
+	return(0);
+      }
+      for (i = 0; i < NDOCHARS && asize-- > 0; i++, index++)
+	area->d_data[index] = morestrs.d_mdata[i];
+
+    } while (asize > 0 && (nextrec = morestrs.d_nextptr));
+  }
+  return (area);
+d73 2
+a74 2
+ * This function takes the directory structure pointed to by dirent and puts
+ * it in the directory file at offset entry. 
+d77 4
+a80 1
+void putdirent(long entry,D_record *dirent)
+d82 2
+a83 2
+  int   stringsize, i, index, nextovr;
+  D_ovrflo ovrarea;
+d85 30
+a114 27
+  /* figure out how long it is */
+  stringsize = dirent->d_datalen;
+  stringsize -= NDCHARS;
+  if (stringsize > 0)
+  {               /* record larger than D_record */
+    index = NDCHARS;
+    if (!dirent->d_ovrptr) dirent->d_ovrptr = newdovr();
+    nextovr = dirent->d_ovrptr;
+    do
+    {
+      ovrarea.d_nextptr = 0;
+      d_oread(&ovrarea,nextovr);
+      for (i = 0; stringsize; i++, index++, stringsize--)
+      {
+	if (i == NDOCHARS)
+	  break;
+	ovrarea.d_mdata[i] = dirent->d_data[index];
+      }
+      if (stringsize && !ovrarea.d_nextptr) ovrarea.d_nextptr = newdovr();
+      if (d_owrite(&ovrarea, nextovr)==0)
+	IssueMessage(LOG_WARNING,"putdirent: d_owrite failed.");
+
+      nextovr = ovrarea.d_nextptr;
+    } while (stringsize);
+  }
+  if (d_write(dirent, entry)==0)
+    IssueMessage(LOG_WARNING,"putdirent: d_write failed.");
+d116 19
+a134 18
+  {
+    char *oldData = malloc(dirent->d_datalen);
+    register char *np, *op;
+    for (op=oldData,np=dirent->d_data;np-dirent->d_data<dirent->d_datalen;np++,op++)
+      *op = *np;
+    if (getdirent(dirent) == NULL)
+    {
+      IssueMessage(LOG_WARNING,"putdirent: PARANOID getdirent failed.");
+      return;
+    }
+    for (op=oldData,np=dirent->d_data;np-dirent->d_data<dirent->d_datalen;np++,op++)
+      if (*op != *np)
+      {
+	system("mail -s \"big trouble in ph\" dorner");
+	IssueMessage(LOG_WARNING,"putdirent: PARANOID detects mismatch");
+	break;
+      }
+  }
+d138 93
+a230 1
+int d_write(D_record *x,long dloc)
+d232 30
+a261 107
+  if (lseek(dirfd, (int)(dloc * (sizeof *x)), 0) != dloc * (sizeof *x))
+  {
+    IssueMessage(LOG_INFO, "d_write %m");
+    return (0);
+  }
+  if (write(dirfd, (char *)x, sizeof *x)<0)
+  {
+    IssueMessage(LOG_WARNING,"d_write: %ld: %m",dloc);
+  }
+  return (1);
+}
+
+int d_read(D_record *x,long dloc)
+{
+  if (lseek(dirfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+  {
+    IssueMessage(LOG_INFO, "d_read %m");
+    return (0);
+  }
+  if (read(dirfd, (char *)x, sizeof *x) == -1)
+  {
+    IssueMessage(LOG_INFO, "d_read %m");
+    return (0);
+  }
+  return (1);
+}
+
+int d_oread(D_ovrflo *x,int dloc)
+{
+  if (lseek(dovfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+  {
+
+    IssueMessage(LOG_INFO, "d_oread %m");
+    return (0);
+  }
+  if (read(dovfd, x, sizeof *x) == -1)
+  {
+    IssueMessage(LOG_INFO, "d_oread %m");
+    return (0);
+  }
+  return (1);
+}
+
+int d_owrite(D_ovrflo *x,int dloc)
+{
+  if (lseek(dovfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+  {
+    IssueMessage(LOG_INFO, "d_owrite %m");
+    return (0);
+  }
+  if (write(dovfd, x, sizeof *x) == -1)
+  {
+    IssueMessage(LOG_INFO, "d_owrite %m");
+    return (0);
+  }
+  return (1);
+}
+
+int newdovr(void)
+{
+  char  i = 0;
+  D_ovrflo *x;
+
+  if (lseek(dovfd, (sizeof *x * (DOVSIZE + 1)) - 1, 0)<0)
+  {
+    IssueMessage(LOG_WARNING,"newdovr: lseek: %m");
+    return(-1);
+  }
+  if (write(dovfd, &i, 1)<0)
+  {
+    IssueMessage(LOG_WARNING,"newdovr: write: %m");
+  }
+  return (DOVSIZE++);
+}
+
+int dbd_init(char *file)
+{
+  D_record *x;
+  D_ovrflo *y;
+  char  dirname[100], dovname[100];
+  static int firstTime = 1;
+
+  /* make file names */
+  strcpy(dirname, file);
+  strcat(dirname, ".dir");
+  strcpy(dovname, file);
+  strcat(dovname, ".dov");
+
+  if (firstTime && (dirfd = open(dirname, 2)) < 0)
+  {
+    IssueMessage(LOG_INFO, "dbd_init %s %m", dirname);
+    return (0);
+  }
+  DIRSIZE = lseek(dirfd, 0L, 2) / sizeof *x;
+
+  if (firstTime && (dovfd = open(dovname, 2)) < 0)
+  {
+    IssueMessage(LOG_INFO, "dbd_init %s %m", dovname);
+    return (0);
+  }
+  DOVSIZE = lseek(dovfd, 0L, 2) / (sizeof *y);
+  if (DOVSIZE == 0)
+    newdovr();
+  if (debug)
+    printf("dinit: DIRSIZE= %d, DOVSIZE= %d\n", DIRSIZE, DOVSIZE);
+  firstTime = 0;
+  return (1);
+@
+
+
+1.14
+log
+@No help here.
+@
+text
+@d2 1
+a47 2
+
+    free((char *) area);
+@
+
+
+1.13
+log
+@No help here.
+@
+text
+@d1 1
+a25 3
+char   *
+malloc(), *realloc();
+
+d31 1
+a31 3
+D_record *
+getdirent(entry)
+long  entry;
+d76 1
+a76 3
+putdirent(entry, dirent)
+long   entry;
+D_record *dirent;
+d130 1
+a130 3
+d_write(x, dloc)
+D_record *x;
+long   dloc;
+d144 1
+a144 3
+d_read(x, dloc)
+D_record *x;
+long   dloc;
+d159 1
+a159 3
+d_oread(x, dloc)
+D_ovrflo *x;
+int   dloc;
+d175 1
+a175 3
+d_owrite(x, dloc)
+D_ovrflo *x;
+int   dloc;
+d190 1
+a190 1
+newdovr()
+d207 1
+a207 2
+dbd_init(file)
+char   *file;
+@
+
+
+1.12
+log
+@No help here.
+@
+text
+@d227 1
+a228 7
+  /* get configuration */
+  if (!GetFieldConfig())
+  {
+    fprintf(stderr,"Field config is missing.\n");
+    return(NULL);
+  }
+
+d235 1
+a235 1
+  if ((dirfd = open(dirname, 2)) < 0)
+d242 1
+a242 1
+  if ((dovfd = open(dovname, 2)) < 0)
+d252 1
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d12 3
+a14 7
+#ifdef ULTRIX43LOG
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+#include "../Include/db.h"
+#include "../Include/replies.h"
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d17 2
+a18 2
+#include "../include/db.h"
+#include "../include/replies.h"
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d109 1
+a109 1
+      if (ovrarea.d_nextptr) ovrarea.d_nextptr = newdovr();
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@a133 1
+	DoReply(-LR_TEMP,"Database write error; your entry may be mangled.");
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d18 1
+d74 1
+a74 1
+    } while (nextrec = morestrs.d_nextptr);
+d97 2
+a98 1
+    nextovr = dirent->d_ovrptr = newdovr();
+d101 2
+d109 1
+a109 4
+      if (stringsize)
+	ovrarea.d_nextptr = newdovr();
+      else
+	ovrarea.d_nextptr = 0;
+d118 21
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d1 9
+a9 8
+/***********************************************************************
+* Portions of this software Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  Portions of this software
+* orginally written for CSNET; copyright status unclear at this time.  No
+* warranties expressed or implied, no support provided.  Please do not
+* redistribute it in its present form.  Contact me for details
+* (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d47 1
+a47 1
+    syslog(LOG_WARNING,"getdirent: d_read failed.");
+d67 1
+a67 1
+	syslog(LOG_WARNING,"getdirent: d_oread failed");
+d110 1
+a110 1
+	syslog(LOG_WARNING,"putdirent: d_owrite failed.");
+d116 1
+a116 1
+    syslog(LOG_WARNING,"putdirent: d_write failed.");
+d125 1
+a125 1
+    syslog(LOG_INFO, "d_write %m");
+d130 1
+a130 1
+    syslog(LOG_WARNING,"d_write: %ld: %m",dloc);
+d141 1
+a141 1
+    syslog(LOG_INFO, "d_read %m");
+d146 1
+a146 1
+    syslog(LOG_INFO, "d_read %m");
+d159 1
+a159 1
+    syslog(LOG_INFO, "d_oread %m");
+d164 1
+a164 1
+    syslog(LOG_INFO, "d_oread %m");
+d176 1
+a176 1
+    syslog(LOG_INFO, "d_owrite %m");
+d181 1
+a181 1
+    syslog(LOG_INFO, "d_owrite %m");
+d194 1
+a194 1
+    syslog(LOG_WARNING,"newdovr: lseek: %m");
+d199 1
+a199 1
+    syslog(LOG_WARNING,"newdovr: write: %m");
+d226 1
+a226 1
+    syslog(LOG_INFO, "dbd_init %s %m", dirname);
+d233 1
+a233 1
+    syslog(LOG_INFO, "dbd_init %s %m", dovname);
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d10 2
+a11 1
+#ifdef ultrix
+d18 1
+a18 1
+int     debug;
+d20 6
+a25 6
+int     dirfd;			/* file descriptor for the directory file */
+int     dovfd;			/* file descriptor for the directory overflow
+				 * file */
+int     DIRSIZE;		/* size of the directory file, in records */
+int     DOVSIZE;		/* size of the directory overflow file, in
+				 * records */
+d37 1
+a37 1
+unsigned long  entry;
+d39 3
+a41 3
+    D_ovrflo morestrs;
+    D_record *area;
+    int     asize, nextrec, i, index;
+d43 6
+a48 2
+    area = (D_record *) malloc(sizeof(D_record));	/* get initial segment */
+    d_read(area, entry);
+d50 3
+a52 3
+    asize = area->d_datalen - NDCHARS;
+    if (asize > 0)
+    {				/* there's more folks */
+d54 4
+a57 4
+	free((char *) area);
+	area = (D_record *) realloc((char *) area, (unsigned) (sizeof(D_record)
+		+ (asize / NDOCHARS + 1) * NDOCHARS));
+	nextrec = area->d_ovrptr;
+d59 4
+a62 4
+	index = NDCHARS;
+	do
+	{			/* we're going to tack the rest on the end of
+				 * area */
+d64 7
+a70 3
+	    d_oread(&morestrs, nextrec);
+	    for (i = 0; i < NDOCHARS && asize-- > 0; i++, index++)
+		area->d_data[index] = morestrs.d_mdata[i];
+d72 3
+a74 3
+	} while (nextrec = morestrs.d_nextptr);
+    }
+    return (area);
+d83 1
+a83 1
+int     entry;
+d86 2
+a87 2
+    int     stringsize, i, index, nextovr;
+    D_ovrflo ovrarea;
+d89 21
+a109 20
+    /* figure out how long it is */
+    stringsize = dirent->d_datalen;
+    stringsize -= NDCHARS;
+    if (stringsize > 0)
+    {				/* record larger than D_record */
+	index = NDCHARS;
+	nextovr = dirent->d_ovrptr = newdovr();
+	do
+	{
+	    for (i = 0; stringsize; i++, index++, stringsize--)
+	    {
+		if (i == NDOCHARS)
+		    break;
+		ovrarea.d_mdata[i] = dirent->d_data[index];
+	    }
+	    if (stringsize)
+		ovrarea.d_nextptr = newdovr();
+	    else
+		ovrarea.d_nextptr = 0;
+	    d_owrite(&ovrarea, nextovr);
+d111 5
+a115 4
+	    nextovr = ovrarea.d_nextptr;
+	} while (stringsize);
+    }
+    d_write(dirent, entry);
+d120 1
+a120 1
+int     dloc;
+d122 10
+a131 7
+    if (lseek(dirfd, (unsigned)(dloc * (sizeof *x)), 0) != dloc * (sizeof *x))
+    {
+	syslog(LOG_INFO, "d_write %m");
+	return (0);
+    }
+    write(dirfd, x, sizeof *x);
+    return (1);
+d136 1
+a136 1
+int     dloc;
+d138 11
+a148 11
+    if (lseek(dirfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+    {
+	syslog(LOG_INFO, "d_read %m");
+	return (0);
+    }
+    if (read(dirfd, x, sizeof *x) == -1)
+    {
+	syslog(LOG_INFO, "d_read %m");
+	return (0);
+    }
+    return (1);
+d153 1
+a153 1
+int     dloc;
+d155 2
+a156 2
+    if (lseek(dovfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+    {
+d158 9
+a166 9
+	syslog(LOG_INFO, "d_oread %m");
+	return (0);
+    }
+    if (read(dovfd, x, sizeof *x) == -1)
+    {
+	syslog(LOG_INFO, "d_oread %m");
+	return (0);
+    }
+    return (1);
+d171 1
+a171 1
+int     dloc;
+d173 11
+a183 11
+    if (lseek(dovfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+    {
+	syslog(LOG_INFO, "d_owrite %m");
+	return (0);
+    }
+    if (write(dovfd, x, sizeof *x) == -1)
+    {
+	syslog(LOG_INFO, "d_owrite %m");
+	return (0);
+    }
+    return (1);
+d188 2
+a189 2
+    char    i = 0;
+    D_ovrflo *x;
+d191 10
+a200 3
+    lseek(dovfd, (sizeof *x * (DOVSIZE + 1)) - 1, 0);
+    write(dovfd, &i, 1);
+    return (DOVSIZE++);
+d206 3
+a208 3
+    D_record *x;
+    D_ovrflo *y;
+    char    dirname[100], dovname[100];
+d210 6
+a215 6
+    /* get configuration */
+    if (!GetFieldConfig())
+    {
+	fprintf(stderr,"Field config is missing.\n");
+	return(NULL);
+    }
+d217 5
+a221 5
+    /* make file names */
+    strcpy(dirname, file);
+    strcat(dirname, ".dir");
+    strcpy(dovname, file);
+    strcat(dovname, ".dov");
+d223 6
+a228 6
+    if ((dirfd = open(dirname, 2)) < 0)
+    {
+	syslog(LOG_INFO, "dbd_init %s %m", dirname);
+	return (0);
+    }
+    DIRSIZE = lseek(dirfd, 0L, 2) / sizeof *x;
+d230 11
+a240 11
+    if ((dovfd = open(dovname, 2)) < 0)
+    {
+	syslog(LOG_INFO, "dbd_init %s %m", dovname);
+	return (0);
+    }
+    DOVSIZE = lseek(dovfd, 0L, 2) / (sizeof *y);
+    if (DOVSIZE == 0)
+	newdovr();
+    if (debug)
+	printf("dinit: DIRSIZE= %d, DOVSIZE= %d\n", DIRSIZE, DOVSIZE);
+    return (1);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 8
+d15 1
+a15 1
+#include "db.h"
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d2 3
+d6 1
+a104 1
+#ifndef ultrix
+a105 1
+#endif
+a117 1
+#ifndef ultrix
+a118 1
+#endif
+a122 1
+#ifndef ultrix
+a123 1
+#endif
+a135 1
+#ifndef ultrix
+a136 1
+#endif
+a140 1
+#ifndef ultrix
+a141 1
+#endif
+a152 1
+#ifndef ultrix
+a153 1
+#endif
+a157 1
+#ifndef ultrix
+a158 1
+#endif
+a195 1
+#ifndef ultrix
+a196 1
+#endif
+a202 1
+#ifndef ultrix
+a203 1
+#endif
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d101 1
+d103 1
+d116 1
+d118 1
+d123 1
+d125 1
+d138 1
+d140 1
+d145 1
+d147 1
+d159 1
+d161 1
+d166 1
+d168 1
+d206 1
+d208 1
+d215 1
+d217 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 1
+a5 1
+int debug;
+d7 2
+a8 2
+int dirfd;			/* file descriptor for the directory file */
+int dovfd;			/* file descriptor for the directory overflow
+d10 2
+a11 2
+int DIRSIZE;			/* size of the directory file, in records */
+int DOVSIZE;			/* size of the directory overflow file, in
+d14 1
+a14 1
+char *
+d18 2
+a19 3
+ *	This function returns a pointer to a directory entry
+ *	which is gotten by indexing into the directory file
+ *	with parameter entry.
+d24 1
+a24 1
+int entry;
+d28 1
+a28 1
+    int asize, nextrec, i, index;
+d38 2
+a39 2
+	area = (D_record *) realloc((char *) area, sizeof(D_record) +
+				    (asize / NDOCHARS + 1) * NDOCHARS);
+d57 2
+a58 2
+ *	This function takes the directory structure pointed to by
+ *	dirent and puts it in the directory file at offset entry.
+d62 1
+a62 1
+int entry;
+d65 1
+a65 1
+    int stringsize, i, index, nextovr;
+d97 1
+a97 1
+int dloc;
+d99 1
+a99 1
+    if (lseek(dirfd, dloc * (sizeof *x), 0) != dloc * (sizeof *x))
+d101 1
+a101 1
+	syslog(LOG_INFO,"d_write %m");
+d110 1
+a110 1
+int dloc;
+d114 1
+a114 1
+	syslog(LOG_INFO,"d_read %m");
+d119 1
+a119 1
+	syslog(LOG_INFO,"d_read %m");
+d127 1
+a127 1
+int dloc;
+d132 1
+a132 1
+	syslog(LOG_INFO,"d_oread %m");
+d137 1
+a137 1
+	syslog(LOG_INFO,"d_oread %m");
+d145 1
+a145 1
+int dloc;
+d149 1
+a149 1
+	syslog(LOG_INFO,"d_owrite %m");
+d154 1
+a154 1
+	syslog(LOG_INFO,"d_owrite %m");
+d162 1
+a162 1
+    char i = 0;
+d171 1
+a171 1
+char *file;
+d175 1
+a175 1
+    char dirname[100], dovname[100];
+d178 5
+a182 1
+    GetFieldConfig();
+d192 1
+a192 1
+	syslog(LOG_INFO,"dbd_init %s %m",dirname);
+d199 1
+a199 1
+	syslog(LOG_INFO,"dbd_init %s %m",dovname);
+@

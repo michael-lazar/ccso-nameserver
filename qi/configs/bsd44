@@ -1,0 +1,4 @@
+#  Most defaults are suitable for BSD 4.4 and BSD386
+$OtherDefines{"Mem_Type"} = "void";
+$Cflags .= " -DWAIT_INT";
+1

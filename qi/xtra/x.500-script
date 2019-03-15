@@ -1,0 +1,227 @@
+(Message inbox:53)
+Return-Path: info.ph
+From: gp@llnl.gov (George Pavel)
+Date: 4 Jan 94 20:05:39 GMT
+Newsgroup: info.ph/985
+Message-Id: <9401042006.AA07312@pierce.llnl.gov>
+Subject: Re: X500 and Ph
+
+
+
+--========================_17710428==_
+Content-Type: text/plain; charset="us-ascii"
+
+Several people asked for my script so I am posting it here.  This perl
+script converts a flat file to an EDB file suitable for use with the
+ISODE/QUIPU X.500 directory implementation.  The flat file we use is not a
+dump of a Ph directory but is equivalent to it; it consists of one line for
+each person with the fields delimited by the caret (^) character.
+
+In our directory, we store in a field called the "delivery address" the
+actual email address where a person receives mail; this field is normally
+not seen by anyone other than the owner.  We then construct a central mail
+address (name@llnl.gov) that is seen by every one in the Ph email (or X.500
+rfc822Address) field using either their official ID (which is assigned to
+everyone by the institution) or their alias (which each individual has the
+option to specify).  The algorithm is:
+        1. If there is no delivery address, the email field is set to "No
+Email address" for X.500 (set to "[none]" for Ph)
+        2. If there is a delivery address and an alias exists, set the
+email field to alias@llnl.gov, otherwise use officialID@llnl.gov.
+
+In our X.500 directory, the first commonName for each entry consists of a
+person's full name, mail stop, phone number, official ID and alias; this
+was useful for us when fred provides a list of people with one line per
+person. You will also see some games played with telephone numbers.  This
+is because the origin of the data only provides us with 5 digits which we
+have to try to convert to full ten-digit numbers including fixing some
+known mistakes.  Hopefully you don't have this problem.
+
+Here then is the script:
+
+
+
+
+--========================_17710428==_
+Content-Type: text/plain; name="makeEDB.perl"; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment; filename="makeEDB.perl"
+
+#!/usr/bin/perl
+
+open(EXTRACT,'/usr/local/src/ph-server/db/db.extract') || die "Can't open
+db.extract\n";
+open(EDB,">X500.out") || die "Can't create X500.out\n";
+print EDB "MASTER\n", `date -u +%y%m%d%H%M%SZ`, "\n";
+
+while (<EXTRACT>) {
+
+#exit if $test++ =3D=3D 100;
+
+# Parse person entry into fields
+#
+($uniqID,$empnum,$firstname,$midname,$lastname,$sfxname,$payroll,$site,$bldg
+,$room,$mailstop,$phone,$officialID,$deliveryAddress,$deliveryMethod,$orgnam
+e,$fax,$beeper,$alias,$pac,$nickname,$empcd,$nonempcd,$suplbrcd,$status) =3D
+/^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([
+^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*)\^([^^]*
+)\^([^^]*)\^([^^]*)\^([^^]*)\^[^^]*\^\w\^[^^]*\^([^^]*)\^([^^]*)\^([^^]*)\^(
+[^^]*)\^([^^]*)\^/;
+
+$mailstop =3D &realvalue($mailstop);
+
+# Ignore this entry if the name is empty
+#
+if ($lastname eq "" && $firstname eq "") { next; }
+
+# Clean up first, middle, and last names putting in periods after single
+# initials which can appear in any of these fields
+#
+@name =3D split(' ',$firstname);
+foreach $part (@name) { $part .=3D "." if length($part) =3D=3D 1; }
+$firstname =3D join(" ",@name);
+@name =3D split(' ',$midname);
+foreach $part (@name) { $part .=3D "." if length($part) =3D=3D 1; }
+$midname =3D join(" ",@name);
+@name =3D split(' ',$lastname);
+foreach $part (@name) { $part .=3D "." if length($part) =3D=3D 1; }
+$lastname =3D join(" ",@name);
+
+# Clean up suffix
+#
+$_ =3D $sfxname;
+$sfxname =3D "Dr." if /^[Dd][Rr]\.*$/;
+$sfxname =3D "Sr." if /^[Ss][Rr]\.*$/;
+$sfxname =3D "Jr." if /^[Jj][Rr]\.*$/;
+$sfxname =3D "II" if /^[Ii][Ii]\.*$/;
+$sfxname =3D "III" if /^[Ii][Ii][Ii]\.*$/;
+$sfxname =3D "IV" if /^[Ii][Vv]\.*$/;
+$sfxname =3D "" if /^ +$/;
+
+# Clean up phone number; make it empty if it says "NONE" or 21100
+# Process to add area code and prefix only if it consists of spaces and digi=
+ts
+#
+$_ =3D &realvalue($phone);
+if ( /^[ \d]\d{4}$/ ) {
+	s/^ 0679$/510-373-0679/;
+	s/^ 0775$/510-373-0775/;
+	s/^07963$/510-273-7963/;
+	s/^65141$/510-486-5141/;
+	s/^2/510-422-/;
+	s/^3/510-423-/;
+	s/^4/510-424-/;
+	s/^7/510-373-/;
+	s/^5(....)$/702-295-$1/;
+	s/^68830$/702-295-8830/;
+	s/^ /702-295-/;
+}
+if ( /^\d{4}$/ ) {
+	s/^/702-295-/;
+}
+s/^510-422-1100$//;
+$phone =3D $_;
+
+# Make long common name (cn)
+#
+$cn =3D "$lastname, $firstname";
+$cn .=3D " $midname" if $midname ne "";
+$cn .=3D " $sfxname" if $sfxname ne "";
+$cn .=3D " '$nickname'" if $nickname ne "";
+$cn .=3D ", L-$mailstop" if $mailstop ne "";
+$cn .=3D ", $phone" if $phone ne "";
+$cn .=3D " ($alias)" if $alias ne "";
+$cn .=3D " ($officialID)";
+print EDB "cn=3D", &escape($cn), $cn, "\n";
+
+# Make full common name and short common name
+#
+$cn =3D "$firstname $midname $lastname";
+print EDB "cn=3D", &escape($cn), $cn, "\n";
+$cn =3D "$firstname $lastname";
+print EDB "cn=3D", &escape($cn), $cn, "\n";
+
+# Surname (sn) is the last name normally; make it the first name if last nam=
+e
+# is empty
+#
+$sn =3D ($lastname eq "" ? $firstname : $lastname);
+print EDB "sn=3D ", &escape($sn), $sn, "\n";
+
+# Make telephone number field
+#
+print EDB "telephoneNumber=3D +1 $phone\n" if $phone ne "";
+
+# Make postal address
+#
+$postalAddress =3D "";
+$postalAddress .=3D "Mail Stop L-$mailstop".' $ ' if $mailstop ne "";
+print EDB "postalAddress=3D ", &escape($mailstop), $postalAddress, '7000 Eas=
+t
+Avenue $ Livermore, California 94550 $ USA';
+print EDB "\n";
+
+# Make employee class
+#
+if ($empcd ne "Y") {
+	$description =3D $orgname;
+	print EDB "description=3D $description\nuserClass=3D Non-Employee\n";
+}
+
+# Make rfc822Mailbox
+#
+print EDB "rfc822Mailbox=3D ";
+if ($deliveryAddress eq "") {
+	print EDB "No E-mail address\n";
+} elsif ($alias ne "") {
+	print EDB "$alias@llnl.gov\n";
+} else {
+	print EDB "$officialID@llnl.gov\n";
+}
+
+# Make fax number
+#
+print EDB "facsimileTelephoneNumber=3D ", &escape($fax), "+1 $fax\n" if $fax
+ne "";
+
+# Make beeper number
+#
+print EDB "pagerTelephoneNumber=3D ", &escape($beeper), "$beeper\n" if
+$beeper ne "";
+
+print EDB "\n";
+}
+dbmclose(person);
+dbmclose(mail);
+
+# Subroutine to check a string for characters that are not in printableStrin=
+g
+# and return the escape string "{T.61}" if any are found
+#
+sub escape {
+	local($string) =3D @_;
+	"{T.61}" if $string =3D~ m@[^a-zA-Z0-9'()+,-./:? ]@;
+}
+
+# Subroutine to look for strings that commonly mean an entry has no useful
+# value, such as NONE, TBD, etc.  An empty string is returned if one of
+# these is found; otherwise the original string is returned.
+#
+sub realvalue {
+	local($original) =3D @_;
+	($string =3D $original) =3D~ tr/A-Z/a-z/;
+	$string =3D~ s/ *none *//;
+	$string =3D~ s/ *tbd *//;
+	$string =3D~ s; *n/a *;;;
+	$string =3D~ s/ *na *//;
+	$string =3D~ s/ *tba *//;
+	$string =3D~ s/ *x+ *//;
+	$string =3D~ s/ *\?+ *//;
+	if ($string ne "") { $original ;}
+	else { "" ;}
+}
+
+
+
+--========================_17710428==_--
+

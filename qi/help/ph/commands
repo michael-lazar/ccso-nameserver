@@ -1,0 +1,38 @@
+The following commands are available through ph's interactive
+mode.  Some commands are only available to users who have logged
+in to the Nameserver, and two ("add" and "delete") are limited to
+users with special privileges:
+
+    add        - add new people or things to the database
+                (privileged)
+    bye        - synonym for "quit"
+    change     - used in conjunction with the "make" command to
+                 change the field contents of multiple ph entries
+    ^D         - synonym for "quit"
+    delete     - remove people or things from the database
+                 (privileged)
+    edit       - change, add, or remove a field from your entry
+    exit       - synonym for "quit"
+    fields     - list the fields in the database
+    help       - get help on ph commands and concepts
+    login      - login to ph
+    logout     - logout of ph
+    make       - change, add, or remove a field in your entry
+    me         - print all the fields of the logged-in user
+    passwd     - change your ph password
+    password   - a synonym for "passwd"
+    ph         - (in command mode) lookup people or things in the
+                 database, set switches, etc.; (in interactive
+                 mode) a synonym for "query"
+    query      - look up people or things in the database
+    quit       - exit ph
+    register   - change the contents of your "email" field to the
+                 account from which you are currently logged into
+                 ph
+    status     - print a message describing the current status of
+                 the Nameserver database
+    switch     - set ph switches
+
+Ph's on-line help facility offers detailed information on how to use
+all of the commands listed above except those that are identified as
+synonyms.

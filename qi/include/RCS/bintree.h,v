@@ -1,0 +1,655 @@
+head	1.14;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.14
+date	95.02.28.19.33.42;	author p-pomes;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.09.09.20.14.36;	author p-pomes;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.03.11.23.29.48;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	93.04.02.17.53.34;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	92.07.30.03.42.38;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	92.07.22.15.42.20;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	90.12.18.08.40.52;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.03.20.15.14.06;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.12.02.14.40.18;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.11.15.13.27.55;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.04.27.12.56.56;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.04.20.14.19.49;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.19.08.12.25;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.52;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.14
+log
+@Delete META_CHAR define (dup of METAS in qi.h).
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * @@(#)$Id: bintree.h,v 1.13 1994/09/09 20:14:36 p-pomes Exp p-pomes $
+ */
+
+#ifndef BINTREE_H
+#include "conf.h"
+#define BINTREE_H
+#define LBSIZE 1024		/* the size of a leaf */
+#define MATCH 0
+#define NO_MATCH 1
+#define CONTINUE -1
+#define KEY_SIZE	4	/* the number of characters kept in NODEs */
+#define DATA_SIZE (LBSIZE-2*sizeof(IDX)-sizeof(INT32))	/* free space in leaf */
+#define NODE_SIZE sizeof(NODE)
+#define IDX_SIZE sizeof(IDX)
+
+typedef INT32 IDX;		/* index pointer size */
+
+/*
+ * Bintree maintains (along with maket) a four-tiered structure consisting
+ * of a header, nodes, leaves, and items.
+ *
+ * ITEMS contain the entries from the hash table (.idx); the string and
+ * the hash index are kept in each ITEM.
+ *
+ * LEAVES contain one or more items, in sorted order, and are linked
+ * together.  All the keys in the hash table may be examined in sorted
+ * order by traversing the leaves in order and the items in order within
+ * the leaves.
+ *
+ * NODES contain the first four characters of a key, and left and right
+ * pointers.  These pointers point to other nodes when positive, or leaves
+ * when negative.
+ *
+ * The QHEADER has some statistics, as well as pointers to the head node
+ * and first and last leaves.
+ *
+ * All pointers are stored as indices, and must be multiplied by the
+ * appropriate size to get disk addresses.
+ *
+ * Leaves (and hence items) and the header are kept in the .seq file.
+ * Nodes are kept in the .bdx file.
+ *
+ * Steve Dorner, Computing Services Office, University of Illinois, 4/88
+ */
+
+/*
+ * NODEs are used for quick indexing into the leaf list.  They are
+ * created in maket.c, and reside in the .bdx file.
+ */
+struct node
+{
+	IDX	l_ptr;		/* if your name is <= key */
+	char	key[KEY_SIZE];	/* greatest key in l_ptr subtree */
+	IDX	r_ptr;		/* if your name is > key */
+};
+typedef struct node NODE;
+
+/*
+ * a sorted set of keys from the index; linked together to form a sorted
+ * list of entire index. kept in the .seq file.
+ */
+struct leaf
+{
+	IDX	leaf_no;	/* this leaf's index */
+	IDX	next;		/* pointer to next leaf */
+	int	n_bytes;	/* number of bytes in data */
+	char	data[DATA_SIZE]; /* data--zero or more ITEMs */
+};
+typedef struct leaf LEAF;
+
+/*
+ * this structure is used when building the .bdx (node) file
+ */
+struct leaf_des
+{
+	IDX	leaf_no;	/* start of leaf string */
+	char	max_key[KEY_SIZE]; /* biggest key in leaf string */
+};
+typedef struct leaf_des LEAF_DES;
+
+/*
+ * the basic unit.  contains a single key from the index.  multiple ITEMs
+ * are kept in each leaf.
+ */
+union item
+{
+	struct
+	{
+		IDX	p_number;
+		char	p_key[256];
+	}	pair;
+	char	raw[260];
+};
+typedef union item ITEM;
+
+#define i_num pair.p_number
+#define i_key pair.p_key
+
+/*
+ * file header; kept in the .seq file
+ */
+struct header
+{
+	IDX	seq_set;	/* pointer to first leaf */
+	IDX	freelist;	/* unused */
+	IDX	last_leaf;	/* pointer to last leaf */
+	IDX	index_root;	/* pointer to first node */
+	int	reads;		/* statistics... */
+	int	writes;		/* statistics... */
+	int	lookups;	/* statistics... */
+	int	inserts;	/* statistics... */
+	int	deletes;	/* statistics... */
+};
+typedef struct header QHEADER;
+
+/*
+ * miscellaneous
+ */
+
+/* size of the file header not including padding */
+#define HEADSIZE sizeof( struct header)
+
+/* size of null pad needed to bring header up to integral LBSIZE blks */
+#define PADSIZE ((HEADSIZE / LBSIZE) * LBSIZE + LBSIZE - HEADSIZE)
+
+/* blks taken up by header incl null padding */
+#define HEADBLKS ( (HEADSIZE + LBSIZE -1) / LBSIZE )
+
+/* byte offset of a node in the file */
+#define NODE_OFFSET(n) (int)(HEADSIZE+PADSIZE+(n-1)*LBSIZE)
+
+#endif
+@
+
+
+1.13
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: bintree.h,v 1.12 1994/03/11 23:29:48 paul Exp p-pomes $
+a49 1
+#define META_CHAR "*?[]"
+@
+
+
+1.12
+log
+@New copyright message.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: options.h,v 1.8 1994/03/11 23:23:48 paul Exp $
+d40 1
+d47 1
+a47 1
+#define DATA_SIZE (LBSIZE-2*sizeof(IDX)-sizeof(long))	/* free space in leaf */
+d52 1
+a52 1
+typedef long IDX;		/* index pointer size */
+@
+
+
+1.11
+log
+@Changed HEADER to QHEADER.
+@
+text
+@d2 35
+a36 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+@
+
+
+1.10
+log
+@renamed BSIZE to LBSIZE.
+@
+text
+@d39 1
+a39 1
+ * The HEADER has some statistics, as well as pointers to the head node
+d119 1
+a119 1
+typedef struct header HEADER;
+@
+
+
+1.9
+log
+@re-formatted for clarity
+@
+text
+@d11 1
+a11 1
+#define BSIZE 1024		/* the size of a leaf */
+d16 1
+a16 1
+#define DATA_SIZE (BSIZE-2*sizeof(IDX)-sizeof(long))	/* free space in leaf */
+d128 2
+a129 2
+/* size of null pad needed to bring header up to integral BSIZE blks */
+#define PADSIZE ((HEADSIZE / BSIZE) * BSIZE + BSIZE - HEADSIZE)
+d132 1
+a132 1
+#define HEADBLKS ( (HEADSIZE + BSIZE -1) / BSIZE )
+d135 1
+a135 1
+#define NODE_OFFSET(n) (int)(HEADSIZE+PADSIZE+(n-1)*BSIZE)
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d1 7
+a7 8
+/*********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d15 1
+a15 1
+#define KEY_SIZE  	4	/* the number of characters kept in NODEs */
+d21 29
+a49 28
+typedef long IDX;	/* index pointer size */
+/***********************************************************************
+* Bintree maintains (along with maket) a four-tiered structure consisting
+* of a header, nodes, leaves, and items.
+* 
+* ITEMS contain the entries from the hash table (.idx); the string and
+* the hash index are kept in each ITEM.
+* 
+* LEAVES contain one or more items, in sorted order, and are linked
+* together.  All the keys in the hash table may be examined in sorted
+* order by traversing the leaves in order and the items in order within
+* the leaves.
+* 
+* NODES contain the first four characters of a key, and left and right
+* pointers.  These pointers point to other nodes when positive, or leaves
+* when negative.
+* 
+* The HEADER has some statistics, as well as pointers to the head node
+* and first and last leaves.
+* 
+* All pointers are stored as indices, and must be multiplied by the
+* appropriate size to get disk addresses.
+* 
+* Leaves (and hence items) and the header are kept in the .seq file.
+* Nodes are kept in the .bdx file.
+*
+* Steve Dorner, Computing Services Office, University of Illinois, 4/88
+***********************************************************************/
+d57 3
+a59 3
+    IDX     l_ptr;		/* if your name is <= key */
+    char    key[KEY_SIZE];	/* greatest key in l_ptr subtree */
+    IDX     r_ptr;		/* if your name is > key */
+d63 4
+a66 4
+/***********************************************************************
+* a sorted set of keys from the index; linked together to form a sorted
+* list of entire index.  kept in the .seq file.
+***********************************************************************/
+d69 4
+a72 4
+    IDX     leaf_no;		/* this leaf's index */
+    IDX     next;		/* pointer to next leaf */
+    int     n_bytes;		/* number of bytes in data */
+    char    data[DATA_SIZE];	/* data--zero or more ITEMs */
+d76 3
+a78 3
+/***********************************************************************
+* this structure is used when building the .bdx (node) file
+***********************************************************************/
+d81 2
+a82 2
+    IDX     leaf_no;		/* start of leaf string */
+    char    max_key[KEY_SIZE];	/* biggest key in leaf string */
+d86 4
+a89 4
+/***********************************************************************
+* the basic unit.  contains a single key from the index.  multiple ITEMs
+* are kept in each leaf.
+***********************************************************************/
+d92 6
+a97 6
+    struct
+    {
+	IDX     p_number;
+	char    p_key[256];
+    }       pair;
+    char    raw[260];
+d104 3
+a106 3
+/***********************************************************************
+* file header; kept in the .seq file
+***********************************************************************/
+d109 9
+a117 9
+    IDX     seq_set;		/* pointer to first leaf */
+    IDX     freelist;		/* unused */
+    IDX     last_leaf;		/* pointer to last leaf */
+    IDX     index_root;		/* pointer to first node */
+    int     reads;		/* statistics... */
+    int     writes;		/* statistics... */
+    int     lookups;		/* statistics... */
+    int     inserts;		/* statistics... */
+    int     deletes;		/* statistics... */
+d121 3
+a123 3
+/***********************************************************************
+* miscellaneous
+***********************************************************************/
+d129 1
+a129 1
+#define PADSIZE  ((HEADSIZE / BSIZE) * BSIZE + BSIZE - HEADSIZE)
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@a136 3
+char   *strcpy(), *sprintf(), *malloc(), *max_key(), *index();
+long    lseek();
+IDX 	allocate_leaf(), build_tree();
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d97 1
+a97 1
+    char    raw[256];
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d7 2
+d14 1
+a14 1
+#define DATA_SIZE (BSIZE-2*sizeof(IDX)-sizeof(int))	/* free space in leaf */
+d110 5
+a114 5
+    long    reads;		/* statistics... */
+    long    writes;		/* statistics... */
+    long    lookups;		/* statistics... */
+    long    inserts;		/* statistics... */
+    long    deletes;		/* statistics... */
+d132 1
+a132 1
+#define NODE_OFFSET(n) (long)(HEADSIZE+PADSIZE+(n-1)*BSIZE)
+d137 1
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 6
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d36 2
+d40 4
+d52 4
+d58 4
+a61 4
+    IDX     leaf_no;
+    IDX     next;
+    int     n_bytes;
+    char    data[DATA_SIZE];
+d65 3
+d70 2
+a71 2
+    IDX     leaf_no;
+    char    max_key[KEY_SIZE];
+d75 4
+d93 3
+a95 1
+/* file header */
+d98 9
+a106 9
+    IDX     seq_set;
+    IDX     freelist;
+    IDX     last_leaf;
+    IDX     index_root;
+    long    reads;
+    long    writes;
+    long    lookups;
+    long    inserts;
+    long    deletes;
+d110 4
+d126 1
+a126 2
+char   *
+strcpy(), *sprintf(), *malloc(), *max_key(), *index();
+d128 1
+a128 2
+IDX 
+allocate_leaf(), build_tree();
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+#define BSIZE 1024
+d5 2
+a6 2
+#define KEY_SIZE  	4
+#define DATA_SIZE (BSIZE-2*sizeof(int))
+d11 26
+a36 1
+typedef unsigned long IDX;
+d40 3
+a42 3
+    IDX     l_ptr;
+    char    key[KEY_SIZE];
+    IDX     r_ptr;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d11 1
+a11 1
+typedef int IDX;
+d13 5
+a17 4
+struct node {
+	IDX		l_ptr;
+	char	key[KEY_SIZE];
+	IDX		r_ptr;
+d21 6
+a26 5
+struct leaf {
+	IDX		leaf_no;
+	IDX		next;
+	int		n_bytes;
+	char	data[DATA_SIZE];
+d30 4
+a33 3
+struct leaf_des {
+	IDX		leaf_no;
+	char	max_key[KEY_SIZE];
+d37 8
+a44 6
+union item {
+	struct {
+		IDX		p_number;
+		char	p_key[256];
+	} pair;
+	char			raw[256];
+d47 1
+d51 12
+a62 11
+	/* file header */
+struct header {
+	IDX		seq_set;
+	IDX		freelist;
+	IDX		last_leaf;
+	IDX		index_root;
+	long	reads;
+	long	writes;
+	long	lookups;
+	long	inserts;
+	long	deletes;
+d66 1
+a66 1
+	/* size of the file header not including padding */
+d69 1
+a69 1
+	/* size of null pad needed to bring header up to integral BSIZE blks */
+d72 1
+a72 1
+	/* blks taken up by header incl null padding */
+d75 1
+a75 1
+	/* byte offset of a node in the file */
+d78 5
+a82 3
+char	*strcpy(), *sprintf(), *malloc(), *max_key(), *index();
+long	lseek();
+IDX		allocate_leaf(), build_tree();
+@

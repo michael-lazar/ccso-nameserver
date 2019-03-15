@@ -1,0 +1,159 @@
+#!%PerlProg%
+#
+# n.oarlet - generate a sorted list of addresses for registration letters
+#
+# Usage: n.oarlet [-d] [letfile]
+#
+#	-d	print debugging and trace information.
+#	letfile	input file of assigned network id, password, address, etc.
+#
+# Copyright (c) 1995 University of Illinois Board of Trustees and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @(#)$Id: n.oarlet,v 1.5 1995/06/09 21:13:03 p-pomes Exp $
+
+%ColCode = (
+  "6", "VCR",
+  "7", "Gen",
+  "8", "PAffairs",
+  "9", "VCSA",
+  "10", "Health",
+  "12", "AHR",
+  "15", "Agric",
+  "17", "CBA",
+  "20", "Educ",
+  "22", "Eng",
+  "24", "FAA",
+  "26", "Grad",
+  "28", "Comm",
+  "30", "Law",
+  "32", "LAS",
+  "34", "Nurse",
+  "36", "ALS",
+  "40", "Extramural",
+  "43", "Med",
+  "44", "VetMed",
+  "50", "Army",
+  "52", "Avi",
+  "60", "Labor",
+  "61", "Beckman",
+  "65", "Environ",
+  "68", "Social",
+  "72", "Summer",
+  "73", "ContEd",
+  "74", "LIS",
+  "79", "IPS",
+  "80", "Lib",
+  "82", "OandM",
+  "83", "FSI",
+  "85", "Rec",
+  "86", "Relig",
+  "91", "Athl"
+);
+
+require 'open2.pl';
+
+# Written to the sundry sort pipes is
+# name<tab>address<tab>netid<tab>password<tab>citizenship<tab>new_status
+#   <tab>coll_enr_category<tab>college
+#
+# Students are initially split into two groups.  The first group has a
+# new status of 1 or college enrollment category of 5 or 6.  The other
+# group is the remainder.  Each of the two groups is then sorted by
+# citizenship, then college, then last name.  The sort results are
+# concatenated together and the letter file produced.
+$Icmd = "/usr/bin/sort -t \"\t\" -k8,8n -k6,6n -k1,1";
+$Dcmd = "/usr/bin/sort -t \"\t\" -k8,8n -k1,1";
+
+$IALLR = 'IALLR'; $IALLW = 'IALLW';
+$Ipid = &open2($IALLR, $IALLW, $Icmd);
+die "Can't D1 open2($Dcmd): $!\n" if ($Ipid == 0);
+
+$DONER = 'DONER'; $DONEW = 'DONEW';
+$DIpid = &open2($DONER, $DONEW, $Dcmd);
+die "Can't D1 open2($Dcmd): $!\n" if ($DIpid == 0);
+
+$DTWOR = 'DTWOR'; $DTWOW = 'DTWOW';
+$DIIpid = &open2($DTWOR, $DTWOW, $Dcmd);
+die "Can't D2 open2($Dcmd): $!\n" if ($DIIpid == 0);
+
+#
+# here we go...
+while (<>)
+{
+
+  chop;
+  $line = $_;
+  ($name,$addr,$netid,$password,$cit,$new_status,$cec,$college) = split(/\t/);
+
+  if ($college == 40) {
+    print STDERR "$netid\t$name\tEXTRAMURAL\n";
+  }
+  elsif ($cit eq "f") {
+    print $IALLW "$line\n";
+  }
+  elsif ($new_status == 1 || $cec == 5 || $cec == 6) {
+    print $DONEW "$line\n";
+  }
+  elsif ($new_status > 1) {
+    print $DTWOW "$line\n";
+  }
+  else {
+    print STDERR "$netid\t$name\tUNUSED\n";
+  }
+}
+close($IALLW);
+close($DONEW);
+close($DTWOW);
+
+while ($line = <$IALLR>) {
+  chop ($line);
+  ($name,$addr,$netid,$password,$cit,$new_status,$cec,$college)
+    = split(/\t/, $line);
+  $addr =~ s/\\n/\n /g;
+  print "1$name\n $addr\n $ColCode{$college} $new_status intl\n2$netid\n3$password\n";
+}
+
+while ($line = <$DONER>) {
+  chop ($line);
+  ($name,$addr,$netid,$password,$cit,$new_status,$cec,$college)
+    = split(/\t/, $line);
+  $addr =~ s/\\n/\n /g;
+  print "1$name\n $addr\n $ColCode{$college} $new_status dom\n2$netid\n3$password\n";
+}
+
+while ($line = <$DTWOR>) {
+  chop ($line);
+  ($name,$addr,$netid,$password,$cit,$new_status,$cec,$college)
+    = split(/\t/, $line);
+  $addr =~ s/\\n/\n /g;
+  print "1$name\n $addr\n $ColCode{$college} $new_status dom\n2$netid\n3$password\n";
+}

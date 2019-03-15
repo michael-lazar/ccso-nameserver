@@ -1,0 +1,528 @@
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+NNAAMMEE
+     ph - CCSO Nameserver client (on-line phone book)
+
+SSYYNNOOPPSSIISS
+     pphh [ --ss _s_e_r_v_e_r ] [ --pp _p_o_r_t ] [ --tt _t_y_p_e ] [
+     --ff _f_i_e_l_d_1,_f_i_e_l_d_2,...  ] [ --mmMMrrRRbbBBTTllLLFF ] query
+     pphh [ --ss _s_e_r_v_e_r ] [ --pp _p_o_r_t ] [ --tt _t_y_p_e ] [
+     --ff _f_i_e_l_d_1,_f_i_e_l_d_2,...  ] [ --hh _t_o_p_i_c ] [ --mmMMnnNNrrRRbbBBTTllLLFFccCC
+
+DDEESSCCRRIIPPTTIIOONN
+     _P_h queries the CCSO Nameserver, a database of University
+     faculty, staff, and students.  The database contains nearly
+     all the information in the _S_t_u_d_e_n_t/_S_t_a_f_f _D_i_r_e_c_t_o_r_y (the
+     University phone book), as well as other information,
+     including electronic mail addresses.
+
+     _P_h may be used in two ways; interactively or with command-
+     line arguments.
+
+     If given arguments, _p_h will treat the arguments as a query
+     and return the results of the query.  For example,
+
+          ph paul pomes
+
+     would return the entry for the maintainer of _p_h , Paul
+     Pomes.  For more information on what types of queries you
+     may make, see the QQUUEERRIIEESS section below.
+
+     If given no arguments, _p_h will enter interactive mode, print
+     a prompt, and wait for commands.  Interactive mode will be
+     discussed in detail below.
+
+     _P_h is not intended for the generation of mailing lists.
+     Therefore, it will refuse any requests resulting in more
+     than a small number of matches.  This is not negotiable.
+
+OOPPTTIIOONNSS
+     _P_h recognizes the following options.  They may be specified
+     in the _P_H environment variable, given on the command line,
+     or set with the sswwiittcchh command from inside _p_h.  Options
+     given with the sswwiittcchh command override all others; options
+     given on the command line override those in the _P_H environ-
+     ment variable.
+
+     --nn   Do not read the ._n_e_t_r_c file.  This option has meaning
+          only when using _p_h in interactive mode (see below for
+          descriptions of the ._n_e_t_r_c file and interactive mode).
+
+     --NN   Do read the ._n_e_t_r_c file.  This is the default.
+
+     --rr   Do not reformat _a_l_i_a_s and _e_m_a_i_l fields to show alias-
+          based e-mail addresses.
+
+
+
+Printed 8/30/92            30-Jul-1992                          1
+
+
+
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+     --RR   Reformat _a_l_i_a_s and _e_m_a_i_l fields to show alias-based e-
+          mail addresses.  This is the default.
+
+     --bb   Do not beautify query responses; print them in gory
+          detail, complete with response codes.
+
+     --BB   Beautify query responses.  This is the default.
+
+     --mm   Do not use a paging program (like _m_o_r_e(1)) when print-
+          ing responses.
+
+     --MM   Use a paging program.  This is the default.
+
+     --ll   Do not label field values with field names when print-
+          ing queries.
+
+     --LL   Label field values with field names when printing
+          queries.  This is the default.
+
+     --tt _t_y_p_e
+          Use _t_y_p_e as a default type on queries.  This is just
+          like adding ttyyppee==_t_y_p_e to all queries.  The --tt option
+          can be overriden by specifying an explicit type in the
+          query, as in, "ph pomes type=phone""..
+
+     --TT   Do not specify any type by default; this is the
+          default.
+
+     --ss _s_e_r_v_e_r
+          Use _s_e_r_v_e_r as a Nameserver host, instead of the default
+          host.  A list of suitable servers may be found with the
+          query "ph alias=ns-servers".
+
+     --pp _p_o_r_t
+          Connect to the tcp port _p_o_r_t, instead of the default
+          port.
+
+     --cc   Do not wait for confirmation of edit commands.  This is
+          the default.
+
+     --CC   Wait for confirmation of edit commands (see eeddiitt
+          below).
+
+     --ff _f_i_e_l_d_1,_f_i_e_l_d_2,...
+          Return fields _f_i_e_l_d_1,_f_i_e_l_d_2,... instead of the default
+          list of fields, if no return clause is specified on
+          queries.  This is just like adding "return field1
+          field2 ..." _t_o _a_l_l _q_u_e_r_i_e_s.
+
+     --FF   Return default list of fields; this is the default.
+
+     --hh _t_o_p_i_c
+
+
+
+Printed 8/30/92            30-Jul-1992                          2
+
+
+
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+          Display a list of on-line help topics.  If the --hh
+          option is followed by the name of one of the on-line
+          help topics, the help screen for _t_o_p_i_c will be
+          displayed.
+
+QQUUEERRIIEESS
+     The Nameserver's database contains over 70,000 entries.
+     Each entry is comprised of multiple _f_i_e_l_d_s, each containing
+     information about the entry.  Each field has a name that is
+     descriptive of what the field contains; for example, the
+     field named _a_d_d_r_e_s_s contains the office mail address of the
+     person in question (for more information on fields, see the
+     description of the ffiieellddss command in the IINNTTEERRAACCTTIIVVEE section
+     below).
+
+     By default, queries are assumed to refer to the _n_a_m_e or
+     _n_i_c_k_n_a_m_e field of the entry.  Therefore, saying "ph john
+     doe" _l_o_o_k_s _f_o_r _e_n_t_r_i_e_s _w_h_o_s_e _n_a_m_e or _n_i_c_k_n_a_m_e field contains
+     "john" and "doe".  Fields other than the _n_a_m_e and _n_i_c_k_n_a_m_e
+     fields must be specified; for example,
+
+          ph pomes address=DCL
+
+     would return entries with _n_a_m_e or _n_i_c_k_n_a_m_e "pomes" whose
+     _a_d_d_r_e_s_s contained "DCL."
+
+     Matching in _p_h is done on a word-by-word basis.  That is,
+     both the query and the entry are broken up into words, and
+     the individual words are compared.  Although _p_h is insensi-
+     tive to case, it otherwise requires words to match exactly,
+     with no characters left over; "john" does nnoott match "john-
+     son", for example.  This behavior may be overriden by the
+     use of normal shell metacharacters ("?" to match any single
+     character, "*" to match zero or more characters, and "[]" to
+     match a single character from a set of characters).
+
+     _P_h will display only entries that match aallll of the specifi-
+     cations in the query.  For example,
+
+          ph paul pomes
+
+     will return all entries with bbootthh "paul" and "pomes" in the
+     _n_a_m_e or _n_i_c_k_n_a_m_e fields.
+
+     _P_h returns a certain set of fields by default.  It is possi-
+     ble to ask for different fields in a query.  This is done by
+     specifying the _r_e_t_u_r_n keyword and listing the fields of
+     interest.  For example,
+
+          ph paul pomes return email
+
+
+
+
+
+Printed 8/30/92            30-Jul-1992                          3
+
+
+
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+     would print only the electronic mail address of the main-
+     tainer of _p_h.  You may also ask for all fields in the entry
+     by using "all" as a field name.  This will show you every
+     field you are allowed to see in the entry.
+
+     All output from _p_h is sent through _m_o_r_e(1) (or whatever pro-
+     gram is specified in the _P_A_G_E_R environment variable).
+
+IINNTTEERRAACCTTIIVVEE MMOODDEE
+     If _p_h is given no arguments, it enters interactive mode,
+     where it prompts for, executes, and displays the results of
+     Nameserver commands.  Interactive mode provides access to
+     more Nameserver features than mere queries.  Some of these
+     features require the user to identify him/her self to _p_h by
+     use of the llooggiinn command; others do not.  Commands may be
+     abbreviated, provided enough characters are given to distin-
+     guish them from other commands.
+
+     ._n_e_t_r_c file
+          _P_h reads the same ._n_e_t_r_c file as does ftp (see _f_t_p(1)).
+          If it finds a _m_a_c_h_i_n_e named "ph" that has a login and a
+          password specified for it, _p_h will automatically do a
+          _l_o_g_i_n command, using the values from the ._n_e_t_r_c file.
+          _P_h will silently refuse to use a ._n_e_t_r_c file that has
+          any permissions for group or other (see _c_h_m_o_d(1)).
+
+     PPuubblliicc CCoommmmaannddss
+
+     The following commands do not require the user to be logged
+     in to the Nameserver:
+
+     hheellpp [_t_o_p_i_c]
+               Provides explanations of Nameserver commands.
+               Given no arguments, hheellpp lists the available help
+               topics.  Given a _t_o_p_i_c as an argument, hheellpp will
+               print help for that topic.  A list of commands and
+               a one-line description of each command may be
+               obtained by requesting the topic _c_o_m_m_a_n_d_s.
+
+     qquueerryy     Performs Nameserver queries exactly like non-
+               interactive _p_h queries except that metacharacters
+               do not have to be quoted.
+
+     ffiieellddss    Lists the fields currently in use in the
+               Nameserver.  For each field, a display like the
+               following (admittedly ugly) is produced:
+
+
+               -200:2:email:max 64 Lookup Public Default Change
+               -200:2:email:Preferred electronic mail address.
+               ...
+
+
+
+
+Printed 8/30/92            30-Jul-1992                          4
+
+
+
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+               The leading number is a reply code from the
+               Nameserver.  The next number is the field number.
+               Following the field number is the name of the
+               field, the maximum length of the field, and the
+               attributes for the field.  The second line has, in
+               addition to repeated reply code, number, and name,
+               a one-line description of the field.
+
+               The attributes determine how a field may be used.
+               _L_o_o_k_u_p means the field may be searched in a query.
+               _I_n_d_e_x_e_d means the field is indexed (at least one
+               _I_n_d_e_x_e_d field must be included in every query).
+               _D_e_f_a_u_l_t means the field is displayed by default.
+               _C_h_a_n_g_e means that users may change the field.
+
+     sseett _o_p_t_i_o_n[=_v_a_l_u_e]
+               Allows Nameserver options to be set.  These
+               options are for future use.
+
+     sswwiittcchh  -_o_p_t_i_o_n [_v_a_l_u_e]
+               Allows _p_h options to be set.  See the OOPPTTIIOONNSS sec-
+               tion above.
+
+     qquuiitt      Exits _p_h.
+
+     llooggiinn _a_l_i_a_s
+               Identifies the user to the Nameserver.  _A_l_i_a_s is
+               your Nameserver alias, a unique name for you in
+               the Nameserver; it is printed in _p_h queries, as
+               the first thing after "email to:":
+
+               email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+
+               In this case, the alias is "p-pomes".  You will be
+               prompted for your Nameserver password when you
+               give the llooggiinn command, unless you are using _p_h
+               from the login in your email field (the one in
+               parentheses on the "email to:" line), and your
+               system administrator has made _p_h "setuid root", in
+               which case no password will be required.
+
+               Your Nameserver password is nnoott the same as your
+               system password; the only way to discover your
+               Nameserver password is to bring yourself and a
+               University ID to the CCSO Accounting Office in
+               1420 DCL.  Because of abuses in the past, pass-
+               words cannot be given out via email, phone, or to
+               third parties.
+
+               You are allowed to change your Nameserver alias;
+               there are, however, restrictions on Nameserver
+               aliases; they must be unique within the
+
+
+
+Printed 8/30/92            30-Jul-1992                          5
+
+
+
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+               Nameserver, they cannot be common names ("david"
+               is right out), and they can only contain letters,
+               digits, dashes (-) and periods (.).
+
+     CCoommmmaannddss RReeqquuiirriinngg LLooggiinn
+
+     The following commands require that the user executing them
+     be logged in to the Nameserver.
+
+     ppaasssswwdd [_a_l_i_a_s]
+               Changes your Nameserver password.  You will be
+               asked to type your new password twice.  _P_h will
+               complain if your password is too short or contains
+               only numbers (although it does allow such pass-
+               words).  Privileged users may change the passwords
+               of certain other users by specifying the alias of
+               the other user when giving the ppaasssswwdd command.
+
+     mmee        Lists the Nameserver entry of the currently
+               logged-in user.
+
+     eeddiitt _f_i_e_l_d [_a_l_i_a_s]
+               Allows _p_h users to change those fields in their
+               entry that have the _C_h_a_n_g_e attribute set.  _E_d_i_t
+               will retrieve the value of the named field (if a
+               value exists), and will allow the user to edit the
+               value with _v_i(1) (the _E_D_I_T_O_R environment variable
+               may be used to override the use of _v_i).  The
+               changed value will then be reinserted in the
+               Nameserver.  If the --CC option is in effect, the
+               message, "Change the value [y]?" will be printed
+               after the editing is finished.  Pressing return
+               alone, or anything beginning with "y", will make
+               _p_h change the value; anything beginning with "n"
+               will make _p_h discard the changes.
+
+     mmaakkee _f_i_e_l_d=_v_a_l_u_e [_f_i_e_l_d_2=_v_a_l_u_e_2...]
+               Allows _p_h users to change those fields in their
+               entry that have the _C_h_a_n_g_e attribute set.  MMaakkee
+               will set the specified field(s) to the specified
+               value(s) in the entry of the currently logged in
+               user.
+
+     aadddd       Adds entries to the Nameserver.  This is a
+               privileged command.
+
+     ddeelleettee    Deletes entries from the Nameserver.  This is a
+               privileged command.
+
+     llooggoouutt    Undoes the effects of a llooggiinn command.
+
+
+
+
+
+Printed 8/30/92            30-Jul-1992                          6
+
+
+
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+QQUUEERRYY EEXXAAMMPPLLEESS
+     Here are some examples to clarify _p_h queries.  Each example
+     is preceded by a description of the desired effect.  It is
+     assumed that the queries are being done with _p_h from the
+     command line, rather than by using the interactive mode of
+     _p_h.  The only difference for interactive mode is that meta-
+     characters would not have to be quoted or escaped.
+
+     Find the _p_h entry for Paul Pomes:
+
+          ph paul pomes
+
+     Find the _p_h entry for P. Pomes, where the rest of the first
+     name is not known:
+
+          ph p\* pomes
+
+     Find Alonzo Johnson (or is that JohnsEn?):
+
+          ph alonzo johns\?n
+      or
+          ph alonzo johns\[eo\]n
+
+     Find Paul P., where the rest of the last name is unknown:
+
+          ph paul p\*
+
+     The last query fails because it matches too many entries.
+     It is therefore necessary to narrow the search.  Suppose it
+     is known that Paul P. has an office in DCL:
+
+          ph paul p\* address=DCL
+
+     Alternately, suppose Paul P. works for CCSO.  You might try:
+
+          ph paul p\* department=CCSO
+
+     When that failed, a good next guess would be:
+
+          ph paul p\* department=computing
+
+     The moral of the story is that fields in _p_h generally con-
+     tain whatever the user wishes them to contain, and, hence,
+     there may be many different spellings and abbreviations for
+     any particular field (some fields are exceptions, including
+     the _n_a_m_e field, which is always the full name, as known to
+     the University, of the person involved).  It pays to make
+     liberal use of metacharacters and creativity when searching
+     fields other than _n_a_m_e.
+
+     Suppose all that is wanted is the full name and electronic
+     mail address of P. Pomes:
+
+
+
+Printed 8/30/92            30-Jul-1992                          7
+
+
+
+
+
+
+PH(1L)              UNIX Programmer's Manual               PH(1L)
+
+
+
+          ph p\* pomes return name email
+
+RREENNAAMMIINNGG PPHH
+     If _p_h is invoked with a name other than _p_h, slightly dif-
+     ferent option processing is done.  For the sake of an exam-
+     ple, let us assume _p_h was invoked with the name, "unit".
+     The following consequences obtain:
+
+     _P_h will assume an option of "-t unit".  _P_h will read the
+     _U_N_I_T environment variable, aafftteerr reading the _P_H environment
+     variable, and bbeeffoorree reading command-line options.
+
+     This feature allows the easy installation of entry-type
+     specific lookup commands, as well as custom configuration of
+     those commands.
+
+BBUUGGSS
+     Separate words in a query are allowed to match the same word
+     in the entry; "ph s\* smith" is functionally equivalent to
+     "ph smith", because the "s*" is allowed to match "smith".
+
+     _P_h does some looking about in the commands you give it, but
+     does not understand the full syntax of Nameserver commands.
+     This can occasionally lead to mistakes, especially when
+     dealing with quoted strings.
+
+DDIISSTTRRIIBBUUTTIIOONN
+     Source code for _p_h is available by anonymous ftp to
+     uxc.cso.uiuc.edu, _i_n _t_h_e _f_i_l_e _p_u_b/_p_h._t_a_r._Z.  The complete
+     system, including source for the _q_i(8) server side is in the
+     file pub/qi.tar.Z.  This source works on 4.[23]BSD UNIX sys-
+     tems.  Any troubles encountered porting _p_h to a particular
+     system are of interest to the maintainer of _p_h, as are ports
+     done to other operating systems.
+
+SSEEEE AALLSSOO
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _A_n _I_n_t_r_o_d_u_c_t_i_o_n, by Steven Dorner;
+     updated by Paul Pomes.
+     _T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r - _S_e_r_v_e_r-_C_l_i_e_n_t _P_r_o_t_o_c_o_l, by Steven
+     Dorner; updated by Paul Pomes.
+     _q_i(8)
+
+AAUUTTHHOORR
+     Steve Dorner (sdorner@qualcomm.com), Qualcomm, Inc.  (form-
+     erly at the University of Illinois Computing and Communica-
+     tions Services Office)
+
+     The code is now maintained by Paul Pomes (p-pomes@uiuc.edu),
+     University of Illinois Computing and Communications Services
+     Office.
+
+
+
+
+
+Printed 8/30/92            30-Jul-1992                          8
+
+
+

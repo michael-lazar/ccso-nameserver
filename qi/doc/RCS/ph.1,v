@@ -1,0 +1,1102 @@
+head	1.6;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.6
+date	94.11.11.21.57.21;	author p-pomes;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.08.30.22.31.39;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.08.30.21.58.15;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.08.30.21.46.40;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.08.01.03.01.21;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.08.01.02.27.31;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@PH man page.
+@
+
+
+1.6
+log
+@Updated to include -q switch and ability to specify password on the
+login command.
+@
+text
+@.TH PH 1L "30-Jul-1992"
+.SH NAME
+ph \- CCSO Nameserver client (on-line phone book)
+.SH SYNOPSIS
+.B ph
+[
+.BI \-s\  server
+] [
+.BI \-p\  port
+] [
+.BI \-t\  type
+] [
+.BI \-f\  field1,field2,...
+] [
+.B \-mMrRqbBTlLF
+] query
+.br
+.B ph
+[
+.BI \-s\  server
+] [
+.BI \-p\  port
+] [
+.BI \-t\  type
+] [
+.BI \-f\  field1,field2,...
+] [
+.BI \-h\  topic
+] [
+.B \-mMnNrRqbBTlLFcC
+.SH DESCRIPTION
+.I Ph
+queries the CCSO Nameserver, a database of University faculty,
+staff, and students.
+The database contains nearly all the information in the
+.I "Student/Staff Directory"
+(the University phone book), as well as other information,
+including electronic mail addresses.
+.PP
+.I Ph
+may be used in two ways; interactively or with command-line arguments.
+.PP
+If given arguments,
+.I ph
+will treat the arguments as a query and return the results of the query.
+For example,
+.IP
+.ft CR
+ph paul pomes
+.ft
+.PP
+would return the entry for the maintainer of
+.I ph ,
+Paul Pomes.
+For more information on what types of queries you may make, see the
+.SM
+.B QUERIES
+section below.
+.PP
+If given no arguments,
+.I ph
+will enter interactive mode, print a prompt, and wait for commands.
+Interactive mode will be discussed in detail below.
+.PP
+.I Ph
+is not intended for the generation of mailing lists.
+Therefore, it will refuse any requests resulting in more than a
+small number of matches.
+This is not negotiable.
+.PP
+.SH OPTIONS
+.I Ph
+recognizes the following options.
+They may be specified in the
+.I PH
+environment variable,
+given on the command line, or set with the
+.B switch
+command from inside
+.IR ph .
+Options given with the
+.B switch
+command override all others;
+options given on the command line override those in the
+.I PH
+environment variable.
+.TP 5
+.B \-n
+Do not read the
+.I .netrc
+file.
+This option has meaning only when using
+.I ph
+in interactive mode
+(see below for descriptions of the
+.I .netrc
+file and interactive mode).
+.TP 5
+.B \-N
+Do read the
+.I .netrc
+file.
+This is the default.
+.TP 5
+.B \-r
+Do not reformat
+.I alias
+and
+.I email
+fields to show alias-based e-mail addresses.
+.TP 5
+.B \-R
+Reformat
+.I alias
+and
+.I email
+fields to show alias-based e-mail addresses.
+This is the default.
+.TP 5
+.B \-b
+Do not beautify query responses; print them in gory detail,
+complete with response codes.
+.TP 5
+.B \-B
+Beautify query responses.
+This is the default.
+.TP 5
+.B \-q
+Suppress prompts and greeting messages.
+When combined with
+.BR \-b ,
+the output mimics that of
+.IR qi (8)
+and is easily parsed by other programs.
+.TP 5
+.B \-m
+Do not use a paging program (like
+.IR more (1))
+when printing responses.
+.TP 5
+.B \-M
+Use a paging program.
+This is the default.
+.TP 5
+.B \-l
+Do not label field values with field names when printing queries.
+.TP 5
+.B \-L
+Label field values with field names when printing queries.
+This is the default.
+.TP 5
+.BI \-t\  type
+Use
+.I type
+as a default type on queries.
+This is just like adding
+.BI type= type
+to all queries.
+The
+.B \-t
+option can be overriden by specifying an explicit type in the query,
+as in, "\f(CRph pomes type=phone\fP".
+.TP 5
+.B \-T
+Do not specify any type by default; this is the default.
+.TP 5
+.BI \-s\  server
+Use
+.I server
+as a Nameserver host, instead of the default host.
+A list of suitable servers may be found with the query
+"\f(CRph alias=ns\-servers\fP".
+.TP 5
+.BI \-p\  port
+Connect to the tcp port
+.IR port ,
+instead of the default port.
+.TP 5
+.B \-c
+Do not wait for confirmation of edit commands.
+This is the default.
+.TP 5
+.B \-C
+Wait for confirmation of edit commands (see
+.B edit
+below).
+.TP 5
+.BI \-f\  field1,field2,...
+Return fields
+.I field1,field2,...
+instead of the default list of fields,
+if no return clause is specified on queries.
+This is just like adding "\f(CRreturn field1 field2 ...\fP" to all queries.
+.TP 5
+.B \-F
+Return default list of fields; this is the default.
+.TP 5
+.BI \-h\  topic
+Display a list of on-line help topics.
+If the
+.B \-h
+option is followed by the name of one of the on-line help topics,
+the help screen for
+.I topic
+will be displayed.
+.SH QUERIES
+The Nameserver's database contains over 70,000 entries.
+Each entry is comprised of multiple
+.IR fields ,
+each containing information about the entry.
+Each field has a name that is descriptive of what the field contains;
+for example, the field named
+.I address
+contains the office mail address of the person in question
+(for more information on fields, see the description of the
+.B fields
+command in the
+.SM
+.B INTERACTIVE
+section below).
+.PP
+By default, queries are assumed to refer to the
+.I name
+or
+.I nickname
+field of the entry.
+Therefore, saying "\f(CRph john doe\fP" looks for entries whose
+.I name
+or
+.I nickname
+field contains "john" and "doe".
+Fields other than the
+.I name
+and
+.I nickname
+fields must be specified; for example,
+.IP
+.ft CR
+ph pomes address=DCL
+.ft
+.PP
+would return entries with
+.I name
+or
+.I nickname
+"pomes" whose
+.I address
+contained "DCL."
+.PP
+Matching in
+.I ph
+is done on a word-by-word basis.
+That is, both the query and the entry are broken up into words,
+and the individual words are compared.
+Although
+.I ph
+is insensitive to case,
+it otherwise requires words to match exactly, with no characters left over;
+"john" does
+.B not
+match "johnson", for example.
+This behavior may be overriden by the use of normal shell metacharacters
+("?" to match any single character, "*" to match zero or more characters,
+and "[]" to match a single character from a set of characters).
+.PP
+.I Ph
+will display only entries that match
+.B all
+of the specifications in the query.
+For example,
+.IP
+.ft CR
+ph paul pomes
+.ft
+.PP
+will return all entries with
+.B both
+"paul" and "pomes" in the
+.I name
+or
+.I nickname
+fields.
+.PP
+.I Ph
+returns a certain set of fields by default.
+It is possible to ask for different fields in a query.
+This is done by specifying the
+.I return
+keyword and listing the fields of interest.
+For example,
+.IP
+.ft CR
+ph paul pomes return email
+.ft
+.PP
+would print only the electronic mail address of the maintainer of
+.IR ph .
+You may also ask for all fields in the entry by using "all" as a field name.
+This will show you every field you are allowed to see in the entry.
+.PP
+All output from
+.I ph
+is sent through
+.IR more (1)
+(or whatever program is specified in the
+.I PAGER
+environment variable).
+.PP
+.SH "INTERACTIVE MODE"
+.PP
+If
+.I ph
+is given no arguments, it enters interactive mode,
+where it prompts for, executes,
+and displays the results of Nameserver commands.
+Interactive mode provides access to more Nameserver features than mere queries.
+Some of these features require the user to identify him/her self to
+.I ph
+by use of the
+.B login
+command; others do not.
+Commands may be abbreviated,
+provided enough characters are given to distinguish them from other commands.
+.TP 5
+.IR .netrc\  file
+.I Ph
+reads the same
+.I .netrc
+file as does ftp (see
+.IR ftp (1)).
+If it finds a
+.I machine
+named "ph" that has a login and a password specified for it,
+.I ph
+will automatically do a
+.I login
+command, using the values from the
+.I .netrc
+file.
+.I Ph
+will silently refuse to use a
+.I .netrc
+file that has any permissions
+for group or other (see
+.IR chmod (1)).
+.PP
+.B "Public Commands"
+.PP
+The following commands do not require the user to be logged in
+to the Nameserver:
+.TP 10
+.BI help\  [topic]
+Provides explanations of Nameserver commands.
+Given no arguments,
+.B help
+lists the available help topics.
+Given a
+.I topic
+as an argument,
+.B help
+will print help for that topic.
+A list of commands and a one-line description of each command may be
+obtained by requesting the topic
+.IR commands .
+.TP 10
+.B query
+Performs Nameserver queries exactly like non-interactive
+.I ph
+queries except that metacharacters do not have to be quoted.
+.TP 10
+.B fields
+Lists the fields currently in use in the Nameserver.
+For each field, a display like the following (admittedly ugly) is produced:
+.IP
+.nf
+.ft CR
+\-200:2:email:max 64 Lookup Public Default Change
+\-200:2:email:Preferred electronic mail address.
+\&...
+.ft
+.fi
+.IP
+The leading number is a reply code from the Nameserver.
+The next number is the field number.
+Following the field number is the name of the field,
+the maximum length of the field,
+and the attributes for the field.
+The second line has, in addition to repeated reply code, number, and name,
+a one-line description of the field.
+.IP
+The attributes determine how a field may be used.
+.I Lookup
+means the field may be searched in a query.
+.I Indexed
+means the field is indexed (at least one
+.I Indexed
+field must be included in every query).
+.I Default
+means the field is displayed by default.
+.I Change
+means that users may change the field.
+.TP 10
+.BI set\  option[=value]
+Allows Nameserver options to be set.
+These options are for future use.
+.TP 10
+.BI switch\ \  \-option\ [value]
+Allows
+.I ph
+options to be set.
+See the
+.SM
+.B OPTIONS
+section above.
+.TP 10
+.B quit
+Exits
+.IR ph .
+.TP 10
+.BI login\  alias\ [password]
+Identifies the user to the Nameserver.
+.I Alias
+is your Nameserver alias, a unique name for you in the Nameserver;
+it is printed in
+.I ph
+queries, as the first thing after "email to:":
+.IP
+.ft CR
+email to: p\-pomes@@uiuc.edu (p-pomes@@mirage.cso.uiuc.edu)
+.ft
+.IP
+In this case, the alias is "p\-pomes".
+.IP
+.I [password]
+is your password.
+The square brackets are not actually typed; instead they indicate that the
+password
+.B MAY
+optionally be entered here.
+If it is not supplied,
+.I ph
+will prompt for it if necessary.
+.IP
+You will be prompted for your Nameserver password when you give the
+.B login
+command, unless you are using
+.I ph
+from the login in your email field
+(the one in parentheses on the "email to:" line),
+and your system administrator has made
+.I ph
+"setuid root", in which case no password will be required.
+.IP
+Your Nameserver password is
+.B not
+the same as your system password;
+the only way to discover your Nameserver password is to bring yourself and
+a University ID to the CCSO Accounting Office in 1420 DCL.
+Because of abuses in the past, passwords cannot be given out via email,
+phone, or to third parties.
+.PP
+.B "Commands Requiring Login"
+.PP
+The following commands require that the user executing them be
+logged in to the Nameserver.
+.TP 10
+.BI passwd\  [alias]
+Changes your Nameserver password.
+You will be asked to type your new password twice.
+.I Ph
+will complain if your password is too short
+or contains only numbers (although it does allow such passwords).
+Privileged users may change the passwords of certain other users by
+specifying the alias of the other user when giving the
+.B passwd
+command.
+.TP 10
+.B me
+Lists the Nameserver entry of the currently logged-in user.
+.TP 10
+.BI edit\  field\ [alias]
+Allows
+.I ph
+users to change those fields in their entry that have the
+.I Change
+attribute set.
+.I Edit
+will retrieve the value of the named field (if a value exists),
+and will allow the user to edit the value with
+.IR vi (1)
+(the
+.I EDITOR
+environment variable may be used to override the use of
+.IR vi ).
+The changed value will then be reinserted in the Nameserver.
+If the
+.B \-C
+option is in effect, the message, "Change the value [y]?" will be printed
+after the editing is finished.
+Pressing return alone, or anything beginning with "y", will make
+.I ph
+change the value;
+anything beginning with "n" will make
+.I ph
+discard the changes.
+.TP 10
+.BI make\  field=value\ [field2=value2...]
+Allows
+.I ph
+users to change those fields in their entry that have the
+.I Change
+attribute set.
+.B Make
+will set the specified field(s) to the specified value(s)
+in the entry of the currently logged in user.
+.TP 10
+.B add
+Adds entries to the Nameserver.
+This is a privileged command.
+.TP 10
+.B delete
+Deletes entries from the Nameserver.
+This is a privileged command.
+.TP 10
+.B logout
+Undoes the effects of a
+.B login
+command.
+.SH "QUERY EXAMPLES"
+Here are some examples to clarify
+.I ph
+queries.
+Each example is preceded by a description of the desired effect.
+It is assumed that the queries are being done with
+.I ph
+from the command line, rather than by using the interactive mode of
+.IR ph .
+The only difference for interactive mode is that metacharacters
+would not have to be quoted or escaped.
+.PP
+Find the
+.I ph
+entry for Paul Pomes:
+.IP
+.ft CR
+ph paul pomes
+.ft
+.PP
+Find the
+.I ph
+entry for P. Pomes, where the rest of the first name is not known:
+.IP
+.ft CR
+ph p\\* pomes
+.ft
+.PP
+Find Alonzo Johnson (or is that JohnsEn?):
+.IP
+.ft CR
+ph alonzo johns\\?n
+.ti -4n
+or
+.br
+ph alonzo johns\\[eo\\]n
+.ft
+.PP
+Find Paul P., where the rest of the last name is unknown:
+.IP
+.ft CR
+ph paul p\\*
+.ft
+.PP
+The last query fails because it matches too many entries.
+It is therefore necessary to narrow the search.
+Suppose it is known that Paul P. has an office in DCL:
+.IP
+.ft CR
+ph paul p\\* address=DCL
+.ft
+.PP
+Alternately, suppose Paul P. works for CCSO.
+You might try:
+.IP
+.ft CR
+ph paul p\\* department=CCSO
+.ft
+.PP
+When that failed, a good next guess would be:
+.IP
+.ft CR
+ph paul p\\* department=computing
+.ft
+.PP
+The moral of the story is that fields in
+.I ph
+generally contain whatever the user wishes them to contain,
+and, hence, there may be many different spellings and abbreviations
+for any particular field (some fields are exceptions, including the
+.I name
+field, which is always the full name, as known to the University,
+of the person involved).
+It pays to make liberal use of metacharacters and creativity when
+searching fields other than
+.IR name .
+.PP
+Suppose all that is wanted is the full name and electronic mail address of
+P. Pomes:
+.IP
+.ft CR
+ph p\\* pomes return name email
+.SH "RENAMING PH"
+.PP
+If
+.I ph
+is invoked with a name other than
+.IR ph ,
+slightly different option processing is done.
+For the sake of an example, let us assume
+.I ph
+was invoked with the name, "unit".
+The following consequences obtain:
+.PP
+.I Ph
+will assume an option of "\-t unit".
+.I Ph
+will read the
+.I UNIT
+environment variable,
+.B after
+reading the
+.I PH
+environment variable, and
+.B before
+reading command-line options.
+.PP
+This feature allows the easy installation of entry-type specific
+lookup commands, as well as custom configuration of those commands.
+.PP
+.SH BUGS
+.PP
+Separate words in a query are allowed to match the same word in the entry;
+"\f(CRph s\\* smith\fP" is functionally equivalent to "\f(CRph smith\fP",
+because the "s*" is allowed to match "smith".
+.PP
+.I Ph
+does some looking about in the commands you give it,
+but does not understand the full syntax of Nameserver commands.
+This can occasionally lead to mistakes,
+especially when dealing with quoted strings.
+.SH DISTRIBUTION
+.PP
+Source code for
+.I ph
+is available by anonymous ftp to \f(CRvixen.cso.uiuc.edu\fP,
+in the file \f(CRpub/ph.tar.gz\fP.
+The complete system, including source for the
+.IR qi (8)
+server side is in the file \f(CRpub/qi.tar.gz\fP.
+This source works on 4.[23]BSD UNIX systems.
+Any troubles encountered porting
+.I ph
+to a particular system are of interest to the maintainer of
+.IR ph ,
+as are ports done to other operating systems.
+.SH "SEE ALSO"
+.IR "The CCSO Nameserver \- An Introduction" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR "The CCSO Nameserver \- Server\-Client Protocol" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR qi (8)
+.SH AUTHOR
+Steve Dorner (sdorner@@qualcomm.com),
+Qualcomm, Inc.
+(formerly at the University of Illinois Computing and Communications
+Services Office)
+.PP
+The code is now maintained by Paul Pomes (p\-pomes@@uiuc.edu),
+University of Illinois Computing and Communications Services Office.
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d15 1
+a15 1
+.B \-mMrRbBTlLF
+d30 1
+a30 1
+.B \-mMnNrRbBTlLFcC
+d128 8
+d420 1
+a420 1
+.BI login\  alias
+d429 1
+a429 1
+email to: p\-pomes@@uiuc.edu (paul@@uxc.cso.uiuc.edu)
+d433 11
+a460 6
+.IP
+You are allowed to change your Nameserver alias;
+there are, however, restrictions on Nameserver aliases;
+they must be unique within the Nameserver,
+they cannot be common names ("david" is right out),
+and they can only contain letters, digits, dashes (\-) and periods (.).
+d654 2
+a655 2
+is available by anonymous ftp to \f(CRuxc.cso.uiuc.edu\fP,
+in the file \f(CRpub/ph.tar.Z\fP.
+d658 1
+a658 1
+server side is in the file \f(CRpub/qi.tar.Z\fP.
+@
+
+
+1.4
+log
+@Updated references.
+@
+text
+@a14 2
+.BI \-h\  topic
+] [
+d27 2
+@
+
+
+1.3
+log
+@Revisions from Lynn Ward, CCSO.
+@
+text
+@d653 2
+a654 2
+.IR "The CCSO Nameserver, An Introduction" ,
+by Steven Dorner and Paul Pomes.
+d656 2
+a657 2
+.IR "The CCSO Nameserver, Server\-Client Protocol" ,
+by Steven Dorner and Paul Pomes.
+d661 1
+a661 1
+Steve Dorner (sdorner@@qualcomm.com)
+d666 1
+a666 1
+The code is now maintained by Paul Pomes (p\-pomes@@uiuc.edu)
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d3 1
+a3 1
+ph access to the CCSO nameserver (on-line phone book)
+d15 2
+d33 1
+a33 1
+queries the CCSO nameserver, a database of University faculty,
+d41 1
+a41 1
+may be used in two ways; interactively, or with command-line arguments.
+d43 3
+a45 2
+If given arguments, it will treat the arguments as a query,
+and return the results of the query.
+d49 1
+a49 1
+ph steven dorner
+d52 1
+a52 1
+would return the entry for the author of
+d54 1
+a54 1
+Steven Dorner.
+d106 5
+a110 1
+Do not reformat alias and email fields to show alias-based email addresses.
+d113 5
+a117 1
+Reformat alias and email fields to show alias-based email addresses.
+d154 1
+a154 1
+as in, "\f(CRph dorner type=phone\fP".
+d162 3
+a164 2
+as a nameserver host, instead of the default host.
+A list of suitable servers may be found by "\f(CRph alias=ns\-servers\fP".
+d167 3
+a169 3
+Use
+.I port
+as the tcp port to connect to, instead of the default port.
+d189 9
+d199 1
+a199 1
+The nameserver's database contains over 60,000 entries.
+d205 1
+a205 1
+.I mail_address
+d216 2
+d219 4
+a222 1
+Therefore, saying "\f(CRph john doe\fP" looks for entries whose name
+d226 3
+a228 1
+field must be specified; for example,
+d231 1
+a231 1
+ph dorner address=DCL
+d234 7
+a240 1
+would return entries with name "dorner" whose address contained "DCL."
+d265 1
+a265 1
+ph steven dorner
+d270 1
+a270 1
+"steven" and "dorner" in the
+d272 3
+a274 1
+field.
+d281 1
+a281 1
+keyword, and listing the fields of interest.
+d285 1
+a285 1
+ph steven dorner return email
+d288 1
+a288 1
+would print only the electronic mail address of the author of
+d291 1
+a291 1
+This will show you every field you are allowed to see in the user's entry.
+d297 1
+a297 1
+(or whatever program specified in the
+d307 2
+a308 2
+and displays the results of nameserver commands.
+Interactive mode provides access to more nameserver features than mere queries.
+d342 1
+a342 1
+to the nameserver:
+d345 1
+a345 1
+Provides explanations of nameserver commands.
+d359 1
+a359 1
+Perform nameserver queries exactly like non-interactive
+d364 2
+a365 2
+Lists the fields currently in use in the nameserver.
+For each field a display like the following (admittedly ugly) is produced:
+d375 1
+a375 1
+The leading number is a reply code from the nameserver.
+d379 1
+a379 1
+and the flags for the field.
+d383 1
+a383 1
+The flags determine how a field may be used.
+d396 1
+a396 1
+Allows nameserver options to be set.
+d413 1
+a413 1
+Identifies the user to the nameserver.
+d415 1
+a415 1
+is your nameserver alias, a unique name for you in the nameserver;
+d421 1
+a421 1
+email to: s\-dorner@@uiuc.edu (dorner@@pequod.cso.uiuc.edu)
+d424 2
+a425 2
+In this case, the alias is "s\-dorner".
+You will be prompted for your nameserver password when you give the
+d435 1
+a435 1
+Your nameserver password is
+d438 1
+a438 1
+the only way to discover your nameserver password is to bring yourself and
+d443 3
+a445 3
+You are allowed to change your nameserver alias;
+there are, however, restrictions on nameserver alia;
+they must be unique within the nameserver,
+d452 1
+a452 1
+logged in to the nameserver.
+d454 2
+a455 2
+.BI password\  [alias]
+This command changes your nameserver password.
+d458 1
+a458 1
+will complain if your password is too short,
+d462 1
+a462 1
+.B password
+d466 1
+a466 1
+This command lists the nameserver entry of the currently logged-in user.
+d469 1
+a469 1
+This command allows
+d473 1
+a473 1
+flag set.
+d482 1
+a482 1
+The changed value will then be reinserted in the nameserver.
+d487 1
+a487 1
+Pressing return alone, or anything beginning with "y" will make
+d495 1
+a495 1
+This command allows
+d499 1
+a499 1
+flag set.
+d501 1
+a501 1
+will set the specified field(s) to the specified value(s),
+d505 1
+a505 1
+Adds entries to the nameserver.
+d509 1
+a509 1
+Deletes entries from the nameserver.
+d520 1
+a520 1
+Each example is preceded by the effect desired.
+d530 1
+a530 1
+entry for Steven Dorner:
+d533 1
+a533 1
+ph steven dorner
+d538 1
+a538 1
+entry for S. Dorner, where the rest of the first name is not known:
+d541 1
+a541 1
+ph s\\* dorner
+d554 1
+a554 1
+Find Steven D., where the rest of the last name is unknown:
+d557 1
+a557 1
+ph steven d\\*
+d562 1
+a562 1
+Suppose is is known that Steven D. has an office in DCL:
+d565 1
+a565 1
+ph steven d\\* mail_address=DCL
+d568 1
+a568 1
+Alternately, suppose Steven D. works for CCSO.
+d572 1
+a572 1
+ph steven d\\* department=CCSO
+d578 1
+a578 1
+ph steven d\\* department=computing
+d584 2
+a585 3
+and hence there may be many different spellings and abbreviations
+of any particular field (some fields are exceptions,
+including the
+d593 2
+a594 2
+Suppose all that is wanted is full name and electronic mail address of
+S. Dorner:
+d597 1
+a597 1
+ph s\\* dorner return name email
+d605 1
+a605 1
+For the sake of example, let us assume
+d634 1
+a634 1
+but does not understand the full syntax of nameserver commands.
+a652 1
+.PP
+d654 1
+a654 1
+by Steven Dorner
+d656 2
+a657 2
+.IR "The CCSO nameserver, Server\-Client Protocol" ,
+by Steven Dorner
+d661 4
+a664 3
+Steve Dorner
+University of Illinois Computing Services Office
+s\-dorner@@uiuc.edu
+d666 2
+a667 2
+The code is now maintained by Paul Pomes (paul\-pomes@@uiuc.edu)
+at the same address as above.
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+.TH PH 1L "30 July 1992"
+d3 1
+a3 1
+ph access to the CCSO nameserver (on\-line phone book)
+d39 1
+a39 1
+may be used in two ways; interactively, or with command\-line arguments.
+d53 2
+a54 1
+.B \s-1QUERIES\s0
+d103 1
+a103 1
+Do not reformat alias and email fields to show alias\-based email addresses.
+d106 1
+a106 1
+Reformat alias and email fields to show alias\-based email addresses.
+d138 1
+a138 1
+.B type=\fItype\fP
+d189 2
+a190 1
+.B \s-1INTERACTIVE\s0
+d368 2
+a369 1
+.B \s-1OPTIONS\s0
+d430 1
+a430 1
+This command lists the nameserver entry of the currently logged\-in user.
+d631 1
+a631 1
+The code is now maintained by Paul Pomes (paul-pomes@@uiuc.edu)
+@

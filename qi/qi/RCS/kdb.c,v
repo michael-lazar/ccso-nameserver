@@ -1,0 +1,1081 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	95.06.10.03.42.13;	author p-pomes;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.03.01.20.07.51;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.02.22.05.35.22;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.02.22.02.29.30;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.02.22.01.05.15;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@Kerberos routines all stolen from somewhere else.
+@
+
+
+1.5
+log
+@revise messages.
+@
+text
+@/*
+ * $Source: /usr/local/src/net/qi/qi/RCS/kdb.c,v $
+ * $Author: p-pomes $
+ *
+ * Copyright 1988 by the Massachusetts Institute of Technology.
+ *  adapted for qi by Paul Pomes, University of Illinois>
+ *
+ * For copying and distribution information, please see the file
+ * <mit-copyright.h>.
+ *
+ * Kerberos database administrator's tool.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: kdb.c,v 1.4 1995/03/01 20:07:51 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+#ifdef KDB
+#include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <krb5/krb5.h>
+#include <krb5/osconf.h>
+#include <krb5/kdb.h>
+#include <krb5/mit-des.h>
+#include <krb5/adm_err.h>
+
+extern char *Kdomain;
+
+static char *mkey_name;
+static krb5_encrypt_block master_encblock;
+static krb5_pointer master_random;
+static krb5_principal master_princ;
+static krb5_keyblock master_keyblock;
+static krb5_deltat max_life;
+static krb5_deltat max_rlife;
+static krb5_timestamp expiration;
+static krb5_flags flags;
+static krb5_kvno mkvno;
+static krb5_db_entry master_entry;
+
+static int kdb_create_db_entry __P((krb5_principal, krb5_db_entry *));
+
+int
+kdb_db_init()
+{
+    krb5_error_code retval;
+    int nentries;
+    krb5_boolean more;
+
+    if (retval = krb5_db_init()) {
+	DoReply(LR_KDB5, "krb5_db_init(): %s", error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_init(): %s.", error_message(retval));
+	return(retval);
+    }
+
+    if (retval = krb5_db_set_lockmode(TRUE))
+    {
+	DoReply(LR_KDB5, "krb5_db_set_lockmode(TRUE): %s.",
+	    error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_set_lockmode(TRUE): %s.",
+	    error_message(retval));
+	return(retval);
+    }
+
+    /* assemble & parse the master key name */
+    if (retval = krb5_db_setup_mkey_name(mkey_name, Kdomain, 0,
+					 &master_princ)) {
+	DoReply(LR_KDB5, "krb5_db_setup_mkey_name(mkey): %s.",
+	    error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_setup_mkey_name(mkey): %s.",
+	    error_message(retval));
+	return(retval);
+    }
+    nentries = 1;
+    if (retval = krb5_db_get_principal(master_princ, &master_entry, &nentries,
+				       &more)) {
+	DoReply(LR_KDB5, "krb5_db_get_principal(mkey): %s.",
+		error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_get_principal(mkey): %s.",
+		    error_message(retval));
+	(void) krb5_db_fini();
+	return(retval);
+    } else if (more) {
+	DoReply(LR_KDB5, "Master krb5 key not unique.");
+	IssueMessage(LOG_ERR, "Master krb5 key not unique.");
+	(void) krb5_db_fini();
+	return(retval);
+    } else if (!nentries) {
+	DoReply(LR_KDB5, "Master krb5 key not found.");
+	IssueMessage(LOG_ERR, "Master krb5 key not found.");
+	(void) krb5_db_fini();
+	return(retval);
+    }
+    max_life = master_entry.max_life;
+    max_rlife = master_entry.max_renewable_life;
+    expiration = master_entry.expiration;
+    /* don't set flags, master has some extra restrictions */
+    mkvno = master_entry.kvno;
+
+    krb5_db_free_principal(&master_entry, nentries);
+    master_keyblock.keytype = DEFAULT_KDC_KEYTYPE;
+    krb5_use_cstype(&master_encblock, DEFAULT_KDC_ETYPE);
+    if (retval = krb5_db_fetch_mkey(master_princ, &master_encblock,
+				    FALSE, FALSE, 0, &master_keyblock)) {
+	DoReply(LR_KDB5, "krb5_db_fetch_mkey(mkey): %s.",
+	    error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_fetch_mkey(mkey): %s.",
+	    error_message(retval));
+	return(retval);
+    } else
+    if (retval = krb5_db_verify_master_key(master_princ, &master_keyblock,
+					   &master_encblock)) {
+	DoReply(LR_KDB5, "krb5_db_verify_master_key(mkey): %s.",
+	    error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_verify_master_key(mkey): %s.",
+	    error_message(retval));
+	memset((char *)master_keyblock.contents, 0, master_keyblock.length);
+	krb5_xfree(master_keyblock.contents);
+	return(retval);
+    }
+    if (retval = krb5_process_key(&master_encblock,
+				  &master_keyblock)) {
+	DoReply(LR_KDB5, "krb5_process_key(mkey): %s.",
+	    error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_process_key(mkey): %s.",
+	    error_message(retval));
+	memset((char *)master_keyblock.contents, 0, master_keyblock.length);
+	krb5_xfree(master_keyblock.contents);
+	return(retval);
+    }
+    if (retval = krb5_init_random_key(&master_encblock,
+				      &master_keyblock,
+				      &master_random)) {
+	DoReply(LR_KDB5, "krb5_init_random_key(mkey): %s.",
+	    error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_init_random_key(mkey): %s.",
+	    error_message(retval));
+	(void) krb5_finish_key(&master_encblock);
+	memset((char *)master_keyblock.contents, 0, master_keyblock.length);
+	krb5_xfree(master_keyblock.contents);
+	return(retval);
+    }
+    return 0;
+}
+
+/* kadmin delete old key function */
+kdb_del_entry(alias)
+char *alias;
+{
+    krb5_db_entry entry;
+    int nprincs = 1;
+
+    krb5_error_code retval;
+    krb5_principal newprinc;
+    krb5_boolean more;
+    int one = 1;
+
+    if (retval = krb5_parse_name(alias, &newprinc)) {
+	DoReply(-LR_KDB5, "krb5_parse_name(%s): %s.",
+		alias, error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_parse_name(%s): %s.",
+		    alias, error_message(retval));
+	return(retval);		/* Protocol Failure */
+    }
+    if (retval = krb5_db_get_principal(newprinc, &entry, &nprincs, &more))
+    {
+	DoReply(-LR_KDB5, "krb5_db_get_principal(%s): %s.",
+		alias, error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_get_principal(%s): %s.",
+		    alias, error_message(retval));
+	return(retval);
+    }
+
+    if (nprincs < 1)
+    {
+	DoReply(-LR_KDB5, "%s: not in krb5 database.", alias);
+	IssueMessage(LOG_ERR, "%s: not in krb5 database.", alias);
+	retval = 1;
+	goto errout;
+    }
+
+    if (retval = krb5_db_delete_principal(newprinc, &one)) {
+	DoReply(-LR_KDB5, "krb5_db_delete_principal(%s): %s.",
+		alias, error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_delete_principal(%s): %s.",
+		    alias, error_message(retval));
+	goto errout;
+    } else if (one != 1) {
+	DoReply(-LR_KDB5, "%s: unknown krb5 delete error.", alias);
+	IssueMessage(LOG_ERR, "%s: unknown krb5 delete error.", alias);
+	retval = 1;
+	goto errout;
+    }
+
+    krb5_free_principal(newprinc);
+    krb5_db_free_principal(&entry, nprincs);
+    IssueMessage(LOG_NOTICE, "%s: krb5 entry deleted.", alias);
+    return(0);
+
+errout:
+    krb5_free_principal(newprinc);
+    if (nprincs)
+	krb5_db_free_principal(&entry, nprincs);
+    return(retval);
+}
+
+
+int
+kdb_add_entry(alias)
+    char *alias;
+{
+    krb5_error_code retval;
+    krb5_keyblock *tempkey;
+    krb5_principal newprinc;
+    int nprincs = 1;
+    krb5_db_entry entry;
+    krb5_boolean more;
+
+    if (retval = krb5_parse_name(alias, &newprinc)) {
+	DoReply(-LR_KDB5, "krb5_parse_name(%s): %s.",
+		alias, error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_parse_name(%s): %s.",
+		    alias, error_message(retval));
+	return (retval);
+    }
+    if (retval = krb5_db_get_principal(newprinc, &entry, &nprincs, &more)) {
+	DoReply(-LR_KDB5, "krb5_db_get_principal(%s): %s.",
+		alias, error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_get_principal(%s): %s.",
+		    alias, error_message(retval));
+	return(retval);
+    }
+    if (nprincs) {
+	DoReply(-LR_KDB5, "%s: already in krb5 database.", alias);
+	IssueMessage(LOG_ERR, "%s: already in krb5 database.", alias);
+	goto errout;
+    }
+
+    if (retval = kdb_create_db_entry(newprinc, &entry)) {
+	DoReply(-LR_KDB5, "krb5 kdb_create_db_entry(%s): %s.",
+	    alias, error_message(retval));
+	IssueMessage(LOG_ERR, "krb5 kdb_create_db_entry(%s): %s.",
+	    alias, error_message(retval));
+	goto errout;
+    }
+    nprincs = 1;
+
+    if (retval = krb5_random_key(&master_encblock, master_random, &tempkey)) {
+	DoReply(-LR_KDB5, "%s: krb5_random_key(): %s.",
+	    alias, error_message(retval));
+	IssueMessage(LOG_ERR, "%s: krb5_random_key(): %s.",
+	    alias, error_message(retval));
+	goto errout;
+    }
+
+    entry.salt_type = entry.alt_salt_type = 0;
+    entry.salt_length = entry.alt_salt_length = 0;
+
+    retval = krb5_kdb_encrypt_key(&master_encblock, tempkey, &entry.key);
+    krb5_free_keyblock(tempkey);
+    if (retval) {
+	DoReply(-LR_KDB5, "%s: krb5_kdb_encrypt_key(): %s.",
+	    alias, error_message(retval));
+	IssueMessage(LOG_ERR, "%s: krb5_kdb_encrypt_key(): %s.",
+	    alias, error_message(retval));
+	goto errout;
+    }
+
+    if (retval = krb5_db_put_principal(&entry, &nprincs)) {
+	sleep(1);	/* retry in case of contention */
+	retval = krb5_db_put_principal(&entry, &nprincs);
+    }
+    if (retval) {
+	DoReply(-LR_KDB5, "krb5_db_put_principal(%s): %s.",
+		alias, error_message(retval));
+	IssueMessage(LOG_ERR, "krb5_db_put_principal(%s): %s.",
+	    alias, error_message(retval));
+	goto errout;
+    }
+
+    if (nprincs != 1) {
+	DoReply(-LR_KDB5, "%s: unknown krb5 write error.", alias);
+	IssueMessage(LOG_ERR, "%s: unknown krb5 write error.", alias);
+	retval = 1;
+	goto errout;
+    }
+    krb5_free_principal(newprinc);
+    krb5_db_free_principal(&entry, nprincs);
+    IssueMessage(LOG_NOTICE, "%s: krb5 entry added.", alias);
+    return (0);
+
+errout:
+    krb5_free_principal(newprinc);
+    if (nprincs)
+	krb5_db_free_principal(&entry, nprincs);
+    return(retval);
+}
+
+static int
+kdb_create_db_entry(principal, newentry)
+    krb5_principal principal;
+    krb5_db_entry  *newentry;
+{
+    int	retval;
+
+    memset(newentry, 0, sizeof(krb5_db_entry));
+
+    if (retval = krb5_copy_principal(principal, &newentry->principal))
+	return retval;
+    newentry->kvno = 1;
+    newentry->max_life = max_life;
+    newentry->max_renewable_life = max_rlife;
+    newentry->mkvno = mkvno;
+    newentry->expiration = expiration;
+    if (retval = krb5_copy_principal(master_princ, &newentry->mod_name))
+	goto errout;
+
+    newentry->attributes = flags;
+    newentry->salt_type = KRB5_KDB_SALTTYPE_NORMAL;
+
+    if (retval = krb5_timeofday(&newentry->mod_date))
+	goto errout;
+
+    return 0;
+
+errout:
+    if (newentry->principal)
+	krb5_free_principal(newentry->principal);
+    memset(newentry, 0, sizeof(krb5_db_entry));
+    return retval;
+}
+#endif /* KDB */
+@
+
+
+1.4
+log
+@working version checkpoint.
+@
+text
+@d15 1
+a15 1
+static char  RcsId[] = "@@(#)$Id: kdb.c,v 1.3 1995/02/22 05:35:22 p-pomes Exp p-pomes $";
+d53 2
+a54 2
+	DoReply(LR_KDB5, "KRB5:krb5_db_init() failure, code %d.", retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_db_init() failure, code %d.", retval);
+d57 1
+a57 1
+	    
+d60 4
+a63 4
+	DoReply(LR_KDB5, "KRB5:krb5_db_set_lockmode(TRUE) failure, code %d.",
+	    retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_db_set_lockmode(TRUE) failure, code %d.",
+	    retval);
+d70 4
+a73 4
+	DoReply(LR_KDB5, "KRB5:krb5_db_setup_mkey_name(mkey) failure, code %d.",
+	    retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_db_setup_mkey_name(mkey) failure, code %d.",
+	    retval);
+d77 1
+a77 2
+    if (retval = krb5_db_get_principal(master_princ,
+				       &master_entry, &nentries,
+d79 4
+a82 4
+	DoReply(LR_KDB5, "KRB5:krb5_db_get_principal(mkey) failure, code %d.",
+	    retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_db_get_principal(mkey) failure, code %d.",
+	    retval);
+d86 2
+a87 2
+	DoReply(LR_KDB5, "KRB5:Master key not unique.");
+	IssueMessage(LOG_ERR, "KRB5:Master key not unique.");
+d91 2
+a92 2
+	DoReply(LR_KDB5, "KRB5:Master key not found.");
+	IssueMessage(LOG_ERR, "KRB5:Master key not found.");
+d107 4
+a110 4
+	DoReply(LR_KDB5, "KRB5:krb5_db_fetch_mkey(mkey) failure, code %d.",
+	    retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_db_fetch_mkey(mkey) failure, code %d.",
+	    retval);
+d115 4
+a118 4
+	DoReply(LR_KDB5, "KRB5:krb5_db_verify_master_key(mkey) failure, code %d.",
+	    retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_db_verify_master_key(mkey) failure, code %d.",
+	    retval);
+d125 4
+a128 4
+	DoReply(LR_KDB5, "KRB5:krb5_process_key(mkey) failure, code %d.",
+	    retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_process_key(mkey) failure, code %d.",
+	    retval);
+d136 4
+a139 4
+	DoReply(LR_KDB5, "KRB5:krb5_init_random_key(mkey) failure, code %d.",
+	    retval);
+	IssueMessage(LOG_ERR, "KRB5:krb5_init_random_key(mkey) failure, code %d.",
+	    retval);
+d161 4
+a164 2
+	DoReply(-LR_KDB5, "%s:KRB5 parse failure, code %d.", alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 parse failure, code %d.", alias, retval);
+d169 4
+a172 2
+	DoReply(-LR_KDB5, "%s:KRB5 verify failure, code %d.", alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 verify failure, code %d.", alias, retval);
+d178 2
+a179 2
+	DoReply(-LR_KDB5, "%s:KRB5 not in database.", alias);
+	IssueMessage(LOG_ERR, "%s:KRB5 not in database.", alias);
+d185 4
+a188 2
+	DoReply(-LR_KDB5, "%s:KRB5 delete failure, code %d.", alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 delete failure, code %d.", alias, retval);
+d191 2
+a192 2
+	DoReply(-LR_KDB5, "%s:KRB5 unknown delete error.", alias);
+	IssueMessage(LOG_ERR, "%s:KRB5 unknown delete error.", alias);
+d199 1
+a199 1
+    IssueMessage(LOG_NOTICE, "%s:KRB5 entry deleted.", alias);
+d222 4
+a225 2
+	DoReply(-LR_KDB5, "%s:KRB5 parse failure, code %d.", alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 parse failure, code %d.", alias, retval);
+d229 4
+a232 2
+	DoReply(-LR_KDB5, "%s:KRB5 verify failure, code %d.", alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 verify failure, code %d.", alias, retval);
+d236 2
+a237 2
+	DoReply(-LR_KDB5, "%s:KRB5 already in database.", alias);
+	IssueMessage(LOG_ERR, "%s:KRB5 already in database.", alias);
+d241 5
+a245 6
+    retval = kdb_create_db_entry(newprinc, &entry);
+    if (retval) {
+	DoReply(-LR_KDB5, "%s:KRB5 kdb_create_db_entry(new) failure, code %d.",
+	    alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 kdb_create_db_entry(new) failure, code %d.",
+	    alias, retval);
+d251 4
+a254 4
+	DoReply(-LR_KDB5, "%s:KRB5 krb5_random_key() failure, code %d.",
+	    alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 krb5_random_key() failure, code %d.",
+	    alias, retval);
+d264 4
+a267 4
+	DoReply(-LR_KDB5, "%s:KRB5 encrypt key failure, code %d.",
+	    alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 encrypt key failure, code %d.",
+	    alias, retval);
+d272 8
+a279 3
+	DoReply(-LR_KDB5, "%s:KRB5 db write failure, code %d.", alias, retval);
+	IssueMessage(LOG_ERR, "%s:KRB5 db write failure, code %d.",
+	    alias, retval);
+d284 2
+a285 2
+	DoReply(-LR_KDB5, "%s:KRB5 unknown write error.", alias);
+	IssueMessage(LOG_ERR, "%s:KRB5 unknown write error.", alias);
+d291 1
+a291 1
+    IssueMessage(LOG_NOTICE, "%s:KRB5 entry added.", alias);
+@
+
+
+1.3
+log
+@More revisions, getting close.
+@
+text
+@d11 1
+a11 1
+ * Kerberos database administrator's tool.  
+d15 1
+a15 1
+static char  RcsId[] = "@@(#)$Id: kdb.c,v 1.2 1995/02/22 02:29:30 p-pomes Exp p-pomes $";
+d19 1
+a19 2
+#ifdef KERBEROS
+#include <mit-copyright.h>
+d22 6
+a27 5
+#include <krb5.h>
+#include <kdb.h>
+#include <mit-des.h>
+#include <adm_err.h>
+#include <krb_db.h>
+d31 16
+a46 24
+typedef struct {
+  struct sockaddr_in admin_addr;
+  struct sockaddr_in recv_addr;
+  int recv_addr_len;
+  int admin_fd;			/* our link to clients */
+  char sname[ANAME_SZ];
+  char sinst[INST_SZ];
+  char krbrlm[REALM_SZ];
+  krb5_principal sprinc;
+  krb5_encrypt_block master_encblock;
+  krb5_principal master_princ;
+  krb5_keyblock master_keyblock;
+  krb5_deltat max_life;
+  krb5_deltat max_rlife;
+  krb5_timestamp expiration;
+  krb5_flags flags;
+  krb5_kvno mkvno;
+} Kadm_Server;
+
+Kadm_Server server_parm;
+
+/* set up the server_parm structure */
+kdb_ser_init(inter)
+    int inter;			/* interactive or from file */
+a47 4
+    struct servent *sep;
+    struct hostent *hp;
+    char hostname[MAXHOSTNAMELEN];
+    char *mkey_name;
+d49 1
+a49 1
+    int numfound = 1;
+a50 66
+    krb5_db_entry master_entry;
+    
+    if (gethostname(hostname, sizeof(hostname)))
+	return KADM_NO_HOSTNAME;
+    
+    (void) strcpy(server_parm.sname, PWSERV_NAME);
+    (void) strcpy(server_parm.sinst, KRB_MASTER);
+    (void) strcpy(server_parm.krbrlm, Kdomain);
+    if (krb5_build_principal(&server_parm.sprinc,
+			     strlen(Kdomain),
+			     Kdomain,
+			     PWSERV_NAME,
+			     KRB_MASTER, 0))
+	return KADM_NO_MAST;
+    server_parm.admin_fd = -1;
+    /* setting up the addrs */
+    if ((sep = getservbyname(KADM_SNAME, "tcp")) == NULL)
+	return KADM_NO_SERV;
+    memset((char *)&server_parm.admin_addr, 0,sizeof(server_parm.admin_addr));
+    server_parm.admin_addr.sin_family = AF_INET;
+    if ((hp = gethostbyname(hostname)) == NULL)
+	return KADM_NO_HOSTNAME;
+    memcpy((char *) &server_parm.admin_addr.sin_addr.s_addr, hp->h_addr,
+	   hp->h_length);
+    server_parm.admin_addr.sin_port = sep->s_port;
+    /* setting up the database */
+    mkey_name = KRB5_KDB_M_NAME;
+    server_parm.master_keyblock.keytype = KEYTYPE_DES;
+#ifdef PROVIDE_DES_CBC_CRC
+    server_parm.master_encblock.crypto_entry = krb5_des_cst_entry.system;
+#else
+    error(You gotta figure out what cryptosystem to use in the KDC);
+#endif
+    retval = krb5_db_setup_mkey_name(mkey_name, Kdomain, (char **) 0,
+				     &server_parm.master_princ);
+    if (retval)
+	return KADM_NO_MAST;
+    krb5_db_fetch_mkey(server_parm.master_princ,
+		       &server_parm.master_encblock,
+		       (inter == 1), FALSE, NULL,
+		       &server_parm.master_keyblock);
+    if (retval)
+	return KADM_NO_MAST;
+    retval = krb5_db_verify_master_key(server_parm.master_princ,
+				       &server_parm.master_keyblock,
+				       &server_parm.master_encblock);
+    if (retval)
+	return KADM_NO_VERI;
+    retval = krb5_process_key(&server_parm.master_encblock,
+			      &server_parm.master_keyblock);
+    if (retval)
+	return KADM_NO_VERI;
+    retval = krb5_db_get_principal(server_parm.master_princ,
+				   &master_entry, &numfound, &more);
+    if (retval || more || !numfound)
+	return KADM_NO_VERI;
+    server_parm.max_life = master_entry.max_life;
+    server_parm.max_rlife = master_entry.max_renewable_life;
+    server_parm.expiration = master_entry.expiration;
+    server_parm.mkvno = master_entry.kvno;
+    /* don't set flags, as master has some extra restrictions
+       (??? quoted from kdb_edit.c) */
+    krb5_db_free_principal(&master_entry, numfound);
+    des_init_random_number_generator(server_parm.master_keyblock.contents);
+    return KADM_SUCCESS;
+}
+d52 12
+a63 40
+kdb_change (rname, newpw)
+char *rname;
+des_cblock newpw;
+{
+  int numfound;
+  krb5_boolean more;
+  krb5_principal rprinc;
+  krb5_error_code retval;
+  krb5_keyblock localpw;
+  krb5_encrypted_keyblock encpw;
+  krb5_db_entry odata;
+
+  if (retval = krb5_425_conv_principal(rname, "",
+				   server_parm.krbrlm, &rprinc))
+     return(retval);
+  localpw.contents = (krb5_octet *)malloc(8);
+  memcpy(localpw.contents, newpw, 8);
+  localpw.keytype = KEYTYPE_DES;
+  localpw.length = 8;
+
+  /* encrypt new key in master key */
+  retval = krb5_kdb_encrypt_key(&server_parm.master_encblock,
+				&localpw, &encpw);
+  memset((char *)localpw.contents, 0, 8);
+  free(localpw.contents);
+  if (retval) {
+    krb5_free_principal(rprinc);
+    return(retval);
+  }
+  numfound = 1;
+  retval = krb5_db_get_principal(rprinc, &odata, &numfound, &more);
+  krb5_free_principal(rprinc);
+  if (retval) {
+    return(retval);
+  } else if (numfound == 1) {
+    odata.key = encpw;
+    odata.kvno++;
+    odata.mkvno = server_parm.mkvno;
+    if (retval = krb5_timeofday(&odata.mod_date)) {
+	krb5_db_free_principal(&odata, 1);
+d66 9
+a74 5
+    krb5_425_conv_principal(rname, "",
+			    server_parm.krbrlm, &odata.mod_name);
+    if (retval) {
+      krb5_db_free_principal(&odata, 1);
+      return(retval);
+d76 10
+a85 5
+    numfound = 1;
+    retval = krb5_db_put_principal(&odata, &numfound);
+    krb5_db_free_principal(&odata, 1);
+    if (retval) {
+      return(retval);
+d87 46
+a132 115
+      return(KADM_UK_SERROR);
+    } else {
+      IssueMessage(LOG_INFO,
+	     "%s@@%s Kerberos password changed", rname, Kdomain);
+      return KADM_SUCCESS;
+    }
+  }
+  else {
+    return(KADM_NOENTRY);
+  }
+}
+
+kdb_add_entry (rname, valsin)
+char *rname;				/* requestors name */
+Kadm_vals *valsin;
+{
+  Principal data_i, data_o;		/* temporary principal */
+  unsigned char flags[4];
+  krb5_principal default_princ;
+  krb5_error_code retval;
+  krb5_db_entry newentry, tmpentry;
+  krb5_boolean more;
+  krb5_keyblock newpw;
+  krb5_encrypted_keyblock encpw;
+  int numfound;
+
+  memset(&data_i, 0, sizeof(data_i));
+  kdb_vals_to_prin(valsin->fields, &data_i, valsin);
+  (void) strncpy(data_i.name, valsin->name, ANAME_SZ);
+  (void) strncpy(data_i.instance, valsin->instance, INST_SZ);
+
+  if (!IS_FIELD(KADM_EXPDATE,valsin->fields))
+    data_i.exp_date = server_parm.expiration;
+  if (!IS_FIELD(KADM_ATTR,valsin->fields))
+    data_i.attributes = server_parm.flags;
+  if (!IS_FIELD(KADM_MAXLIFE,valsin->fields))
+    data_i.max_life = server_parm.max_life;
+
+  if ((newpw.contents = (krb5_octet *)malloc(8)) == NULL)
+    return(KADM_NOMEM);
+  data_i.key_low = ntohl(data_i.key_low);
+  data_i.key_high = ntohl(data_i.key_high);
+  memcpy(newpw.contents, &data_i.key_low, 4);
+  memcpy((char *)(((long *) newpw.contents) + 1), &data_i.key_high, 4);
+  newpw.length = 8;
+  newpw.keytype = KEYTYPE_DES;
+  /* encrypt new key in master key */
+  retval = krb5_kdb_encrypt_key(&server_parm.master_encblock,
+				&newpw, &encpw);
+  memset((char *)newpw.contents, 0, newpw.length);
+  free(newpw.contents);
+  if (retval) {
+    DoReply(-LR_KDB5, "kdb_add_entry: failed to encrypt %s password with master key",
+      rname);
+    IssueMessage(LOG_ERR, "kdb_add_entry: failed to encrypt %s password with master key",
+      rname);
+    return(retval);
+  }
+  data_o = data_i;
+
+  retval = kdb_princ2entry(data_i, &newentry);
+  if (retval) {
+    memset((char *)encpw.contents, 0, encpw.length);
+    free(encpw.contents);
+    krb5_db_free_principal(&newentry, 1);
+    DoReply(-LR_KDB5, "kdb_add_entry: failed kdb_princ2entry for %s",
+      rname);
+    IssueMessage(LOG_ERR, "kdb_add_entry: failed kdb_princ2entry for %s",
+      rname);
+    return(retval);
+  }
+
+  newentry.key = encpw;
+  numfound = 1;
+  retval = krb5_db_get_principal(newentry.principal,
+				 &tmpentry, &numfound, &more);
+
+  if (retval) {
+    krb5_db_free_principal(&newentry, 1);
+    DoReply(-LR_KDB5, "kdb_add_entry: failed krb5_db_get_principal for %s",
+      rname);
+    IssueMessage(LOG_ERR, "kdb_add_entry: failed krb5_db_get_principal for %s",
+      rname);
+    return(retval);
+  }
+  krb5_db_free_principal(&tmpentry, numfound);
+  if (numfound) {
+    krb5_db_free_principal(&newentry, 1);
+    DoReply(-LR_KDB5, "kdb_add_entry: failed krb5_db_free_principal for %s",
+      rname);
+    IssueMessage(LOG_ERR, "kdb_add_entry: failed krb5_db_free_principal for %s",
+      rname);
+    return(KADM_INUSE);
+  } else {
+    newentry.kvno = ++data_i.key_version;
+    if (retval = krb5_timeofday(&newentry.mod_date)) {
+	krb5_db_free_principal(&newentry, 1);
+	DoReply(-LR_KDB5, "kdb_add_entry: failed krb5_timeofday for %s",
+	  rname);
+	IssueMessage(LOG_ERR, "kdb_add_entry: failed krb5_timeofday for %s",
+	  rname);
+	return(retval);
+    }
+    if (newentry.mod_name)
+      krb5_free_principal(newentry.mod_name);
+    newentry.mod_name = NULL;	/* in case the following breaks */
+    retval = krb5_425_conv_principal(rname, "", Kdomain,
+				     &newentry.mod_name);
+    if (retval) {
+      krb5_db_free_principal(&newentry, 1);
+      DoReply(-LR_KDB5, "kdb_add_entry: failed krb5_db_free_principal#2 for %s",
+	rname);
+      IssueMessage(LOG_ERR, "kdb_add_entry: failed krb5_db_free_principal#2 for %s",
+	rname);
+      return(retval);
+d134 11
+a144 48
+
+    numfound = 1;
+    retval = krb5_db_put_principal(&newentry, &numfound);
+    if (retval) {
+      krb5_db_free_principal(&newentry, 1);
+      DoReply(-LR_KDB5, "kdb_add_entry: failed krb5_db_put_principal for %s",
+	rname);
+      IssueMessage(LOG_ERR, "kdb_add_entry: failed krb5_db_put_principal for %s",
+	rname);
+      return(retval);
+    }
+    if (!numfound) {
+      krb5_db_free_principal(&newentry, 1);
+      DoReply(-LR_KDB5, "kdb_add_entry: KADM_UK_SERROR for %s",
+	rname);
+      IssueMessage(LOG_ERR, "kdb_add_entry: KADM_UK_SERROR for %s",
+	rname);
+      return(KADM_UK_SERROR);
+    } else {
+      numfound = 1;
+      retval = krb5_db_get_principal(newentry.principal,
+				     &tmpentry,
+				     &numfound, &more);
+      krb5_db_free_principal(&newentry, 1);
+      if (retval) {
+	DoReply(-LR_KDB5, "kdb_add_entry: failed krb5_db_get_principal#2 for %s",
+	  rname);
+	IssueMessage(LOG_ERR, "kdb_add_entry: failed krb5_db_get_principal#2 for %s",
+	  rname);
+	return(retval);
+      } else if (numfound != 1 || more) {
+	krb5_db_free_principal(&tmpentry, numfound);
+	DoReply(-LR_KDB5, "kdb_add_entry: KADM_UK_RERROR for %s",
+	  rname);
+	IssueMessage(LOG_ERR, "kdb_add_entry: KADM_UK_RERROR for %s",
+	  rname);
+	return(KADM_UK_RERROR);
+      }
+      kdb_entry2princ(tmpentry, &data_o);
+      krb5_db_free_principal(&tmpentry, numfound);
+      memset((char *)flags, 0, sizeof(flags));
+      SET_FIELD(KADM_NAME,flags);
+      SET_FIELD(KADM_INST,flags);
+      SET_FIELD(KADM_EXPDATE,flags);
+      SET_FIELD(KADM_ATTR,flags);
+      SET_FIELD(KADM_MAXLIFE,flags);
+      IssueMessage(LOG_NOTICE, "%s@@%s added to Kerberos", valsin->name, Kdomain);
+      return 0;
+d146 1
+a146 1
+  }
+d155 1
+a155 1
+    
+d160 1
+a160 1
+    
+d162 3
+a164 5
+	DoReply(-LR_KDB5, "kdb_del_entry: parse failure while parsing '%s", 
+	    alias);
+	IssueMessage(LOG_ERR, "kdb_del_entry: parse failure while parsing '%s", 
+	    alias);
+	return(1);		/* Protocol Failure */
+d168 3
+a170 5
+	DoReply(-LR_KDB5, "kdb_del_entry: failure %d while verifying '%s",
+	    retval, alias);
+	IssueMessage(LOG_ERR, "kdb_del_entry: failure %d while verifying '%s",
+	    retval, alias);
+	return(1);
+d172 1
+a172 1
+    
+d175 4
+a178 7
+	DoReply(-LR_KDB5, "%s@@%s not in Kerberos database", 
+		alias, Kdomain);
+	IssueMessage(LOG_ERR, "%s@@%s not in Kerberos database", 
+		alias, Kdomain);
+	krb5_free_principal(newprinc);
+	krb5_db_free_principal(&entry, nprincs);
+	return(1);
+d180 1
+a180 1
+    
+d182 3
+a184 7
+	DoReply(-LR_KDB5, "error %d while deleting %s@@%s from Kerberos database", 
+		retval, alias, Kdomain);
+	IssueMessage(LOG_ERR, "error %d while deleting %s@@%s from Kerberos database", 
+		retval, alias, Kdomain);
+	krb5_free_principal(newprinc);
+	krb5_db_free_principal(&entry, nprincs);
+	return(8);
+d186 4
+a189 7
+	DoReply(-LR_KDB5, "unknown error while deleting %s@@%s from Kerberos database", 
+		alias, Kdomain);
+	IssueMessage(LOG_ERR, "unknown error while deleting %s@@%s from Kerberos database", 
+		alias, Kdomain);
+	krb5_free_principal(newprinc);
+	krb5_db_free_principal(&entry, nprincs);
+	return(8);
+d191 1
+a191 1
+    
+d194 1
+a194 1
+    IssueMessage(LOG_NOTICE, "%s@@%s deleted from Kerberos", alias, Kdomain);
+d196 6
+d203 5
+a207 4
+krb5_error_code
+kdb_entry2princ(entry, princ)
+     krb5_db_entry entry;
+     Principal *princ;
+d209 22
+a230 1
+  krb5_error_code retval;
+d232 20
+a251 21
+  /* NOTE: does not convert the key */
+  memset(princ, 0, sizeof (*princ));
+  retval = krb5_524_conv_principal(entry.principal,
+				   princ->name, princ->instance, Kdomain);
+  if (retval)
+    return retval;
+  princ->exp_date = entry.expiration;
+  strncpy(ctime(&entry.expiration), princ->exp_date_txt, DATE_SZ);
+  princ->mod_date = entry.mod_date;
+  strncpy(ctime(&entry.mod_date), princ->mod_date_txt, DATE_SZ);
+  princ->attributes = entry.attributes;
+  princ->max_life = entry.max_life;
+  princ->kdc_key_ver = entry.mkvno;
+  princ->key_version = entry.kvno;
+  retval = krb5_524_conv_principal(entry.mod_name,
+				   princ->mod_name, princ->mod_instance,
+				   Kdomain);
+  if (retval)
+    return retval;
+  return 0;
+}
+d253 27
+a279 6
+krb5_error_code
+kdb_princ2entry(princ, entry)
+     Principal princ;
+     krb5_db_entry *entry;
+{
+  krb5_error_code retval;
+d281 5
+a285 20
+  /* NOTE: does not convert the key */
+  memset(entry, 0, sizeof (*entry));
+  /* yeah yeah stupid v4 database doesn't store realm names */
+  retval = krb5_425_conv_principal(princ.name, princ.instance,
+				   server_parm.krbrlm, &entry->principal);
+  if (retval)
+    return retval;
+  entry->kvno = princ.key_version;
+  entry->max_life = princ.max_life;
+  entry->max_renewable_life = server_parm.max_rlife; /* XXX yeah well */
+  entry->mkvno = server_parm.mkvno; /* XXX */
+  entry->expiration = princ.exp_date;
+  retval = krb5_425_conv_principal(princ.mod_name, princ.mod_instance,
+				   server_parm.krbrlm, &entry->mod_name);
+  if (retval)
+    return retval;
+  entry->mod_date = princ.mod_date;
+  entry->attributes = princ.attributes;
+  entry->salt_type = KRB5_KDB_SALTTYPE_V4;
+  return(0);
+d288 4
+a291 4
+kdb_vals_to_prin(fields, new, old)
+unsigned char fields[FLDSZ];
+Principal *new;
+Kadm_vals *old;
+d293 1
+d295 25
+a319 15
+  memset((char *)new, 0, sizeof(*new));
+  if (IS_FIELD(KADM_NAME,fields))
+    (void) strncpy(new->name, old->name, ANAME_SZ); 
+  if (IS_FIELD(KADM_INST,fields))
+    (void) strncpy(new->instance, old->instance, INST_SZ); 
+  if (IS_FIELD(KADM_EXPDATE,fields))
+    new->exp_date   = old->exp_date; 
+  if (IS_FIELD(KADM_ATTR,fields))
+    new->attributes = old->attributes; 
+  if (IS_FIELD(KADM_MAXLIFE,fields))
+    new->max_life   = old->max_life; 
+  if (IS_FIELD(KADM_DESKEY,fields)) {
+    new->key_low    = old->key_low; 
+    new->key_high   = old->key_high; 
+  }
+d321 1
+a321 1
+#endif /* KERBEROS */
+@
+
+
+1.2
+log
+@A version that seems to work.
+@
+text
+@d15 1
+a15 1
+static char  RcsId[] = "@@(#)$Id: kdb.c,v 1.1 1995/02/22 01:05:15 p-pomes Exp p-pomes $";
+d211 1
+d235 5
+a239 1
+  if (retval)
+d241 1
+d249 4
+d263 4
+d272 4
+d281 4
+d294 4
+d305 4
+d313 4
+d325 4
+d332 4
+d346 2
+a347 2
+      IssueMessage(LOG_INFO, "%s@@%s added to Kerberos", valsin->name, Kdomain);
+      return KADM_DATA;		/* Set all the appropriate fields */
+d365 2
+d373 2
+d411 1
+a411 1
+    IssueMessage(LOG_INFO, "%s@@%s deleted from Kerberos", alias, Kdomain);
+d472 22
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 2
+a3 2
+ * $Source: /local/cvsfiles/kerberos/src/kadmin/kadmin.c,v $
+ * $Author: eichin $
+d15 1
+a15 1
+static char  RcsId[] = "@@(#)$Id: add.c,v 1.28 1994/11/30 09:01:23 p-pomes Exp $";
+d238 1
+a238 1
+  retval = kadm_princ2entry(data_i, &newentry);
+d296 1
+a296 1
+      kadm_entry2princ(tmpentry, &data_o);
+d369 1
+a369 1
+kadm_entry2princ(entry, princ)
+d398 1
+a398 1
+kadm_princ2entry(princ, entry)
+d423 1
+@

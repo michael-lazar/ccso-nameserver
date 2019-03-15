@@ -1,0 +1,1532 @@
+head	1.37;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.37
+date	95.06.28.20.35.18;	author p-pomes;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.01.09.13.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	94.12.17.14.38.31;	author p-pomes;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	94.12.17.14.23.30;	author p-pomes;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	94.09.09.20.14.36;	author p-pomes;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	94.03.25.15.00.26;	author paul;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	94.03.21.13.23.23;	author paul;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	94.03.11.23.25.14;	author paul;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	94.03.06.21.39.15;	author paul;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	94.03.04.19.16.55;	author paul;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	93.12.28.18.25.30;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	93.12.20.23.54.15;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	93.12.16.22.59.58;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	93.12.16.11.52.31;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	93.12.16.11.51.12;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.08.03.20.56.09;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.07.26.18.06.42;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	93.06.14.20.36.13;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	93.05.28.17.20.39;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	93.05.26.13.46.36;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	93.04.05.21.27.06;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	93.04.03.23.54.04;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	93.04.02.20.29.22;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	93.02.27.20.45.46;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	93.02.23.01.09.00;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	92.12.12.19.14.15;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	92.10.02.13.22.41;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	92.08.17.13.40.47;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	92.08.08.20.07.09;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	92.07.30.04.03.35;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	92.07.29.15.25.03;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	92.07.28.05.01.43;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.07.26.19.25.29;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.07.26.19.07.33;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.24.16.58.56;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.22.21.41.26;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.22.16.58.24;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.37
+log
+@Delete LimitHit() (now a static in query.c) and added KDB routines.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * @@(#)$Id: protos.h,v 1.36 1995/01/09 13:17:03 p-pomes Exp p-pomes $
+ */
+
+#ifndef PROTOS_H
+#define PROTOS_H
+#include <stdio.h>
+#include <ctype.h>
+#include <sys/types.h>
+#ifdef __STDC__
+# include <stdlib.h>
+# include <string.h>
+#else /* !__STDC__ */
+# include <strings.h>
+#endif /* __STDC__ */
+#include "bintree.h"
+#include "commands.h"
+#include "conf.h"
+#include "qdb.h"
+#include "field.h"
+#include "log.h"
+#include "options.h"
+#include "qi.h"
+#include "qiapi.h"
+#ifndef __STDC__
+MEM_TYPE *malloc(), *realloc();
+char	*strchr(), *strrchr(), *strtok();
+#endif /* !__STDC__ */
+#ifdef NO_STRDUP
+char	*strdup();
+#endif
+
+/* comment out if fcrypt() bombs on your host */
+#ifndef crypt
+# define crypt		fcrypt
+#endif /* !crypt */
+
+extern int errno;
+
+char	*add_string __P((char *));	/* lib/strbuild.c - not used */
+void	AddValue __P((char *, int));
+int	AliasIsUsed __P((char *, INT32));
+int	AllMeta __P((char *));
+IDX	allocate_leaf();
+int	any __P((int, char *));		/* 1 char -> int */
+int	anyof __P((register char *, register char *));
+char	*BadAlias __P((QDIR, char *));
+void	bintree_init __P((char *));
+int	blankline __P((char *));	/* lib/str.c - not used */
+int	CanAddEntries();
+int	CanChange __P((QDIR, FDESC *));
+int	CanDelete __P((QDIR));
+int	CanLookup __P((FDESC *, char *));
+int	CanSee __P((QDIR, FDESC *, int));
+int	ChangeDir __P((QDIR *, FDESC *, char *));
+void	cleanup __P((int));
+void	close_tree();
+int	countc __P((char *, int));	/* 2 char -> int, str.c - not used */
+int	CurrentDate();
+int	CurrentIndex();
+int	dbd_init __P((char *));
+int	dbi_init __P((char *));
+int	decode __P((unsigned char *, unsigned char *));
+int	qidelete __P((char *));
+int	deletestr __P((char *, int));
+int	dnext_ent __P((INT32));
+void	DoAdd __P((ARG *));
+void	DoChange __P((ARG *));
+void	DoCommand __P((int));
+void	DoHelp __P((ARG *));
+INT32	*DoLookup __P((ARG *));
+INT32	*do_lookup __P((char **, INT32 *));
+void	DoQuery __P((ARG *));
+void	DoQuit __P((ARG *));
+void	DoReply __P((int, char *, ...));
+void	DoSet __P((ARG *));
+int	DoSysLog __P((int));
+int	encode __P((char *, char *, int));
+int	ent_dead();
+void	expand __P((LEAF *, int, ITEM *));
+char	*FascistCheck __P((QDIR, char *, char *));
+INT32	*find_all __P((char *));
+FDESC	*FindFD __P((char *));
+FDESC	*FindFDI __P((int));
+int	FindField __P((QDIR, int));
+INT32	*findstr __P((char *));
+void	FreeArgs __P((ARG *));
+void	free_ary __P((INT32 **));
+void	FreeDir __P((QDIR *));
+ARG	*FreshArg __P(());
+QDIR	GetAliasDir __P((char *));
+char	**getdata __P((QDIR *));
+DREC	*getdirent __P((INT32));
+void	get_dir_head();
+INT32	*get_dir_ptrs __P((INT32));
+int	GetFieldConfig();
+#ifdef VMS
+int	GetGood __P((char *, int, int));
+#else
+int	GetGood __P((char *, int, FILE *));
+#endif /*VMS*/
+int	GetState();
+void	get_tree_head();
+char	*getword __P((char *, char *));	/* lib/util.c - not used */
+int	GonnaRead __P((char *));
+int	GonnaWrite __P((char *));
+int	icopy __P((char *, char *));
+INT32	ihash __P((char *, INT32, INT32));
+void	InitializeLogging();
+void	InitializeOptions();
+void	init_string();
+void	insert __P((char *, IDX));
+INT32	*intersect __P((INT32 *, INT32 *));
+int	issub __P((char *, char *));
+int	IssueMessage __P((int, char *fmt, ...));
+int	length __P((INT32 *));
+int	Plength __P((INT32 **));
+char	*ltrunc __P((char *));		/* lib/str.c - not used */
+void	make_lookup __P((char *, int));
+char	*make_str __P((char *));
+INT32	*merge __P((INT32 *, INT32 *));
+void	mkargv __P((int *, char **, char *));
+int	new_ent();
+int	next_ent __P((INT32));
+char	*PasswordOf __P((QDIR));
+char	*phonemify __P((char *));
+int	putarry __P((struct iindex *, INT32 *, INT32));
+int	putdata __P((char **));
+void	putdirent __P((INT32, DREC *));
+void	put_dir_head();
+int	putstr __P((char *, int));
+void	put_tree_head();
+int	quoted __P((char *));
+void	read_index __P((char *));
+void	read_leaf __P((IDX, LEAF *));
+int	RateAKey __P((char *));
+int	RemoveSpecials __P((char *));
+int	search __P((char *, LEAF *, int *));
+void	set_date __P((int));
+void	SetDeleteMark();
+void	store_ent();
+int	strcate __P((char *, char *));
+int	strcpc __P((register char *, register char *));
+char	*strecat __P((char *, char *)); /* lib/str.c - not used */
+char	*strecpy __P((char *, char *)); /* lib/str.c - not used */
+int	stricmp __P((char *, char *));
+int	strincmp __P((char *, char *, int));
+char	*strlcpy __P((char *, char *));
+void	Unknown __P((char *));
+void	Unlock __P((char *));
+void	unmake_lookup __P((char *, int));
+int	UserCanChange __P((QDIR));
+int	UserCanDelete();
+void	write_leaf __P((LEAF *));
+int	ValidQuery __P((ARG *, int));
+int	kdb_db_init();
+int	kdb_add_entry __P((char *));
+int	kdb_del_entry __P((char *));
+
+#endif	/*PROTOS_H*/
+@
+
+
+1.36
+log
+@Renamed delete() to qidelete().
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: protos.h,v 1.35 1994/12/17 14:38:31 p-pomes Exp p-pomes $
+a151 1
+void	LimitHit __P((int));
+d190 3
+@
+
+
+1.35
+log
+@Make that a char * passed to CanLookup().
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: protos.h,v 1.34 1994/12/17 14:23:30 p-pomes Exp p-pomes $
+d98 1
+a98 1
+int	delete __P((char *));
+@
+
+
+1.34
+log
+@CanLookup() now takes a ARG pointer to check for wildcards in case NoMeta
+is set.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: protos.h,v 1.33 1994/09/09 20:14:36 p-pomes Exp p-pomes $
+d87 1
+a87 1
+int	CanLookup __P((FDESC *, ARG *));
+@
+
+
+1.33
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: protos.h,v 1.32 1994/03/25 15:00:26 paul Exp p-pomes $
+d87 1
+a87 1
+int	CanLookup __P((FDESC *));
+@
+
+
+1.32
+log
+@Renamed db.h to qdb.h to avoid conflict with the Berkeley DB package.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: protos.h,v 1.31 1994/03/21 13:23:23 paul Exp paul $
+d76 1
+a76 1
+int	AliasIsUsed __P((char *, long));
+d100 1
+a100 1
+int	dnext_ent __P((long));
+d105 2
+a106 2
+long	*DoLookup __P((ARG *));
+long	*do_lookup __P((char **, long *));
+d116 1
+a116 1
+long	*find_all __P((char *));
+d120 1
+a120 1
+long	*findstr __P((char *));
+d122 1
+a122 1
+void	free_ary __P((long **));
+d127 1
+a127 1
+DREC	*getdirent __P((long));
+d129 1
+a129 1
+long	*get_dir_ptrs __P((long));
+d142 1
+a142 1
+long	ihash __P((char *, long, long));
+d147 1
+a147 1
+long	*intersect __P((long *, long *));
+d150 2
+a151 1
+int	length __P((long *));
+d156 1
+a156 1
+long	*merge __P((long *, long *));
+d159 1
+a159 1
+int	next_ent __P((long));
+d162 1
+a162 1
+int	putarry __P((struct iindex *, long *, long));
+d164 1
+a164 1
+void	putdirent __P((long, DREC *));
+@
+
+
+1.31
+log
+@Misc changes for non-ANSI compilers.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id: protos.h,v 1.30 1994/03/11 23:25:14 paul Exp paul $
+d53 1
+a53 1
+#include "db.h"
+@
+
+
+1.30
+log
+@New copyright statement.  Re-arranged #include's to use debugging malloc
+library.  Deleted isblank definition.
+@
+text
+@d36 1
+a36 1
+ * @@(#)$Id$
+a48 2
+MEM_TYPE *malloc(), *realloc();
+char	*strtok();
+d59 7
+@
+
+
+1.29
+log
+@Switch to time_t from long.
+@
+text
+@d1 38
+d44 8
+a68 9
+#ifdef __STDC__
+# include <stdlib.h>
+# include <string.h>
+#else /* !__STDC__ */
+# include <strings.h>
+MEM_TYPE *malloc(), *realloc();
+char	*strtok();
+#endif /* __STDC__ */
+
+a142 1
+int	isblank __P((char *));
+@
+
+
+1.28
+log
+@Deleted NEW() macro.
+@
+text
+@d5 1
+@
+
+
+1.27
+log
+@Deleted unneeded BSD/SYSV replacement defines.
+@
+text
+@a14 2
+#define NEW(type)	((type *)malloc(sizeof(type)))
+
+@
+
+
+1.26
+log
+@*** empty log message ***
+@
+text
+@a26 13
+# ifndef index
+#  define index strchr
+#  define rindex strrchr
+# endif /* !index */
+# ifndef bcmp
+#  define bcmp memcmp
+# endif /* !bcmp */
+# ifndef bzero
+#  define bzero(s,n) memset(s,0,n)
+# endif /* !bzero */
+# ifndef bcopy
+#  define bcopy(h,a,l) memcpy(a,h,l)
+# endif /* !bcopy */
+@
+
+
+1.25
+log
+@BadAlias() now returns a char * pointer to the reason the alias was bad
+or a NULL if it was OK.
+@
+text
+@d103 5
+@
+
+
+1.24
+log
+@Made RateAKey() accessible to other routines.
+@
+text
+@d53 1
+a53 1
+int	BadAlias __P((QDIR, char *));
+@
+
+
+1.23
+log
+@Allow message strings into lock calls.
+@
+text
+@d138 1
+@
+
+
+1.22
+log
+@Added FascistCheck();
+@
+text
+@d106 2
+a107 2
+int	GonnaRead();
+int	GonnaWrite();
+d151 1
+a151 1
+void	Unlock();
+@
+
+
+1.21
+log
+@*** empty log message ***
+@
+text
+@d87 1
+@
+
+
+1.20
+log
+@Moved qiapi.h from ../api to . .
+@
+text
+@d53 1
+a53 1
+int	BadAlias __P((char *));
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d13 1
+a13 1
+#include "../api/qiapi.h"
+@
+
+
+1.18
+log
+@Moved some definitions out to api/qipai.h
+@
+text
+@a2 1
+#include <cdefs.h>
+@
+
+
+1.17
+log
+@Many functions became static and their declarations moved to their
+parent files.
+@
+text
+@d14 1
+a14 1
+#include "replies.h"
+d17 3
+a19 1
+#ifdef FCRYPT
+d21 1
+a21 1
+#endif /* FCRYPT */
+a46 2
+char	*crypt __P((const char *, const char *));
+
+a65 1
+void	crypt_start __P((char *));
+a70 2
+char	*decrypt __P((char *, char *));
+void	decrypt_end();
+a85 1
+int	encryptit __P((char *, char *));
+@
+
+
+1.16
+log
+@Added DoKLogin() prototype.
+@
+text
+@d47 1
+a47 34
+char	**getdata __P((QDIR *));
+char	*add_string __P((char *));
+char	*decrypt __P((char *, char *));
+long	*DoLookup __P((ARG *));
+long	*do_lookup __P((char **, long *));
+FDESC	*FindFD __P((char *));
+FDESC	*FindFDI __P((int));
+OPTION	*FindOption __P((char *));
+long	*findstr __P((char *));
+long	*find_all __P((char *));
+ARG	*FreshArg __P(());
+ARG	*GetAllFields();
+DREC	*getdirent __P((long));
+FDESC	*GetFD __P((FILE *));
+ARG	*getplusAlways __P((ARG *));
+ARG	*GetPrintDefaults();
+long	*getrecptrs __P((struct iindex *));
+char	*getword __P((char *, char *));
+long	*get_dir_ptrs __P((long));
+long	*intersect __P((long *, long *));
+long	*i_oread __P((long, long *));
+char	*ltrunc __P((char *));
+char	*make_str __P((char *));
+long	*merge __P((long *, long *));
+char	*PasswordOf __P((QDIR));
+char	*phonemify __P((char *));
+char	*RandomString __P((int));
+char	*strecat __P((char *, char *));
+char	*strecpy __P((char *, char *));
+char	*strlcpy __P((char *, char *));
+char	*StrSkip __P((char *, char *));
+char	*to_low_str __P((char *));
+long	*un_dupi __P((long *));
+char	*Visible __P((char *, int));
+d56 1
+a56 1
+int	blankline __P((char *));
+d63 1
+a63 1
+int	ChangeEntries __P((long *, ARG *));
+d65 1
+a65 4
+void	CollectQuote __P((char *, int));
+int	countc __P((char *, int));	/* 2 char -> int */
+int	CountDir __P((char *, int));
+void	crypt_init __P((char *));
+d72 1
+a75 1
+int	DirMatch __P((QDIR, int, char *, int));
+a77 1
+void	DoAnswer __P((ARG *));
+a79 2
+void	DoDelete __P((ARG *));
+void	DoFields __P((ARG *));
+d81 2
+a82 7
+void	DoId __P((ARG *));
+void	DoInfo __P((ARG *));
+#ifdef KERBEROS
+void	DoKLogin __P((ARG *));
+#endif /* KERBEROS */
+void	DoLogin __P((ARG *));
+void	DoLogout __P((ARG *));
+a86 1
+void	DoStatus __P((ARG *));
+a87 6
+void	DumpFD __P((FILE *, FDESC *));
+void	DumpOutput();
+int	d_oread __P((DOVR *, int));
+int	d_owrite __P((DOVR *, int));
+int	d_read __P((DREC *, long));
+int	d_write __P((DREC *, long));
+d92 3
+d96 1
+a96 1
+void	flush_leaf();
+d98 1
+d100 1
+a100 2
+void	free_ary __P((long **));
+int	GetAC __P((FILE *));
+d102 4
+a106 1
+int	getient __P((register char *, struct iindex *));
+a107 2
+int	getx __P((long *));
+void	get_dir_head();
+d109 1
+a111 2
+int	HelpCopy __P((int, FILE *));
+int	HelpText __P((int, char *, char *));
+d118 1
+a119 1
+int	IsProxy __P((QDIR, char *));
+a121 3
+int	i_owrite __P((long *, long));
+int	i_read __P((struct iindex *, long));
+int	i_write __P((struct iindex *, long));
+d124 1
+a124 7
+void	LimitTime __P((int));
+void	ListAllFields();
+void	ListField __P((FDESC *));
+int	ListTopics __P((int, char *));
+void	LockInit();
+QDIR	MakeADir __P((ARG *));
+void	MakeDir __P((QDIR *, int));
+d126 2
+a128 1
+int	newdovr();
+d131 2
+a132 11
+void	NotImplemented __P((ARG *));
+int	OkByEmail __P((QDIR, char *));
+int	OkFields __P((ARG *));
+int	OpenTempOut();
+int	ovrnew();
+void	printarry __P((long *));
+void	PrintCommand __P((int, ARG *));
+int	PrintFields __P((long *, ARG *, int));
+void	PrintOld __P((long *));
+void	PrintThem __P((long *, ARG *));
+int	print_ent __P((char *));
+d136 1
+a137 1
+void	put_dir_head();
+a139 1
+int	RateAKey __P((char *));
+d144 1
+a145 5
+void	SetOption __P((OPTION *, char *));
+void	set_date __P((int));
+void	simple_insert __P((LEAF *, int, ITEM *, int));
+void	SleepTil __P((long));
+IDX	start_point __P((char *));
+d149 2
+d153 1
+a153 3
+int	ThinArgs __P((ARG *, int));
+void	threecpy __P((unsigned char *, unsigned char *));
+void	TimeOut __P((int));
+d159 1
+a159 2
+int	UserMatch __P((char *));
+int	ValidAdd __P((ARG *));
+a160 2
+void	WhoAreYou();
+void	write_leaf __P((LEAF *));
+@
+
+
+1.15
+log
+@Added FCRYPT hook.
+@
+text
+@d122 3
+@
+
+
+1.14
+log
+@Provide bcopy emulation with memcpy define.
+@
+text
+@d17 3
+@
+
+
+1.13
+log
+@Allow memset for bzero.
+@
+text
+@d33 3
+@
+
+
+1.12
+log
+@Up-cased all #define's.
+@
+text
+@d30 3
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d16 1
+a16 1
+#define New(type)	((type *)malloc(sizeof(type)))
+@
+
+
+1.10
+log
+@Relocated defines of index/rindex.
+@
+text
+@d18 2
+d23 8
+a30 3
+# define index strchr
+# define rindex strrchr
+#else
+d34 3
+a36 2
+#endif
+char *crypt __P((const char *, const char *));
+@
+
+
+1.9
+log
+@deleted ll.h include as nothing uses it.
+@
+text
+@d19 4
+a22 2
+#include <stdlib.h>
+#include <string.h>
+d24 1
+a24 1
+#include <strings.h>
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@a10 1
+#include "ll.h"
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d24 1
+a24 1
+char	*malloc(), *realloc();
+@
+
+
+1.6
+log
+@Random fixes.
+@
+text
+@d4 2
+d17 2
+d21 1
+d23 3
+a25 2
+char	*malloc();
+char	*realloc();
+d67 1
+a67 1
+int	any __P((char, char *));
+d81 1
+a81 1
+int	countc __P((char *, char));
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d15 8
+d33 1
+a33 1
+ARG	*FreshARG __P(());
+@
+
+
+1.4
+log
+@revised typedefs
+@
+text
+@d15 31
+a45 13
+int	OkByEmail __P((QDIR, char *));
+void	DoAdd __P((ARG *));
+void	DoInfo __P((ARG *));
+QDIR	MakeADir __P((ARG *));
+int	ValidAdd __P((ARG *));
+int	CanAddEntries __P((void));
+int	CanSee __P((QDIR, FieldDesc *, int));
+int	IsProxy __P((QDIR, char *));
+int	CanLookup __P((FieldDesc *));
+int	UserCanChange __P((QDIR));
+int	CanChange __P((QDIR, FieldDesc *));
+int	UserCanDelete __P((void));
+int	CanDelete __P((QDIR));
+d47 9
+d57 20
+a76 8
+void	close_tree __P((void));
+void	get_tree_head __P((void));
+void	read_leaf __P((IDX, LEAF *));
+void	flush_leaf __P((void));
+void	write_leaf __P((LEAF *));
+int	icopy __P((char *, char *));
+IDX	start_point __P((char *));
+int	search __P((char *, LEAF *, int *));
+d78 5
+a82 8
+void	insert __P((char *, IDX));
+void	simple_insert __P((LEAF *, int, ITEM *, int));
+void	expand __P((LEAF *, int, ITEM *));
+long	*find_all __P((char *));
+void	put_tree_head __P((void));
+IDX	allocate_leaf __P((void));
+void	read_index __P((char *));
+long	*merge __P((long *, long *));
+a83 6
+int	ChangeEntries __P((long *, ARG *));
+int	ChangeDir __P((QDIR *, FieldDesc *, char *));
+int	AliasIsUsed __P((char *, long));
+int	BadAlias __P((char *));
+void	AddValue __P((char *, int));
+void	Unknown __P((char *));
+d85 3
+a87 3
+void	FreeArgs __P((ARG *));
+ARG	*FreshARG __P(());
+void	DoStatus __P((ARG *));
+d89 4
+a93 1
+void	NotImplemented __P((ARG *));
+d95 5
+a99 28
+void	DoLogin __P((ARG *));
+void	DoAnswer __P((ARG *));
+void	SleepTil __P((long));
+QDIR	GetAliasDir __P((char *));
+void	DoLogout __P((ARG *));
+void	DoFields __P((ARG *));
+void	ListField __P((FieldDesc *));
+void	ListAllFields __P((void));
+int	OkFields __P((ARG *));
+void	DoDelete __P((ARG *));
+int	OpenTempOut __P((void));
+void	DumpOutput __P((void));
+void	PrintCommand __P((int, ARG *));
+int	UserMatch __P((char *));
+char	*RandomString __P((int));
+char	*PasswordOf __P((QDIR));
+void	crypt_start __P((char *));
+char	*decrypt __P((char *, char *));
+void	decrypt_end __P((void));
+int	decode __P((unsigned char *, unsigned char *));
+void	crypt_init __P((char *));
+int	encryptit __P((char *, char *));
+int	encode __P((char *, char *, int));
+void	threecpy __P((unsigned char *, unsigned char *));
+DREC	*getdirent __P((long));
+void	putdirent __P((long, DREC *));
+int	d_write __P((DREC *, long));
+int	d_read __P((DREC *, long));
+d102 16
+a117 4
+int	newdovr __P((void));
+int	dbd_init __P((char *));
+long	*findstr __P((char *));
+long	*getrecptrs __P((struct iindex *));
+d119 18
+a136 8
+int	getient __P((register char *, struct iindex *));
+int	putstr __P((char *, int));
+int	putarry __P((struct iindex *, long *, long));
+void	printarry __P((long *));
+int	deletestr __P((char *, int));
+long	*intersect __P((long *, long *));
+long	*un_dupi __P((long *));
+int	dbi_init __P((char *));
+d138 13
+a150 5
+int	i_read __P((struct iindex *, long));
+int	i_owrite __P((long *, long));
+long	*i_oread __P((long, long *));
+int	ovrnew __P((void));
+long	*get_dir_ptrs __P((long));
+d152 10
+a161 2
+int	ent_dead __P((void));
+int	dnext_ent __P((long));
+d163 1
+a163 6
+void	store_ent __P((void));
+void	set_date __P((int));
+int	new_ent __P((void));
+void	put_dir_head __P((void));
+void	get_dir_head __P((void));
+char	**getdata __P((QDIR *));
+d165 5
+a169 42
+void	FreeDir __P((QDIR *));
+void	MakeDir __P((QDIR *, int));
+int	CountDir __P((char *, int));
+void	SetDeleteMark __P((void));
+int	CurrentIndex __P((void));
+int	CurrentDate __P((void));
+int	GetFieldConfig __P((void));
+FieldDesc	*GetFD __P((FILE *));
+void	DumpFD __P((FILE *, FieldDesc *));
+char	*StrSkip __P((char *, char *));
+int	FindField __P((QDIR, int));
+FieldDesc	*FindFDI __P((int));
+FieldDesc	*FindFD __P((char *));
+void	DoHelp __P((ARG *));
+int	HelpText __P((int, char *, char *));
+int	ListTopics __P((int, char *));
+int	HelpCopy __P((int, FILE *));
+void	CollectQuote __P((char *, int));
+int	GetAC __P((FILE *));
+void	LockInit __P((void));
+int	GonnaWrite __P((void));
+int	GonnaRead __P((void));
+void	Unlock __P((void));
+void	TimeOut __P((int));
+long	*do_lookup __P((char **, long *));
+void	make_lookup __P((char *, int));
+void	unmake_lookup __P((char *, int));
+char	*phonemify __P((char *));
+void	InitializeLogging __P((void));
+void	WhoAreYou __P((void));
+int	GetState __P((void));
+void	LimitHit __P((int));
+int	ValidQuery __P((ARG *, int));
+long	*DoLookup __P((ARG *));
+void	DoQuery __P((ARG *));
+int	DirMatch __P((QDIR, int, char *, int));
+void	PrintThem __P((long *, ARG *));
+ARG	*getplusAlways __P((ARG *));
+int	PrintFields __P((long *, ARG *, int));
+ARG	*GetAllFields __P((void));
+ARG	*GetPrintDefaults __P((void));
+int	ThinArgs __P((ARG *, int));
+d171 5
+a175 3
+void	PrintOld __P((long *));
+void	DoSet __P((ARG *));
+OPTION	*FindOption __P((char *));
+d177 7
+a183 2
+void	InitializeOptions __P((void));
+int	anyof __P((register char *, register char *));
+d186 14
+a199 26
+int	blankline __P((char *));
+char	*ltrunc __P((char *));
+int	any __P((char, char *));
+int	isblank __P((char *));
+void	mkargv __P((int *, char **, char *));
+char	*strecat __P((char *, char *));
+char	*strecpy __P((char *, char *));
+int	issub __P((char *, char *));
+int	strcpc __P((register char *, register char *));
+int	countc __P((char *, char));
+int	strcate __P((char *, char *));
+char	*Visible __P((char *, int));
+int	AllMeta __P((char *));
+char	*strlcpy __P((char *, char *));
+int	RemoveSpecials __P((char *));
+void	init_string __P((void));
+char	*add_string __P((char *));
+char	*make_str __P((char *));
+void	free_ary __P((long **));
+int	length __P((long *));
+char	*getword __P((char *, char *));
+int	quoted __P((char *));
+long	ihash __P((char *, long, long));
+int	DoSysLog __P((int));
+int	IssueMessage __P((int, char *fmt, ...));
+void	LimitTime __P((int));
+@
+
+
+1.3
+log
+@Updated typedefs
+@
+text
+@d15 1
+a15 1
+int	OkByEmail __P((Dir, char *));
+d18 1
+a18 1
+Dir	MakeADir __P((ARG *));
+d21 2
+a22 2
+int	CanSee __P((Dir, FieldDesc *, int));
+int	IsProxy __P((Dir, char *));
+d24 2
+a25 2
+int	UserCanChange __P((Dir));
+int	CanChange __P((Dir, FieldDesc *));
+d27 1
+a27 1
+int	CanDelete __P((Dir));
+d49 1
+a49 1
+int	ChangeDir __P((Dir *, FieldDesc *, char *));
+d65 1
+a65 1
+Dir	GetAliasDir __P((char *));
+d77 1
+a77 1
+char	*PasswordOf __P((Dir));
+d120 1
+a120 1
+char	**getdata __P((Dir *));
+d122 2
+a123 2
+void	FreeDir __P((Dir *));
+void	MakeDir __P((Dir *, int));
+d132 1
+a132 1
+int	FindField __P((Dir, int));
+d157 1
+a157 1
+int	DirMatch __P((Dir, int, char *, int));
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d16 4
+a19 4
+void	DoAdd __P((Arg *));
+void	DoInfo __P((Arg *));
+Dir	MakeADir __P((Arg *));
+int	ValidAdd __P((Arg *));
+d47 2
+a48 2
+void	DoChange __P((Arg *));
+int	ChangeEntries __P((long *, Arg *));
+d55 6
+a60 6
+void	FreeArgs __P((Arg *));
+Arg	*FreshArg __P(());
+void	DoStatus __P((Arg *));
+void	DoId __P((Arg *));
+void	DoQuit __P((Arg *));
+void	NotImplemented __P((Arg *));
+d62 2
+a63 2
+void	DoLogin __P((Arg *));
+void	DoAnswer __P((Arg *));
+d66 2
+a67 2
+void	DoLogout __P((Arg *));
+void	DoFields __P((Arg *));
+d70 2
+a71 2
+int	OkFields __P((Arg *));
+void	DoDelete __P((Arg *));
+d74 1
+a74 1
+void	PrintCommand __P((int, Arg *));
+d86 6
+a91 6
+D_record	*getdirent __P((long));
+void	putdirent __P((long, D_record *));
+int	d_write __P((D_record *, long));
+int	d_read __P((D_record *, long));
+int	d_oread __P((D_ovrflo *, int));
+int	d_owrite __P((D_ovrflo *, int));
+d135 1
+a135 1
+void	DoHelp __P((Arg *));
+d154 3
+a156 3
+int	ValidQuery __P((Arg *, int));
+long	*DoLookup __P((Arg *));
+void	DoQuery __P((Arg *));
+d158 6
+a163 6
+void	PrintThem __P((long *, Arg *));
+Arg	*getplusAlways __P((Arg *));
+int	PrintFields __P((long *, Arg *, int));
+Arg	*GetAllFields __P((void));
+Arg	*GetPrintDefaults __P((void));
+int	ThinArgs __P((Arg *, int));
+d166 3
+a168 3
+void	DoSet __P((Arg *));
+Option	*FindOption __P((char *));
+void	SetOption __P((Option *, char *));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+d15 185
+a199 187
+int OkByEmail(Dir User,char *username);
+void DoAdd(Arg *theArgs);
+void DoInfo(Arg *theArgs);
+Dir MakeADir(Arg *theArgs);
+int ValidAdd(Arg *theArgs);
+int CanAddEntries(void);
+int CanSee(Dir whichDir,FieldDesc *theFD,int suppress);
+int IsProxy(Dir whichDir,char *whichAlias);
+int CanLookup(FieldDesc *theFD);
+int UserCanChange(Dir whichDir);
+int CanChange(Dir whichDir,FieldDesc *theFD);
+int UserCanDelete(void);
+int CanDelete(Dir theDir);
+char *to_low_str(char *string);
+void bintree_init(char *filename);
+void close_tree(void);
+void get_tree_head(void);
+void read_leaf(IDX num,LEAF *leaf);
+void flush_leaf(void);
+void write_leaf(LEAF *leaf);
+int icopy(register char *dest,register char *src);
+IDX start_point(char *key);
+int search(char *key,LEAF *leaf,int *offset);
+int delete(char *key);
+void insert(char *key,IDX data);
+void simple_insert(LEAF *leaf,int offset,ITEM *item,int item_size);
+void expand(LEAF *leaf,int offset,ITEM *item);
+long *find_all(char *key);
+void put_tree_head(void);
+IDX allocate_leaf(void);
+void read_index(char *filename);
+long *merge(long *ary1,long *ary2);
+void DoChange(Arg *theArg);
+int ChangeEntries(long *theEntries,Arg *theArgs);
+int ChangeDir(Dir *dir,FieldDesc *theFD,char *theValue);
+int AliasIsUsed(char *theAlias,long requestor);
+int BadAlias(char *theAlias);
+void AddValue(char *theValue,int theType);
+void Unknown(char *theJunk);
+void DoCommand(int theCommand);
+void FreeArgs(Arg *theArg);
+Arg *FreshArg();
+void DoStatus(Arg *theArg);
+void DoId(Arg *theArg);
+void DoQuit(Arg *theArg);
+void NotImplemented(Arg *theArg);
+void DoReply(int theCode,char *theFormat,...);
+void DoLogin(Arg *theArg);
+void DoAnswer(Arg *theArg);
+void SleepTil(long theTime);
+Dir GetAliasDir(char *theName);
+void DoLogout(Arg *theArg);
+void DoFields(Arg *theArg);
+void ListField(FieldDesc *theFD);
+void ListAllFields(void);
+int OkFields(Arg *theArgs);
+void DoDelete(Arg *theArg);
+int OpenTempOut(void);
+void DumpOutput(void);
+void PrintCommand(int theCommand,Arg *theArgs);
+int UserMatch(char *string);
+char *RandomString(int byteCount);
+char *PasswordOf(Dir User);
+void crypt_start(char *pass);
+char *decrypt(char *to,char *from);
+void decrypt_end(void);
+int decode(unsigned char *to,unsigned char *from);
+void crypt_init(char *pw);
+int encryptit(char *to,char *from);
+int encode(char *out,char *buf,int n);
+void threecpy(unsigned char *to,unsigned char *from);
+D_record *getdirent(long entry);
+void putdirent(long entry,D_record *dirent);
+int d_write(D_record *x,long dloc);
+int d_read(D_record *x,long dloc);
+int d_oread(D_ovrflo *x,int dloc);
+int d_owrite(D_ovrflo *x,int dloc);
+int newdovr(void);
+int dbd_init(char *file);
+long *findstr(char *str);
+long *getrecptrs(struct iindex *idx);
+int getx(long *str);
+int getient(register char *str,struct iindex *x);
+int putstr(char *str,int recnum);
+int putarry(struct iindex *x,long *arry,long iloc);
+void printarry(long *arry);
+int deletestr(char *str,int recnum);
+long *intersect(long *ary0,long *ary1);
+long *un_dupi(long *ary);
+int dbi_init(char *file);
+int i_write(struct iindex *x,long iloc);
+int i_read(struct iindex *x,long iloc);
+int i_owrite(long *x,long ioloc);
+long *i_oread(long oloc,long *arry);
+int ovrnew(void);
+long *get_dir_ptrs(long iloc);
+int next_ent(long dirent);
+int ent_dead(void);
+int dnext_ent(long dirent);
+int print_ent(char *str);
+void store_ent(void);
+void set_date(int which);
+int new_ent(void);
+void put_dir_head(void);
+void get_dir_head(void);
+char **getdata(Dir *dir);
+int putdata(char **ptr_ary);
+void FreeDir(Dir *dir);
+void MakeDir(Dir *dir,int count);
+int CountDir(char *s,int size);
+void SetDeleteMark(void);
+int CurrentIndex(void);
+int CurrentDate(void);
+int GetFieldConfig(void);
+FieldDesc *GetFD(FILE *theFile);
+void DumpFD(FILE *theFile,FieldDesc *theFD);
+char *StrSkip(char *theString,char *skipChars);
+int FindField(Dir theDir,int theNumber);
+FieldDesc *FindFDI(int theIndex);
+FieldDesc *FindFD(char *theName);
+void DoHelp(Arg *theArg);
+int HelpText(int ix,char *client,char *topic);
+int ListTopics(int index,char *client);
+int HelpCopy(int index,FILE *helpFile);
+void CollectQuote(char *theText,int theLen);
+int GetAC(FILE *fp);
+void LockInit(void);
+int GonnaWrite(void);
+int GonnaRead(void);
+void Unlock(void);
+void TimeOut(int sig);
+long *do_lookup(char **strings,long *ary);
+void make_lookup(char *str,int ent);
+void unmake_lookup(char *str,int ent);
+char *phonemify(char *word);
+int main(int argc,char **argv);
+void InitializeLogging(void);
+void WhoAreYou(void);
+int GetState(void);
+void LimitHit(int sig);
+int ValidQuery(Arg *theArgs,int theCommand);
+long *DoLookup(Arg *theArgs);
+void DoQuery(Arg *theArg);
+int DirMatch(Dir dir,int field,char *value,int suppress);
+void PrintThem(long *theEntries,Arg *theArgs);
+Arg *getplusAlways(Arg *a);
+int PrintFields(long *theEntries,Arg *theArgs,int printEmpty);
+Arg *GetAllFields(void);
+Arg *GetPrintDefaults(void);
+int ThinArgs(Arg *theArgs,int theCount);
+int RateAKey(char *key);
+void PrintOld(long *theEntries);
+void DoSet(Arg *theArg);
+Option *FindOption(char *theName);
+void SetOption(Option *theOption,char *theValue);
+void InitializeOptions(void);
+int anyof(register char *s1,register char *s2);
+int stricmp(char *s1,char *s2);
+int strincmp(char *s1, char *s2,int n);
+int blankline(char *str);
+char *ltrunc(char *str);
+int any(char c,char *list);
+int isblank(char *str);
+void mkargv(int *argc,char *argv[],char *line);
+char *strecat(char *s1, char *s2);
+char *strecpy(char *s1,char *s2);
+int issub(char *string,char *sub);
+int strcpc(register char *to,register char *from);
+int countc(char *string,char c);
+int strcate(char *to,char *from);
+char *Visible(char *s,int n);
+int AllMeta(char *s);
+char *strlcpy(char *to,char *from);
+int RemoveSpecials(char *theString);
+void init_string(void);
+char *add_string(char *str);
+char *make_str(char *str);
+void free_ary(long **ary);
+int length(long *ary);
+char *getword(char *str,char *buf);
+int quoted(char *str);
+long ihash(char *str,long seed,long limit);
+int DoSysLog(int yes);
+int IssueMessage(int severity,char *fmt,...);
+void LimitTime(int secs);
+char *crypt(char *key, char *salt);
+#endif /*PROTOS_H*/
+@

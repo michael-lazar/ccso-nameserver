@@ -1,0 +1,578 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	95.05.20.14.11.29;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.05.20.13.38.22;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@5:	3:area code 011\n[ International Access Code ]	4:areacode phone	45:2/1995
+5:	3:area code 200\n[ Reserved - Service Access Code ]	4:areacode phone	45:2/1995
+5:	3:area code 201\nMorristown, Newark, Jersey City, (Northeast) New Jersey	4:areacode phone	45:2/1995
+5:	3:area code 202\nWashington, District of Columbia	4:areacode phone	45:2/1995
+5:	3:area code 203\nStamford, Bridgeport, New Haven, Danbury, Norwalk, Waterbury, (Northeast) Connecticut	4:areacode phone	45:2/1995
+5:	3:area code 204\nAll parts of Manitoba, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 205\nAnniston, Birmingham, Decatur, Huntsville, Tuscaloosa, (Northern) Alabama	4:areacode phone	45:2/1995
+5:	3:area code 206\nAuburn, Bellevue, Everett, Redmond, Seattle, Tacoma, Washington	4:areacode phone	45:2/1995
+5:	3:area code 207\nAll parts of Maine	4:areacode phone	45:2/1995
+5:	3:area code 208\nAll parts of Idaho	4:areacode phone	45:2/1995
+5:	3:area code 209\nFresno and Stockton, (Central) California	4:areacode phone	45:2/1995
+5:	3:area code 210\nSan Antonio, (Southern) Texas	4:areacode phone	45:2/1995
+5:	3:area code 211\n[ Coin-operated Telephone Refunds ]	4:areacode phone	45:2/1995
+5:	3:area code 212\nNew York City (Manhattan only), New York	4:areacode phone	45:2/1995
+5:	3:area code 213\nLos Angeles, California	4:areacode phone	45:2/1995
+5:	3:area code 214\nDallas, (Northeast) Texas	4:areacode phone	45:2/1995
+5:	3:area code 215\nAllentown, (Southeast) Pennsylvania	4:areacode phone	45:2/1995
+5:	3:area code 216\nAkron, Cleveland, Massillon, Youngstown, (Northeast) Ohio	4:areacode phone	45:2/1995
+5:	3:area code 217\nSpringfield and Champaign-Urbana, (South Central) Illinois	4:areacode phone	45:2/1995
+5:	3:area code 218\nDuluth, (Northern) Minnesota	4:areacode phone	45:2/1995
+5:	3:area code 219\nGary, Hammond, Fort Wayne, South Bend, (Northern) Indiana	4:areacode phone	45:2/1995
+5:	3:area code 281\nHouston and surrounding area, Texas\noverlays 713	4:areacode phone	45:2/1995
+5:	3:area code 300\n[ Reserved - Service Access Code ]	4:areacode phone	45:2/1995
+5:	3:area code 301\nSilver Spring and Frederick, (Southern and Western) Maryland	4:areacode phone	45:2/1995
+5:	3:area code 302\nAll parts of Delaware	4:areacode phone	45:2/1995
+5:	3:area code 303\nArvada, Aurora, Boulder, Denver, Englewood, Littleton, Longmont, Colorado	4:areacode phone	45:2/1995
+5:	3:area code 304\nAll parts of West Virginia	4:areacode phone	45:2/1995
+5:	3:area code 305\nFort Lauderdale, Key West, Miami, (Southeast) Florida	4:areacode phone	45:2/1995
+5:	3:area code 306\nAll parts of Saskatchewan, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 307\nAll parts of Wyoming	4:areacode phone	45:2/1995
+5:	3:area code 308\nNorth Platte and Grand Island, (Western) Nebraska	4:areacode phone	45:2/1995
+5:	3:area code 309\nMoline, Rock Island, Peoria, (West Central) Illinois	4:areacode phone	45:2/1995
+5:	3:area code 310\nParts of Los Angeles, California	4:areacode phone	45:2/1995
+5:	3:area code 311\n[ Reserved - Special Function ]	4:areacode phone	45:2/1995
+5:	3:area code 312\nChicago, Illinois	4:areacode phone	45:2/1995
+5:	3:area code 313\nDetroit and Ann Arbor, (Eastern) Michigan	4:areacode phone	45:2/1995
+5:	3:area code 314\nSaint Louis and Columbia, (Eastern) Missouri	4:areacode phone	45:2/1995
+5:	3:area code 315\nOswego, Syracuse, Utica, (North Central) New York	4:areacode phone	45:2/1995
+5:	3:area code 316\nDodge City and Wichita, (Southern) Kansas	4:areacode phone	45:2/1995
+5:	3:area code 317\nIndianapolis and Kokomo, (Central) Indiana	4:areacode phone	45:2/1995
+5:	3:area code 318\nLake Charles and Shreveport, (Western) Louisiana	4:areacode phone	45:2/1995
+5:	3:area code 319\nDubuque, Cedar Rapids, Iowa City, (Eastern) Iowa	4:areacode phone	45:2/1995
+5:	3:area code 334\nAuburn, Dothan, Mobile, Montgomery, Selma, (Southern) Alabama	4:areacode phone	45:2/1995
+5:	3:area code 360\nBellingham, Bremerton, Olympia, Vancouver, (Western) Washington	4:areacode phone	45:2/1995
+5:	3:area code 400\n[ Reserved - Service Access Code ]	4:areacode phone	45:2/1995
+5:	3:area code 401\nAll parts of Rhode Island	4:areacode phone	45:2/1995
+5:	3:area code 402\nLincoln and Omaha, (Eastern) Nebraska	4:areacode phone	45:2/1995
+5:	3:area code 403\nAlberta, Yukon Territory and (Western) Northwest Territories, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 404\nAtlanta and College Park interior to I285, Georgia	4:areacode phone	45:2/1995
+5:	3:area code 405\nOklahoma City, (Southern and Western) Oklahoma	4:areacode phone	45:2/1995
+5:	3:area code 406\nAll parts of Montana	4:areacode phone	45:2/1995
+5:	3:area code 407\nOrlando, West Palm Beach, (Eastern) Florida	4:areacode phone	45:2/1995
+5:	3:area code 408\nSan Jose and Sunnyvale, (Central Coastal/Silicon Valley) California	4:areacode phone	45:2/1995
+5:	3:area code 409\nGalveston and Port Arthur, (Southeast) Texas	4:areacode phone	45:2/1995
+5:	3:area code 410\nBaltimore and Annapolis, (Eastern) Maryland	4:areacode phone	45:2/1995
+5:	3:area code 411\n[ Local Directory Assistance ]	4:areacode phone	45:2/1995
+5:	3:area code 412\nPittsburgh and New Castle, (Western) Pennsylvania	4:areacode phone	45:2/1995
+5:	3:area code 413\nSpringfield and Pittsfield, (Western) Massachusetts	4:areacode phone	45:2/1995
+5:	3:area code 414\nGreen Bay, Milwaukee, Racine, (Eastern) Wisconsin	4:areacode phone	45:2/1995
+5:	3:area code 415\nSan Francisco, (West Bay Area) California	4:areacode phone	45:2/1995
+5:	3:area code 416\nToronto, (South Central) Ontario, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 417\nJoplin and Springfield, (Southwest) Missouri	4:areacode phone	45:2/1995
+5:	3:area code 418\nQuebec City, (Northeast) Quebec, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 419\nToledo and Lima, (Northwest) Ohio	4:areacode phone	45:2/1995
+5:	3:area code 423\nChattanooga, Clarksville, Johnson City, Kingsport, Knoxville, (Eastern) Tennessee	4:areacode phone	45:2/1995
+5:	3:area code 441\nBermuda	4:areacode phone	45:2/1995
+5:	3:area code 500\nPersonal Communications Services	4:areacode phone	45:2/1995
+5:	3:area code 501\nAll parts of Arkansas	4:areacode phone	45:2/1995
+5:	3:area code 502\nLouisville and Paducah, (Western) Kentucky	4:areacode phone	45:2/1995
+5:	3:area code 503\nAstoria, Hillsboro, Portland, Salem, (Northwest) Oregon	4:areacode phone	45:2/1995
+5:	3:area code 504\nBaton Rouge and New Orleans, (Eastern) Louisiana	4:areacode phone	45:2/1995
+5:	3:area code 505\nAll parts of New Mexico	4:areacode phone	45:2/1995
+5:	3:area code 506\nAll parts of New Brunswick, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 507\nRochester, Austin, Winona, (Southern) Minnesota	4:areacode phone	45:2/1995
+5:	3:area code 508\nWorcester, Framingham, New Bedford, (Eastern) Massachusetts	4:areacode phone	45:2/1995
+5:	3:area code 509\nSpokane and Walla Walla, (Eastern) Washington	4:areacode phone	45:2/1995
+5:	3:area code 510\nOakland, (East Bay Area) California	4:areacode phone	45:2/1995
+5:	3:area code 511\n[ Reserved - Special Function ]	4:areacode phone	45:2/1995
+5:	3:area code 512\nAustin and Corpus Christi, (Southern) Texas	4:areacode phone	45:2/1995
+5:	3:area code 513\nCincinnati and Dayton, (Southwest) Ohio	4:areacode phone	45:2/1995
+5:	3:area code 514\nMontreal, (Southern) Quebec, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 515\nDes Moines and Fort Dodge, (Central) Iowa	4:areacode phone	45:2/1995
+5:	3:area code 516\nHempstead, (Long Island) New York	4:areacode phone	45:2/1995
+5:	3:area code 517\nLansing and Saginaw, (Central) Michigan	4:areacode phone	45:2/1995
+5:	3:area code 518\nAlbany and Schenectady, (Northeast) New York	4:areacode phone	45:2/1995
+5:	3:area code 519\nLondon, (Southwest) Ontario, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 520\nFlagstaff, Prescott, Sierra Vista, Tucson, Yuma, Arizona	4:areacode phone	45:2/1995
+5:	3:area code 540\nBlacksburg, Roanoke, Salem, Winchester, (Western) Virginia	4:areacode phone	45:2/1995
+5:	3:area code 541\nCorvallis, Eugene, Klamath Falls, Medford, Pendleton, Roseberg, (Southeast) Oregon	4:areacode phone	45:2/1995
+5:	3:area code 562\nLos Angeles, California\noverlays 213, 310, 818	4:areacode phone	45:2/1995
+5:	3:area code 600\n[ Reserved - Service Access Code ]	4:areacode phone	45:2/1995
+5:	3:area code 601\nAll parts of Mississippi	4:areacode phone	45:2/1995
+5:	3:area code 602\nBuckeye, Chandler, Glendale, Mesa, Phoenix, Scottsdale, Tempe, Arizona	4:areacode phone	45:2/1995
+5:	3:area code 603\nAll parts of New Hampshire	4:areacode phone	45:2/1995
+5:	3:area code 604\nAll parts of British Columbia, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 605\nAll parts of South Dakota	4:areacode phone	45:2/1995
+5:	3:area code 606\nAshland and Covington, (Eastern) Kentucky	4:areacode phone	45:2/1995
+5:	3:area code 607\nBinghamton, Elmira, Ithaca, (South Central) New York	4:areacode phone	45:2/1995
+5:	3:area code 608\nBeloit and Madison, (Southwest) Wisconsin	4:areacode phone	45:2/1995
+5:	3:area code 609\nAtlantic City, Camden, Trenton, (Southern) New Jersey	4:areacode phone	45:2/1995
+5:	3:area code 610\n[Telex II (TWX) Service for CANADA]	4:areacode phone	45:2/1995
+5:	3:area code 610\nPhiladelphia and Chester, (Southeast) Pennsylvania	4:areacode phone	45:2/1995
+5:	3:area code 611\n[ Repair Service ]	4:areacode phone	45:2/1995
+5:	3:area code 612\nMinneapolis and Saint Paul, (Central) Minnesota	4:areacode phone	45:2/1995
+5:	3:area code 613\nOttawa, (Southeast) Ontario, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 614\nColumbus and Zanesville, (Southeast) Ohio	4:areacode phone	45:2/1995
+5:	3:area code 615\nMurfreesboro and Nashville, (Central) Tennessee	4:areacode phone	45:2/1995
+5:	3:area code 616\nBattle Creek and Grand Rapids, (Western) Michigan	4:areacode phone	45:2/1995
+5:	3:area code 617\nBoston and surrounding area, (Eastern) Massachusetts	4:areacode phone	45:2/1995
+5:	3:area code 618\nAlton and Centralia, (Southern) Illinois	4:areacode phone	45:2/1995
+5:	3:area code 619\nSan Diego, Palm Springs and the Imperial Valley, California	4:areacode phone	45:2/1995
+5:	3:area code 630\nChicago, Illinois pager and cellular	4:areacode phone	45:2/1995
+5:	3:area code 700\nValue Added Information Service Access Code (varies by LD carrier)	4:areacode phone	45:2/1995
+5:	3:area code 701\nAll parts of North Dakota	4:areacode phone	45:2/1995
+5:	3:area code 702\nAll parts of Nevada	4:areacode phone	45:2/1995
+5:	3:area code 703\nAlexandria, Arlington, Fairfax, Falls Church, McLean, (DC Area) Virginia	4:areacode phone	45:2/1995
+5:	3:area code 704\nCharlotte and Salisbury, (Western) North Carolina	4:areacode phone	45:2/1995
+5:	3:area code 705\nNorth Bay, (Northern) Ontario, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 706\n[Formerly Tijuana, (Northwest) MEXICO equivalent to +52 6X XXX XXX]	4:areacode phone	45:2/1995
+5:	3:area code 706\nAugusta, Columbus, Rome, (Northern) Georgia	4:areacode phone	45:2/1995
+5:	3:area code 707\nEureka, Napa, Santa Rosa, (North Coastal) California	4:areacode phone	45:2/1995
+5:	3:area code 708\nAurora, Elgin, Evanston, Waukegan, (Northeast) Illinois	4:areacode phone	45:2/1995
+5:	3:area code 709\nAll parts of Newfoundland and Labrador, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 710\n[ Government Special Services ]	4:areacode phone	45:2/1995
+5:	3:area code 711\n[ Reserved - Special Function ]	4:areacode phone	45:2/1995
+5:	3:area code 712\nCouncil Bluffs and Sioux City, (Western) Iowa	4:areacode phone	45:2/1995
+5:	3:area code 713\nHouston and surrounding area, Texas	4:areacode phone	45:2/1995
+5:	3:area code 714\nOrange County, California	4:areacode phone	45:2/1995
+5:	3:area code 715\nEau Claire and Wausau, (Northern) Wisconsin	4:areacode phone	45:2/1995
+5:	3:area code 716\nBuffalo, Niagara Falls, Rochester, (Western) New York	4:areacode phone	45:2/1995
+5:	3:area code 717\nHarrisburg, Pottsville, Scranton, (East Central) Pennsylvania	4:areacode phone	45:2/1995
+5:	3:area code 718\nNew York City (Bronx, Brooklyn, Queens, Staten Island), New York	4:areacode phone	45:2/1995
+5:	3:area code 719\nColorado Springs and Pueblo, (Southeast) Colorado	4:areacode phone	45:2/1995
+5:	3:area code 770\nAtlanta exterior to I285, Lawrenceville, Marietta, Norcross, Georgia	4:areacode phone	45:2/1995
+5:	3:area code 800\nToll-Free Incoming WATS Service Access Code	4:areacode phone	45:2/1995
+5:	3:area code 801\nAll parts of Utah	4:areacode phone	45:2/1995
+5:	3:area code 802\nAll parts of Vermont	4:areacode phone	45:2/1995
+5:	3:area code 803\nCharleston, Columbia, Florence, Myrtle Beach, Rock Hill, (Southeast) South Carolina	4:areacode phone	45:2/1995
+5:	3:area code 804\nCharlottesville, Norfolk, Richmond, (Southeast) Virginia	4:areacode phone	45:2/1995
+5:	3:area code 805\nBakersfield, Ventura, Simi Valley, (South Central) California	4:areacode phone	45:2/1995
+5:	3:area code 806\nAmarillo, (North Panhandle) Texas	4:areacode phone	45:2/1995
+5:	3:area code 807\nThunder Bay and Fort William, (Northwest) Ontario, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 808\nAll parts of Hawaii	4:areacode phone	45:2/1995
+5:	3:area code 809\nBahamas\nISO-3166 BS BHS 044	4:areacode phone	45:2/1995
+5:	3:area code 810\nfuture: northern part of present area 313 in Michigan	4:areacode phone	45:2/1995
+5:	3:area code 811\n[ Reserved - Special Function ]	4:areacode phone	45:2/1995
+5:	3:area code 812\nBloomington, Evansville, Terre Haute, (Southern) Indiana	4:areacode phone	45:2/1995
+5:	3:area code 813\nClearwater, St. Petersburg, Tampa, Florida	4:areacode phone	45:2/1995
+5:	3:area code 814\nAltoona and Erie, (West Central) Pennsylvania	4:areacode phone	45:2/1995
+5:	3:area code 815\nFreeport, Joliet, Rockford, (Northern) Illinois	4:areacode phone	45:2/1995
+5:	3:area code 816\nKansas City and Saint Joseph, (Northwest) Missouri	4:areacode phone	45:2/1995
+5:	3:area code 817\nFort Worth, Temple, Waco, (North Central) Texas	4:areacode phone	45:2/1995
+5:	3:area code 818\nPasadena and San Fernando (area north of Los Angeles), California	4:areacode phone	45:2/1995
+5:	3:area code 819\nHull and Sherbrooke, (Western) Quebec and (Eastern) NW Territories, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 860\nHartford, New London, Norwich, (Southwest) Connecticut	4:areacode phone	45:2/1995
+5:	3:area code 864\nAnderson, Greenville, Spartanburg (Northwest) South Carolina	4:areacode phone	45:2/1995
+5:	3:area code 900\nMass Calling and Value Added Information Service Access Code	4:areacode phone	45:2/1995
+5:	3:area code 901\nMemphis and Jackson, (Western) Tennessee	4:areacode phone	45:2/1995
+5:	3:area code 902\nAll parts of Prince Edward Island and Nova Scotia, CANADA	4:areacode phone	45:2/1995
+5:	3:area code 903\nTexarkana and Paris, (Northeast) Texas	4:areacode phone	45:2/1995
+5:	3:area code 904\nJacksonville and Pensacola, (Northern) Florida	4:areacode phone	45:2/1995
+5:	3:area code 905\n[Formerly Mexico City, (Northern) MEXICO equivalent to +52 5 XXX XXXX]	4:areacode phone	45:2/1995
+5:	3:area code 905\nto be formed by splitting 416 (Ontario)	4:areacode phone	45:2/1995
+5:	3:area code 906\nSault Ste. Marie and Marquette, (Upper North) Michigan	4:areacode phone	45:2/1995
+5:	3:area code 907\nAll parts of Alaska	4:areacode phone	45:2/1995
+5:	3:area code 908\nElizabeth and New Brunswick, (Central) New Jersey	4:areacode phone	45:2/1995
+5:	3:area code 909\n[ was Telenet Communications Data Network ]	4:areacode phone	45:2/1995
+5:	3:area code 909\nRiverside and San Bernardino, (Southern) California	4:areacode phone	45:2/1995
+5:	3:area code 910\nto be formed by splitting 919 (North Carolina)	4:areacode phone	45:2/1995
+5:	3:area code 911\n[ Police/Fire Emergency Service ]	4:areacode phone	45:2/1995
+5:	3:area code 912\nMacon and Savannah, (Southern) Georgia	4:areacode phone	45:2/1995
+5:	3:area code 913\nSalina and Topeka, (Northern) Kansas	4:areacode phone	45:2/1995
+5:	3:area code 914\nNew Rochelle, White Plains, Poughkeepsie, (Southern) New York	4:areacode phone	45:2/1995
+5:	3:area code 915\nAbilene, El Paso, Odessa, (Western) Texas	4:areacode phone	45:2/1995
+5:	3:area code 916\nSacramento and Davis, (Northern) California	4:areacode phone	45:2/1995
+5:	3:area code 917\nCellular and Paging for New York City	4:areacode phone	45:2/1995
+5:	3:area code 918\nMuskogee and Tulsa, (Northeast) Oklahoma	4:areacode phone	45:2/1995
+5:	3:area code 919\nGreenville, Raleigh, Winston-Salem, (Eastern) North Carolina	4:areacode phone	45:2/1995
+5:	3:area code 941\nBradenton, Fort Meyers, Lakeland, Sarasota, Winter Haven, (Southwest) Florida	4:areacode phone	45:2/1995
+5:	3:area code 970\nAspen, Durango, Fort Collins, Grand Junction, Greeley, Loveland, Steamboat Springs, Vail, (Northern and Western) Colorado	4:areacode phone	45:2/1995
+5:	3:country code 214 (unused)\nAlgeria\nISO-3166 DZ DZA 012	4:areacode phone	45:2/1995
+5:	3:country code 215 (unused)\nAlgeria\nISO-3166 DZ DZA 012	4:areacode phone	45:2/1995
+5:	3:country code 219 (unused)\nLibyan Arab Jamahiriya - Libya\nISO-3166 LY LBY 434	4:areacode phone	45:2/1995
+5:	3:country code 210 (unused)\nMorocco\nISO-3166 MA MAR 504	4:areacode phone	45:2/1995
+5:	3:country code 211 (unused)\nMorocco\nISO-3166 MA MAR 504	4:areacode phone	45:2/1995
+5:	3:country code 217 (unused)\nTunisia\nISO-3166 TN TUN 788	4:areacode phone	45:2/1995
+5:	3:country code 93\nAfghanistan\nISO-3166 AF AFG 004	4:areacode phone	45:2/1995
+5:	3:country code 355\nAlbania\nISO-3166 AL ALB 008	4:areacode phone	45:2/1995
+5:	3:country code 213\nAlgeria\nISO-3166 DZ DZA 012	4:areacode phone	45:2/1995
+5:	3:country code 684\nAmerican Samoa\nISO-3166 AS ASM 016	4:areacode phone	45:2/1995
+5:	3:country code 33-628\nAndorra\nISO-3166 AD AND 020	4:areacode phone	45:2/1995
+5:	3:country code 244\nAngola\nISO-3166 AO AGO 024	4:areacode phone	45:2/1995
+5:	3:country code xxx\nAnguilla\nISO-3166 AI AIA 660	4:areacode phone	45:2/1995
+5:	3:country code 672\nAntarctica\nISO-3166 AQ ATA 010	4:areacode phone	45:2/1995
+5:	3:country code xxx\nAntigua and Barbuda\nISO-3166 AG ATG 028	4:areacode phone	45:2/1995
+5:	3:country code 54\nArgentina\nISO-3166 AR ARG 032	4:areacode phone	45:2/1995
+5:	3:country code 7\nArmenia\nISO-3166 AM ARM 051	4:areacode phone	45:2/1995
+5:	3:country code 297\nAruba\nISO-3166 AW ABW 533	4:areacode phone	45:2/1995
+5:	3:country code 247\nAscension Island	4:areacode phone	45:2/1995
+5:	3:country code 874\nAtlantic West - most of this satellite's footprint overlaps 871	4:areacode phone	45:2/1995
+5:	3:country code 61\nAustralia\nISO-3166 AU AUS 036	4:areacode phone	45:2/1995
+5:	3:country code 43\nAustria\nISO-3166 AT AUT 040	4:areacode phone	45:2/1995
+5:	3:country code 7\nAzerbaijan\nISO-3166 AZ AZE 031	4:areacode phone	45:2/1995
+5:	3:country code 973\nBahrain\nISO-3166 BH BHR 048	4:areacode phone	45:2/1995
+5:	3:country code 880\nBangladesh\nISO-3166 BD BGD 050	4:areacode phone	45:2/1995
+5:	3:country code xxx\nBarbados\nISO-3166 BB BRB 052	4:areacode phone	45:2/1995
+5:	3:country code 7\nBelarus (former Byelorussia )\nISO-3166 BY BLR 112	4:areacode phone	45:2/1995
+5:	3:country code 32\nBelgium\nISO-3166 BE BEL 056	4:areacode phone	45:2/1995
+5:	3:country code 501\nBelize\nISO-3166 BZ BLZ 084	4:areacode phone	45:2/1995
+5:	3:country code 229\nBenin\nISO-3166 BJ BEN 204	4:areacode phone	45:2/1995
+5:	3:country code xxx\nBermuda\nISO-3166 BM BMU 060	4:areacode phone	45:2/1995
+5:	3:country code 975\nBhutan\nISO-3166 BT BTN 064	4:areacode phone	45:2/1995
+5:	3:country code 591\nBolivia\nISO-3166 BO BOL 068	4:areacode phone	45:2/1995
+5:	3:country code 387\nBosnia and Herzegowina\nISO-3166 BA BIH 070	4:areacode phone	45:2/1995
+5:	3:country code 267\nBotswana\nISO-3166 BW BWA 072	4:areacode phone	45:2/1995
+5:	3:country code xxx\nBouvet Island\nISO-3166 BV BVT 074	4:areacode phone	45:2/1995
+5:	3:country code 55\nBrazil\nISO-3166 BR BRA 076	4:areacode phone	45:2/1995
+5:	3:country code xxx\nBritish Indian Ocean Territory\nISO-3166 IO IOT 086	4:areacode phone	45:2/1995
+5:	3:country code 673\nBrunei Darussalm\nISO-3166 BN BRN 096	4:areacode phone	45:2/1995
+5:	3:country code 359\nBulgaria\nISO-3166 BG BGR 100	4:areacode phone	45:2/1995
+5:	3:country code 226\nBurkina Faso (former Upper Volta )\nISO-3166 BF BFA 854	4:areacode phone	45:2/1995
+5:	3:country code 257\nBurundi\nISO-3166 BI BDI 108	4:areacode phone	45:2/1995
+5:	3:country code 855\nCambodia (also Khmer Republic and Kampuchea )\nISO-3166 KH KHM 116	4:areacode phone	45:2/1995
+5:	3:country code 237\nCameroon\nISO-3166 CM CMR 120	4:areacode phone	45:2/1995
+5:	3:country code 1\nCanada\nISO-3166 CA CAN 124	4:areacode phone	45:2/1995
+5:	3:country code 238\nCape Verde\nISO-3166 CV CPV 132	4:areacode phone	45:2/1995
+5:	3:country code xxx\nCayman Islands\nISO-3166 KY CYM 136	4:areacode phone	45:2/1995
+5:	3:country code 236\nCentral African Republic\nISO-3166 CF CAF 140	4:areacode phone	45:2/1995
+5:	3:country code 235\nChad\nISO-3166 TD TCD 148	4:areacode phone	45:2/1995
+5:	3:country code 56\nChile\nISO-3166 CL CHL 152	4:areacode phone	45:2/1995
+5:	3:country code 86\nChina, People's Republic of\nISO-3166 CN CHN 156	4:areacode phone	45:2/1995
+5:	3:country code 672\nChristmas Island\nISO-3166 CX CXR 162	4:areacode phone	45:2/1995
+5:	3:country code 672\nCocos or Keeling Islands\nISO-3166 CC CCK 166	4:areacode phone	45:2/1995
+5:	3:country code 57\nColombia\nISO-3166 CO COL 170	4:areacode phone	45:2/1995
+5:	3:country code 269\nComoros\nISO-3166 KM COM 174	4:areacode phone	45:2/1995
+5:	3:country code 242\nCongo\nISO-3166 CG COG 178	4:areacode phone	45:2/1995
+5:	3:country code 682\nCook Islands\nISO-3166 CK COK 184	4:areacode phone	45:2/1995
+5:	3:country code 506\nCosta Rica\nISO-3166 CR CRI 188	4:areacode phone	45:2/1995
+5:	3:country code 225\nLa Cote d'Ivoire (also Ivory Coast )\nISO-3166 CI CIV 384	4:areacode phone	45:2/1995
+5:	3:country code 385\nCroatia (also Hrvatska )\nISO-3166 HR HRV 191	4:areacode phone	45:2/1995
+5:	3:country code 53\nCuba\nISO-3166 CU CUB 192	4:areacode phone	45:2/1995
+5:	3:country code 357\nCyprus\nISO-3166 CY CYP 196	4:areacode phone	45:2/1995
+5:	3:country code 42\nCzech Republic\nISO-3166 CZ CZE 203	4:areacode phone	45:2/1995
+5:	3:country code 45\nDenmark\nISO-3166 DK DNK 208	4:areacode phone	45:2/1995
+5:	3:country code 246\nDiego Garcia	4:areacode phone	45:2/1995
+5:	3:country code 253\nDjibouti\nISO-3166 DJ DJI 262	4:areacode phone	45:2/1995
+5:	3:country code xxx\nDominica\nISO-3166 DM DMA 212	4:areacode phone	45:2/1995
+5:	3:country code xxx\nDominican Republic\nISO-3166 DO DOM 214	4:areacode phone	45:2/1995
+5:	3:country code xxx\nEast Timor\nISO-3166 TP TMP 626	4:areacode phone	45:2/1995
+5:	3:country code 593\nEcuador\nISO-3166 EC ECU 218	4:areacode phone	45:2/1995
+5:	3:country code 20\nEgypt\nISO-3166 EG EGY 818	4:areacode phone	45:2/1995
+5:	3:country code 503\nEl Salvador\nISO-3166 SV SLV 222	4:areacode phone	45:2/1995
+5:	3:country code 240\nEquatorial Guinea\nISO-3166 GQ GNQ 226	4:areacode phone	45:2/1995
+5:	3:country code 291\nEritrea\nISO-3166 ER ERI 232	4:areacode phone	45:2/1995
+5:	3:country code 7-014\nEstonia\nISO-3166 EE EST 233	4:areacode phone	45:2/1995
+5:	3:country code 251\nEthiopia\nISO-3166 ET ETH 230	4:areacode phone	45:2/1995
+5:	3:country code 500\nFalkland Islands (also Malvinas )\nISO-3166 FK FLK 238	4:areacode phone	45:2/1995
+5:	3:country code 298\nFaroe ( Faeroe ) Islands (via MCI goes as +45)\nISO-3166 FO FRO 234	4:areacode phone	45:2/1995
+5:	3:country code 679\nFiji\nISO-3166 FJ FJI 242	4:areacode phone	45:2/1995
+5:	3:country code 358\nFinland\nISO-3166 FI FIN 246	4:areacode phone	45:2/1995
+5:	3:country code 33\nMetropolitan France\nISO-3166 FX FXX 249	4:areacode phone	45:2/1995
+5:	3:country code 33\nFrance\nISO-3166 FR FRA 250	4:areacode phone	45:2/1995
+5:	3:country code 594\nFrench Guiana\nISO-3166 GF GUF 254	4:areacode phone	45:2/1995
+5:	3:country code 689\nFrench Polynesia - Tahiti\nISO-3166 PF PYF 258	4:areacode phone	45:2/1995
+5:	3:country code xxx\nFrench Southern and Antarctic Territories ( Saint Paul, New Amsterdam )\nISO-3166 TF ATF 260	4:areacode phone	45:2/1995
+5:	3:country code 241\nGabon\nISO-3166 GA GAB 266	4:areacode phone	45:2/1995
+5:	3:country code 220\nGambia\nISO-3166 GM GMB 270	4:areacode phone	45:2/1995
+5:	3:country code 7\nGeorgia\nISO-3166 GE GEO 268	4:areacode phone	45:2/1995
+5:	3:country code 49\nGermany\nISO-3166 DE DEU 280	4:areacode phone	45:2/1995
+5:	3:country code 233\nGhana\nISO-3166 GH GHA 288	4:areacode phone	45:2/1995
+5:	3:country code 350\nGibraltar\nISO-3166 GI GIB 292	4:areacode phone	45:2/1995
+5:	3:country code 30\nGreece\nISO-3166 GR GRC 300	4:areacode phone	45:2/1995
+5:	3:country code 299\nGreenland\nISO-3166 GL GRL 304	4:areacode phone	45:2/1995
+5:	3:country code xxx\nGrenada\nISO-3166 GD GRD 308	4:areacode phone	45:2/1995
+5:	3:country code 590\nGuadeloupe, Saint Barthelemy, French side of Saint Martin\nISO-3166 GP GLP 312	4:areacode phone	45:2/1995
+5:	3:country code 671\nGuam\nISO-3166 GU GUM 316	4:areacode phone	45:2/1995
+5:	3:country code 502\nGuatemala\nISO-3166 GT GTM 320	4:areacode phone	45:2/1995
+5:	3:country code 224\nGuinea\nISO-3166 GN GIN 324	4:areacode phone	45:2/1995
+5:	3:country code 245\nGuinea Bissau\nISO-3166 GW GNB 624	4:areacode phone	45:2/1995
+5:	3:country code 592\nGuyana\nISO-3166 GY GUY 328	4:areacode phone	45:2/1995
+5:	3:country code 509\nHaiti\nISO-3166 HT HTI 332	4:areacode phone	45:2/1995
+5:	3:country code xxx\nHeard Island and McDonald Islands\nISO-3166 HM HMD 334	4:areacode phone	45:2/1995
+5:	3:country code 504\nHonduras\nISO-3166 HN HND 340	4:areacode phone	45:2/1995
+5:	3:country code 852\nHong Kong\nISO-3166 HK HKG 344	4:areacode phone	45:2/1995
+5:	3:country code 36\nHungary\nISO-3166 HU HUN 348	4:areacode phone	45:2/1995
+5:	3:country code 354\nIceland\nISO-3166 IS ISL 352	4:areacode phone	45:2/1995
+5:	3:country code 91\nIndia\nISO-3166 IN IND 356	4:areacode phone	45:2/1995
+5:	3:country code 62\nIndonesia\nISO-3166 ID IDN 360	4:areacode phone	45:2/1995
+5:	3:country code 98\nIran, Islamic Republic of\nISO-3166 IR IRN 364	4:areacode phone	45:2/1995
+5:	3:country code 964\nIraq\nISO-3166 IQ IRQ 368	4:areacode phone	45:2/1995
+5:	3:country code 353\nIreland\nISO-3166 IE IRL 372	4:areacode phone	45:2/1995
+5:	3:country code 972\nIsrael\nISO-3166 IL ISR 376	4:areacode phone	45:2/1995
+5:	3:country code 39\nItaly\nISO-3166 IT ITA 380	4:areacode phone	45:2/1995
+5:	3:country code xxx\nJamaica\nISO-3166 JM JAM 388	4:areacode phone	45:2/1995
+5:	3:country code 81\nJapan\nISO-3166 JP JPN 392	4:areacode phone	45:2/1995
+5:	3:country code 962\nJordan\nISO-3166 JO JOR 400	4:areacode phone	45:2/1995
+5:	3:country code 7\nKazakhstan\nISO-3166 KZ KAZ 398	4:areacode phone	45:2/1995
+5:	3:country code 254\nKenya\nISO-3166 KE KEN 404	4:areacode phone	45:2/1995
+5:	3:country code 686\nKiribati (former Gilbert Islands )\nISO-3166 KI KIR 296	4:areacode phone	45:2/1995
+5:	3:country code 850\nKorea, Democratic People's Republic of ( North )\nISO-3166 KP PRK 408	4:areacode phone	45:2/1995
+5:	3:country code 82\nKorea, Republic of ( South )\nISO-3166 KR KOR 410	4:areacode phone	45:2/1995
+5:	3:country code 965\nKuwait\nISO-3166 KW KWT 414	4:areacode phone	45:2/1995
+5:	3:country code 7\nKyrgyzstan ( Kyrgyz Republic )\nISO-3166 KG KGZ 417	4:areacode phone	45:2/1995
+5:	3:country code 856\nLaos, People's Democratic Republic\nISO-3166 LA LAO 418	4:areacode phone	45:2/1995
+5:	3:country code 7-013\nLatvia\nISO-3166 LV LVA 428	4:areacode phone	45:2/1995
+5:	3:country code 961\nLebanon\nISO-3166 LB LBN 422	4:areacode phone	45:2/1995
+5:	3:country code 266\nLesotho\nISO-3166 LS LSO 426	4:areacode phone	45:2/1995
+5:	3:country code 231\nLiberia\nISO-3166 LR LBR 430	4:areacode phone	45:2/1995
+5:	3:country code 218\nLibyan Arab Jamahiriya - Libya\nISO-3166 LY LBY 434	4:areacode phone	45:2/1995
+5:	3:country code 41-75\nLiechtenstein\nISO-3166 LI LIE 438	4:areacode phone	45:2/1995
+5:	3:country code 7-012\nLithuania\nISO-3166 LT LTU 440	4:areacode phone	45:2/1995
+5:	3:country code 352\nLuxembourg\nISO-3166 LU LUX 442	4:areacode phone	45:2/1995
+5:	3:country code 853\nMacao (also Macau )\nISO-3166 MO MAC 446	4:areacode phone	45:2/1995
+5:	3:country code 389\nMacedonia\nISO-3166 MK MKD 807	4:areacode phone	45:2/1995
+5:	3:country code 261\nMadagascar\nISO-3166 MG MDG 450	4:areacode phone	45:2/1995
+5:	3:country code 265\nMalawi\nISO-3166 MW MWI 454	4:areacode phone	45:2/1995
+5:	3:country code 60\nMalaysia\nISO-3166 MY MYS 458	4:areacode phone	45:2/1995
+5:	3:country code 960\nMaldives\nISO-3166 MV MDV 462	4:areacode phone	45:2/1995
+5:	3:country code 223\nMali\nISO-3166 ML MLI 466	4:areacode phone	45:2/1995
+5:	3:country code 356\nMalta\nISO-3166 MT MLT 470	4:areacode phone	45:2/1995
+5:	3:country code 871\nMarisat - Atlantic Ocean code for ships (Caribbean & Mediterranean too)	4:areacode phone	45:2/1995
+5:	3:country code 873\nMarisat - Indian Ocean code for ships	4:areacode phone	45:2/1995
+5:	3:country code 872\nMarisat - Pacific Ocean code for ships	4:areacode phone	45:2/1995
+5:	3:country code 692\nMarshall Islands\nISO-3166 MH MHL 584	4:areacode phone	45:2/1995
+5:	3:country code 596\nMartinique ( French Antilles )\nISO-3166 MQ MTQ 474	4:areacode phone	45:2/1995
+5:	3:country code 222\nMauritania\nISO-3166 MR MRT 478	4:areacode phone	45:2/1995
+5:	3:country code 230\nMauritius\nISO-3166 MU MUS 480	4:areacode phone	45:2/1995
+5:	3:country code 269\nMayotte\nISO-3166 YT MYT 175	4:areacode phone	45:2/1995
+5:	3:country code 52\nMexico\nISO-3166 MX MEX 484	4:areacode phone	45:2/1995
+5:	3:country code 691\nMicronesia (F.S. of Polynesia)\nISO-3166 FM FSM 583	4:areacode phone	45:2/1995
+5:	3:country code 7\nMoldova\nISO-3166 MD MDA 498	4:areacode phone	45:2/1995
+5:	3:country code 33-93\nMonaco\nISO-3166 MC MCO 492	4:areacode phone	45:2/1995
+5:	3:country code 976\nMongolia\nISO-3166 MN MNG 496	4:areacode phone	45:2/1995
+5:	3:country code xxx\nMontserrat\nISO-3166 MS MSR 500	4:areacode phone	45:2/1995
+5:	3:country code 212\nMorocco\nISO-3166 MA MAR 504	4:areacode phone	45:2/1995
+5:	3:country code 258\nMozambique\nISO-3166 MZ MOZ 508	4:areacode phone	45:2/1995
+5:	3:country code 95\nMyanmar (former Burma )\nISO-3166 MM MMR 104	4:areacode phone	45:2/1995
+5:	3:country code 264\nNamibia (former South-West Africa )\nISO-3166 NA NAM 516	4:areacode phone	45:2/1995
+5:	3:country code 674\nNauru\nISO-3166 NR NRU 520	4:areacode phone	45:2/1995
+5:	3:country code 977\nNepal\nISO-3166 NP NPL 524	4:areacode phone	45:2/1995
+5:	3:country code 31\nNetherlands\nISO-3166 NL NLD 528	4:areacode phone	45:2/1995
+5:	3:country code 599\nNetherlands Antilles\nISO-3166 AN ANT 532	4:areacode phone	45:2/1995
+5:	3:country code xxx\nNeutral Zone\nISO-3166 NT NTZ 536	4:areacode phone	45:2/1995
+5:	3:country code 687\nNew Caledonia\nISO-3166 NC NCL 540	4:areacode phone	45:2/1995
+5:	3:country code 64\nNew Zealand\nISO-3166 NZ NZL 554	4:areacode phone	45:2/1995
+5:	3:country code 505\nNicaragua\nISO-3166 NI NIC 558	4:areacode phone	45:2/1995
+5:	3:country code 227\nNiger\nISO-3166 NE NER 562	4:areacode phone	45:2/1995
+5:	3:country code 234\nNigeria\nISO-3166 NG NGA 566	4:areacode phone	45:2/1995
+5:	3:country code 683\nNiue\nISO-3166 NU NIU 570	4:areacode phone	45:2/1995
+5:	3:country code 672\nNorfolk Island\nISO-3166 NF NFK 574	4:areacode phone	45:2/1995
+5:	3:country code 670\nNorth Mariana Islands - Saipan\nISO-3166 MP MNP 580	4:areacode phone	45:2/1995
+5:	3:country code 47\nNorway\nISO-3166 NO NOR 578	4:areacode phone	45:2/1995
+5:	3:country code 968\nOman\nISO-3166 OM OMN 512	4:areacode phone	45:2/1995
+5:	3:country code 92\nPakistan\nISO-3166 PK PAK 586	4:areacode phone	45:2/1995
+5:	3:country code 680\nPalau\nISO-3166 PW PLW 585	4:areacode phone	45:2/1995
+5:	3:country code 507\nPanama\nISO-3166 PA PAN 590	4:areacode phone	45:2/1995
+5:	3:country code 675\nPapua New Guinea\nISO-3166 PG PNG 598	4:areacode phone	45:2/1995
+5:	3:country code 595\nParaguay\nISO-3166 PY PRY 600	4:areacode phone	45:2/1995
+5:	3:country code 51\nPeru\nISO-3166 PE PER 604	4:areacode phone	45:2/1995
+5:	3:country code 63\nPhilippines\nISO-3166 PH PHL 608	4:areacode phone	45:2/1995
+5:	3:country code xxx\nPitcairn Island\nISO-3166 PN PCN 612	4:areacode phone	45:2/1995
+5:	3:country code 48\nPoland\nISO-3166 PL POL 616	4:areacode phone	45:2/1995
+5:	3:country code 351\nPortugal (includes Azores )\nISO-3166 PT PRT 620	4:areacode phone	45:2/1995
+5:	3:country code 809\nPuerto Rico\nISO-3166 PR PRI 630	4:areacode phone	45:2/1995
+5:	3:country code 974\nQatar\nISO-3166 QA QAT 634	4:areacode phone	45:2/1995
+5:	3:country code 262\nReunion\nISO-3166 RE REU 638	4:areacode phone	45:2/1995
+5:	3:country code 40\nRomania\nISO-3166 RO ROM 642	4:areacode phone	45:2/1995
+5:	3:country code 7\nRussian Federation\nISO-3166 RU RUS 643	4:areacode phone	45:2/1995
+5:	3:country code 250\nRwanda\nISO-3166 RW RWA 646	4:areacode phone	45:2/1995
+5:	3:country code 290\nSaint Helena [may not be an official code; listed for use by British Telecom]\nISO-3166 SH SHN 654	4:areacode phone	45:2/1995
+5:	3:country code xxx\nSaint Kitts and Nevis\nISO-3166 KN KNA 659	4:areacode phone	45:2/1995
+5:	3:country code xxx\nSaint Lucia\nISO-3166 LC LCA 662	4:areacode phone	45:2/1995
+5:	3:country code xxx\nSaint Vincent and the Grenadines\nISO-3166 VC VCT 670	4:areacode phone	45:2/1995
+5:	3:country code 508\nSaint Pierre &(et) Miquelon\nISO-3166 PM SPM 666	4:areacode phone	45:2/1995
+5:	3:country code 685\nSamoa ( Western )\nISO-3166 WS WSM 882	4:areacode phone	45:2/1995
+5:	3:country code 295\nSan Marino (not in service yet; has been reached via Italy as 39 541)\nISO-3166 SM SMR 674	4:areacode phone	45:2/1995
+5:	3:country code 239\nSao Tome and Principe\nISO-3166 ST STP 678	4:areacode phone	45:2/1995
+5:	3:country code 966\nSaudi Arabia\nISO-3166 SA SAU 682	4:areacode phone	45:2/1995
+5:	3:country code 221\nSenegal\nISO-3166 SN SEN 686	4:areacode phone	45:2/1995
+5:	3:country code 248\nSeychelles\nISO-3166 SC SYC 690	4:areacode phone	45:2/1995
+5:	3:country code 232\nSierra Leone\nISO-3166 SL SLE 694	4:areacode phone	45:2/1995
+5:	3:country code 65\nSingapore\nISO-3166 SG SGP 702	4:areacode phone	45:2/1995
+5:	3:country code 42\Slovakia ( Slovak Republic )\nISO-3166 SK SVK 703	4:areacode phone	45:2/1995
+5:	3:country code 38\Slovenia\nISO-3166 SI SVN 705	4:areacode phone	45:2/1995
+5:	3:country code 677\nSolomon Islands\nISO-3166 SB SLB 090	4:areacode phone	45:2/1995
+5:	3:country code 252\nSomalia\nISO-3166 SO SOM 706	4:areacode phone	45:2/1995
+5:	3:country code 27\nSouth Africa\nISO-3166 ZA ZAF 710	4:areacode phone	45:2/1995
+5:	3:country code xxx\nSouth Georgia and the South Sandwich Islands\nISO-3166 GS SGS 239	4:areacode phone	45:2/1995
+5:	3:country code 34\nSpain including Balearic Islands\nISO-3166 ES ESP 724	4:areacode phone	45:2/1995
+5:	3:country code 94\nSri Lanka\nISO-3166 LK LKA 144	4:areacode phone	45:2/1995
+5:	3:country code 249\nSudan\nISO-3166 SD SDN 736	4:areacode phone	45:2/1995
+5:	3:country code 597\nSurinam (also Suriname )\nISO-3166 SR SUR 740	4:areacode phone	45:2/1995
+5:	3:country code xxx\nSvalbard and Jan Mayen Islands\nISO-3166 SJ SJM 744	4:areacode phone	45:2/1995
+5:	3:country code 268\nSwaziland\nISO-3166 SZ SWZ 748	4:areacode phone	45:2/1995
+5:	3:country code 46\nSweden\nISO-3166 SE SWE 752	4:areacode phone	45:2/1995
+5:	3:country code 41\nSwitzerland\nISO-3166 CH CHE 756	4:areacode phone	45:2/1995
+5:	3:country code 963\nSyrian Arab Republic - Syria\nISO-3166 SY SYR 760	4:areacode phone	45:2/1995
+5:	3:country code 886\nTaiwan, Province of China\nISO-3166 TW TWN 158	4:areacode phone	45:2/1995
+5:	3:country code 7\nTajikistan\nISO-3166 TJ TJK 762	4:areacode phone	45:2/1995
+5:	3:country code 255\nTanzania\nISO-3166 TZ TZA 834	4:areacode phone	45:2/1995
+5:	3:country code 66\nThailand\nISO-3166 TH THA 764	4:areacode phone	45:2/1995
+5:	3:country code 228\nTogo\nISO-3166 TG TGO 768	4:areacode phone	45:2/1995
+5:	3:country code 690\nTokelau\nISO-3166 TK TKL 772	4:areacode phone	45:2/1995
+5:	3:country code 676\nTonga\nISO-3166 TO TON 776	4:areacode phone	45:2/1995
+5:	3:country code 296\nTrinidad and Tobago (not in service yet; has been reached via +1 809)\nISO-3166 TT TTO 780	4:areacode phone	45:2/1995
+5:	3:country code 216\nTunisia\nISO-3166 TN TUN 788	4:areacode phone	45:2/1995
+5:	3:country code 90\nTurkey\nISO-3166 TR TUR 792	4:areacode phone	45:2/1995
+5:	3:country code 7\nTurkmenistan\nISO-3166 TM TKM 795	4:areacode phone	45:2/1995
+5:	3:country code xxx\nTurks and Caicos Islands\nISO-3166 TC TCA 796	4:areacode phone	45:2/1995
+5:	3:country code 688\nTuvalu (former Ellice Islands )\nISO-3166 TV TUV 798	4:areacode phone	45:2/1995
+5:	3:country code 256\nUganda\nISO-3166 UG UGA 800	4:areacode phone	45:2/1995
+5:	3:country code 7\nUkraine\nISO-3166 UA UKR 804	4:areacode phone	45:2/1995
+5:	3:country code 971\nUnited Arab Emirates\nISO-3166 AE ARE 784	4:areacode phone	45:2/1995
+5:	3:country code 44\nUnited Kingdom, Great Britain\nISO-3166 GB GBR 826	4:areacode phone	45:2/1995
+5:	3:country code 1\nUnited States\nISO-3166 US USA 840	4:areacode phone	45:2/1995
+5:	3:country code xxx\nUnited States Minor Outlying Islands\nISO-3166 UM UMI 581	4:areacode phone	45:2/1995
+5:	3:country code 598\nUruguay\nISO-3166 UY URY 858	4:areacode phone	45:2/1995
+5:	3:country code 7\nUzbekistan\nISO-3166 UZ UZB 860	4:areacode phone	45:2/1995
+5:	3:country code 678\nVanuatu (former New Hebrides )\nISO-3166 VU VUT 548	4:areacode phone	45:2/1995
+5:	3:country code 39\nVatican City State - Holy See\nISO-3166 VA VAT 336	4:areacode phone	45:2/1995
+5:	3:country code 58\nVenezuela\nISO-3166 VE VEN 862	4:areacode phone	45:2/1995
+5:	3:country code 84\nViet Nam\nISO-3166 VN VNM 704	4:areacode phone	45:2/1995
+5:	3:country code xxx\nVirgin Islands, British\nISO-3166 VG VGB 092	4:areacode phone	45:2/1995
+5:	3:country code 809\nVirgin Islands, United States\nISO-3166 VI VIR 850	4:areacode phone	45:2/1995
+5:	3:country code 681\nWallis and Futuna Islands\nISO-3166 WF WLF 876	4:areacode phone	45:2/1995
+5:	3:country code xxx\nWestern Sahara\nISO-3166 EH ESH 732	4:areacode phone	45:2/1995
+5:	3:country code 967\nYemen\nISO-3166 YE YEM 887	4:areacode phone	45:2/1995
+5:	3:country code 969\nYemen\nISO-3166 YE YEM 887	4:areacode phone	45:2/1995
+5:	3:country code 38\nYugoslavia\nISO-3166 YU YUG 891	4:areacode phone	45:2/1995
+5:	3:country code 243\nZaire (former Republic of the Congo )\nISO-3166 ZR ZAR 180	4:areacode phone	45:2/1995
+5:	3:country code 260\nZambia\nISO-3166 ZM ZMB 894	4:areacode phone	45:2/1995
+5:	3:country code 259\nZanzibar (this code is assigned in E.163, but use Tanzania, 255 54)	4:areacode phone	45:2/1995
+5:	3:country code 263\nZimbabwe\nISO-3166 ZW ZWE 716	4:areacode phone	45:2/1995
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+a3 1
+5:	3:area code 201\nMorristown, Newark and Jersey City, (Northeast) New Jersey	4:areacode phone	45:2/1995
+d5 1
+a5 1
+5:	3:area code 203\nAll parts of Connecticut	4:areacode phone	45:2/1995
+d7 2
+a8 2
+5:	3:area code 205\n(Northern) Alabama	4:areacode phone	45:2/1995
+5:	3:area code 206\nSeattle, Tacoma, and Everett, Washington	4:areacode phone	45:2/1995
+d18 1
+a18 1
+5:	3:area code 216\nAkron, Cleveland, Massillon and Youngstown, (Northeast) Ohio	4:areacode phone	45:2/1995
+d21 1
+a21 1
+5:	3:area code 219\nGary, Hammond, Fort Wayne and South Bend, (Northern) Indiana	4:areacode phone	45:2/1995
+d26 1
+a26 1
+5:	3:area code 303\nDenver, Colorado	4:areacode phone	45:2/1995
+d28 1
+a28 1
+5:	3:area code 305\nFort Lauderdale, Key West and Miami, (Southeast) Florida	4:areacode phone	45:2/1995
+d32 1
+a32 1
+5:	3:area code 309\nMoline, Rock Island and Peoria, (West Central) Illinois	4:areacode phone	45:2/1995
+d38 1
+a38 1
+5:	3:area code 315\nOswego, Syracuse and Utica, (North Central) New York	4:areacode phone	45:2/1995
+d42 3
+a44 3
+5:	3:area code 319\nDubuque, Cedar Rapids and Iowa City, (Eastern) Iowa	4:areacode phone	45:2/1995
+5:	3:area code 334\n(Southern) Alabama	4:areacode phone	45:2/1995
+5:	3:area code 360\nVancouver, (Western) Washington	4:areacode phone	45:2/1995
+d49 1
+a49 1
+5:	3:area code 404\nAtlanta, (Northern) Georgia	4:areacode phone	45:2/1995
+d59 1
+a59 1
+5:	3:area code 414\nGreen Bay, Milwaukee and Racine, (Eastern) Wisconsin	4:areacode phone	45:2/1995
+d65 1
+a65 1
+5:	3:area code 423\nChattanooga and Nashville, (Eastern) Tennessee	4:areacode phone	45:2/1995
+d67 1
+a67 1
+5:	3:area code 500\n[ Reserved - Service Access Code ]	4:areacode phone	45:2/1995
+d70 1
+a70 1
+5:	3:area code 503\nAll parts of Oregon	4:areacode phone	45:2/1995
+d74 2
+a75 2
+5:	3:area code 507\nRochester, Austin and Winona, (Southern) Minnesota	4:areacode phone	45:2/1995
+5:	3:area code 508\nWorcester, Framingham and New Bedford, (Eastern) Massachusetts	4:areacode phone	45:2/1995
+d87 4
+a90 3
+5:	3:area code 520\nAll of Arizona except Phoenix	4:areacode phone	45:2/1995
+5:	3:area code 540\nArlington and Roanoke, (Northern) Virginia	4:areacode phone	45:2/1995
+5:	3:area code 562\nParts of Los Angeles, California\noverlays 310	4:areacode phone	45:2/1995
+d93 1
+a93 1
+5:	3:area code 602\nPhoenix, Arizona	4:areacode phone	45:2/1995
+d98 1
+a98 1
+5:	3:area code 607\nBinghamton, Elmira and Ithaca, (South Central) New York	4:areacode phone	45:2/1995
+d100 1
+a100 1
+5:	3:area code 609\nAtlantic City, Camden and Trenton, (Southern) New Jersey	4:areacode phone	45:2/1995
+d107 1
+a107 1
+5:	3:area code 615\nChattanooga and Nashville, (Central) Tennessee	4:areacode phone	45:2/1995
+d116 1
+a116 1
+5:	3:area code 703\nArlington and Roanoke, (Western) Virginia	4:areacode phone	45:2/1995
+d120 3
+a122 3
+5:	3:area code 706\nAugusta, Columbus and Rome, (Northern) Georgia	4:areacode phone	45:2/1995
+5:	3:area code 707\nEureka, Napa and Santa Rosa, (North Coastal) California	4:areacode phone	45:2/1995
+5:	3:area code 708\nAurora, Elgin, Evanston and Waukegan, (Northeast) Illinois	4:areacode phone	45:2/1995
+d130 2
+a131 2
+5:	3:area code 716\nBuffalo, Niagara Falls and Rochester, (Western) New York	4:areacode phone	45:2/1995
+5:	3:area code 717\nHarrisburg, Pottsville and Scranton, (East Central) Pennsylvania	4:areacode phone	45:2/1995
+d134 1
+d138 3
+a140 3
+5:	3:area code 803\ncity1, city2, (Southeast) South Carolina	4:areacode phone	45:2/1995
+5:	3:area code 804\nCharlottesville, Norfolk and Richmond, (Southeast) Virginia	4:areacode phone	45:2/1995
+5:	3:area code 805\nBakersfield, Ventura and Simi Valley, (South Central) California	4:areacode phone	45:2/1995
+d147 2
+a148 2
+5:	3:area code 812\nBloomington, Evansville and Terre Haute, (Southern) Indiana	4:areacode phone	45:2/1995
+5:	3:area code 813\nTampa, Florida	4:areacode phone	45:2/1995
+d150 1
+a150 1
+5:	3:area code 815\nFreeport, Joliet and Rockford, (Northern) Illinois	4:areacode phone	45:2/1995
+d152 1
+a152 1
+5:	3:area code 817\nFort Worth, Temple and Waco, (North Central) Texas	4:areacode phone	45:2/1995
+d155 2
+a156 1
+5:	3:area code 864\ncity1, city2, (Northwest) South Carolina	4:areacode phone	45:2/1995
+d173 2
+a174 2
+5:	3:area code 914\nNew Rochelle, White Plains and Poughkeepsie, (Southern) New York	4:areacode phone	45:2/1995
+5:	3:area code 915\nAbilene, El Paso and Odessa, (Western) Texas	4:areacode phone	45:2/1995
+d178 3
+a180 3
+5:	3:area code 919\nGreenville, Raleigh and Winston-Salem, (Eastern) North Carolina	4:areacode phone	45:2/1995
+5:	3:area code 941\nFort Myers and St. Petersburg, (Southwest) Florida	4:areacode phone	45:2/1995
+5:	3:area code 970\nBoulder and Grand Junction, (Northern and Western) Colorado	4:areacode phone	45:2/1995
+@

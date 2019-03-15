@@ -1,0 +1,895 @@
+%!PS-Adobe-3.0
+%%Creator: groff version 1.04
+%%DocumentNeededResources: font Times-Bold
+%%+ font Times-Roman
+%%+ font Times-Italic
+%%+ font Courier
+%%+ font Courier-Bold
+%%+ font Symbol
+%%DocumentSuppliedResources: procset grops 1.04 0
+%%Pages: 7
+%%PageOrder: Ascend
+%%Orientation: Portrait
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset grops 1.04 0
+%!PS-Adobe-3.0 Resource-ProcSet
+
+/setpacking where {
+	pop
+	currentpacking
+	true setpacking
+} if
+
+/grops 120 dict dup begin 
+
+% The ASCII code of the space character.
+/SC 32 def
+
+/A /show load def
+/B { 0 SC 3 -1 roll widthshow } bind def
+/C { 0 exch ashow } bind def
+/D { 0 exch 0 SC 5 2 roll awidthshow } bind def
+/E { 0 rmoveto show } bind def
+/F { 0 rmoveto 0 SC 3 -1 roll widthshow } bind def
+/G { 0 rmoveto 0 exch ashow } bind def
+/H { 0 rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/I { 0 exch rmoveto show } bind def
+/J { 0 exch rmoveto 0 SC 3 -1 roll widthshow } bind def
+/K { 0 exch rmoveto 0 exch ashow } bind def
+/L { 0 exch rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/M { rmoveto show } bind def
+/N { rmoveto 0 SC 3 -1 roll widthshow } bind def
+/O { rmoveto 0 exch ashow } bind def
+/P { rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/Q { moveto show } bind def 
+/R { moveto 0 SC 3 -1 roll widthshow } bind def
+/S { moveto 0 exch ashow } bind def
+/T { moveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+
+% name size font SF -
+
+/SF {
+	findfont exch
+	[ exch dup 0 exch 0 exch neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+% name a c d font MF -
+
+/MF {
+	findfont
+	[ 5 2 roll
+	0 3 1 roll % b
+	neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+/level0 0 def
+/RES 0 def
+/PL 0 def
+/LS 0 def
+
+% BP -
+
+/BP {
+	/level0 save def
+	1 setlinecap
+	1 setlinejoin
+	72 RES div dup scale
+	LS {
+		90 rotate
+	} {
+		0 PL translate
+	} ifelse
+	1 -1 scale
+} bind def
+
+/EP {
+	level0 restore
+	showpage
+} bind def
+
+
+% centerx centery radius startangle endangle DA -
+
+/DA {
+	newpath arcn stroke
+} bind def
+
+% x y SN - x' y'
+% round a position to nearest (pixel + (.25,.25))
+
+/SN {
+	transform 
+	.25 sub exch .25 sub exch
+	round .25 add exch round .25 add exch
+	itransform
+} bind def
+	
+% endx endy startx starty DL -
+% we round the endpoints of the line, so that parallel horizontal
+% and vertical lines will appear even
+
+/DL {
+	SN
+	moveto
+	SN
+	lineto stroke
+} bind def
+
+% centerx centery radius DC -
+
+/DC {
+	newpath 0 360 arc closepath
+} bind def
+
+
+/TM matrix def
+
+%  width height centerx centery DE -
+
+/DE {
+	TM currentmatrix pop
+	translate scale newpath 0 0 .5 0 360 arc closepath
+	TM setmatrix
+} bind def
+
+% these are for splines
+
+/RC /rcurveto load def
+/RL /rlineto load def
+/ST /stroke load def
+/MT /moveto load def
+/CL /closepath load def
+
+% fill the last path
+
+% amount FL -
+
+/FL {
+	currentgray exch setgray fill setgray
+} bind def
+
+% fill with the ``current color''
+
+/BL /fill load def
+
+/LW /setlinewidth load def
+% new_font_name encoding_vector old_font_name RE -
+
+/RE {
+	findfont
+	dup maxlength dict begin
+	{
+		1 index /FID ne { def } { pop pop } ifelse
+	} forall
+	/Encoding exch def
+	dup /FontName exch def
+	currentdict end definefont pop
+} bind def
+
+/DEFS 0 def
+
+% hpos vpos EBEGIN -
+
+/EBEGIN {
+	moveto
+	DEFS begin
+} bind def
+
+/EEND /end load def
+
+/CNT 0 def
+/level1 0 def
+
+% llx lly newwid wid newht ht newllx newlly PBEGIN -
+
+/PBEGIN {
+	/level1 save def
+	translate
+	div 3 1 roll div exch scale
+	neg exch neg exch translate
+	% set the graphics state to default values
+	0 setgray
+	0 setlinecap
+	1 setlinewidth
+	0 setlinejoin
+	10 setmiterlimit
+	[] 0 setdash
+	/setstrokeadjust where {
+		pop
+		false setstrokeadjust
+	} if
+	/setoverprint where {
+		pop
+		false setoverprint
+	} if
+	newpath
+	/CNT countdictstack def
+	userdict begin
+	/showpage {} def
+} bind def
+
+/PEND {
+	clear
+	countdictstack CNT sub { end } repeat
+	level1 restore
+} bind def
+
+end def
+
+/setpacking where {
+	pop
+	setpacking
+} if
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Times-Italic
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Symbol
+grops begin/DEFS 1 dict def DEFS begin/u{.001 mul}bind def end/RES 72 def/PL
+792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron/scaron/zcaron
+/Ydieresis/trademark/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/space/exclam
+/quotedbl/numbersign/dollar/percent/ampersand/quoteright/parenleft/parenright
+/asterisk/plus/comma/hyphen/period/slash/zero/one/two/three/four/five/six/seven
+/eight/nine/colon/semicolon/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J
+/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright/circumflex
+/underscore/quoteleft/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z
+/braceleft/bar/braceright/tilde/.notdef/quotesinglbase/guillemotleft
+/guillemotright/bullet/florin/fraction/perthousand/dagger/daggerdbl/endash
+/emdash/ff/fi/fl/ffi/ffl/dotlessi/dotlessj/grave/hungarumlaut/dotaccent/breve
+/caron/ring/ogonek/quotedblleft/quotedblright/oe/lslash/quotedblbase/OE/Lslash
+/.notdef/exclamdown/cent/sterling/currency/yen/brokenbar/section/dieresis
+/copyright/ordfeminine/guilsinglleft/logicalnot/minus/registered/macron/degree
+/plusminus/twosuperior/threesuperior/acute/mu/paragraph/periodcentered/cedilla
+/onesuperior/ordmasculine/guilsinglright/onequarter/onehalf/threequarters
+/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex/Idieresis/Eth
+/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis/multiply/Oslash/Ugrave
+/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls/agrave/aacute/acircumflex
+/atilde/adieresis/aring/ae/ccedilla/egrave/eacute/ecircumflex/edieresis/igrave
+/iacute/icircumflex/idieresis/eth/ntilde/ograve/oacute/ocircumflex/otilde
+/odieresis/divide/oslash/ugrave/uacute/ucircumflex/udieresis/yacute/thorn
+/ydieresis]def/Courier-Bold@0 ENC0/Courier-Bold RE/Courier@0 ENC0/Courier RE
+/Times-Italic@0 ENC0/Times-Italic RE/Times-Roman@0 ENC0/Times-Roman RE
+/Times-Bold@0 ENC0/Times-Bold RE
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 18/Times-Bold@0 SF(The CCSO Nameserver \255 A Description)134.145 105.6 Q
+/F1 10/Times-Roman@0 SF(by)283 139.2 Q(Steven Dorner)215.73 151.2 Q
+(s\255dorner@uiuc.edu)7.5 E(Computer and Communications Services Of)192.265
+163.2 Q(\214ce)-.18 E(University of Illinois at Urbana)225.23 175.2 Q
+(July 26, 1989)260.915 199.2 Q(updated by)265.92 235.2 Q(Paul Pomes)214.605
+247.2 Q(paul\255pomes@uiuc.edu)7.5 E(Computer and Communications Services Of)
+192.265 259.2 Q(\214ce)-.18 E(University of Illinois at Urbana)225.23 271.2 Q
+(August 2, 1992)257.305 295.2 Q/F2 10/Times-Bold@0 SF(Intr)72 359.4 Q(oduction)
+-.18 E F1 .023(This document provides an overview of the CCSO Nameserver)72
+375.6 R 5.023(.I)-.55 G 2.523(ts)335.777 375.6 S .023
+(hould give the reader a good idea of the)344.97 375.6 R
+(capabilities, implementation and performance of the Nameserver)72 387.6 Q(.)
+-.55 E F2(Overview)72 411.6 Q F1 1.38
+(The CCSO Nameserver is a computer resident \231phone book\232.)72 427.8 R 1.38
+(It can keep a relatively small amount of)6.38 F .297
+(information about a relatively lar)72 439.8 R .297
+(ge number of people or things, and provide fast access to that information)
+-.18 F .466(over the Internet.)72 453.8 R/F3 7/Times-Roman@0 SF(1)141.522 449.8
+Q F1 .467(Here at the University of Illinois, we keep the contents of the \231\
+white pages\232 of our)147.988 453.8 R/F4 10/Times-Italic@0 SF(Stu-)2.967 E
+(dent/Staff Dir)72 465.8 Q(ectory)-.37 E F1
+(as well as other selected information, in the Nameserver)2.5 E(.)-.55 E .52
+(Unlike a printed directory)72 482 R 3.02(,t)-.65 G .519
+(he information in the CCSO Nameserver is dynamic.)184.8 482 R .519
+(It can be updated at any)5.519 F .208(time, from any computer on the Internet\
+ capable of running the \231client\232 program,)72 496 R F4(ph)2.708 E F1(.)A
+F3(2)414.634 492 Q F1 .209(The Nameserver can)420.842 496 R .41
+(also be taught to keep new)72 508 R F2(types)2.91 E F1 .41
+(of information, such as electronic mail addresses or of)2.91 F .41
+(\214ce hours, without)-.18 F
+(recompilation or change to the existing database.)72 520 Q .565(The remainder\
+ of this document will examine in somewhat further depth three aspects of the \
+Nameserver;)72 536.2 R 1.698(what it does \()72 548.2 R F2(Capabilities)A F1
+1.698(\), how it does them \()B F2(Implementation)A F1 1.698
+(\), and how well it does them \()B F2(Perfor)A(-)-.37 E(mance)72 560.2 Q F1
+2.723(\). There)B .224(are in\255depth documents describing some of these aspe\
+cts of the Nameserver; the interested)2.723 F(reader may refer to the)72 572.2
+Q F2(Refer)2.5 E(ences)-.18 E F1
+(section for the titles of these other documents.)2.5 E F2
+(Capabilities \212 The Database)72 596.2 Q F1 .664
+(The CCSO Nameserver manages a database that consists of many individual)72
+612.4 R F4(entries)3.163 E F1 5.663(.E)C .663(ach entry contains)429.914 612.4
+R 1.321(one or more)72 624.4 R F4(\214elds)3.821 E F1 3.822(,e)C 1.322
+(ach \214eld consisting of a one or more printable)158.655 624.4 R/F5 9
+/Times-Roman@0 SF(ASCII)3.822 E F1 1.322(characters \(including tab and)3.822 F
+3.03(newline\). Each)72 636.4 R .53(\214eld is associated with a particular)
+3.03 F F4 .53(\214eld description)3.03 F F1 .53
+(that is used to specify the behavior of)3.03 F 1.215(the \214eld.)72 648.4 R
+3.715<418c>6.215 G 1.215(eld description includes a name, a maximum length for\
+ the \214elds it describes, and certain)130.925 648.4 R .32 LW 76 658 72 658 DL
+80 658 76 658 DL 84 658 80 658 DL 88 658 84 658 DL 92 658 88 658 DL 96 658 92
+658 DL 100 658 96 658 DL 104 658 100 658 DL 108 658 104 658 DL 112 658 108 658
+DL 116 658 112 658 DL 120 658 116 658 DL 124 658 120 658 DL 128 658 124 658 DL
+132 658 128 658 DL 136 658 132 658 DL 140 658 136 658 DL 144 658 140 658 DL 148
+658 144 658 DL 152 658 148 658 DL 156 658 152 658 DL 160 658 156 658 DL 164 658
+160 658 DL 168 658 164 658 DL 172 658 168 658 DL 176 658 172 658 DL 180 658 176
+658 DL 184 658 180 658 DL 188 658 184 658 DL 192 658 188 658 DL 196 658 192 658
+DL 200 658 196 658 DL 204 658 200 658 DL 208 658 204 658 DL 212 658 208 658 DL
+216 658 212 658 DL/F6 8/Times-Roman@0 SF(Converted to portable n/trof)93.6 670
+Q 2(ff)-.144 G(ormat using the -me macros from funky Next W)190.328 670 Q
+(riteNow format \(icch\).)-.32 E/F7 5/Times-Roman@0 SF(1)93.6 680.4 Q F6(The c\
+ollection of local, regional, and national networks using the TCP/IP protocols\
+.)2 3.2 M F7(2)93.6 694 Q F6
+(At present this means 4.[23] BSD UNIX, VMS, VM/CMS, DOS, or Macintosh.)2 3.2 M
+EP
+%%Page: 2 2
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 256.05(2T)72 60 S(he CCSO Nameserver \255 A Description)
+339.72 60 Q/F1 10/Times-Italic@0 SF(pr)72 96 Q(operties)-.37 E/F2 10
+/Times-Roman@0 SF(that determine how the \214eld is used.)2.5 E .67(There are \
+essentially no intrinsic limits on the size of the database, in number of entr\
+ies, numbers of \214eld)72 112.2 R(descriptions, numbers of \214elds per entry)
+72 126.2 Q 2.5(,o)-.65 G 2.5(rs)242.44 126.2 S(izes of \214elds.)252.16 126.2 Q
+/F3 7/Times-Roman@0 SF(3)305.21 122.2 Q F2 .304(Certain \214elds)72 144.4 R F3
+(4)125.914 140.4 Q F2 .304(in the database are indexed.)132.218 144.4 R -.8(Wo)
+5.304 G .304(rds from these \214elds can be used as keys to select entries in)
+.8 F .312(the database.)72 156.4 R -.8(Wo)5.312 G .312(rds from any \214eld ma\
+y be used to re\214ne the selection made by the key \214elds.).8 F .313
+(The index-)5.313 F .156(ing scheme used is \231double\255hashing\232, and res\
+ults in very fast lookups for key \214elds.)72 168.4 R .155
+(The hash table is also)5.155 F(indexed to facilitate pattern matching on the \
+hash table \(and hence the database\).)72 180.4 Q F0
+(Capabilities \212 The Server)72 204.4 Q F2 .479(The database resides entirely\
+ on one computer and is managed by a server program,)72 220.6 R F1(qi)2.98 E F2
+.48(\(query interpreter\).)2.98 F .331(Multiple instances of)72 232.6 R F1(qi)
+2.831 E F2 .33(may be executing at any one time; access to the database is con\
+trolled by advisory)2.831 F 3.031(locks. Any)72 244.6 R .531(number of process\
+es may read the database, unless a process is writing the database, in which)
+3.031 F(case all processes must wait for that process to complete its work bef\
+ore beginning their own.)72 256.6 Q F1(Qi)72 274.8 Q F2 .155
+(uses a command\255reply scheme like that used by FTP)2.655 F(.)-1.11 E F3(5)
+300.125 270.8 Q F2 .154(It accepts commands from its standard input, and)306.28
+274.8 R .044(writes replies on its standard output.)72 286.8 R .044
+(Both commands and replies are couched in \231netascii\232; lines consisting)
+5.044 F .982(of printable)72 298.8 R/F4 9/Times-Roman@0 SF(ASCII)3.482 E F2
+.982(characters terminated with a newline \()3.482 F F4(ASCII)A F2 .981
+(10\) or carriage\255return newline \()3.482 F F4(ASCII)A F2(13)3.481 E F4
+(ASCII)72 310.8 Q F2 .396(10\) pair)2.896 F 5.396(.A)-.55 G(dditionally)144.737
+310.8 Q 2.896(,t)-.65 G .397(he backslash \231\\\232 is used to \231escape\232\
+ certain characters, as in the C program-)195.603 310.8 R(ming language.)72
+324.8 Q F3(6)133.66 320.8 Q F2 .516
+(Commands consist of a keyword optionally followed by one or more ar)72 341 R
+.516(guments or keywords.)-.18 F(Commands)5.516 E(include:)72 353 Q F0(query)
+2.507 E F2 .007(for querying the database;)2.507 F F0(change)2.507 E F2 .007
+(for changing \214elds in entries;)2.507 F F0(add)2.507 E F2 .006
+(for adding new entries.)2.507 F .87(Replies consist of a numerical code rangi\
+ng from \255599 to 599, and additional text.)72 365 R .87(The numerical codes)
+5.87 F 1.75(may indicate an operation in progress \(100\255199\), success \(20\
+0\255299\), a request for further information)72 377 R .497(\(300\255399\), te\
+mporary failure \(400\255499\), or permanent failure \(500\255599\).)72 389 R
+.498(Replies in the range from \255599)5.498 F .821(to \255100 indicate that f\
+urther replies are to be expected for the current command; they otherwise have\
+ the)72 401 R(same meanings as their positive counterparts.)72 413 Q .439
+(The behavior of)72 429.2 R F1(qi)2.939 E F2 .439
+(may be modi\214ed by use of certain)2.939 F F1(options)2.94 E F2 2.94(,a)C .44
+(ccessed by the)331.4 429.2 R F0(set)2.94 E F2 2.94(command. The)2.94 F(number)
+2.94 E .035(of available options is small; the most important options are)72
+441.2 R F1(echo)2.535 E F2 2.535(,w)C .035(hich causes)345.705 441.2 R F1(qi)
+2.535 E F2 .035(to print commands on its)2.535 F .431
+(output before executing them, and)72 453.2 R F1(limit)2.931 E F2 2.931(,w)C
+.431(hich allows the user to specify a maximum number of entries to)244.566
+453.2 R(which a command may be applied.)72 465.2 Q F1(Qi)72 481.4 Q F2 .346
+(operates in three dif)2.846 F .345(ferent modes; anonymous, login, and hero.)
+-.18 F .345(Each mode is more liberal than the pre-)5.345 F .815
+(vious in the operations it allows, and consequently more dif)72 493.4 R .815
+(\214cult to access.)-.18 F .815(Anonymous mode is used to)5.815 F .241
+(make queries of public information)72 507.4 R F3(7)214.054 503.4 Q F2 .241
+(and for a few other innocuous purposes.)220.295 507.4 R .24
+(In anonymous mode, there is)5.24 F 3.322(am)72 519.4 S .823(aximum number of \
+entries that can be viewed with one command; the purpose of this limitation is\
+ to)87.542 519.4 R 1.067
+(discourage the use of the Nameserver for the preparation of mailing lists.)72
+531.4 R 1.067(Anonymous mode is used for)6.067 F
+(most queries of the Nameserver)72 543.4 Q(.)-.55 E 1.878 -.7(To e)72 559.6 T
+.478(nter login mode, a user must identify himself as the owner of a particula\
+r Nameserver entry by giving).7 F(an)72 573.6 Q F1(alias)3.937 E F2 1.437
+(\(login name\) and a password.)3.937 F F3(8)232.54 569.6 Q F2 1.436
+(In addition to the capabilities of anonymous mode, login mode)239.976 573.6 R
+.32 LW 76 583.2 72 583.2 DL 80 583.2 76 583.2 DL 84 583.2 80 583.2 DL 88 583.2
+84 583.2 DL 92 583.2 88 583.2 DL 96 583.2 92 583.2 DL 100 583.2 96 583.2 DL 104
+583.2 100 583.2 DL 108 583.2 104 583.2 DL 112 583.2 108 583.2 DL 116 583.2 112
+583.2 DL 120 583.2 116 583.2 DL 124 583.2 120 583.2 DL 128 583.2 124 583.2 DL
+132 583.2 128 583.2 DL 136 583.2 132 583.2 DL 140 583.2 136 583.2 DL 144 583.2
+140 583.2 DL 148 583.2 144 583.2 DL 152 583.2 148 583.2 DL 156 583.2 152 583.2
+DL 160 583.2 156 583.2 DL 164 583.2 160 583.2 DL 168 583.2 164 583.2 DL 172
+583.2 168 583.2 DL 176 583.2 172 583.2 DL 180 583.2 176 583.2 DL 184 583.2 180
+583.2 DL 188 583.2 184 583.2 DL 192 583.2 188 583.2 DL 196 583.2 192 583.2 DL
+200 583.2 196 583.2 DL 204 583.2 200 583.2 DL 208 583.2 204 583.2 DL 212 583.2
+208 583.2 DL 216 583.2 212 583.2 DL/F5 5/Times-Roman@0 SF(3)93.6 593.6 Q/F6 8
+/Times-Roman@0 SF .722(Actually there are limits imposed by the 32-bit pointer\
+s used throughout the system.)2.721 3.2 N .722
+(Before those limits could be reached,)4.722 F(however)72 606.4 Q 2(,t)-.32 G
+(he database would likely be too lar)105.448 606.4 Q(ge to manage.)-.144 E F5
+(4)93.6 616.8 Q F6(Those whose \214eld descriptions in the)2 3.2 M/F7 8
+/Times-Italic@0 SF(.cnf)2 E F6(\214le contain the property \231Indexed\232.)2 E
+F5(5)93.6 630.4 Q F6(See RFC-959,)2 3.2 M F7(File T)2 E(ransfer Pr)-.44 E
+(otocol \(FTP\))-.296 E F6 2(,J)C 2(.P)245.812 633.6 S(ostel and J. Reynolds.)
+254.26 633.6 Q F5(6)93.6 644 Q F6 .224(The set of such escapes is much more li\
+mited than in C; only \231\\n\232 for newline, \231\\t\232 for tab, \231\\"\
+\232 for double-quote, and \231\\\\\232 for)2.224 3.2 N(backslash are allowed.)
+72 656.8 Q F5(7)93.6 667.2 Q F6(I.e., to view \214elds whose \214eld descripti\
+on contain the property \231Public\232.)2 3.2 M F5(8)93.6 680.8 Q F6 .017
+(Actually the user is asked to encrypt a string using his password, and)2.018
+3.2 N F7(qi)2.017 E F6 .017
+(compares the result returned with the result it obtained)2.017 F .342
+(by encrypting the same string with the user)72 693.6 R 1.223 -.44('s s).296 H
+.343(tored password.).44 F .343
+(This is to provide additional security when running)4.343 F F7(qi)2.343 E F6
+.343(over networks;)2.343 F(the user)72 703.2 Q .88 -.44('s p).296 H(assword i\
+s never sent \231in the clear\232 over a potentially insecure network.).44 E EP
+%%Page: 3 3
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver \255 A Description)72 60 Q(3)499 60
+Q/F1 10/Times-Roman@0 SF(allows the logged in user to change \214elds from his\
+ or her own entry in the Nameserver)72 98 Q(.)-.55 E/F2 7/Times-Roman@0 SF(9)
+420 94 Q F1 .761(Hero mode is entered either by entering login mode as a Names\
+erver \231hero\232 \(superuser\) or by running)72 114.2 R/F3 10/Times-Italic@0
+SF(qi)3.262 E F1 .146(directly from a terminal, rather than over a network.)72
+126.2 R .146(In this mode, all arti\214cial limits are removed; the hero)5.146
+F 1.201(may change any \214eld in any entry in the database, as well as view a\
+s many entries as he wishes.)72 138.2 R(Hero)6.202 E
+(mode is used mostly for administrative purposes.)72 150.2 Q F0
+(Capabilities \212 Queries)72 174.2 Q F1 .393(Since most of what the Nameserve\
+r does is answer queries, it is \214tting to describe queries more fully here.)
+72 190.4 R 2.804(An)72 202.4 S .304(ameserver query consists of \214ve element\
+s; the \231query\232 keyword, values for one or more indexed \214elds,)87.024
+202.4 R .471(values for zero or more non\255indexed \214elds, optionally the \
+\231return\232 keyword, and optionally a list of \214elds)72 214.4 R .115
+(to print from the selected entries.)72 226.4 R 2.615(Ac)5.115 G .115
+(ouple of examples will clarify)224.165 226.4 R 5.115(.F)-.65 G .115
+(irst, a plain query; the ar)357.13 226.4 R .115(guments are)-.18 F(interprete\
+d as requests for words from the name or nickname \214elds, both of them index\
+ed \214elds:)72 238.4 Q/F4 10/Courier@0 SF(qi>)112 254.6 Q/F5 10/Courier-Bold@0
+SF(query steven dorner)2.5 E/F6 10/Symbol SF(-)112 266.6 Q F4 48(200:1: alias:)
+B(s)6 E F6(-)A F4(dorner)A F6(-)112 278.6 Q F4 54(200:1: name:)B
+(dorner steven c.)6 E F6(-)112 290.6 Q F4 48(200:1: email:)B
+(dorner@garcon.cso.uiuc.edu)6 E F6(-)112 302.6 Q F4 48(200:1: phone:)B
+(\(w\) 244)6 E F6(-)A F4(1765)A F6(-)112 314.6 Q F4 36(200:1: address:)B
+(181 DCL, MC 256)6 E F6(-)112 326.6 Q F4 78(200:1: :)B
+(1201 W. Washington, C, 61821)6 E F6(-)112 338.6 Q F4 48(200:1: title:)B
+(res programmer)6 E F6(-)112 350.6 Q F4 30(200:1: nickname:)B(Steve)6 E F6(-)
+112 362.6 Q F4 48(200:1: hours:)B(8)6 E F6(-)A F4 6(4w)C(eekdays)278.98 362.6 Q
+(200:Ok.)112 374.6 Q F1(Here is an example that uses all \214ve elements.)72
+395 Q(The \231department\232 \214eld is not indexed.)5 E F4(qi>)112 411.2 Q F5
+(query dorner department=computing return name email department)2.5 E F6(-)112
+423.2 Q F4 54(200:1: name:)B(dorner steven c.)6 E F6(-)112 435.2 Q F4 48
+(200:1: email:)B(dorner@garcon.cso.uiuc.edu)6 E F6(-)112 447.2 Q F4 18
+(200:1: department:)B(computing services office)6 E(200:Ok.)112 459.2 Q F0
+(Capabilities \212 The Client)72 487.4 Q F1(Usually)72 503.6 Q 3.419(,t)-.65 G
+.918(he Nameserver is accessed via the \231client\232 program)111.159 503.6 R
+F3(ph)3.418 E F1 5.918(.T)C .918(his program makes a connection to a)351.852
+503.6 R .007(copy of)72 515.6 R F3(qi)2.507 E F1 .008
+(on the machine that keeps the Nameserver database.)2.508 F .008
+(It then provides assistance to the user of the)5.008 F(Nameserver; it formula\
+tes queries, formats Nameserver responses, and provides other conveniences.)72
+527.6 Q F3(Ph)72 543.8 Q F1 .327
+(operates in two modes; command-line and interactive.)2.828 F .327
+(In command-line mode,)5.327 F F3(ph)2.827 E F1 .327(forms a Nameserver)2.827 F
+.424(query from the ar)72 555.8 R .424(guments given it, sends it to)-.18 F F3
+(qi)2.924 E F1 2.924(,p)C .424(rints the result, and exits.)278.27 555.8 R .425
+(In interactive mode,)5.424 F F3(ph)2.925 E F1(reads)2.925 E .224
+(commands from the user)72 567.8 R 2.723(,r)-.4 G .223(elays them to)179.974
+567.8 R F3(qi)2.723 E F1 2.723(,a)C .223(nd prints)253.916 567.8 R F3(qi)2.723
+E F1 1.323 -.55('s r)D 2.723(esponses. The).55 F .223
+(responses are automatically sent)2.723 F 1.013(through a paging program.)72
+579.8 R 1.014
+(Some commands given to ph are expanded into more than one qi command.)6.013 F
+.085(For example, the)72 591.8 R F3(ph)2.585 E F1 .085
+(\231edit\232 command \214rst asks)2.585 F F3(qi)2.585 E F1 .085
+(for the value of the desired \214eld, puts that value in an edi-)2.585 F .867
+(tor where the user edits it as s/he pleases, and then issues a \231change\232\
+ command to change the \214eld to its)72 603.8 R(desired new value.)72 615.8 Q
+F0(Implementation \212 The Sour)72 639.8 Q(ce)-.18 E F1 .311
+(The Nameserver is written in C \(a small parser is written in lex)72 658 R F2
+(10)327.91 654 Q F1 .31(\), and runs on UNIX systems.)334.91 658 R .31
+(The client,)5.31 F .32 LW 76 667.6 72 667.6 DL 80 667.6 76 667.6 DL 84 667.6
+80 667.6 DL 88 667.6 84 667.6 DL 92 667.6 88 667.6 DL 96 667.6 92 667.6 DL 100
+667.6 96 667.6 DL 104 667.6 100 667.6 DL 108 667.6 104 667.6 DL 112 667.6 108
+667.6 DL 116 667.6 112 667.6 DL 120 667.6 116 667.6 DL 124 667.6 120 667.6 DL
+128 667.6 124 667.6 DL 132 667.6 128 667.6 DL 136 667.6 132 667.6 DL 140 667.6
+136 667.6 DL 144 667.6 140 667.6 DL 148 667.6 144 667.6 DL 152 667.6 148 667.6
+DL 156 667.6 152 667.6 DL 160 667.6 156 667.6 DL 164 667.6 160 667.6 DL 168
+667.6 164 667.6 DL 172 667.6 168 667.6 DL 176 667.6 172 667.6 DL 180 667.6 176
+667.6 DL 184 667.6 180 667.6 DL 188 667.6 184 667.6 DL 192 667.6 188 667.6 DL
+196 667.6 192 667.6 DL 200 667.6 196 667.6 DL 204 667.6 200 667.6 DL 208 667.6
+204 667.6 DL 212 667.6 208 667.6 DL 216 667.6 212 667.6 DL/F7 5/Times-Roman@0
+SF(9)93.6 678 Q/F8 8/Times-Roman@0 SF(Actually a user may change only those \
+\214elds whose \214eld description contain the property \231Change\232.)2 3.2 M
+F7(10)93.6 691.6 Q F8(See)2 3.2 M/F9 8/Times-Italic@0 SF
+(Lex\255A Lexical Analyzer Generator)2 E F8 2(,M)C(.E. Lesk and E. Schmidt.)
+238.424 694.8 Q EP
+%%Page: 4 4
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 256.05(4T)72 60 S(he CCSO Nameserver \255 A Description)
+339.72 60 Q/F1 10/Times-Italic@0 SF(ph)72 96 Q/F2 10/Times-Roman@0 SF 2.928(,m)
+C .429(ay be run on 4.[23]BSD derived systems.)95.208 96 R 2.929(Av)5.429 G
+.429(ersion of)283.34 96 R F1(ph)2.929 E F2 .429
+(exists for VMS, DOS, Mac, and a limited)2.929 F
+(version exists for VM/CMS systems.)72 108 Q .649(There were at last count 320\
+,000 bytes of C and lex source code; some 6,000 statements in 63 \214les.)72
+124.2 R(This)5.648 E .654(source is divided into several distinct categories;)
+72 136.2 R F1(qi)3.154 E F2 .654
+(\(230,000 bytes, 28 \214les, 3500 statements\),)3.154 F F1(ph)3.154 E F2
+(\(46,000)3.154 E .023(bytes, 3 \214les, 700 statements\), utilities \(89,000 \
+bytes, 21 \214les, 1700 statements\), and libraries \(19,500 bytes,)72 148.2 R
+.74 -.37(11 \214)72 160.2 T(les, 300 statements\).).37 E(The database and)72
+176.4 Q F1(qi)2.5 E F2(reside on a Digital Equipment Corporation V)2.5 E
+(AXServer 3500 running Ultrix.)-1.29 E F0(Implementation \212 The Database)72
+200.4 Q F2 .671(The database is kept in six \214les with the extensions)72
+216.6 R F1(.dir)3.171 E F2(,)A F1(.dov)3.172 E F2(,)A F1(.idx)3.172 E F2(,)A F1
+(.iov)3.172 E F2(,)A F1(.seq)3.172 E F2 3.172(,a)C(nd)395.1 216.6 Q F1(.bdx)
+3.172 E F2 5.672(.T)C(he)439.494 216.6 Q F1(.dir)3.172 E F2(and)3.172 E F1
+(.dov)3.172 E F2 .474(\214les contain the actual data.)72 228.6 R(The)5.473 E
+F1(.idx)2.973 E F2(and)2.973 E F1(.iov)2.973 E F2 .473
+(\214les contain the hash table, with pointers into the data \214les.)2.973 F
+(The)72 240.6 Q F1(.seq)3.148 E F2 .649
+(\214le contains all the words from the hash table, sorted alphabetically)3.148
+F 3.149(,a)-.65 G .649(long with pointers into the)395.844 240.6 R 1.346
+(hash table; it is used for pattern-matching on the hash table.)72 252.6 R(The)
+6.345 E F1(.bdx)3.845 E F2 1.345(\214le contains a tree of four)3.845 F
+(-letter)-.2 E .342(nodes, each node pointing to where entries with those four\
+ letters begin in the)72 264.6 R F1(.seq)2.842 E F2 .342(\214le; the)2.842 F F1
+(.bdx)2.842 E F2 .343(\214le speeds)2.843 F(search of the)72 276.6 Q F1(.seq)
+2.5 E F2(\214le.)2.5 E(The)72 292.8 Q F1(.dir)2.98 E F2 .48(\214le consists of\
+ a header and one \214xed-length record for each entry in the database.)2.98 F
+.48(If there is too)5.48 F .08
+(much data for one record, the remainder is placed in the)72 304.8 R F1(.dov)
+2.58 E F2 2.58(\214le. The)2.58 F F1(.dov)2.58 E F2 .08
+(\214le also consists of \214xed-length)2.58 F 1.324
+(records, and if one is not enough, the remainder can be placed in more)72
+316.8 R F1(.dov)3.823 E F2 3.823(records. Thus,)3.823 F 1.323(an entry is)3.823
+F .754
+(really a linked list of \214xed-length records, and is not limited in size.)72
+328.8 R .755(It is relatively easy to play with the)5.755 F .49(sizes of the)72
+340.8 R F1(.dir)2.99 E F2(and)2.99 E F1(.dov)2.99 E F2 .49(records \(before co\
+mpilation and installation of the database\) for optimum perfor)2.99 F(-)-.2 E
+3.505(mance. W)72 354.8 R 3.505(eu)-.8 G 1.006
+(se a fairly small record size in the)128.19 354.8 R F1(.dir)3.506 E F2 1.006
+(\214le, to minimize space wastage,)3.506 F/F3 7/Times-Roman@0 SF -.259(11)
+422.885 350.8 S F2 1.006(and a fairly lar)433.132 354.8 R(ge)-.18 E .458
+(record size in the)72 366.8 R F1(.dov)2.958 E F2 .458
+(\214le, to minimize linking.)2.958 F .457
+(Most entries are wholly contained in the)5.457 F F1(.dir)2.957 E F2 .457
+(\214le; most of)2.957 F(the rest require only one)72 378.8 Q F1(.dov)2.5 E F2
+(record.)2.5 E .701(Each entry begins with some \214xed-length information, fo\
+llowed by the \214elds that make up its data.)72 395 R(Each)5.701 E .168
+(\214eld is a null-terminated)72 407 R/F4 9/Times-Roman@0 SF(ASCII)2.668 E F2
+2.668(string. A)2.668 F .168(\214eld begins with an)2.668 F F4(ASCII)2.668 E F2
+.167(string that is the id of the \214eld descrip-)2.668 F .852
+(tion for that \214eld, and a colon.)72 419 R .853(The \214eld')5.853 F 3.353
+(sd)-.55 G .853(ata follows, and then the null terminator \()255.774 419 R F4
+(ASCII)A F2 3.353(0\). T)3.353 F(agging)-.7 E .71(each \214eld with its descri\
+ption number means that the database is not sensitive to the presence, absence\
+ or)72 431 R .664(order of the \214elds.)72 443 R .664(This in turn means that\
+ \214eld descriptions can be added to the Nameserver at will, and)5.664 F .201
+(the newly-de\214ned \214elds used, without recompilation or rebuilding of the\
+ database \(see)72 455 R F0 .2(Implementation \212)2.7 F(Field Descriptions)72
+467 Q F2(below\).)2.5 E 115.2 524 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL .4 LW
+ST(.bdx)84.85 515.4 Q 115.2 545.6 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST
+115.2 567.2 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST 115.2 588.8 MT 0 -21.6 RL
+-43.2 0 RL 0 21.6 RL CL ST 115.2 632 MT 0 -43.2 RL -43.2 0 RL 0 43.2 RL CL ST
+(.)92.35 606.6 Q(.)92.35 618.6 Q 194.4 524 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL
+CL ST(.seq)164.885 515.4 Q 194.4 545.6 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST
+194.4 567.2 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST 194.4 588.8 MT 0 -21.6 RL
+-43.2 0 RL 0 21.6 RL CL ST 194.4 632 MT 0 -43.2 RL -43.2 0 RL 0 43.2 RL CL ST
+(.)171.55 606.6 Q(.)171.55 618.6 Q 273.6 524 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL
+CL ST(.idx)244.36 515.4 Q 273.6 545.6 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST
+273.6 567.2 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST 273.6 588.8 MT 0 -21.6 RL
+-43.2 0 RL 0 21.6 RL CL ST 273.6 632 MT 0 -43.2 RL -43.2 0 RL 0 43.2 RL CL ST
+(.)250.75 606.6 Q(.)250.75 618.6 Q 352.8 524 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL
+CL ST(.iov)323.56 515.4 Q 352.8 545.6 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST
+352.8 567.2 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST 352.8 588.8 MT 0 -21.6 RL
+-43.2 0 RL 0 21.6 RL CL ST 352.8 632 MT 0 -43.2 RL -43.2 0 RL 0 43.2 RL CL ST
+(.)329.95 606.6 Q(.)329.95 618.6 Q 432 524 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL
+CL ST(.dir)403.595 515.4 Q 432 545.6 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST
+432 567.2 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST 432 588.8 MT 0 -21.6 RL
+-43.2 0 RL 0 21.6 RL CL ST 432 632 MT 0 -43.2 RL -43.2 0 RL 0 43.2 RL CL ST(.)
+409.15 606.6 Q(.)409.15 618.6 Q 511.2 524 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL
+ST(.dov)480.85 515.4 Q 511.2 545.6 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST
+511.2 567.2 MT 0 -21.6 RL -43.2 0 RL 0 21.6 RL CL ST 511.2 588.8 MT 0 -21.6 RL
+-43.2 0 RL 0 21.6 RL CL ST 511.2 632 MT 0 -43.2 RL -43.2 0 RL 0 43.2 RL CL ST
+(.)488.35 606.6 Q(.)488.35 618.6 Q 151.2 556.4 93.6 534.8 DL 151.2 556.4 MT
+-7.344 -.864 RL 1.296 -3.384 RL CL BL 151.2 556.4 MT -7.344 -.864 RL 1.296
+-3.384 RL CL ST 151.2 610.4 93.6 556.4 DL 151.2 610.4 MT -6.48 -3.6 RL 2.448
+-2.592 RL CL BL 151.2 610.4 MT -6.48 -3.6 RL 2.448 -2.592 RL CL ST 230.4 534.8
+172.8 556.4 DL 230.4 534.8 MT -6.12 4.248 RL -1.296 -3.384 RL CL BL 230.4 534.8
+MT -6.12 4.248 RL -1.296 -3.384 RL CL ST 230.4 578 172.8 556.4 DL 230.4 578 MT
+-7.344 -.864 RL 1.296 -3.384 RL CL BL 230.4 578 MT -7.344 -.864 RL 1.296 -3.384
+RL CL ST 230.4 610.4 172.8 578 DL 230.4 610.4 MT -7.128 -1.944 RL 1.8 -3.168 RL
+CL BL 230.4 610.4 MT -7.128 -1.944 RL 1.8 -3.168 RL CL ST 309.6 534.8 252 534.8
+DL 309.6 534.8 MT -7.2 1.8 RL 0 -3.6 RL CL BL 309.6 534.8 MT -7.2 1.8 RL 0 -3.6
+RL CL ST 309.6 556.4 252 578 DL 309.6 556.4 MT -6.12 4.248 RL -1.296 -3.384 RL
+CL BL 309.6 556.4 MT -6.12 4.248 RL -1.296 -3.384 RL CL ST 388.8 556.4 331.2
+534.8 DL 388.8 556.4 MT -7.344 -.864 RL 1.296 -3.384 RL CL BL 388.8 556.4 MT
+-7.344 -.864 RL 1.296 -3.384 RL CL ST 388.8 578 331.2 534.8 DL 388.8 578 MT
+-6.84 -2.88 RL 2.16 -2.88 RL CL BL 388.8 578 MT -6.84 -2.88 RL 2.16 -2.88 RL CL
+ST 388.8 556.4 331.2 578 DL 388.8 556.4 MT -6.12 4.248 RL -1.296 -3.384 RL CL
+BL 388.8 556.4 MT -6.12 4.248 RL -1.296 -3.384 RL CL ST 388.8 610.4 331.2 610.4
+DL 388.8 610.4 MT -7.2 1.8 RL 0 -3.6 RL CL BL 388.8 610.4 MT -7.2 1.8 RL 0 -3.6
+RL CL ST 468 610.4 410.4 556.4 DL 468 610.4 MT -6.48 -3.6 RL 2.448 -2.592 RL CL
+BL 468 610.4 MT -6.48 -3.6 RL 2.448 -2.592 RL CL ST 468 534.8 410.4 610.4 DL
+468 534.8 MT -2.952 6.84 RL -2.88 -2.16 RL CL BL 468 534.8 MT -2.952 6.84 RL
+-2.88 -2.16 RL CL ST F0(Figur)217.12 651.2 Q 2.5(e1)-.18 G 5(.D)252.77 651.2 S
+(atabase Organization)267.49 651.2 Q .32 LW 76 672.8 72 672.8 DL 80 672.8 76
+672.8 DL 84 672.8 80 672.8 DL 88 672.8 84 672.8 DL 92 672.8 88 672.8 DL 96
+672.8 92 672.8 DL 100 672.8 96 672.8 DL 104 672.8 100 672.8 DL 108 672.8 104
+672.8 DL 112 672.8 108 672.8 DL 116 672.8 112 672.8 DL 120 672.8 116 672.8 DL
+124 672.8 120 672.8 DL 128 672.8 124 672.8 DL 132 672.8 128 672.8 DL 136 672.8
+132 672.8 DL 140 672.8 136 672.8 DL 144 672.8 140 672.8 DL 148 672.8 144 672.8
+DL 152 672.8 148 672.8 DL 156 672.8 152 672.8 DL 160 672.8 156 672.8 DL 164
+672.8 160 672.8 DL 168 672.8 164 672.8 DL 172 672.8 168 672.8 DL 176 672.8 172
+672.8 DL 180 672.8 176 672.8 DL 184 672.8 180 672.8 DL 188 672.8 184 672.8 DL
+192 672.8 188 672.8 DL 196 672.8 192 672.8 DL 200 672.8 196 672.8 DL 204 672.8
+200 672.8 DL 208 672.8 204 672.8 DL 212 672.8 208 672.8 DL 216 672.8 212 672.8
+DL/F5 5/Times-Roman@0 SF -.185(11)93.6 683.2 S/F6 8/Times-Roman@0 SF
+(Not entirely successfully \255 see)2.185 3.2 M/F7 8/Times-Bold@0 SF
+(Performance \212 Database Size)2 E F6(below)2 E(.)-.52 E EP
+%%Page: 5 5
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver \255 A Description)72 60 Q(5)499 60
+Q/F1 10/Times-Roman@0 SF(The)72 96 Q/F2 10/Times-Italic@0 SF(.idx)3.506 E F1
+1.006(\214le is made up of a \214xed number of \214xed-length records.)3.506 F
+1.007(Each record that is in use contains a)6.007 F 1.02
+(word from an indexed \214eld, and a set of pointers to the)72 108 R F2(.dir)
+3.52 E F1 1.02(records that contain the word in an indexed)3.52 F 2.821
+(\214eld. Over\215ow)72 120 R .322(in the)2.821 F F2(.idx)2.822 E F1 .322
+(\214le is handled like over\215ow in the)2.822 F F2(.dir)2.822 E F1 .322
+(\214le; the excess pointers are put in one or)2.822 F .235
+(more \214xed-length records in the)72 132 R F2(.iov)2.735 E F1 2.735
+(\214le. W)2.735 F .235(ords are indexed by computing a hash function.)-.8 F
+.234(If the selected)5.234 F .998(location is not empty but does not contain t\
+he desired word, the hash function is iterated, until a limit is)72 144 R .367
+(reached \(implying the failure of the index\) or the word or an empty spot is\
+ found.)72 156 R .367(If the spot is empty)5.367 F 2.867(,t)-.65 G(he)494.56
+156 Q .19
+(word and a pointer to the entry in which it occurs is placed in the record.)72
+168 R .191(If the spot is not empty)5.191 F 2.691(,ap)-.65 G(ointer)480.67 168
+Q(to the entry is appended to the list of pointers for that word.)72 180 Q(The)
+72 196.2 Q F2(.seq)2.84 E F1 .34(\214le uses \214xed-length records \(called)
+2.84 F F2(leaves)2.84 E F1 2.84(\)t)C 2.84(ok)292.17 196.2 S .34
+(eep a sorted list of all the words in the hash table)305.01 196.2 R(\()72
+208.2 Q F2(.idx)A F1(and)2.576 E F2(.iov)2.576 E F1 2.576(\214les\). Each)2.576
+F .077(leaf contains up to four words, and a pointer to the next leaf in alpha\
+betical order)2.576 F(.)-.55 E -.4(Wi)72 220.2 S(th each word is stored a poin\
+ter into the hash table where that word is found.).4 E(The)72 236.4 Q F2(.bdx)
+3.065 E F1 .565(\214le has records \(called)3.065 F F2(nodes)3.065 E F1 3.065
+(\)t)C .564(hat contain one four)238.135 236.4 R .564(-byte key)-.2 F 3.064(,a)
+-.65 G .564(nd two pointers; one to the previ-)367.296 236.4 R .093
+(ous node in alphabetical order)72 248.4 R 2.593(,a)-.4 G .093
+(nd one to the following node in alphabetical order)202.034 248.4 R 5.093(.I)
+-.55 G 2.593(fap)413.121 248.4 S .093(articular four)431.077 248.4 R(-byte)-.2
+E .099(key happens to begin a leaf, that key')72 260.4 R 2.599(sn)-.55 G .098
+(ode will contain a pointer to that leaf instead of a pointer to another)
+233.042 260.4 R(node.)72 272.4 Q F0(Implementation \212 Queries)72 296.4 Q F1
+1.267(An incoming query is \214rst broken down into its component parts.)72
+312.6 R 1.267(Then, the selection ar)6.267 F 1.267(guments of the)-.18 F .862
+(query are checked for indexed ar)72 326.6 R 3.362(guments. The)-.18 F .862
+(longest indexed ar)3.362 F(guments)-.18 E/F3 7/Times-Roman@0 SF(12)377.378
+322.6 Q F1 .862(are looked up one by one in)387.74 326.6 R .751
+(the hash table \(or)72 338.6 R 3.251(,i)-.4 G 3.252(ft)151.534 338.6 S .752
+(hey contain pattern-matching characters, a search is made through the)160.896
+338.6 R F2(.bdx)3.252 E F1(and)3.252 E F2(.seq)3.252 E F1 .179
+(\214les for each pattern\).)72 350.6 R .178(The index entries are \231anded\
+\232 together to select only those entries that contain all of)5.179 F
+(the indexed words.)72 362.6 Q .65
+(Next, the selected entries are fetched one by one, and matched against the ar)
+72 378.8 R .651(gument list.)-.18 F .651(This is done for)5.651 F .228
+(two reasons.)72 390.8 R .228(First, the fact that an entry appears in the ind\
+ex for a word says nothing about which)5.228 F F0(\214eld)2.728 E F1(the)2.728
+E 1.191(word is to be found in; it merely notes that the word does appear)72
+402.8 R 6.192(.T)-.55 G 1.192(herefore, it is necessary to recheck)359.76 402.8
+R .719(indexed \214elds, and make sure the words in question appear in the pro\
+per \214elds.)72 414.8 R .719(Second, the non-indexed)5.719 F(words must be ch\
+ecked, to see that they appear in the proper \214elds in the entry)72 426.8 Q
+(.)-.65 E(If the entry passes the checks, the selected \214elds \(or a set of \
+default \214elds\) are printed.)72 443 Q F0
+(Implementation \212 Field Descriptions)72 467 Q F1 .851
+(Field descriptions are kept in a \214le that)72 483.2 R F2(qi)3.351 E F1 .852
+(reads each time it is run.)3.351 F .852
+(This \214le consists of lines describing)5.852 F .625(each \214eld, in)72
+495.2 R/F4 9/Times-Roman@0 SF(ASCII)3.125 E F1 3.125(,w)C .625
+(ith colons separating the elements in a line.)164.099 495.2 R .624
+(First comes the id number of the \214eld,)5.625 F .35
+(then the name of the \214eld and its maximum length.)72 507.2 R(Finally)5.351
+E 2.851(,t)-.65 G .351(here is a colon-separated list of properties for)320.203
+507.2 R(the \214eld.)72 519.2 Q .336(Since this \214le is read each time)72
+535.4 R F2(qi)2.835 E F1 .335
+(starts up, lines can be added to de\214ne new \214elds at will.)2.835 F .335
+(All subsequent)5.335 F(invocations of)72 547.4 Q F2(qi)2.5 E F1
+(will be able to recognize and use the \214elds.)2.5 E 1.061(The major propert\
+ies \214elds may have are Indexed, Public, Default, Lookup, and Change.)72
+563.6 R 1.061(Fields marked)6.061 F .408
+(Indexed are kept track of in the database')72 575.6 R 2.907(si)-.55 G 2.907
+(ndex. At)249.103 575.6 R .407(least one such \214eld)2.907 F F0(must)2.907 E
+F1 .407(be included in every query)2.907 F(.)-.65 E .494
+(Fields marked Public may be viewed by anyone using)72 587.6 R F2(qi)2.995 E F1
+.495(in anonymous or login mode.)2.995 F .495(Fields not marked)5.495 F 1.291
+(Public may only be viewed by the entry')72 599.6 R 3.791(so)-.55 G 1.291
+(wner in login mode, or by someone using)255.649 599.6 R F2(qi)3.791 E F1 1.291
+(in hero mode.)3.791 F .331
+(Default \214elds are printed if no \231return\232 clause is given in a query)
+72 611.6 R 5.331(.L)-.65 G .331(ookup \214elds may be used in the selec-)
+349.203 611.6 R .785(tion part of a query; a \214eld not marked Lookup cannot \
+be used to select entries.)72 625.6 R F3(13)400.945 621.6 Q F1(Finally)411.23
+625.6 Q 3.285(,au)-.65 G .785(ser in login)457.43 625.6 R(mode in)72 637.6 Q F2
+(qi)2.5 E F1(may change any of his or her \214elds that are marked Change.)2.5
+E .32 LW 76 647.2 72 647.2 DL 80 647.2 76 647.2 DL 84 647.2 80 647.2 DL 88
+647.2 84 647.2 DL 92 647.2 88 647.2 DL 96 647.2 92 647.2 DL 100 647.2 96 647.2
+DL 104 647.2 100 647.2 DL 108 647.2 104 647.2 DL 112 647.2 108 647.2 DL 116
+647.2 112 647.2 DL 120 647.2 116 647.2 DL 124 647.2 120 647.2 DL 128 647.2 124
+647.2 DL 132 647.2 128 647.2 DL 136 647.2 132 647.2 DL 140 647.2 136 647.2 DL
+144 647.2 140 647.2 DL 148 647.2 144 647.2 DL 152 647.2 148 647.2 DL 156 647.2
+152 647.2 DL 160 647.2 156 647.2 DL 164 647.2 160 647.2 DL 168 647.2 164 647.2
+DL 172 647.2 168 647.2 DL 176 647.2 172 647.2 DL 180 647.2 176 647.2 DL 184
+647.2 180 647.2 DL 188 647.2 184 647.2 DL 192 647.2 188 647.2 DL 196 647.2 192
+647.2 DL 200 647.2 196 647.2 DL 204 647.2 200 647.2 DL 208 647.2 204 647.2 DL
+212 647.2 208 647.2 DL 216 647.2 212 647.2 DL/F5 5/Times-Roman@0 SF(12)93.6
+657.6 Q/F6 8/Times-Roman@0 SF(Actually)3.003 3.2 M 3.003(,t)-.52 G 1.003
+(he longest indexed ar)135.862 660.8 R 1.003
+(guments free of pattern-matching metacharacters.)-.144 F 1.002
+(Pattern matches take much longer than)5.003 F .666
+(normal index lookups since the)72 670.4 R/F7 8/Times-Italic@0 SF(.bdx)2.667 E
+F6(and)2.667 E F7(.seq)2.667 E F6 .667
+(\214les must be searched, and since such searches frequently result in a lar)
+2.667 F .667(ge number of)-.144 F(matches being selected.)72 680 Q F5(13)93.6
+690.4 Q F6 -.8(Yo)2.313 3.2 O 2.313(um).8 G .312(ight decide, for example, tha\
+t no one should be allowed to be found by his or her phone number)122.426 693.6
+R 4.312(.Y)-.44 G .312(ou could mark the)445.072 693.6 R(phone number \214eld \
+as Public \(so it could be viewed\) but not Lookup \(so no one could use it in\
+ searches\).)72 703.2 Q EP
+%%Page: 6 6
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF 256.05(6T)72 60 S(he CCSO Nameserver \255 A Description)
+339.72 60 Q(Performance \212 Database Size)72 96 Q/F1 10/Times-Roman@0 SF 2.329
+(Our database contains 80,140 entries, totalling 16 megabytes of information.)
+72 112.2 R(The)7.328 E/F2 10/Times-Italic@0 SF(.dir)4.828 E F1(and)4.828 E F2
+(.dov)4.828 E F1(\214les)4.828 E .479
+(together are 33 megabytes; nearly half the space is wasted.)72 124.2 R .48
+(This percentage could be reduced by reducing)5.479 F(the record size of the)72
+136.2 Q F2(.dir)2.5 E F1(\214le.)2.5 E .341(The hash table, which has room for\
+ 450,001 words, actually contains 157,324 words and 270,784 pointers,)72 152.4
+R .242(for a total of 1.3 megabytes of hash table.)72 164.4 R(The)5.242 E F2
+(.idx)2.742 E F1(and)2.743 E F2(.iov)2.743 E F1 .243
+(\214les are 19.5 megabytes in size; even allowing)2.743 F .452(for a lar)72
+176.4 R .451(ge number of empty hash table slots \(necessary for performance\)\
+, most of the space is wasted.)-.18 F(As)5.451 E(with the)72 188.4 Q F2(.dir)
+2.5 E F1(\214le, reducing the record size in the)2.5 E F2(.idx)2.5 E F1
+(\214le would help the situation.)2.5 E
+(Rounding out the database is 7.2 megabytes in the)72 204.6 Q F2(.bdx)2.5 E F1
+(and)2.5 E F2(.seq)2.5 E F1(\214les.)2.5 E F0(Performance \212 Speed)72 228.6 Q
+F1 2.214 -.7(To t)72 244.8 T .814(est speed, we took 300 words from dif).7 F
+.814(ferent parts of the index, and looked each one up using)-.18 F F2(qi)3.314
+E F1(.)A F2(Qi)5.814 E F1 .182(found 396 entries in 78 seconds; that is about)
+72 256.8 R/F3 6/Times-Roman@0 SF(1)2.682 -2.8 M F1<85>2.8 I F3(4)A F1 .182
+(second per lookup.)2.682 F .181(Using four letter keys and wildcarding)5.181 F
+(the rest,)72 268.8 Q F2(qi)2.5 E F1
+(found 9213 entries in 460 seconds, for about 1)2.5 E F3(1)-2.8 I F1<85>2.8 I
+F3(2)A F1(seconds per lookup.)2.5 E .39
+(In actual use over a network, response is slower)72 285 R 2.891(,s)-.4 G .391
+(ince the client program must establish a connection with)275.342 285 R .516
+(the host that has the database.)72 297 R .516
+(Looking up 100 indexed words in separate invocations of)5.516 F F2(ph)3.015 E
+F1 .515(took 109 sec-)3.015 F(onds, or 1 second per lookup; 1)72 309 Q
+(18 entries were found.)-.37 E F0(Performance \212 Usage)72 333 Q F1 .56(In a \
+recent week, typical of most weeks, we had 3100 uses from over 70 campus machi\
+nes.)72 351.2 R/F4 7/Times-Roman@0 SF(14)445.6 347.2 Q F1 .56(By far most)
+455.66 351.2 R .368(of the commands given were queries \(3643\).)72 363.2 R
+.369(There were also 175 logins, 264 changes, and a few hundred)5.369 F .38
+(other commands issued.)72 375.2 R .379
+(Of the commands: 58% were successful; 26% were queries that found no entries;)
+5.38 F 2.181(8% were queries that found too many entries; 4% were other errors\
+; 3% were rejected because they)72 387.2 R 1.222(required login mode, but were\
+ being given in anonymous mode; and 1% failed due to command syntax)72 399.2 R
+(errors.)72 411.2 Q F0(Further Dir)72 435.2 Q(ections)-.18 E F1 .755
+(Overall, we are fairly satis\214ed with what has been done to date.)72 451.4 R
+.755(Ongoing ef)5.755 F .755(forts will be centered around)-.18 F .344
+(making the Nameserver convenient to use in a distributed environment.)72 463.4
+R .344(This will primarily involve allow-)5.344 F
+(ing users to specify a server)72 475.4 Q 2.5(,a)-.4 G
+(lthough some peripheral issues are also in need of resolution.)192.4 475.4 Q
+(Additionally)72 491.6 Q 3.792(,w)-.65 G 3.792(ew)135.422 491.6 S 1.292(ill ma\
+ke some attempts to remove wasted space from the database and its associated)
+150.874 491.6 R(index; this is not a high priority since the database, for all\
+ its wasted space, is still not unmanageably lar)72 503.6 Q(ge.)-.18 E F0
+(Distribution)72 527.6 Q F1 .819(The CCSO Nameserver is Copyright \251 1988 by\
+ the University of Illinois Board of T)72 543.8 R 3.319(rustees. Portions)-.35
+F(of)3.319 E .737(the software are Copyright \251 1985 by CSNet.)72 555.8 R
+.737(It is distributed free of char)5.737 F .738
+(ge, and is available for anony-)-.18 F .683(mous ftp from uxc.cso.uiuc.edu, i\
+n the net/qi subdirectory as well as the pub/qi.tar)72 567.8 R .683(.Z \214le.)
+-.55 F .683(The client soft-)5.683 F 1.51
+(ware for UNIX and VMS is available on the same computer)72 579.8 R 4.011(,i)
+-.4 G 4.011(nt)336.493 579.8 S 1.511(he net/ph subdirectory and in the \214le)
+348.284 579.8 R(pub/ph.tar)72 591.8 Q 3.24(.Z. No)-.55 F .74
+(support will be provided by the University)3.24 F 3.24(,a)-.65 G .74
+(nd the University is not liable for anything)328.55 591.8 R 1.313
+(bad that happens as a result of its use.)72 603.8 R 1.314
+(The software may not be redistributed without permission from)6.314 F(CSNet.)
+72 615.8 Q F0(Refer)72 639.8 Q(ences)-.18 E F2(UNIX Manual Pages)72 656 Q F1 5
+(.M)C(anual pages are available on)172.27 656 Q F2(ph)2.5 E F1(\(1\) and)A F2
+(qi)2.5 E F1(\(8\).)A .32 LW 76 669.2 72 669.2 DL 80 669.2 76 669.2 DL 84 669.2
+80 669.2 DL 88 669.2 84 669.2 DL 92 669.2 88 669.2 DL 96 669.2 92 669.2 DL 100
+669.2 96 669.2 DL 104 669.2 100 669.2 DL 108 669.2 104 669.2 DL 112 669.2 108
+669.2 DL 116 669.2 112 669.2 DL 120 669.2 116 669.2 DL 124 669.2 120 669.2 DL
+128 669.2 124 669.2 DL 132 669.2 128 669.2 DL 136 669.2 132 669.2 DL 140 669.2
+136 669.2 DL 144 669.2 140 669.2 DL 148 669.2 144 669.2 DL 152 669.2 148 669.2
+DL 156 669.2 152 669.2 DL 160 669.2 156 669.2 DL 164 669.2 160 669.2 DL 168
+669.2 164 669.2 DL 172 669.2 168 669.2 DL 176 669.2 172 669.2 DL 180 669.2 176
+669.2 DL 184 669.2 180 669.2 DL 188 669.2 184 669.2 DL 192 669.2 188 669.2 DL
+196 669.2 192 669.2 DL 200 669.2 196 669.2 DL 204 669.2 200 669.2 DL 208 669.2
+204 669.2 DL 212 669.2 208 669.2 DL 216 669.2 212 669.2 DL/F5 5/Times-Roman@0
+SF(14)93.6 679.6 Q/F6 8/Times-Roman@0 SF .161(It is impossible to get an exact\
+ count of the number of machines, since there are some machines that use anoth\
+er computer as)2.16 3.2 N 2(ar)72 692.4 S
+(elay; these machines do not show up in the count.)80.216 692.4 Q EP
+%%Page: 7 7
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Bold@0 SF(The CCSO Nameserver \255 A Description)72 60 Q(7)499 60
+Q/F1 10/Times-Italic@0 SF .062(The CCSO Nameserver)72 96 R 2.562(,A)-1.11 G
+2.562(nI)176.066 96 S(ntr)186.958 96 Q(oduction)-.37 E/F2 10/Times-Roman@0 SF
+.062(by Steven Dorner)2.562 F 5.062(.A)-.55 G .062
+(brief introduction geared at a new user of)323.278 96 R F1(ph)2.561 E F2(.)A
+F1 .182(The CCSO Nameserver)72 112.2 R 2.682(,W)-1.11 G(hy)178.646 112.2 Q F2
+.182(by Steven Dorner)2.682 F 5.182(.A)-.55 G .183
+(recap of the design decisions that made our Nameserver)278.706 112.2 R(what i\
+t is, including evaluations of some similar systems available when our Nameser\
+ver was designed.)72 124.2 Q F1 1.467(The CCSO Nameserver)72 140.4 R 3.967(,S)
+-1.11 G 1.467(erver\255Client Pr)179.171 140.4 R(otocol)-.37 E F2 1.467
+(by Steven Dorner)3.967 F 6.467(.F)-.55 G 1.466
+(ull documentation of the language)361.486 140.4 R
+(used between the Nameserver server program,)72 152.4 Q F1(qi)2.5 E F2 2.5(,a)C
+(nd the outside world.)277.21 152.4 Q F1 .317(The CCSO Nameserver)72 168.6 R
+2.817(,G)-1.11 G .317(uide to Installation)177.941 168.6 R F2 .317
+(by Steven Dorner)2.817 F 5.318(.H)-.55 G .318
+(ow to install the programs that make up)343.174 168.6 R(the CCSO Nameserver)72
+180.6 Q(.)-.55 E F1 1.583(The CCSO Nameserver)72 196.8 R 4.083(,AP)-1.11 G -.37
+(ro)190.822 196.8 S -2.13(grammer ').37 F 4.082(sG)-1.29 G(uide)253.604 196.8 Q
+F2 1.582(by Steven Dorner)4.082 F 6.582(.I)-.55 G 4.082(nd)360.472 196.8 S
+1.582(epth documentation for anyone)374.554 196.8 R
+(maintaining or wishing to completely understand the CCSO Nameserver)72 208.8 Q
+(.)-.55 E F1 2.452(Rebuilding a Nameserver Database In 24 Easy Steps)72 225 R
+F2 2.452(by Steven Dorner)4.952 F 7.452(.D)-.55 G 2.452
+(escribes how we build a)398.102 225 R
+(database, beginning with raw data we receive from our Administrative branch.)
+72 237 Q F0(Acknowledgement)72 261 Q F2 1.101(Our Nameserver is very similar i\
+n function and philosophy the CSNet nameserver)72 277.2 R 6.101(.I)-.55 G 3.601
+(nf)424.057 277.2 S 1.101(act, the database)435.988 277.2 R .164
+(management code from that nameserver)72 289.2 R 2.664(,w)-.4 G .164
+(ith some modi\214cation, is used in our Nameserver)245.15 289.2 R 5.164(.W)
+-.55 G 2.664(ea)458.702 289.2 S .164(re grate-)470.246 289.2 R
+(ful to CSNet that their program was made available to us.)72 301.2 Q EP
+%%Trailer
+end
+%%EOF

@@ -1,0 +1,136 @@
+SUMMARY
+The "type" field can be used to specify any of several different types
+of data that are present in the Nameserver database.  These types may
+be specified either by adding "type=name-of-desired-type" to any query
+or by using the "-t name-of-desired-type" switch.
+
+Actually, a given entry may have more than one type, if it fits in more
+than one category.  For example, people are listed under types "person"
+(since that's what they are) and "phone" (since information about people
+is commonly found in a phone book).
+
+The following types are used in the database:
+
+- person: Information about a human being.
+
+- unit: Information about a campus unit (e.g., department).
+
+- areacode: Information about a telephone area code.
+
+- food: Information about a Champaign-Urbana restaurant.
+
+- phone: Anything a reasonable person might expect to see in a phone
+  book. The "phone" type covers the following other types: "person",
+  "unit", "areacode", and "food".
+
+- weather: Information about current weather conditions.
+
+- timetable: The current UIUC course timetable.  Also listed under
+  types "fall", "spring", and "summer".
+
+EXAMPLES
+When a query is executed without any field specifiers, ph searches the
+entire database for all entries whose "name" and/or "nickname" fields
+match the query expression.  In most cases a simple query expression
+will deliver the desired results.   However, occasionally a simple query
+can produce too many matches, several or many of which may have nothing
+to do with the data type for which one is searching.  For instance, the
+expression "ph english" displays the names of six people whose last name
+is English, the names of two campus units (Division of English as an
+International Language and the Department of English), and the titles
+of 59 courses in the University Timetable.  In such cases, it can be
+helpful to include the "type" field specifier in your query expression.
+The general syntax for using the "type" field specifier is:
+
+  ph type=name-of-desired-type [name-of-field=]value-of-field...
+
+In the case of the ambiguous example given above (i.e., "ph english"),
+using the "type" field specifier would only display those records
+matching the data type indicated.  For example, if you were only
+searching for the entries of persons with the name "English," you could
+say "ph type=person english".  The following examples demonstrate how
+to extract specific types of data from the ph database.
+
+TO EXTRACT INFORMATION ON A PERSON:
+
+syntax:   ph type=person name1 [name2 name3 ...]
+example:  ph type=person stanley ikenberry
+
+TO EXTRACT INFORMATION ON A CAMPUS UNIT:
+
+syntax:   ph type=unit name-or-partial-name-of-unit
+example:  ph type=unit agriculture
+
+TO EXTRACT INFORMATION ON A TELEPHONE AREA CODE:
+
+syntax:   ph type=areacode name-of-city-or-state
+examples: ph type=areacode san francisco
+          ph type=areacode california
+
+The area code database does not include every city in the U.S.  If no
+matches are found using the name of a city, try entering the name of
+the state, and the area codes for the major regions in the state will
+be displayed.
+
+TO EXTRACT INFORMATION ON A LOCAL RESTAURANT:
+
+syntax:   ph type=food [other=type-of-food] name-or-type-of-
+          eating-establishment
+examples: ph type=food yen ching
+          ph type=food other=chinese restaurant
+
+If you already know the name of the restaurant you want to locate, set
+the "type" field specifier to "food" followed by all or part of the name
+of the restaurant.  If you want to locate all restaurants that serve a
+certain type of cuisine, use the "other" field specifier to indicate
+the type of food in which you are interested.  In the latter case, you
+must also either give a name or indicate one of the five types of eating
+establishments used in the "nickname" field of the database: restaurant,
+bar, pizza, tavern, or donut.  (For more information on the subtleties
+of extracting restaurant data from the ph database, see help on
+"restaurants".)
+
+TO EXTRACT WEATHER INFORMATION:
+
+Ph can display weather condition information for many locations
+throughout the state and country.  It also offers some special options
+for local weather information.  Weather conditions for a particular
+location are requested by including one of the three letter city codes
+listed below in the query:
+
+                 Ph Weather City Codes
+
+ALN  Alton           DSM  DesMoines     MWA  Marion
+ARR  Aurora          FNT  Flint         MVN  Mt. Vernon
+BLV  Belleville      GBG  Galesburg     NBU  Glenview
+BMI  Bloomington     IND  Indianapolis  ORD  Chicago O'Hare
+BOS  Boston          JFK  New York      PIA  Peoria
+CGX  Meigs           LAX  Los Angeles   PDX  Portland
+CMI  Champaign       MDH  Carbondale    RFD  Rockford
+CMX  Houghton        MDW  Midway        SFO  San Francisco
+COU  Columbia        MLI  Moline        SPI  Springfield
+CPS  East St. Louis  MMO  Marseilles    STL  St. Louis
+DEC  Decatur         MSN  Madison       SYR  Syracuse
+DPA  Dupage          MSY  New Orleans   UIN  Quincy
+
+syntax:  ph  type=weather citycode conditions
+example: ph  type=weather cmi conditions
+
+TO EXTRACT UNIVERSITY TIMETABLE INFORMATION:
+
+The timetable information in ph can be searched by course number or by
+significant words likely to be found in the course's title.  Additionally
+it is possible to conduct a search on the spring, summer, and fall
+timetables simultaneously or specify the semester for the query.  Set
+the type field specifier to "timetable" in order to search all timetables
+or to "fall", "spring", or "summer" to search a specific timetable:
+
+syntax:   ph type=timetable|fall|spring|summer coursenumber
+          ph type=timetable|fall|spring|summer word1 [word2
+          word3...]
+examples: ph type=timetable cs121
+          ph type=fall introduction french literature
+          ph type=summer "music*"
+        
+SEE ALSO: query, switch, manpage, areacodes, campus_units, people,
+restaurants, timetable, weather

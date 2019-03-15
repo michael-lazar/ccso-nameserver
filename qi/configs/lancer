@@ -1,0 +1,18 @@
+# lancer - a Intel 486 running BSD386 v1.1
+@Features = ("KRB4_AUTH","PASS_AUTH","EMAIL_AUTH","NO_READ_LOCK");
+$DefineStrings{"DATABASE"} = "/var/apps/nameserv/db/prod";
+$DefineStrings{"HELPDIR"} = "/var/apps/nameserv/db/help";
+$DefineStrings{"RUNDIR"} = "/var/apps/nameserv/db";
+$DefineStrings{"KRBSRVTAB"} = "/var/apps/nameserv/db/srvtab";
+$OtherDefines{"Max_Alias"} = 8;
+$QiExecDir = "/usr/local/libexec";
+$QiUtilDir = "/var/apps/nameserv/bin";
+@LocalAddrs = (".uiuc.edu",".cecer.army.mil");
+$CC = "cc";
+#$Cflags .= " -I/usr/local/include -DMALLOC_DEBUG -DMALLOC_FUNC_CHECK -Dstrdup=STRDUP -DKRBNSREALM=\\\"UIUC.EDU\\\" -g";
+#$LocalLib = "-L/usr/local/lib -lmalloc_dbg";
+$Cflags .= " -I/usr/local/include -DKRBNSREALM=\\\"UIUC.EDU\\\" -g";
+@WantDirs=("include","lib","api","qi","ph","util");
+$Owner = "nameserv";
+$Group = "nameserv";
+1;

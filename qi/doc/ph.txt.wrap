@@ -1,0 +1,1363 @@
+(This document is brought to you by the Computing and Communications Office
+of the University of Illinois at Urbana-Champaign.)  
+
+
+                     THE CCSO NAMESERVER (PH)
+
+                                by
+                   Lynn Ward and Carolyn Gedney
+
+
+                            INTRODUCTION
+
+The CCSO Nameserver is a large database containing information about people and things at the University of Illinois.  An electronic version of the "University Student/Staff Directory" (the campus telephone book) makes up the bulk of the database.  In addition, the Nameserver holds lots of other useful data, including the complete University course timetable for the fall, spring, and summer semesters; a guide to local restaurants; area codes for major cities and regions in the U.S.; weather conditions and forecast information for many Illinois cities and larger metropolitan areas throughout the country; and special entries created on request, such as organizations within departments and student clubs and organizations.  
+
+The CCSO Nameserver is really a pair of programs: one that manages the actual data (this program is called "qi," for query interpreter) and another program (or rather a group of programs--one for each computing platform on the campus network) that handles end-user requests.  The programs that handle user requests are usually called "ph "  (or "ph clients"), which stands for phone book.  Because ph is the name of the software familiar to most end users, many people refer to the CCSO Nameserver itself as ph or use the terms Nameserver and ph interchangeably.
+
+This user guide will introduce you to the basic features of the CCSO Nameserver.  You will learn how to request, or extract, information from CCSO's Nameserver database as well as from similar nameservers maintained at other institutions across the Internet.  You will also learn how to update the information that the Nameserver keeps about you.  For example, if you change offices in the middle of the year, you can put your new address information in the Nameserver immediately, so others can view up-to-date information about you.  Finally, you will learn about some of the policies and procedures involved in updating and maintaining the Nameserver database.
+
+The primary author of the CCSO Nameserver program is Steven Dorner.  Paul Pomes, Senior Research Programmer at CCSO, now maintains Steve's original code.
+
+
+Limitations of this User Guide
+------------------------------
+When the CCSO Nameserver was first created, the database could only be reached through a user interface developed for computers running the Unix operating system.  Over the years, ph software has been developed for many different computer platforms and operating systems.  Some of these newer applications were modeled on the original Unix interface and operate nearly identically to it, and others do not.  Due to space limitations, specific instructions on how to access and/or change Nameserver data in this user guide apply only to the Unix interface and the ph program on CCSO's IBM mainframe, VMD.  Where differences exist between the operation of the Unix interface and that on VMD, they will be noted.  Much of the information in this guide is quite general in nature, however,  and should be useful to anyone who uses the Nameserver, regardless of platform or interface. 
+
+
+                  1. HOW THE CCSO NAMESERVER WORKS
+
+The CCSO Nameserver uses the "client/server" model.  This means that the database for all Nameserver information resides on one CCSO minicomputer known as the "server."  The program that manages the database, "qi", runs on this computer as well.  Mainframes and desktop computers can transparently access server data over UIUCnet, the campus network, using special software designed to talk to the server.  Machines running such software (and the end-user software itself) are typically called "ph clients."  The client takes care of sending the user's requests to the server and presenting the results of that request in a digestible form.  Thus, the end-user need know little or nothing about how the server works or how the client actually interacts with it.  Instead, the client presents the user with a friendly (or reasonably friendly) interface for requesting, displaying, and manipulating Nameserver data.
+
+
+                       2. AVAILABILITY OF PH
+
+2.1 Users with Accounts on CCSO Mainframes and/or a UIUCnet 
+------------------------------------------------------------
+Connection
+----------
+Ph client software is installed on all of CCSO's computers (e.g., uxh, ux1, uxa, ux4, VMD).  Thus, users with accounts on these machines can use ph. To access ph from any CCSO machine, simply log in to your account and enter ph commands as described in later sections of this user guide.
+
+Ph is also installed on many non-CCSO computers across the campus.  Ph client programs are now available for almost all of the mainframe and desktop computing platforms found on the UIUC campus including Unix, VM/CMS, VMS, PC (DOS), Macintosh, NeXT, and X Windows.  For information on how to obtain ph client software for your desktop computer or workstation, see Appendix A.
+
+
+2.2 Free Public Access to Ph
+----------------------------
+If the computer you use doesn't have ph software installed on it, you can still use ph by connecting to the free public access "phones" account on the CCSO Unix machine, ux1.  You may connect to this free ph account from another machine on UIUCnet (through a telnet connection to  "ux1.cso.uiuc.edu"), through Sytek LocalNet ("call 1600"), or through a dial-up connection to a CCSO terminal server (after accessing the terminal server, enter "ux1").  For AISS system users, at the PROFS main menu, enter the command "tcp", clear the screen, and then enter the command "telnet ux1.cso.uiuc.edu".  
+
+Once connected to and prompted for a login by ux1, enter the login name "phones".  (If you accessed the "phones" account through the terminal server and your terminal type wasn't already specified, a prompt will appear requesting it.  Enter the name of your terminal type, such as "vt100".  If you are uncertain about your terminal type,  call the CCSO System Consultants at 333-6133 for assistance).  Finally, a ph> prompt will  appear.  You may then enter standard ph commands to obtain desired information.  You may also change information in your ph entry through this public account (see section 5).
+  
+Further directions and explanations may also be obtained on line by entering "help" at the ph> prompt.  To leave the public access ph account on ux1, enter "quit" at the ph> prompt.
+
+Modem users can also access the "phones" account directly from the terminal server by typing the command "ph" at the terminal server prompt.  You will not be prompted for a login when accessing the "phones" account in this manner, but you will still be asked to enter your terminal type.
+
+
+2.3 Accessing Ph through Gopher
+-------------------------------
+The CCSO Nameserver (as well as electronic directories at many other institutions) can also be accessed through Gopher, a popular client/server application for accessing files and services on the Internet.  For basic information on how to use Gopher, see the document "Gopher at the University of Illinois," available at the CCSO Resource Center, 1420 DCL.  The CCSO Nameserver and other electronic directories can be found under the Phone Books (PH) menu on UIUC's main gopher server.  The method for querying the Nameserver will vary from one gopher client to the next.  See the client documentation or on-line help for details.
+
+
+                3. THE TWO MODES OF THE PH PROGRAM
+
+The ph user interface has two modes: command-line mode and interactive mode.  Command-line mode permits the user to process ph queries from the operating system prompt or so-called command-line.  To use ph in command-line mode, one must type "ph" at the operating system prompt followed by a standard ph query expression (see the next section of this guide for details).  Command-line mode can only be used to view public information in the Nameserver database.  To change a Nameserver entry or view privileged information about your own entry, interactive mode is required.
+
+Interactive mode allows you to interact with a separate ph interface, characterized by a ph> prompt.   If the command ph is entered at the operating system prompt without any arguments, ph enters interactive mode, where it prompts for, executes, and displays the results of Nameserver commands.  Interactive mode is most commonly used to view and change information in your own entry, but it can also be used to process simple queries.  If you access ph through the free public account on CCSO's Unix machine, ux1, you will enter interactive mode by default.  To exit interactive mode and return to the operating system prompt, enter the command "quit" at the ph> prompt.  
+
+
+              4. USING PH TO ACCESS INFORMATION 
+                  IN THE NAMESERVER DATABASE
+
+The process of sending a request to the Nameserver to retrieve specific information about a person or thing is referred to as making a "query"(or doing a "lookup").  Regardless of whether you are in command-line mode or interactive mode, the simplest form a query can take is:  "ph name", where 'name' is the full or partial name of the person or item that you want to find in the database.  Ph queries can also include additional information to broaden or narrow the scope of the query.  This section will cover some of the more common options that can be used when executing a query and describe how to extract particular types of information from the Nameserver.  
+
+
+4.1 Information about people at UIUC
+------------------------------------
+
+
+4.1.1 A Simple Query
+--------------------
+To use ph to obtain information about an individual on campus, you must be logged in to a machine with a ph client program installed on it (see section 2).  
+
+At the machine's normal system prompt or at the ph> prompt, enter the command "ph name", where 'name' consists of the first and last name (separated by a space) of the person about whom you want information.  Be careful to type the person's official name as he or she is known to the University and not a nickname or shortened version of the name (e.g., use "ph douglas jones" instead of "ph doug jones").  (For more information about the use of nicknames in ph, see section 5.11.3.)  Ph will respond with data about that person in the form of an entry, for example:
+
+ux1 1> ph paul pomes
+------------------------------
+         name: pomes paul b
+        phone: (217) 333-6262
+      address: 1429 DCL, MC 256
+             : 1304 West Springfield Avenue
+             : Urbana, Illinois  61801-2910
+office_location: 1429 Digital Computer Lab
+     department: computing and communications services office
+          title: sr res programmer
+          hours: Mon: 9:00 to 17:00
+               : Tue-Fri: 13:00 to 18:00
+       email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+------------------------------
+
+Note that in a ph entry such as the one above, information about the person is organized into discrete pieces of information called fields.  Each field has a name (the text preceding each colon) describing the contents of the field.  For example, the field called address contains the campus address of the person in question.
+
+When a simple query is executed, ph looks for and displays every entry in the Nameserver database whose 'name' or 'nickname' field contains the name(s) specified in the query.  Matching in ph is not sensitive to upper and lower case letters and is done on a word-by-word basis.  That is, both the query expression and the entry are broken up into words, and the individual words are compared.  Thus, the commands "ph paul pomes", "ph pomes paul", and "ph Paul Pomes" will all produce the same results.
+
+If you only know a person's last name (or even only a first name), you may query ph using only the one name (e.g., "ph pomes"), although this often results in multiple matches.  See the next section for instructions on how to deal with multiple matching entries.
+
+
+4.1.2 Queries Resulting in Multiple Matches/Narrowing the Scope of 
+------------------------------------------------------------------a Query
+------
+Queries on common names (e.g., John Smith) or just a first or last name will often produce multiple matches.  When multiple entries match a query expression, ph will display the list of matching entries one screen at a time.  To advance to the next screen of entries on Unix systems, press the spacebar.  To advance to the next screen on VMD, press the clear key or its equivalent on your keyboard.
+
+If there are more than 25 matches for a particular name, the Nameserver will not list the matching entries, but instead will return the response "Too many entries to print."  This is to prevent the ph program from being used to generate mailing lists.  To get around this problem, provide the Nameserver with additional information, such as a phone number or address, in order to narrow the range of possible matches.  This additional element is included in the query command using the form "ph name  field=value", where 'name' is the person's first and/or last name, and 'field' is an existing field name (typed exactly as the field name appears in ph) with 'value' being that field's value (or a portion thereof) as listed in the Nameserver entry.  For example, if you were trying to look up an acquaintance named Paul who works in the DCL building, you could use the command "ph paul address=dcl".  This would result in a list of matching entries for all persons named Paul whose address field contains the character string "dcl", one of which is the entry for Paul Pomes.  It is also possible to use more than one field specifier in a query expression, e.g., "ph paul address=dcl phone=333-6262 ".  The object here is to make the query specific enough so that it does not generate more than 25 matches.
+
+Another easy way to narrow a search on a person is to include a middle initial (without a period) as part of the name, for example: "ph paul b pomes".
+
+
+4.1.3 Adding a Return Clause to a Query Expression
+--------------------------------------------------
+
+A Nameserver entry may actually contain more information (in additional fields) than is displayed by executing a query in the form ph name.  Ph will only return a default list of fields unless a return clause is added to the query expression.  A return clause consists of the word "return" followed either by the word "all" or a list of the fields in which you are interested.  If the word "all" is used, all viewable fields from the entries matching the first part of the query will be displayed, for example:
+
+ux1 2> ph paul pomes return all
+------------------------------
+             alias: p-pomes
+              name: pomes paul b
+             email: paul@uxc.cso.uiuc.edu
+             phone: (217) 333-6262
+      office_phone: (217) 333-6262
+        home_phone: (217) 359-0881
+               fax: (217) 244-7089
+           address: 1429 DCL, MC 256
+                  : 1304 West Springfield Avenue
+                  : Urbana, Illinois  61801-2910
+    office_address: 1429 DCL, MC 256
+                  : 1304 West Springfield Avenue
+                  : Urbana, Illinois  61801-2910
+   office_location: 1429 Digital Computer Lab
+      home_address: 717 West Washington Street
+                  : Champaign, IL  61820-3334
+             proxy: !!
+          nickname: pbp paulp avatar
+         no_update: !!
+        department: computing and communications services office
+             title: sr res programmer
+             hours: Mon: 9:00 to 17:00
+                  : Tue-Fri: 13:00 to 18:00
+            family: Kali, Dylan Freeman, Alanna Ruth, Roku & Suza
+       high_school: Downers Grove South, 1976
+              type: person phone
+           created: 1/1988
+          kerberos: p-pomes
+              slip: 128.174.22.63
+------------------------------
+
+If the word "return" is followed by a specific list of field names (separated by spaces), only the specified fields will be displayed, for example:
+
+  ux1 1> ph paul pomes return name phone
+------------------------------
+            name: pomes paul b
+           phone: (217) 333-6262
+------------------------------
+
+
+4.1.4 Searching on Fields other than 'name' and 'nickname'
+----------------------------------------------------------
+It is possible to look up information in the Nameserver database, not by name, but by searching for information held in another field of an entry.  Such queries must be in the form "ph field=value", where the specified 'field' has both the Indexed and Lookup attributes. (Section 5.6 explains how to determine the attributes of a field.)  At the time of this writing, the following fields were so designated: 'name', 'nickname', 'alias', 'callsign', 'email', 'office_phone', 'proxy', 'high_school', 'kerberos', 'text', and 'slip'.  For example, 'office_phone' is an Indexed Lookup field, and a query like "ph office_phone=333-6262" will yield the entry for Paul Pomes, whose office phone number is 333-6262.
+
+
+4.1.5 Problem Spellings
+-----------------------
+Although ph doesn't care about capitalization of words, it generally requires words to match exactly, with no characters left over.  For example, a query on the character string "john" will not match entries for "johnson."  However, special symbols, or so-called "wildcard" characters, can be used in a ph query to find an entry for which only a few letters of a name are known.  
+
+The "*" (asterisk) is used in place of one or more unknown characters in a name.  For example, to find the ph entry for S. Dorner, where the remainder of the first name is not known, an appropriate command would be:  "ph  s*  dorner" .
+
+When only one character of a name is unknown, the "?" (question mark) can be used in place of the character.  For example, to find Gladys Johnson (or is that JohnsEn?), one could use the command:   
+"ph  gladys  johns?n" .
+
+When using ph in command-line mode on Unix machines, expressions with wildcards must be surrounded by double quote marks; thus, the query "ph s* dorner" should be typed 
+
+     ph "s*" dorner 
+
+from the Unix operating system prompt.  Similarly, the query "ph gladys johns?n" should be entered as
+
+     ph gladys "johns?n" 
+
+at the Unix prompt.  When in command-line mode on VMD or interactive mode on either VMD or a Unix machine, quotation marks should not be used in the query.
+
+
+4.2 Information about People at Other Institutions
+--------------------------------------------------
+Many other universities and institutions on the Internet have adopted the ph program to maintain their own student/staff directories and e-mail routing information.  The Unix ph client can query these remote ph Nameservers for name, phone number, address, e-mail address, and any other field information contained in the remote database (currently this feature is not implemented on VMD).  To see a current list of ph servers and associated sites, enter the query:  "ph ns-servers".  A list of the publicly accessible ph sites as of this writing is given in Appendix C.
+
+To query a remote ph server, get to the operating system prompt and enter a query in the form "ph -s server.name name", where 'server.name' is the domain name of the server you want to query and 'name' is the name of the person you want to look up.  All of the options described for queries in section 4.1 of this guide also apply to remote queries--i.e., you can use wildcards, specify fields, etc.  For example, to get ph information for a "John Smith" at Princeton University, one would enter the command:
+
+     ph -s princeton.edu john smith
+
+The query will be directed to the ph server specified after the  "-s" option (Princeton University, in the above example), instead of the local ph server, and all matching entries will be displayed.  
+
+To enter interactive mode on a remote server, type the name of the server but do not specify the name of a person or thing.  For example, the command:
+
+     ph -s ns.nwu.edu
+
+will connect you to the Nameserver at Northwestern University.  Once connected, all queries typed at the ph> prompt will search Northwestern's database.
+
+
+4.3 Other Types of Information in the Nameserver
+------------------------------------------------
+When searching the Nameserver database for information about things other than people, it is often helpful to let the Nameserver know specifically what type of information you want to find.  Every Nameserver entry has a field named 'type' that describes the kind of information it contains.  One or several of the following types may be found in the 'type' field of a Nameserver entry
+
+     Type      Description
+     ----      -----------
+     person    Information about a human being.
+
+     unit      Information about a campus unit (e.g., department,
+               college, etc.).
+     areacode  Information about a telephone area code.
+
+     food      Information about a Champaign-Urbana restaurant.
+
+     phone     Information typically found in a university or 
+               standard telephone book. The    "phone" type is 
+               used together with the following other types: 
+               "person," "unit," "areacode," and "food."
+
+     weather   Information about current weather conditions.
+
+     timetable The UIUC course timetable.  Also listed under types 
+               "fall," "spring," and "summer."
+
+If a query is executed without any field specifiers, ph searches the entire database for all entries whose 'name' and/or 'nickname' fields match the query expression.  Usually, a simple query expression will deliver the desired results.   However, occasionally a simple query can produce too many matches, several or many of which may have nothing to do with the data type for which one is searching.  For instance, the query "ph english" displays the names of six people whose last name is English, the names of two campus units, and the titles of 59 courses in the University timetable.  In such cases, it can be helpful to include a 'type' field specifier in the query expression.  The general syntax for using the 'type' field specifier is: "ph type=name-of-desired-type name", where 'name-of-desired-type' is one of the types listed above and 'name' is the full or partial name of the thing you want to find.
+
+In the example given above (i.e., "ph english"), you could use the 'type' field specifier to see only those records matching the data type indicated.  For example, if you were only searching for the entries of campus units, you could use the command: "ph type=unit english."
+ 
+   Note: The 25 entry limit applied to searches on people 
+   (type=person) does not apply to the other types of data in the 
+   Nameserver database.  Thus, if 50 timetable entries match a 
+   query, all 50 will be displayed.
+
+
+4.4 Information about UIUC Campus Units
+---------------------------------------
+The Nameserver database contains information for every campus unit (i.e., departments, colleges, schools, administrative offices, etc.) that appears in the printed version of the Student/Staff Directory.  The 'name' field of a campus unit entry contains the official name of the unit as it is given in the printed directory.  The 'phone' and 'address' fields contain the main telephone number and address for the unit.  Any additional information about the unit that appears in the printed directory (e.g., the names, phone numbers, and addresses of personnel within the unit; the names, addresses, and phone numbers of offices, divisions, special programs, or special facilities within the unit; etc.) is listed in the 'text' field.
+
+To do a lookup on a campus unit, enter a query in the form: "ph type=unit name", where 'name' is the full or partial name of the unit about which you want information.  The clause "type=unit" is not required in the query, but its use will limit the search to those items in the Nameserver database that are explicitly campus units.  Since the names of campus units often have words in common with the names of courses in the University timetable, the 'type' field specifier is especially useful for filtering out unwanted timetable entries that would otherwise match the query expression. For example:
+
+ph>  ph type=unit landscape architecture
+------------------------------
+   name: Landscape Architecture, Dept of
+  phone: 333-0176
+address: 214 Mumford Hall, 1301 W Gregory, U, MC-710
+   text: Head: Vincent J. Bellafiore, 214 Mumford Hall, MC-710,
+       :  333-0176
+       :   Staff secy: Ada Siler, 214 Mumford Hall, MC-710,
+       :    244-1698
+       : Asst head: Natalie B. Alpert, 202 Mumford Hall, MC-710,
+       :  244-1701
+       : Grad coord: Terence Harkness, 1205 W Nevada, U, MC-710,
+       :  333-3612
+       : Library: 203 Mumford Hall, MC-710, 333-0424
+------------------------------
+
+
+
+4.5 University Timetable Information
+------------------------------------
+
+UIUC course timetable information for the current fall, spring, and summer semesters is available through the CCSO Nameserver.  The University timetable database is identical to the printed version and is searchable both by course number and words found in course titles.  
+
+To do a timetable lookup by course number, set the 'type' field specifier to "fall"  (to search the fall timetable), "spring" (to search the spring timetable), "summer" (to search the summer timetable), or "timetable" (to search all available timetables), followed by the desired course number.  The course number itself, which usually consists of an abbreviated department or program name followed by a three-digit number, should be typed as a single entity with no spaces between the characters.  For example, the command "ph type=timetable chem337"  will yield the complete timetable listing for Chemistry 337, Organic Chemistry.  Similarly, the command  "ph type=fall ece350" will display the timetable listing for the fall offering of Electrical and Computer Engineering 350, entitled Lines, Fields and Waves.  To view all 200-level art history courses offered over summer session, you could include a wildcard in the query; e.g., "ph type=summer arthi2*" .
+
+To do a timetable lookup by course title, set the 'type' field specifier to the desired timetable type (e.g., "type=fall"), followed by any significant word(s) in the course title.  For example, the command  "ph type=timetable introduction spanish" will yield the timetable listings for all courses containing both "introduction" and "spanish" in their titles. 
+
+4.6 Local and National Weather Information
+------------------------------------------
+Ph can display weather information for many locations throughout the state and country.  It also offers some special options for local weather information.  The weather information is downloaded from a commercial service.  The raw data is fed to a CCSO computer and is the source for several CCSO weather-related services including that provided by ph.  Ph weather information is updated as it arrives on the data feed.  Weather conditions for a particular location are requested with the syntax:
+
+     ph type=weather airport_code conditions
+or
+     ph type=weather city_name conditions
+
+where 'airport_code' or 'city_name' specifies the name of the location in which you are interested.  The airport codes and corresponding city names for which information is available are given below:
+
+      ALN   alton        DSM   desmoines    MWA   marion
+      ARR   aurora       FNT   flint        MVN   mtvernon
+      BLV   belleville   GBG   galesburg    NBU   glenview
+      BMI   bloomington  IND   indianapolis ORD   chicago ohare
+      BOS   boston       JFK   newyork      PIA   peoria
+      CGX   meigs        LAX   losangeles   PDX   portland
+      CMI   champaign    MDH   carbondale   RFD   rockford
+      CMX   houghton     MDW   midway       SFO   sanfrancisco
+      COU   columbia     MLI   moline       SPI   springfield
+      CPS   eaststlouis  MMO   marseilles   STL   stlouis
+      DEC   decatur      MSN   madison      SYR   syracuse
+      DPA   dupage       MSY   new orleans  UIN   quincy
+
+Note that city names consisting of more than one word are sometimes written as a single entity with no spaces (e.g., sanfrancisco) and other times are not (e.g., new orleans).  Due to this inconsistency, it may be easiest to use the three letter airport code instead.  The following example shows a request for Champaign weather conditions along with the query results:
+
+ux1 11> ph type=weather cmi conditions
+------------------------------
+     name: CMI champaign conditions
+     text: CMI SA 1145 M60 BKN 100 OVC 6H 74/71/2310/986
+         : CMI SA 1245 M55 BKN 120 OVC 7 75/72/2210/987
+         : Mon Jul 13 at 12:45GMT (07:45CDT).
+         :   Weather: Cloudy
+         :      Temp:  75F ( 23C)
+         :  Humidity:  90%                  Dewpoint: 72F (22C)
+         :   Ceiling: meas   5500ft            Visibility: 7 mi
+         : Barometer: 29.87inHg (101.2KPa)
+         :      Wind: SW 12mph (10kt) (19km/h)
+------------------------------
+
+The first two lines of the 'text' field in the example above consist of the raw weather data.  In the remaining lines, the raw data has been parsed and given labels so that it is easier to understand.
+
+Ph can also display radar summaries, special weather announcements, and 36 hour as well as extended forecast information.  These services are largely limited to the state of Illinois.  The sample queries in the left-hand column will yield the results listed in the right-hand column:
+
+    Query                                Result
+    -----                                ------
+    ph type=weather radar                St. Louis and Marseilles
+                                         radar summaries
+
+    ph type=weather forecast             36 hour and extended 
+                                         forecast for Illinois
+
+    ph type=weather special              Special weather 
+                                         advisories from the 
+                                         National Weather Service 
+                                         in Springfield and 
+                                         Peoria
+
+    ph type=weather illinois conditions  Tabular report of 
+                                         conditions throughout the 
+                                         state
+
+
+4.7 Telephone Area Code Information
+-----------------------------------
+The Nameserver database contains telephone area codes for major cities and regions in the U.S.  The ph area code information comes from an old data set and is only sporadically and haphazardly updated, so it may not be entirely up-to-date.
+
+To find the area code for a particular U.S. city, set the 'type' field specifier to 'areacode' followed by the name of the city, for example:
+
+ph> ph type=areacode san francisco
+------------------------------
+    name: area code 415            
+        : Oakland and San Francisco, (Bay Area)  California
+------------------------------
+
+The area code data set does not include every city in the U.S.  If no matching entries are found using the name of a city, try using the name of the state instead.  The area codes for the major regions in the state will be displayed, for example:
+
+ph> ph type=areacode new jersey
+------------------------------
+      name: area code 201
+          : Morristown,  and Newark, (Northeast) New Jersey
+------------------------------
+      name: area code 609
+          : Atlantic City, Camden , and Trenton , (Southwest)
+          : New Jersey
+------------------------------
+      name: area code 908
+          : Elizabeth, and New Brunswick, (Central) New Jersey
+------------------------------
+
+
+4.8 Local Restaurant Information
+----------------------------
+The UIUC Nameserver database contains entries for most of the restaurants and other types of eating/drinking establishments in the Champaign-Urbana area.  The ph entries relating to restaurants, pizza parlors, taverns and donut shops are organized as follows:
+
+The 'name', 'address', and 'phone' fields are set to the proper name, the address, and the phone number of the establishment respectively.
+
+The 'nickname' field is set to one or more of the following types of eating establishments:
+
+    Nickname    Description
+    --------    -----------
+    restaurant  An establishment that is primarily a restaurant,
+                deli, sweet shop, or bar that serves or delivers 
+                food other than pizza.
+
+    bar         An establishment that has a sit-down bar or lounge 
+                where liquor is served, but also serves food.
+
+    tavern      An establishment that serves liquor only, no food.
+
+    pizza       An establishment that serves or delivers pizza.
+
+    donut       An establishment that is primarily a donut shop.
+
+
+If the establishment is a restaurant that also serves pizza, it will have both "restaurant" and "pizza" in the 'nickname' field.  If the establishment is a restaurant with a bar or lounge, then both "restaurant" and "bar" will appear in the 'nickname' field, and so on.
+
+The 'hours' field is set to the hours that food is served for establishments that serve or deliver food.  It is set to the hours that liquor is served in the case of taverns.  If the establishment is a restaurant with a bar, the bar hours are listed in the 'text' field.  Hours are listed as day of the week (Su, Mo, Tu, We, Th, Fr, and Sa) followed by the time of day from 0:00 (midnight) to 23:59.  Hours for a given day are listed with the day on which the establishment opens--i.e., if the restaurant closes after midnight, there is not a separate listing for the new day.
+
+The 'other' field contains a more specific description of the type of establishment and can be helpful for narrowing down searches for particular types of food, drink, or services.  If the 'nickname' refers to the establishment as a restaurant, then the 'other' field will first either refer to it as finedining, family, fast, deli, sweets, tavern, or carryout and deliver.  It then will attempt to describe its cuisine.  Currently, the possibilities include: american, bavarian, cajun, creole, chinese, eclectic, italian, french, mexican, middleeastern, pizza, and viennese.  If the 'nickname' field is set to pizza or donut, then this is reiterated in the 'other' field.  
+
+The 'text' field gives a more detailed description of the establishment. It attempts to describe specialties, special hours (for example, of the lounge), whether you can get a full meal or perhaps just breakfast.  It also attempts to list what beers are on tap and what the bar specialties may be.  If reservations are accepted or recommended, this is listed too.  Finally, the 'text' field indicates whether checks or credit cards (listed as CC) are accepted.  Checks may be limited to local checks, and credit cards may be limited to a few special cards.
+
+The 'revision' field, if present, states when this information was gathered or last revised.  The 'type' field for all items in the Nameserver restaurant guide is always set to "food" and "phone."
+
+The restaurant information in the Nameserver was mainly obtained from the "Guide to Dining in Champaign-Urbana" published by the Champaign-Urbana Visitors' Bureau.  Some information also comes from the Champaign County City Clerk's Office.  New restaurants were discovered by driving and walking around town.  All of this information was verified and expanded upon either by telephone calls or in-person visits.  The restaurant information was updated in fall of 1992.
+
+  Examples of Restaurant Queries
+  ------------------------------
+
+  Example 1.  If you already know the name of the restaurant you
+  want to locate, set the 'type' field specifier to "food"
+  followed by all or part of the name of the restaurant.  (Note: 
+  The 'type' field specifier [i.e., "type=food"] is not required,
+  but its use in the query will limit the search to those items in 
+  the Nameserver database that are part of the restaurant guide.) 
+  For example:
+    
+       ph type=food original pancake house
+
+
+  Example 2.  If you want to locate all restaurants that serve a
+  certain type of cuisine or offer a particular type of service,
+  set the 'other' field specifier to indicate the type of food or 
+  service in which you are interested.  In such cases, you must 
+  also either give a name or specify one of the five types of 
+  eating establishments used in the 'nickname' field of the 
+  database: restaurant, bar, pizza, tavern, or donut.  Examples:
+
+       ph type=food other=chinese restaurant
+       ph type=food other=finedining restaurant
+
+  Creative use of additional field specifiers in the query can 
+  help you identify establishments that meet rather rigid or broad
+  criteria as shown in the examples below.
+
+  Example 3.  The following example finds all restaurants that 
+  serve Italian food and accept credit cards:
+
+        ph restaurant other=italian text=CC
+
+  Example 4.  The next example finds all bars in Champaign that 
+  have Michelob Dry beer on tap:
+
+        ph bar text=michelob text=dry address=champaign
+
+  Example 5.  The final example finds all Urbana pizza parlors
+  that offer thick-crust pizza and deliver:
+
+        ph pizza text=thick text=delivery address=urbana
+
+
+            5. CHANGING INFORMATION IN YOUR PH ENTRY
+
+Changing information in a ph entry requires following a few simple steps.  You must first access ph as described in Sections 2 and 4, enter interactive mode, and log in to the Nameserver.  When logging in, you will be asked to enter two important pieces of information: your "ph alias" and your "ph password."  The first part of this section will describe how to get your alias and password.  Next you will be introduced to the interactive mode commands "me" and "fields", which are both very helpful when modifying an entry.  Following is a discussion of the ph login procedure and, finally, instructions for modifying the information in your ph entry.
+
+5.1 How to Get Your Ph Alias
+----------------------------
+Your ph alias uniquely identifies you to the Nameserver.  No two aliases are alike.  A person's alias is usually formed by combining his or her first initial, a hyphen, and complete last name.  For example, "Paul Pomes" has an alias of "p-pomes."  Some people share the same first initial and last name; these people typically have a number added to the ends of their aliases, so that their aliases remain unique.  For example, "John Doe" might have an alias of "j-doe1," and "Jane Doe" might have an alias of "j-doe2."  It is possible for the owner of a ph entry to change his or her alias by logging in to ph and modifying the 'alias' field; thus, some people have aliases that do not follow the conventions just described, such as the alias "SueG." 
+
+To discover your own alias, do a ph lookup on yourself as described in section 4.1 of this guide.  For example, if John Doe wanted to find out his alias, he could enter the command:
+
+% ph john doe
+------------------------------
+           name: doe john
+   office_phone: 333-3333
+ office_address: 194 DCL, MC 256
+     department: ccso-computing 
+       email to: j-doe1@uiuc.edu (doe@garcon.cso.uiuc.edu)
+------------------------------
+
+
+The alias is the first element in the email to  line, before the "@uiuc.edu."  In the above example, the alias is "j-doe1."  If more than one entry is displayed, you must find the entry that belongs to you.
+
+A more direct way to find an alias is to specify the fields you want to see by adding a return clause to the query.  Only fields that follow the word "return" will be displayed, as shown below:
+
+% ph john doe return name alias
+------------------------------
+           name: doe john
+          alias: j-doe1
+------------------------------
+
+
+5.2 How to Get Your Ph Password
+-------------------------------
+Every entry in the Nameserver database is password protected, so when you log in to change information in your own entry, you will be asked to enter your unique ph password.  There is one exception to this rule, which currently applies to users with registered Unix or VMD accounts.  If you log in to ph from the Unix or VMD account that appears in the 'email' field of your ph entry, you will not be asked to enter a password during the login process.  This exception is addressed in greater detail in section 5.3, Logging In to Ph.
+
+If you log in to ph from the Unix or VMD account shown in your 'email' field, you can give yourself a password (see section 5.10). Otherwise, to obtain your ph password, present a valid University ID to a staff member at one of the desks in the CCSO Resource Center, 1420 DCL, 1304 W. Springfield, Urbana.  While you are there, you can also ask the staff member to make changes to your ph entry for you.  Or, if your building network administrator has proxy rights to your ph entry (see Section 7.4 in this user guide), he or she can assign a password to your ph entry for you.  For instructions on how to change your password in ph, see section 5.10.
+
+5.3 Logging In to Ph
+--------------------
+Once you know your ph alias and password, you can log in to the Nameserver.  To log in, you must first enter ph's interactive mode by entering the command ph at the operating system prompt.  The ph status message will appear and then you will see the ph> prompt.  Enter the command "login your-alias", where 'your-alias' is your unique ph alias.  After entering your alias, you will probably be prompted for your password.  When you enter your password, it will not be echoed to the screen.  Paul Pomes's login session would look something like this:
+
+     % ph
+     [ph status message appears here]
+     ph> login p-pomes
+     Enter nameserver password: [paul's-secret-password]
+     200:p-pomes:Hi how are you?
+     ph> 
+
+Note:  If you are using ph from the account listed in your 'email' field, you may not have to give a password when logging in to ph.  This feature works on VMD and on all Unix machines on which the system administrator has installed ph 5.0  (or a later version) as a privileged program.  All CCSO Unix machines have been configured in this manner. 
+
+5.4 Logging Out of Ph
+---------------------
+To log out of ph without exiting interactive mode, enter the command "logout" at the ph> prompt.   To log out and exit interactive mode entirely, enter the command "quit".
+
+5.5 The "me" Command
+--------------------
+Before editing your ph entry, it's a good idea to examine its current contents to determine exactly which fields should be changed or added.  This can be accomplished with the interactive mode command called "me."  The "me" command allows you to view every field in your Nameserver entry including sensitive fields that cannot be viewed by other users.  To use "me", simply enter "me" at the ph> prompt. The contents of your entire entry will be displayed.
+
+The "me" command does not show fields that are empty (do not exist) in your entry.  The Nameserver can hold much more information for a person than is automatically entered into the database during Nameserver updates.  Refer to section 5.6 and Appendix B for information on what fields are available for modification or addition to your ph entry.
+
+When using the "me" command, the display of an entry will be slightly different from the display for a standard query.  For example, if John Doe were to do a me command while in interactive mode, it would look like this:
+
+ph> me
+------------------------------
+           alias: j-doe1
+            name: john doe
+           email: doe@garcon.cso.uiuc.edu
+           phone: 333-3333
+         address: 1000 dcl
+                : CAMPUS MC 256
+      department: ccso-computing 
+           title: res programmer
+           hours: 8-5, M-F
+------------------------------
+
+The 'alias' and 'email' fields are displayed as separate elements, whereas, during a normal query, these two fields are combined into the single pseudo-field  'email to'.  When adding or changing e-mail account information in your ph entry, do NOT put something like "j-doe1@uiuc.edu (doe@garcon.cso.uiuc.edu)" in your 'email' field.  Your 'email' field should contain the specific account at which you receive mail (in the above case, "doe@garcon .cso.uiuc.edu") and nothing else.  
+
+5.6 The "fields" Command
+------------------------
+Since the "me" command only shows the fields that already contain information in your ph entry, you may also want to know the names of fields that can be added to your entry.  This can be done with the "fields" command.  The "fields" command is used to view the list of all of the fields that are defined in the Nameserver database.  To use the command, enter ph's interactive mode and then enter "fields" at the ph> prompt.  The output of the "fields" command consists of a series of two-line entries describing each field.  For example, here are the lines that describe the 'office_phone' field:
+
+     -200:32:office_phone:max 60 Indexed Lookup Public Change
+     -200:32:office_phone:Office telephone number.
+
+Each line begins with a Nameserver reply code of "-200"; this can be safely ignored.  The next thing in each line is the field id number (in this case, "32").  This too is of little interest.  Next comes the name of the field ("office_phone").  From this point on, the two lines differ.  The first line continues with the maximum length of the field (in this case, "max 60," meaning the field can contain no more than 60 characters), followed by a set of field attributes ("Indexed Lookup Public Change").  The second line is a brief description of what the field is intended to hold.
+
+A field's attributes determine how the field behaves.  Here is a list of the attributes you are likely to encounter and their meanings:
+
+ Attribute    Description  
+ ---------    -----------
+
+ Change       The field can be changed by the owner of the entry.
+
+ Default      The field is always displayed except for queries 
+              that include a return clause. 
+
+ Encrypt      The field must be encrypted before transmission.
+
+ ForcePub     The field is viewable/searchable regardless of the
+              contents of the suppress field.
+
+ Indexed      The field appears in the Nameserver's index; all 
+              Nameserver lookups must include at least one indexed 
+              field
+
+ Lookup       The field can be used in queries.
+
+ NoPeople     No entry of type "person" may include this field;
+              i.e., the field is limited to non-person entries
+              such as campus units, groups, weather information,
+              etc.
+
+ Public       Anyone is allowed to see the contents of the field.
+
+
+To view the description for a single field rather than the entire list of fields defined in the Nameserver database, specify the name of the field you want to see after the "fields" command, e.g., "fields email".  In order to change the contents of any field, it must have the 'Change' attribute.   A complete list of the fields available in the Nameserver database as of this writing is provided in Appendix B.
+
+
+5.7 Modifying Information in Your Ph Entry Using the "edit"
+-----------------------------------------------------------
+Command
+-------
+If you are logged in to ph, you can both modify existing information and add new fields (from a set of pre-defined fields) to your entry.  There are two methods for changing standard field information and a couple of special exceptions that will be addressed later. 
+
+One way to change the data in a field, or to add a new field that doesn't appear in your entry, is to use the edit command.  To use "edit", you must be logged in to the Nameserver.  Then, to change any field in your entry (or to add a field that doesn't appear in the entry), simply enter the command: "edit field_name", where 'field_name' is the exact name of the field you want to change or add.  You will be placed in the default text editor (usually vi on Unix machines and XEDIT on VMD) and allowed to make changes to the field.  When you have finished editing the text in the specified field, save your changes and exit the text editor.  Your changes will immediately be registered and you will be returned to the ph> prompt.  If you change your mind about editing the field, simply exit the editor without saving the changes; by doing so, ph will not record your changes.
+
+To remove a field with the "edit" command, follow the procedure described above and delete all text from the field before saving.  (Note to VMD Users:  To delete an existing field, VMD users MUST leave at least one blank space in the field.  If all lines or characters are deleted from a field on VMD, the temporary file containing the field information cannot be saved, and the entry will not be updated.)
+
+After adding or editing a field with "edit", use the "me" command to verify your changes.   To leave the interactive mode of ph, enter the "quit" command.  If you are using the public "phones" account as described in section 2.2, entering "quit" will log you out of the system entirely.
+
+  Examples of the "edit" Command:
+
+  Example 1.  John Doe logs in to the Nameserver and uses the 
+  "edit" command to change the contents of the 'home_address'
+  field in his entry:
+
+       ph> login j-doe1
+       200:j-doe1:Hi how are you?
+       ph> edit home_address
+       102:There was 1 match to your request.
+       "/tmp/ph010352" 2/37
+       [vi was used to change John's home address to "222 Main
+       Street/Urbana, IL 61801"]
+       "/tmp/ph010352" 2/33
+       200:1 entry changed.
+       ph> 
+
+  Example 2.  John Doe decides to add a NEW field to his ph 
+  entry.  The procedure is nearly identical to the example 
+  above, except that, when the text editor is invoked, an empty 
+  file is displayed, and John must insert the new information 
+  instead of changing existing information:
+
+        ph> login j-doe1
+        200:j-doe1:Hi how are you?
+        ph> edit fax
+        102:There was 1 match to your request.
+        -508:1:  fax: Not present in entry.
+        "/tmp/ph010352" 0/0
+        [vi was used to add John's fax number "(217)333-3333"]
+        "/tmp/ph010352" 1/14
+        200:1 entry changed.
+        ph> 
+
+Only fields with the "Change" attribute may be changed by a user.  Most fields have this attribute; two that do not are name and curriculum.  If you wish to make a change to one or both of these fields, present your valid University ID card to a staff member at the Accounting and Distribution Desk in the CCSO Resource Center in 1420 DCL, 1304 W. Springfield, Urbana.  
+
+5.8 Modifying Information in Your Ph Entry Using the "make" 
+------------------------------------------------------------
+Command (for Unix Users Only)
+-----------------------------
+If you are unfamiliar with text editors, you may prefer to use the "make" command to change or add information to your entry.   To use "make", you must be logged in to the Nameserver from a Unix machine.  Then, to change any field in your entry (or to add a field that doesn't appear in the entry), simply enter the command: 
+   
+   make field_name="value-of-field"
+
+where 'field_name' is the exact name of the field you want to change or add and " value-of-field " is the text you want to appear in that field.  Note that the "value-of-field" part of the command should be enclosed in double quotation marks.
+
+If you want to remove a field from your entry, give the field an empty value by typing two consecutive double quotation marks for "value-of-field" (e.g., make address="").  Ph will then remove the field from your entry.
+
+If you want the contents of a field to appear on more than one line (such as in an address), type the characters  "\n"  where the new line is to begin, directly followed by the data to be printed on that line.  
+
+  Examples of the "make" Command:
+
+  Example 1. Change the 'email' field to pomes@uxc.cso.uiuc.edu:
+
+       make email="pomes@uxc.cso.uiuc.edu"
+
+
+  Example 2.  Remove the 'home_phone' field from the ph entry:
+
+       make home_phone=""
+
+
+  Example 3.  Enter three separate lines of data in the 
+  'address' field:
+
+       make address="1429 DCL\n1304 W. Springfield\nUrbana"
+
+
+  Note: the resulting address will be displayed on three
+  separate lines as follows: 
+ 
+       1429 DCL
+       1304 W. Springfield
+       Urbana
+
+
+  Example 4.  Create a new 'hours' field:
+
+       make hours="2-4 Tues, Thurs"
+
+
+Only fields with the "Change" attribute may be changed by a user.  Most fields have this attribute; two that do not are name and curriculum.  If you wish to make a change to one or both of these fields, present your valid University ID card to a staff at the Accounting and Distribution Desk in the CCSO Resource Center in 1420 DCL, 1304 W. Springfield, Urbana.  
+
+After adding or editing a field with make, use the "me" command to verify your changes.   To leave the interactive mode of ph, enter the "quit" command.  If you are using the public "phones" account, entering "quit" will log you
+ out of the system entirely. 
+ 
+5.9 Updating Your 'email' Field with the "register" Command 
+-----------------------------------------------------------
+(for Unix Users Only)
+---------------------
+If you receive your mail on a Unix machine, an easy way to update the 'email' field is to use the "register" command.   To use "register", you must first log in to the Nameserver from the account you want listed in your 'email' field.  Then, simply type "register" at the ph> prompt.  The account into which you are currently logged will automatically be entered into your 'email' field.  For example, if you logged in to ph from the CCSO mainframe ux1 and your login on ux1 was "smythe," the "register" command would put the following information into your 'email' field: "smythe@ux1.cso.uiuc.edu".  If a different address is already in your 'email' field, the register command will overwrite it with your current account information.
+
+
+5.10 Changing Your Ph Password with the "passwd" Command
+--------------------------------------------------------
+Unlike most fields in your ph entry, your 'password' field cannot be viewed, even while logged in to the Nameserver, nor can it be changed with the "edit" or "make" commands.  The only way to change your password is to issue the "passwd" command.  To use "passwd", you must first log in to the Nameserver.  Then, enter the command "passwd" at the ph> prompt.  You will be asked to enter your new password twice.
+
+Good passwords are at least six characters long and contain a variety of characters, both upper and lower case.  Ph will complain if your password is too short or contains only numbers.  It is also best to avoid names or any word found in any dictionary.  One good scheme for creating passwords is to make an acronym from some phrase you can remember.  For example, you might think of "a rose By any other name would smell..." and use "arBaonws" as your password.
+
+5.11 Important Ph Fields
+------------------------
+There are several fields in ph that are important to know about so that you can better control your own entry, the ease with which others can find you in the Nameserver database, and the manner in which your e-mail address appears in the printed version of the Student/Staff Directory. They are the 'email', 'no_update', 'nickname', 'proxy', and 'paper' fields.  
+
+5.11.1 The 'email' Field
+------------------------
+
+The 'email' field should contain the specific account and machine name at which you receive your electronic mail.  The information in the 'email' field is NOT automatically filled in during regular Nameserver database updates.  You, as the owner of your ph entry, are entirely responsible for making sure that your 'email' field is filled in and up-to-date.  Because the 'email' field is used by the Nameserver electronic mail delivery service, it is especially important that the contents of this field be accurate.
+
+In general, "Internet-style" addresses are recommended for the 'email' field.  Internet addresses take the form: "user@fully.qualified.domain.name."  Examples of Internet addresses for several computers on which UIUC students and staff commonly receive e-mail are given below:
+
+    Machine     Address
+    -------     -------
+
+    VMD         user@vmd.cso.uiuc.edu 
+
+    ux1         user@ux1.cso.uiuc.edu 
+
+    ux4         user@ux4.cso.uiuc.edu 
+
+    uxa         user@uxa.cso.uiuc.edu 
+
+    uxh         user@uxh.cso.uiuc.edu 
+
+    UICVMC      user@uicvmc.aiss.uiuc.edu
+
+When entering your own Internet address, replace user with your specific login name, e.g., "jones@ux1.cso.uiuc.edu."
+
+Note: Although it is technically possible to enter more than one e-mail address in the 'email' field, this practice is strongly discouraged.  If you have more than one e-mail account and/or would like to tell people how to reach you via a UUCP- or BITNET-style address, it is recommended that you put such information in the 'other' field of your ph entry.
+
+
+5.11.2 The 'no_update' Field
+----------------------------
+Soon after the beginning of the spring, summer and fall semesters, student/staff information  in the Nameserver database is updated based on information provided by the Office of Payroll (for faculty and staff) and the Office of Admissions and Records (for students).  By default, this process overwrites the contents of certain fields in the ph database with information provided by the two above-named offices.  The 'no_update' field controls whether your Nameserver entry will be changed during these automatic updates.  If you have customized your ph entry and do not want your modifications to be overwritten during an update, use the make or edit command to enter some text into the 'no_update' field of your ph entry.  The presence of any data in the 'no_update' field will prevent all but the 'name' and 'curriculum' fields from being updated (the latter two fields are always updated and are, in any case, not changeable by the owner of the entry).    
+
+
+5.11.3 The 'nickname' Field
+---------------------------
+The 'nickname' field is provided so that nicknames can be used in Nameserver queries.  While the 'name' field of the Nameserver database contains every person's official full name (as known by the University), individuals are often more commonly known by names other than their full names.  "William" might be known to most people as "Bill," or "Steven" as "Steve."  You may enter any nicknames by which you are known into the 'nickname' field of your entry.  Other users can then use your full name or nickname to find you.  
+
+The Nameserver treats the 'nickname' field just like the 'name' field; nothing special is required to use a nickname in lookups. In other words, if a Nameserver query is issued without any field specifiers, ph will look at both the 'name' and 'nickname' fields for entries that match the query expression. 
+
+  Example:
+
+  Suppose "William Willard" is known to everyone as "Willy," and
+  he would like people to be able to easily find his entry in the
+  Nameserver.  William can use the ph "edit" or "make" command to 
+  put "willy" in his 'nickname' field.  Once he has done so, 
+  others can find him in the Nameserver database using either of
+  the following query expressions:
+
+       ph william willard
+
+    or
+
+       ph willy willard
+
+Most ph entries do not contain a 'nickname' field unless the owner of the entry has deliberately added the field to his or her entry.  However, a 'nickname' field may automatically be added to entries where a common nickname is associated with a particular first name.  For example, a 'nickname' field with the contents "tom" is added to all entries containing the first name "thomas" in the 'name' field.  If you would prefer that nicknames not be added to your entry automatically, create and enter some text into your ' no_update' field.
+
+
+5.11.4 The 'proxy' Field
+------------------------
+The 'proxy' field can be used to allow others to change your ph entry.  If you want someone else to be able to change your entry, put that person's ph alias in your 'proxy' field. 
+
+To add one or more aliases to your 'proxy' field, you must be logged in to the Nameserver.  Then, use the "make" or "edit" command to add the desired aliases to your 'proxy' field.  For example, to give Paul Pomes proxy rights to your entry, you would log in and then type:
+
+    make proxy="p-pomes"
+
+or
+
+    edit proxy    (You will be placed in the default text editor.
+                  Type the alias "p-pomes" and save the file.)
+
+If you would like to preclude the possibility of another person gaining proxy rights to your ph entry, enter the text "no!" into your 'proxy' field (the "!" is an important character because an alias may not contain an "!"), for example:
+
+    make proxy="no!"
+
+
+5.11.5 The 'paper' Field
+------------------------
+
+The printed version of the Student/Staff Directory gives the e-mail address for faculty and staff who have an address listed in the 'email' field of their Nameserver entry.  The 'paper' field controls how the e-mail address will appear in the Directory.  There are three options:
+
+1. If the 'paper' field is empty (does not exist), the e-mail address will be listed in the printed directory as "alias@uiuc.edu", for example, p-pomes@uiuc.edu.  E-mail so addressed will be delivered to whatever account is  listed inthe 'email' field of the ph entry.  CCSO recommends that the 'paper' field be left empty.  This is the default; you need do nothing to select it.
+
+2. If the 'paper' field contains the text "no", the e-mail address will not be printed in the Directory at all.
+
+3. If the 'paper' field contains the text "specific", the address contained in the 'email' field of the ph entry will be listed in the Student/Staff Directory.  WARNING:  If you exercise this option and then get a new e-mail address, your previous e-mail address will be listed incorrectly for as long as a year, since the Directory is printed only once per year.
+
+To add or change the contents of your 'paper' field, use the "edit" or "make" command.  For example, to prevent your e-mail address from being printed in the Student/Staff Directory, log in to ph and then type:
+
+    make paper="no"
+
+or
+
+    edit paper    (You will be placed in the default text editor. 
+                  Type the text "no" [without the quotes] and save
+                  the file.)
+
+
+             6. USING THE NAMESERVER TO FORWARD E-MAIL
+
+
+6.1 Sending Mail Using Alias-Based Addresses
+--------------------------------------------
+The Nameserver contains entries for all staff, faculty, and students at the University.  Each person in the database is identified by a special name called an alias, which is found in the 'alias' field of each Nameserver entry.  No two people have the same alias; therefore, a person's alias uniquely identifies him or her to the Nameserver.  A person's alias is usually formed by combining his or her first initial, a hyphen, and complete last name.  For example, "Steven C. Dorner" has an alias of "s-dorner."  Some people share the same first initial and last name; these people typically have numbers added to the ends of their aliases, so that their aliases remain unique.  For example, "John Doe" might have an alias of "j-doe1," and "Jane Doe" might have an alias of "j-doe2."  It is possible for the owner of a ph entry to change his or her alias by logging in to ph and using the "edit" or "make" command; thus, some people have aliases that do not follow the conventions just described, such as the alias "SueG."
+
+Aliases serve two functions.  First, they are used as "login names" for the Nameserver.  If you wish to make changes to your Nameserver entry, you must first tell ph your alias so that it knows who is trying to log in.  Second, they can be used as a convenient means of sending people electronic mail.  Instead of sending mail to a person's specific e-mail address, you can send mail to "alias@uiuc.edu", where 'alias' is the person's Nameserver alias.  For example, you could send mail to "p-pomes@uiuc.edu", and the mail would be delivered to Paul Pomes.
+  
+Using alias-based addresses to send mail has a couple of advantages over using specific e-mail addresses: 1) alias-based addresses are often shorter and much easier to remember than specific e-mail addresses; and 2) the alias of a user never changes (unless the owner of the ph entry deliberately modifies his or her alias), whereas it is quite common for the specific address at which a person receives electronic mail to change.  By keeping the 'email' field in your ph entry up-to-date and encouraging friends and colleagues to use your alias-based address instead of your specific e-mail address, your electronic mail will always be delivered to your current address, eliminating the need to notify people if your specific e-mail address should change.  Therefore, it's a good idea to use your alias-based address on business cards and other printed or electronic media that advertise your e-mail address. 
+ 
+An example will make the advantage of alias-based addresses much clearer.  Greg German, staff member at CCSO, has the Nameserver alias "g-german".  Therefore, his alias-based electronic mail address is "g-german@uiuc.edu".  At the moment, Greg reads his mail on a machine using the e-mail account "german@sonne. cso.uiuc.edu".  Greg has put this account name into the 'email' field of his Nameserver entry, so that the Nameserver will forward mail addressed to "g-german@uiuc.edu" to Greg's actual account, "german@sonne.cso.uiuc.edu".
+ 
+Recently, Greg's computer was out of service, and he had to receive mail on a different computer while his was being fixed.  His temporary e-mail account was "german@ux1.cso.uiuc.edu".  Greg entered this account in the 'email' field of his Nameserver entry, and the mail system stopped sending his mail to "german@sonne.cso.uiuc.edu" and started sending his mail to "german@ux1.cso.uiuc.edu"  instead.  The people who were using Greg's alias-based address to send him mail didn't even know that he had changed machines; as far as they were concerned, his address was, is, and always will be, "g-german@uiuc.edu".
+
+In order to send mail to an alias-based address, the specific account name and machine at which the addressee receives mail must be listed in the 'email' field of his or her Nameserver entry.  Although every person in the ph database has an assigned alias, not all persons have information in their 'email' field.  If you recently requested a mainframe account from CCSO, you were probably asked whether you wanted your account registered in ph; and if you said yes, that account address was probably entered into the 'email' field of your ph entry.  If you've had your e-mail account for a long time, chances are that your 'email' field is empty, unless you changed it or had someone change it for you.  The best way to find out whether your own or another person's e-mail account is registered in ph is to do a lookup on yourself or the person to whom you want to send mail.  See Section 4.1 for instructions on how to look up a person in the database.  If you want to add your e-mail address to your own entry or change the current contents of your 'email' field, see Section 5 of this guide.  Members of the University community are strongly encouraged to add their e-mail account information to their respective Nameserver entries.  
+
+There is one potentially confusing aspect of the way ph displays the alias/e-mail address information in an entry.  When you normally use ph to enter queries and obtain information, the Nameserver will present an entry like this example:
+
+  ux1 1> ph paul pomes
+------------------------------
+            name: pomes paul b
+           phone: (217) 333-6262
+         address: 1429 DCL, MC 256
+                : 1304 West Springfield Avenue
+                : Urbana, Illinois  61801-2910
+ office_location: 1429 Digital Computer Lab
+      department: computing and communications services office
+           title: sr res programmer
+           hours: Mon: 9:00 to 17:00
+                : Tue-Fri: 13:00 to 18:00
+        email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+------------------------------
+
+The 'email to' field listed above is FOR DISPLAY PURPOSES ONLY.  There are actually two separate fields in the Nameserver database called 'alias' and 'email'.  Ph combines them on a single line, which it labels 'email to', so users can better understand and make use of the "alias@uiuc.edu" form of an e-mail address.  Anyone who wants to send Paul Pomes e-mail should send it to
+"p-pomes@uiuc.edu".  It will then be forwarded to the e-mail account listed in parentheses, "paul@uxc.cso.uiuc.edu". 
+ 
+If the 'email' field in Paul's entry were empty, the 'email to' field would look like this:
+
+    email to: p-pomes@uiuc.edu (no account registered)
+
+When the 'email to' field contains the text "(no account registered)," you cannot use an alias-based address to send mail to the owner of the entry, even if he or she has an e-mail account.
+
+Finally, depending on the exact nature of the query, the resulting display may list the 'email' and 'alias' fields separately instead of combining them into the single pseudo-field 'email to'.  The results of such a query would look like this:
+
+------------------------------
+           alias: p-pomes
+            name: pomes paul b
+           email: paul@uxc.cso.uiuc.edu
+           phone: (217) 333-6262
+         address: 1429 DCL, MC 256
+                : 1304 West Springfield Avenue
+                : Urbana, Illinois  61801-2910
+ office_location: 1429 Digital Computer Lab
+      department: computing and communications services office
+           title: sr res programmer
+           hours: Mon: 9:00 to 17:00
+                : Tue-Fri: 13:00 to 18:00
+------------------------------
+
+In the above example, Paul's alias-based address is not listed explicitly.  It can be created by simply adding "@uiuc.edu" to the end of the contents of the 'alias' field, e.g., "p-pomes@uiuc.edu".
+
+6.2 Sending Mail Using a Name
+-----------------------------
+The UIUCnet mail system together with the Nameserver also performs another helpful function.  If you don't know an e-mail address and don't have access to ph to look it up, it still may be possible to send electronic mail.  You can create an e-mail address based on the recipient's name.  To do so, put a hyphen between the recipient's first and last name and add "@uiuc.edu" to the end.  For example, without knowing Paul Pomes's particular e-mail account or alias, you could try to send him e-mail using the address "paul-pomes@uiuc.edu".  The UIUCnet mail system will look for an entry in the Nameserver that contains both the first and last name of the recipient in the 'name' or 'nickname' fields.  If there is only one such entry (remember, there may be many John Smiths in the Nameserver database), and if the 'email' field of the entry is filled in, the message will be delivered to the address specified in the 'email' field. 
+
+If for any reason the UIUCnet mail system has trouble with an electronic mail address, the message will be returned to the sender, and the reason it could not be delivered will be included in the returned message.  This message may include enough information to permit the sender to correct the electronic mail address and re-send the message.
+
+
+                        7. ADVANCED TOPICS
+
+
+7.1 Command-line Options (for Unix Users Only)
+----------------------------------------------
+There are a variety of options that may be exercised when performing ph queries from the  command line on Unix systems and when invoking ph to enter interactive mode.  The complete syntax for a command-line query including all options is:
+
+    ph [-s server] [-t name-of-type] [-f field1,field2,...] 
+       [-mMrRbBTlLF] query
+
+The absence of a query expression at the end of the "ph" command and its various options will cause ph to enter interactive mode.  The complete syntax for entering interactive mode including all options is:
+
+  ph [ -s server ] [ -t type ] [ -f field1,field2,... ] [-h topic] 
+     [-mMnNrRbBTlLFcC]
+
+The meaning of each command-line option is given below:
+
+Option          Result
+------          ------
+ 
+-s server       Use 'server' as a Nameserver host, instead of the 
+                default host.  A list of suitable servers may be 
+                found with the query "ph ns-servers"  (also in 
+                (Appendix C).
+
+-t type         Use 'type' as a default type on queries (e.g.,
+                -t unit).  This is just like adding the field
+                specifier type='type' to all queries.  The -t 
+                option can be overridden by specifying an 
+                explicit type in the  query, e.g., "ph pomes
+                type=phone".
+
+-f field1,      Return fields 'field1,field2,...' instead of the 
+field2,...      default list of fields, if no return
+                clause is specified on queries.  (Note that each 
+                field in the list should be separated from the 
+                next by a comma only.)  Using the -f option is 
+                just like adding "return field field2... " to all
+                queries.
+
+-h topic        Display the list of on-line help topics.  If the 
+                -h option is followed by the name of an on-line
+                help topic, the help screen for topic will be 
+                displayed.  
+
+-m              Do not use a paging program (like more) when 
+                printing responses.
+
+-M              Use a paging program.  This is the default.
+
+-n              Do not read the .netrc file.  This option has
+                meaning only when using ph in interactive mode
+               (see the ph man page for more details).
+
+-N              Read the .netrc file (see the ph man page for more 
+                details).  This is the default
+.
+-r              Do not reformat 'alias' and 'email' fields to show
+                alias-based e-mail addresses.
+
+-R              Reformat 'alias' and 'email' fields to show alias-
+                based e-mail addresses.  This is the default.
+
+-b              Do not beautify query responses; print them in 
+                detail, complete with response codes.
+
+-B              Beautify query responses.  This is the default.
+
+-T              Do not specify any type by default; this is the 
+                default.
+
+-l              Do not label field values with field names when
+                displaying query results.
+
+-L              Label field values with field names when 
+                displaying query results.  This is the default.
+
+-F              Return the default list of fields; this is the 
+                default.
+
+-c              Do not wait for confirmation of "edit" commands.  
+                This is the default.
+
+-C              Wait for confirmation of "edit" commands 
+
+Example
+-------
+In the command-line query on the next page, the "-s 'server'" option is used to query the Nameserver at Northwestern University, the "-f field1,field'..." option is used to specify which fields should be displayed, and the "-r" option is used to tell ph not to reformat (combine) the 'email' and 'alias' fields into a single field with an alias-based address:
+
+    % ph -s ns.nwu.edu -f name,alias,email -r john norstad
+    ------------------------------
+    name: norstad, john l
+    alias: j-norstad
+    email: jln@casbah.acns.nwu.edu
+    ------------------------------
+
+
+7.2 The "switch" Command
+------------------------
+Many command line options described in section 7.1 above are also available in interactive mode through the "switch" command.  The complete syntax of the "switch" command including all options is:
+
+    switch [-mMrRbBTlLFcC] [-t type] [-f field1,field2,...]
+
+The options for the "switch" command have the same meaning as the command-line options described in section 7.1.  To view the current switch settings, enter the command "switch" by itself.  To change one or more switches,  type "switch -" followed by the letters of the settings you want to change.  For example to turn reformatting and paging off and display only those entries of type person, enter the following command at the ph> prompt:
+
+    switch -rm -t person
+
+Changes in ph switch settings are only in effect for the current interactive session.  Once you exit ph, the settings return to their defaults.
+
+
+7.3 Invoking Interactive Mode with Alternative Names 
+----------------------------------------------------
+(for Unix Users Only)
+---------------------
+On some Unix systems, it is also possible to enter interactive mode by invoking ph on the command-line with the name of one of the ten data types found in the 'type' field of the Nameserver database.  These include: "areacode," "fall," "food," "person," "phone," "spring," "summer," "timetable," "unit," and "weather."  If ph is invoked with one of these alternative names, it sets the default type for all queries to the type specified.  It also displays the name of the specified type as the interactive mode prompt (e.g., weather>, food>, etc., instead of ph>).  In the example below, ph is invoked with the name "person" and enters interactive mode.  All queries processed during the session default to type "person":
+
+    ux1 9> person
+    $Date: 92/01/31 16:08:48 $$Revision: 5.1 $
+    200:Database ready.
+
+     person> ph english return name phone
+     ------------------------------
+         name: english aaron joseph
+         phone: (217) 367-6845
+     ------------------------------
+         name: english francis e
+         phone: 332-1877
+     ------------------------------
+
+Once having entered interactive mode in this manner, it is possible to override the default type by specifying a different type in the selection clause of the query:
+
+    person> ph type=unit english return name phone
+    ------------------------------
+        name: English as an International Language, Division of
+        phone: 333-1506
+    ------------------------------
+        name: English, Dept of
+        phone: 333-2391
+    ------------------------------
+
+
+7.4 Proxy Privileges for Network Administrators
+-----------------------------------------------
+To facilitate the process of keeping ph entries up-to-date, CCSO now offers proxy rights to network administrators, so they can systematically enter e-mail address information into the Nameserver database and make other modifications upon request for their users.  Network administrators who would like to obtain proxy rights for a group of users should send an e-mail request to "nameserv@uiuc.edu". The request should contain the administrator's own name and ph alias and a list of ph aliases for the entries to which he or she wants to gain proxy.  Once proxy rights to a ph entry are granted, the administrator can edit any changeable field in the entry. 
+
+Note: The administrator is obliged to get permission from his or her end-users before requesting proxy rights from CCSO.  Users who don't want to grant proxy rights to their network administrator (or anybody else) should put the text "no!" in the proxy field (for more information, see section 5.11.4).
+
+
+7.4.1 Editing a Ph Entry by Proxy
+---------------------------------
+The method of editing an entry for which one has proxy varies from one ph client to the next.  On Unix machines there are several methods of which the following is perhaps the most direct.  Enter ph's interactive mode and log in as yourself.  First verify the current contents of the entry that you want to modify by using the command: 
+
+    ph alias=alias_of_entry_to_be_edited
+
+To edit a specific field in the entry, use the syntax:
+
+    edit field alias_of_entry_to_be_edited
+
+For example, to edit the 'email' field of a user with the alias "t-jones1," enter the command: "edit email t-jones1".  The "edit" command will invoke the default text editor, usually vi, and the contents can be filled in or modified and then saved.
+
+7.4.2 Changing a Password by Proxy
+----------------------------------
+
+To change the ph password of an entry for which you have proxy, first enter ph's interactive mode and log in as yourself.  Then enter the "passwd" command followed by the alias of the entry whose password you want to change, e.g., "passwd t-jones1".  You will be asked to enter the new password twice.  Be sure to give all of your users different passwords, and help them pick unique passwords that they can remember.  For advice on selecting good passwords, see section 5.10.  
+
+
+               8. NAMESERVER POLICIES AND PROCEDURES
+
+
+8.1 Mailing Lists
+-----------------
+The Nameserver should not be used for the generation of mailing lists; nor should it be used in a way that invades the privacy of University students or staff.  Attempts to use the Nameserver for such purposes may result in loss of CCSO services to the offender or to the offender's computer, as well as other action deemed appropriate by the University.
+  
+The Nameserver is also not the appropriate means for notifying the University of a change of address.  Changes made in your ph entry are NOT automatically sent to the Office of Admissions and Records, Payroll, or anywhere else.
+
+
+8.2 Nameserver Updates
+----------------------
+The data for each information category in the Nameserver database come from different sources and are updated at different times (if at all).  The update schedule for each category is given below.
+
+
+8.2.1 People
+------------
+Nameserver data for faculty and staff is provided by the University Payroll Office.  The data for students is provided by the Office of Admission and Records.  Updates for people are done four times per year.  An update can include one or all of the following steps:
+
+1. New staff and students are added to the database.
+
+2. Fields that originate from official data are set to official values.  These fields are: 'name', 'phone', 'office_phone',  'home_phone', 'address', 'office_address', 'home_address',  'permanent_address', 'department', 'title', 'curriculum', and 'high_school;.  All other fields are left strictly alone.
+
+3. Staff and students that have left the University are removed after a one year grace period.
+
+If you do not wish the update described above in step 2 to affect your entry, put something in your 'no_update' field.  If there is any text in your 'no_update' field, your entry will not be touched by step 2, except the 'name' and 'curriculum' fields, which are ALWAYS updated.  For more information, see section 5.11.2.
+
+The approximate schedule for student/faculty/staff updates is as follows:
+
+    January       Step 1 and Step 2, students only
+    June          Step 1 and Step 2, students only
+    September     Step 1 and Step 2, students only
+    October       Steps 1, 2, and 3 for students, faculty, and
+                  staff
+
+8.2.2 University Timetable
+--------------------------
+The University Timetable information is updated three times a year.  The fall timetable is available in early March, the spring timetable comes on line in early October, and the summer timetable is available in the middle of February.
+
+
+8.2.3 Restaurant Guide
+----------------------
+The restaurant information in ph was updated in fall of 1992.
+
+
+8.2.4 Area Codes
+----------------
+Telephone area code information in ph comes from an old data set and is only sporadically and haphazardly updated.
+
+
+8.2.5 Weather
+-------------
+Weather information is updated in real time as it arrives on the data feed.
+
+
+                     9. FOR MORE INFORMATION
+
+
+9.1 On-line Help
+----------------
+Ph has an extensive on-line help system.  To access ph's on-line help, enter interactive mode and then enter the command "help".  A list of help topics will be displayed.  You will notice that the list of topics is divided into two parts, ph help topics and native help topics.  The ph help topics pertain to commands and concepts related to the Unix ph client and other clients similar to it.  The native topics may be of interest to anyone using the Nameserver database and are not specific to a particular client.
+
+To ask for help on a specific topic, enter the command "help name-of-topic", where 'name-of-topic'  is the actual name of the help topic in which you are interested.  For example, to learn more about the "edit" command, you could enter: "help edit".  When you ask for help on a specific topic, help will first look for that topic in the ph help topics.  If there is no ph help for the topic, it will look for a native help topic with that name.  In the rare event that you are interested in reading the native help text for a topic that also has a ph help text, use the command: "help native name-of-topic".
+
+
+9.2 Source Code for Ph Server and Client
+----------------------------------------
+The source code (and other relevant files) for the server side of the CCSO Nameserver program can be found on the anonymous ftp host "uxc.cso.uiuc.edu" in the "net/qi" directory.  The source code for several ph clients including the original Unix client is available on the same host in the "net/ph" directory.  Programmers interested in developing ph clients should obtain the document The CCSO Nameserver, Server-Client Protocol, also available on uxc in the directory "net/qi/doc".  Questions about the Unix server and/or client source code can be directed via e-mail to Paul Pomes at "p-pomes@uiuc.edu".
+
+
+                   APPENDIX A: PH CLIENT SOFTWARE 
+
+
+Ph client software permits users of desktop computers, workstations, and mini-computers connected to the campus network (UIUCnet) to query the CCSO Nameserver without logging in to a CCSO mainframe.  At least one ph client program is available for each of the desktop platforms commonly found on the UIUC campus.  These software packages are available on the anonymous ftp server uxc.cso.uiuc.edu in the "net/ph" directory.  Each client is located in a subdirectory under the "net/ph" directory, and the subdirectories are named according to operating system or platform (e.g., "net/ph/dos").  All of the clients on uxc are in the public domain; however, some only work in conjunction with a commercial TCP/IP product (for example pcph for DOS computers relies on FTP Software's PC/TCP kernel).  The following clients are currently available on "uxc.cso.uiuc.edu":
+
+
+Platform/OS              Directory Name       Comments
+-----------              --------------       --------
+
+IBM PC Compatible/DOS    net/ph/dos           A port of the
+                                              original Unix
+                                              client. Requires 
+                                              FTP Software's 
+                                              PC/TCP software.
+
+IBM Compatible/DOS/PCNFS net/ph/pcnfs         Full-featured DOS 
+                                              client. Requires Sun 
+                                              Microsystem's PCNFS.
+
+IBM PC Compatible/       net/ph/windows       Requires Sun 
+Windows 3.x                                   Microsystem's PCNFS,
+                                              but source code is 
+                                              provided, and the 
+                                              program can be 
+                                              modified to use
+                                              other Windows TCP/IP
+                                              DLL (Dynamic Link
+                                              Library) drivers.
+
+Macintosh                 net/ph/mac          Great full-featured 
+                                              client.
+
+NeXT                      net/ph/next         Nice user interface,
+                                              but does not permit 
+                                              Nameserver login or 
+                                              editing entries.
+
+X Windows System          net/ph/xph-2.4      Full-featured client 
+  (release 4)                                 for X Terminals and 
+                                              computers running X 
+                                              server software.
+
+Unix                      net/ph/unix         The generic Unix
+                                              client described in 
+                                              this user guide.
+
+VMS                       net/ph/vms          A port of the Unix
+                                              client for VAX/VMS
+                                              systems running 
+                                              WIN/TCP.
+
+
+         APPENDIX B: FIELDS USED IN THE NAMESERVER DATABASE
+
+
+Below is a list of all of the fields currently used in the CCSO Nameserver database (see section 5.6 for more information on how to interpret this raw data).  To request the most up-to-date list of fields, enter ph's interactive mode and enter the command "fields" at the ph> prompt. 
+
+-200:6:alias:max 32 Indexed Lookup Public Default Change
+-200:6:alias:Unique name for user, chosen by user.
+-200:3:name:max 256 Indexed Lookup Public Default
+-200:3:name:Full name.
+-200:2:email:max 128 Indexed Lookup Public Default Change
+-200:2:email:Account to receive electronic mail.
+-200:11:curriculum:max 64 Lookup Public Default
+-200:11:curriculum:University curriculum
+-200:1:phone:max 64 Lookup Public Default Change
+-200:1:phone:Preferred telephone number.
+-200:32:office_phone:max 60 Indexed Lookup Public Change
+-200:32:office_phone:Office telephone number.
+-200:33:home_phone:max 60 Lookup Public Change
+-200:33:home_phone:Home telephone number.
+-200:36:fax:max 60 Lookup Public Change
+-200:36:fax:FAX telephone number.
+-200:37:permanent_phone:max 60 Lookup Public Change
+-200:37:permanent_phone:Permanent phone (students).
+-200:0:address:max 128 Lookup Public Default Change
+-200:0:address:Preferred paper mail address.
+-200:22:office_address:max 128 Lookup Public Change
+-200:22:office_address:Paper mail address of office.
+-200:19:office_location:max 128 Lookup Public Default Change
+-200:19:office_location:Physical location of office.
+-200:20:home_address:max 128 Lookup Public Change
+-200:20:home_address:Home paper mail address.
+-200:21:permanent_address:max 128 Lookup Public Change
+-200:21:permanent_address:Permanent home address (students).
+-200:8:proxy:max 64 Indexed Lookup Public Change
+-200:8:proxy:Alias of other users who may change this entry.
+-200:23:nickname:max 120 Indexed Lookup Public Change
+-200:23:nickname:Nicknames
+-200:38:paper:max 10 Public Change
+-200:38:paper:Instructions about the paper directory.
+-200:31:no_update:max 10 Public Change
+-200:31:no_update:Don't update this entry from directory tape.
+-200:9:department:max 64 Lookup Public Default Change
+-200:9:department:University department.
+-200:10:title:max 64 Lookup Public Default Change
+-200:10:title:University job title.
+-200:14:hours:max 256 Lookup Public Default Change
+-200:14:hours:Office hours.
+-200:15:project:max 256 Lookup Public Change
+-200:15:project:Current project(s).
+-200:16:other:max 256 Lookup Public Default Change
+-200:16:other:Other info the user finds important.
+-200:17:revisions:max 2048 Lookup Public Change
+-200:17:revisions:Revision history.
+-200:26:callsign:max 16 Indexed Lookup Public Change
+-200:26:callsign:HAM radio callsign.
+-200:27:pager:max 64 Lookup Public Default Change
+-200:27:pager:The infamous 'beeper'.
+-200:28:family:max 256 Lookup Public Change
+-200:28:family:Family members.
+-200:29:birthday:max 24 Lookup Public Change
+-200:29:birthday:Birthday.
+-200:35:high_school:max 30 Indexed Lookup Public Change
+-200:35:high_school:High School attended
+-200:39:colleges:max 120 Lookup Public Change
+-200:39:colleges:Other colleges attended
+-200:53:CHANGE_NOTHING:max 1
+-200:53:CHANGE_NOTHING:A message to CCSO Accounting
+-200:4:type:max 80 Lookup Public
+-200:4:type:Staff, Student, Organization, etc.
+-200:5:id:max 16 Indexed
+-200:5:id:Nameserver id code.
+-200:7:password:max 16 Change Encrypt
+-200:7:password:User's nameserver password.
+-200:25:all:max 1
+-200:25:all:reserved
+-200:30:hero:max 10
+-200:30:hero:Is a ph hero.
+-200:50:file:max 1
+-200:50:file:For phify's benefit.
+-200:42:left_uiuc:max 10 Lookup Public Default
+-200:42:left_uiuc:Month and year ph noticed the person left the
+        University
+-200:44:validated:max 10 Lookup Public
+-200:44:validated:Month and year the ph entry was last validated
+-200:45:created:max 10 Lookup Public
+-200:45:created:Month and year the ph entry was created
+-200:51:CCSO-accounts:max 4095 Indexed
+-200:51:CCSO-accounts:CCSO Accounts
+-200:52:CCSO-comments:max 4095
+-200:52:CCSO-comments:CCSO Comments
+-200:41:kerberos:max 32 Indexed Lookup Public
+-200:41:kerberos:Kerberos Id
+-200:24:def_account:max 64
+-200:24:def_account:Default account for printing.
+-200:34:text:max 4095 Lookup Public Default NoPeople
+-200:34:text:Miscellaneous text
+-200:40:slip:max 256 Indexed Lookup Public
+-200:40:slip:Permissible SLIP addresses
+-200:43:suppress:max 10
+-200:43:suppress:For the paranoid
+
+
+             APPENDIX C: PH SERVERS ACROSS THE INTERNET
+
+
+Ph can be used to query Nameservers at remote locations (see section 4.2 in this guide).  The following is a list of the publicly accessible Ph Nameservers as of 1/20/93 (to request the most up-to-date list from the CCSO Nameserver, enter the query "ph ns-servers"). The first column lists the name and location of the institution where the Nameserver is located.  The second column lists the Internet address of the machine on which the server is installed.  Use the information in the second column as the argument to the "-s" option when querying a remote server (e.g., "ph -s gopher.aston.ac.uk").  The third column lists the domain name for institutions that use alias-based mail. For example, if you wanted to send an e-mail message to Beverly Thomas at the US Army Corps of Engineers, C.E.R. Lab, and you discovered through the use of ph that her alias was b-thomas, you could then address the message to "b-thomas@cecer.army.mil".  For more information on the use of alias-based mail, see section 6.1.
+
+Site                                 Server         Domain
+----                                 ------         ------
+University of Illinois at       ns.uiuc.edu        uiuc.edu
+Urbana-Champaign
+
+Aston University, UK            gopher.aston.ac.uk
+
+Bates College                   mother.bates.edu
+
+Board of Governors              ns.bgu.edu         bgu.edu
+Universities, IL USA
+
+Brigham Young University        kolob.byu.edu
+
+Brown University                ns.brown.edu       brown.edu
+
+CHUUG/EUnet, Switzerland        chsun.eunet.ch
+
+Calvin College                  calvin.edu
+
+Chicago State University        ns.csu.bgu.edu     csu.bgu.edu
+
+Columbia University             gutentag.cc.columbia.edu
+
+Cornell College, Iowa           ns.cornell-iowa.edu
+
+Cornell Directory of Legal     fatty.law.cornell.edu
+Academia
+
+Cornell University              qi.cornell.edu     cornell.edu
+
+Eastern Illinois University     ux1.cts.eiu.edu
+
+Educational Computing Network,  ns.ecn.bgu.edu     ecn.bgu.edu
+
+Eidg. Technische Hochschule,    ural.ethz.ch
+Zurich
+
+Free University of Amsterdam    zadar.cca.vu.nl
+
+Governors State University      ns.gsu.bgu.edu     gsu.bgu.edu
+
+Helsinki University of          ns.cs.hut.fi
+Technology
+
+Intl. Ctr. for Genetic Eng.     genes.icgeb.trieste.it
+Italy
+
+Keio University, Sci. & Tech    bash.cc.keio.ac.jp
+Campus, & Biotech, Japan
+
+Lawrence Livermore National     ns.llnl.gov        llnl.gov
+Laboratory
+
+Lehigh University               ns1.cc.lehigh.edu
+
+Massachusetts Institue of       mitdir.mit.edu
+Technology
+
+Michigan State University       gopher.msu.edu
+
+North Dakota State University   plains.nodak.edu
+
+Northeastern Illinois Univ.     ns.neiu.bgu.edu   neiu.bgu.edu
+
+Northwestern University         ns.nwu.edu        nwu.edu
+
+Princeton University            princeton.edu     princeton.edu
+
+Roskilde Universitetscenter,   .ruc.dk            uc.dk
+Denmarkns
+
+State University of New York    lictor.acsu.buffalo.edu
+at Buffalo
+
+Technical Research Centre       ns.vtt.fi         vtt.fi
+Finland
+
+Texas A&M University            ns.tamu.edu
+
+US Army Corps of Engineers,     ns.cecer.army.mil  cecer.army.mil
+C.E.R. Lab                                              
+
+University of Arizona           ns.arizona.edu
+
+University of California        uci.edu           uci.edu
+at Irvine
+
+University of California at         ucsd.edu
+San Diego
+
+University of Chicago           prism.uchicago.edu  chicago.edu
+
+University of Colorado,          directory.colorado.edu
+Boulder
+
+University of Florida           ns.eng.ufl.edu
+
+University of Iowa              ns.uiowa.edu      uiowa.edu
+
+University of Laval, Quebec     ns.gel.ulaval.ca
+
+University of Minnesota         ns.umn.edu
+
+University of Nebraska          ns.unomaha.edu    unomaha.edu
+at Omaha
+
+University of Notre Dame        ns.nd.edu         nd.edu
+
+University of Oregon            whois.uoregon.edu
+
+University of Texas at Austin   mojo.ots.utexas.edu
+
+University of Utah              ph.cc.utah.edu
+
+University of Utrecht,          nic.cc.ruu.nl
+Netherlands
+
+University of Victoria, Canada  netinfo.uvic.ca
+
+University of Waterloo,         ns.uwaterloo.ca
+Ontario, Canada
+
+University of Wisconsin at      wisc.edu          wisc.edu
+Madison
+
+Western Illinois University,    ns.wiu.bgu.edu    wiu.bgu.edu
+
+
+                     

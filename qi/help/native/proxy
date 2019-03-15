@@ -1,0 +1,71 @@
+SUMMARY
+The "proxy" field can be used to allow others to change your ph entry.
+If you want someone else to be able to change your entry, put that
+person's ph alias in your "proxy" field.
+
+In order to add one or more aliases to your "proxy" field, you must be
+logged in to the Nameserver (see help on "login").  Then, use the "make"
+or "edit" command to add the alias to your "proxy" field.  For example,
+to give Paul Pomes proxy rights to your entry, you would login and then
+type:
+
+  make proxy="p-pomes"
+
+or
+
+  edit proxy  (You will be placed in the default text editor, usually vi.
+               Insert the alias "p-pomes" and save the file.)
+
+PROXY RIGHTS FOR NETWORK ADMINISTRATORS
+To facilitate the process of keeping ph entries up to date, CCSO now
+offers proxy rights to network administrators, so they can systematically
+enter e-mail address information into the Nameserver database and make
+other modifications upon request for their users.
+
+Network administrators who wish to obtain proxy rights for a group of
+users should send an e-mail request to "nameserv@uiuc.edu".  The request
+should contain the administrator's own name and ph alias and a list of
+ph aliases for the entries to which s/he wants to gain proxy.  Once
+proxy rights to a ph entry are granted, the administrator can edit any
+changeable field in the entry.
+
+Note: It is incumbent upon the administrator to get permission from his
+or her end-users before requesting proxy rights from CCSO.  Users who
+don't want their network admins to be able to change their information
+should put "no!" in their own "proxy" fields.  To do so, login to ph
+(see help on "login") and type:
+
+  make proxy=no!
+
+To insure that proxy has been disabled, the value inserted into the
+proxy field must not be able to match any ph alias.  Thus "no!" is a
+good value as the '!' cannot appear in a alias.  "no way" would not be
+a good value as it would allow someone with the alias "way" to edit your
+entry (aliases have to be at least three characters long).
+
+EDITING AN ENTRY FOR WHICH ONE HAS PROXY
+The method of editing an entry for which one has proxy varies from one
+ph client to the next.  On Unix machines there are several methods of
+which the following is perhaps the most direct.  Enter ph's interactive
+mode and login as yourself (see help on "login").  Verify the contents
+of the entry that you want to modify by using the command:
+
+  ph alias=alias_of_entry_to_be_edited
+
+To edit a specific field in the entry, use the syntax:
+
+  edit fieldname alias_of_entry_to_be_edited
+
+For example, to edit the "email" field of a user with the alias "t-jones1",
+enter the command: "edit email t-jones1".  The "edit" command will invoke
+the default text editor, usually vi, and the contents can be filled in or
+modified and then saved.
+
+Note: The methods described above for modifying your "proxy" field or
+an entry for which you have proxy apply specifically to the Unix ph
+client and may or may not work with the ph client you use.  The "edit"
+command works with most clients that have been modelled on the Unix
+client.
+
+SEE ALSO: edit, password, make, policy, interactive_mode, login, alias,
+aliases

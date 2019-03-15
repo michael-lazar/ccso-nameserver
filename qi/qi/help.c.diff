@@ -1,0 +1,116 @@
+*** 1.11	1994/03/12 00:24:45
+--- help.c	1995/06/06 19:31:23
+***************
+*** 40,45 ****
+--- 40,46 ----
+  
+  #include "protos.h"
+  
++ #include <dirent.h>
+  #include <sys/param.h>
+  
+  static int HelpCopy __P((int, FILE *));
+***************
+*** 139,144 ****
+--- 140,152 ----
+  	}
+  }
+  
++ static int
++ XXcmp(x, y)
++ char **x, **y;
++ {
++ 	return strcasecmp(*x, *y);
++ }
++ 
+  /*
+   * list the help topics available
+   */
+***************
+*** 147,166 ****
+  	int indx;
+  	char *client;
+  {
+! 	char	buffer[MAXPATHLEN];
+! 	FILE	*ls;
+  
+  	if (client)
+! 		(void) sprintf(buffer, "ls -C %s/%s|expand", HELPDIR, client);
+  	else
+! 		(void) sprintf(buffer, "ls -C %s|expand", HELPDIR);
+  
+! 	if ((ls = popen(buffer, "r")) == NULL)
+! 		return (0);
+  
+! 	HelpCopy(indx, ls);
+  
+! 	(void) pclose(ls);
+  	return (1);
+  }
+  
+--- 155,219 ----
+  	int indx;
+  	char *client;
+  {
+! 	char	line[81], dirname[MAXPATHLEN];
+! 	DIR	*dirp;
+! 	struct dirent *direntp;
+! 	char	*p, **names, **np;
+! 	int	i, r, c, rows, cols, cnt=50, longest=0;
+! 
+  
+  	if (client)
+! 		(void) sprintf(dirname, "%s/%s", HELPDIR, client);
+  	else
+! 		(void) strcpy(dirname, HELPDIR);
+  
+! 	if (dirname == NULL || *dirname == '\0')
+! 		return(1);
+  
+! 	if ((dirp = opendir(dirname)) == NULL)
+! 		return(1);
+  
+! 	names = (char **) malloc((cnt) * sizeof(char *));
+! 	np = names;
+! 
+! 	while ((direntp = readdir(dirp)) != NULL) {
+! 		if (*direntp->d_name == '.')
+! 			continue;
+! 		*np = strdup(direntp->d_name);
+! 		if ((i = strlen(*np)) > longest)
+! 			longest = i;
+! 		np++;
+! 		if (np == &names[cnt]) {
+! 			cnt += 50;
+! 			names = (char **)realloc(names, (cnt) * sizeof(char *));
+! 			np = &names[cnt - 50];
+! 		}
+! 	}
+! 	(void) closedir(dirp);
+! 	*np = NULL;
+! 	cnt = np - names;
+! 	qsort(names, cnt, sizeof(char *), XXcmp);
+! 
+! 	longest += 2;
+! 	cols = 70 / longest;
+! 	longest = 70 / cols;
+! 	rows = cnt / cols;
+! 	if (cnt % cols)
+! 		rows++;
+! 
+! 	for (r = 0; r < rows; r++) {
+! 		for (c = 0; c < cols; c++) {
+! 			i = (c * rows) + r;
+! 			if (i > cnt)
+! 				p = strdup("");
+! 			else
+! 				p = names[i];
+! 			sprintf(&line[c*longest], "%-*s", longest, p);
+! 			free(p);
+! 		}
+! 		DoReply(-LR_OK, "%d: %s", indx, line);
+! 	}
+! 	free(names);
+  	return (1);
+  }
+  

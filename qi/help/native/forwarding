@@ -1,0 +1,41 @@
+The Nameserver is used on the UIUC campus to forward electronic
+mail.  The program that accomplishes this is called "phquery".
+Phquery uses (more or less) the following algorithm to route mail:
+
+if the address ends in "@uiuc.edu" then
+    remove the "@uiuc.edu"
+    convert any punctuation to hyphens (-)
+    if the address is someone's Nameserver "alias" then
+        if that someone has an "email" field then
+            send the mail to the first e-mail address in the "email" field
+        else
+            bounce the mail, "Email field not present in Nameserver entry"
+        endif
+    else if the address is someone's Nameserver "callsign" then
+        if that someone has an "email" field then
+            send the mail to the first e-mail address in the "email" field
+        else
+            bounce the mail, "Email field not present in Nameserver entry"
+        endif
+    else
+        convert hyphens (-) to spaces ( )*
+        count the Nameserver entries whose "name" or "nickname" is the address
+        if the count is 0 then
+            bounce the mail, "No matches to Nameserver query"
+        else if the count is more than 1 but less than 21 then
+            bounce the mail, giving a list of names and address matched
+        else if the count is 21 or more then
+            bounce the mail, "Too many matches found to Nameserver query"
+        else if the count is 1 then
+            if that someone has an "email" field then
+                send the mail to the first e-mail address in the "email" field
+            else
+                bounce the mail, "Email field not present in Nameserver entry"
+           endif
+       endif
+    endif
+else
+    deliver mail as originally addressed
+endif
+
+*all combinations of spaces and hyphens are tried, to support hyphenated names.

@@ -1,0 +1,1265 @@
+head	1.29;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.29
+date	95.06.23.19.21.28;	author p-pomes;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.03.01.20.07.51;	author p-pomes;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.02.28.19.25.29;	author p-pomes;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	94.05.05.17.46.17;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.12.23.09.55.40;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.12.16.22.57.16;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	93.09.01.14.53.54;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	93.08.04.12.45.39;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	93.04.02.17.17.26;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	93.02.19.22.35.06;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	92.07.26.19.13.11;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	92.07.20.15.33.38;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	90.12.18.08.41.10;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.07.19.10.18.26;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.07.05.20.16.40;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.05.08.22.43.38;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.03.20.15.14.27;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.12.02.14.44.54;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.11.15.13.35.01;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.07.08.14.00.41;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.07.06.20.47.52;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.19.08.12.00;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.33;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.29
+log
+@Can no longer add hero entries from the network.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: add.c,v 1.28 1995/03/01 20:07:51 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+static QDIR MakeADir __P((ARG *));
+static int ValidAdd __P((ARG *));
+
+extern int	InputType;
+extern char	*Kdomain;
+
+/*
+ * Do an add command
+ */
+void 
+DoAdd(args)
+	ARG *args;
+{
+	INT32	entry;
+	QDIR	dir;
+	ARG	*parg;
+
+	if (!AmHero && !User)
+		DoReply(LR_NOTLOG, "You must be logged in to use this command.");
+	else if (!CanAddEntries())
+	{
+		IssueMessage(LOG_INFO, "%s:not authorized for add", UserAlias);
+		DoReply(LR_ADD, "You may not add NameServer entries.");
+	}
+	else if (!GonnaWrite("DoAdd"))
+		/* GonnaWrite will issue an error message */
+		;
+	else if (!ValidAdd(args))
+	{
+		Unlock("DoAdd");
+		DoReply(LR_SYNTAX, "Add command not understood.");
+	}
+	else
+	{
+		dir = MakeADir(args->aNext);
+		entry = new_ent();
+		if (!putdata(dir))
+		{
+			Unlock("DoAdd");
+			FreeDir(&dir);
+			IssueMessage(LOG_ERR, "DoAdd: putdata failed");
+			DoReply(LR_TEMP, "Store failed.");
+			return;
+		}
+		MakeLookup(dir, entry, make_lookup);
+		set_date(0);
+		store_ent();
+		Unlock("DoAdd");
+		FreeDir(&dir);
+
+#ifdef KDB
+		for (parg = args->aNext; parg; parg = parg->aNext)
+		{
+			if (!strcmp(parg->aFirst, "alias"))
+			{
+				kdb_add_entry(parg->aSecond);
+				break;
+			}
+		}
+#endif /* KDB */
+		DoReply(LR_OK, "Ok.");
+	}
+}
+
+/*
+ * Make a dir entry from an argument list
+ */
+static QDIR 
+MakeADir(args)
+	ARG *args;
+{
+	QDIR	dir;
+
+	dir = (QDIR) malloc(sizeof (char *));
+
+	*dir = NULL;
+
+	for (; args; args = args->aNext)
+	{
+		if (strcmp(args->aSecond, "none"))
+			if (!ChangeDir(&dir, args->aFD, args->aSecond))
+				IssueMessage(LOG_ERR, "MakeADir: ChangeDir failed");
+	}
+	return (dir);
+}
+
+/*
+ * validate an argument list for an add command
+ */
+static int 
+ValidAdd(args)
+	ARG *args;
+{
+	int	isBad = 0;
+	int	count = 0;
+	char	*reason = NULL;
+
+	for (args = args->aNext; args; args = args->aNext)
+	{
+		count++;
+		if (args->aType != (VALUE | EQUAL | VALUE2))
+		{
+			isBad = 1;
+			DoReply(-LR_SYNTAX, "%d:argument is not field=value pair.", count);
+		} else if ((args->aFD = FindFD(args->aFirst)) == NULL)
+		{
+			isBad = 1;
+			DoReply(-LR_FIELD, "%d:unknown field.", args->aFD->fdId);
+		} else if (!strcmp(args->aSecond, "none"))
+		{
+			isBad = 1;
+			DoReply(-LR_SYNTAX, "``None'' not allowed on add.");
+		} else if (args->aFD->fdId == F_HERO && InputType != IT_TTY &&
+			   InputType != IT_PIPE && InputType != IT_FILE)
+		{
+			DoReply(-LR_ACHANGE, "Hero field may not be set from a network session.");
+			isBad = 1;
+			continue;
+		} else if (args->aFD->fdId == F_ALIAS)
+		{
+			if ((reason = BadAlias(NULL, args->aSecond)) != NULL) {
+			    DoReply(-LR_VALUE, reason);
+			    isBad = 1;
+			    continue;
+			} else if (AliasIsUsed(args->aSecond, 0))
+			{
+				DoReply(-LR_ALIAS, "Alias %s in use or is too common a name.",
+					args->aSecond);
+				isBad = 1;
+				continue;
+			}
+		}
+#ifdef PRE_ENCRYPT
+		else if (args->aFD->fdId == F_PASSWORD)
+		{
+			char	pwCrypt[14];
+
+			strncpy(pwCrypt, crypt(args->aSecond, args->aSecond), 13);
+			pwCrypt[13] = 0;
+			free(args->aSecond);
+			args->aSecond = strdup(pwCrypt);
+		}
+#endif
+	}
+
+	return (!isBad);
+}
+@
+
+
+1.28
+log
+@working version checkpoint.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: add.c,v 1.27 1995/02/28 19:25:29 p-pomes Exp p-pomes $";
+d46 1
+d150 1
+a150 1
+			DoReply(-LR_FIELD, "%d:unknown field.");
+d155 6
+@
+
+
+1.27
+log
+@New entries are now added to the Kerberos database as well with the kdb
+library.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: add.c,v 1.30 1995/02/22 05:35:22 p-pomes Exp $";
+a56 3
+#if defined(KERBEROS) && defined(KDB)
+	Kadm_vals value;
+	char	*principal = NULL, *password = NULL;
+a57 2
+	des_cblock new_key;
+#endif /* KERBEROS && KDB */
+d92 1
+a92 3
+#if defined(KERBEROS) && defined(KDB)
+		if (!Kdomain)
+			return;
+d96 4
+a99 15
+				principal = strdup(parg->aSecond);
+			else if (!strcmp(parg->aFirst, "password"))
+				password = strdup(parg->aSecond);
+		}
+		if (!principal)
+			return;
+		memset(&value, 0, sizeof(value));
+		strncpy(value.name, principal, ANAME_SZ-1);
+		SET_FIELD(KADM_NAME, value.fields);
+		SET_FIELD(KADM_INST, value.fields);
+		if (password) {
+			(void) des_string_to_key(password, new_key);
+			memcpy((char *)&value.key_low, (char *)new_key, 4);
+			memcpy((char *)&value.key_high, (char *)(((long *)new_key) + 1), 4);
+			SET_FIELD(KADM_DESKEY, value.fields);
+d101 1
+a101 5
+		kdb_add_entry(principal, &value);
+		(void) free(principal);
+		if (password)
+			(void) free(password);
+#endif /* KERBEROS && KDB */
+@
+
+
+1.26
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: add.c,v 1.25 1994/05/05 21:21:51 paul Exp p-pomes $";
+d46 2
+d57 6
+d96 28
+@
+
+
+1.25
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: add.c,v 1.24 1994/05/05 17:46:17 paul Exp $";
+d53 1
+a53 1
+	long	entry;
+@
+
+
+1.24
+log
+@*** empty log message ***
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: add.c,v 1.23 1994/03/12 00:24:45 paul Exp paul $";
+d60 1
+a60 1
+		IssueMessage(LOG_INFO, "%s:not authorized for add.", UserAlias);
+d79 1
+a79 1
+			IssueMessage(LOG_ERR, "DoAdd putdata failed.");
+d109 1
+a109 1
+				IssueMessage(LOG_WARNING, "MakeADir ChangeDir failed.");
+@
+
+
+1.23
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d79 1
+a79 1
+			IssueMessage(LOG_WARNING, "DoAdd putdata failed.");
+@
+
+
+1.22
+log
+@Replaced make_str() with strdup().
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.21
+log
+@BadAlias() now returns a char * pointer to the message that explains
+why, or NULL if the alias is OK.  BadAlias() also calls RateAKey() to
+insure easily searched values.
+@
+text
+@d130 1
+a130 1
+			args->aSecond = make_str(pwCrypt);
+@
+
+
+1.20
+log
+@Re-arrange code to force Unlock() before terminal i/o.
+@
+text
+@d91 1
+a91 1
+	int	reason = 0;
+d110 4
+a113 16
+			if (reason = BadAlias(NULL, args->aSecond))
+			{
+				switch (reason)
+				{
+				    case 1:
+					DoReply(-LR_VALUE, "Alias is too long or too short.");
+					break;
+				    case 2:
+					DoReply(-LR_VALUE, "Only alphanumerics and ``-'' are allowed in aliases.");
+					break;
+				    default:
+					DoReply(-LR_VALUE, "Alias is bad.");
+					break;
+				}
+				isBad = 1;
+				continue;
+@
+
+
+1.19
+log
+@GonnaWrite() and Unlock() now take a char string argument.  BadAlias()
+now takes an added argment for the current user.
+@
+text
+@d30 4
+a33 2
+	} else if (!GonnaWrite("DoAdd"))
+		/* GonnaWrite will issue an error message */ ;
+d35 2
+d38 1
+d45 2
+d49 1
+a49 1
+			goto done;
+a53 2
+		DoReply(LR_OK, "Ok.");
+	      done:
+d56 1
+@
+
+
+1.18
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d30 1
+a30 1
+	} else if (!GonnaWrite())
+d49 1
+a49 1
+		Unlock();
+d104 1
+a104 1
+			if (reason = BadAlias(args->aSecond))
+@
+
+
+1.17
+log
+@Add proper #ifdef PRE_ENCRYPT wrapper.
+@
+text
+@d11 3
+d57 1
+a57 1
+QDIR 
+d79 1
+a79 1
+int 
+@
+
+
+1.16
+log
+@Test for add with password was inside the wrong loop.  Reported by
+Ron Rusnak <ronr@@teddybear.uchicago.edu>.
+@
+text
+@a83 5
+#ifdef PRE_ENCRYPT
+	char	pwCrypt[14];
+
+#endif
+
+d124 3
+a126 1
+		} else if (args->aFD->fdId == F_PASSWORD)
+d135 1
+@
+
+
+1.15
+log
+@Revised #include file list.
+@
+text
+@d128 4
+a131 3
+			} else if (args->aFD->fdId == F_PASSWORD)
+			{
+				char	pwCrypt[14];
+d133 4
+a136 5
+				strncpy(pwCrypt, crypt(args->aSecond, args->aSecond), 13);
+				pwCrypt[13] = 0;
+				free(args->aSecond);
+				args->aSecond = make_str(pwCrypt);
+			}
+@
+
+
+1.14
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a10 6
+#include "conf.h"
+#include <stdio.h>
+#include "commands.h"
+#include "field.h"
+#include "qi.h"
+
+@
+
+
+1.13
+log
+@Re-formatted for clarity.
+@
+text
+@a12 1
+#include <strings.h>
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d3 8
+d18 6
+a23 4
+/***********************************************************************
+* Do an add command
+***********************************************************************/
+void DoAdd(Arg *theArgs)
+d25 2
+a26 2
+  long theEntry;
+  Dir   theDir;
+d28 28
+a55 29
+  if (!AmHero && !User)
+    DoReply(LR_NOTLOG, "You must be logged in to use this command.");
+  else if (!CanAddEntries())
+  {
+    IssueMessage(LOG_INFO, "%s:not authorized for add.", UserAlias);
+    DoReply(LR_ADD, "You may not add NameServer entries.");
+  }
+  else if (!GonnaWrite())
+     /* GonnaWrite will issue an error message */ ;
+  else if (!ValidAdd(theArgs))
+    DoReply(LR_SYNTAX, "Add command not understood.");
+  else
+  {
+    theDir = MakeADir(theArgs->aNext);
+    theEntry = new_ent();
+    if (!putdata(theDir))
+    {
+      IssueMessage(LOG_WARNING,"DoAdd putdata failed.");
+      DoReply(LR_TEMP,"Store failed.");
+      goto done;
+    }
+    MakeLookup(theDir, theEntry, make_lookup);
+    set_date(0);
+    store_ent();
+    DoReply(LR_OK, "Ok.");
+  done:
+    Unlock();
+    FreeDir(&theDir);
+  }
+d58 6
+a63 4
+/***********************************************************************
+* Make a dir entry from an argument list
+***********************************************************************/
+Dir MakeADir(Arg *theArgs)
+d65 3
+a67 1
+  Dir   theDir;
+d69 1
+a69 2
+  theDir = (Dir) malloc(sizeof(char *));
+  *theDir = NULL;
+d71 7
+a77 7
+  for (; theArgs; theArgs = theArgs->aNext)
+  {
+    if (strcmp(theArgs->aSecond, "none"))
+      if (!ChangeDir(&theDir, theArgs->aFD, theArgs->aSecond))
+	IssueMessage(LOG_WARNING,"MakeADir ChangeDir failed.");
+  }
+  return (theDir);
+d80 6
+a85 4
+/***********************************************************************
+* validate an argument list for an add command
+***********************************************************************/
+int ValidAdd(Arg *theArgs)
+d87 4
+a90 3
+  int   isBad = 0;
+  int   count = 0;
+  int   reason = 0;
+d92 2
+a93 1
+  char pwCrypt[14];
+d96 1
+a96 23
+  for (theArgs = theArgs->aNext; theArgs; theArgs = theArgs->aNext)
+  {
+    count++;
+    if (theArgs->aType != (VALUE | EQUAL | VALUE2))
+    {
+      isBad = 1;
+      DoReply(-LR_SYNTAX, "%d:argument is not field=value pair.", count);
+    }
+    else if ((theArgs->aFD = FindFD(theArgs->aFirst)) == NULL)
+    {
+      isBad = 1;
+      DoReply(-LR_FIELD, "%d:unknown field.");
+    }
+    else if (!strcmp(theArgs->aSecond, "none"))
+    {
+      isBad = 1;
+      DoReply(-LR_SYNTAX, "``None'' not allowed on add.");
+    }
+    else if (theArgs->aFD->fdId == F_ALIAS)
+    {
+      if (reason = BadAlias(theArgs->aSecond))
+      {
+	switch (reason)
+d98 47
+a144 9
+	  case 1:
+	    DoReply(-LR_VALUE, "Alias is too long or too short.");
+	    break;
+	  case 2:
+	    DoReply(-LR_VALUE, "Only alphanumerics and ``-'' are allowed in aliases.");
+	    break;
+	  default:
+	    DoReply(-LR_VALUE, "Alias is bad.");
+	    break;
+a145 20
+	isBad = 1;
+	continue;
+      }
+      else if (AliasIsUsed(theArgs->aSecond,0))
+      {
+	DoReply(-LR_ALIAS, "Alias %s in use or is too common a name.",
+	    theArgs->aSecond);
+	isBad = 1;
+	continue;
+      }
+      else if (theArgs->aFD->fdId == F_PASSWORD)
+      {
+        char pwCrypt[14];
+	strncpy(pwCrypt, crypt(theArgs->aSecond, theArgs->aSecond), 13);
+	pwCrypt[13] = 0;
+	free(theArgs->aSecond);
+	theArgs->aSecond = make_str(pwCrypt);
+      }
+    }
+  }
+d147 1
+a147 1
+  return (!isBad);
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d11 1
+d84 3
+d131 8
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d1 1
+d12 1
+a16 3
+char   *make_str();
+Arg  *FreshArg();
+
+d20 1
+a20 2
+DoAdd(theArgs)
+Arg  *theArgs;
+a21 1
+  Dir   MakeADir();
+a23 1
+  int   make_lookup();
+d32 2
+a35 2
+  else if (!GonnaWrite())
+     /* GonnaWrite will issue an error message */ ;
+d59 1
+a59 3
+Dir
+MakeADir(theArgs)
+Arg  *theArgs;
+d78 1
+a78 2
+ValidAdd(theArgs)
+Arg  *theArgs;
+d92 1
+a92 2
+    else
+    if ((theArgs->aFD = FindFD(theArgs->aFirst)) == NULL)
+d97 1
+a97 2
+    else
+    if (!strcmp(theArgs->aSecond, "none"))
+d102 1
+a102 1
+    if (theArgs->aFD->fdId == F_ALIAS)
+d121 1
+a121 1
+      else if (AliasIsUsed(theArgs->aSecond,NULL))
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d11 3
+a13 3
+#include "../Include/commands.h"
+#include "../Include/field.h"
+#include "../Include/qi.h"
+d130 1
+a130 1
+      else if (AliasIsUsed(theArgs->aSecond))
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d11 3
+a13 3
+#include "../include/commands.h"
+#include "../include/field.h"
+#include "../include/qi.h"
+d118 2
+a119 2
+	  DoReply(-LR_VALUE, "Alias is too long or too short.");
+	  break;
+d121 2
+a122 2
+	  DoReply(-LR_VALUE, "Only alphanumerics and ``-'' are allowed in aliases.");
+	  break;
+d124 2
+a125 2
+	  DoReply(-LR_VALUE, "Alias is bad.");
+	  break;
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d29 1
+a29 1
+  if (!AmHero && HeroDir && !User)
+d31 1
+a31 2
+  else
+  if (HeroDir && !CanAddEntries())
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d34 1
+a34 1
+    syslog(LOG_INFO, "%s:not authorized for add.", UserAlias);
+d47 1
+a47 1
+      syslog(LOG_WARNING,"DoAdd putdata failed.");
+d77 1
+a77 1
+	syslog(LOG_WARNING,"MakeADir ChangeDir failed.");
+d122 1
+a122 1
+	  DoReply(-LR_VALUE, "Only alphanumerics and ``%s'' are allowed in aliases.", OK_CHARS);
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d13 1
+a13 1
+Arg    *FreshArg();
+d19 1
+a19 1
+Arg    *theArgs;
+d21 4
+a24 4
+    Dir     MakeADir();
+    unsigned long theEntry;
+    Dir     theDir;
+    int     make_lookup();
+d26 17
+a42 4
+    if (!AmHero && HeroDir && !User)
+	DoReply(LR_NOTLOG, "You must be logged in to use this command.");
+    else
+    if (HeroDir && !CanAddEntries())
+d44 3
+a46 2
+	syslog(LOG_INFO, "%s:not authorized for add.", UserAlias);
+	DoReply(LR_ADD, "You may not add NameServer entries.");
+d48 8
+a55 15
+    else if (!ValidAdd(theArgs))
+	DoReply(LR_SYNTAX, "Add command not understood.");
+    else if (!GonnaWrite())
+	 /* GonnaWrite will issue an error message */ ;
+    else
+    {
+	theDir = MakeADir(theArgs->aNext);
+	theEntry = new_ent();
+	putdata(theDir);
+	MakeLookup(theDir, theEntry, make_lookup);
+	store_ent();
+	Unlock();
+	DoReply(LR_OK, "Ok.");
+	FreeDir(&theDir);
+    }
+d63 1
+a63 1
+Arg    *theArgs;
+d65 1
+a65 1
+    Dir     theDir;
+d67 2
+a68 2
+    theDir = (Dir) malloc(sizeof(char *));
+    *theDir = NULL;
+d70 7
+a76 6
+    for (; theArgs; theArgs = theArgs->aNext)
+    {
+	if (strcmp(theArgs->aSecond, "none"))
+	    ChangeDir(&theDir, theArgs->aFD, theArgs->aSecond);
+    }
+    return (theDir);
+d83 1
+a83 1
+Arg    *theArgs;
+d85 3
+a87 3
+    int     isBad = 0;
+    int     count = 0;
+    int     reason = 0;
+d89 4
+a92 1
+    for (theArgs = theArgs->aNext; theArgs; theArgs = theArgs->aNext)
+d94 20
+a113 2
+	count++;
+	if (theArgs->aType != (VALUE | EQUAL | VALUE2))
+d115 9
+a123 2
+	    isBad = 1;
+	    DoReply(-LR_SYNTAX, "%d:argument is not field=value pair.", count);
+d125 10
+a134 39
+	else
+	if ((theArgs->aFD = FindFD(theArgs->aFirst)) == NULL)
+	{
+	    isBad = 1;
+	    DoReply(-LR_FIELD, "%d:unknown field.");
+	}
+	else
+	if (!strcmp(theArgs->aSecond, "none"))
+	{
+	    isBad = 1;
+	    DoReply(-LR_SYNTAX, "``None'' not allowed on add.");
+	}
+	if (theArgs->aFD->fdId == F_ALIAS)
+	{
+	    if (reason = BadAlias(theArgs->aSecond))
+	    {
+		switch (reason)
+		{
+		  case 1:
+		    DoReply(-LR_VALUE, "Alias is too long or too short.");
+		    break;
+		  case 2:
+		    DoReply(-LR_VALUE, "Only alphanumerics and ``%s'' are allowed in aliases.", OK_CHARS);
+		    break;
+		  default:
+		    DoReply(-LR_VALUE, "Alias is bad.");
+		    break;
+		}
+		isBad = 1;
+		continue;
+	    }
+	    else if (AliasIsUsed(theArgs->aSecond))
+	    {
+		DoReply(-LR_ALIAS, "Alias %s in use or is too common a name.",
+			theArgs->aSecond);
+		isBad = 1;
+		continue;
+	    }
+	}
+d136 1
+d138 1
+a138 1
+    return (!isBad);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d8 3
+a10 3
+#include "commands.h"
+#include "field.h"
+#include "qi.h"
+d26 1
+a26 1
+    if (HeroDir && !User)
+d34 1
+a34 2
+    else
+    if (!ValidAdd(theArgs))
+d36 1
+a36 2
+    else
+    if (!GonnaWrite())
+a77 1
+    int     haveAlias = 0;
+d120 1
+a120 2
+	    else
+	    if (AliasIsUsed(theArgs->aSecond))
+a126 1
+	    haveAlias = 1;
+d130 1
+a130 1
+    return (!isBad && haveAlias);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@a24 1
+#ifndef ultrix
+a25 1
+#endif
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d25 1
+d27 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 2
+a7 2
+char *make_str();
+Arg *FreshArg();
+d13 1
+a13 1
+Arg *theArgs;
+d15 1
+a15 1
+    Dir MakeADir();
+d17 2
+a18 2
+    Dir theDir;
+    int make_lookup();
+d21 3
+a23 2
+	DoReply(LR_NOTLOG,"You must be logged in to use this command.");
+    else if (HeroDir && !CanAddEntries())
+d25 2
+a26 2
+	syslog(LOG_INFO,"%s:not authorized for add.",UserAlias);
+	DoReply(LR_ADD,"You may not add NameServer entries.");
+a27 4
+    else if (!ValidAdd(theArgs))
+	DoReply(LR_SYNTAX,"Add command not understood.");
+    else if (!GonnaWrite())
+	/* GonnaWrite will issue an error message */;
+d29 6
+d39 1
+a39 1
+	MakeLookup(theDir,theEntry,make_lookup);
+d42 1
+a42 1
+	DoReply(LR_OK,"Ok.");
+d52 1
+a52 1
+Arg *theArgs;
+d54 1
+a54 2
+    Dir theDir;
+    FieldDesc *theFD;
+d56 1
+a56 1
+    theDir = (Dir)malloc(sizeof(char *));
+d59 1
+a59 1
+    for (;theArgs;theArgs=theArgs->aNext)
+d61 2
+a62 2
+	if (strcmp(theArgs->aSecond,"none"))
+	    ChangeDir(&theDir,theArgs->aFD,theArgs->aSecond);
+d64 1
+a64 1
+    return(theDir);
+d71 1
+a71 1
+Arg *theArgs;
+d73 4
+a76 4
+    int isBad=0;
+    int haveAlias=0;
+    int count=0;
+    int reason=0;
+d78 1
+a78 1
+    for (theArgs=theArgs->aNext; theArgs; theArgs=theArgs->aNext)
+d81 1
+a81 1
+	if (theArgs->aType != (VALUE|EQUAL|VALUE2))
+d84 1
+a84 1
+	    DoReply(-LR_SYNTAX,"%d:argument is not field=value pair.",count);
+d86 2
+a87 1
+	else if ((theArgs->aFD=FindFD(theArgs->aFirst))==NULL)
+d90 1
+a90 1
+	    DoReply(-LR_FIELD,"%d:unknown field.");
+d92 2
+a93 1
+	else if (!strcmp(theArgs->aSecond,"none"))
+d96 1
+a96 1
+	    DoReply(-LR_SYNTAX,"``None'' not allowed on add.");
+d98 1
+a98 1
+	if (theArgs->aFD->fdId==F_ALIAS)
+d100 1
+a100 1
+	    if (reason=BadAlias(theArgs->aSecond))
+d104 9
+a112 9
+		    case 1:
+			DoReply(-LR_VALUE,"Alias is too long or too short.");
+			break;
+		    case 2:
+			DoReply(-LR_VALUE,"Only alphanumerics and %s are allowed in aliases.",OK_CHARS);
+			break;
+		    default:
+			DoReply(-LR_VALUE,"Alias is bad.");
+			break;
+d117 2
+a118 1
+	    else if (AliasIsUsed(theArgs->aSecond))
+d120 2
+a121 2
+		DoReply(-LR_ALIAS,"Alias %s in use.",
+		    theArgs->aSecond);
+d125 1
+a125 1
+	    haveAlias=1;
+@

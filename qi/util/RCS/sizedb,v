@@ -1,0 +1,179 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.03.12.01.02.08;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.08.21.18.50.28;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.08.21.17.09.01;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@Made location of perl a Makefile option.
+@
+text
+@#!%PerlProg%
+#
+# sizedb - calculate size of database needed
+#
+# usage: sizedb config [files]
+#
+# Algorithm is
+#
+# Extract all the words from all Indexed fields.
+# Throw away ones <2 characters or that begin with parens.
+# Pipe through "sort | uniq | wc -l".
+# This gives the number of words that will be indexed.
+# Multiply that by 2 or so to get a comfortable table size.
+# Print the next prime number greater than the calculated table size.
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: sizedb,v 1.3 1994/03/12 01:02:08 paul Exp p-pomes $
+
+
+#
+# find the numbers of the Indexed fields
+$config=shift;
+open (CONFIG,$config) || die "$config: $!\n";
+while (<CONFIG>)
+{
+	($nnum,$nname) = (split(':'));
+	if (/:Indexed/) {$Dex{$nname} = $nnum;}
+}
+close(CONFIG);
+open(OUT, "| sort | uniq | wc -l > /tmp/sizedb.$$");
+
+#
+# Collect all indexed words
+while (<>)
+{
+	chop;
+	foreach $d (values(%Dex))
+	{
+		if (/\b$d:([^	]+)/)
+		{
+			$foo = $1;
+			$foo =~ s/\([^ ]* //g;
+			$foo =~ s/ \w\w / /g;
+			$foo =~ s/ \w / /g;
+			$foo =~ s/ /\n/g;
+			print OUT "$foo\n";
+		}
+	}
+}
+close(OUT);
+open(OUT, ">>/tmp/sizedb.$$");
+print OUT "2 * p\n";
+close(OUT);
+system("dc < /tmp/sizedb.$$ | primes | head -1");
+unlink("/tmp/sizedb.$$");
+exit 0;
+@
+
+
+1.3
+log
+@New copyright statement.
+@
+text
+@d1 1
+a1 1
+#!/usr/bin/perl
+d50 1
+a50 1
+# @@(#)$Id$
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+#!/usr/local/bin/perl
+d16 36
+a51 1
+# @@(#)$Id: sizedb,v 1.1 1992/08/21 17:09:01 paul Exp $
+d60 1
+a60 1
+	if (/:Indexed:/) {$Dex{$nname} = $nnum;}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d16 1
+a16 1
+# @@(#)$Id$
+d28 1
+a28 1
+open(OUT, "|egrep -v '^\\(\174^..\044\174^.\044' | sort | uniq | wc -l > /tmp/sizedb.$$");
+d37 1
+a37 1
+		if (/\b$d:/)
+d39 4
+a42 2
+			$foo = $_;
+			$foo =~ s/.*\b$d:([^	]+).*/$1/;
+@

@@ -1,0 +1,41 @@
+
+SHELL = /bin/sh
+
+######################################################################
+# variables set by Configure
+######################################################################
+CC	= _CC_
+CFLAGS	= _Cflags_
+LFLAGS	= _Lflags_
+######################################################################
+# other variables
+######################################################################
+SRCS	= fascist.c packlib.c rules.c stringlib.c
+OBJS	= fascist.o packlib.o rules.o stringlib.o
+OTHERS	= 
+BINS	= _LibDir_/libcrack.a
+
+all:_Para_ $(BINS)
+######################################################################
+# specific targets
+######################################################################
+_LibDir_/libcrack.a:_Para_	$(OBJS)
+	rm -f $@
+	ar crv $@ $(OBJS)
+	_Ranlib_ $@
+######################################################################
+# standard targets
+######################################################################
+rcs:	$(SRCS)
+	_Ci_ $?
+	touch rcs
+
+clean:
+	rm -f $(BINS) $(OBJS) $(OTHERS) tags LINT install
+
+depend: 
+	perl -i -e 'while(<>){print;if (/^# DO NOT DELETE/) {last;}}' Makefile
+	$(CC) _Depend_ $(CFLAGS) $(SRCS) >> Makefile
+
+install:_Para_ $(BINS)
+

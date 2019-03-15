@@ -1,0 +1,1854 @@
+head	1.25;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.25
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	94.03.03.16.55.15;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.12.23.09.56.34;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	93.07.24.16.01.17;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	93.04.05.22.17.54;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.09.22.16.48.38;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.08.16.17.16.29;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.28.23.21.24;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	92.07.27.15.03.27;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	92.07.27.14.49.05;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	90.12.18.08.41.28;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.07.19.10.18.48;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.07.05.20.16.59;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.03.20.15.14.49;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.12.02.14.45.24;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.11.15.13.35.24;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.05.02.14.54.20;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.04.19.08.12.13;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.01.26.17.48.59;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.45;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.25
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: dbm.c,v 1.24 1994/05/05 21:21:51 paul Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#include <sys/types.h>
+#include <sys/time.h>
+
+#define printd	if(dbdebug)printf
+
+static int dbdebug = 0;
+
+struct directory_entry
+{
+	INT32	ent_index;
+	DREC	*ent_ptr;
+};
+
+struct dirhead DirHead;
+int	Have_head;
+static struct directory_entry cur_ent =
+{0, 0};
+
+static int CountDir __P((char *, int));
+static void MakeDir __P((QDIR *, int));
+static int print_ent __P((char *));
+
+extern int dirfd;
+
+/*
+ * This routine causes dirp to be the current directory entry. It returns 0
+ * on failure and 1 on success.
+ */
+int 
+next_ent(dirp)
+	INT32 dirp;
+{
+	/*
+	 * fetch the entry every time; who knows who may have changed it.
+	 */
+	/*if (dirp == cur_ent.ent_index)*/
+	/*return (1);*/
+	if (!dirp || dirp >= DirHead.nents)
+	{
+		cur_ent.ent_index = 0;
+		return (0);
+	}
+	if (cur_ent.ent_index)
+	{
+		free(cur_ent.ent_ptr);
+	}
+	if ((cur_ent.ent_ptr = getdirent(dirp)) == NULL)
+	{
+		cur_ent.ent_index = 0;
+		return (0);
+	}
+	if (cur_ent.ent_ptr->d_dead)
+	{
+		cur_ent.ent_index = 0;
+		free(cur_ent.ent_ptr);
+		cur_ent.ent_ptr = 0;
+		return (0);
+	}
+	cur_ent.ent_index = dirp;
+	if (dbdebug)
+		print_ent("next_ent");
+	return (1);
+}
+
+int 
+ent_dead()
+{
+	return (cur_ent.ent_ptr->d_dead);
+}
+
+/*
+ * This routine causes dirp to be the current directory entry. It returns 0
+ * on failure and 1 on success.  It differs from next_ent only in that
+ * it does not check the ``dead'' flag.
+ */
+int 
+dnext_ent(dirp)
+	INT32 dirp;
+{
+	/*
+	 * fetch the entry every time; who knows who may have changed it.
+	 */
+	/*if (dirp == cur_ent.ent_index)*/
+	/*return (1);*/
+	if (!dirp || dirp >= DirHead.nents)
+	{
+		cur_ent.ent_index = 0;
+		return (0);
+	}
+	if (cur_ent.ent_index)
+	{
+		free(cur_ent.ent_ptr);
+	}
+	if ((cur_ent.ent_ptr = getdirent(dirp)) == NULL)
+	{
+		cur_ent.ent_index = 0;
+		return (0);
+	}
+	cur_ent.ent_index = dirp;
+	if (dbdebug)
+		print_ent("next_ent");
+	return (1);
+}
+
+static int 
+print_ent(str)
+	char *str;
+{
+	int	i;
+
+	printf("%s  Entry %d\n", str, cur_ent.ent_index);
+	if (!cur_ent.ent_index)
+	{
+		printf("    no current entry./n");
+		return;
+	}
+	printf("\td_ovrptr = %d\n", cur_ent.ent_ptr->d_ovrptr);
+	printf("\td_id = %d\n", cur_ent.ent_ptr->d_id);
+	printf("\td_crdate = %s", ctime(&cur_ent.ent_ptr->d_crdate));
+	printf("\td_chdate = %s", ctime(&cur_ent.ent_ptr->d_chdate));
+	printf("\td_datalen = %d\n", cur_ent.ent_ptr->d_datalen);
+	for (i = 0; i < cur_ent.ent_ptr->d_datalen; i++)
+		if (cur_ent.ent_ptr->d_data[i])
+			putchar(cur_ent.ent_ptr->d_data[i]);
+		else
+			putchar('\n');
+}
+
+void 
+store_ent()
+{
+	if (cur_ent.ent_ptr)
+	{
+		putdirent(cur_ent.ent_index, cur_ent.ent_ptr);
+	}
+}
+
+void 
+set_date(which)
+	int which;
+{
+	INT32	num;
+
+	if (!cur_ent.ent_index)
+		return;
+	time(&num);
+	if (which)
+		cur_ent.ent_ptr->d_chdate = num;
+	else
+		cur_ent.ent_ptr->d_crdate = num;
+	printd("time = %d\n", num);
+	return;
+}
+
+int 
+new_ent()
+{
+	char	i = 0;
+
+	if (DirHead.nents == 0)
+		DirHead.nents++;
+
+	/* extend .dir file */
+	if (lseek(dirfd, ((sizeof (DREC)) * (DirHead.nents + 1)) - 1, 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "new_ent: lseek(%d,%ld,0): %s",
+			dirfd, ((sizeof (DREC)) * (DirHead.nents + 1)) - 1,
+			strerror(errno));
+		return (-1);
+	}
+	if (write(dirfd, &i, 1) < 0)
+	{
+		IssueMessage(LOG_ERR, "new_ent: write: %s", strerror(errno));
+		return (-1);
+	}
+	if (cur_ent.ent_index)
+	{
+		free(cur_ent.ent_ptr);
+	}
+	/* setup current entry structure */
+	cur_ent.ent_index = DirHead.nents++;
+	cur_ent.ent_ptr = (DREC *) malloc(sizeof (DREC));
+	memset((void *) cur_ent.ent_ptr, (char)0, sizeof (DREC));
+	set_date(0);
+	cur_ent.ent_ptr->d_id = DirHead.next_id++;
+
+	if (dbdebug)
+		print_ent("new_ent");
+
+	return (cur_ent.ent_index);
+}
+
+
+void 
+put_dir_head()
+{
+	if (lseek(dirfd, 0, 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "put_dir_head: lseek(%d,0L,0): %s",
+			dirfd, strerror(errno));
+	}
+	if (write(dirfd, &DirHead, sizeof (DirHead)) < 0)
+	{
+		IssueMessage(LOG_ERR, "put_dir_head: write: %s", strerror(errno));
+	}
+	Have_head = 0;
+}
+
+void 
+get_dir_head()
+{
+	if (lseek(dirfd, 0, 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "get_dir_head: lseek(%d,0L,0): %s",
+			dirfd, strerror(errno));
+		return;
+	}
+	if (read(dirfd, &DirHead, sizeof (DirHead)) < 0)
+	{
+		IssueMessage(LOG_ERR, "get_dir_head: read: %s", strerror(errno));
+		return;
+	}
+	Have_head = 1;
+}
+
+char   **
+getdata(dirp)
+	QDIR *dirp;
+{
+	int	i, dsize;
+	char	*ptr;
+
+	if (!cur_ent.ent_index)
+	{
+		MakeDir(dirp, 0);
+		(*dirp)[0] = 0;
+		return (NULL);
+	}
+	/* fill in the pointers */
+	ptr = cur_ent.ent_ptr->d_data;
+	dsize = cur_ent.ent_ptr->d_datalen;
+	MakeDir(dirp, CountDir(cur_ent.ent_ptr->d_data, dsize));
+
+	for (i = 0; dsize > 0; i++, ptr++, dsize--)
+	{
+		(*dirp)[i] = strdup(ptr);
+		while (*ptr)
+		{
+			ptr++;
+			dsize--;
+		}
+	}
+	(*dirp)[i] = 0;
+	return ((*dirp));
+}
+
+int 
+putdata(ptr_ary)
+	char **ptr_ary;
+{
+	int	i, memsize, dsize = 0;
+	char	*aptr, *dptr;
+	DREC	*new_ent;
+
+	if (!cur_ent.ent_index)
+		return (0);
+
+	/* find out how much data there is */
+	for (i = 0; ptr_ary[i]; i++)
+	{
+		dsize += strlen(ptr_ary[i]) + 1;
+	}
+	/* allocate mem */
+	memsize = (NDCHARS > dsize) ? 0 : (dsize - NDCHARS);
+	new_ent = (DREC *) malloc(sizeof (DREC) + memsize);
+	memset((void *) new_ent, (char)0, sizeof (DREC) + memsize);
+
+	/* make copy of header info */
+	new_ent->d_ovrptr = cur_ent.ent_ptr->d_ovrptr;
+	new_ent->d_id = cur_ent.ent_ptr->d_id;
+	new_ent->d_crdate = cur_ent.ent_ptr->d_crdate;
+	new_ent->d_chdate = time(0);
+	new_ent->d_dead = cur_ent.ent_ptr->d_dead;
+	free(cur_ent.ent_ptr);
+	cur_ent.ent_ptr = new_ent;
+	set_date(1);		/* new change date */
+
+	/* copy data into record */
+	cur_ent.ent_ptr->d_datalen = dsize;
+
+	dptr = cur_ent.ent_ptr->d_data;
+	for (i = 0; ptr_ary[i]; i++)
+	{
+		aptr = ptr_ary[i];
+		while (*dptr++ = *aptr++) ;
+	}
+	return (OK);
+}
+
+/*
+ * Free a dirp structure
+ */
+void 
+FreeDir(dirp)
+	QDIR *dirp;
+{
+	char   **p;
+
+	if (*dirp)
+	{
+		for (p = *dirp; *p; p++)
+		{
+			free(*p);
+			*p = 0;
+		}
+		free(*dirp);
+		*dirp = 0;
+	}
+}
+
+/*
+ * make a dirp structure
+ */
+static void 
+MakeDir(dirp, count)
+	QDIR *dirp;
+	int count;
+{
+	*dirp = (QDIR) malloc((count + 1) * sizeof (char *));
+	memset(*dirp, 0, ((count + 1) * sizeof (char *)));
+}
+
+/*
+ * count the number of entries in a data string
+ */
+static int 
+CountDir(s, size)
+	char *s;
+	int size;
+{
+	register int count;
+
+	for (count = 0; size; s++, size--)
+		if (!*s)
+			count++;
+	return (count);
+}
+
+/*
+ * set the delete flag in ent
+ */
+void 
+SetDeleteMark()
+{
+	cur_ent.ent_ptr->d_dead = 1;
+}
+
+/*
+ * return the index of the current entry
+ */
+int 
+CurrentIndex()
+{
+	return (cur_ent.ent_index);
+}
+
+/*
+ * return the date of the current entry
+ */
+int 
+CurrentDate()
+{
+	return (cur_ent.ent_ptr->d_chdate);
+}
+@
+
+
+1.24
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: dbm.c,v 1.23 1994/03/12 00:24:45 paul Exp $";
+d52 1
+a52 1
+	long	ent_index;
+d73 1
+a73 1
+	long dirp;
+d120 1
+a120 1
+	long dirp;
+d184 1
+a184 1
+	long	num;
+@
+
+
+1.23
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d208 3
+a210 1
+		IssueMessage(LOG_WARNING, "new_ent: lseek: %s", strerror(errno));
+d215 1
+a215 1
+		IssueMessage(LOG_WARNING, "new_ent: write: %s", strerror(errno));
+d241 2
+a242 1
+		IssueMessage(LOG_WARNING, "put_dir_head: lseek: %s", strerror(errno));
+d246 1
+a246 1
+		IssueMessage(LOG_WARNING, "put_dir_head: write: %s", strerror(errno));
+d256 2
+a257 1
+		IssueMessage(LOG_WARNING, "get_dir_head: lseek: %s", strerror(errno));
+d262 1
+a262 1
+		IssueMessage(LOG_WARNING, "get_dir_head: read: %s", strerror(errno));
+@
+
+
+1.22
+log
+@Zero freed pointers and malloc'ed memory.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.21
+log
+@Replaced make_str() with strdup().
+@
+text
+@d66 1
+d318 1
+d320 2
+d336 1
+a336 2
+
+	**dirp = NULL;
+@
+
+
+1.20
+log
+@POSIX changes: bzero() -> memset().
+@
+text
+@d251 1
+a251 1
+		(*dirp)[i] = make_str(ptr);
+@
+
+
+1.19
+log
+@Mark some globals as static.
+@
+text
+@d190 1
+a190 1
+	bzero((void *) cur_ent.ent_ptr, sizeof (DREC));
+d281 1
+a281 1
+	bzero((void *) new_ent, sizeof (DREC) + memsize);
+@
+
+
+1.18
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d16 1
+a16 1
+int	dbdebug = 0;
+@
+
+
+1.17
+log
+@Replaced instances of %m in IssueMessage with strerror(errno).
+@
+text
+@d29 4
+d114 1
+a114 1
+int 
+d326 1
+a326 1
+void 
+d339 1
+a339 1
+int 
+@
+
+
+1.16
+log
+@Zero out new DRECs.
+@
+text
+@d171 1
+a171 1
+		IssueMessage(LOG_WARNING, "new_ent: lseek: %m");
+d176 1
+a176 1
+		IssueMessage(LOG_WARNING, "new_ent: write: %m");
+d202 1
+a202 1
+		IssueMessage(LOG_WARNING, "put_dir_head: lseek: %m");
+d206 1
+a206 1
+		IssueMessage(LOG_WARNING, "put_dir_head: write: %m");
+d216 1
+a216 1
+		IssueMessage(LOG_WARNING, "get_dir_head: lseek: %m");
+d221 1
+a221 1
+		IssueMessage(LOG_WARNING, "get_dir_head: read: %m");
+@
+
+
+1.15
+log
+@Revised #include file list.
+@
+text
+@d186 1
+a187 3
+	cur_ent.ent_ptr->d_datalen = 0;
+	cur_ent.ent_ptr->d_ovrptr = 0;
+	cur_ent.ent_ptr->d_dead = 0;
+d277 1
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@a10 1
+#include <stdio.h>
+a12 3
+#include "log.h"
+#include "qi.h"
+#include "db.h"
+@
+
+
+1.13
+log
+@Random fixes.
+@
+text
+@d62 1
+a62 1
+	if (cur_ent.ent_ptr -> d_dead)
+d77 1
+a77 1
+	return (cur_ent.ent_ptr -> d_dead);
+d126 8
+a133 8
+	printf("\td_ovrptr = %d\n", cur_ent.ent_ptr -> d_ovrptr);
+	printf("\td_id = %d\n", cur_ent.ent_ptr -> d_id);
+	printf("\td_crdate = %s", ctime(&cur_ent.ent_ptr -> d_crdate));
+	printf("\td_chdate = %s", ctime(&cur_ent.ent_ptr -> d_chdate));
+	printf("\td_datalen = %d\n", cur_ent.ent_ptr -> d_datalen);
+	for (i = 0; i < cur_ent.ent_ptr -> d_datalen; i++)
+		if (cur_ent.ent_ptr -> d_data[i])
+			putchar(cur_ent.ent_ptr -> d_data[i]);
+d157 1
+a157 1
+		cur_ent.ent_ptr -> d_chdate = num;
+d159 1
+a159 1
+		cur_ent.ent_ptr -> d_crdate = num;
+d191 4
+a194 4
+	cur_ent.ent_ptr -> d_datalen = 0;
+	cur_ent.ent_ptr -> d_ovrptr = 0;
+	cur_ent.ent_ptr -> d_dead = 0;
+	cur_ent.ent_ptr -> d_id = DirHead.next_id++;
+d247 3
+a249 3
+	ptr = cur_ent.ent_ptr -> d_data;
+	dsize = cur_ent.ent_ptr -> d_datalen;
+	MakeDir(dirp, CountDir(cur_ent.ent_ptr -> d_data, dsize));
+d285 5
+a289 5
+	new_ent -> d_ovrptr = cur_ent.ent_ptr -> d_ovrptr;
+	new_ent -> d_id = cur_ent.ent_ptr -> d_id;
+	new_ent -> d_crdate = cur_ent.ent_ptr -> d_crdate;
+	new_ent -> d_chdate = time(0);
+	new_ent -> d_dead = cur_ent.ent_ptr -> d_dead;
+d295 1
+a295 1
+	cur_ent.ent_ptr -> d_datalen = dsize;
+d297 1
+a297 1
+	dptr = cur_ent.ent_ptr -> d_data;
+d359 1
+a359 1
+	cur_ent.ent_ptr -> d_dead = 1;
+d377 1
+a377 1
+	return (cur_ent.ent_ptr -> d_chdate);
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d235 1
+a235 1
+	DIR *dirp;
+d311 1
+a311 1
+	DIR *dirp;
+d329 1
+a329 1
+	DIR *dirp;
+d332 1
+a332 1
+	*dirp = (Dir) malloc((count + 1) * sizeof (char *));
+@
+
+
+1.11
+log
+@Last Dorner changes.
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d3 8
+d18 1
+a18 1
+char *malloc();
+d20 1
+a20 1
+#define printd  if(dbdebug)printf
+a21 2
+int   dbdebug = 0;
+
+d24 2
+a25 2
+  long   ent_index;
+  D_record *ent_ptr;
+d29 3
+a31 3
+int   Have_head;
+static struct directory_entry cur_ent = {0, 0};
+D_record *getdirent();
+d36 2
+a37 2
+ * This routine causes dirent to be the current directory entry. It returns 0
+ * on failure and 1 on success.  
+d39 33
+a71 31
+int next_ent(long dirent)
+{
+  /*
+   * fetch the entry every time; who knows who may have changed it.
+   */
+  /*if (dirent == cur_ent.ent_index)*/
+    /*return (1);*/
+  if (!dirent || dirent >= DirHead.nents)
+  {
+    cur_ent.ent_index = 0;
+    return (0);
+  }
+  if (cur_ent.ent_index)
+  {
+    free(cur_ent.ent_ptr);
+  }
+  if ((cur_ent.ent_ptr = getdirent(dirent)) == NULL)
+  {
+    cur_ent.ent_index = 0;
+    return (0);
+  }
+  if (cur_ent.ent_ptr->d_dead)
+  {
+    cur_ent.ent_index = 0;
+    free(cur_ent.ent_ptr);
+    return (0);
+  }
+  cur_ent.ent_index = dirent;
+  if (dbdebug)
+    print_ent("next_ent");
+  return (1);
+d74 2
+a75 1
+int ent_dead(void)
+d77 1
+a77 1
+  return(cur_ent.ent_ptr->d_dead);
+d79 1
+d81 1
+a81 1
+ * This routine causes dirent to be the current directory entry. It returns 0
+d85 282
+a366 1
+int dnext_ent(long dirent)
+d368 8
+a375 267
+  /*
+   * fetch the entry every time; who knows who may have changed it.
+   */
+  /*if (dirent == cur_ent.ent_index)*/
+    /*return (1);*/
+  if (!dirent || dirent >= DirHead.nents)
+  {
+    cur_ent.ent_index = 0;
+    return (0);
+  }
+  if (cur_ent.ent_index)
+  {
+    free(cur_ent.ent_ptr);
+  }
+  if ((cur_ent.ent_ptr = getdirent(dirent)) == NULL)
+  {
+    cur_ent.ent_index = 0;
+    return (0);
+  }
+  cur_ent.ent_index = dirent;
+  if (dbdebug)
+    print_ent("next_ent");
+  return (1);
+}
+
+int print_ent(char *str)
+{
+  int   i;
+  char   *ctime();
+
+  printf("%s  Entry %d\n", str, cur_ent.ent_index);
+  if (!cur_ent.ent_index)
+  {
+    printf("    no current entry./n");
+    return;
+  }
+  printf("\td_ovrptr = %d\n", cur_ent.ent_ptr->d_ovrptr);
+  printf("\td_id = %d\n", cur_ent.ent_ptr->d_id);
+  printf("\td_crdate = %s", ctime(&cur_ent.ent_ptr->d_crdate));
+  printf("\td_chdate = %s", ctime(&cur_ent.ent_ptr->d_chdate));
+  printf("\td_datalen = %d\n", cur_ent.ent_ptr->d_datalen);
+  for (i = 0; i < cur_ent.ent_ptr->d_datalen; i++)
+    if (cur_ent.ent_ptr->d_data[i])
+      putchar(cur_ent.ent_ptr->d_data[i]);
+    else
+      putchar('\n');
+}
+
+void store_ent(void)
+{
+  if (cur_ent.ent_ptr)
+  {
+    putdirent(cur_ent.ent_index, cur_ent.ent_ptr);
+  }
+}
+
+void set_date(int which)
+{
+  long  num;
+
+  if (!cur_ent.ent_index)
+    return;
+  time(&num);
+  if (which)
+    cur_ent.ent_ptr->d_chdate = num;
+  else
+    cur_ent.ent_ptr->d_crdate = num;
+  printd("time = %d\n", num);
+  return;
+}
+
+int new_ent(void)
+{
+  char  i = 0;
+
+  if (DirHead.nents == 0)
+    DirHead.nents++;
+
+  /* extend .dir file */
+  if (lseek(dirfd, ((sizeof(D_record)) * (DirHead.nents + 1)) - 1, 0)<0)
+  {
+    IssueMessage(LOG_WARNING,"new_ent: lseek: %m");
+    return(-1);
+  }
+  if (write(dirfd, &i, 1)<0)
+  {
+    IssueMessage(LOG_WARNING,"new_ent: write: %m");
+    return(-1);
+  }
+
+  if (cur_ent.ent_index)
+  {
+    free(cur_ent.ent_ptr);
+  }
+  /* setup current entry structure */
+  cur_ent.ent_index = DirHead.nents++;
+  cur_ent.ent_ptr = (D_record *) malloc(sizeof(D_record));
+  set_date(0);
+  cur_ent.ent_ptr->d_datalen = 0;
+  cur_ent.ent_ptr->d_ovrptr = 0;
+  cur_ent.ent_ptr->d_dead = 0;
+  cur_ent.ent_ptr->d_id = DirHead.next_id++;
+
+  if (dbdebug)
+    print_ent("new_ent");
+
+  return (cur_ent.ent_index);
+}
+
+
+void put_dir_head(void)
+{
+  if (lseek(dirfd, 0, 0)<0)
+  {
+    IssueMessage(LOG_WARNING,"put_dir_head: lseek: %m");
+  }
+  if (write(dirfd, &DirHead, sizeof(DirHead))<0)
+  {
+    IssueMessage(LOG_WARNING,"put_dir_head: write: %m");
+  }
+  Have_head = 0;
+}
+
+void get_dir_head(void)
+{
+  if (lseek(dirfd, 0, 0)<0)
+  {
+    IssueMessage(LOG_WARNING,"get_dir_head: lseek: %m");
+    return;
+  }
+  if (read(dirfd, &DirHead, sizeof(DirHead))<0)
+  {
+    IssueMessage(LOG_WARNING,"get_dir_head: read: %m");
+    return;
+  }
+  Have_head = 1;
+}
+
+char **getdata(Dir *dir)
+{
+  int   i, dsize;
+  char   *ptr;
+  char   *make_str();
+
+  if (!cur_ent.ent_index)
+  {
+    MakeDir(dir, 0);
+    (*dir)[0] = 0;
+    return (NULL);
+  }
+
+  /* fill in the pointers */
+  ptr = cur_ent.ent_ptr->d_data;
+  dsize = cur_ent.ent_ptr->d_datalen;
+  MakeDir(dir, CountDir(cur_ent.ent_ptr->d_data, dsize));
+
+  for (i = 0; dsize > 0; i++, ptr++, dsize--)
+  {
+    (*dir)[i] = make_str(ptr);
+    while (*ptr)
+    {
+      ptr++;
+      dsize--;
+    }
+  }
+  (*dir)[i] = 0;
+  return ((*dir));
+}
+
+int putdata(char **ptr_ary)
+{
+  int   i, memsize, dsize = 0;
+  char   *aptr, *dptr;
+  D_record *new_ent;
+
+  if (!cur_ent.ent_index)
+    return (0);
+
+  /* find out how much data there is */
+  for (i = 0; ptr_ary[i]; i++)
+  {
+    dsize += strlen(ptr_ary[i]) + 1;
+  }
+  /* allocate mem */
+  memsize = (NDCHARS > dsize) ? 0 : (dsize - NDCHARS);
+  new_ent = (D_record *) malloc(sizeof(D_record) + memsize);
+
+  /* make copy of header info */
+  new_ent->d_ovrptr = cur_ent.ent_ptr->d_ovrptr;
+  new_ent->d_id = cur_ent.ent_ptr->d_id;
+  new_ent->d_crdate = cur_ent.ent_ptr->d_crdate;
+  new_ent->d_chdate = time(0);
+  new_ent->d_dead = cur_ent.ent_ptr->d_dead;
+  free(cur_ent.ent_ptr);
+  cur_ent.ent_ptr = new_ent;
+  set_date(1);        /* new change date */
+
+  /* copy data into record */
+  cur_ent.ent_ptr->d_datalen = dsize;
+
+  dptr = cur_ent.ent_ptr->d_data;
+  for (i = 0; ptr_ary[i]; i++)
+  {
+    aptr = ptr_ary[i];
+    while (*dptr++ = *aptr++);
+  }
+  return (OK);
+}
+
+/***********************************************************************
+* Free a dir structure
+***********************************************************************/
+void FreeDir(Dir *dir)
+{
+  char  **p;
+
+  if (*dir)
+  {
+    for (p = *dir; *p; p++)
+      free(*p);
+    free(*dir);
+    *dir = 0;
+  }
+}
+
+/***********************************************************************
+* make a dir structure
+***********************************************************************/
+void MakeDir(Dir *dir,int count)
+{
+  *dir = (Dir) malloc((count + 1) * sizeof(char *));
+  **dir = NULL;
+}
+
+/***********************************************************************
+* count the number of entries in a data string
+***********************************************************************/
+int CountDir(char *s,int size)
+{
+  register int count;
+
+  for (count = 0; size; s++, size--)
+    if (!*s)
+      count++;
+  return (count);
+}
+
+/***********************************************************************
+* set the delete flag in ent
+***********************************************************************/
+void SetDeleteMark(void)
+{
+  cur_ent.ent_ptr->d_dead = 1;
+}
+
+/***********************************************************************
+* return the index of the current entry
+***********************************************************************/
+int CurrentIndex(void)
+{
+  return (cur_ent.ent_index);
+}
+
+/***********************************************************************
+* return the date of the current entry
+***********************************************************************/
+int CurrentDate(void)
+d377 1
+a377 1
+  return (cur_ent.ent_ptr->d_chdate);
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d347 8
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d1 1
+a35 1
+long time();
+d41 1
+a41 2
+next_ent(dirent)
+long dirent;
+d74 1
+a74 1
+ent_dead()
+d83 1
+a83 2
+dnext_ent(dirent)
+long dirent;
+d110 1
+a110 2
+print_ent(str)          /* debugging print routine */
+char   *str;
+d133 1
+a133 1
+store_ent()           /* write current entry to disk */
+d141 1
+a141 3
+set_date(which)         /* set the create (which==0) or change
+		 * (which==1) dates */
+int   which;
+d156 1
+a156 2
+new_ent()             /* make a new directory entry. set
+		 * appropriate fields,return it's offset */
+d185 1
+d195 1
+a195 1
+put_dir_head()          /* write out the header of the directory file */
+d208 1
+a208 1
+get_dir_head()          /* read in the header of the directory file */
+d223 1
+a223 4
+char  **
+getdata(dir)          /* form an argv like structure out of the
+		 * current entry's data */
+Dir  *dir;
+d254 1
+a254 3
+putdata(ptr_ary)        /* put an argv like structure into the
+		 * current entry's data area */
+char  **ptr_ary;
+d261 1
+a261 3
+  {
+    return (NULL);
+  }
+d297 1
+a297 2
+FreeDir(dir)
+Dir  *dir;
+d313 1
+a313 2
+MakeDir(dir, count)
+Dir  *dir;
+d322 1
+a322 3
+CountDir(s, size)
+register char *s;
+register int size;
+d335 1
+a335 1
+SetDeleteMark()
+d343 1
+a343 1
+CurrentIndex()
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d13 3
+a15 7
+#ifdef ULTRIX43LOG
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+#include "../Include/qi.h"
+#include "../Include/db.h"
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d18 2
+a19 2
+#include "../include/qi.h"
+#include "../include/db.h"
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d1 9
+a9 8
+/***********************************************************************
+* Portions of this software Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  Portions of this software
+* orginally written for CSNET; copyright status unclear at this time.  No
+* warranties expressed or implied, no support provided.  Please do not
+* redistribute it in its present form.  Contact me for details
+* (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d176 1
+a176 1
+    syslog(LOG_WARNING,"new_ent: lseek: %m");
+d181 1
+a181 1
+    syslog(LOG_WARNING,"new_ent: write: %m");
+d208 1
+a208 1
+    syslog(LOG_WARNING,"put_dir_head: lseek: %m");
+d212 1
+a212 1
+    syslog(LOG_WARNING,"put_dir_head: write: %m");
+d221 1
+a221 1
+    syslog(LOG_WARNING,"get_dir_head: lseek: %m");
+d226 1
+a226 1
+    syslog(LOG_WARNING,"get_dir_head: read: %m");
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d12 5
+d20 1
+a20 1
+#define printd	if(dbdebug)printf
+d22 1
+a22 1
+int     dbdebug = 0;
+d24 2
+d28 2
+a29 2
+    int     ent_index;
+    D_record *ent_ptr;
+d33 1
+a33 1
+int     Have_head;
+d42 1
+a42 1
+ * on failure and 1 on success.	 
+d45 1
+a45 1
+unsigned long dirent;
+d47 29
+a75 29
+    /*
+     * fetch the entry every time; who knows who may have changed it.
+     */
+    /*if (dirent == cur_ent.ent_index)*/
+	/*return (1);*/
+    if (!dirent || dirent >= DirHead.nents)
+    {
+	cur_ent.ent_index = 0;
+	return (0);
+    }
+    if (cur_ent.ent_index)
+    {
+	free(cur_ent.ent_ptr);
+    }
+    if ((cur_ent.ent_ptr = getdirent(dirent)) == NULL)
+    {
+	cur_ent.ent_index = 0;
+	return (0);
+    }
+    if (cur_ent.ent_ptr->d_dead)
+    {
+	cur_ent.ent_index = 0;
+	free(cur_ent.ent_ptr);
+	return (0);
+    }
+    cur_ent.ent_index = dirent;
+    if (dbdebug)
+	print_ent("next_ent");
+    return (1);
+d80 1
+a80 1
+    return(cur_ent.ent_ptr->d_dead);
+d84 1
+a84 1
+ * on failure and 1 on success.	 It differs from next_ent only in that
+d88 1
+a88 1
+unsigned long dirent;
+d90 23
+a112 23
+    /*
+     * fetch the entry every time; who knows who may have changed it.
+     */
+    /*if (dirent == cur_ent.ent_index)*/
+	/*return (1);*/
+    if (!dirent || dirent >= DirHead.nents)
+    {
+	cur_ent.ent_index = 0;
+	return (0);
+    }
+    if (cur_ent.ent_index)
+    {
+	free(cur_ent.ent_ptr);
+    }
+    if ((cur_ent.ent_ptr = getdirent(dirent)) == NULL)
+    {
+	cur_ent.ent_index = 0;
+	return (0);
+    }
+    cur_ent.ent_index = dirent;
+    if (dbdebug)
+	print_ent("next_ent");
+    return (1);
+d115 1
+a115 1
+print_ent(str)			/* debugging print routine */
+d118 2
+a119 2
+    int     i;
+    char   *ctime();
+d121 14
+a134 37
+    printf("%s	Entry %d\n", str, cur_ent.ent_index);
+    if (!cur_ent.ent_index)
+    {
+	printf("	no current entry./n");
+	return;
+    }
+    printf("\td_ovrptr = %d\n", cur_ent.ent_ptr->d_ovrptr);
+    printf("\td_id = %d\n", cur_ent.ent_ptr->d_id);
+    printf("\td_crdate = %s", ctime(&cur_ent.ent_ptr->d_crdate));
+    printf("\td_chdate = %s", ctime(&cur_ent.ent_ptr->d_chdate));
+    printf("\td_datalen = %d\n", cur_ent.ent_ptr->d_datalen);
+    for (i = 0; i < cur_ent.ent_ptr->d_datalen; i++)
+	if (cur_ent.ent_ptr->d_data[i])
+	    putchar(cur_ent.ent_ptr->d_data[i]);
+	else
+	    putchar('\n');
+}
+
+store_ent()			/* write current entry to disk */
+{
+    if (cur_ent.ent_ptr)
+    {
+	putdirent(cur_ent.ent_index, cur_ent.ent_ptr);
+    }
+}
+
+set_date(which)			/* set the create (which==0) or change
+				 * (which==1) dates */
+int     which;
+{
+    long    num;
+
+    if (!cur_ent.ent_index)
+	return (0);
+    time(&num);
+    if (which)
+	cur_ent.ent_ptr->d_chdate = num;
+d136 1
+a136 3
+	cur_ent.ent_ptr->d_crdate = num;
+    printd("time = %d\n", num);
+    return (1);
+d139 1
+a139 1
+get_ident()			/* get the Csnet id of the current entry */
+d141 4
+a144 4
+
+    if (!cur_ent.ent_index)
+	return (0);
+    return (cur_ent.ent_ptr->d_id);
+d147 3
+a149 2
+set_ident(which)		/* set the Csnet id of the current entry */
+int     which;
+d151 1
+d153 9
+a161 4
+    if (!cur_ent.ent_index)
+	return (0);
+    cur_ent.ent_ptr->d_id = which;
+    return (1);
+d164 2
+a165 2
+get_type()			/* get the type of the current entry
+				 * (HOST,USER,UNREG,...) */
+d167 1
+a167 2
+    return (0);
+}
+d169 2
+a170 2
+set_type()
+{
+d172 11
+a182 4
+    if (!cur_ent.ent_index)
+	return (0);
+    return (1);
+}
+d184 11
+a194 4
+new_ent()			/* make a new directory entry. set
+				 * appropriate fields,return it's offset */
+{
+    char    i = 0;
+d196 2
+a197 2
+    if (DirHead.nents == 0)
+	DirHead.nents++;
+d199 1
+a199 20
+    /* extend .dir file */
+    lseek(dirfd, ((sizeof(D_record)) * (DirHead.nents + 1)) - 1, 0);
+    write(dirfd, &i, 1);
+
+    if (cur_ent.ent_index)
+    {
+	free(cur_ent.ent_ptr);
+    }
+    /* setup current entry structure */
+    cur_ent.ent_index = DirHead.nents++;
+    cur_ent.ent_ptr = (D_record *) malloc(sizeof(D_record));
+    set_date(0);
+    cur_ent.ent_ptr->d_datalen = 0;
+    cur_ent.ent_ptr->d_ovrptr = 0;
+    cur_ent.ent_ptr->d_id = DirHead.next_id++;
+
+    if (dbdebug)
+	print_ent("new_ent");
+
+    return (cur_ent.ent_index);
+d203 1
+a203 1
+put_dir_head()			/* write out the header of the directory file */
+d205 9
+a213 3
+    lseek(dirfd, 0, 0);
+    write(dirfd, &DirHead, sizeof(DirHead));
+    Have_head = 0;
+d216 1
+a216 1
+get_dir_head()			/* read in the header of the directory file */
+d218 11
+a228 3
+    lseek(dirfd, 0, 0);
+    read(dirfd, &DirHead, sizeof(DirHead));
+    Have_head = 1;
+d232 3
+a234 3
+getdata(dir)			/* form an argv like structure out of the
+				 * current entry's data */
+Dir    *dir;
+d236 3
+a238 3
+    int     i, dsize;
+    char   *ptr;
+    char   *make_str();
+d240 6
+a245 6
+    if (!cur_ent.ent_index)
+    {
+	MakeDir(dir, 0);
+	(*dir)[0] = 0;
+	return (NULL);
+    }
+d247 4
+a250 4
+    /* fill in the pointers */
+    ptr = cur_ent.ent_ptr->d_data;
+    dsize = cur_ent.ent_ptr->d_datalen;
+    MakeDir(dir, CountDir(cur_ent.ent_ptr->d_data, dsize));
+d252 4
+a255 1
+    for (i = 0; dsize > 0; i++, ptr++, dsize--)
+d257 2
+a258 6
+	(*dir)[i] = make_str(ptr);
+	while (*ptr)
+	{
+	    ptr++;
+	    dsize--;
+	}
+d260 3
+a262 2
+    (*dir)[i] = 0;
+    return ((*dir));
+d265 2
+a266 2
+putdata(ptr_ary)		/* put an argv like structure into the
+				 * current entry's data area */
+d269 3
+a271 3
+    int     i, memsize, dsize = 0;
+    char   *aptr, *dptr;
+    D_record *new_ent;
+d273 4
+a276 4
+    if (!cur_ent.ent_index)
+    {
+	return (NULL);
+    }
+d278 8
+a285 8
+    /* find out how much data there is */
+    for (i = 0; ptr_ary[i]; i++)
+    {
+	dsize += strlen(ptr_ary[i]) + 1;
+    }
+    /* allocate mem */
+    memsize = (NDCHARS > dsize) ? 0 : (dsize - NDCHARS);
+    new_ent = (D_record *) malloc(sizeof(D_record) + memsize);
+d287 9
+a295 9
+    /* make copy of header info */
+    new_ent->d_ovrptr = cur_ent.ent_ptr->d_ovrptr;
+    new_ent->d_id = cur_ent.ent_ptr->d_id;
+    new_ent->d_crdate = cur_ent.ent_ptr->d_crdate;
+    new_ent->d_chdate = time(0);
+    new_ent->d_dead = cur_ent.ent_ptr->d_dead;
+    free(cur_ent.ent_ptr);
+    cur_ent.ent_ptr = new_ent;
+    set_date(1);		/* new change date */
+d297 2
+a298 2
+    /* copy data into record */
+    cur_ent.ent_ptr->d_datalen = dsize;
+d300 7
+a306 7
+    dptr = cur_ent.ent_ptr->d_data;
+    for (i = 0; ptr_ary[i]; i++)
+    {
+	aptr = ptr_ary[i];
+	while (*dptr++ = *aptr++);
+    }
+    return (OK);
+d313 1
+a313 1
+Dir    *dir;
+d315 1
+a315 1
+    char  **p;
+d317 7
+a323 7
+    if (*dir)
+    {
+	for (p = *dir; *p; p++)
+	    free(*p);
+	free(*dir);
+	*dir = 0;
+    }
+d330 1
+a330 1
+Dir    *dir;
+d332 2
+a333 2
+    *dir = (Dir) malloc((count + 1) * sizeof(char *));
+    **dir = NULL;
+d343 1
+a343 1
+    register int count;
+d345 4
+a348 4
+    for (count = 0; size; s++, size--)
+	if (!*s)
+	    count++;
+    return (count);
+d356 1
+a356 1
+    cur_ent.ent_ptr->d_dead = 1;
+d364 1
+a364 1
+    return (cur_ent.ent_index);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 8
+d12 2
+a13 2
+#include "qi.h"
+#include "db.h"
+d31 1
+d71 37
+d294 2
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d31 5
+a35 2
+    if (dirent == cur_ent.ent_index)
+	return (1);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+int dbdebug = 0;
+d13 1
+a13 1
+    int ent_index;
+d18 1
+a18 1
+int Have_head;
+d25 2
+a26 2
+ *	This routine causes dirent to be the current directory entry.
+ *	It returns 0 on failure and 1 on success.	
+d29 1
+a29 1
+int dirent;
+d51 1
+a51 1
+	return(0);
+d60 1
+a60 1
+char *str;
+d62 2
+a63 2
+    int i;
+    char *ctime();
+d93 1
+a93 1
+int which;
+d95 1
+a95 1
+    long num;
+d117 1
+a117 1
+int which;
+d132 1
+a132 3
+set_type(which)			/* set the type of the current entry
+				 * (HOST,USER,UNREG,...) */
+int which;
+d143 1
+a143 2
+    char i = 0;
+    long num;
+d185 2
+a186 2
+char **
+getdata(dir)		/* form an argv like structure out of the
+d188 1
+a188 1
+Dir *dir;
+d190 3
+a192 4
+    int i, dsize;
+    char *ptr;
+    char **p;
+    char *make_str();
+d196 1
+a196 1
+	MakeDir(dir,0);
+d204 1
+a204 1
+    MakeDir(dir,CountDir(cur_ent.ent_ptr->d_data,dsize));
+d221 1
+a221 1
+char **ptr_ary;
+d223 2
+a224 2
+    int i, memsize, dsize = 0;
+    char *aptr, *dptr;
+d260 1
+a260 1
+	
+d265 1
+a265 1
+Dir *dir;
+d267 1
+a267 1
+    char **p;
+d271 1
+a271 1
+	for (p = *dir;*p;p++)
+d277 1
+d281 2
+a282 2
+MakeDir(dir,count)
+Dir *dir;
+d284 1
+a284 1
+    *dir = (Dir) malloc((count+1)*sizeof(char *));
+d287 1
+d291 1
+a291 1
+CountDir(s,size)
+d297 4
+a300 3
+    for (count=0;size;s++,size--)
+	if (!*s) count++;
+    return(count);
+d316 1
+a316 1
+    return(cur_ent.ent_index);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d47 6
+a168 3
+
+    /* update .id file */
+    set_ident_file(cur_ent.ent_ptr->d_id, cur_ent.ent_index);
+@

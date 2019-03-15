@@ -1,0 +1,3173 @@
+head	1.80;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.80
+date	95.06.23.19.24.38;	author p-pomes;	state Exp;
+branches;
+next	1.79;
+
+1.79
+date	95.06.18.00.45.03;	author p-pomes;	state Exp;
+branches;
+next	1.78;
+
+1.78
+date	95.06.10.03.42.36;	author p-pomes;	state Exp;
+branches;
+next	1.77;
+
+1.77
+date	95.03.01.20.07.51;	author p-pomes;	state Exp;
+branches;
+next	1.76;
+
+1.76
+date	95.03.01.02.49.08;	author p-pomes;	state Exp;
+branches;
+next	1.75;
+
+1.75
+date	95.02.28.19.29.07;	author p-pomes;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	94.11.28.21.28.49;	author p-pomes;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	94.11.18.16.05.44;	author p-pomes;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	94.04.12.17.22.09;	author paul;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	94.03.13.00.12.38;	author paul;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	94.03.12.22.49.42;	author paul;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	94.03.10.23.41.14;	author paul;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	94.03.06.21.41.08;	author paul;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	94.01.30.17.52.34;	author paul;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	93.12.28.18.24.16;	author paul;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	93.12.21.21.48.05;	author paul;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	93.12.16.22.02.52;	author paul;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	93.11.23.16.31.04;	author paul;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	93.07.24.18.22.16;	author paul;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	93.06.26.13.34.07;	author paul;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	93.06.22.13.38.54;	author paul;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	93.05.26.17.14.57;	author paul;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	93.05.24.15.37.08;	author paul;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	93.04.16.02.13.07;	author paul;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	93.04.14.21.38.00;	author paul;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	93.04.06.16.55.36;	author paul;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	93.04.03.16.00.52;	author paul;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	93.04.02.21.58.22;	author paul;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	93.04.02.04.52.44;	author paul;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	93.04.01.16.32.10;	author paul;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	93.03.17.20.54.43;	author paul;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	93.03.11.16.24.29;	author paul;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	93.02.27.20.52.02;	author paul;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	93.02.19.22.36.51;	author paul;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	93.01.23.19.31.55;	author paul;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	92.12.12.19.02.26;	author paul;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	92.11.10.17.34.16;	author paul;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	92.08.10.16.44.46;	author paul;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	92.07.30.04.30.34;	author paul;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	92.07.27.16.09.58;	author paul;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	92.07.27.16.00.48;	author paul;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	90.12.18.08.41.42;	author dorner;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	90.05.16.09.18.26;	author dorner;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	89.10.18.07.52.20;	author dorner;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	89.07.19.10.18.59;	author dorner;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	89.07.05.20.17.09;	author dorner;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	89.05.08.22.43.51;	author dorner;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	89.03.20.15.14.57;	author dorner;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	88.12.02.14.45.39;	author dorner;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	88.11.15.13.35.35;	author dorner;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	88.07.27.13.25.33;	author dorner;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	88.07.08.14.00.49;	author dorner;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	88.07.06.20.47.57;	author dorner;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	88.04.27.12.56.50;	author dorner;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	88.04.19.08.12.11;	author dorner;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	88.04.04.15.25.15;	author dorner;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	88.04.04.15.19.10;	author dorner;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	88.03.24.14.55.31;	author dorner;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	88.03.24.12.09.03;	author dorner;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	88.03.24.12.06.43;	author dorner;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	88.03.24.11.02.02;	author dorner;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	88.03.09.10.30.26;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	88.03.09.10.26.47;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	88.03.07.11.01.19;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	88.03.07.10.49.10;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	88.03.07.10.32.04;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	88.03.02.14.20.14;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.02.18.15.42.55;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.02.16.14.31.52;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.02.15.14.09.19;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.02.15.14.03.11;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	87.12.12.11.28.26;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	87.12.11.12.12.40;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	87.12.10.10.35.02;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.41;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.80
+log
+@Move LimitHit() to query.c
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.79 1995/06/18 00:45:03 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#include <sys/types.h>
+#include <sys/param.h>
+#include <sys/file.h>
+#include <sys/socket.h>
+#include <pwd.h>
+#include <sys/time.h>
+#include <signal.h>
+#include <netinet/in.h>
+#include <netdb.h>
+
+FILE	*Input, *Output;
+int	Daemon = 0;
+int	ReadOnly = 0;
+int	TurnedOff = 0;
+int	Initializing = 1;
+int	Timeout = 0;
+int	LockTimeout = 30;
+int	Quiet = 0;
+
+int	OffCampus = 0;
+int	LocalUser = 1;
+
+#ifdef EMAIL_AUTH
+struct hostent TrustHp;
+#endif
+
+char	*DBState;
+char	*hostname = NULL;
+char	*Kdomain = NULL;
+
+static void SetSignals();
+static void WhoAreYou();
+
+/*
+ * what am I talking to?
+ */
+int	InputType;
+char	Foreign[256];
+char	*Me;		/* the name of this program */
+
+int
+qimain(argc, argv)
+	int argc;
+	char **argv;
+{
+	char	**opt;
+	char	*equal;
+	int	pid = getpid();	/* available for debugging */
+
+#ifdef USE_GID
+	setgid(USE_GID);
+#endif
+#ifdef USE_UID
+	setuid(USE_UID);
+#endif
+#ifdef RUNDIR
+	chdir(RUNDIR);
+#endif
+
+	Input = stdin;
+	Output = stdout;
+
+	/* when you're strange, no one remembers your name */
+	Me = *argv;
+
+	for (argc--, argv++; argc && **argv == '-'; argc--, argv++)
+	{
+		(*argv)++;
+		switch (**argv)
+		{
+		    case 'q':
+			Quiet = 1;
+			break;
+		    case 'w':
+			ReadOnly = 0;
+			break;
+		    case 'x':
+			QiDebug = 1;
+			QiAuthDebug = 1;
+			break;
+		    case 'd':
+			Daemon = 1;
+			break;
+		    case 't':
+			Timeout = 60 * atoi((*argv) + 1);
+			break;
+		    case 'k':
+			LockTimeout = 60 * atoi((*argv) + 1);
+			break;
+		    case 'l':
+			OP_VALUE(NOLOG_OP) = strdup("");
+			break;
+		    default:
+			if (equal = strchr(*argv, '='))
+			{
+				*equal++ = '\0';
+				for (opt = Strings; *opt; opt += 2)
+				{
+					if (!strcmp(opt[0], *argv))
+					{
+						opt[1] = equal;
+						break;
+					}
+				}
+				if (*opt)
+					break;
+				fprintf(stdout, "%s: %s: unknown string.\n",
+					Me, *argv);
+				exit(1);
+			} else
+			{
+				fprintf(stdout, "%s: %s: unknown option.\n",
+					Me, *argv);
+				exit(1);
+			}
+		}
+	}
+	Database = DATABASE;
+	if (!OP_VALUE(NOLOG_OP))
+	{
+#ifdef LOG_DAEMON
+# ifndef LOG_QILOG
+#  define	LOG_QILOG	LOG_DAEMON
+# endif	/* !LOG_QILOG */
+		openlog("tqi", LOG_PID, LOG_QILOG);
+#else	/* !LOG_DAEMON */
+		openlog("tqi", LOG_PID);
+#endif	/* LOG_DAEMON */
+	}
+
+	/* Quick, verify that crypt() is sane! */
+	if (strcmp(crypt("fredfred", "fredfred"), "frxWbx4IRuBBA"))
+	{
+		IssueMessage(LOG_ERR, "Incompatible crypt() - check bit order in api/fcrypt.c");
+		IssueMessage(LOG_ERR, "or recompile w.o. #define crypt fcrypt in");
+		IssueMessage(LOG_ERR, "include/qiapi.h and include/protos.h");
+		DoReply(LR_ERROR, "Server compiled with broken crypt() function");
+		DoQuit(NULL);
+	}
+
+#if defined(MAILDOMAIN) || defined(KDOMAIN)
+	for (opt = Strings; *opt; opt += 2)
+		if (!strcmp(opt[0], "KDOMAIN"))
+			Kdomain = strdup(opt[1]);
+	for (opt = Strings; Kdomain == NULL && *opt; opt += 2)
+		if (!strcmp(opt[0], "MAILDOMAIN"))
+			Kdomain = strdup(opt[1]);
+	if (Kdomain == NULL)
+	{
+		IssueMessage(LOG_ERR, "qi: Couldn't determine KDOMAIN or MAILDOMAIN.\n");
+		exit(1);
+	}
+	for (equal = Kdomain; *equal; equal++)
+		if (islower(*equal))
+			*equal = toupper(*equal);
+#endif /* MAILDOMAIN || KDOMAIN */
+
+	SetSignals();
+	WhoAreYou();
+	IssueMessage(LOG_INFO, "begin %s", Foreign);
+	InitializeOptions();
+
+	/* get configuration */
+	if (!GetFieldConfig())
+		exit(1);
+	if ((Quiet || Daemon) && GetState())
+	{
+		fprintf(Output, "555:Database shut off (%s).\n", DBState);
+		exit(0);
+	}
+#ifdef KDB
+	if (kdb_db_init())
+		exit(1);
+#endif /* KDB */
+#if defined(KRB5_AUTH)
+	krb5_init_ets();
+#endif /* KRB5_AUTH */
+	Initializing = 0;
+	if (!Daemon && (InputType == IT_TTY || InputType == IT_PIPE || InputType == IT_FILE))
+		AmHero = 1;
+	do
+	{
+		if (Timeout)
+			alarm(0);
+		fflush(Output);
+		if (!Quiet && (InputType == IT_TTY || InputType == IT_PIPE || InputType == IT_FILE))
+			printf("\nmqi> ");
+		if (Timeout && !AmHero)
+			alarm(Timeout);
+	}
+	while (yylex());
+	DoQuit(NULL);
+	IssueMessage(LOG_INFO, "Done 0");
+}
+
+void
+cleanup(sig)
+	int sig;
+{
+	int level = (sig == SIGALRM) ? LOG_INFO : LOG_ERR;
+
+	IssueMessage(level, "Done %d", sig);
+	exit(1);
+}
+
+static void
+SetSignals()
+{
+#ifdef SA_FULLDUMP
+	/* AIX does not provide the data section in a core dump by default. */
+	struct sigaction handlr;
+
+	handlr.sa_handler = NULL;
+	handlr.sa_flags = SA_FULLDUMP;
+	sigaction(SIGQUIT, &handlr, NULL);
+	sigaction(SIGILL, &handlr, NULL);
+	sigaction(SIGBUS, &handlr, NULL);
+	sigaction(SIGSEGV, &handlr, NULL);
+	sigaction(SIGIOT, &handlr, NULL);
+#endif /* SA_FULLDUMP */
+	(void) signal(SIGALRM, cleanup);
+	(void) signal(SIGHUP, cleanup);
+	(void) signal(SIGINT, cleanup);
+	(void) signal(SIGTERM, cleanup);
+/*
+	(void) signal(SIGQUIT, cleanup);
+	(void) signal(SIGILL, cleanup);
+	(void) signal(SIGTRAP, cleanup);
+	(void) signal(SIGIOT, cleanup);
+	(void) signal(SIGEMT, cleanup);
+	(void) signal(SIGFPE, cleanup);
+	(void) signal(SIGBUS, cleanup);
+	(void) signal(SIGSEGV, cleanup);
+	(void) signal(SIGSYS, cleanup);
+ */
+}
+
+#ifndef L_INCR
+# define L_INCR 1
+#endif /* !L_INCR */
+
+/*
+ * who am I talking to?
+ */
+static void
+WhoAreYou()
+{
+	struct sockaddr From;
+	int	i, FromLen = sizeof (From);
+	struct passwd *pwd = NULL;
+	char	errorstr[MAXSTR];
+	int	s = fileno(stdin);
+
+	if (isatty(s))
+	{
+		char	*name = (char *) getlogin();
+		int	uid = (int) getuid();
+
+		InputType = IT_TTY;
+		if (name != NULL)
+			pwd = getpwnam(name);
+		if (pwd == NULL)
+			pwd = getpwuid(uid);
+		if (pwd)
+			(void) sprintf(Foreign, "%s %s", ttyname(s), pwd->pw_name);
+		else {
+			IssueMessage(LOG_ERR, "WhoAreYou: getlogin() || getpwuid() failed for uid %d\n", uid);
+			exit(1);
+		}
+	} else if (getpeername(s, &From, &FromLen) == 0)
+	{
+		struct sockaddr_in *sin = (struct sockaddr_in *) (&From);
+		struct hostent *hp = NULL;
+		int	on = 1;
+		int     hostnamep = 0;
+
+
+		InputType = IT_NET;
+		/* get name of connected client */
+		hp = gethostbyaddr((char *)&sin->sin_addr, sizeof (sin->sin_addr), AF_INET);
+
+
+		if (hp) {
+			/*
+			 * Attempt to verify that we haven't been fooled by
+			 * someone in a remote net; look up the name and check
+			 * that this address corresponds to the name.
+			 */
+
+			int	HostNameLen = strlen (hp->h_name);
+			char	remotehost[2 * MAXHOSTNAMELEN + 1];
+
+			hostnamep = 1;
+			hostname = strdup(hp->h_name);
+			strncpy(remotehost, hp->h_name, sizeof(remotehost) - 1);
+			remotehost[sizeof(remotehost) - 1] = 0;
+			hp = gethostbyname(remotehost);
+			if (hp == NULL) {
+				(void) sprintf(errorstr, "Couldn't look up address for %s", remotehost);
+				DoReply(LR_NOADDR, errorstr);
+				IssueMessage(LOG_NOTICE, errorstr);
+				DoQuit(NULL);
+			} else for (; ; hp->h_addr_list++) {
+				if (hp->h_addr_list[0] == NULL) {
+					(void) sprintf(errorstr,
+					    "Host addr %s not listed for host %s",
+#if defined(sparc) && __GNUC__ == 1
+					    inet_ntoa(&sin->sin_addr),
+#else
+					    inet_ntoa(sin->sin_addr),
+#endif
+					    hp->h_name);
+					DoReply(LR_MISMATCH, errorstr);
+					IssueMessage(LOG_NOTICE, errorstr);
+					DoQuit(NULL);
+				}
+				if (!memcmp(hp->h_addr_list[0], (caddr_t)&sin->sin_addr,
+				    sizeof(sin->sin_addr))) {
+					hostname = strdup(hp->h_name);
+					break;
+				}
+			}
+		} else {
+#if defined(sparc) && __GNUC__ == 1
+			hostname = strdup((char *) inet_ntoa(&sin->sin_addr));
+#else
+			hostname = strdup((char *) inet_ntoa(sin->sin_addr));
+#endif
+			IssueMessage(LOG_NOTICE, "Couldn't find hostname for address (%s)",
+			    hostname);
+#ifndef NOCHECKNET
+			DoReply(LR_NONAME, "No hostname found for IP address");
+			/* DoQuit(NULL);	How rude do we need to be? */
+#endif /* !NOCHECKNET */
+		}
+		(void) sprintf(Foreign, "NET %s", hostname);
+#ifdef EMAIL_AUTH
+		memset(&TrustHp, 0, sizeof (TrustHp));
+		if (hp != NULL && ntohs(sin->sin_port) < IPPORT_RESERVED)
+		{
+			TrustHp.h_addrtype = hp->h_addrtype;
+			TrustHp.h_length = hp->h_length;
+			TrustHp.h_name = strdup(hp->h_name);
+			TrustHp.h_aliases = malloc(35 * sizeof (char *));
+			for (i = 0; *(hp->h_aliases+i); i++)
+				*(TrustHp.h_aliases+i) = strdup(*(hp->h_aliases+i));
+			TrustHp.h_addr_list = malloc(35 * sizeof (char *));
+			for (i = 0; *(hp->h_addr_list+i); i++)
+			{
+				*(TrustHp.h_addr_list+i) = malloc(hp->h_length);
+				memcpy(*(TrustHp.h_addr_list+i),
+					*(hp->h_addr_list+i), hp->h_length);
+			}
+		}
+#endif
+
+		if (*OkAddrs)
+		{
+			char	**local;
+			int	hlen;
+			int	llen;
+
+			OffCampus = 1;
+
+			/* Try OkAddrs as IP address fragments */
+			for (local = OkAddrs; *local; local++)
+				if (!strncmp(Foreign+4, *local, strlen(*local)))
+					OffCampus = 0;
+
+			/* Then as domain names */
+			if (OffCampus == 1 && hostnamep)
+			{
+				hlen  = strlen(hostname);
+				for (local = OkAddrs; *local; local++)
+				{
+					llen = strlen(*local);
+					if (hlen < llen)
+						continue;
+					if (!stricmp((hostname + (hlen - llen)), *local))
+						OffCampus = 0;
+				}
+			}
+		}
+		if (*LocalAddrs)
+		{
+			char	**local;
+			int	hlen;
+			int	llen;
+
+			LocalUser = 0;
+
+			/* Try LocalAddrs as IP address fragments */
+			for (local = LocalAddrs; *local; local++)
+				if (!strncmp(Foreign+4, *local, strlen(*local)))
+					LocalUser = 1;
+
+			/* Then as domain names */
+			if (LocalUser == 0 && hostnamep)
+			{
+				hlen  = strlen(hostname);
+				for (local = LocalAddrs; *local; local++)
+				{
+					llen = strlen(*local);
+					if (hlen < llen)
+						continue;
+					if (!stricmp ((hostname + (hlen - llen)), *local))
+						LocalUser = 1;
+				}
+			}
+		}
+		if (setsockopt(s, SOL_SOCKET, SO_KEEPALIVE, (char *)&on,
+		    sizeof(on)) < 0)
+			IssueMessage(LOG_ERR,"WhoAreYou: setsockopt(SO_KEEPALIVE): %s",
+			    strerror(errno));
+	} else if (lseek(s, 0, L_INCR) >= 0)
+	{
+		InputType = IT_FILE;
+		pwd = getpwuid(getuid());
+		(void) sprintf(Foreign, "FILE %s", pwd->pw_name);
+	} else
+	{
+		InputType = IT_PIPE;
+		pwd = getpwuid(getuid());
+		(void) sprintf(Foreign, "PIPE %s", pwd->pw_name);
+	}
+}
+
+/*
+ * read the state of the database from a file
+ */
+int
+GetState()
+{
+	char	name[80];
+	FILE	*fp;
+	static char state[1024];
+	char	*token;
+
+	(void) sprintf(name, "%s.sta", Database);
+	if ((fp = fopen(name, "r")) == NULL)
+		return (0);
+
+	if (fgets(state, 1024, fp))
+	{
+		fclose(fp);
+		if (DBState = strtok(state, " \t\n"))
+		{
+			if (!strcmp(DBState, "off"))
+			{
+				DBState = (token = strtok(0, "\n")) ?
+				    token : "for maintenance";
+				return (1);
+			} else
+			{
+				DBState = strtok(0, "\n");
+				if (!ReadOnly && !Initializing)
+					fprintf(Output, "100:The database is now read-only (%s).\n",
+						DBState);
+				ReadOnly = 1;
+			}
+		}
+	} else
+		(void) fclose(fp);
+
+	return (0);
+}
+@
+
+
+1.79
+log
+@#ifdef SIGXCPU added.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.78 1995/06/10 03:42:36 p-pomes Exp p-pomes $";
+a507 14
+}
+
+/*
+ * exit cleanly when limit hit
+ */
+void
+LimitHit(sig)
+	int sig;
+{
+#ifdef SIGXCPU
+	signal(SIGXCPU, SIG_IGN);
+#endif /* SIGXCPU */
+	fprintf(Output, "%d: CPU time limit exceeded for this session.\n", LR_XCPU);
+	DoQuit(NULL);
+@
+
+
+1.78
+log
+@KRB5 hooks.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.77 1995/03/01 20:07:51 p-pomes Exp p-pomes $";
+d517 1
+d519 1
+@
+
+
+1.77
+log
+@working version checkpoint.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.76 1995/03/01 02:49:08 p-pomes Exp p-pomes $";
+d121 1
+d217 3
+@
+
+
+1.76
+log
+@*** empty log message ***
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.75 1995/02/28 19:29:07 p-pomes Exp p-pomes $";
+d90 1
+a90 1
+	int	i, pid = getpid();	/* available for debugging */
+d213 1
+a213 10
+	if (krb5_db_init())
+	{
+		DoReply(LR_ERROR, "Can't initialize Kerberos db library");
+		IssueMessage(LOG_ERR, "qi: Can't initialize Kerberos db library");
+		exit(1);
+	}
+	if (i = krb5_db_set_lockmode(TRUE))
+	{
+		DoReply(LR_ERROR, "Can't set non-blocking Kerberos db IO");
+		IssueMessage(LOG_ERR, "qi: Can't set non-blocking Kerberos db IO: %d", i);
+d215 1
+a215 8
+	}
+	i = kdb_ser_init(0);
+	if (i != KADM_SUCCESS) {
+		DoReply(LR_ERROR, "Can't setup Kerberos server info struct");
+		IssueMessage(LOG_ERR, "qi: Can't setup Kerberos server info struct");
+		exit(1);
+	}
+#endif /* KADM */
+@
+
+
+1.75
+log
+@Added hooks to allow direct qi->KDC updates.  Added -x flag to set QiDebug
+variable.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.76 1995/02/22 02:29:30 p-pomes Exp $";
+d212 1
+a212 1
+#if defined(KERBEROS) && defined(KDB)
+d231 1
+a231 1
+#endif /* KERBEROS && KADM */
+@
+
+
+1.74
+log
+@Set Kdomain global to kerberos realm if possible.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.73 1994/11/18 16:05:44 p-pomes Exp p-pomes $";
+d81 1
+a81 1
+static char *Me;		/* the name of this program */
+d90 1
+a90 1
+	int	pid = getpid();		/* available for debugging */
+d119 3
+d212 20
+@
+
+
+1.73
+log
+@Copy TrustHp structure AND pointed to objects.  Based on a report from Jean
+Ezell <ezell@@csl.uiuc.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.72 1994/05/05 21:21:51 paul Exp $";
+d71 1
+d178 17
+@
+
+
+1.72
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.71 1994/04/12 17:22:09 paul Exp paul $";
+d178 1
+a181 1
+	SetSignals();
+d232 1
+d262 1
+a262 1
+	int	FromLen = sizeof (From);
+d346 1
+a346 1
+			/* DoQuit(NULL);	/* How rude do we need to be? */
+d353 15
+a367 1
+			(void) memcpy((void*)&TrustHp, (void*)hp, sizeof (TrustHp));
+@
+
+
+1.71
+log
+@*** empty log message ***
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.70 1994/03/13 00:12:38 paul Exp paul $";
+d222 11
+d279 1
+a279 1
+			IssueMessage(LOG_ERR, "getlogin() || getpwuid() failed for uid %d\n", uid);
+d411 1
+a411 1
+			IssueMessage(LOG_WARNING,"setsockopt(SO_KEEPALIVE): %s",
+@
+
+
+1.70
+log
+@Don't report timeouts at LOG_ERR.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.69 1994/03/12 22:49:42 paul Exp paul $";
+d225 2
+a230 1
+/*
+@
+
+
+1.69
+log
+@Exempt heros from timeout.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: qi.c,v 1.68 1994/03/12 00:24:45 paul Exp paul $";
+d213 3
+a215 1
+	IssueMessage(LOG_ERR, "Done %d", sig);
+@
+
+
+1.68
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d201 1
+a201 1
+		if (Timeout)
+@
+
+
+1.67
+log
+@*** empty log message ***
+@
+text
+@d1 40
+a42 7
+/*
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+ */
+@
+
+
+1.66
+log
+@Cast memcpy pointers.
+@
+text
+@a26 1
+int	DontLog = 0;
+d37 1
+d46 1
+a46 1
+char	Foreign[80];
+d95 1
+a95 1
+			DontLog = 1;
+d123 1
+a123 1
+	if (!DontLog)
+d180 1
+a180 1
+	IssueMessage(LOG_INFO, "Done %d", sig);
+a237 1
+		char	*hostname;
+d259 1
+a259 1
+			hostname = hp->h_name;
+d284 1
+a284 1
+					hostname = hp->h_name;
+d290 1
+a290 1
+			hostname = (char *) inet_ntoa(&sin->sin_addr);
+d292 1
+a292 1
+			hostname = (char *) inet_ntoa(sin->sin_addr);
+d301 1
+a301 7
+
+
+#if defined(sparc) && __GNUC__ == 1
+		(void) sprintf(Foreign, "NET %s", inet_ntoa(&sin->sin_addr));
+#else
+		(void) sprintf(Foreign, "NET %s", inet_ntoa(sin->sin_addr));
+#endif
+@
+
+
+1.65
+log
+@Nail another null pointer dereference.
+@
+text
+@d312 1
+a312 1
+			(void) memcpy(&TrustHp, hp, sizeof (TrustHp));
+@
+
+
+1.64
+log
+@replaced bcmp with memcmp
+@
+text
+@d311 1
+a311 1
+		if (ntohs(sin->sin_port) < IPPORT_RESERVED)
+@
+
+
+1.63
+log
+@If all signals are caught, e.g., SEGV, then fixing bugs is mighty hard.
+@
+text
+@d283 1
+a283 1
+				if (!bcmp(hp->h_addr_list[0], (caddr_t)&sin->sin_addr,
+@
+
+
+1.62
+log
+@Cast return value of inet_ntoa() to make compilers happy.
+@
+text
+@d56 1
+d194 1
+d200 1
+@
+
+
+1.61
+log
+@Made TrustHp a real hostent instead of a pointer to one.
+@
+text
+@d288 1
+a288 1
+			hostname = inet_ntoa(&sin->sin_addr);
+d290 1
+a290 1
+			hostname = inet_ntoa(sin->sin_addr);
+@
+
+
+1.60
+log
+@POSIX: index() -> strchr().  Some fixes from George Pavel.
+@
+text
+@d34 1
+a34 1
+struct hostent *TrustHp = NULL;
+d307 1
+d309 1
+a309 1
+			TrustHp = hp;
+d430 1
+@
+
+
+1.59
+log
+@Patch for unset hostname string from A. Cytron.
+@
+text
+@d97 1
+a97 1
+			if (equal = index(*argv, '='))
+d104 1
+a104 1
+						opt[1] = equal + 1;
+a245 1
+#ifndef NOCHECKNET
+d294 1
+d297 1
+a298 7
+
+#else   /* !NOCHECKNET */
+	if (hp) {
+		hostnamep = 1;
+		hostname = hp->h_name;		
+	}
+#endif /* !NOCHECKNET */
+@
+
+
+1.58
+log
+@More battles with inet_ntoa() arguments vs gcc/cc .
+@
+text
+@d238 1
+d240 1
+d244 2
+d257 1
+d298 6
+d305 2
+d320 1
+a320 1
+			int	hlen = strlen(hostname);
+d331 1
+a331 1
+			if (OffCampus == 1)
+d333 1
+d347 1
+a347 1
+			int	hlen = strlen(hostname);
+d358 1
+a358 1
+			if (LocalUser == 0)
+d360 1
+@
+
+
+1.57
+log
+@Whoops,  hostname wasn't defined for a later strlen operation if
+host could not be found in the DNS.
+@
+text
+@d139 1
+a139 1
+		IssueMessage(LOG_ERR, "api/qiapi.h and include/protos.h");
+d218 1
+a218 1
+		char	*name = getlogin();
+d266 6
+a271 1
+					    inet_ntoa(sin->sin_addr), hp->h_name);
+@
+
+
+1.56
+log
+@updated crypt error message.
+@
+text
+@d278 5
+d284 1
+a284 1
+			    inet_ntoa(sin->sin_addr));
+@
+
+
+1.55
+log
+@Made Quiet a global so command echoing can be turned off for pipes
+in commands.c .
+@
+text
+@d137 3
+a139 2
+		IssueMessage(LOG_ERR, "Incompatible crypt() - check bit order in lib/fcrypt.c");
+		IssueMessage(LOG_ERR, "or recompile w.o. FCRYPT in @@Features()");
+@
+
+
+1.54
+log
+@Add -q flag to suppress prompts.
+@
+text
+@d28 1
+a55 1
+	int	Quiet = 0;
+@
+
+
+1.53
+log
+@Check for null pointers from getpwuid() and its cousins.
+@
+text
+@d55 1
+d78 3
+d151 1
+a151 1
+	if (Daemon && GetState())
+d157 1
+a157 1
+	if (InputType == IT_TTY || InputType == IT_PIPE || InputType == IT_FILE)
+d164 1
+a164 1
+		if (InputType == IT_TTY || InputType == IT_PIPE || InputType == IT_FILE)
+@
+
+
+1.52
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d106 1
+a106 1
+				fprintf(stderr, "%s: %s: unknown string.\n",
+d111 1
+a111 1
+				fprintf(stderr, "%s: %s: unknown option.\n",
+d207 1
+a207 1
+	struct passwd *pwd;
+d213 3
+d217 10
+a226 2
+		pwd = getpwuid(getuid());
+		(void) sprintf(Foreign, "%s %s", ttyname(s), pwd->pw_name);
+@
+
+
+1.51
+log
+@Move init_des() call to fcrypt().
+@
+text
+@d38 2
+a39 2
+void	SetSignals();
+void	cleanup __P((int));
+d178 1
+a178 1
+void
+d202 1
+a202 1
+void
+@
+
+
+1.50
+log
+@Add fcrypt() support (selected with FCRYPT).
+@
+text
+@a128 3
+#ifdef FCRYPT
+	init_des();
+#endif
+d133 1
+a133 1
+		IssueMessage(LOG_ERR, "Incompatible crypt() - check bit order in fcrypt.c");
+@
+
+
+1.49
+log
+@For network connections, set LocalUser based on whether remote hostname
+tail matches a domain in LocalAddrs[] or whether remote IP address
+matches the head of an IP address fragment in LocalAddrs.  Set OffCampus
+in a similar fashion with OkAddrs[].
+@
+text
+@d129 13
+@
+
+
+1.48
+log
+@Fixed up argument parsing so that -DATABASE=/tmp/foo works again.
+@
+text
+@a28 1
+#ifdef RESTRICTED
+d30 1
+a30 1
+#endif
+d48 1
+a48 1
+int 
+a135 2
+	{
+		fprintf(Output, "%d:Field config is missing.\n", LR_INTERNAL);
+a136 1
+	}
+d168 1
+a168 1
+void 
+d192 1
+a192 1
+void 
+d268 1
+a268 1
+#ifdef RESTRICTED
+d271 4
+d276 1
+d278 41
+a318 3
+				if (!strncmp(*local, Foreign + 4, strlen(*local)))
+					return;
+			OffCampus = 1;
+a319 1
+#endif
+d340 1
+a340 1
+int 
+d380 1
+a380 1
+void 
+@
+
+
+1.47
+log
+@Delete newlines from syslog messages.  Re-locate some variables inside
+local blocks in WhoAreYou.  Set SO_KEEPALIVE on network connections.
+@
+text
+@d47 1
+d70 3
+d75 2
+a76 1
+		for ((*argv)++; **argv; (*argv)++)
+d78 17
+a94 1
+			switch (**argv)
+d96 2
+a97 19
+			    case 'w':
+				ReadOnly = 0;
+				break;
+			    case 'd':
+				Daemon = 1;
+				break;
+			    case 't':
+				Timeout = 60 * atoi((*argv) + 1);
+				goto nextArg;
+				break;
+			    case 'k':
+				LockTimeout = 60 * atoi((*argv) + 1);
+				goto nextArg;
+				break;
+			    case 'l':
+				DontLog = 1;
+				break;
+			    default:
+				if (equal = index(*argv, '='))
+d99 1
+a99 2
+					*equal = 0;
+					for (opt = Strings; *opt; opt += 2)
+d101 2
+a102 5
+						if (!strcmp(opt[0], *argv))
+						{
+							opt[1] = equal + 1;
+							goto nextArg;
+						}
+d104 11
+a114 3
+					fprintf(stderr, "%s: unknown string.\n", *argv);
+				} else
+					fprintf(stderr, "%c: unknown option.\n", **argv);
+a116 1
+	      nextArg:;
+d118 1
+@
+
+
+1.46
+log
+@*** empty log message ***
+@
+text
+@d153 1
+a153 1
+	IssueMessage(LOG_INFO, "Done 0\n");
+d160 1
+a160 1
+	IssueMessage(LOG_INFO, "Done %d\n", sig);
+a191 1
+	struct sockaddr_in *sin = (struct sockaddr_in *) (&From);
+a193 1
+	char	*hostname;
+d195 1
+a195 1
+	struct hostent *hp = NULL;
+d197 1
+a197 1
+	if (isatty(fileno(stdin)))
+d201 2
+a202 2
+		(void) sprintf(Foreign, "%s %s", ttyname(fileno(stdin)), pwd->pw_name);
+	} else if (getpeername(fileno(stdin), &From, &FromLen) == 0)
+d204 5
+d274 5
+a278 1
+	} else if (lseek(fileno(stdin), 0, L_INCR) >= 0)
+@
+
+
+1.45
+log
+@Some fixes for System 5 Release 3.2.  Re-ordered the tests in WhoAreYou()
+because S5R3.2 allows lseek() on network sockets.
+@
+text
+@d248 1
+@
+
+
+1.44
+log
+@In-line InitializeLogging() routine to avoid other problems.
+@
+text
+@d40 1
+d156 1
+d167 12
+a178 12
+	(void) signal(SIGALRM, (void *) cleanup);
+	(void) signal(SIGHUP, (void *) cleanup);
+	(void) signal(SIGINT, (void *) cleanup);
+	(void) signal(SIGQUIT, (void *) cleanup);
+	(void) signal(SIGILL, (void *) cleanup);
+	(void) signal(SIGTRAP, (void *) cleanup);
+	(void) signal(SIGIOT, (void *) cleanup);
+	(void) signal(SIGEMT, (void *) cleanup);
+	(void) signal(SIGFPE, (void *) cleanup);
+	(void) signal(SIGBUS, (void *) cleanup);
+	(void) signal(SIGSEGV, (void *) cleanup);
+	(void) signal(SIGSYS, (void *) cleanup);
+d181 4
+d191 3
+a193 2
+	struct sockaddr_in From;
+	int	FromLen = sizeof (struct sockaddr);
+d204 1
+a204 11
+	} else if (lseek(fileno(stdin), 0, L_INCR) >= 0)
+	{
+		InputType = IT_FILE;
+		pwd = getpwuid(getuid());
+		(void) sprintf(Foreign, "FILE %s", pwd->pw_name);
+	} else if (getpeername(fileno(stdin), (struct sockaddr *) & From, &FromLen) < 0)
+	{
+		InputType = IT_PIPE;
+		pwd = getpwuid(getuid());
+		(void) sprintf(Foreign, "PIPE %s", pwd->pw_name);
+	} else
+d208 1
+a208 2
+		hp = gethostbyaddr((char *)&From.sin_addr, sizeof (struct in_addr),
+			From.sin_family);
+d233 1
+a233 1
+					    inet_ntoa(From.sin_addr), hp->h_name);
+d238 2
+a239 2
+				if (!bcmp(hp->h_addr_list[0], (caddr_t)&From.sin_addr,
+				    sizeof(From.sin_addr))) {
+d246 1
+a246 1
+			    inet_ntoa(From.sin_addr));
+d251 1
+a251 1
+		(void) sprintf(Foreign, "NET %s", inet_ntoa(&From.sin_addr));
+d253 1
+a253 1
+		(void) sprintf(Foreign, "NET %s", inet_ntoa(From.sin_addr));
+d256 1
+a256 1
+		if (ntohs(From.sin_port) < IPPORT_RESERVED)
+d270 10
+a329 1
+	fprintf(Output, "%d: CPU time limit exceeded for this session.\n", LR_XCPU);
+@
+
+
+1.43
+log
+@*** empty log message ***
+@
+text
+@d110 11
+a120 1
+	InitializeLogging();
+d122 1
+a176 22
+}
+
+/*
+ * initialize logging
+ */
+void 
+InitializeLogging()
+{
+	static char pidstring[30];
+
+	if (DontLog)
+		return;
+	(void) sprintf(pidstring, "mypidis=%d", getpid());
+#ifdef LOG_DAEMON
+# ifndef LOG_QILOG
+#  define	LOG_QILOG	LOG_DAEMON
+# endif	/* !LOG_QILOG */
+	openlog("tqi", LOG_PID, LOG_QILOG);
+#else	/* !LOG_DAEMON */
+	openlog("tqi", LOG_PID);
+#endif	/* LOG_DAEMON */
+	IssueMessage(LOG_INFO, "begin %s", Foreign);
+@
+
+
+1.42
+log
+@Made qi smarter about using the right version of openlog().
+@
+text
+@a109 2
+	(void) strncpy(Database, DATABASE, MAXPATHLEN-1);
+
+@
+
+
+1.41
+log
+@More fixes to security checking.  Define NOCHECKNET to disable.
+@
+text
+@a79 1
+				break;
+d110 1
+d181 4
+d186 3
+@
+
+
+1.40
+log
+@Made qi more paranoid about checking given hostnames.
+@
+text
+@d31 1
+a32 1
+#endif
+d35 1
+a36 1
+#endif
+d112 1
+a113 1
+	InitializeLogging();
+d196 1
+d217 1
+a217 1
+		TrustHp = gethostbyaddr((char *)&From.sin_addr, sizeof (struct in_addr),
+d219 2
+a220 1
+		if (TrustHp) {
+d227 1
+a227 1
+			int	HostNameLen = strlen (TrustHp->h_name);
+d230 2
+a231 2
+			hostname = TrustHp->h_name;
+			strncpy(remotehost, TrustHp->h_name, sizeof(remotehost) - 1);
+d233 2
+a234 2
+			TrustHp = gethostbyname(remotehost);
+			if (TrustHp == NULL) {
+d236 1
+a236 1
+				fprintf(Output, errorstr);
+d239 2
+a240 2
+			} else for (; ; TrustHp->h_addr_list++) {
+				if (TrustHp->h_addr_list[0] == NULL) {
+d243 2
+a244 2
+					    inet_ntoa(From.sin_addr), TrustHp->h_name);
+					fprintf(Output, errorstr);
+d248 1
+a248 1
+				if (!bcmp(TrustHp->h_addr_list[0], (caddr_t)&From.sin_addr,
+d250 1
+a250 1
+					hostname = TrustHp->h_name;
+d255 1
+a255 2
+			(void) sprintf(errorstr,
+			    "Couldn't find hostname for address (%s)",
+d257 1
+a257 3
+			fprintf(Output, errorstr);
+			IssueMessage(LOG_NOTICE, errorstr);
+			DoQuit(NULL);
+d259 1
+d266 2
+a267 1
+		if (ntohs(From.sin_port) >= IPPORT_RESERVED)
+a268 1
+			TrustHp = NULL;
+@
+
+
+1.39
+log
+@*** empty log message ***
+@
+text
+@d11 1
+d191 2
+a192 2
+	struct sockaddr_in bobby;
+	int	bobbyLen = sizeof (struct sockaddr);
+d194 2
+d207 1
+a207 1
+	} else if (getpeername(fileno(stdin), (struct sockaddr *) & bobby, &bobbyLen) < 0)
+d215 45
+d261 1
+a261 1
+		(void) sprintf(Foreign, "NET %s", inet_ntoa(&bobby.sin_addr));
+d263 1
+a263 1
+		(void) sprintf(Foreign, "NET %s", inet_ntoa(bobby.sin_addr));
+d266 3
+a268 2
+		if (ntohs(bobby.sin_port) < IPPORT_RESERVED)
+			TrustHp = gethostbyaddr(&bobby.sin_addr, sizeof (int), AF_INET);
+a269 1
+#endif
+@
+
+
+1.38
+log
+@Revised #include file list.
+@
+text
+@d241 1
+a241 1
+	char	theName[80];
+d243 2
+a244 2
+	static char theState[1024];
+	char	*theToken;
+d246 2
+a247 2
+	(void) sprintf(theName, "%s.sta", Database);
+	if ((fp = fopen(theName, "r")) == NULL)
+d250 1
+a250 1
+	if (fgets(theState, 1024, fp))
+d253 1
+a253 1
+		if (DBState = strtok(theState, " \t\n"))
+d257 2
+a258 2
+				DBState = (theToken = strtok(0, "\n")) ?
+				    theToken : "for maintenance";
+@
+
+
+1.37
+log
+@Random fixes.
+@
+text
+@a9 1
+#include <stdio.h>
+a17 5
+#include "conf.h"
+#include "qi.h"
+#include "field.h"
+#include "commands.h"
+#include "log.h"
+@
+
+
+1.36
+log
+@Re-formatted for clarity.
+@
+text
+@d285 2
+a286 1
+LimitHit(int sig)
+@
+
+
+1.35
+log
+@Last Dorner changes.
+@
+text
+@d2 8
+a9 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d25 9
+a33 8
+FILE   *Input, *Output;
+int   Daemon = 0;
+int   ReadOnly = 0;
+int   TurnedOff = 0;
+int   Initializing = 1;
+int   Timeout = 0;
+int   LockTimeout = 30;
+int   DontLog = 0;
+d35 2
+a36 1
+int OffCampus = 0;
+d40 1
+d42 1
+a42 1
+char  *DBState;
+d44 1
+a44 1
+void SetSignals(void);
+d46 13
+a58 5
+/***********************************************************************
+* what am I talking to?
+***********************************************************************/
+int   InputType;
+char  Foreign[80];
+a59 4
+int qimain(int argc,char **argv)
+{
+  char **opt;
+  char *equal;
+d61 1
+a61 1
+  setgid(USE_GID);
+d64 1
+a64 1
+  setuid(USE_UID);
+d67 1
+a67 1
+  chdir(RUNDIR);
+d70 79
+a148 80
+  Input = stdin;
+  Output = stdout;
+  
+  for (argc--, argv++; argc && **argv == '-'; argc--, argv++)
+  {
+    for ((*argv)++; **argv; (*argv)++)
+    {
+      switch (**argv)
+      {
+	case 'w':
+	  ReadOnly = 0;
+	  break;
+	case 'd':
+	  Daemon = 1;
+	  break;
+	  break;
+	case 't':
+	  Timeout = 60*atoi((*argv)+1);
+	  goto nextArg;
+	  break;
+	case 'k':
+	  LockTimeout = 60*atoi((*argv)+1);
+	  goto nextArg;
+	  break;
+	case 'l':
+	  DontLog = 1;
+	  break;
+	default:
+	  if (equal=index(*argv,'='))
+	  {
+	    *equal = 0;
+	    for (opt=Strings;*opt;opt+=2)
+	    {
+	      if (!strcmp(opt[0],*argv))
+	      {
+		opt[1] = equal+1;
+		goto nextArg;
+              }
+	    }
+	    fprintf(stderr,"%s: unknown string.\n", *argv);
+	  }
+	  else
+	    fprintf(stderr, "%c: unknown option.\n", **argv);
+      }
+    }
+    nextArg:;
+  }
+
+  WhoAreYou();
+  InitializeLogging();
+  InitializeOptions();
+  SetSignals();
+  /* get configuration */
+  if (!GetFieldConfig())
+  {
+    fprintf(Output,"%d:Field config is missing.\n",LR_INTERNAL);
+    exit(1);
+  }
+
+  if (Daemon && GetState())
+  {
+    fprintf(Output, "555:Database shut off (%s).\n", DBState);
+    exit(0);
+  }
+
+
+  Initializing = 0;
+  if (InputType == IT_TTY || InputType == IT_PIPE || InputType == IT_FILE)
+    AmHero = 1;
+  do
+  {
+    if (Timeout) alarm(0);
+    fflush(Output);
+    if (InputType == IT_TTY || InputType == IT_PIPE || InputType == IT_FILE)
+      printf("\nmqi> ");
+    if (Timeout) alarm(Timeout);
+  }
+  while (yylex());
+  DoQuit(NULL);
+  IssueMessage(LOG_INFO,"Done 0\n");
+d151 2
+a152 1
+cleanup(int sig)
+d154 2
+a155 2
+  IssueMessage(LOG_INFO, "Done %d\n",sig);
+  exit(1);
+d158 2
+a159 1
+void SetSignals(void)
+d161 12
+a172 12
+  (void) signal(SIGALRM,(void*)cleanup);
+  (void) signal(SIGHUP,(void*)cleanup);
+  (void) signal(SIGINT,(void*)cleanup);
+  (void) signal(SIGQUIT,(void*)cleanup);
+  (void) signal(SIGILL,(void*)cleanup);
+  (void) signal(SIGTRAP,(void*)cleanup);
+  (void) signal(SIGIOT,(void*)cleanup);
+  (void) signal(SIGEMT,(void*)cleanup);
+  (void) signal(SIGFPE,(void*)cleanup);
+  (void) signal(SIGBUS,(void*)cleanup);
+  (void) signal(SIGSEGV,(void*)cleanup);
+  (void) signal(SIGSYS,(void*)cleanup);
+d175 5
+a179 4
+/***********************************************************************
+* initialize logging
+***********************************************************************/
+void InitializeLogging(void)
+d181 7
+a187 5
+  static char pidstring[30];
+  if (DontLog) return;
+  sprintf(pidstring,"mypidis=%d",getpid());
+  openlog("tqi", LOG_PID, LOG_QILOG);
+  IssueMessage(LOG_INFO, "begin %s", Foreign);
+d190 5
+a194 4
+/***********************************************************************
+* who am I talking to?
+***********************************************************************/
+void WhoAreYou(void)
+d196 22
+a217 29
+  struct sockaddr_in bobby;
+  int   bobbyLen = sizeof(struct sockaddr);
+  struct passwd *thePW;
+  char   *inet_ntoa();
+  char   *ttyname();
+
+  if (isatty(fileno(stdin)))
+  {
+    InputType = IT_TTY;
+    thePW = getpwuid(getuid());
+    sprintf(Foreign, "%s %s", ttyname(fileno(stdin)), thePW->pw_name);
+  }
+  else
+  if (lseek(fileno(stdin), 0, L_INCR) >= 0)
+  {
+    InputType = IT_FILE;
+    thePW = getpwuid(getuid());
+    sprintf(Foreign, "FILE %s", thePW->pw_name);
+  }
+  else
+  if (getpeername(fileno(stdin), (struct sockaddr *)&bobby, &bobbyLen) < 0)
+  {
+    InputType = IT_PIPE;
+    thePW = getpwuid(getuid());
+    sprintf(Foreign, "PIPE %s", thePW->pw_name);
+  }
+  else
+  {
+    InputType = IT_NET;
+d219 1
+a219 1
+    sprintf(Foreign, "NET %s", inet_ntoa(&bobby.sin_addr));
+d221 1
+a221 1
+    sprintf(Foreign, "NET %s", inet_ntoa(bobby.sin_addr));
+d224 3
+a226 2
+    if (ntohs(bobby.sin_port)<IPPORT_RESERVED)
+      TrustHp = gethostbyaddr(&bobby.sin_addr,sizeof(int),AF_INET);
+d229 8
+a236 6
+    {
+      char **local;
+      for (local=OkAddrs;*local;local++)
+        if (!strncmp(*local,Foreign+4,strlen(*local))) return;
+      OffCampus = 1;
+    }
+d238 1
+a238 1
+  }
+d241 5
+a245 4
+/***********************************************************************
+* read the sate of the database from a file
+***********************************************************************/
+int GetState()
+d247 30
+a276 33
+  char  theName[80];
+  FILE   *theFile;
+  char   *strtok();
+  static char theState[1024];
+  char *theToken;
+
+  sprintf(theName, "%s.sta", Database);
+  if ((theFile = fopen(theName, "r")) == NULL)
+    return (0);
+
+  if (fgets(theState, 1024, theFile))
+  {
+    fclose(theFile);
+    if (DBState = strtok(theState, " \t\n"))
+    {
+      if (!strcmp(DBState, "off"))
+      {
+	DBState = (theToken=strtok(0, "\n")) ?
+	    theToken:"for maintenance";
+	return(1);
+      }
+      else
+      {
+	DBState = strtok(0,"\n");
+	if (!ReadOnly && !Initializing)
+	  fprintf(Output, "100:The database is now read-only (%s).\n",
+	      DBState);
+	ReadOnly = 1;
+      }
+    }
+  }
+  else
+    fclose(theFile);
+d278 1
+a278 1
+  return (0);
+d281 5
+a285 4
+/***********************************************************************
+* exit cleanly when limit hit
+***********************************************************************/
+void LimitHit(int sig)
+d287 3
+a289 3
+  fprintf(Output, "%d: CPU time limit exceeded for this session.\n", LR_XCPU);
+  fprintf(Output, "%d: CPU time limit exceeded for this session.\n", LR_XCPU);
+  DoQuit(NULL);
+@
+
+
+1.34
+log
+@No help here.
+@
+text
+@a12 1
+#include <netinet/in.h>
+a14 1
+#include <sys/resource.h>
+d16 2
+d22 1
+a24 1
+extern char *Database;
+d30 1
+d32 6
+a39 1
+#define MAX_SECONDS 20
+d48 1
+a48 1
+int main(int argc,char **argv)
+d50 2
+a51 2
+  struct rlimit rLimit;
+
+d53 1
+a53 1
+  setregid(USE_GID,USE_GID);
+d56 4
+a59 1
+  setreuid(USE_UID,USE_UID);
+a60 1
+  chdir(RunDir);
+d64 1
+a64 1
+
+a75 4
+	  rLimit.rlim_cur = MAX_SECONDS;
+	  rLimit.rlim_max = MAX_SECONDS + 3;
+	  (void) setrlimit(RLIMIT_CPU, &rLimit);
+	  (void) signal(SIGXCPU, LimitHit);
+a76 2
+	default:
+	  fprintf(stderr, "%c: unknown option.\n", **argv);
+d82 4
+d89 16
+d121 1
+a121 1
+  if (Daemon && GetState(Database))
+d152 12
+a163 12
+  (void) signal(SIGALRM,cleanup);
+  (void) signal(SIGHUP,cleanup);
+  (void) signal(SIGINT,cleanup);
+  (void) signal(SIGQUIT,cleanup);
+  (void) signal(SIGILL,cleanup);
+  (void) signal(SIGTRAP,cleanup);
+  (void) signal(SIGIOT,cleanup);
+  (void) signal(SIGEMT,cleanup);
+  (void) signal(SIGFPE,cleanup);
+  (void) signal(SIGBUS,cleanup);
+  (void) signal(SIGSEGV,cleanup);
+  (void) signal(SIGSYS,cleanup);
+d212 10
+a221 3
+    sprintf(Foreign, "NET %s", inet_ntoa(bobby.sin_addr.s_addr));
+    /*
+    if (!strcmp("NET 192.17.235.22", Foreign))
+d223 4
+a226 3
+      fprintf(Output, "555: You have been interdicted.  Please contact dorner@@uxg.cso.uiuc.edu\n");
+      IssueMessage(LOG_INFO, "Query refused.");
+      exit(1);
+d228 1
+a228 1
+    */
+d235 1
+a235 1
+int GetState(char *theDataBase)
+d243 1
+a243 1
+  sprintf(theName, "%s.sta", theDataBase);
+@
+
+
+1.33
+log
+@No help here.
+@
+text
+@d1 1
+d29 2
+d34 1
+d42 1
+a42 3
+main(argc, argv)
+int   argc;
+char  **argv;
+a44 1
+  int   LimitHit();
+a56 10
+  WhoAreYou();
+  InitializeLogging();
+  InitializeOptions();
+  /* get configuration */
+  if (!GetFieldConfig())
+  {
+    fprintf(Output,"%d:Field config is missing.\n",LR_INTERNAL);
+    exit(1);
+  }
+
+d64 2
+a65 2
+	ReadOnly = 0;
+	break;
+d67 6
+a72 9
+	Daemon = 1;
+	rLimit.rlim_cur = MAX_SECONDS;
+	rLimit.rlim_max = MAX_SECONDS + 3;
+	if (setrlimit(RLIMIT_CPU, &rLimit)<0)
+	{
+	  IssueMessage(LOG_WARNING,"setrlimit: %m");
+	}
+	(void) signal(SIGXCPU, LimitHit);
+	break;
+d74 9
+a82 2
+	fprintf(stderr, "%c: unknown option.\n", **argv);
+	break;
+d85 1
+d88 11
+d111 1
+d115 1
+d119 1
+d122 1
+a122 1
+cleanup()
+d124 1
+a124 1
+  IssueMessage(LOG_INFO, "Cleanup.\n");
+d128 16
+d147 1
+a147 1
+InitializeLogging()
+d150 1
+d159 1
+a159 1
+WhoAreYou()
+d181 1
+a181 1
+  if (getpeername(fileno(stdin), &bobby, &bobbyLen) < 0)
+d205 1
+a205 2
+GetState(theDataBase)
+char   *theDataBase;
+d215 1
+a215 1
+    return (NULL);
+d241 1
+a241 1
+  return (NULL);
+d247 1
+a247 1
+LimitHit()
+@
+
+
+1.32
+log
+@No help here.
+@
+text
+@d100 2
+a105 1
+    {
+a106 2
+      AmHero = 1;
+    }
+@
+
+
+1.31
+log
+@No help here.
+@
+text
+@d17 1
+d45 8
+d59 7
+a97 2
+  bintree_init(Database);   /* initialize the bintree code */
+  read_index(Database);
+a98 7
+  if (!dbi_init(Database) || !dbd_init(Database))
+  {
+    fprintf(Output, "%d:Couldn't open database.", LR_INTERNAL);
+    exit(1);
+  }
+  get_dir_head();
+
+d124 2
+@
+
+
+1.30
+log
+@No help here.
+@
+text
+@d17 3
+a19 3
+#include "../Include/qi.h"
+#include "../Include/field.h"
+#include "../Include/commands.h"
+@
+
+
+1.29
+log
+@No help here.
+@
+text
+@d17 3
+a19 3
+#include "../include/qi.h"
+#include "../include/field.h"
+#include "../include/commands.h"
+@
+
+
+1.28
+log
+@No help here.
+@
+text
+@a91 2
+  HeroDir = GetAliasDir(Hero);
+
+@
+
+
+1.27
+log
+@No help here.
+@
+text
+@d1 7
+a7 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d65 1
+a65 1
+	  syslog(LOG_WARNING,"setrlimit: %m");
+d110 1
+a110 1
+  syslog(LOG_INFO, "Cleanup.\n");
+d119 2
+a120 2
+  openlog("tqi", LOG_PID, LOG_LOCAL0);
+  syslog(LOG_INFO, "begin %s", Foreign);
+d162 1
+a162 1
+      syslog(LOG_INFO, "Query refused.");
+@
+
+
+1.26
+log
+@No help here.
+@
+text
+@d22 5
+a26 5
+int     Daemon = 0;
+int     ReadOnly = 0;
+int     TurnedOff = 0;
+int     Initializing = 1;
+char    *DBState;
+d33 2
+a34 2
+int     InputType;
+char    Foreign[80];
+d37 1
+a37 1
+int     argc;
+d40 2
+a41 2
+    struct rlimit rLimit;
+    int     LimitHit();
+d43 2
+a44 2
+    Input = stdin;
+    Output = stdout;
+d46 6
+a51 4
+    WhoAreYou();
+    InitializeLogging();
+    InitializeOptions();
+    for (argc--, argv++; argc && **argv == '-'; argc--, argv++)
+d53 10
+a62 1
+	for ((*argv)++; **argv; (*argv)++)
+d64 1
+a64 16
+	    switch (**argv)
+	    {
+	      case 'w':
+		ReadOnly = 0;
+		break;
+	      case 'd':
+		Daemon = 1;
+		rLimit.rlim_cur = MAX_SECONDS;
+		rLimit.rlim_max = MAX_SECONDS + 3;
+		setrlimit(RLIMIT_CPU, &rLimit);
+		(void) signal(SIGXCPU, LimitHit);
+		break;
+	      default:
+		fprintf(stderr, "%c: unknown option.\n", **argv);
+		break;
+	    }
+d66 6
+d73 1
+d75 5
+a79 5
+    if (Daemon && GetState(Database))
+    {
+	fprintf(Output, "555:Database shut off (%s).\n", DBState);
+	exit(0);
+    }
+d81 2
+a82 2
+    bintree_init(Database);	/* initialize the bintree code */
+    read_index(Database);
+d84 6
+a89 6
+    if (!dbi_init(Database) || !dbd_init(Database))
+    {
+	fprintf(Output, "%d:Couldn't open database.", LR_INTERNAL);
+	exit(1);
+    }
+    get_dir_head();
+d91 1
+a91 1
+    HeroDir = GetAliasDir(Hero);
+d93 5
+a97 2
+    Initializing = 0;
+    do
+d99 2
+a100 6
+	fflush(Output);
+	if (InputType == IT_TTY || InputType == IT_PIPE || InputType == IT_FILE)
+	{
+	    printf("\nmqi> ");
+	    AmHero = 1;
+	}
+d102 3
+a104 2
+    while (yylex());
+    DoQuit(NULL);
+d109 2
+a110 2
+    syslog(LOG_INFO, "Cleanup.\n");
+    exit(1);
+d118 2
+a119 2
+    openlog("tqi", LOG_PID, LOG_LOCAL0);
+    syslog(LOG_INFO, "begin %s", Foreign);
+d127 5
+a131 5
+    struct sockaddr_in bobby;
+    int     bobbyLen = sizeof(struct sockaddr);
+    struct passwd *thePW;
+    char   *inet_ntoa();
+    char   *ttyname();
+d133 26
+a158 1
+    if (isatty(fileno(stdin)))
+d160 3
+a162 3
+	InputType = IT_TTY;
+	thePW = getpwuid(getuid());
+	sprintf(Foreign, "%s %s", ttyname(fileno(stdin)), thePW->pw_name);
+d164 2
+a165 27
+    else
+    if (lseek(fileno(stdin), 0, L_INCR) >= 0)
+    {
+	InputType = IT_FILE;
+	thePW = getpwuid(getuid());
+	sprintf(Foreign, "FILE %s", thePW->pw_name);
+    }
+    else
+    if (getpeername(fileno(stdin), &bobby, &bobbyLen) < 0)
+    {
+	InputType = IT_PIPE;
+	thePW = getpwuid(getuid());
+	sprintf(Foreign, "PIPE %s", thePW->pw_name);
+    }
+    else
+    {
+	InputType = IT_NET;
+	sprintf(Foreign, "NET %s", inet_ntoa(bobby.sin_addr.s_addr));
+	/*
+	if (!strcmp("NET 192.17.235.22", Foreign))
+	{
+	    fprintf(Output, "555: You have been interdicted.  Please contact dorner@@uxg.cso.uiuc.edu\n");
+	    syslog(LOG_INFO, "Query refused.");
+	    exit(1);
+	}
+	*/
+    }
+d174 5
+a178 5
+    char    theName[80];
+    FILE   *theFile;
+    char   *strtok();
+    static char theState[1024];
+    char *theToken;
+d180 3
+a182 3
+    sprintf(theName, "%s.sta", theDataBase);
+    if ((theFile = fopen(theName, "r")) == NULL)
+	return (NULL);
+d184 4
+a187 1
+    if (fgets(theState, 1024, theFile))
+d189 14
+a202 17
+	fclose(theFile);
+	if (DBState = strtok(theState, " \t\n"))
+	{
+	    if (!strcmp(DBState, "off"))
+	    {
+		DBState= (theToken=strtok(0, "\n")) ? theToken:"for maintenance";
+		return(1);
+	    }
+	    else
+	    {
+		DBState = strtok(0,"\n");
+		if (!ReadOnly && !Initializing)
+		    fprintf(Output, "100:The database is now read-only (%s).\n",
+			    DBState);
+		ReadOnly = 1;
+	    }
+	}
+d204 3
+a206 2
+    else
+	fclose(theFile);
+d208 1
+a208 1
+    return (NULL);
+d216 3
+a218 3
+    fprintf(Output, "%d: CPU time limit exceeded for this session.\n", LR_XCPU);
+    fprintf(Output, "%d: CPU time limit exceeded for this session.\n", LR_XCPU);
+    DoQuit(NULL);
+@
+
+
+1.25
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d16 3
+a18 3
+#include "qi.h"
+#include "field.h"
+#include "commands.h"
+@
+
+
+1.24
+log
+@*** empty log message ***
+@
+text
+@a67 1
+	fprintf(Output, "### 555 Database shut off (%s).\n", DBState);
+a82 12
+
+    if (ReadOnly)
+    {
+	fprintf(Output, "### %d 1:Database ready, read only.\n", LR_RONLY);
+	fprintf(Output, "%d 1:Database ready, read only (%s).\n", -LR_RONLY,
+		DBState);
+    }
+    else
+    {
+	fprintf(Output, "### %d 1:Database ready.\n", LR_OK + 1);
+	fprintf(Output, "%d 1:Database ready.\n", -(LR_OK + 1));
+    }
+@
+
+
+1.23
+log
+@*** empty log message ***
+@
+text
+@a112 1
+#ifndef ultrix
+a113 1
+#endif
+a121 1
+#ifndef ultrix
+a123 1
+#endif
+a164 1
+#ifndef ultrix
+a165 1
+#endif
+@
+
+
+1.22
+log
+@*** empty log message ***
+@
+text
+@d113 1
+d115 1
+d124 1
+d127 1
+d169 1
+d171 1
+@
+
+
+1.21
+log
+@*** empty log message ***
+@
+text
+@d20 1
+a23 2
+char   *GetState();
+
+a33 1
+    char   *theState;
+d66 1
+a66 1
+    if (Daemon && (theState = GetState(Database)))
+d68 2
+a69 2
+	fprintf(Output, "### 555 Database shut off (%s).\n", theState);
+	fprintf(Output, "555:Database shut off (%s).\n", theState);
+d88 2
+a89 1
+	fprintf(Output, "%d 1:Database ready, read only.\n", -LR_RONLY);
+a174 1
+char   *
+a179 1
+    static char state[4096];
+d181 2
+a182 1
+    char   *theToken;
+d188 1
+a188 1
+    if (fgets(state, 4096, theFile))
+d191 1
+a191 1
+	if (theToken = strtok(state, " \t\n"))
+d193 5
+a197 2
+	    if (!strcmp(theToken, "off"))
+		return ((theToken = strtok(0, "\n")) ? theToken : "for maintenance");
+d200 1
+d203 1
+a203 1
+			    strtok(0, "\n"));
+@
+
+
+1.20
+log
+@*** empty log message ***
+@
+text
+@d14 1
+a14 1
+FILE *Input, *Output;
+d16 4
+a19 4
+int Daemon = 0;
+int ReadOnly = 0;
+int TurnedOff = 0;
+int Initializing = 1;
+d23 1
+a23 1
+char *GetState();
+d28 2
+a29 2
+int InputType;
+char Foreign[80];
+d31 3
+a33 3
+main(argc,argv)
+int argc;
+char **argv;
+d35 1
+a35 1
+    char *theState;
+d37 1
+a37 1
+    int LimitHit();
+d45 1
+a45 1
+    for (argc--,argv++;argc && **argv=='-';argc--,argv++)
+d47 1
+a47 1
+	for ((*argv)++;**argv;(*argv)++)
+d51 13
+a63 13
+		case 'w':
+		    ReadOnly = 0;
+		    break;
+		case 'd':
+		    Daemon = 1;
+		    rLimit.rlim_cur = MAX_SECONDS;
+		    rLimit.rlim_max = MAX_SECONDS+3;
+		    setrlimit(RLIMIT_CPU,&rLimit);
+		    (void) signal(SIGXCPU,LimitHit);
+		    break;
+		default:
+		    fprintf(stderr,"%c: unknown option.\n",**argv);
+		    break;
+d68 1
+a68 1
+    if (Daemon && (theState=GetState(Database)))
+d70 2
+a71 2
+	fprintf(Output,"### 555 Database shut off (%s).\n",theState);
+	fprintf(Output,"555:Database shut off (%s).\n",theState);
+d75 1
+a75 1
+    bintree_init(Database);     /* initialize the bintree code */
+d80 1
+a80 1
+	fprintf(Output,"%d:Couldn't open database.",LR_INTERNAL);
+d89 2
+a90 2
+	fprintf(Output,"### %d 1:Database ready, read only.\n",LR_RONLY);
+	fprintf(Output,"%d 1:Database ready, read only.\n",-LR_RONLY);
+d94 2
+a95 2
+	fprintf(Output,"### %d 1:Database ready.\n",LR_OK+1);
+	fprintf(Output,"%d 1:Database ready.\n",-(LR_OK+1));
+d111 1
+d114 1
+a114 1
+    syslog(LOG_INFO,"Cleanup.\n");
+d123 2
+a124 2
+    openlog("tqi",LOG_PID,LOG_LOCAL0);
+    syslog(LOG_INFO,"begin %s",Foreign);
+d133 1
+a133 1
+    int bobbyLen = sizeof(struct sockaddr);
+d135 2
+a136 2
+    char *inet_ntoa();
+    char *ttyname();
+d142 1
+a142 1
+	sprintf(Foreign,"%s %s",ttyname(fileno(stdin)),thePW->pw_name);
+d144 2
+a145 1
+    else if (lseek(fileno(stdin),0,L_INCR)>=0)
+d149 1
+a149 1
+	sprintf(Foreign,"FILE %s",thePW->pw_name);
+d151 2
+a152 1
+    else if (getpeername(fileno(stdin),&bobby,&bobbyLen)<0)
+d156 1
+a156 1
+	sprintf(Foreign,"PIPE %s",thePW->pw_name);
+d161 3
+a163 2
+	sprintf(Foreign,"NET %s",inet_ntoa(bobby.sin_addr.s_addr));
+	if (!strcmp("NET 192.17.235.22",Foreign))
+d165 2
+a166 2
+	    fprintf(Output,"555: You have been interdicted.  Please contact dorner@@uxg.cso.uiuc.edu\n");
+	    syslog(LOG_INFO,"Query refused.");
+d169 1
+d176 1
+a176 1
+char *
+d178 1
+a178 1
+char *theDataBase;
+d180 2
+a181 2
+    char theName[80];
+    FILE *theFile;
+d183 2
+a184 2
+    char *strtok();
+    char *theToken;
+d186 3
+a188 3
+    sprintf(theName,"%s.sta",theDataBase);
+    if ((theFile=fopen(theName,"r"))==NULL)
+	return(NULL);
+d190 1
+a190 1
+    if (fgets(state,4096,theFile))
+d193 1
+a193 1
+	if (theToken=strtok(state," \t\n"))
+d195 2
+a196 2
+	    if (!strcmp(theToken,"off"))
+		return((theToken=strtok(0,"\n"))? theToken : "for maintenance");
+d200 2
+a201 2
+		    fprintf(Output,"100:The database is now read-only (%s).\n",
+			strtok(0,"\n"));
+d209 1
+a209 1
+    return(NULL);
+d217 3
+a219 3
+   fprintf(Output,"%d: CPU time limit exceeded for this session.\n",LR_XCPU);
+   fprintf(Output,"%d: CPU time limit exceeded for this session.\n",LR_XCPU);
+   DoQuit(NULL);
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d102 1
+a102 1
+	if (InputType == IT_TTY || InputType == IT_PIPE)
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d102 1
+a102 1
+	if (InputType == IT_TTY)
+@
+
+
+1.17
+log
+@*** empty log message ***
+@
+text
+@d103 1
+d105 2
+a106 1
+	AmHero = 1;
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@d90 1
+a90 1
+	fprintf(Output,"%d 1:Database ready, read only.\n",LR_RONLY);
+d95 1
+a95 1
+	fprintf(Output,"%d 1:Database ready.\n",LR_OK+1);
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d19 1
+d88 1
+d90 2
+d93 1
+d95 2
+d98 1
+d192 1
+a192 1
+		if (!ReadOnly)
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@d96 1
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d184 2
+a185 1
+		    fprintf(Output,"100:The database is now read-only.\n");
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@a178 1
+	    puts(theToken);
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d148 1
+a148 2
+	if (!strcmp("NET 192.17.235.22",Foreign) ||
+	    !strcmp("NET 128.174.30.17",Foreign))
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d148 2
+a149 1
+	if (!strcmp("NET 192.17.235.22",Foreign))
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d38 3
+a66 3
+    Input = stdin;
+    Output = stdout;
+
+d148 6
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d20 1
+a20 1
+#define MAX_SECONDS 10
+d53 1
+a53 1
+		    rLimit.rlim_max = MAX_SECONDS+1;
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d9 1
+d36 1
+d52 2
+a53 1
+		    rLimit.rlim_cur = rLimit.rlim_max = MAX_SECONDS;
+d55 1
+d188 10
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d7 2
+d19 2
+d34 1
+d50 2
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d78 1
+a78 1
+	fprintf(Output,"### %d 1:Database ready.\n",LR_OK);
+d100 1
+a100 1
+    openlog("xqi",LOG_PID,LOG_LOCAL0);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d14 1
+a14 1
+int ReadOnly = 1;
+d100 1
+a100 1
+    openlog("mqi",LOG_PID,LOG_LOCAL0);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d33 1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d135 1
+a135 1
+	strcpy(Foreign,inet_ntoa(bobby.sin_addr.s_addr));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d15 1
+d17 2
+d29 2
+d55 7
+d81 1
+a82 1
+	{
+a83 2
+	    fflush(stdout);
+	}
+d137 39
+@

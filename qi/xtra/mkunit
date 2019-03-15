@@ -1,0 +1,110 @@
+#! /usr/bin/perl
+
+#
+# usage
+if ($#ARGV<0) {print STDERR "usage: mkunit prod.cnf [files]\n";exit 1;}
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+#
+# read prod.cnf
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  chop;
+  if (/^#/) {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@_ < 2) {next;}
+  $fid{$_[1]} = $_[0];
+}
+close(CONFIG);
+
+#
+# initialize loop variables
+$part = $first = 1;
+$tlen = 0;
+$address = $phone = $email = $fax = $text = "";
+
+#
+# here we go
+while (<>) {
+	chop;
+	s/\t/ /g;
+	if ($_ eq "") {
+		$part = $first = 1;
+		$intext = $tlen = 0;
+		print "\n";
+		$address = $phone = $email = $fax = $text = "";
+		next;
+	}
+
+	if ($first == 1) {
+		$first = 0;
+		($name = $_) =~ s/:.*//;
+		($phone = $_) =~ s/.*:[\s]*//;
+		$phone = "" if ($phone eq $_);
+		print $fid{"id"}.":\t".$fid{"name"}.":$name";
+		print "\t".$fid{"type"}.":unit phone";
+		print "\t".$fid{"phone"}.":$phone" if ($phone ne "");
+		$address = <>;
+		chop($address);
+		if ($address =~ /^See /) {
+			print "\t".$fid{"text"}.":$address";
+		}
+		else {
+			print "\t".$fid{"address"}.":$address";
+		}
+		print "\t".$fid{"created"}.":$Date";
+		next;
+	}
+
+	if (/^EMAIL:/ && $intext == 0) {
+		($email = $_ ) =~ s/EMAIL:[\s]*//;
+		print "\t".$fid{"email"}.":$email";
+		next;
+	}
+
+	if (/^FAX:/ && $intext == 0) {
+		($fax = $_) =~ s/FAX:[\s]*//;
+		print "\t".$fid{"fax"}.":$fax";
+		next;
+	}
+
+	$intext = 1;
+	$text = $_;
+	$llen = length($text);
+	if ($tlen + $llen > 4090) {
+		$part++;
+		print "\n".$fid{"id"}.":\t".$fid{"name"}.":$name -$part-";
+		print "\t".$fid{"type"}.":unit phone";
+		print "\t".$fid{"phone"}.":$phone" if ($phone ne "");
+		print "\t".$fid{"address"}.":$address";
+		print "\t".$fid{"created"}.":$Date";
+		print "\t".$fid{"email"}.":$email" if ($email ne "");
+		print "\t".$fid{"fax"}.":$fax" if ($fax ne "");
+		$tlen = 0;
+	}
+	if ($tlen == 0) {
+		print "\t".$fid{"text"}.":";
+	}
+	($indent = $text) =~ s/[\S].*/ /;
+	while (($llen = length($text)) > 58) {
+		$pos = rindex($text, " ", 58);
+		print "\\n" if ($tlen != 0);
+		print substr($text,0,$pos);
+		$tlen += $pos;
+		$text = substr($text,$pos+1);
+		substr($text,0,0) = $indent;
+	}
+	print "\\n" if ($tlen != 0);
+	print "$text";
+	$tlen += $llen + 1;
+	next;
+}
+print "\n";

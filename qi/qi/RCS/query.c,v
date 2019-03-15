@@ -1,0 +1,5016 @@
+head	1.63;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.63
+date	95.06.28.17.40.32;	author p-pomes;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	95.06.28.14.03.50;	author p-pomes;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	95.06.23.19.24.01;	author p-pomes;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	95.04.11.16.51.01;	author p-pomes;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	94.12.17.14.42.46;	author p-pomes;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	94.03.09.21.19.31;	author paul;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	94.03.03.16.56.41;	author paul;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	94.02.24.15.17.01;	author paul;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	94.01.14.16.53.53;	author paul;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	93.12.23.09.56.54;	author paul;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	93.12.16.11.49.51;	author paul;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	93.11.24.22.36.01;	author paul;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	93.11.24.20.14.06;	author paul;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	93.08.19.21.41.25;	author paul;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	93.08.04.13.02.51;	author paul;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	93.07.24.18.51.15;	author paul;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	93.04.01.21.54.45;	author paul;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	93.02.23.04.29.00;	author paul;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	93.02.14.19.59.43;	author paul;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	92.12.16.23.32.32;	author paul;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	92.12.12.19.00.54;	author paul;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	92.09.14.12.45.34;	author paul;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	92.07.27.17.10.40;	author paul;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	92.07.20.15.30.50;	author paul;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	90.12.18.08.41.43;	author dorner;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	90.05.16.09.18.28;	author dorner;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	89.10.18.07.52.21;	author dorner;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	89.07.19.10.19.02;	author dorner;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	89.07.05.20.17.12;	author dorner;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	89.05.31.12.37.08;	author dorner;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	89.03.21.14.33.04;	author dorner;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	89.03.20.15.14.59;	author dorner;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	88.12.02.14.45.41;	author dorner;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	88.11.15.13.35.38;	author dorner;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	88.07.27.13.25.39;	author dorner;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	88.07.08.14.00.59;	author dorner;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	88.07.06.20.48.06;	author dorner;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	88.04.27.12.56.54;	author dorner;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	88.04.20.15.39.26;	author dorner;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	88.04.19.12.43.45;	author dorner;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	88.04.19.08.12.21;	author dorner;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	88.04.04.15.16.17;	author dorner;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	88.04.04.14.40.41;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	88.03.24.14.55.32;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	88.03.24.14.41.04;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	88.03.24.10.51.31;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	88.03.18.10.31.12;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	88.02.15.14.31.35;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.02.15.14.03.13;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.02.10.13.14.51;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	87.12.10.16.27.21;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	87.12.10.16.26.33;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	87.12.10.16.25.36;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	87.12.10.16.22.30;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	87.12.09.14.18.54;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.49;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.63
+log
+@*** empty log message ***
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: query.c,v 1.62 1995/06/28 14:03:50 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/resource.h>
+#include <sys/signal.h>
+#ifndef RLIM_INFINITY
+# define	RLIM_INFINITY	0x7fffffff
+#endif
+
+extern int OldPh;		/* language.l */
+extern FILE *TempOutput;
+extern int InputType;
+extern int LocalUser;
+extern int OffCampus;
+
+static int People,Queries;
+
+#ifndef CPU_LIMIT
+# define CPU_LIMIT 7
+#endif
+int	IndicateAlways = 0;
+
+#ifdef SORTED
+struct sortStruct
+{
+	INT32	entNum;
+	char	*key;
+};
+static int KeyComp __P((struct sortStruct *, struct sortStruct *));
+static void SortEntries __P((INT32 *, ARG *));
+#endif
+
+static int DirMatch __P((QDIR, int, char *, int, int));
+static ARG *GetAllFields ();
+static ARG *getplusAlways __P((ARG *));
+static ARG *GetPrintDefaults ();
+static void LimitTime __P((int));
+static void LimitHit __P((int));
+static int PrintFields __P((INT32 *, ARG *, int));
+static void PrintOld __P((INT32 *));
+static void PrintThem __P((INT32 *, ARG *));
+static int ThinArgs __P((ARG *, int));
+
+/*
+ * Decide if a query request is valid returns the number of key fields found
+ */
+int 
+ValidQuery(argp, cmd)
+	ARG *argp;
+	int cmd;
+{
+	FDESC	*fd;
+	ARG	*origArgs;
+	int	haveError = 0; /* have we detected an error yet? */
+	int	count = 0;	/* count of arguments */
+	int	keyCount = 0;	/* number of key fields */
+	char	*cp;
+	char	decrypted[MAX_LEN];
+	int	dontCrypt;
+
+	IndicateAlways = 0;
+	origArgs = argp = argp->aNext;	/* skip command name */
+	count++;
+
+	/* collect arguments before ``return'' token */
+	for (; argp; count++, argp = argp->aNext)
+	{
+		switch (argp->aType)
+		{
+		    case RETURN:
+			dontCrypt = !strcmp(argp->aFirst, "force");
+			goto keyEnd;
+			break;
+
+#ifdef DO_TILDE
+		    case EQUAL | TILD_E:
+#endif
+		    case EQUAL:
+			DoReply(-LR_SYNTAX, "=:No field or value specified.");
+			break;
+
+		    case VALUE | EQUAL:
+			argp->aSecond = strdup("");
+			goto canonical;
+
+		    case VALUE:
+			argp->aSecond = argp->aFirst;
+			/* fall-through is deliberate */
+		    case EQUAL | VALUE2:
+#ifndef DEFQUERY
+#define DEFQUERY "name"		/* which field searched by default */
+#endif /*DEFQUERY*/
+			argp->aFirst = strdup(DEFQUERY);
+			argp->aType = VALUE | EQUAL | VALUE2;
+			/* again, we _should_ fall through here */
+		      canonical:
+#ifdef DO_TILDE
+		    case VALUE | EQUAL | TILD_E | VALUE2:
+#endif
+		    case VALUE | EQUAL | VALUE2:
+			if ((fd = FindFD(argp->aFirst)) &&
+			    ! (fd->fdLocalPub && !LocalUser))
+			{
+				if (CanLookup(fd, argp->aSecond))
+				{
+					argp->aKey = fd->fdIndexed && (fd->fdLookup || AmHero || AmOpr) &&
+					    strlen(argp->aSecond) > 1 && !AllMeta(argp->aSecond);
+#ifdef DO_TILDE
+					argp->aKey = argp->aKey && !(argp->aType & TILD_E);
+#endif
+					if (argp->aKey)
+					{
+						if (fd->fdId == F_SOUND)
+						{
+							cp = phonemify(argp->aSecond);
+							if (*cp)
+								cp[strlen(cp) - 1] = '\0';	/* trim */
+							free(argp->aSecond);
+							argp->aSecond = strdup(cp);
+						}
+						argp->aRating = RateAKey(argp->aSecond);
+						keyCount++;
+					}
+					argp->aFD = fd;
+				} else
+				{
+					DoReply(-LR_ASEARCH,
+						"%s:you may not use this field for lookup.",
+						argp->aFirst);
+					haveError = 1;
+				}
+			} else
+			{
+				DoReply(-LR_FIELD, "%s:unknown field.", argp->aFirst);
+				haveError = 1;
+			}
+			break;
+
+		    default:
+			DoReply(-LR_ERROR, "Argument %d:parsing error.", count);
+			haveError = 1;
+			break;
+		}
+	}
+      keyEnd:
+
+	if (!keyCount)
+	{
+		haveError = 1;
+		DoReply(-LR_NOKEY, "no non-null key field in query.");
+	}
+	keyCount = ThinArgs(origArgs, keyCount);
+
+	if (!keyCount)
+	{
+		haveError = 1;
+		DoReply(-LR_NOKEY, "Initial metas may be used as qualifiers only.");
+	}
+	if (argp)
+	{
+		if (cmd == C_DELETE)
+		{
+			DoReply(-LR_SYNTAX, "%s: unexpected.", argp->aFirst);
+			haveError = 1;
+			goto giveUp;
+		}
+		count++;
+		argp = argp->aNext;	/* skip return token */
+	} else if (cmd == C_CHANGE)
+	{
+		haveError = 1;
+		DoReply(-LR_SYNTAX, "No changes requested.");
+	}
+	for (; argp; count++, argp = argp->aNext)
+	{
+		if (cmd == C_QUERY && argp->aType != VALUE)
+		{
+			haveError = 1;
+			DoReply(-LR_SYNTAX, "Argument %d: must be field name.", count);
+		} else if (cmd == C_CHANGE && (argp->aType != (VALUE | EQUAL | VALUE2)))
+		{
+			haveError = 1;
+			DoReply(-LR_SYNTAX, "Argument %d (begins %s): must be field=value pair.", count, argp->aFirst);
+		} else
+		{
+			if ((fd = FindFD(argp->aFirst)) &&
+			    ! (fd->fdLocalPub && !LocalUser))
+			{
+				argp->aFD = fd;
+				if (InputType == IT_NET && fd->fdEncrypt && !dontCrypt)
+				{
+					if (!argp->aSecond)
+						argp->aSecond = strdup("");
+					decrypt(decrypted, argp->aSecond);
+					free(argp->aSecond);
+					argp->aSecond = strdup(decrypted);
+				}
+			} else
+			{
+				DoReply(-LR_FIELD, "%s:unknown field.", argp->aFirst);
+				haveError = 1;
+			}
+		}
+	}
+
+      giveUp:
+	return (haveError ? 0 : keyCount);
+}
+
+/*
+ * lookup some stuff in the database returns a pointer to a list of entries
+ */
+INT32 *
+DoLookup(argp)
+	ARG *argp;
+{
+	int	cnt;
+	char	*keyStrings[MAX_KEYS + 1];
+	char	**aString;
+	char	scratch[MAX_LEN];
+	char	*token;
+	ARG	*anArg;
+	INT32	*entries;
+	INT32	*anEntry;
+	INT32	*goodEntry;
+	QDIR	dirp = 0;
+	int	exempt = ExemptQuery(argp);
+	int	suppress;
+	int	notme;
+
+	argp = argp->aNext;	/* skip command name */
+	People = Queries = 0;
+
+	/* collect keys */
+	aString = keyStrings;
+	for (anArg = argp; anArg; anArg = anArg->aNext)
+		if (anArg->aKey && aString - keyStrings < MAX_KEYS)
+		{
+			strncpy(scratch, anArg->aSecond, MAX_LEN-1);
+			for (token = strtok(scratch, IDX_DELIM);
+			     token && aString - keyStrings < MAX_KEYS;
+			     token = strtok(0, IDX_DELIM))
+				if (strlen(token) > 1)
+					*aString++ = strdup(token);
+		}
+	*aString = NULL;
+
+	/* do key lookup */
+	LimitTime(-CPU_LIMIT);
+	entries = do_lookup(keyStrings, NULL);
+	for (aString = keyStrings; *aString; aString++) {
+		free(*aString);
+		*aString = 0;
+	}
+	cnt = length(entries);
+
+	if (cnt == 0)
+	{
+		free(entries);
+		LimitTime(RLIM_INFINITY);
+		return (NULL);
+	}
+	/* sift entries by field matches */
+	for (goodEntry = anEntry = entries; *anEntry; anEntry++)
+	{
+		if (!next_ent(*anEntry))
+		{
+			IssueMessage(LOG_ERR, "DoLookup: database error on 0x%x.", *anEntry);
+			continue;
+		}
+		getdata(&dirp);
+		suppress = *FINDVALUE(dirp, F_SUPPRESS);
+		notme = !User || strcmp(UserAlias, FINDVALUE(dirp, F_ALIAS));
+		for (anArg = argp; anArg && anArg->aType != RETURN; anArg = anArg->aNext)
+#ifdef DO_TILDE
+			if (anArg->aType & TILD_E)
+			{
+				if (*FINDVALUE(dirp, anArg->aFD->fdId) &&
+				    !DirMatch(dirp, anArg->aFD->fdId, anArg->aSecond, notme && suppress, anArg->aFlag))
+					goto nextEntry;
+			} else
+#endif
+			if (stricmp(anArg->aFirst, "Any"))	/* any ? */
+			{
+				if (!DirMatch(dirp, anArg->aFD->fdId, anArg->aSecond, notme && suppress, anArg->aFlag))
+					goto nextEntry;
+			} else
+			{
+				FDESC	**fd;
+				int	anyfound = 0;
+
+				/* loop through fields looking for any */
+
+				for (fd = FieldDescriptors; *fd; fd++)
+				{
+					if ((*fd)->fdAny)
+					{
+						if (DirMatch(dirp, (*fd)->fdId, anArg->aSecond,
+							  notme && suppress, anArg->aFlag))
+							anyfound = 1;
+					}
+				}
+				if (!anyfound)
+					goto nextEntry;
+			}
+		*goodEntry++ = *anEntry;
+#ifdef PERSONLIMIT
+		/*
+		 * count the number of id fields we find; this is more or less
+		 * the number of real live people involved; we'll only count
+		 * this toward the max number of entries to return thing.
+		 */
+		if (*FINDVALUE(dirp, F_TYPE) == 'p')
+			if ((++People >= PERSONLIMIT) && !AmHero && !exempt)
+			{
+				FreeDir(&dirp);
+				break;
+			}
+#endif
+#ifdef QUERYLIMIT
+		if ((++Queries >= QUERYLIMIT) && !AmHero && !exempt)
+			{
+				FreeDir(&dirp);
+				break;
+			}
+#endif
+
+	      nextEntry:
+		FreeDir(&dirp);
+	}
+	*goodEntry = 0;
+
+	LimitTime(RLIM_INFINITY);
+	if (length(entries) == 0)
+	{
+		free(entries);
+		return (NULL);
+	}
+	return (entries);
+}
+
+/*
+* execute a query request
+ */
+void 
+DoQuery(argp)
+	ARG *argp;
+{
+	INT32	*entries;
+	int	count;
+	char	sbuf[80];
+
+	if (!ValidQuery(argp, C_QUERY))
+	{
+		DoReply(LR_ERROR, "Did not understand %s.", argp->aFirst);
+		return;
+	}
+	if (!GonnaRead("DoQuery"))
+	{
+		/* Lock routines give their own errors */ ;
+		return;
+	}
+	entries = DoLookup(argp);
+	Unlock("DoQuery");
+	if (entries)
+	{
+		count = length(entries);
+		if (People && OffCampus && !AmHero && !User)
+		{
+			DoReply(LR_OFFCAMPUS, "Remote queries not permitted.");
+		} else
+#if defined(PERSONLIMIT) || defined(QUERYLIMIT)
+		if (AmHero || (
+#ifdef QUERYLIMIT
+			       Queries < QUERYLIMIT
+#else
+			       1
+#endif
+#ifdef PERSONLIMIT
+			       && People < PERSONLIMIT
+#endif
+			       ) || ExemptQuery(argp))
+#endif
+		{
+			/* skip to what we are supposed to print */
+			for (; argp; argp = argp->aNext)
+				if (argp->aType == RETURN)
+				{
+					argp = argp->aNext;
+					break;
+				}
+			/* do the printing */
+			sprintf(sbuf, "There %s %d match%s to your request.",
+				count > 1 ? "were" : "was",
+				count,
+				count > 1 ? "es" : "");
+			if (OldPh) {
+				syslog(LOG_ERR, "Old client");
+				fprintf(TempOutput, "%s\n", sbuf);
+			}
+			DoReply(LR_NUMRET, sbuf);
+			PrintThem(entries, argp);
+			DoReply(LR_OK, "Ok.");
+		}
+#if defined(PERSONLIMIT) || defined(QUERYLIMIT)
+		else
+		{
+			if (OldPh)
+				fprintf(TempOutput, "Too many entries to print.\n", count);
+			else
+				DoReply(LR_TOOMANY, "Too many entries to print.", count);
+		}
+#endif
+
+		free(entries);
+	} else
+	{
+		if (OldPh)
+			fprintf(TempOutput, "No matches to your query.\n");
+		else
+			DoReply(LR_NOMATCH, "No matches to your query.");
+	}
+}
+
+/*
+* check for exempt query for mac client.
+* returns 1 if query is in form:
+*    proxy=loginAlias return alias
+* else returns 0.
+* the mac Ph client uses this query to build its "proxy" menu.
+ */
+int 
+ExemptQuery(argp)
+	ARG *argp;
+{
+	if (!User)
+		return (0);	/* if not logged in */
+	argp = argp->aNext;	/* skip command name */
+	if (!argp)
+		return (0);
+	if (argp->aType != (VALUE | EQUAL | VALUE2))
+		return (0);
+	if (argp->aFD->fdId != F_PROXY)
+		return (0);
+	if (stricmp(argp->aSecond, UserAlias))
+		return (0);
+	return (1);
+}
+
+/*
+* See if a directory entry matches a specification
+ */
+static int 
+DirMatch(dirp, field, value, suppress, flag)
+	QDIR dirp;
+	int field, suppress, flag;
+	char *value;
+{
+	int	fIndex;
+	char	scratch[MAX_LEN];
+	char	*aWord;
+
+	/* is the field there? */
+	if ((fIndex = FindField(dirp, field)) == -1)
+		return (0);
+
+	/* is suppression turned on and the field suppressible? */
+	if (!AmHero && !AmOpr && suppress && !FindFDI(field)->fdForcePub)
+		return (0);
+
+	/* check whole string */
+	if (!pmatch(FIELDVALUE(dirp, fIndex), value))
+		return (1);
+
+	/* nope.  check each word in string */
+	strncpy(scratch, FIELDVALUE(dirp, fIndex), MAX_LEN-1);
+
+	if (anyof(value, IDX_DELIM))
+		for (aWord = strtok(scratch, IDX_DELIM); aWord; aWord = strtok(NULL, IDX_DELIM))
+		{
+			if (!pmatch(aWord, value))
+				return (1);
+	} else
+		for (aWord = strtok(scratch, IDX_DELIM); aWord; aWord = strtok(NULL, IDX_DELIM))
+		{
+			if (!pmatch(aWord, value))
+				return (1);
+		}
+
+	/* if it's the name field, check nickname as well */
+	if (field == F_NAME && !(flag & A_NO_RECURSE))
+		return (DirMatch(dirp, F_NICKNAME, value, suppress, flag));
+
+	/* nope */
+	return (0);
+}
+
+/*
+ * print a list of entries according to the requested arguments, if any
+ */
+static void 
+PrintThem(entries, argp)
+	INT32 *entries;
+	ARG *argp;
+{
+	static ARG *defaultArgs;
+	static ARG *allArgs;
+	static ARG *alwaysArgs;
+
+	if (argp)
+	{
+		if (stricmp(argp->aFirst, "all"))
+		{
+			if (IndicateAlways)
+			{
+				alwaysArgs = getplusAlways(argp);
+				IndicateAlways = 0;	/* only effects that query */
+				PrintFields(entries, alwaysArgs, 1);
+			} else
+				PrintFields(entries, argp, 1);
+		} else
+		{
+			if (!allArgs)
+				allArgs = GetAllFields();
+			PrintFields(entries, allArgs, 0);
+		}
+	} else if (OldPh)
+	{
+		PrintOld(entries);
+	} else
+	{
+		if (!defaultArgs)
+			defaultArgs = GetPrintDefaults();
+		PrintFields(entries, defaultArgs, 0);
+	}
+}
+
+/*
+ *    getplus Always - get the always fields in the prod.cnf then add
+ *		       only the unique fields from the query command
+ */
+static ARG *
+getplusAlways(a)
+	ARG *a;
+{
+	ARG     *first, *argp, *arga, *argb, *old;
+	FDESC	**fd;
+	int     found = 0;
+
+	first = old = argp = FreshArg();
+
+	for (fd = FieldDescriptors; *fd; fd++)
+	{
+		if ((*fd)->fdAlways)
+		{
+			argp->aFD = *fd;
+			argp->aNext = FreshArg();
+			old = argp;
+			argp = argp->aNext;
+		}
+	}
+
+	argp->aNext = NULL;
+	/* run through the always fields selecting
+	   only unique fields from the query return command */
+	for (arga = a; arga; arga = arga->aNext)
+	{
+		found = 0;
+		for (argb = first; argb; argb = argb->aNext)
+			if (arga->aFD == argb->aFD)
+			{
+				found = 1;
+				break;
+			}
+		if (!found)
+		{
+			if (stricmp(arga->aFirst, "Always"))	/* If this field is always don't save */
+			{
+				argp->aFD = arga->aFD;
+				argp->aNext = FreshArg();
+				old = argp;
+				argp = argp->aNext;
+				argp->aNext = NULL;
+			}
+		}
+	}
+	free(argp);
+	old->aNext = NULL;
+	return (first);
+}
+
+/*
+ * Print select fields from entries
+ */
+static int 
+PrintFields(entries, argp, printEmpty)
+	INT32 *entries;
+	ARG *argp;
+	int printEmpty;
+{
+	int	count = 0;
+	ARG	*anArg;
+	QDIR	dirp;
+	char	scratch[MAX_LEN];
+	char	*value;
+	int	indx;
+	int	width = 9;	/* leave enough room for "email to" */
+	int	len;
+	int	suppress;
+	char	*nl;
+
+	for (anArg = argp; anArg; anArg = anArg->aNext)
+		if (width <= (len = strlen(anArg->aFD->fdName)))
+			width = len + 1;
+
+#ifdef SORTED
+	SortEntries(entries, argp);
+#endif
+
+	for (; *entries; entries++)
+	{
+		count++;
+		if (!next_ent(*entries))
+		{
+			DoReply(-LR_ERROR, "%d:database error.", count);
+			continue;
+		}
+		getdata(&dirp);
+		suppress = *FINDVALUE(dirp, F_SUPPRESS);
+
+
+		for (anArg = argp; anArg; anArg = anArg->aNext)
+		{
+			if (!CanSee(dirp, anArg->aFD, suppress))	/* check auth. first */
+			{
+				if (printEmpty)
+				{
+					DoReply(-LR_AINFO, "%d:%*s: You may not view this field.",
+					count, width, anArg->aFD->fdName);
+					IssueMessage(LOG_INFO, "%s attempting to view %s.",
+						 (UserAlias) ? UserAlias : "ANON", anArg->aFirst);
+				}
+			} else if ((indx = FindField(dirp, anArg->aFD->fdId)) == -1)
+			{
+				if (printEmpty)
+					DoReply(-LR_ABSENT, "%d:%*s: Not present in entry.",
+					count, width, anArg->aFD->fdName);
+			} else
+			{
+				value = FIELDVALUE(dirp, indx);
+				if (!*value || *value == '*' && !CanChange(dirp, anArg->aFD) &&
+				    anArg->aFD->fdTurn)
+				{
+					if (printEmpty)
+						DoReply(-LR_ABSENT, "%d:%*s: Not present in entry.",
+							count, width, anArg->aFD->fdName);
+				} else
+				{
+					if (InputType == IT_NET && anArg->aFD->fdEncrypt)
+					{
+						if (!User)
+							DoReply(-LR_NOTLOG, "%d:%*s: Must be logged in to view.",
+								count, width, anArg->aFD->fdName);
+						else
+							DoReply(-LR_ISCRYPT, "%d:%*s: Encrypted; cannot be viewed.",
+								count, width, anArg->aFD->fdName);
+						continue;
+					} else
+						strncpy(scratch, value, MAX_LEN-1);
+					for (value = scratch;; value = nl + 1)
+					{
+						nl = strchr(value, '\n');
+						if (nl)
+							*nl = 0;
+						DoReply(-LR_OK, "%d:%*s: %s", count, width,
+							value == scratch ? anArg->aFD->fdName : "",
+							value);
+						if (!nl)
+							break;
+					}
+				}
+			}
+		}
+
+		FreeDir(&dirp);
+	}
+}
+
+/*
+ * get a list of all the fields
+ */
+static ARG *
+GetAllFields()
+{
+	ARG	*first, *argp, *old;
+	FDESC	**fd;
+
+	first = old = argp = FreshArg();
+
+	for (fd = FieldDescriptors; *fd; fd++)
+	{
+		argp->aFD = *fd;
+		argp->aNext = FreshArg();
+		old = argp;
+		argp = argp->aNext;
+	}
+
+	free(argp);
+	old->aNext = NULL;
+	return (first);
+}
+
+/*
+ * get the default fields
+ */
+static ARG *
+GetPrintDefaults()
+{
+	ARG	*first, *argp, *old;
+	FDESC	**fd;
+
+	first = old = argp = FreshArg();
+
+	for (fd = FieldDescriptors; *fd; fd++)
+	{
+		if ((*fd)->fdDefault)
+		{
+			argp->aFD = *fd;
+			argp->aNext = FreshArg();
+			old = argp;
+			argp = argp->aNext;
+		}
+	}
+
+	free(argp);
+	old->aNext = NULL;
+	return (first);
+}
+
+#define R_META -2
+#define R_STAR -10
+#define R_INITIAL -100
+#define R_PLAIN 1
+/*
+ * Pick out the ``best'' keys for use
+ */
+static int 
+ThinArgs(argp, cnt)
+	ARG *argp;
+	int cnt;
+{
+	int	left;
+	ARG	*anArg;
+	int	bestRating = -1000;
+
+	for (left = cnt, anArg = argp; left; anArg = anArg->aNext)
+	{
+		if (anArg->aKey)
+		{
+			left--;
+			if (anArg->aRating > bestRating)
+				bestRating = anArg->aRating;
+		}
+	}
+
+	for (left = cnt, anArg = argp; left; anArg = anArg->aNext)
+	{
+		if (anArg->aKey)
+		{
+			left--;
+			if (anArg->aRating < 0 && anArg->aRating < bestRating)
+			{
+				anArg->aKey = 0;
+				cnt--;
+			}
+		}
+	}
+	return ((bestRating > R_INITIAL || AmHero) ? cnt : 0);
+}
+
+/*
+ * badKeys are names with high frequency counts in the database.  This
+ * list will need adjustment for non-US databases.  It's probably not
+ * needed on faster platforms with smaller databases.  At UIUC, the 
+ * database has 85,000 entries and runs on a VAX-3500.  We also run
+ * a addnickname script that adds an entra indexed field, nickname, to
+ * entries with common first names, e.g, 6:Pomes Michael Andrew has
+ * 23:Mike added.  Thus nicknames must be added to the list of common
+ * formal names.  If such a script isn't run, then nicknames are scarce
+ * and should be removed from the list.
+ */
+
+int 
+RateAKey(key)
+	char *key;
+{
+	int	rating = 0;
+	int	c;
+	char	*cp = key;
+	char	**beg, **mid, **end;
+	static char *badKeys[] =
+	{
+		"alan",
+		"andrew",
+		"andy",
+		"ann",
+		"anne",
+		"bill",
+		"bob",
+		"brian",
+		"charles",
+		"chris",
+		"christopher",
+		"dan",
+		"daniel",
+		"dave",
+		"david",
+		"ed",
+		"edward",
+		"eric",
+		"james",
+		"jeff",
+		"jeffrey",
+		"jennifer",
+		"jenny",
+		"jim",
+		"joe",
+		"john",
+		"joseph",
+		"kevin",
+		"lee",
+		"lynn",
+		"marie",
+		"mark",
+		"mary",
+		"matt",
+		"matthew",
+		"michael",
+		"mike",
+		"paul",
+		"rich",
+		"richard",
+		"rob",
+		"robert",
+		"scott",
+		"steven",
+		"susan",
+		"thomas",
+		"tom",
+		"will",
+		"william"
+	};
+
+	if (strchr("[]*?", *key))
+		rating = R_INITIAL;
+
+	for (; c = *cp; cp++)
+	{
+		if (c == '*')
+			rating += R_STAR;
+		else if (strchr("[]?", c))
+			rating += R_META;
+		else
+			rating += R_PLAIN;
+	}
+
+	beg = badKeys;
+	end = beg + sizeof (badKeys) / sizeof (char *) - 1;
+
+	while (beg <= end)
+	{
+		mid = beg + (end - beg) / 2;
+		c = strcmp(*mid, key);
+		if (!c)
+			return (R_STAR * 2);
+		if (c < 0)
+			beg = mid + 1;
+		else
+			end = mid - 1;
+	}
+
+	return (rating);
+}
+
+/*
+ * print a simple request in a simple format
+ */
+static void 
+PrintOld(entries)
+	INT32 *entries;
+{
+	QDIR	dirp;
+	char	*value;
+
+	for (; *entries; entries++)
+	{
+		if (!next_ent(*entries))
+		{
+			fprintf(TempOutput, "Error:  couldn't read entry.\n");
+			continue;
+		}
+		fputs("-----------------------------------\n", TempOutput);
+
+		getdata(&dirp);
+		if (*(value = FINDVALUE(dirp, F_NAME)))
+			fprintf(TempOutput, "%s\n", value);
+
+		if (*(value = FINDVALUE(dirp, F_EMAIL)))
+			fprintf(TempOutput, "%s\n", value);
+
+		if (*(value = FINDVALUE(dirp, F_PHONE)))
+			fprintf(TempOutput, "%s\n", value);
+
+		if ((*(value = FINDVALUE(dirp, F_TITLE))) ||
+		    (*(value = FINDVALUE(dirp, F_CURRICULUM))))
+			fprintf(TempOutput, "%s\n", value);
+
+		if (*(value = FINDVALUE(dirp, F_DEPARTMENT)))
+			fprintf(TempOutput, "%s\n", value);
+
+		if (*(value = FINDVALUE(dirp, F_ADDRESS)))
+			fprintf(TempOutput, "%s\n", value);
+
+		FreeDir(&dirp);
+	}
+	fputs("-----------------------------------\n", TempOutput);
+}
+
+/*
+ * LimitTime - set the soft CPU limit for this process.
+ *  If secs<0, it means |secs| more time; otherwise, limit is set to secs.
+ */
+#ifdef hpux
+# include <sys/syscall.h>
+# ifndef RLIMIT_CPU
+#  define RLIMIT_CPU	0
+# endif /* !RLIMIT_CPU */
+# define getrusage(a, b)  syscall(SYS_GETRUSAGE, a, b)
+#endif /* hpux */
+
+static void 
+LimitTime(secs)
+	int secs;
+{
+#ifdef SIGXCPU
+	struct rlimit lim;
+# ifdef RUSAGE_SELF
+	struct rusage foo;
+	int now;
+	getrusage(RUSAGE_SELF, &foo);
+	now = ((foo.ru_utime.tv_sec + foo.ru_stime.tv_sec) * 1000000 +
+		foo.ru_utime.tv_usec + foo.ru_stime.tv_usec) / 1000000;
+# else /* !RUSAGE_SELF */
+	clock_t now = clock();
+#  ifdef CLK_TCK
+	now = now / CLK_TCK;
+#  else /* !CLK_TCK */
+#   ifdef CLOCKS_PER_SEC
+	now = now / CLOCKS_PER_SEC;
+#   else /* !CLOCKS_PER_SEC */
+	DONT_KNOW_HOW_TO_MAKE_CLOCK_RETURN_SECONDS
+#   endif /* CLOCKS_PER_SEC */
+#  endif /* CLK_TCK */
+# endif /* RUSAGE_SELF */
+
+	lim.rlim_max = RLIM_INFINITY;
+	if (secs < 0)
+	{
+		lim.rlim_cur = now - secs;
+	} else
+		lim.rlim_cur = secs;
+
+	setrlimit(RLIMIT_CPU, &lim);
+	(void) signal(SIGXCPU, LimitHit);
+#endif /* SIGXCPU */
+}
+
+/*
+ * exit cleanly when limit hit
+ */
+static void
+LimitHit(sig)
+	int sig;
+{
+#ifdef SIGXCPU
+	signal(SIGXCPU, SIG_IGN);
+	fprintf(Output, "%d: CPU time limit exceeded for this session.\n", LR_XCPU);
+	DoQuit(NULL);
+#endif /* SIGXCPU */
+}
+
+#ifdef SORTED
+static void 
+SortEntries(entries, argp)
+	INT32 *entries;
+	ARG *argp;
+{
+	INT32	*e;
+	struct sortStruct *aKey, *keys = NULL;
+	QDIR	dir;
+	int	n;
+
+	for (e = entries; *e; e++) ;
+	n = e - entries;
+	aKey = keys = malloc(n * sizeof (struct sortStruct));
+	memset(keys, (char)0, n * sizeof (struct sortStruct));
+
+	for (e = entries; *e; e++)
+	{
+		if (!next_ent(*e))
+			goto done;
+		getdata(&dir);
+		aKey->entNum = *e;
+		aKey++->key = strdup(FINDVALUE(dir, argp->aFD->fdId));
+		FreeDir(&dir);
+	}
+	qsort(keys, n, sizeof (struct sortStruct), KeyComp);
+
+	for (aKey = keys; aKey < keys + n; aKey++)
+		*entries++ = aKey->entNum;
+
+      done:
+	if (keys)
+	{
+		for (aKey = keys; aKey < keys + n; aKey++)
+			if (aKey->key)
+				free(aKey->key);
+			else
+				break;
+		free(keys);
+	}
+}
+
+static int 
+KeyComp(a, b)
+	struct sortStruct *a, *b;
+{
+	return (strcmp(a->key, b->key));
+}
+
+#endif
+@
+
+
+1.62
+log
+@Added more HP-UX specific hooks.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: query.c,v 1.61 1995/06/23 19:24:01 p-pomes Exp p-pomes $";
+d1022 1
+a1022 1
+void
+@
+
+
+1.61
+log
+@More cleanups to SIGXCPU, getrusage(), etc.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: query.c,v 1.60 1995/04/11 16:51:01 p-pomes Exp p-pomes $";
+d975 5
+a979 2
+#include <sys/syscall.h>
+#define getrusage(a, b)  syscall(SYS_GETRUSAGE, a, b)
+@
+
+
+1.60
+log
+@Use strncpy() for strcpy().
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: query.c,v 1.59 1994/12/17 14:42:46 p-pomes Exp $";
+d79 1
+d974 5
+d983 1
+d985 1
+a985 1
+#ifdef RUSAGE_SELF
+d991 1
+a991 1
+#else
+d993 1
+a993 1
+# ifdef CLK_TCK
+d995 2
+a996 2
+# else
+#  ifdef CLOCKS_PER_SEC
+d998 1
+a998 1
+#  else
+d1000 3
+a1002 3
+#  endif
+# endif
+#endif
+d1012 11
+d1024 3
+a1026 1
+	(void) signal(SIGXCPU, LimitHit);
+@
+
+
+1.59
+log
+@Added support for NoMeta property to disallow lookups with metacharacters.
+Fields with it require an exact match.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: query.c,v 1.58 1994/09/09 20:17:03 p-pomes Exp p-pomes $";
+d279 1
+a279 1
+			strcpy(scratch, anArg->aSecond);
+d516 1
+a516 1
+	strcpy(scratch, FIELDVALUE(dirp, fIndex));
+d709 1
+a709 1
+						strcpy(scratch, value);
+@
+
+
+1.58
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: query.c,v 1.57 1994/05/05 21:21:51 paul Exp p-pomes $";
+d144 1
+a144 1
+				if (CanLookup(fd))
+@
+
+
+1.57
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: query.c,v 1.56 1994/03/12 00:24:45 paul Exp paul $";
+d67 1
+a67 1
+	long	entNum;
+d71 1
+a71 1
+static void SortEntries __P((long *, ARG *));
+d79 3
+a81 3
+static int PrintFields __P((long *, ARG *, int));
+static void PrintOld __P((long *));
+static void PrintThem __P((long *, ARG *));
+d253 1
+a253 1
+long *
+d263 3
+a265 3
+	long	*entries;
+	long	*anEntry;
+	long	*goodEntry;
+d389 1
+a389 1
+	long	*entries;
+d543 1
+a543 1
+	long *entries;
+d637 1
+a637 1
+	long *entries;
+d930 1
+a930 1
+	long *entries;
+d1013 1
+a1013 1
+	long *entries;
+d1016 1
+a1016 1
+	long	*e;
+@
+
+
+1.56
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d308 1
+a308 1
+			IssueMessage(LOG_WARNING, "Database error on 0x%x.", *anEntry);
+d437 2
+a438 1
+			if (OldPh)
+d440 1
+@
+
+
+1.55
+log
+@Use FreshArg() instead of NEW macro.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.54
+log
+@zero freed pointers.
+@
+text
+@d556 1
+a556 1
+	first = old = argp = NEW(ARG);
+d563 1
+a563 1
+			argp->aNext = NEW(ARG);
+d586 1
+a586 1
+				argp->aNext = NEW(ARG);
+d704 1
+a704 1
+	first = old = argp = NEW(ARG);
+d709 1
+a709 1
+		argp->aNext = NEW(ARG);
+d728 1
+a728 1
+	first = old = argp = NEW(ARG);
+d735 1
+a735 1
+			argp->aNext = NEW(ARG);
+@
+
+
+1.53
+log
+@Make fields marked as LocalPub invisible, not just un-searchable, to
+>> non-local users.
+@
+text
+@d234 1
+a234 1
+	QDIR	dirp;
+d259 1
+a259 1
+	for (aString = keyStrings; *aString; aString++)
+d261 2
+@
+
+
+1.52
+log
+@Nasty null pointer stomped.
+@
+text
+@d22 1
+d109 2
+a110 1
+			if (fd = FindFD(argp->aFirst))
+d194 2
+a195 1
+			if (fd = FindFD(argp->aFirst))
+a196 1
+
+@
+
+
+1.51
+log
+@Replaced make_str() with strdup().
+@
+text
+@d198 2
+@
+
+
+1.50
+log
+@Made RateAKey accessible to other routines.
+@
+text
+@d90 1
+a90 1
+			argp->aSecond = make_str("");
+d100 1
+a100 1
+			argp->aFirst = make_str(DEFQUERY);
+d125 1
+a125 1
+							argp->aSecond = make_str(cp);
+d200 1
+a200 1
+					argp->aSecond = make_str(decrypted);
+d248 1
+a248 1
+					*aString++ = make_str(token);
+d992 1
+a992 1
+		aKey++->key = make_str(FINDVALUE(dir, argp->aFD->fdId));
+@
+
+
+1.49
+log
+@Improvements from Alan Crosswell <alan@@curta.cc.columbia.edu>.
+@
+text
+@a48 1
+static int RateAKey __P((char *));
+d793 1
+a793 1
+static int 
+@
+
+
+1.48
+log
+@DirMatch() now takes a flag to control whether tail recursion of names
+to nicknames is done.
+@
+text
+@d24 1
+a24 1
+static int People;
+d26 3
+a28 1
+#define MAX_LOOKUP_CPU 7
+d98 4
+a101 1
+			argp->aFirst = make_str("name");
+d237 1
+a237 1
+	People = 0;
+d254 1
+a254 1
+	LimitTime(-MAX_LOOKUP_CPU);
+d323 7
+d375 7
+d383 1
+a383 1
+		if (People < PERSONLIMIT || AmHero || ExemptQuery(argp))
+d385 2
+d406 1
+a406 1
+#ifdef PERSONLIMIT
+@
+
+
+1.47
+log
+@Null pointer dereference fixed.
+@
+text
+@d39 1
+a39 1
+static int DirMatch __P((QDIR, int, char *, int));
+d277 1
+a277 1
+				    !DirMatch(dirp, anArg->aFD->fdId, anArg->aSecond, notme && suppress))
+d283 1
+a283 1
+				if (!DirMatch(dirp, anArg->aFD->fdId, anArg->aSecond, notme && suppress))
+d297 1
+a297 1
+							  notme && suppress))
+d434 1
+a434 1
+DirMatch(dirp, field, value, suppress)
+d436 1
+a436 1
+	int field, suppress;
+d471 2
+a472 2
+	if (field == F_NAME)
+		return (DirMatch(dirp, F_NICKNAME, value, suppress));
+@
+
+
+1.46
+log
+@GonnaRead() and Unlock() now take char string arguments.  Moved
+Unlock() call closer to GonnaWrite() to minimize lock time.
+@
+text
+@d621 1
+a621 1
+						 UserAlias, anArg->aFirst);
+@
+
+
+1.45
+log
+@Support both S5 and BSD accounting limits.
+@
+text
+@d349 1
+a349 1
+	if (!GonnaRead())
+d354 3
+a356 1
+	if (entries = DoLookup(argp))
+a402 1
+	Unlock();
+@
+
+
+1.44
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d651 1
+a651 1
+						nl = index(value, '\n');
+d833 1
+a833 1
+	if (index("[]*?", *key))
+d840 1
+a840 1
+		else if (index("[]?", c))
+a915 1
+#if defined(RLIMIT_CPU) && !defined(_SEQUENT_)
+d917 18
+a934 1
+	struct rusage now;
+d939 1
+a939 3
+		getrusage(RUSAGE_SELF, &now);
+		lim.rlim_cur = ((now.ru_utime.tv_sec + now.ru_stime.tv_sec) * 1000000 +
+		now.ru_utime.tv_usec + now.ru_stime.tv_usec) / 1000000 - secs;
+a946 1
+#endif /* RLIMIT_CPU && !_SEQUENT_ */
+d963 1
+a963 1
+	bzero(keys, n * sizeof (struct sortStruct));
+@
+
+
+1.43
+log
+@Removed #ifdef RESTRICTED wrapper.
+@
+text
+@a21 1
+
+a34 1
+
+d37 1
+d39 10
+a48 1
+#endif
+d432 1
+a432 1
+int 
+d480 1
+a480 1
+void 
+d521 1
+a521 1
+ARG *
+d574 1
+a574 1
+int 
+d671 1
+a671 1
+ARG	*
+d695 1
+a695 1
+ARG	*
+d726 1
+a726 1
+int 
+d772 1
+a772 1
+int 
+d867 1
+a867 1
+void 
+d912 1
+a912 1
+void 
+@
+
+
+1.42
+log
+@God bless Sequent for defining things they don't use (RLIMIT_CPU).
+@
+text
+@a22 1
+#ifdef RESTRICTED
+a24 1
+#endif
+a348 1
+#ifdef RESTRICTED
+a352 1
+#endif
+@
+
+
+1.41
+log
+@Now supports the less-than-all-powerful hero.  If the hero field
+contains the string "opr", "oper", or "operator", then the user
+is allowed nearly unlimited proxy-like priviledges.  The exception
+is that the operator may not change an entry of any user that has
+a non-empty hero field.  Use is for consultants so that they can
+change passwords and email entries, but not name or id fields.
+In addition they can't add or delete entries.
+@
+text
+@d912 1
+a912 1
+#ifdef	RLIMIT_CPU
+d928 2
+a929 2
+#endif
+#endif
+@
+
+
+1.40
+log
+@HP changes
+@
+text
+@d102 1
+a102 1
+					argp->aKey = fd->fdIndexed && (fd->fdLookup || AmHero) &&
+d443 1
+a443 1
+	if (!AmHero && suppress && !FindFDI(field)->fdForcePub)
+@
+
+
+1.39
+log
+@Up-cased all #define's.
+@
+text
+@d15 3
+d912 1
+d926 1
+d928 2
+@
+
+
+1.38
+log
+@Add common nicknames to badKeys to compensate for extra nickname fields
+generated by util/addnickname.
+@
+text
+@d261 2
+a262 2
+		suppress = *FindValue(dirp, F_SUPPRESS);
+		notme = !User || strcmp(UserAlias, FindValue(dirp, F_ALIAS));
+d267 1
+a267 1
+				if (*FindValue(dirp, anArg->aFD->fdId) &&
+d302 1
+a302 1
+		if (*FindValue(dirp, F_TYPE) == 'p')
+d444 1
+a444 1
+	if (!pmatch(FieldValue(dirp, fIndex), value))
+d448 1
+a448 1
+	strcpy(scratch, FieldValue(dirp, fIndex));
+d522 1
+a522 1
+	first = old = argp = New(ARG);
+d529 1
+a529 1
+			argp->aNext = New(ARG);
+d552 1
+a552 1
+				argp->aNext = New(ARG);
+d601 1
+a601 1
+		suppress = *FindValue(dirp, F_SUPPRESS);
+d622 1
+a622 1
+				value = FieldValue(dirp, indx);
+d670 1
+a670 1
+	first = old = argp = New(ARG);
+d675 1
+a675 1
+		argp->aNext = New(ARG);
+d694 1
+a694 1
+	first = old = argp = New(ARG);
+d701 1
+a701 1
+			argp->aNext = New(ARG);
+d877 1
+a877 1
+		if (*(value = FindValue(dirp, F_NAME)))
+d880 1
+a880 1
+		if (*(value = FindValue(dirp, F_EMAIL)))
+d883 1
+a883 1
+		if (*(value = FindValue(dirp, F_PHONE)))
+d886 2
+a887 2
+		if ((*(value = FindValue(dirp, F_TITLE))) ||
+		    (*(value = FindValue(dirp, F_CURRICULUM))))
+d890 1
+a890 1
+		if (*(value = FindValue(dirp, F_DEPARTMENT)))
+d893 1
+a893 1
+		if (*(value = FindValue(dirp, F_ADDRESS)))
+d947 1
+a947 1
+		aKey++->key = make_str(FindValue(dir, argp->aFD->fdId));
+@
+
+
+1.37
+log
+@Revised #include file list.
+@
+text
+@d753 11
+d775 49
+a823 5
+	  "alan", "andrew", "ann", "anne", "brian", "charles", "christopher",
+	 "daniel", "david", "edward", "eric", "james", "jeffrey", "jennifer",
+	   "john", "joseph", "kevin", "lee", "lynn", "marie", "mark", "mary",
+	"matthew", "michael", "paul", "richard", "robert", "scott", "steven",
+		"susan", "thomas", "william"
+@
+
+
+1.36
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a10 2
+#include <stdio.h>
+#include "conf.h"
+a14 3
+#include "commands.h"
+#include "field.h"
+#include "qi.h"
+@
+
+
+1.35
+log
+@Random fixes.
+@
+text
+@a14 1
+#include <strings.h>
+@
+
+
+1.34
+log
+@Re-formatted for clarity.
+@
+text
+@d212 1
+a212 1
+	ARG *argp
+d223 1
+a223 1
+	DIR	dirp;
+d433 1
+a433 1
+	DIR dirp;
+d524 1
+a524 5
+	ARG	*first;
+	ARG	*argp;
+	ARG	*argp;
+	ARG	*barg;
+	ARG	*old;
+d526 1
+a526 1
+	int	found = 0;
+d528 1
+a528 1
+	first = old = argp = New(Arg);
+d535 1
+a535 1
+			argp->aNext = New(Arg);
+d544 1
+a544 1
+	for (argp = a; argp; argp = argp->aNext)
+d547 2
+a548 2
+		for (barg = first; barg; barg = barg->aNext)
+			if (argp->aFD == barg->aFD)
+d555 1
+a555 1
+			if (stricmp(argp->aFirst, "Always"))	/* If this field is always don't save */
+d557 2
+a558 2
+				argp->aFD = argp->aFD;
+				argp->aNext = New(Arg);
+d576 1
+a576 1
+	ARG *argp
+d581 1
+a581 1
+	DIR	dirp;
+d673 1
+a673 3
+	ARG	*first;
+	ARG	*argp;
+	ARG	*old;
+d676 1
+a676 1
+	first = old = argp = New(Arg);
+d681 1
+a681 1
+		argp->aNext = New(Arg);
+d697 1
+a697 3
+	ARG	*first;
+	ARG	*argp;
+	ARG	*old;
+d700 1
+a700 1
+	first = old = argp = New(Arg);
+d707 1
+a707 1
+			argp->aNext = New(Arg);
+d815 1
+a815 1
+	DIR	dirp;
+d884 1
+a884 1
+	DIR	dir;
+@
+
+
+1.33
+log
+@*** empty log message ***
+@
+text
+@a1 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d3 8
+d22 1
+a22 3
+char   *make_str();
+Arg  *FreshArg();
+extern int OldPh;         /* language.l */
+d25 1
+d28 1
+a29 1
+char **getdata();
+d31 1
+a31 1
+char *strtok();
+d33 2
+a34 1
+int IndicateAlways = 0;
+d36 41
+a76 36
+struct sortStruct {long entNum; char *key;};
+int KeyComp(struct sortStruct *a, struct sortStruct *b);
+void SortEntries(long *theEntries, Arg *theArg);
+#endif
+
+/***********************************************************************
+* Decide if a query request is valid
+* returns the number of key fields found
+***********************************************************************/
+int ValidQuery(Arg *theArgs,int theCommand)
+{
+  FieldDesc *theFD;
+  Arg  *origArgs;
+  int   haveError = 0;    /* have we detected an error yet? */
+  int   count = 0;      /* count of arguments */
+  int   keyCount = 0;     /* number of key fields */
+  char   *cp;
+  char   *phonemify();
+  char  decrypted[MAX_LEN];
+  char *decrypt();
+  char *make_str();
+  int dontCrypt;
+
+  IndicateAlways = 0;
+  origArgs = theArgs = theArgs->aNext;    /* skip command name */
+  count++;
+
+  /* collect arguments before ``return'' token */
+  for (; theArgs; count++, theArgs = theArgs->aNext)
+  {
+    switch (theArgs->aType)
+    {
+      case RETURN:
+        dontCrypt = !strcmp(theArgs->aFirst,"force");
+	goto keyEnd;
+	break;
+d79 1
+a79 1
+      case EQUAL|TILD_E:
+d81 16
+a96 16
+      case EQUAL:
+	DoReply(-LR_SYNTAX, "=:No field or value specified.");
+	break;
+
+      case VALUE | EQUAL:
+	theArgs->aSecond = make_str("");
+	goto canonical;
+
+      case VALUE:
+	theArgs->aSecond = theArgs->aFirst;
+	/* fall-through is deliberate */
+      case EQUAL | VALUE2:
+	theArgs->aFirst = make_str("name");
+	theArgs->aType = VALUE | EQUAL | VALUE2;
+	/* again, we _should_ fall through here */
+  canonical:
+d98 1
+a98 1
+      case VALUE | EQUAL | TILD_E | VALUE2:
+d100 7
+a106 7
+      case VALUE | EQUAL | VALUE2:
+	if (theFD = FindFD(theArgs->aFirst))
+	{
+	  if (CanLookup(theFD))
+	  {
+	    theArgs->aKey = theFD->fdIndexed && (theFD->fdLookup || AmHero) &&
+	      strlen(theArgs->aSecond) > 1 && !AllMeta(theArgs->aSecond);
+d108 1
+a108 1
+            theArgs->aKey = theArgs->aKey && !(theArgs->aType&TILD_E); 
+d110 160
+a269 169
+	    if (theArgs->aKey)
+	    {
+	      if (theFD->fdId == F_SOUND)
+	      {
+		cp = phonemify(theArgs->aSecond);
+		if (*cp)
+		  cp[strlen(cp) - 1] = '\0';    /* trim */
+		free(theArgs->aSecond);
+		theArgs->aSecond = make_str(cp);
+	      }
+	      theArgs->aRating = RateAKey(theArgs->aSecond);
+	      keyCount++;
+	    }
+	    theArgs->aFD = theFD;
+	  }
+	  else
+	  {
+	    DoReply(-LR_ASEARCH,
+		"%s:you may not use this field for lookup.",
+		theArgs->aFirst);
+	    haveError = 1;
+	  }
+	}
+	else
+	{
+	  DoReply(-LR_FIELD, "%s:unknown field.", theArgs->aFirst);
+	  haveError = 1;
+	}
+	break;
+
+      default:
+	DoReply(-LR_ERROR, "Argument %d:parsing error.", count);
+	haveError = 1;
+	break;
+    }
+  }
+keyEnd:
+
+  if (!keyCount)
+  {
+    haveError = 1;
+    DoReply(-LR_NOKEY, "no non-null key field in query.");
+  }
+
+  keyCount = ThinArgs(origArgs, keyCount);
+  
+  if (!keyCount)
+  {
+    haveError = 1;
+    DoReply(-LR_NOKEY,"Initial metas may be used as qualifiers only.");
+  }
+
+  if (theArgs)
+  {
+    if (theCommand == C_DELETE)
+    {
+      DoReply(-LR_SYNTAX, "%s: unexpected.", theArgs->aFirst);
+      haveError = 1;
+      goto giveUp;
+    }
+    count++;
+    theArgs = theArgs->aNext;     /* skip return token */
+  }
+  else if (theCommand == C_CHANGE)
+  {
+    haveError = 1;
+    DoReply(-LR_SYNTAX, "No changes requested.");
+  }
+
+
+  for (; theArgs; count++, theArgs = theArgs->aNext)
+  {
+    if (theCommand == C_QUERY && theArgs->aType != VALUE)
+    {
+      haveError = 1;
+      DoReply(-LR_SYNTAX, "Argument %d: must be field name.", count);
+    }
+    else if (theCommand == C_CHANGE && (theArgs->aType != (VALUE | EQUAL | VALUE2)))
+    {
+      haveError = 1;
+      DoReply(-LR_SYNTAX, "Argument %d (begins %s): must be field=value pair.", count, theArgs->aFirst);
+    }
+    else
+    {
+      if (theFD = FindFD(theArgs->aFirst))
+      {
+
+	theArgs->aFD = theFD;
+	if (InputType==IT_NET && theFD->fdEncrypt && !dontCrypt)
+	{
+	  decrypt(decrypted, theArgs->aSecond);
+	  free(theArgs->aSecond);
+	  theArgs->aSecond = make_str(decrypted);
+	}
+      }
+      else
+      {
+	DoReply(-LR_FIELD, "%s:unknown field.", theArgs->aFirst);
+	haveError = 1;
+      }
+    }
+  }
+
+giveUp:
+  return (haveError ? 0 : keyCount);
+}
+
+/***********************************************************************
+* lookup some stuff in the database
+* returns a pointer to a list of entries
+***********************************************************************/
+long *DoLookup(Arg *theArgs)
+{
+  int   entCount;
+  char   *keyStrings[MAX_KEYS + 1];
+  char  **aString;
+  char scratch[MAX_LEN];
+  char *token;
+  Arg  *anArg;
+  long *theEntries;
+  long *anEntry;
+  long *goodEntry;
+  long *do_lookup();
+  Dir   theDir;
+  int exempt = ExemptQuery(theArgs);
+  int suppress;
+  int notme;
+
+  theArgs = theArgs->aNext;   /* skip command name */
+  People = 0;
+
+  /* collect keys */
+  aString = keyStrings;
+  for (anArg = theArgs; anArg; anArg = anArg->aNext)
+    if (anArg->aKey && aString - keyStrings < MAX_KEYS)
+    {
+      strcpy(scratch,anArg->aSecond);
+      for (token=strtok(scratch,IDX_DELIM);
+	   token && aString-keyStrings<MAX_KEYS;
+	   token = strtok(0,IDX_DELIM))
+	if (strlen(token) > 1) *aString++ = make_str(token);
+    }
+  *aString = NULL;
+
+  /* do key lookup */
+  LimitTime(-MAX_LOOKUP_CPU);
+  theEntries = do_lookup(keyStrings, NULL);
+  for (aString=keyStrings;*aString;aString++) free(*aString);
+  entCount = length(theEntries);
+
+  if (entCount == 0)
+  {
+    free(theEntries);
+    LimitTime(RLIM_INFINITY);
+    return (NULL);
+  }
+
+  /* sift entries by field matches */
+  for (goodEntry = anEntry = theEntries; *anEntry; anEntry++)
+  {
+    if (!next_ent(*anEntry))
+    {
+      IssueMessage(LOG_WARNING,"Database error on 0x%x.", *anEntry);
+      continue;
+    }
+    getdata(&theDir);
+    suppress = *FindValue(theDir,F_SUPPRESS);
+    notme = !User || strcmp(UserAlias,FindValue(theDir,F_ALIAS));
+    for (anArg = theArgs; anArg && anArg->aType != RETURN; anArg = anArg->aNext)
+d271 31
+a301 32
+     if (anArg->aType&TILD_E)
+     {
+ 	if (*FindValue(theDir,anArg->aFD->fdId) &&
+	    !DirMatch(theDir,anArg->aFD->fdId,anArg->aSecond,notme&&suppress))
+	  goto nextEntry;
+     }
+     else
+#endif
+     if (stricmp(anArg->aFirst,"Any"))    /* any ? */
+     {
+      if (!DirMatch(theDir, anArg->aFD->fdId, anArg->aSecond, notme&&suppress))
+	goto nextEntry;
+     }
+     else
+     {
+  	FieldDesc **theFD;
+	int anyfound = 0;
+	/* loop through fields looking for any */
+
+  	for (theFD = FieldDescriptors; *theFD; theFD++)
+  	{
+    	   if ((*theFD)->fdAny)
+    	   {
+             if (DirMatch(theDir,(*theFD)->fdId,anArg->aSecond,
+	                  notme&&suppress))
+               anyfound = 1;
+    	   }
+        }
+        if (!anyfound)
+	  goto nextEntry;
+     }
+    *goodEntry++ = *anEntry;
+d303 12
+a314 24
+    /*
+     * count the number of id fields we find; this is more or less the number
+     * of real live people involved; we'll only count this toward the
+     * max number of entries to return thing.
+     */
+    if (*FindValue(theDir,F_TYPE)=='p') 
+      if ((++People>=PERSONLIMIT) && !AmHero && !exempt)
+      {
+	FreeDir(&theDir);
+	break;
+      }
+#endif
+
+nextEntry:
+    FreeDir(&theDir);
+  }
+  *goodEntry = 0;
+
+  LimitTime(RLIM_INFINITY);
+  if (length(theEntries) == 0)
+  {
+    free(theEntries);
+    return (NULL);
+  }
+d316 12
+a327 1
+  return (theEntries);
+d330 1
+a330 1
+/***********************************************************************
+d332 22
+a353 22
+***********************************************************************/
+void DoQuery(Arg *theArg)
+{
+  long *theEntries;
+  int   count;
+  char sbuf[80];
+
+  if (!ValidQuery(theArg, C_QUERY))
+  {
+    DoReply(LR_ERROR, "Did not understand %s.", theArg->aFirst);
+    return;
+  }
+
+  if (!GonnaRead())
+  {
+     /* Lock routines give their own errors */ ;
+    return;
+  }
+
+  if (theEntries = DoLookup(theArg))
+  {
+    count = length(theEntries);
+d355 4
+a358 5
+    if (People && OffCampus && !AmHero && !User)
+    {
+      DoReply(LR_OFFCAMPUS,"Remote queries not permitted.");
+    }
+    else
+d361 1
+a361 1
+if (People < PERSONLIMIT || AmHero || ExemptQuery(theArg))
+d363 19
+a381 19
+    {
+      /* skip to what we are supposed to print */
+      for (; theArg; theArg = theArg->aNext)
+	if (theArg->aType == RETURN)
+	{
+	  theArg = theArg->aNext;
+	  break;
+	}
+      /* do the printing */
+	sprintf(sbuf, "There %s %d match%s to your request.",
+	    count > 1 ? "were" : "was",
+	    count,
+	    count > 1 ? "es" : "");
+      if (OldPh)
+	fprintf(TempOutput, "%s\n",sbuf);
+      DoReply(LR_NUMRET, sbuf);
+      PrintThem(theEntries, theArg);
+      DoReply(LR_OK, "Ok.");
+    }
+d383 18
+a400 19
+    else
+    {
+      if (OldPh)
+	fprintf(TempOutput, "Too many entries to print.\n", count);
+      else
+	DoReply(LR_TOOMANY, "Too many entries to print.", count);
+    }
+#endif
+
+    free(theEntries);
+  }
+  else
+  {
+    if (OldPh)
+      fprintf(TempOutput, "No matches to your query.\n");
+    else
+      DoReply(LR_NOMATCH, "No matches to your query.");
+  }
+  Unlock();
+d403 1
+a403 1
+/***********************************************************************
+d409 17
+a425 10
+***********************************************************************/
+int ExemptQuery(Arg *theArg)
+{
+  if (!User) return(0);        /* if not logged in */
+  theArg = theArg->aNext;     /* skip command name */
+  if (!theArg) return(0);
+  if (theArg->aType != (VALUE|EQUAL|VALUE2)) return(0);
+  if (theArg->aFD->fdId!=F_PROXY) return(0);
+  if (stricmp(theArg->aSecond, UserAlias)) return(0);
+  return(1);
+d428 1
+a428 1
+/***********************************************************************
+d430 143
+a572 35
+***********************************************************************/
+int DirMatch(Dir dir,int field,char *value,int suppress)
+{
+  int   fIndex;
+  char  scratch[MAX_LEN];
+  char   *strtok();
+  char   *aWord;
+
+  /* is the field there? */
+  if ((fIndex = FindField(dir, field)) == -1)
+    return (0);
+    
+  /* is suppression turned on and the field suppressible? */
+  if (!AmHero && suppress && !FindFDI(field)->fdForcePub)
+    return(0);
+
+  /* check whole string */
+  if (!pmatch(FieldValue(dir, fIndex), value))
+    return (1);
+
+  /* nope.  check each word in string */
+  strcpy(scratch, FieldValue(dir, fIndex));
+  
+  if (anyof(value,IDX_DELIM))
+    for (aWord=strtok(scratch,IDX_DELIM); aWord; aWord=strtok(NULL, IDX_DELIM))
+    {
+      if (!pmatch(aWord, value))
+	return (1);
+    }
+  else
+    for (aWord=strtok(scratch,IDX_DELIM);aWord;aWord=strtok(NULL,IDX_DELIM))
+    {
+      if (!pmatch(aWord, value))
+	return (1);
+    }
+d574 23
+a596 129
+  /* if it's the name field, check nickname as well */
+  if (field==F_NAME)
+    return(DirMatch(dir,F_NICKNAME,value,suppress));
+
+  /* nope */
+  return (0);
+}
+
+/***********************************************************************
+* print a list of entries according to the requested arguments, if any
+***********************************************************************/
+void PrintThem(long *theEntries,Arg *theArgs)
+{
+  static Arg *defaultArgs;
+  static Arg *allArgs;
+  static Arg *alwaysArgs;
+  Arg  *GetPrintDefaults();
+  Arg  *getplusAlways();
+  Arg  *GetAllFields();
+
+  if (theArgs)
+  {
+    if (stricmp(theArgs->aFirst,"all"))
+    {
+    if (IndicateAlways)
+    {
+      alwaysArgs = getplusAlways(theArgs); 
+      IndicateAlways = 0;   /* only effects that query */
+      PrintFields(theEntries, alwaysArgs, 1);
+    }
+    else
+      PrintFields(theEntries, theArgs, 1);
+    }
+    else
+    {
+      if (!allArgs)
+	allArgs = GetAllFields();
+      PrintFields(theEntries, allArgs, 0);
+    }
+  }
+  else if (OldPh)
+  {
+    PrintOld(theEntries);
+  }
+  else
+  {
+    if (!defaultArgs)
+      defaultArgs = GetPrintDefaults();
+    PrintFields(theEntries, defaultArgs, 0);
+  }
+}
+
+/*
+**    getplus Always - get the always fields in the f.config then add
+**                     only the unique fields from the query command
+*/
+Arg *getplusAlways(Arg *a)
+{
+  Arg  *theFirst;
+  Arg  *theArg;
+  Arg  *thearg;
+  Arg  *thebarg;
+  Arg  *theOld;
+  FieldDesc **theFD;
+  int found = 0;
+
+  theFirst = theOld = theArg = New(Arg);
+
+  for (theFD = FieldDescriptors; *theFD; theFD++)
+  {
+    if ((*theFD)->fdAlways)
+    {
+      theArg->aFD = *theFD;
+      theArg->aNext = New(Arg);
+      theOld = theArg;
+      theArg = theArg->aNext;
+    }
+  }
+
+  theArg->aNext = NULL; 
+                        /* run through the always fields selecting
+			   only unique fields from the query return command */
+  for (thearg = a; thearg; thearg = thearg->aNext)
+  {
+     found = 0;
+     for (thebarg= theFirst; thebarg; thebarg = thebarg->aNext)
+     if (thearg->aFD == thebarg->aFD)
+     {
+        found = 1;
+        break;
+     }
+     
+     if (!found)
+     {
+        if (stricmp(thearg->aFirst,"Always"))    /* If this field is always don't save */
+        {
+	  theArg->aFD = thearg->aFD;
+	  theArg->aNext = New(Arg);
+	  theOld = theArg;
+	  theArg = theArg->aNext;
+	  theArg->aNext = NULL;
+        }
+     } 
+	
+  }
+  free(theArg);
+  theOld->aNext = NULL;
+  return (theFirst);
+}
+
+/***********************************************************************
+* Print select fields from entries
+***********************************************************************/
+int PrintFields(long *theEntries,Arg *theArgs,int printEmpty)
+{
+  int   count = 0;
+  Arg  *anArg;
+  Dir   dir;
+  char scratch[MAX_LEN];
+  char   *theValue;
+  int   theIndex;
+  int width=9;	/* leave enough room for "email to" */
+  int len;
+  int suppress;
+  char *nl;
+  
+  for (anArg=theArgs; anArg; anArg=anArg->aNext)
+    if (width <= (len=strlen(anArg->aFD->fdName)))
+      width = len+1;
+d599 1
+a599 1
+  SortEntries(theEntries,theArgs);
+d602 122
+a723 123
+  for (; *theEntries; theEntries++)
+  {
+    count++;
+    if (!next_ent(*theEntries))
+    {
+      DoReply(-LR_ERROR, "%d:database error.", count);
+      continue;
+    }
+
+    getdata(&dir);
+    suppress = *FindValue(dir,F_SUPPRESS);
+    
+
+    for (anArg = theArgs; anArg; anArg = anArg->aNext)
+    {
+      if (!CanSee(dir, anArg->aFD, suppress))     /* check auth. first */
+      {
+	if (printEmpty)
+	{
+	  DoReply(-LR_AINFO, "%d:%*s: You may not view this field.",
+	    count, width, anArg->aFD->fdName);
+	  IssueMessage(LOG_INFO, "%s attempting to view %s.",
+	     UserAlias, anArg->aFirst);
+	}
+      }
+      else if ((theIndex = FindField(dir, anArg->aFD->fdId)) == -1)
+      {
+	if (printEmpty)
+	  DoReply(-LR_ABSENT, "%d:%*s: Not present in entry.",
+	      count, width, anArg->aFD->fdName);
+      }
+      else
+      {
+	theValue = FieldValue(dir, theIndex);
+	if (!*theValue || *theValue == '*' && !CanChange(dir, anArg->aFD) &&
+	  anArg->aFD->fdTurn)
+	{
+	  if (printEmpty)
+	    DoReply(-LR_ABSENT, "%d:%*s: Not present in entry.",
+	      count, width, anArg->aFD->fdName);
+	}
+	else
+	{
+	  if (InputType==IT_NET && anArg->aFD->fdEncrypt)
+	  {
+	    if (!User)
+	      DoReply(-LR_NOTLOG, "%d:%*s: Must be logged in to view.",
+		count, width, anArg->aFD->fdName);
+	    else
+	      DoReply(-LR_ISCRYPT,"%d:%*s: Encrypted; cannot be viewed.",
+		count, width, anArg->aFD->fdName);
+	    continue;
+	  }
+	  else
+	    strcpy(scratch, theValue);
+	  for (theValue=scratch;;theValue=nl+1)
+	  {
+	    nl = index(theValue,'\n');
+	    if (nl) *nl = 0;
+	    DoReply(-LR_OK, "%d:%*s: %s", count, width,
+		theValue==scratch ? anArg->aFD->fdName : "",
+		theValue);
+	    if (!nl) break;
+	  }
+	}
+      }
+    }
+
+    FreeDir(&dir);
+  }
+}
+
+/***********************************************************************
+* get a list of all the fields
+***********************************************************************/
+Arg *GetAllFields(void)
+{
+  Arg  *theFirst;
+  Arg  *theArg;
+  Arg  *theOld;
+  FieldDesc **theFD;
+
+  theFirst = theOld = theArg = New(Arg);
+
+  for (theFD = FieldDescriptors; *theFD; theFD++)
+  {
+    theArg->aFD = *theFD;
+    theArg->aNext = New(Arg);
+    theOld = theArg;
+    theArg = theArg->aNext;
+  }
+
+  free(theArg);
+  theOld->aNext = NULL;
+  return (theFirst);
+}
+
+/***********************************************************************
+* get the default fields
+***********************************************************************/
+Arg *GetPrintDefaults(void)
+{
+  Arg  *theFirst;
+  Arg  *theArg;
+  Arg  *theOld;
+  FieldDesc **theFD;
+
+  theFirst = theOld = theArg = New(Arg);
+
+  for (theFD = FieldDescriptors; *theFD; theFD++)
+  {
+    if ((*theFD)->fdDefault)
+    {
+      theArg->aFD = *theFD;
+      theArg->aNext = New(Arg);
+      theOld = theArg;
+      theArg = theArg->aNext;
+    }
+  }
+
+  free(theArg);
+  theOld->aNext = NULL;
+  return (theFirst);
+d730 128
+a857 118
+/***********************************************************************
+* Pick out the ``best'' keys for use
+***********************************************************************/
+int ThinArgs(Arg *theArgs,int theCount)
+{
+  int   left;
+  Arg  *anArg;
+  int   bestRating = -1000;
+
+  for (left = theCount, anArg = theArgs; left; anArg = anArg->aNext)
+  {
+    if (anArg->aKey)
+    {
+      left--;
+      if (anArg->aRating > bestRating)
+	bestRating = anArg->aRating;
+    }
+  }
+
+  for (left = theCount, anArg = theArgs; left; anArg = anArg->aNext)
+  {
+    if (anArg->aKey)
+    {
+      left--;
+      if (anArg->aRating < 0 && anArg->aRating < bestRating)
+      {
+	anArg->aKey = 0;
+	theCount--;
+      }
+    }
+  }
+  return ((bestRating>R_INITIAL||AmHero) ? theCount : 0);
+}
+
+
+int RateAKey(char *key)
+{
+  int   rating = 0;
+  int   c;
+  char *cp=key;
+  char **beg, **mid, **end;
+  static char *badKeys[]=
+  {
+    "alan", "andrew", "ann", "anne", "brian", "charles", "christopher",
+    "daniel", "david", "edward", "eric", "james", "jeffrey", "jennifer",
+    "john", "joseph", "kevin", "lee", "lynn", "marie", "mark", "mary",
+    "matthew", "michael", "paul", "richard", "robert", "scott", "steven",
+    "susan", "thomas", "william"
+  };
+
+  if (index("[]*?", *key))
+    rating = R_INITIAL;
+
+  for (; c = *cp; cp++)
+  {
+    if (c == '*')
+      rating += R_STAR;
+    else
+    if (index("[]?", c))
+      rating += R_META;
+    else
+      rating += R_PLAIN;
+  }
+  
+  beg=badKeys;
+  end=beg+sizeof(badKeys)/sizeof(char *)-1;
+  while (beg<=end)
+  {
+    mid = beg + (end-beg)/2;
+    c = strcmp(*mid,key);
+    if (!c) return(R_STAR*2);
+    if (c<0) beg=mid+1;
+    else end=mid-1;
+  }
+
+  return (rating);
+}
+
+/***********************************************************************
+* print a simple request in a simple format
+***********************************************************************/
+void PrintOld(long *theEntries)
+{
+  Dir   theDir;
+  char   *theValue;
+
+  for (; *theEntries; theEntries++)
+  {
+    if (!next_ent(*theEntries))
+    {
+      fprintf(TempOutput, "Error:  couldn't read entry.\n");
+      continue;
+    }
+    fputs("-----------------------------------\n", TempOutput);
+
+    getdata(&theDir);
+    if (*(theValue = FindValue(theDir, F_NAME)))
+      fprintf(TempOutput, "%s\n", theValue);
+
+    if (*(theValue = FindValue(theDir, F_EMAIL)))
+      fprintf(TempOutput, "%s\n", theValue);
+
+    if (*(theValue = FindValue(theDir, F_PHONE)))
+      fprintf(TempOutput, "%s\n", theValue);
+
+    if ((*(theValue = FindValue(theDir, F_TITLE))) ||
+      (*(theValue = FindValue(theDir, F_CURRICULUM))))
+      fprintf(TempOutput, "%s\n", theValue);
+
+    if (*(theValue = FindValue(theDir, F_DEPARTMENT)))
+      fprintf(TempOutput, "%s\n", theValue);
+
+    if (*(theValue = FindValue(theDir, F_ADDRESS)))
+      fprintf(TempOutput, "%s\n", theValue);
+
+    FreeDir(&theDir);
+  }
+  fputs("-----------------------------------\n", TempOutput);
+d860 1
+a860 1
+/************************************************************************
+d863 4
+a866 2
+ ************************************************************************/
+void LimitTime(int secs)
+d868 14
+a881 14
+  struct rlimit lim;
+  struct rusage now;
+  
+  lim.rlim_max = RLIM_INFINITY;
+  if (secs<0)
+  {
+    getrusage(RUSAGE_SELF,&now);
+    lim.rlim_cur = ((now.ru_utime.tv_sec+now.ru_stime.tv_sec)*1000000 + 
+                    now.ru_utime.tv_usec+now.ru_stime.tv_usec)/1000000 - secs;
+  }
+  else lim.rlim_cur = secs;
+  
+  setrlimit(RLIMIT_CPU,&lim);
+  (void) signal(SIGXCPU, LimitHit);
+d883 1
+a883 1
+    
+d885 39
+a923 32
+char *malloc();
+void SortEntries(long *theEntries, Arg *theArg)
+{
+  long *e;
+  struct sortStruct *aKey, *theKeys=NULL;
+  Dir dir;
+  int n;
+  
+  for (e=theEntries;*e;e++);
+  n = e-theEntries;
+  aKey = theKeys = malloc(n*sizeof(struct sortStruct));
+  bzero(theKeys,n*sizeof(struct sortStruct));
+  for (e=theEntries;*e;e++)
+  {
+    if (!next_ent(*e)) goto done;
+    getdata(&dir);
+    aKey->entNum = *e;
+    aKey++->key = make_str(FindValue(dir,theArg->aFD->fdId));
+    FreeDir(&dir);
+  }
+  qsort(theKeys,n,sizeof(struct sortStruct),KeyComp);
+  for (aKey=theKeys;aKey<theKeys+n;aKey++)
+    *theEntries++ = aKey->entNum;
+
+done:
+  if (theKeys)
+  {
+    for (aKey=theKeys;aKey<theKeys+n;aKey++)
+      if (aKey->key) free(aKey->key);
+      else break;
+    free(theKeys);
+  }
+d926 3
+a928 1
+int KeyComp(struct sortStruct *a, struct sortStruct *b)
+d930 1
+a930 1
+  return(strcmp(a->key,b->key));
+@
+
+
+1.32
+log
+@No help here.
+@
+text
+@d11 3
+d15 2
+d26 3
+d32 1
+a32 1
+
+d34 5
+d56 1
+d68 1
+d72 3
+d91 3
+d99 6
+a104 4
+	    if (theArgs->aKey = (theFD->fdIndexed &&
+		       (theFD->fdLookup || AmHero)
+		       && strlen(theArgs->aSecond) > 1)
+	      && !AllMeta(theArgs->aSecond))
+d149 6
+d192 1
+a192 1
+	if (InputType==IT_NET && theFD->fdEncrypt)
+d228 3
+d244 1
+a244 1
+	if (strlen(token) > 1) *aString++ = token;
+d249 1
+d251 1
+d257 1
+d270 2
+d273 9
+d284 1
+a284 1
+      if (!DirMatch(theDir, anArg->aFD->fdId, anArg->aSecond))
+d297 2
+a298 1
+             if (DirMatch(theDir, (*theFD)->fdId, anArg->aSecond))
+d306 1
+d313 1
+a313 1
+      if ((++People>TOO_MANY) && !AmHero)
+d318 1
+d325 1
+d359 10
+a368 1
+    if (People < TOO_MANY || AmHero)
+d388 1
+d396 1
+d411 18
+d431 1
+a431 1
+int DirMatch(Dir dir,int field,char *value)
+d441 4
+d468 1
+a468 1
+    return(DirMatch(dir,F_NICKNAME,value));
+d562 5
+a566 5
+      theArg->aFD = thearg->aFD;
+      theArg->aNext = New(Arg);
+      theOld = theArg;
+      theArg = theArg->aNext;
+      theArg->aNext = NULL;
+d587 1
+a587 1
+  int width=8;	/* leave enough room for "email to" */
+d589 2
+d593 1
+a593 1
+    if (width < (len=strlen(anArg->aFD->fdName)))
+d596 4
+d610 2
+d615 1
+a615 1
+      if (!CanSee(dir, anArg->aFD))     /* check auth. first */
+d634 1
+a634 1
+	if (*theValue == '*' && !CanChange(dir, anArg->aFD) &&
+d655 1
+a655 5
+	  if (*theValue == '\n')
+	    DoReply(-LR_OK, "%d:%*s: ",count,width,anArg->aFD->fdName);
+	  for (theValue = strtok(scratch, "\n");
+	     theValue;
+	     theValue = strtok(NULL, "\n"))
+d657 2
+d662 1
+d725 4
+d760 1
+a760 1
+  return (theCount);
+a762 4
+#define R_META -2
+#define R_STAR -10
+#define R_INITIAL -100
+#define R_PLAIN 1
+d799 1
+a799 1
+    if (!c) return(rating+R_STAR*2);
+d848 64
+@
+
+
+1.31
+log
+@No help here.
+@
+text
+@d1 1
+d31 1
+a31 3
+ValidQuery(theArgs, theCommand)
+Arg  *theArgs;
+int   theCommand;
+a73 14
+	if (*theArgs->aFirst == HISTORY)
+	{
+	  DoReply(-LR_HISTORY, "%s:bad history reference.",
+	      theArgs->aFirst);
+	  haveError = 1;
+	}
+	else
+	if (*theArgs->aSecond == HISTORY)
+	{
+	  DoReply(-LR_HISTORY, "%s:bad history reference.",
+	      theArgs->aSecond);
+	  haveError = 1;
+	}
+	else
+d147 1
+a147 1
+    if (theArgs->aFirst && *theArgs->aFirst == HISTORY)
+a148 1
+      DoReply(-LR_HISTORY, "%s:bad history reference.", theArgs->aFirst);
+a149 9
+    }
+    else if (theArgs->aSecond && *theArgs->aSecond == HISTORY)
+    {
+      DoReply(-LR_HISTORY, "%s:bad history reference.", theArgs->aSecond);
+      haveError = 1;
+    }
+    else if (theCommand == C_QUERY && theArgs->aType != VALUE)
+    {
+      haveError = 1;
+d186 1
+a186 3
+long *
+DoLookup(theArgs)
+Arg  *theArgs;
+d274 1
+a274 1
+  *goodEntry = NULL;
+d288 1
+a288 2
+DoQuery(theArgs)
+Arg  *theArgs;
+d294 1
+a294 1
+  if (!ValidQuery(theArgs, C_QUERY))
+d296 1
+a296 1
+    DoReply(LR_ERROR, "Did not understand %s.", theArgs->aFirst);
+d306 1
+a306 1
+  if (theEntries = DoLookup(theArgs))
+d312 2
+a313 2
+      for (; theArgs; theArgs = theArgs->aNext)
+	if (theArgs->aType == RETURN)
+d315 1
+a315 1
+	  theArgs = theArgs->aNext;
+d326 1
+a326 1
+      PrintThem(theEntries, theArgs);
+d352 1
+a352 4
+DirMatch(dir, field, value)
+Dir   dir;
+int   field;
+char   *value;
+d394 1
+a394 3
+PrintThem(theEntries, theArgs)
+long *theEntries;
+Arg  *theArgs;
+d439 1
+a439 3
+Arg  *
+getplusAlways(a)
+Arg *a;
+d496 1
+a496 4
+PrintFields(theEntries, theArgs, printEmpty)
+long *theEntries;
+Arg  *theArgs;
+int   printEmpty;       /* print empty fields */
+d585 1
+a585 2
+Arg  *
+GetAllFields()
+d610 1
+a610 2
+Arg  *
+GetPrintDefaults()
+d638 1
+a638 3
+ThinArgs(theArgs, theCount)
+Arg  *theArgs;
+int   theCount;
+d674 1
+a674 2
+RateAKey(key)
+char   *key;
+d678 10
+d692 1
+a692 1
+  for (; c = *key; key++)
+d702 11
+d720 1
+a720 2
+PrintOld(theEntries)
+long   *theEntries;
+@
+
+
+1.30
+log
+@No help here.
+@
+text
+@d22 1
+d258 1
+a258 1
+      IssueMessage("Database error on 0x%x.", *anEntry);
+d291 1
+a291 1
+    if (FindField(theDir,F_UNIVID)>=0) 
+d602 2
+d607 1
+d611 1
+@
+
+
+1.29
+log
+@No help here.
+@
+text
+@d217 2
+d233 7
+a239 1
+      *aString++ = anArg->aSecond;
+d400 1
+a400 1
+  if (anyof(value,LOOK_DELIM))
+d407 1
+a407 1
+    for (aWord=strtok(scratch,LOOK_DELIM);aWord;aWord=strtok(NULL,LOOK_DELIM))
+d541 6
+d566 1
+a566 1
+	    count, F_LEADER, anArg->aFD->fdName);
+d575 1
+a575 1
+	      count, F_LEADER, anArg->aFD->fdName);
+d585 1
+a585 1
+	      count, F_LEADER, anArg->aFD->fdName);
+d593 1
+a593 1
+		count, F_LEADER, anArg->aFD->fdName);
+d596 1
+a596 1
+		count, F_LEADER, anArg->aFD->fdName);
+d604 1
+a604 1
+	    DoReply(-LR_OK, "%d:%*s: %s", count, F_LEADER,
+@
+
+
+1.28
+log
+@No help here.
+@
+text
+@d11 3
+a13 3
+#include "../Include/commands.h"
+#include "../Include/field.h"
+#include "../Include/qi.h"
+d23 2
+d44 1
+d185 1
+d254 2
+d258 18
+d311 1
+d338 1
+a338 2
+      if (OldPh)
+	fprintf(TempOutput, "There %s %d match%s to your request.\n",
+d342 3
+d422 1
+d424 1
+d430 8
+d439 1
+d457 60
+@
+
+
+1.27
+log
+@Changed DirMatch to use IDX_DELIM to tokenize a field if values in
+LOOK_DELIM appear in the goal string.
+@
+text
+@d11 3
+a13 3
+#include "../include/commands.h"
+#include "../include/field.h"
+#include "../include/qi.h"
+@
+
+
+1.26
+log
+@No help here.
+@
+text
+@d38 3
+d183 6
+d364 13
+a376 5
+  for (aWord = strtok(scratch, LOOK_DELIM); aWord; aWord = strtok(NULL, LOOK_DELIM))
+  {
+    if (!pmatch(aWord, value))
+      return (1);
+  }
+@
+
+
+1.25
+log
+@No help here.
+@
+text
+@d48 2
+a49 2
+      goto keyEnd;
+      break;
+d52 2
+a53 2
+      DoReply(-LR_SYNTAX, "=:No field or value specified.");
+      break;
+d56 2
+a57 2
+      theArgs->aSecond = make_str("");
+      goto canonical;
+d60 2
+a61 2
+      theArgs->aSecond = theArgs->aFirst;
+      /* fall-through is deliberate */
+d63 3
+a65 3
+      theArgs->aFirst = make_str("name");
+      theArgs->aType = VALUE | EQUAL | VALUE2;
+      /* again, we _should_ fall through here */
+d68 1
+a68 17
+      if (*theArgs->aFirst == HISTORY)
+      {
+	DoReply(-LR_HISTORY, "%s:bad history reference.",
+	    theArgs->aFirst);
+	haveError = 1;
+      }
+      else
+      if (*theArgs->aSecond == HISTORY)
+      {
+	DoReply(-LR_HISTORY, "%s:bad history reference.",
+	    theArgs->aSecond);
+	haveError = 1;
+      }
+      else
+      if (theFD = FindFD(theArgs->aFirst))
+      {
+	if (CanLookup(theFD))
+d70 15
+a84 4
+	  if (theArgs->aKey = (theFD->fdIndexed &&
+		     (theFD->fdLookup || AmHero)
+		     && strlen(theArgs->aSecond) > 1)
+	    && !AllMeta(theArgs->aSecond))
+d86 4
+a89 1
+	    if (theFD->fdId == F_SOUND)
+d91 10
+a100 5
+	      cp = phonemify(theArgs->aSecond);
+	      if (*cp)
+		cp[strlen(cp) - 1] = '\0';    /* trim */
+	      free(theArgs->aSecond);
+	      theArgs->aSecond = make_str(cp);
+d102 1
+a102 2
+	    theArgs->aRating = RateAKey(theArgs->aSecond);
+	    keyCount++;
+d104 7
+a110 1
+	  theArgs->aFD = theFD;
+d114 1
+a114 3
+	  DoReply(-LR_ASEARCH,
+	      "%s:you may not use this field for lookup.",
+	      theArgs->aFirst);
+d117 1
+a117 7
+      }
+      else
+      {
+	DoReply(-LR_FIELD, "%s:unknown field.", theArgs->aFirst);
+	haveError = 1;
+      }
+      break;
+d120 3
+a122 3
+      DoReply(-LR_ERROR, "Argument %d:parsing error.", count);
+      haveError = 1;
+      break;
+d250 1
+a250 1
+      if (++People>TOO_MANY && !AmHero)
+d415 1
+a415 1
+  char  scratch[MAX_LEN];
+d463 2
+a464 6
+	    {
+	      DoReply(-LR_NOTLOG,
+		  "%d:%*s: Must be logged in to view.",
+		  count, F_LEADER, anArg->aFD->fdName);
+	      continue;
+	    }
+d466 3
+a468 1
+	      encryptit(scratch, theValue);
+@
+
+
+1.24
+log
+@No help here.
+@
+text
+@d1 8
+a8 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d21 1
+d146 1
+a146 2
+  else
+  if (theCommand == C_CHANGE)
+d160 1
+a160 2
+    else
+    if (theArgs->aSecond && *theArgs->aSecond == HISTORY)
+d165 1
+a165 2
+    else
+    if (theCommand == C_QUERY && theArgs->aType != VALUE)
+d170 1
+a170 2
+    else
+    if (theCommand == C_CHANGE && (theArgs->aType != (VALUE | EQUAL | VALUE2)))
+d212 1
+d236 1
+a236 1
+      syslog("Database error on 0x%x.", *anEntry);
+d244 11
+d293 2
+a294 1
+    if ((count = length(theEntries)) < TOO_MANY || AmHero)
+d315 1
+a315 1
+	fprintf(TempOutput, "Too many entries to print (%d).\n", count);
+d317 1
+a317 1
+	DoReply(LR_TOOMANY, "Too many entries to print (%d).", count);
+d438 1
+a438 1
+	  syslog(LOG_INFO, "%s attempting to view %s.",
+@
+
+
+1.23
+log
+@No help here.
+@
+text
+@d8 1
+d14 2
+a15 2
+Arg    *FreshArg();
+extern int OldPh;		/* language.l */
+d18 1
+d25 2
+a26 2
+Arg    *theArgs;
+int     theCommand;
+d28 7
+a34 7
+    FieldDesc *theFD;
+    Arg    *origArgs;
+    int     haveError = 0;	/* have we detected an error yet? */
+    int     count = 0;		/* count of arguments */
+    int     keyCount = 0;	/* number of key fields */
+    char   *cp;
+    char   *phonemify();
+d36 2
+a37 2
+    origArgs = theArgs = theArgs->aNext;	/* skip command name */
+    count++;
+d39 4
+a42 2
+    /* collect arguments before ``return'' token */
+    for (; theArgs; count++, theArgs = theArgs->aNext)
+d44 3
+a46 5
+	switch (theArgs->aType)
+	{
+	  case RETURN:
+	    goto keyEnd;
+	    break;
+d48 3
+a50 3
+	  case EQUAL:
+	    DoReply(-LR_SYNTAX, "=:No field or value specified.");
+	    break;
+d52 3
+a54 3
+	  case VALUE | EQUAL:
+	    theArgs->aSecond = make_str("");
+	    goto canonical;
+d56 33
+a88 10
+	  case VALUE:
+	    theArgs->aSecond = theArgs->aFirst;
+	    /* fall-through is deliberate */
+	  case EQUAL | VALUE2:
+	    theArgs->aFirst = make_str("name");
+	    theArgs->aType = VALUE | EQUAL | VALUE2;
+	    /* again, we _should_ fall through here */
+    canonical:
+	  case VALUE | EQUAL | VALUE2:
+	    if (*theArgs->aFirst == HISTORY)
+d90 5
+a94 3
+		DoReply(-LR_HISTORY, "%s:bad history reference.",
+			theArgs->aFirst);
+		haveError = 1;
+d96 19
+a114 44
+	    else
+	    if (*theArgs->aSecond == HISTORY)
+	    {
+		DoReply(-LR_HISTORY, "%s:bad history reference.",
+			theArgs->aSecond);
+		haveError = 1;
+	    }
+	    else
+	    if (theFD = FindFD(theArgs->aFirst))
+	    {
+		if (CanLookup(theFD))
+		{
+		    if (theArgs->aKey = (theFD->fdIndexed &&
+					 (theFD->fdLookup || AmHero)
+					 && strlen(theArgs->aSecond) > 1)
+			&& !AllMeta(theArgs->aSecond))
+		    {
+			if (theFD->fdId == F_SOUND)
+			{
+			    cp = phonemify(theArgs->aSecond);
+			    if (*cp)
+				cp[strlen(cp) - 1] = '\0';	/* trim */
+			    free(theArgs->aSecond);
+			    theArgs->aSecond = make_str(cp);
+			}
+			theArgs->aRating = RateAKey(theArgs->aSecond);
+			keyCount++;
+		    }
+		    theArgs->aFD = theFD;
+		}
+		else
+		{
+		    DoReply(-LR_ASEARCH,
+			    "%s:you may not use this field for lookup.",
+			    theArgs->aFirst);
+		    haveError = 1;
+		}
+	    }
+	    else
+	    {
+		DoReply(-LR_FIELD, "%s:unknown field.", theArgs->aFirst);
+		haveError = 1;
+	    }
+	    break;
+d116 4
+a119 5
+	  default:
+	    DoReply(-LR_ERROR, "Argument %d:parsing error.", count);
+	    haveError = 1;
+	    break;
+	}
+d121 1
+d124 11
+a134 1
+    if (!keyCount)
+d136 3
+a138 2
+	haveError = 1;
+	DoReply(-LR_NOKEY, "no non-null key field in query.");
+d140 9
+a149 1
+    keyCount = ThinArgs(origArgs, keyCount);
+d151 3
+a153 1
+    if (theArgs)
+d155 2
+a156 8
+	if (theCommand == C_DELETE)
+	{
+	    DoReply(-LR_SYNTAX, "%s: unexpected.", theArgs->aFirst);
+	    haveError = 1;
+	    goto giveUp;
+	}
+	count++;
+	theArgs = theArgs->aNext;	/* skip return token */
+d159 1
+a159 1
+    if (theCommand == C_CHANGE)
+d161 2
+a162 2
+	haveError = 1;
+	DoReply(-LR_SYNTAX, "No changes requested.");
+d164 2
+a165 3
+
+
+    for (; theArgs; count++, theArgs = theArgs->aNext)
+d167 2
+a168 35
+	if (theArgs->aFirst && *theArgs->aFirst == HISTORY)
+	{
+	    DoReply(-LR_HISTORY, "%s:bad history reference.", theArgs->aFirst);
+	    haveError = 1;
+	}
+	else
+	if (theArgs->aSecond && *theArgs->aSecond == HISTORY)
+	{
+	    DoReply(-LR_HISTORY, "%s:bad history reference.", theArgs->aSecond);
+	    haveError = 1;
+	}
+	else
+	if (theCommand == C_QUERY && theArgs->aType != VALUE)
+	{
+	    haveError = 1;
+	    DoReply(-LR_SYNTAX, "Argument %d: must be field name.", count);
+	}
+	else
+	if (theCommand == C_CHANGE && (theArgs->aType != (VALUE | EQUAL | VALUE2)))
+	{
+	    haveError = 1;
+	    DoReply(-LR_SYNTAX, "Argument %d (begins %s): must be field=value pair.", count, theArgs->aFirst);
+	}
+	else
+	{
+	    if (theFD = FindFD(theArgs->aFirst))
+	    {
+		theArgs->aFD = theFD;
+	    }
+	    else
+	    {
+		DoReply(-LR_FIELD, "%s:unknown field.", theArgs->aFirst);
+		haveError = 1;
+	    }
+	}
+d170 19
+d191 1
+a191 1
+    return (haveError ? 0 : keyCount);
+d198 1
+a198 1
+unsigned long *
+d200 1
+a200 1
+Arg    *theArgs;
+d202 9
+a210 9
+    int     entCount;
+    char   *keyStrings[MAX_KEYS + 1];
+    char  **aString;
+    Arg    *anArg;
+    unsigned long *theEntries;
+    unsigned long *anEntry;
+    unsigned long *goodEntry;
+    unsigned long *do_lookup();
+    Dir     theDir;
+d212 1
+a212 1
+    theArgs = theArgs->aNext;	/* skip command name */
+d214 6
+a219 6
+    /* collect keys */
+    aString = keyStrings;
+    for (anArg = theArgs; anArg; anArg = anArg->aNext)
+	if (anArg->aKey && aString - keyStrings < MAX_KEYS)
+	    *aString++ = anArg->aSecond;
+    *aString = NULL;
+d221 3
+a223 3
+    /* do key lookup */
+    theEntries = do_lookup(keyStrings, NULL);
+    entCount = length(theEntries);
+d225 10
+a234 1
+    if (entCount == 0)
+d236 2
+a237 2
+	free(theEntries);
+	return (NULL);
+d239 5
+a244 14
+    /* sift entries by field matches */
+    for (goodEntry = anEntry = theEntries; *anEntry; anEntry++)
+    {
+	if (!next_ent(*anEntry))
+	{
+	    syslog("Database error on 0x%x.", *anEntry);
+	    continue;
+	}
+	getdata(&theDir);
+	for (anArg = theArgs; anArg && anArg->aType != RETURN; anArg = anArg->aNext)
+	    if (!DirMatch(theDir, anArg->aFD->fdId, anArg->aSecond))
+		goto nextEntry;
+	*goodEntry++ = *anEntry;
+
+d246 3
+a248 3
+	FreeDir(&theDir);
+    }
+    *goodEntry = NULL;
+d250 5
+a254 5
+    if (length(theEntries) == 0)
+    {
+	free(theEntries);
+	return (NULL);
+    }
+d256 1
+a256 1
+    return (theEntries);
+d263 1
+a263 1
+Arg    *theArgs;
+d265 2
+a266 2
+    unsigned long *theEntries;
+    int     count;
+d268 5
+a272 5
+    if (!ValidQuery(theArgs, C_QUERY))
+    {
+	DoReply(LR_ERROR, "Did not understand %s.", theArgs->aFirst);
+	return;
+    }
+d274 5
+a278 5
+    if (!GonnaRead())
+    {
+	 /* Lock routines give their own errors */ ;
+	return;
+    }
+d280 3
+a282 1
+    if (theEntries = DoLookup(theArgs))
+d284 3
+a286 1
+	if ((count = length(theEntries)) < TOO_MANY || AmHero)
+d288 2
+a289 15
+	    /* skip to what we are supposed to print */
+	    for (; theArgs; theArgs = theArgs->aNext)
+		if (theArgs->aType == RETURN)
+		{
+		    theArgs = theArgs->aNext;
+		    break;
+		}
+	    /* do the printing */
+	    if (OldPh)
+		fprintf(TempOutput, "There %s %d match%s to your request.\n",
+			count > 1 ? "were" : "was",
+			count,
+			count > 1 ? "es" : "");
+	    PrintThem(theEntries, theArgs);
+	    DoReply(LR_OK, "Ok.");
+d291 8
+a298 9
+	else
+	{
+	    if (OldPh)
+		fprintf(TempOutput, "Too many entries to print (%d).\n", count);
+	    else
+		DoReply(LR_TOOMANY, "Too many entries to print (%d).", count);
+	}
+
+	free(theEntries);
+d302 4
+a305 4
+	if (OldPh)
+	    fprintf(TempOutput, "No matches to your query.\n");
+	else
+	    DoReply(LR_NOMATCH, "No matches to your query.");
+d307 11
+a317 1
+    Unlock();
+d324 2
+a325 2
+Dir     dir;
+int     field;
+d328 4
+a331 4
+    int     fIndex;
+    char    scratch[MAX_LEN];
+    char   *strtok();
+    char   *aWord;
+d333 3
+a335 3
+    /* is the field there? */
+    if ((fIndex = FindField(dir, field)) == -1)
+	return (0);
+d337 3
+a339 3
+    /* check whole string */
+    if (!pmatch(FieldValue(dir, fIndex), value))
+	return (1);
+d341 7
+a347 7
+    /* nope.  check each word in string */
+    strcpy(scratch, FieldValue(dir, fIndex));
+    for (aWord = strtok(scratch, LOOK_DELIM); aWord; aWord = strtok(NULL, LOOK_DELIM))
+    {
+	if (!pmatch(aWord, value))
+	    return (1);
+    }
+d349 3
+a351 3
+    /* if it's the name field, check nickname as well */
+    if (field==F_NAME)
+	return(DirMatch(dir,F_NICKNAME,value));
+d353 2
+a354 2
+    /* nope */
+    return (0);
+d361 2
+a362 2
+unsigned long *theEntries;
+Arg    *theArgs;
+d364 4
+a367 4
+    static Arg *defaultArgs;
+    static Arg *allArgs;
+    Arg    *GetPrintDefaults();
+    Arg    *GetAllFields();
+d369 4
+a372 15
+    if (theArgs)
+    {
+	if (stricmp(theArgs->aFirst,"all"))
+	    PrintFields(theEntries, theArgs, 1);
+	else
+	{
+	    if (!allArgs)
+		allArgs = GetAllFields();
+	    PrintFields(theEntries, allArgs, 0);
+	}
+    }
+    else if (OldPh)
+    {
+	PrintOld(theEntries);
+    }
+d375 3
+a377 3
+	if (!defaultArgs)
+	    defaultArgs = GetPrintDefaults();
+	PrintFields(theEntries, defaultArgs, 0);
+d379 11
+d396 3
+a398 3
+unsigned long *theEntries;
+Arg    *theArgs;
+int     printEmpty;		/* print empty fields */
+d400 6
+a405 6
+    int     count = 0;
+    Arg    *anArg;
+    Dir     dir;
+    char    scratch[MAX_LEN];
+    char   *theValue;
+    int     theIndex;
+d407 4
+a410 1
+    for (; *theEntries; theEntries++)
+d412 3
+a414 6
+	count++;
+	if (!next_ent(*theEntries))
+	{
+	    DoReply(-LR_ERROR, "%d:database error.", count);
+	    continue;
+	}
+d416 1
+a416 1
+	getdata(&dir);
+d418 5
+a422 1
+	for (anArg = theArgs; anArg; anArg = anArg->aNext)
+d424 27
+a450 1
+	    if (!CanSee(dir, anArg->aFD))	/* check auth. first */
+d452 4
+a455 7
+		if (printEmpty)
+		{
+		    DoReply(-LR_AINFO, "%d:%*s: You may not view this field.",
+			count, F_LEADER, anArg->aFD->fdName);
+		    syslog(LOG_INFO, "%s attempting to view %s.",
+		       UserAlias, anArg->aFirst);
+		}
+a456 6
+	    else if ((theIndex = FindField(dir, anArg->aFD->fdId)) == -1)
+	    {
+		if (printEmpty)
+		    DoReply(-LR_ABSENT, "%d:%*s: Not present in entry.",
+			    count, F_LEADER, anArg->aFD->fdName);
+	    }
+d458 10
+a467 33
+	    {
+		theValue = FieldValue(dir, theIndex);
+		if (*theValue == '*' && !CanChange(dir, anArg->aFD) &&
+		    anArg->aFD->fdTurn)
+		{
+		    if (printEmpty)
+			DoReply(-LR_ABSENT, "%d:%*s: Not present in entry.",
+			    count, F_LEADER, anArg->aFD->fdName);
+		}
+		else
+		{
+		    if (InputType==IT_NET && anArg->aFD->fdEncrypt)
+		    {
+			if (!User)
+			{
+			    DoReply(-LR_NOTLOG,
+				    "%d:%*s: Must be logged in to view.",
+				    count, F_LEADER, anArg->aFD->fdName);
+			    continue;
+			}
+			else
+			    encryptit(scratch, theValue);
+		    }
+		    else
+			strcpy(scratch, theValue);
+		    for (theValue = strtok(scratch, "\n");
+			 theValue;
+			 theValue = strtok(NULL, "\n"))
+			DoReply(-LR_OK, "%d:%*s: %s", count, F_LEADER,
+				theValue==scratch ? anArg->aFD->fdName : "",
+				theValue);
+		}
+	    }
+d469 2
+d472 2
+a473 2
+	FreeDir(&dir);
+    }
+d479 1
+a479 1
+Arg    *
+d482 4
+a485 4
+    Arg    *theFirst;
+    Arg    *theArg;
+    Arg    *theOld;
+    FieldDesc **theFD;
+d487 1
+a487 1
+    theFirst = theOld = theArg = New(Arg);
+d489 7
+a495 7
+    for (theFD = FieldDescriptors; *theFD; theFD++)
+    {
+	theArg->aFD = *theFD;
+	theArg->aNext = New(Arg);
+	theOld = theArg;
+	theArg = theArg->aNext;
+    }
+d497 3
+a499 3
+    free(theArg);
+    theOld->aNext = NULL;
+    return (theFirst);
+d505 1
+a505 1
+Arg    *
+d508 4
+a511 4
+    Arg    *theFirst;
+    Arg    *theArg;
+    Arg    *theOld;
+    FieldDesc **theFD;
+d513 1
+a513 1
+    theFirst = theOld = theArg = New(Arg);
+d515 3
+a517 1
+    for (theFD = FieldDescriptors; *theFD; theFD++)
+d519 4
+a522 7
+	if ((*theFD)->fdDefault)
+	{
+	    theArg->aFD = *theFD;
+	    theArg->aNext = New(Arg);
+	    theOld = theArg;
+	    theArg = theArg->aNext;
+	}
+d524 1
+d526 3
+a528 3
+    free(theArg);
+    theOld->aNext = NULL;
+    return (theFirst);
+d535 2
+a536 2
+Arg    *theArgs;
+int     theCount;
+d538 3
+a540 3
+    int     left;
+    Arg    *anArg;
+    int     bestRating = -1000;
+d542 3
+a544 1
+    for (left = theCount, anArg = theArgs; left; anArg = anArg->aNext)
+d546 3
+a548 6
+	if (anArg->aKey)
+	{
+	    left--;
+	    if (anArg->aRating > bestRating)
+		bestRating = anArg->aRating;
+	}
+d550 1
+d552 3
+a554 1
+    for (left = theCount, anArg = theArgs; left; anArg = anArg->aNext)
+d556 6
+a561 9
+	if (anArg->aKey)
+	{
+	    left--;
+	    if (anArg->aRating < 0 && anArg->aRating < bestRating)
+	    {
+		anArg->aKey = 0;
+		theCount--;
+	    }
+	}
+d563 2
+a564 1
+    return (theCount);
+d575 2
+a576 2
+    int     rating = 0;
+    int     c;
+d578 2
+a579 2
+    if (index("[]*?", *key))
+	rating = R_INITIAL;
+d581 10
+a590 10
+    for (; c = *key; key++)
+    {
+	if (c == '*')
+	    rating += R_STAR;
+	else
+	if (index("[]?", c))
+	    rating += R_META;
+	else
+	    rating += R_PLAIN;
+    }
+d592 1
+a592 1
+    return (rating);
+d599 1
+a599 1
+unsigned long   *theEntries;
+d601 2
+a602 2
+    Dir     theDir;
+    char   *theValue;
+d604 3
+a606 1
+    for (; *theEntries; theEntries++)
+d608 4
+a611 6
+	if (!next_ent(*theEntries))
+	{
+	    fprintf(TempOutput, "Error:  couldn't read entry.\n");
+	    continue;
+	}
+	fputs("-----------------------------------\n", TempOutput);
+d613 3
+a615 3
+	getdata(&theDir);
+	if (*(theValue = FindValue(theDir, F_NAME)))
+	    fprintf(TempOutput, "%s\n", theValue);
+d617 2
+a618 2
+	if (*(theValue = FindValue(theDir, F_EMAIL)))
+	    fprintf(TempOutput, "%s\n", theValue);
+d620 2
+a621 2
+	if (*(theValue = FindValue(theDir, F_PHONE)))
+	    fprintf(TempOutput, "%s\n", theValue);
+d623 3
+a625 3
+	if ((*(theValue = FindValue(theDir, F_TITLE))) ||
+	    (*(theValue = FindValue(theDir, F_CURRICULUM))))
+	    fprintf(TempOutput, "%s\n", theValue);
+d627 2
+a628 2
+	if (*(theValue = FindValue(theDir, F_DEPARTMENT)))
+	    fprintf(TempOutput, "%s\n", theValue);
+d630 2
+a631 2
+	if (*(theValue = FindValue(theDir, F_ADDRESS)))
+	    fprintf(TempOutput, "%s\n", theValue);
+d633 3
+a635 3
+	FreeDir(&theDir);
+    }
+    fputs("-----------------------------------\n", TempOutput);
+@
+
+
+1.22
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d8 3
+a10 3
+#include "commands.h"
+#include "field.h"
+#include "qi.h"
+d363 1
+d365 1
+a367 3
+	PrintFields(theEntries, theArgs, 1);
+    else
+    if (OldPh)
+d369 11
+d420 5
+a424 3
+		DoReply(-LR_ASEARCH, "%d:%*s:you may not view this field.",
+			count, F_LEADER, anArg->aFirst);
+		syslog(LOG_INFO, "%s attempting to view %s.",
+d426 1
+d428 1
+a428 2
+	    else
+	    if ((theIndex = FindField(dir, anArg->aFD->fdId)) == -1)
+d472 26
+@
+
+
+1.21
+log
+@*** empty log message ***
+@
+text
+@d290 1
+a290 4
+	    if (OldPh)
+		fprintf(TempOutput, "###\n");
+	    else
+		DoReply(LR_OK, "Ok.");
+d295 1
+a295 1
+		fprintf(TempOutput, "Too many entries to print (%d).\n###\n", count);
+d305 1
+a305 1
+	    fprintf(TempOutput, "No matches to your query.\n###\n");
+@
+
+
+1.20
+log
+@*** empty log message ***
+@
+text
+@a227 1
+#ifndef ultrix
+a228 1
+#endif
+a408 1
+#ifndef ultrix
+a410 1
+#endif
+@
+
+
+1.19
+log
+@*** empty log message ***
+@
+text
+@d10 1
+d228 1
+d230 1
+d346 4
+d411 1
+d414 1
+d435 1
+a435 1
+		    if (anArg->aFD->fdEncrypt)
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d444 2
+a445 1
+				anArg->aFD->fdName, theValue);
+@
+
+
+1.17
+log
+@*** empty log message ***
+@
+text
+@d518 2
+a519 2
+#define R_META -1
+#define R_STAR -3
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@d417 5
+a421 2
+		if (*theValue == '*' && !CanChange(dir, anArg->aFD))
+		    DoReply(-LR_ABSENT, "%d:%*s: Not present in entry.",
+d423 1
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d6 2
+a7 2
+char *make_str();
+Arg *FreshArg();
+d15 3
+a17 3
+ValidQuery(theArgs,theCommand)
+Arg *theArgs;
+int theCommand;
+a18 1
+    char *Me;
+d20 6
+a25 6
+    Arg *origArgs;
+    int haveError=0;		/* have we detected an error yet? */
+    int count=0;		/* count of arguments */
+    int keyCount=0;		/* number of key fields */
+    char *cp;
+    char *phonemify();
+d27 1
+a27 2
+    Me = theArgs->aFirst;
+    origArgs = theArgs=theArgs->aNext;		/* skip command name */
+d31 1
+a31 1
+    for (;theArgs;count++,theArgs=theArgs->aNext)
+d35 3
+a37 3
+	    case RETURN:
+		goto keyEnd;
+		break;
+d39 3
+a41 3
+	    case EQUAL:
+		DoReply(-LR_SYNTAX,"=:No field or value specified.");
+		break;
+d43 3
+a45 3
+	    case VALUE | EQUAL:
+		theArgs->aSecond = make_str("");
+		goto canonical;
+d47 12
+a58 12
+	    case VALUE:
+		theArgs->aSecond = theArgs->aFirst;
+		/* fall-through is deliberate */
+	    case EQUAL | VALUE2:
+		theArgs->aFirst = make_str("name");
+		theArgs->aType = VALUE | EQUAL | VALUE2;
+		/* again, we _should_ fall through here */
+canonical:
+	    case VALUE | EQUAL | VALUE2:
+		if (*theArgs->aFirst==HISTORY)
+		{
+		    DoReply(-LR_HISTORY,"%s:bad history reference.",
+d60 6
+a65 5
+		    haveError = 1;
+		}
+		else if (*theArgs->aSecond==HISTORY)
+		{
+		    DoReply(-LR_HISTORY,"%s:bad history reference.",
+d67 6
+a72 3
+		    haveError = 1;
+		}
+		else if (theFD=FindFD(theArgs->aFirst))
+d74 4
+a77 1
+		    if (CanLookup(theFD))
+d79 1
+a79 4
+			if (theArgs->aKey = (theFD->fdIndexed &&
+				(theFD->fdLookup || AmHero)
+				&& strlen(theArgs->aSecond)>1)
+				&& !AllMeta(theArgs->aSecond))
+d81 5
+a85 9
+			    if (theFD->fdId == F_SOUND)
+			    {
+				cp = phonemify(theArgs->aSecond);
+				if (*cp) cp[strlen(cp)-1] = '\0'; /* trim */
+				free(theArgs->aSecond);
+				theArgs->aSecond = make_str(cp);
+			    }
+			    theArgs->aRating = RateAKey(theArgs->aSecond);
+			    keyCount++;
+d87 2
+a88 1
+			theArgs->aFD = theFD;
+d90 1
+a90 7
+		    else
+		    {
+			DoReply(-LR_ASEARCH,
+			    "%s:you may not use this field for lookup.",
+			    theArgs->aFirst);
+			haveError = 1;
+		    }
+d94 4
+a97 2
+		    DoReply(-LR_FIELD,"%s:unknown field.",theArgs->aFirst);
+		    haveError=1;
+d99 7
+a105 1
+		break;
+d107 4
+a110 4
+	    default:
+		DoReply(-LR_ERROR,"Argument %d:parsing error.",count);
+		haveError = 1;
+		break;
+d114 1
+a114 1
+    
+d118 1
+a118 1
+	DoReply(-LR_NOKEY,"no non-null key field in query.");
+d121 1
+a121 1
+    keyCount = ThinArgs(origArgs,keyCount);
+d127 1
+a127 1
+	    DoReply(-LR_SYNTAX,"%s: unexpected.",theArgs->aFirst);
+d132 1
+a132 1
+	theArgs=theArgs->aNext;			/* skip return token */
+d134 2
+a135 1
+    else if (theCommand == C_CHANGE)
+d138 1
+a138 1
+	DoReply(-LR_SYNTAX,"No changes requested.");
+d142 1
+a142 1
+    for (;theArgs;count++,theArgs=theArgs->aNext)
+d144 1
+a144 1
+	if (theArgs->aFirst && *theArgs->aFirst==HISTORY)
+d146 1
+a146 1
+	    DoReply(-LR_HISTORY,"%s:bad history reference.",theArgs->aFirst);
+d149 2
+a150 1
+	else if (theArgs->aSecond && *theArgs->aSecond==HISTORY)
+d152 1
+a152 1
+	    DoReply(-LR_HISTORY,"%s:bad history reference.",theArgs->aSecond);
+d155 2
+a156 1
+	else if (theCommand==C_QUERY && theArgs->aType != VALUE)
+d159 1
+a159 1
+	    DoReply(-LR_SYNTAX,"Argument %d: must be field name.",count);
+d161 2
+a162 1
+	else if (theCommand==C_CHANGE && (theArgs->aType!=(VALUE|EQUAL|VALUE2)))
+d165 1
+a165 1
+	    DoReply(-LR_SYNTAX,"Argument %d (begins %s): must be field=value pair.",count,theArgs->aFirst);
+d169 1
+a169 1
+	    if (theFD=FindFD(theArgs->aFirst))
+d175 2
+a176 2
+		DoReply(-LR_FIELD,"%s:unknown field.",theArgs->aFirst);
+		haveError=1;
+d182 1
+a182 1
+    return(haveError ? 0 : keyCount);
+d191 1
+a191 1
+Arg *theArgs;
+d193 4
+a196 5
+    int keyCount;
+    int entCount;
+    char *keyStrings[MAX_KEYS+1];
+    char **aString;
+    Arg *anArg;
+d201 1
+a201 1
+    Dir theDir;
+d203 1
+a203 1
+    theArgs = theArgs->aNext;		/* skip command name */
+d207 2
+a208 2
+    for (anArg = theArgs; anArg ; anArg = anArg->aNext)
+	if (anArg->aKey && aString-keyStrings < MAX_KEYS)
+d213 1
+a213 1
+    theEntries = do_lookup(keyStrings,NULL);
+d216 1
+a216 1
+    if (entCount==0)
+d219 1
+a219 1
+	return(NULL);
+d223 1
+a223 1
+    for (goodEntry=anEntry=theEntries;*anEntry;anEntry++)
+d227 1
+a227 1
+	    syslog("Database error on 0x%x.",*anEntry);
+d231 2
+a232 2
+	for (anArg=theArgs; anArg && anArg->aType!=RETURN; anArg = anArg->aNext)
+	    if (!DirMatch(theDir,anArg->aFD->fdId,anArg->aSecond))
+d236 1
+a236 1
+    nextEntry:
+d241 1
+a241 1
+    if (length(theEntries)==0)
+d244 1
+a244 1
+	return(NULL);
+d247 1
+a247 1
+    return(theEntries);
+d254 1
+a254 1
+Arg *theArgs;
+d257 1
+a257 1
+    int count;
+d259 1
+a259 1
+    if (!ValidQuery(theArgs,C_QUERY))
+d261 1
+a261 1
+	DoReply(LR_ERROR,"Did not understand %s.",theArgs->aFirst);
+d267 1
+a267 1
+	/* Lock routines give their own errors */;
+d271 1
+a271 1
+    if (theEntries=DoLookup(theArgs))
+d273 1
+a273 1
+	if ((count=length(theEntries)) < TOO_MANY || AmHero)
+d276 1
+a276 1
+	    for (;theArgs;theArgs=theArgs->aNext)
+d279 1
+a279 1
+		    theArgs=theArgs->aNext;
+d284 5
+a288 5
+		fprintf(TempOutput,"There %s %d match%s to your request.\n",
+		    count>1 ? "were" : "was",
+		    count,
+		    count>1 ? "es" : "");
+	    PrintThem(theEntries,theArgs);
+d290 1
+a290 1
+		fprintf(TempOutput,"###\n");
+d292 1
+a292 1
+		DoReply(LR_OK,"Ok.");
+d297 1
+a297 1
+		fprintf(TempOutput,"Too many entries to print (%d).\n###\n",count);
+d299 1
+a299 1
+		DoReply(LR_TOOMANY,"Too many entries to print (%d).",count);
+d307 1
+a307 1
+	    fprintf(TempOutput,"No matches to your query.\n###\n");
+d309 1
+a309 1
+	    DoReply(LR_NOMATCH,"No matches to your query.");
+d317 4
+a320 4
+DirMatch(dir,field,value)
+Dir dir;
+int field;
+char *value;
+d322 4
+a325 4
+    int fIndex;
+    char scratch[MAX_LEN];
+    char *strtok();
+    char *aWord;
+d328 2
+a329 2
+    if ((fIndex=FindField(dir,field))==-1)
+	return(0);
+d332 2
+a333 2
+    if (!pmatch(FieldValue(dir,fIndex),value))
+	return(1);
+d336 2
+a337 2
+    strcpy(scratch,FieldValue(dir,fIndex));
+    for (aWord=strtok(scratch,LOOK_DELIM);aWord;aWord=strtok(NULL,LOOK_DELIM))
+d339 2
+a340 2
+	if (!pmatch(aWord,value))
+	    return(1);
+d344 1
+a344 1
+    return(0);
+d350 1
+a350 1
+PrintThem(theEntries,theArgs)
+d352 1
+a352 1
+Arg *theArgs;
+d355 1
+a355 1
+    Arg *GetPrintDefaults();
+d358 3
+a360 2
+	PrintFields(theEntries,theArgs,1);
+    else if (OldPh)
+d368 1
+a368 1
+	PrintFields(theEntries,defaultArgs,0);
+d375 1
+a375 1
+PrintFields(theEntries,theArgs,printEmpty)
+d377 2
+a378 2
+Arg *theArgs;
+int printEmpty;			/* print empty fields */
+d380 8
+a387 8
+    int count=0;
+    Arg *anArg;
+    Dir dir;
+    char scratch[MAX_LEN];
+    char *theValue;
+    int theIndex;
+    
+    for (;*theEntries;theEntries++)
+d392 1
+a392 1
+	    DoReply(-LR_ERROR,"%d:database error.",count);
+d398 1
+a398 1
+	for (anArg=theArgs;anArg;anArg=anArg->aNext)
+d400 1
+a400 1
+	    if (!CanSee(dir,anArg->aFD))	/* check auth. first */
+d402 4
+a405 4
+		DoReply(-LR_ASEARCH,"%d:%*s:you may not view this field.",
+		    count,F_LEADER,anArg->aFirst);
+		syslog(LOG_INFO,"%s attempting to view %s.",
+				UserAlias,anArg->aFirst);
+d407 2
+a408 1
+	    else if ((theIndex=FindField(dir,anArg->aFD->fdId))==-1)
+d411 2
+a412 2
+		    DoReply(-LR_ABSENT,"%d:%*s: Not present in entry.",
+			count,F_LEADER,anArg->aFD->fdName);
+d416 4
+a419 4
+		theValue = FieldValue(dir,theIndex);
+		if (*theValue=='*' && !CanChange(dir,anArg->aFD))
+		    DoReply(-LR_ABSENT,"%d:%*s: Not present in entry.",
+			    count,F_LEADER,anArg->aFD->fdName);
+d428 1
+a428 1
+				    count,F_LEADER,anArg->aFD->fdName);
+d432 1
+a432 1
+			    encryptit(scratch,theValue);
+d435 2
+a436 2
+			strcpy(scratch,theValue);
+		    for (theValue=strtok(scratch,"\n");
+d438 3
+a440 3
+			 theValue=strtok(NULL,"\n"))
+			DoReply(-LR_OK,"%d:%*s: %s",count,F_LEADER,
+				anArg->aFD->fdName,theValue);
+d452 2
+a453 1
+Arg *GetPrintDefaults()
+d455 3
+a457 3
+    Arg *theFirst;
+    Arg *theArg;
+    Arg *theOld;
+d460 1
+a460 1
+    theFirst=theOld=theArg=New(Arg);
+d462 1
+a462 1
+    for (theFD=FieldDescriptors;*theFD;theFD++)
+d475 1
+a475 1
+    return(theFirst);
+d481 3
+a483 3
+ThinArgs(theArgs,theCount)
+Arg *theArgs;
+int theCount;
+d485 3
+a487 3
+    int left;
+    Arg *anArg;
+    int bestRating = -1000;
+d489 1
+a489 1
+    for (left=theCount,anArg=theArgs;left;anArg = anArg->aNext)
+d499 1
+a499 1
+    for (left=theCount,anArg=theArgs;left;anArg = anArg->aNext)
+d511 1
+a511 1
+    return(theCount);
+d520 1
+a520 1
+char *key;
+d522 2
+a523 2
+    int rating=0;
+    int c;
+d525 1
+a525 1
+    if (index("[]*?",*key))
+d528 1
+a528 1
+    for (;c = *key;key++)
+d530 1
+a530 1
+	if (c=='*')
+d532 2
+a533 1
+	else if (index("[]?",c))
+d539 1
+a539 1
+    return(rating);
+d546 1
+a546 1
+long *theEntries;
+d548 2
+a549 2
+    Dir theDir;
+    char *theValue;
+d551 1
+a551 1
+    for (;*theEntries;theEntries++)
+d555 1
+a555 1
+	    fprintf(TempOutput,"Error:  couldn't read entry.\n");
+d558 1
+a558 1
+	fputs("-----------------------------------\n",TempOutput);
+d561 2
+a562 2
+	if (*(theValue=FindValue(theDir,F_NAME)))
+	    fprintf(TempOutput,"%s\n",theValue);
+d564 2
+a565 2
+	if (*(theValue=FindValue(theDir,F_EMAIL)))
+	    fprintf(TempOutput,"%s\n",theValue);
+d567 2
+a568 2
+	if (*(theValue=FindValue(theDir,F_PHONE)))
+	    fprintf(TempOutput,"%s\n",theValue);
+d570 3
+a572 3
+	if ((*(theValue=FindValue(theDir,F_TITLE))) ||
+	    (*(theValue=FindValue(theDir,F_CURRICULUM))))
+	    fprintf(TempOutput,"%s\n",theValue);
+d574 2
+a575 2
+	if (*(theValue=FindValue(theDir,F_DEPARTMENT)))
+	    fprintf(TempOutput,"%s\n",theValue);
+d577 2
+a578 2
+	if (*(theValue=FindValue(theDir,F_ADDRESS)))
+	    fprintf(TempOutput,"%s\n",theValue);
+d582 1
+a582 1
+    fputs("-----------------------------------\n",TempOutput);
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@d82 1
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d25 2
+d79 6
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d213 2
+d216 1
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d213 1
+a213 4
+	{
+	    free(theEntries);
+	    return(NULL);
+	}
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d151 1
+a151 1
+	    DoReply(-LR_SYNTAX,"Argument %d: must be field=value pair.",count);
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d72 4
+a75 3
+			if (theArgs->aKey = (theFD->fdIndexed && theFD->fdLookup
+					    && strlen(theArgs->aSecond)>1)
+					    && !AllMeta(theArgs->aSecond))
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@a382 2
+	if (count>1)
+	    DoReply(-LR_OK,"%d:",count-1);
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d392 1
+a392 1
+				User,anArg->aFirst);
+d408 14
+a421 1
+		    strcpy(scratch,theValue);
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d30 1
+a30 1
+    /* collect arguments before return token */
+d56 1
+a56 1
+		if (theFD=FindFD(theArgs->aFirst))
+d58 12
+d132 11
+a142 1
+	if (theCommand==C_QUERY && theArgs->aType != VALUE)
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d531 1
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@a498 1
+    int needBlank=0;
+d507 1
+a507 4
+	if (needBlank)
+	    fputs("-----------------------------------\n",TempOutput);
+	else
+	    needBlank = 1;
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@a222 1
+    OldPh = 1;
+d247 5
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d8 2
+d223 1
+d249 4
+a252 1
+	    DoReply(LR_OK,"Ok.");
+d255 6
+a260 1
+	    DoReply(LR_TOOMANY,"Too many entries to print (%d).\n",count);
+d265 6
+a270 1
+	DoReply(LR_NOMATCH,"No matches to your query.");
+d319 4
+d485 46
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d344 1
+a344 1
+		    count,F_LEADER,theArgs->aFirst);
+d346 1
+a346 1
+				User,theArgs->aFirst);
+@

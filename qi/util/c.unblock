@@ -1,0 +1,202 @@
+#!%PerlProg%
+#
+# c.unblock - unblock CERL tape
+#
+# Layout is:
+# 24	name
+# 5	team name
+# 5	office phone
+# 5	office number
+# 40	home street address
+# 15	home city
+# 10	home state & zip code
+# 12	home phone number
+# 12	spouse name
+# 1	human tag (T) or unit (F)
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @(#)$Id: c.unblock,v 1.2 1995/01/11 00:05:11 p-pomes Exp $
+
+
+#
+# beginning of interesting stuff
+#
+
+#
+# usage
+if ($#ARGV<0) {print STDERR "usage: c.unblock prod.cnf [files]\n";exit 1;}
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+#
+# read prod.cnf
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  chop;
+  if (/^#/) {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@_ < 2) {next;}
+  $fid{$_[1]} = $_[0];
+}
+close(CONFIG);
+
+# throw away the timestamp line and following blank
+
+open(PASS, "passwords") || die("No password list file!");
+
+#
+# here we go...
+while (<>)
+{
+
+  #
+  # lowercase, sanitize, unblock
+  #
+  tr/A-Z/a-z/;
+  tr/ -~/ /c;
+  
+  ($name,$team,$offPhone,$offNum,$homeSt,$homeCity,$homeState,$homePhone,
+   $spouse,$human) = 
+    unpack("A24A5A5A5A40A15A10A12A12A",$_);
+  
+  #printf("name %s, team %s, offPhone %s, offNum %s, homeSt %s, homeCity %s, homeState %s, homePhone %s, spouse %s, human %s\n",
+  #  $name,$team,$offPhone,$offNum,$homeSt,$homeCity,$homeState,$homePhone,$spouse,$human);
+  #
+  # massage fields
+  #
+  $lastname = $name;
+  $lastname =~ s/,.*//;
+  $name =~ s/,//;
+  $homeAddr = $homeSt;
+  $homeRest = $homeCity;
+  $homeRest = &SepCat($homeRest,", ",$homeState);
+  $homeAddr = &SepCat($homeAddr,"\\n",$homeRest);
+
+  $offAddr = $offNum;
+
+  if ($offPhone =~ /#/)
+  {
+    $other = "CPR qualified";
+    $offPhone =~ s/[#*]$// ;
+  }
+  else
+  {
+    $other = '';
+  }
+  
+  #
+  # build output string
+  #
+  $id = $name;
+  $id =~ s/ .*//;
+  $id = $id.$team;
+
+  if ($human eq "t")
+  {
+    $out = $fid{"id"} . ":" . $id . "\t4:person phone";
+  }
+  else
+  {
+    $out = $fid{"id"} . ":" . $id . "\t4:other phone";
+  }
+
+  $offPhone = &FixPhone($offPhone);
+  $email = sprintf("%s%%%s%%USACERL@aardvark.cecer.army.mil", $lastname, $team);
+
+  $out = &SepCat($out,"\t".$fid{"email"}.":",$email);
+  $out = &SepCat($out,"\t".$fid{"name"}.":",$name);
+  $out = &SepCat($out,"\t".$fid{"department"}.":",$team);
+  $out = &SepCat($out,"\t".$fid{"office_location"}.":","Rm ".$offNum."\\n2902 Newmark Drive\\nChampaign, IL");
+  $out = &SepCat($out,"\t".$fid{"office_address"}.":","PO Box 9005\\nChampaign, IL  61826-9005");
+  $out = &SepCat($out,"\t".$fid{"office_phone"}.":",$offPhone);
+  $out = &SepCat($out,"\t".$fid{"home_address"}.":",$homeAddr);
+  $out = &SepCat($out,"\t".$fid{"home_phone"}.":",$homePhone);
+  if ($other ne '')
+  {
+    $out = &SepCat($out,"\t".$fid{"other"}.":",$other);
+  }
+  $pass = <PASS>;
+  chop $pass;
+  $out = &SepCat($out,"\t".$fid{"password"}.":",$pass);
+  $out = &SepCat($out,"\t".$fid{"created"}.":",$Date);
+  #
+  # and print it...
+  #
+  print $out . "\n";
+}
+
+sub FixPhone
+{
+  $phone = $_[0];
+
+  if (length($phone) == 4)
+  {
+    if ($phone =~ /^5/)
+    {
+      $phone =~ s/..../(217) 398-$& (in-house 81-$&)/;
+    }
+    else
+    {
+      $phone =~ s/..../(217) 373-$& (in-house 81-$&)/;
+    }
+  }
+  elsif (length($phone) == 3)
+  {
+    if ($phone =~ /^2/)
+    {
+      $phone =~ s/(...)/(217) 373-7$& (in-house $&)/;
+    }
+    else
+    {
+      $phone =~ s/(...)/(217) 373-6$& (in-house $&)/;
+    }
+  }
+  $phone;
+}
+
+sub SepCat
+{
+  ($str1,$sep,$str2) = @_;
+  ($str1 ne "" && $str2 ne "") ? ($str1 .= $sep . $str2) : ($str1 .= $str2);
+}
+

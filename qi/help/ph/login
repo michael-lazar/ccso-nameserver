@@ -1,0 +1,64 @@
+SYNTAX: login [your-alias]
+
+SUMMARY
+The "login" command allows you to identify yourself to the Nameserver.
+More specifically, it identifies you with a particular entry in the
+Nameserver and allows you to change the fields in that entry and in any
+other entry for which you have proxy rights (see help on "proxy").  It
+is also necessary to be logged in to the Nameserver to view certain
+sensitive fields in your own entry.
+
+In order to use the "login" command, you must know both your ph alias
+and your ph password.  Your can find out your alias by doing a ph lookup
+on your own entry.  For example, if Paul Pomes wanted to learn his alias,
+he could type "ph paul pomes" at the command prompt or in ph's interactive
+mode.  Paul's ph entry would be displayed as follows:
+
+----------------------------------------
+           name: pomes paul
+          phone: (217) 333-6262
+        address: 1429 dcl, MC 256
+               : 1304 w springfield
+               : urbana, il 61801
+     department: computing services office
+          title: sr res programmer
+       email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+----------------------------------------
+
+The "alias" is the first item in the "email to:" line, before the
+"@uiuc.edu"; thus, Paul Pomes' alias is "p-pomes".
+
+To obtain your ph password, bring a valid University ID to the CCSO
+Accounting and Distribution Office, 1420 DCL, 1304 W.  Springfield,
+Urbana.
+
+EXAMPLE
+Once you know your ph alias and password, you can login to the
+Nameserver.  In order to login, you must first enter ph's interactive
+mode by typing "ph" at the command prompt. Then type "login your-alias",
+after which you will be prompted for your password.  Paul Pomes' "login"
+session would look something like this:
+
+  % ph
+  [ph status message appears here]
+  ph> login p-pomes
+  Enter nameserver password: [paul's-secret-password]
+  200:p-pomes:Hi how are you?
+  ph>
+
+Paul enters his Nameserver password when asked for it; his password is
+not echoed to the screen.
+
+NOTES
+If you are using ph from the account listed in your "email to:" line,
+you will not have to give a password when logging into ph.  This feature
+will only work if your system administrator has installed ph 5.0 or
+later and has made it a privileged program.
+
+If you do not give your alias on the command line, ph will ask you for it.
+
+Some ph clients display the user "alias" as a separate field during a
+lookup, rather than combining it with contents of the "email" field in
+the "email to:" line.
+
+SEE ALSO: proxy, passwd, alias, aliases

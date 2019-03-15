@@ -1,0 +1,7 @@
+#  Most defaults are suitable for OS/2 Warp
+$OtherDefines{"Mem_Type"} = "void";
+$CC = "gcc -Zomf -Zmtd";
+$Cflags .= " ";
+$DbmLib = "-ldbm";
+$Depend = "";
+1

@@ -1,0 +1,3 @@
+The database is ready for your commands, but is in read-only mode.  You
+will not be able to login or make changes to the Nameserver database,
+but you can make queries.  The condition is probably temporary.

@@ -1,0 +1,28 @@
+SUMMARY
+The "nickname" field is provided so that nicknames can be used in
+Nameserver queries.  While the "name" field of the Nameserver database
+contains every user's full name (as known by the University), often
+individuals are more commonly known by names other than their full names.
+"William" might be known to most people as "Bill", or "Steven" as
+"Steve".  A user may enter any nicknames by which he or she is known
+into the "nickname" field of his or her entry.  Other users can then
+use the full name or nickname to find that user.
+
+The Nameserver treats the "nickname" field just like the "name" field;
+nothing special is required to use a nickname in lookups.  In other
+words, if a Nameserver query is issued without any field specifiers, ph
+will look at both the "name" and "nickname" fields for entries that
+match the query expression.
+
+EXAMPLE
+Suppose "William Willard" is known to everyone as "Willy," and he would
+like people to be able to easily find his entry in the Nameserver.
+William can use the ph "edit" or "make" command to put "willy" in his
+"nickname" field.  Once he has done so, others can find him in the
+Nameserver database using either of the following query expressions:
+
+   ph> ph william willard
+
+   ph> ph willy willard
+
+SEE ALSO: edit, make, query

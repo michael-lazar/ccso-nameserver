@@ -1,0 +1,5 @@
+The Nameserver database is in read-only mode.  You may not login when
+it is read-only.  Typically, the database is read-only when maintenance
+is being done or when an update is being tested.  Do a "status" command
+to see why the database is read-only and when it will be in read/write
+mode again.

@@ -1,0 +1,119 @@
+SYNTAX: edit name-of-field [alias-of-other-user]
+
+SUMMARY
+The edit command allows you to change the contents of a field in a
+Nameserver entry (usually your own).  You must first login to the
+Nameserver (see help on "login").  Then, to change any field in your
+entry (or to add a field that doesn't appear in the entry), simply give
+the command: "edit name-of-field".  You will be placed in the default
+text editor (usually "vi" on Unix machines) and allowed to make changes
+to the field.  When you leave the editor, any changes you have made will
+be entered into the database.
+
+If you change your mind about editing the field, simply exit the editor
+without saving the changes; by doing so, ph will not record your
+changes.
+
+If you wish to remove a field from your entry entirely, use the "edit"
+command and delete ALL the text from the field.  Ph will then remove
+the field from your entry.
+
+A useful command in conjunction with "edit" is "me".  When you are
+logged in to the Nameserver, the "me" command can be used to view each
+and every field in your entry and to verify that the changes you have
+made are what you expected. The "fields" command is also useful in
+conjunction with "edit".  "Fields" displays all of the fields that are
+defined in the Nameserver database.  You can use the "fields" command
+to see the names and descriptions of fields that can be added to your
+entry (see help on "me" and "fields" for more information on the "me"
+and "fields" commands).
+
+PROXIES
+Normally, the owner of an entry is the only person (with the exception
+of the CCSO ph administrators) that can edit his or her own entry. Some
+users, however, prefer to have others make changes for them.  You can
+grant others the right to modify your entry by entering their aliases
+in your "proxy" field.  Names can be added to your "proxy" field
+manually with the "edit" command, or you can ask your building or
+departmental network administrator to request proxy rights for your
+entry. If you want to explicitly deny proxy rights to your entry, put
+the text "NO!" into your "proxy" field.  (For more information on
+proxies, see help on "proxy" and "policy".)
+
+EXAMPLES
+In the first example, John Doe logs into the Nameserver and uses the
+"edit" command to change the contents of the "home_address" field in
+his entry:
+
+   ph> login j-doe1
+   200:j-doe1:Hi how are you?
+   ph> edit home_address
+   102:There was 1 match to your request.
+   "/tmp/ph010352" 2/37
+      [vi was used to change John's home address to "222 Main
+      Street/Urbana, IL 61801"]
+   "/tmp/ph010352" 2/33
+   200:1 entry changed.
+
+In the next example, John Doe decides to add a NEW field to his ph
+entry.  The procedure is nearly identical to the example above, except
+that, when the text editor is invoked, an empty file is displayed, and
+John must insert the new information rather than changing existing
+information:
+
+   ph> login j-doe1
+   200:j-doe1:Hi how are you?
+   ph> edit fax
+   102:There was 1 match to your request.
+   -508:1:  fax: Not present in entry.
+   "/tmp/ph010352" 0/0
+      [vi was used to add John's fax number "(217)333-3333"]
+   "/tmp/ph010352" 1/14
+   200:1 entry changed.
+
+In the final example, Bill Smith, John Doe's network administrator edits
+John's "email" field.  Bill's alias, b-smith, is listed in John's "proxy"
+field, and, therefore, Bill has proxy rights to John's account.  Note
+that Bill logs into ph as himself and modifies John's entry by specifying
+John's alias after the field name (in this case, "email") in the "edit"
+command:
+
+   ph> login b-smith
+   200:b-smith:Hi how are you?
+   ph> edit email j-doe1
+   102:There was 1 match to your request.
+   "/tmp/ph000952" 1/28
+      [vi was used to change John's email field to
+      "jdoe@ux1.cso.uiuc.edu")
+   "/tmp/ph000952" 1/22
+   200:1 entry changed.
+
+SPECIAL CONSIDERATIONS
+On Unix systems, ph obeys the "EDITOR" environment variable.  If you
+have that variable set to something other than "vi", the editor of your
+choice will be used.
+
+Only fields with the "Change" attribute may be changed by a user.  Most
+fields have this attribute; two that do not are "name" and "curriculum".
+If you wish to make a change to one of those fields, you must visit the
+CCSO Accounting and Distribution Office in 1420 DCL, 1304 W. Springfield,
+Urbana.  In order for your request to be processed, you must have a
+valid University identification card.
+
+Ph allows only printable ASCII characters in fields, along with tab and
+newline.  Any other characters will be removed before being sent to the
+Nameserver.
+
+Do not use "edit" to change your Nameserver password; use "passwd"
+instead.
+
+HOW "EDIT" IS IMPLEMENTED
+To accomplish the edit command, ph uses a "query" command to fetch the
+current value of the field, places that value in a temporary file, and
+invokes the default editor on it.  Once the editor has been exited, ph
+reads the temporary file and issues a "change" command to change the
+entry to the value contained in the temporary file (assuming the value
+has been changed).
+
+SEE ALSO: change, vi, passwd, me, login, alias, proxy, make,
+register, fields, policy

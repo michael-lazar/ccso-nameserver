@@ -1,0 +1,629 @@
+%!PS-Adobe-3.0
+%%Creator: groff version 1.04
+%%DocumentNeededResources: font Times-Roman
+%%+ font Times-Bold
+%%+ font Times-Italic
+%%+ font Courier
+%%+ font Symbol
+%%DocumentSuppliedResources: procset grops 1.04 0
+%%Pages: 5
+%%PageOrder: Ascend
+%%Orientation: Portrait
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset grops 1.04 0
+%!PS-Adobe-3.0 Resource-ProcSet
+
+/setpacking where {
+	pop
+	currentpacking
+	true setpacking
+} if
+
+/grops 120 dict dup begin 
+
+% The ASCII code of the space character.
+/SC 32 def
+
+/A /show load def
+/B { 0 SC 3 -1 roll widthshow } bind def
+/C { 0 exch ashow } bind def
+/D { 0 exch 0 SC 5 2 roll awidthshow } bind def
+/E { 0 rmoveto show } bind def
+/F { 0 rmoveto 0 SC 3 -1 roll widthshow } bind def
+/G { 0 rmoveto 0 exch ashow } bind def
+/H { 0 rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/I { 0 exch rmoveto show } bind def
+/J { 0 exch rmoveto 0 SC 3 -1 roll widthshow } bind def
+/K { 0 exch rmoveto 0 exch ashow } bind def
+/L { 0 exch rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/M { rmoveto show } bind def
+/N { rmoveto 0 SC 3 -1 roll widthshow } bind def
+/O { rmoveto 0 exch ashow } bind def
+/P { rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/Q { moveto show } bind def 
+/R { moveto 0 SC 3 -1 roll widthshow } bind def
+/S { moveto 0 exch ashow } bind def
+/T { moveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+
+% name size font SF -
+
+/SF {
+	findfont exch
+	[ exch dup 0 exch 0 exch neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+% name a c d font MF -
+
+/MF {
+	findfont
+	[ 5 2 roll
+	0 3 1 roll % b
+	neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+/level0 0 def
+/RES 0 def
+/PL 0 def
+/LS 0 def
+
+% BP -
+
+/BP {
+	/level0 save def
+	1 setlinecap
+	1 setlinejoin
+	72 RES div dup scale
+	LS {
+		90 rotate
+	} {
+		0 PL translate
+	} ifelse
+	1 -1 scale
+} bind def
+
+/EP {
+	level0 restore
+	showpage
+} bind def
+
+
+% centerx centery radius startangle endangle DA -
+
+/DA {
+	newpath arcn stroke
+} bind def
+
+% x y SN - x' y'
+% round a position to nearest (pixel + (.25,.25))
+
+/SN {
+	transform 
+	.25 sub exch .25 sub exch
+	round .25 add exch round .25 add exch
+	itransform
+} bind def
+	
+% endx endy startx starty DL -
+% we round the endpoints of the line, so that parallel horizontal
+% and vertical lines will appear even
+
+/DL {
+	SN
+	moveto
+	SN
+	lineto stroke
+} bind def
+
+% centerx centery radius DC -
+
+/DC {
+	newpath 0 360 arc closepath
+} bind def
+
+
+/TM matrix def
+
+%  width height centerx centery DE -
+
+/DE {
+	TM currentmatrix pop
+	translate scale newpath 0 0 .5 0 360 arc closepath
+	TM setmatrix
+} bind def
+
+% these are for splines
+
+/RC /rcurveto load def
+/RL /rlineto load def
+/ST /stroke load def
+/MT /moveto load def
+/CL /closepath load def
+
+% fill the last path
+
+% amount FL -
+
+/FL {
+	currentgray exch setgray fill setgray
+} bind def
+
+% fill with the ``current color''
+
+/BL /fill load def
+
+/LW /setlinewidth load def
+% new_font_name encoding_vector old_font_name RE -
+
+/RE {
+	findfont
+	dup maxlength dict begin
+	{
+		1 index /FID ne { def } { pop pop } ifelse
+	} forall
+	/Encoding exch def
+	dup /FontName exch def
+	currentdict end definefont pop
+} bind def
+
+/DEFS 0 def
+
+% hpos vpos EBEGIN -
+
+/EBEGIN {
+	moveto
+	DEFS begin
+} bind def
+
+/EEND /end load def
+
+/CNT 0 def
+/level1 0 def
+
+% llx lly newwid wid newht ht newllx newlly PBEGIN -
+
+/PBEGIN {
+	/level1 save def
+	translate
+	div 3 1 roll div exch scale
+	neg exch neg exch translate
+	% set the graphics state to default values
+	0 setgray
+	0 setlinecap
+	1 setlinewidth
+	0 setlinejoin
+	10 setmiterlimit
+	[] 0 setdash
+	/setstrokeadjust where {
+		pop
+		false setstrokeadjust
+	} if
+	/setoverprint where {
+		pop
+		false setoverprint
+	} if
+	newpath
+	/CNT countdictstack def
+	userdict begin
+	/showpage {} def
+} bind def
+
+/PEND {
+	clear
+	countdictstack CNT sub { end } repeat
+	level1 restore
+} bind def
+
+end def
+
+/setpacking where {
+	pop
+	setpacking
+} if
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Italic
+%%IncludeResource: font Courier
+%%IncludeResource: font Symbol
+grops begin/DEFS 1 dict def DEFS begin/u{.001 mul}bind def end/RES 72 def/PL
+792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron/scaron/zcaron
+/Ydieresis/trademark/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/space/exclam
+/quotedbl/numbersign/dollar/percent/ampersand/quoteright/parenleft/parenright
+/asterisk/plus/comma/hyphen/period/slash/zero/one/two/three/four/five/six/seven
+/eight/nine/colon/semicolon/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J
+/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright/circumflex
+/underscore/quoteleft/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z
+/braceleft/bar/braceright/tilde/.notdef/quotesinglbase/guillemotleft
+/guillemotright/bullet/florin/fraction/perthousand/dagger/daggerdbl/endash
+/emdash/ff/fi/fl/ffi/ffl/dotlessi/dotlessj/grave/hungarumlaut/dotaccent/breve
+/caron/ring/ogonek/quotedblleft/quotedblright/oe/lslash/quotedblbase/OE/Lslash
+/.notdef/exclamdown/cent/sterling/currency/yen/brokenbar/section/dieresis
+/copyright/ordfeminine/guilsinglleft/logicalnot/minus/registered/macron/degree
+/plusminus/twosuperior/threesuperior/acute/mu/paragraph/periodcentered/cedilla
+/onesuperior/ordmasculine/guilsinglright/onequarter/onehalf/threequarters
+/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex/Idieresis/Eth
+/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis/multiply/Oslash/Ugrave
+/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls/agrave/aacute/acircumflex
+/atilde/adieresis/aring/ae/ccedilla/egrave/eacute/ecircumflex/edieresis/igrave
+/iacute/icircumflex/idieresis/eth/ntilde/ograve/oacute/ocircumflex/otilde
+/odieresis/divide/oslash/ugrave/uacute/ucircumflex/udieresis/yacute/thorn
+/ydieresis]def/Courier@0 ENC0/Courier RE/Times-Italic@0 ENC0/Times-Italic RE
+/Times-Bold@0 ENC0/Times-Bold RE/Times-Roman@0 ENC0/Times-Roman RE
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Roman@0 SF 404.4(PH\(1L\) PH\(1L\))72 48 R/F1 9/Times-Bold@0 SF
+(NAME)72 84 Q F0(ph \255 CCSO Nameserver client \(on-line phone book\))108 96 Q
+F1(SYNOPSIS)72 112.8 Q/F2 10/Times-Bold@0 SF(ph)108 124.8 Q F0([)2.5 E F2<ad73>
+2.5 E/F3 10/Times-Italic@0 SF(server)2.84 E F0 2.5(][)2.5 G F2<ad70>A F3(port)
+3.75 E F0 2.5(][)2.5 G F2<ad74>A F3(type)2.62 E F0 2.5(][)2.5 G F2<ad66>A F3
+(\214eld1,\214eld2,...)4.36 E F0 2.5(][)5 G F2(\255mMrRbBTlLF)A F0 2.5(]q)2.5 G
+(uery)437.25 124.8 Q F2(ph)108 136.8 Q F0([)2.5 E F2<ad73>2.5 E F3(server)2.84
+E F0 2.5(][)2.5 G F2<ad70>A F3(port)3.75 E F0 2.5(][)2.5 G F2<ad74>A F3(type)
+2.62 E F0 2.5(][)2.5 G F2<ad66>A F3(\214eld1,\214eld2,...)4.36 E F0 2.5(][)5 G
+F2<ad68>A F3(topic)2.62 E F0 2.5(][)2.5 G F2(\255mMnNrRbBTlLFcC)A F1
+(DESCRIPTION)72 153.6 Q F3(Ph)108 165.6 Q F0 .444(queries the CCSO Nameserver)
+2.944 F 2.944(,ad)-.4 G .444(atabase of University faculty)263.844 165.6 R
+2.944(,s)-.65 G(taf)389.11 165.6 Q .444(f, and students.)-.18 F .444
+(The database con-)5.444 F .411(tains nearly all the information in the)108
+177.6 R F3 .411(Student/Staff Dir)2.911 F(ectory)-.37 E F0 .412
+(\(the University phone book\), as well as other)2.911 F
+(information, including electronic mail addresses.)108 189.6 Q F3(Ph)108 206.4
+Q F0(may be used in two ways; interactively or with command-line ar)2.5 E
+(guments.)-.18 E(If given ar)108 223.2 Q(guments,)-.18 E F3(ph)2.5 E F0
+(will treat the ar)2.5 E
+(guments as a query and return the results of the query)-.18 E 5(.F)-.65 G
+(or example,)488.31 223.2 Q/F4 10/Courier@0 SF(ph paul pomes)144 240 Q F0 1.549
+(would return the entry for the maintainer of)108 256.8 R F3 1.549(ph ,)4.049 F
+F0 1.549(Paul Pomes.)4.049 F 1.549(For more information on what types of)6.549
+F(queries you may make, see the)108 268.8 Q F1(QUERIES)2.5 E F0(section below)
+2.25 E(.)-.65 E .47(If given no ar)108 285.6 R(guments,)-.18 E F3(ph)2.97 E F0
+.471(will enter interactive mode, print a prompt, and wait for commands.)2.97 F
+(Interactive)5.471 E(mode will be discussed in detail below)108 297.6 Q(.)-.65
+E F3(Ph)108 314.4 Q F0 1.232
+(is not intended for the generation of mailing lists.)3.732 F 1.231
+(Therefore, it will refuse any requests resulting in)6.232 F
+(more than a small number of matches.)108 326.4 Q(This is not negotiable.)5 E
+F1(OPTIONS)72 348 Q F3(Ph)108 360 Q F0 .423(recognizes the following options.)
+2.923 F .424(They may be speci\214ed in the)5.424 F F3(PH)2.924 E F0 .424
+(environment variable, given on the)2.924 F .616(command line, or set with the)
+108 372 R F2(switch)3.116 E F0 .616(command from inside)3.116 F F3(ph)3.116 E
+F0 5.615(.O).23 G .615(ptions given with the)381.095 372 R F2(switch)3.115 E F0
+(command)3.115 E
+(override all others; options given on the command line override those in the)
+108 384 Q F3(PH)2.5 E F0(environment variable.)2.5 E F2<ad6e>108 400.8 Q F0
+1.122(Do not read the)133 400.8 R F3(.netr)3.622 E(c)-.37 E F0 3.622
+(\214le. This)3.622 F 1.122(option has meaning only when using)3.622 F F3(ph)
+3.623 E F0 1.123(in interactive mode \(see)3.623 F
+(below for descriptions of the)133 412.8 Q F3(.netr)2.5 E(c)-.37 E F0
+(\214le and interactive mode\).)2.5 E F2<ad4e>108 429.6 Q F0(Do read the)133
+429.6 Q F3(.netr)2.5 E(c)-.37 E F0 2.5(\214le. This)2.5 F(is the default.)2.5 E
+F2<ad72>108 446.4 Q F0(Do not reformat)133 446.4 Q F3(alias)2.5 E F0(and)2.5 E
+F3(email)2.5 E F0(\214elds to show alias-based e-mail addresses.)2.5 E F2<ad52>
+108 463.2 Q F0(Reformat)133 463.2 Q F3(alias)2.5 E F0(and)2.5 E F3(email)2.5 E
+F0(\214elds to show alias-based e-mail addresses.)2.5 E(This is the default.)5
+E F2<ad62>108 480 Q F0(Do not beautify query responses; print them in gory det\
+ail, complete with response codes.)133 480 Q F2<ad42>108 496.8 Q F0
+(Beautify query responses.)133 496.8 Q(This is the default.)5 E F2<ad6d>108
+513.6 Q F0(Do not use a paging program \(like)133 513.6 Q F3(mor)2.5 E(e)-.37 E
+F0(\(1\)\) when printing responses.).18 E F2<ad4d>108 530.4 Q F0
+(Use a paging program.)9.86 E(This is the default.)5 E F2<ad6c>108 547.2 Q F0
+(Do not label \214eld values with \214eld names when printing queries.)133
+547.2 Q F2<ad4c>108 564 Q F0
+(Label \214eld values with \214eld names when printing queries.)133 564 Q
+(This is the default.)5 E F2<ad74>108 580.8 Q F3(type)2.62 E F0(Use)133 592.8 Q
+F3(type)2.602 E F0 .101(as a default type on queries.)2.601 F .101
+(This is just like adding)5.101 F F2(type=)2.601 E F3(type).12 E F0 .101
+(to all queries.)2.601 F(The)5.101 E F2<ad74>2.601 E F0(option)2.601 E
+(can be overriden by specifying an explicit type in the query)133 604.8 Q 2.5
+(,a)-.65 G 2.5(si)379.52 604.8 S(n, ")388.69 604.8 Q F4(ph pomes type=phone)A
+F0(".)A F2<ad54>108 621.6 Q F0
+(Do not specify any type by default; this is the default.)133 621.6 Q F2<ad73>
+108 638.4 Q F3(server)2.84 E F0(Use)133 650.4 Q F3(server)2.816 E F0 .316
+(as a Nameserver host, instead of the default host.)2.816 F 2.816(Al)5.316 G
+.316(ist of suitable servers may be found)395.902 650.4 R(with the query ")133
+662.4 Q F4(ph alias=ns)A/F5 10/Symbol SF(-)A F4(servers)A F0(".)A F2<ad70>108
+679.2 Q F3(port)3.75 E F0(Connect to the tcp port)133 691.2 Q F3(port)2.5 E F0
+2.5(,i).6 G(nstead of the default port.)252.21 691.2 Q F2<ad63>108 708 Q F0
+(Do not wait for con\214rmation of edit commands.)133 708 Q
+(This is the default.)5 E 202.335(30-Jul-1992 1)281.835 768 R EP
+%%Page: 2 2
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Roman@0 SF 404.4(PH\(1L\) PH\(1L\))72 48 R/F1 10/Times-Bold@0 SF
+<ad43>108 84 Q F0 -.8(Wa)133 84 S(it for con\214rmation of edit commands \(see)
+.8 E F1(edit)2.5 E F0(below\).)2.5 E F1<ad66>108 100.8 Q/F2 10/Times-Italic@0
+SF(\214eld1,\214eld2,...)4.36 E F0 1.256(Return \214elds)133 112.8 R F2
+(\214eld1,\214eld2,...)3.756 E F0 1.256(instead of the default list of \214eld\
+s, if no return clause is speci\214ed on)6.256 F 2.5(queries. This)133 124.8 R
+(is just like adding ")2.5 E/F3 10/Courier@0 SF(return field1 field2 ...)A F0
+2.5("t)C 2.5(oa)420.44 124.8 S(ll queries.)432.38 124.8 Q F1<ad46>108 141.6 Q
+F0(Return default list of \214elds; this is the default.)133 141.6 Q F1<ad68>
+108 158.4 Q F2(topic)2.62 E F0 .65(Display a list of on-line help topics.)133
+170.4 R .65(If the)5.65 F F1<ad68>3.15 E F0 .65
+(option is followed by the name of one of the on-line)3.15 F
+(help topics, the help screen for)133 182.4 Q F2(topic)2.5 E F0
+(will be displayed.)2.5 E/F4 9/Times-Bold@0 SF(QUERIES)72 199.2 Q F0 .619
+(The Nameserver)108 211.2 R 1.719 -.55('s d).37 H .619
+(atabase contains over 70,000 entries.).55 F .618
+(Each entry is comprised of multiple)5.619 F F2(\214elds)3.118 E F0 3.118(,e)
+.28 G(ach)526.12 211.2 Q .24(containing information about the entry)108 223.2 R
+5.24(.E)-.65 G .241
+(ach \214eld has a name that is descriptive of what the \214eld contains;)
+276.59 223.2 R .808(for example, the \214eld named)108 235.2 R F2(addr)3.308 E
+(ess)-.37 E F0 .808(contains the of)3.308 F .807
+(\214ce mail address of the person in question \(for more)-.18 F
+(information on \214elds, see the description of the)108 247.2 Q F1(\214elds)
+2.5 E F0(command in the)2.5 E F4(INTERACTIVE)2.5 E F0(section below\).)2.25 E
+.401(By default, queries are assumed to refer to the)108 264 R F2(name)2.902 E
+F0(or)2.902 E F2(nickname)2.902 E F0 .402(\214eld of the entry)2.902 F 5.402
+(.T)-.65 G .402(herefore, saying ")456.196 264 R F3(ph)A .454(john doe)108 276
+R F0 2.954("l)C .454(ooks for entries whose)166.268 276 R F2(name)2.954 E F0
+(or)2.954 E F2(nickname)2.954 E F0 .454(\214eld contains "john" and "doe".)
+2.954 F .453(Fields other than)5.453 F(the)108 288 Q F2(name)2.5 E F0(and)2.5 E
+F2(nickname)2.5 E F0(\214elds must be speci\214ed; for example,)2.5 E F3
+(ph pomes address=DCL)144 304.8 Q F0(would return entries with)108 321.6 Q F2
+(name)2.5 E F0(or)2.5 E F2(nickname)2.5 E F0("pomes" whose)2.5 E F2(addr)2.5 E
+(ess)-.37 E F0(contained "DCL.")2.5 E .478(Matching in)108 338.4 R F2(ph)2.978
+E F0 .478(is done on a word-by-word basis.)2.978 F .478
+(That is, both the query and the entry are broken up into)5.478 F 1.193
+(words, and the individual words are compared.)108 350.4 R(Although)6.193 E F2
+(ph)3.693 E F0 1.192(is insensitive to case, it otherwise requires)3.693 F .573
+(words to match exactly)108 362.4 R 3.073(,w)-.65 G .573
+(ith no characters left over; "john" does)214.902 362.4 R F1(not)3.073 E F0
+.573(match "johnson", for example.)3.073 F(This)5.574 E .005(behavior may be o\
+verriden by the use of normal shell metacharacters \("?" to match any single c\
+haracter)108 374.4 R 2.504(,")-.4 G(*")530.92 374.4 Q(to match zero or more ch\
+aracters, and "[]" to match a single character from a set of characters\).)108
+386.4 Q F2(Ph)108 403.2 Q F0(will display only entries that match)2.5 E F1(all)
+2.5 E F0(of the speci\214cations in the query)2.5 E 5(.F)-.65 G(or example,)
+420.67 403.2 Q F3(ph paul pomes)144 420 Q F0(will return all entries with)108
+436.8 Q F1(both)2.5 E F0("paul" and "pomes" in the)2.5 E F2(name)2.5 E F0(or)
+2.5 E F2(nickname)2.5 E F0(\214elds.)2.5 E F2(Ph)108 453.6 Q F0 .232
+(returns a certain set of \214elds by default.)2.732 F .232
+(It is possible to ask for dif)5.232 F .233(ferent \214elds in a query)-.18 F
+5.233(.T)-.65 G .233(his is done)496.754 453.6 R(by specifying the)108 465.6 Q
+F2 -.37(re)2.5 G(turn).37 E F0(keyword and listing the \214elds of interest.)
+2.5 E(For example,)5 E F3(ph paul pomes return email)144 482.4 Q F0 .391
+(would print only the electronic mail address of the maintainer of)108 499.2 R
+F2(ph)2.891 E F0 5.391(.Y).23 G .391(ou may also ask for all \214elds in the)
+396.882 499.2 R(entry by using "all" as a \214eld name.)108 511.2 Q
+(This will show you every \214eld you are allowed to see in the entry)5 E(.)
+-.65 E .811(All output from)108 528 R F2(ph)3.311 E F0 .811(is sent through)
+3.311 F F2(mor)3.311 E(e)-.37 E F0 .811
+(\(1\) \(or whatever program is speci\214ed in the).18 F F2 -1.29(PA)3.312 G
+(GER)1.29 E F0(environment)3.312 E(variable\).)108 540 Q F4(INTERACTIVE MODE)72
+561.6 Q F0(If)108 573.6 Q F2(ph)3.718 E F0 1.218(is given no ar)3.718 F 1.218
+(guments, it enters interactive mode, where it prompts for)-.18 F 3.717(,e)-.4
+G 1.217(xecutes, and displays the)436.919 573.6 R 1.704
+(results of Nameserver commands.)108 585.6 R 1.704
+(Interactive mode provides access to more Nameserver features than)6.704 F
+1.206(mere queries.)108 597.6 R 1.205
+(Some of these features require the user to identify him/her self to)6.206 F F2
+(ph)3.705 E F0 1.205(by use of the)3.705 F F1(login)3.705 E F0 .564
+(command; others do not.)108 609.6 R .564
+(Commands may be abbreviated, provided enough characters are given to distin-)
+5.564 F(guish them from other commands.)108 621.6 Q F2(.netr)108 638.4 Q(c)-.37
+E F0(\214le)2.5 E F2(Ph)133 650.4 Q F0 .065(reads the same)2.565 F F2(.netr)
+2.565 E(c)-.37 E F0 .064(\214le as does ftp \(see)2.565 F F2(ftp)2.564 E F0
+2.564(\(1\)\). If).15 F .064(it \214nds a)2.564 F F2(machine)2.564 E F0 .064
+(named "ph" that has a login)2.564 F .267(and a password speci\214ed for it,)
+133 662.4 R F2(ph)2.767 E F0 .267(will automatically do a)2.767 F F2(login)
+2.767 E F0 .267(command, using the values from the)2.767 F F2(.netr)133 674.4 Q
+(c)-.37 E F0(\214le.)2.867 E F2(Ph)5.367 E F0 .367
+(will silently refuse to use a)2.867 F F2(.netr)2.866 E(c)-.37 E F0 .366
+(\214le that has any permissions for group or other \(see)2.866 F F2(chmod)133
+686.4 Q F0(\(1\)\).).71 E F1(Public Commands)108 703.2 Q F0(The following comm\
+ands do not require the user to be logged in to the Nameserver:)108 720 Q
+202.335(30-Jul-1992 2)281.835 768 R EP
+%%Page: 3 3
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Roman@0 SF 404.4(PH\(1L\) PH\(1L\))72 48 R/F1 10/Times-Bold@0 SF
+(help)108 84 Q/F2 10/Times-Italic@0 SF([topic])2.78 E F0 .252
+(Provides explanations of Nameserver commands.)158 96 R .253(Given no ar)5.253
+F(guments,)-.18 E F1(help)2.753 E F0 .253(lists the available)2.753 F .787
+(help topics.)158 108 R .786(Given a)5.787 F F2(topic)3.286 E F0 .786(as an ar)
+3.286 F(gument,)-.18 E F1(help)3.286 E F0 .786(will print help for that topic.)
+3.286 F 3.286(Al)5.786 G .786(ist of com-)495.098 108 R .981(mands and a one-l\
+ine description of each command may be obtained by requesting the topic)158 120
+R F2(commands)158 132 Q F0(.).28 E F1(query)108 148.8 Q F0 .989
+(Performs Nameserver queries exactly like non-interactive)158 148.8 R F2(ph)
+3.489 E F0 .989(queries except that metacharac-)3.489 F
+(ters do not have to be quoted.)158 160.8 Q F1(\214elds)108 177.6 Q F0 .422
+(Lists the \214elds currently in use in the Nameserver)158 177.6 R 5.423(.F)
+-.55 G .423(or each \214eld, a display like the following)373.169 177.6 R
+(\(admittedly ugly\) is produced:)158 189.6 Q/F3 10/Symbol SF(-)158 206.4 Q/F4
+10/Courier@0 SF(200:2:email:max 64 Lookup Public Default Change)A F3(-)158
+218.4 Q F4(200:2:email:Preferred electronic mail address.)A(...)158 230.4 Q F0
+.65(The leading number is a reply code from the Nameserver)158 247.2 R 5.65(.T)
+-.55 G .65(he next number is the \214eld num-)406.11 247.2 R(ber)158 259.2 Q
+5.363(.F)-.55 G .364(ollowing the \214eld number is the name of the \214eld, t\
+he maximum length of the \214eld, and)183.643 259.2 R .033
+(the attributes for the \214eld.)158 271.2 R .032
+(The second line has, in addition to repeated reply code, number)5.033 F 2.532
+(,a)-.4 G(nd)530 271.2 Q(name, a one-line description of the \214eld.)158 283.2
+Q .302(The attributes determine how a \214eld may be used.)158 300 R F2(Lookup)
+5.303 E F0 .303(means the \214eld may be searched in)2.803 F 3.816(aq)158 312 S
+(uery)171.256 312 Q(.)-.65 E F2(Indexed)6.316 E F0 1.316
+(means the \214eld is indexed \(at least one)3.816 F F2(Indexed)3.815 E F0
+1.315(\214eld must be included in)3.815 F .781(every query\).)158 324 R F2
+(Default)5.781 E F0 .781(means the \214eld is displayed by default.)3.281 F F2
+(Change)5.782 E F0 .782(means that users may)3.282 F(change the \214eld.)158
+336 Q F1(set)108 352.8 Q F2(option[=value])2.73 E F0
+(Allows Nameserver options to be set.)158 364.8 Q
+(These options are for future use.)5 E F1(switch)108 381.6 Q F2
+(\255option [value])4.65 E F0(Allows)158 393.6 Q F2(ph)2.5 E F0
+(options to be set.)2.5 E(See the)5 E/F5 9/Times-Bold@0 SF(OPTIONS)2.5 E F0
+(section above.)2.25 E F1(quit)108 410.4 Q F0(Exits)158 410.4 Q F2(ph)2.5 E F0
+(.).23 E F1(login)108 427.2 Q F2(alias)2.85 E F0 .043
+(Identi\214es the user to the Nameserver)6.58 F(.)-.55 E F2(Alias)5.043 E F0
+.042(is your Nameserver alias, a unique name for you in)2.543 F
+(the Nameserver; it is printed in)158 439.2 Q F2(ph)2.5 E F0
+(queries, as the \214rst thing after "email to:":)2.5 E F4(email to: p)158 456
+Q F3(-)A F4(pomes@uiuc.edu \(paul@uxc.cso.uiuc.edu\))A F0 1.554
+(In this case, the alias is "p\255pomes".)158 472.8 R -1(Yo)6.554 G 4.054(uw)1
+G 1.555(ill be prompted for your Nameserver password)343.492 472.8 R .479
+(when you give the)158 484.8 R F1(login)2.979 E F0 .478
+(command, unless you are using)2.978 F F2(ph)2.978 E F0 .478
+(from the login in your email \214eld)2.978 F 1.148(\(the one in parentheses o\
+n the "email to:" line\), and your system administrator has made)158 496.8 R F2
+(ph)3.648 E F0("setuid root", in which case no password will be required.)158
+508.8 Q -1(Yo)158 525.6 S .149(ur Nameserver password is)1 F F1(not)2.649 E F0
+.149(the same as your system password; the only way to discover)2.649 F .702(y\
+our Nameserver password is to bring yourself and a University ID to the CCSO A\
+ccounting)158 537.6 R(Of)158 549.6 Q .487(\214ce in 1420 DCL.)-.18 F .487
+(Because of abuses in the past, passwords cannot be given out via email,)5.487
+F(phone, or to third parties.)158 561.6 Q -1(Yo)158 578.4 S 3.475(ua)1 G .975
+(re allowed to change your Nameserver alias; there are, however)182.135 578.4 R
+3.476(,r)-.4 G .976(estrictions on Name-)454.728 578.4 R 1.557
+(server aliases; they must be unique within the Nameserver)158 590.4 R 4.057
+(,t)-.4 G 1.557(hey cannot be common names)412.683 590.4 R(\("david" is right \
+out\), and they can only contain letters, digits, dashes \(\255\) and periods \
+\(.\).)158 602.4 Q F1(Commands Requiring Login)108 619.2 Q F0(The following co\
+mmands require that the user executing them be logged in to the Nameserver)108
+636 Q(.)-.55 E F1(passwd)108 652.8 Q F2([alias])2.78 E F0 .259
+(Changes your Nameserver password.)158 664.8 R -1(Yo)5.259 G 2.759(uw)1 G .259
+(ill be asked to type your new password twice.)339.085 664.8 R F2(Ph)5.26 E F0
+.783(will complain if your password is too short or contains only numbers \(al\
+though it does allow)158 676.8 R .096(such passwords\).)158 688.8 R .096
+(Privileged users may change the passwords of certain other users by specify-)
+5.096 F(ing the alias of the other user when giving the)158 700.8 Q F1(passwd)
+2.5 E F0(command.)2.5 E F1(me)108 717.6 Q F0
+(Lists the Nameserver entry of the currently logged-in user)158 717.6 Q(.)-.55
+E 202.335(30-Jul-1992 3)281.835 768 R EP
+%%Page: 4 4
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Roman@0 SF 404.4(PH\(1L\) PH\(1L\))72 48 R/F1 10/Times-Bold@0 SF
+(edit)108 84 Q/F2 10/Times-Italic@0 SF(\214eld [alias])4.36 E F0(Allows)158 96
+Q F2(ph)3.357 E F0 .856
+(users to change those \214elds in their entry that have the)3.357 F F2(Change)
+3.356 E F0 .856(attribute set.)3.356 F F2(Edit)5.856 E F0 .488(will retrieve t\
+he value of the named \214eld \(if a value exists\), and will allow the user t\
+o edit the)158 108 R 1.252(value with)158 120 R F2(vi)3.752 E F0 1.252
+(\(1\) \(the).35 F F2(EDIT)3.752 E(OR)-.18 E F0 1.252
+(environment variable may be used to override the use of)3.752 F F2(vi)3.752 E
+F0(\).).35 E .32(The changed value will then be reinserted in the Nameserver)
+158 132 R 5.321(.I)-.55 G 2.821(ft)414.473 132 S(he)423.404 132 Q F1<ad43>2.821
+E F0 .321(option is in ef)2.821 F .321(fect, the)-.18 F .655(message, "Change \
+the value [y]?" will be printed after the editing is \214nished.)158 144 R .655
+(Pressing return)5.655 F .078(alone, or anything beginning with "y", will make)
+158 156 R F2(ph)2.578 E F0 .078(change the value; anything beginning with)2.578
+F("n" will make)158 168 Q F2(ph)2.5 E F0(discard the changes.)2.5 E F1(make)108
+184.8 Q F2(\214eld=value [\214eld2=value2...])4.36 E F0(Allows)158 196.8 Q F2
+(ph)2.871 E F0 .371
+(users to change those \214elds in their entry that have the)2.871 F F2(Change)
+2.87 E F0 .37(attribute set.)2.87 F F1(Make)5.37 E F0 1.204(will set the speci\
+\214ed \214eld\(s\) to the speci\214ed value\(s\) in the entry of the currentl\
+y logged in)158 208.8 R(user)158 220.8 Q(.)-.55 E F1(add)108 237.6 Q F0
+(Adds entries to the Nameserver)158 237.6 Q 5(.T)-.55 G
+(his is a privileged command.)297.14 237.6 Q F1(delete)108 254.4 Q F0
+(Deletes entries from the Nameserver)158 254.4 Q 5(.T)-.55 G
+(his is a privileged command.)317.68 254.4 Q F1(logout)108 271.2 Q F0
+(Undoes the ef)158 271.2 Q(fects of a)-.18 E F1(login)2.5 E F0(command.)2.5 E
+/F3 9/Times-Bold@0 SF(QUER)72 288 Q 2.25(YE)-.315 G(XAMPLES)112.437 288 Q F0
+.958(Here are some examples to clarify)108 300 R F2(ph)3.458 E F0 3.458
+(queries. Each)3.458 F .957
+(example is preceded by a description of the desired)3.458 F(ef)108 312 Q 3.086
+(fect. It)-.18 F .586(is assumed that the queries are being done with)3.086 F
+F2(ph)3.086 E F0 .587(from the command line, rather than by using)3.086 F .233
+(the interactive mode of)108 324 R F2(ph)2.733 E F0 5.233(.T).23 G .233
+(he only dif)227.985 324 R .232
+(ference for interactive mode is that metacharacters would not have)-.18 F
+(to be quoted or escaped.)108 336 Q(Find the)108 352.8 Q F2(ph)2.5 E F0
+(entry for Paul Pomes:)2.5 E/F4 10/Courier@0 SF(ph paul pomes)144 369.6 Q F0
+(Find the)108 386.4 Q F2(ph)2.5 E F0(entry for P)2.5 E 2.5(.P)-1.11 G
+(omes, where the rest of the \214rst name is not known:)208.28 386.4 Q F4
+(ph p\\* pomes)144 403.2 Q F0(Find Alonzo Johnson \(or is that JohnsEn?\):)108
+420 Q F4(ph alonzo johns\\?n)144 436.8 Q(or)124 448.8 Q
+(ph alonzo johns\\[eo\\]n)144 460.8 Q F0(Find Paul P)108 477.6 Q
+(., where the rest of the last name is unknown:)-1.11 E F4(ph paul p\\*)144
+494.4 Q F0 1.137(The last query fails because it matches too many entries.)108
+511.2 R 1.137(It is therefore necessary to narrow the search.)6.137 F
+(Suppose it is known that Paul P)108 523.2 Q 2.5(.h)-1.11 G(as an of)243.57
+523.2 Q(\214ce in DCL:)-.18 E F4(ph paul p\\* address=DCL)144 540 Q F0
+(Alternately)108 556.8 Q 2.5(,s)-.65 G(uppose Paul P)161.23 556.8 Q 2.5(.w)
+-1.11 G(orks for CCSO.)229.01 556.8 Q -1(Yo)5 G 2.5(um)1 G(ight try:)323.01
+556.8 Q F4(ph paul p\\* department=CCSO)144 573.6 Q F0
+(When that failed, a good next guess would be:)108 590.4 Q F4
+(ph paul p\\* department=computing)144 607.2 Q F0 .416
+(The moral of the story is that \214elds in)108 624 R F2(ph)2.915 E F0 .415
+(generally contain whatever the user wishes them to contain, and,)2.915 F 1.41
+(hence, there may be many dif)108 636 R 1.411(ferent spellings and abbreviatio\
+ns for any particular \214eld \(some \214elds are)-.18 F .254
+(exceptions, including the)108 648 R F2(name)2.754 E F0 .254
+(\214eld, which is always the full name, as known to the University)2.754 F
+2.754(,o)-.65 G 2.753(ft)503.044 648 S .253(he per)511.907 648 R(-)-.2 E .13
+(son involved\).)108 660 R .131(It pays to make liberal use of metacharacters \
+and creativity when searching \214elds other than)5.13 F F2(name)108 672 Q F0
+(.).18 E
+(Suppose all that is wanted is the full name and electronic mail address of P)
+108 688.8 Q 2.5(.P)-1.11 G(omes:)416.86 688.8 Q F4
+(ph p\\* pomes return name email)144 705.6 Q F0 202.335(30-Jul-1992 4)281.835
+768 R EP
+%%Page: 5 5
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Roman@0 SF 404.4(PH\(1L\) PH\(1L\))72 48 R/F1 9/Times-Bold@0 SF
+(RENAMING PH)72 84 Q F0(If)108 96 Q/F2 10/Times-Italic@0 SF(ph)2.836 E F0 .336
+(is invoked with a name other than)2.836 F F2(ph)2.836 E F0 2.836(,s).23 G .336
+(lightly dif)290.18 96 R .336(ferent option processing is done.)-.18 F .336
+(For the sake of an)5.336 F(example, let us assume)108 108 Q F2(ph)2.5 E F0
+(was invoked with the name, "unit".)2.5 E(The following consequences obtain:)5
+E F2(Ph)108 124.8 Q F0 .566(will assume an option of "\255t unit".)3.066 F F2
+(Ph)5.567 E F0 .567(will read the)3.067 F F2(UNIT)3.067 E F0 .567
+(environment variable,)3.067 F/F3 10/Times-Bold@0 SF(after)3.067 E F0 .567
+(reading the)3.067 F F2(PH)3.067 E F0(environment variable, and)108 136.8 Q F3
+(befor)2.5 E(e)-.18 E F0(reading command-line options.)2.5 E .248(This feature\
+ allows the easy installation of entry-type speci\214c lookup commands, as wel\
+l as custom con\214g-)108 153.6 R(uration of those commands.)108 165.6 Q F1
+(BUGS)72 187.2 Q F0 .788
+(Separate words in a query are allowed to match the same word in the entry; ")
+108 199.2 R/F4 10/Courier@0 SF .788(ph s\\* smith)B F0 3.288("i)C 3.288(sf)
+511.722 199.2 S(unc-)522.23 199.2 Q(tionally equivalent to ")108 211.2 Q F4
+(ph smith)A F0(", because the "s*" is allowed to match "smith".)A F2(Ph)108 228
+Q F0 .107(does some looking about in the commands you give it, but does not un\
+derstand the full syntax of Name-)2.607 F(server commands.)108 240 Q(This can \
+occasionally lead to mistakes, especially when dealing with quoted strings.)5 E
+F1(DISTRIBUTION)72 256.8 Q F0 .367(Source code for)108 268.8 R F2(ph)2.867 E F0
+.367(is available by anonymous ftp to)2.867 F F4(uxc.cso.uiuc.edu)2.867 E F0
+2.867(,i)C 2.867(nt)426.897 268.8 S .368(he \214le)437.544 268.8 R F4
+(pub/ph.tar.Z)2.868 E F0(.)A .068
+(The complete system, including source for the)108 280.8 R F2(qi)2.568 E F0
+.068(\(8\) server side is in the \214le).35 F F4(pub/qi.tar.Z)2.568 E F0 5.068
+(.T)C .068(his source)499.662 280.8 R 1.248(works on 4.[23]BSD UNIX systems.)
+108 292.8 R 1.249(Any troubles encountered porting)6.248 F F2(ph)3.749 E F0
+1.249(to a particular system are of)3.749 F(interest to the maintainer of)108
+304.8 Q F2(ph)2.5 E F0 2.5(,a).23 G 2.5(sa)240.71 304.8 S
+(re ports done to other operating systems.)251.54 304.8 Q F1(SEE ALSO)72 321.6
+Q F2(The CCSO Nameserver \255 An Intr)108 333.6 Q(oduction)-.37 E F0 2.5(,b).21
+G 2.5(yS)287.08 333.6 S(teven Dorner; updated by Paul Pomes.)300.14 333.6 Q F2
+(The CCSO Nameserver \255 Server\255Client Pr)108 345.6 Q(otocol)-.37 E F0 2.5
+(,b).48 G 2.5(yS)318.54 345.6 S(teven Dorner; updated by Paul Pomes.)331.6
+345.6 Q F2(qi)108 357.6 Q F0(\(8\)).35 E F1(AUTHOR)72 374.4 Q F0 .613
+(Steve Dorner \(sdorner@qualcomm.com\), Qualcomm, Inc.)108 386.4 R .613
+(\(formerly at the University of Illinois Comput-)5.613 F
+(ing and Communications Services Of)108 398.4 Q(\214ce\))-.18 E 1.128(The code\
+ is now maintained by Paul Pomes \(p\255pomes@uiuc.edu\), University of Illino\
+is Computing and)108 415.2 R(Communications Services Of)108 427.2 Q(\214ce.)
+-.18 E 202.335(30-Jul-1992 5)281.835 768 R EP
+%%Trailer
+end
+%%EOF

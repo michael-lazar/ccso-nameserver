@@ -1,0 +1,304 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.4
+date	95.06.10.17.36.30;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.06.10.17.30.39;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.02.21.02.25.21;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.02.21.02.15.57;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@Lightweight blackbox password checker.
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@/*
+ * $Source: /usr/local/src/net/qi/util/RCS/kpwchk.c,v $
+ * $Author: p-pomes $
+ *
+ * A lightweight Kerberos password checker.  It does *not* do mutual
+ * authentication for faster execution by default.  If someone has
+ * compromised the host enough to change where this program looks for
+ * Kerberos information, then the information this check authorizes
+ * has already been compromised.
+ *
+ * Don't use this program to mediate remote access without compiling with
+ * -DMUTUAL_AUTH=1  !!!  This also requires running with root privs to read
+ * /etc/srvtab.
+ *
+ * Compile with
+ *
+ * cc -DKRB4_AUTH -DMUTUAL_AUTH=1 -DKDOMAIN=\"UIUC.EDU\" \
+ *	-I/usr/local/include/kerberosIV -o kcheck kcheck.c \
+ *	-L/usr/local/lib -lkrb -ldes -lresolv -l44bsd -lsocket -lnsl
+ *
+ * Input is "<login><WS><password>\n"
+ *   <WS> is a *single* white space character (not newline)
+ *   <password> can have embedded spaces
+ * Output is "<login><WS><code><WS><message>\n"
+ *   A <code> of "0" indicates success
+ *   <message> is the text explaining <code>
+ *
+ * Copyright (c) 1995 University of Illinois Board of Trustees and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#define MUTUAL_AUTH	1
+
+#ifndef lint
+static char rcsid[] = "$Id$";
+#endif /* lint */
+
+#include "conf.h"
+
+#ifdef KRB4_AUTH
+#include <mit-copyright.h>
+#include <sys/types.h>
+#include <sys/param.h>
+#include <sys/time.h>
+#include <sys/resource.h>
+#include <syslog.h>
+#include <stdio.h>
+#include <string.h>
+#include <krb.h>
+#include <netdb.h>
+#include <sys/ioctl.h>
+
+extern char *krb_err_txt[];
+int     kerno;
+char    lrealm[REALM_SZ];
+
+int main(argc, argv, envp)
+	int argc;
+	char **argv, **envp;
+{
+	extern char **environ;
+	extern int errno, optind;
+	register char *name, *pwd, *pnt, *end;
+	unsigned long faddr;
+	KTEXT_ST ticket;
+	AUTH_DAT authdata;
+	char buf[BUFSIZ];
+	char myname[256];
+	char hostname[MAXHOSTNAMELEN], savehost[MAXHOSTNAMELEN];
+
+	envp = 0;	/* *IMPORTANT* Throw environment away */
+	if ((pwd = strrchr(argv[0], '/')) != NULL)
+		strcpy(myname, pwd+1);
+	else
+		strcpy(myname, argv[0]);
+	openlog(myname, 0, LOG_AUTH);
+#ifdef KRBNSREALM
+	strcpy(lrealm, KRBNSREALM);
+#else
+	if (krb_get_lrealm(lrealm, 1) != KSUCCESS) {
+		fprintf(stderr,"Unable to get local realm\n");
+		exit(1);
+	}
+#endif
+	errno = 0;
+	name = buf;
+	end = &buf[1024-1];
+
+	if (gethostname(hostname, sizeof(hostname)) == -1) {
+		perror("cannot retrieve hostname");
+		exit(1);
+	}
+	(void) strncpy(savehost, (char *)krb_get_phost(hostname),
+		sizeof(savehost));
+	savehost[sizeof(savehost)-1] = 0;
+
+	while (fgets(buf, BUFSIZ-1, stdin) != NULL) {
+		for (pwd = buf; pwd < end && *pwd && !isspace(*pwd);
+		     pwd++)
+			;
+		*pwd = '\0';
+		if (pwd < end)
+			pwd++;
+		for (pnt = pwd; pnt < end && *pnt && *pnt != '\n'; pnt++)
+			;
+		*pnt = '\0';
+		kerno = krb_get_pw_in_tkt(name, "", lrealm, "krbtgt",
+		      lrealm, 2, pwd);
+		memset(pwd, 0, strlen(pwd));
+#ifdef MUTUAL_AUTH
+		if (kerno == KSUCCESS)
+			kerno = krb_mk_req(&ticket, "rcmd", savehost, lrealm, 33);
+		if (kerno == KSUCCESS)
+			kerno = krb_rd_req(&ticket, "rcmd", savehost,
+				faddr, &authdata, "");
+#endif /* MUTUAL_AUTH */
+		printf("%s %d %s\n", name, kerno, krb_err_txt[kerno]);
+		syslog(LOG_INFO, "%s %s", name, krb_err_txt[kerno]);
+		dest_tkt();
+	}
+}
+#else /* !KRB4_AUTH */
+int main(argc, argv, envp)
+	int argc;
+	char **argv, **envp;
+{
+	exit(0);
+}
+#endif /* KRB4_AUTH */
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d12 2
+a13 1
+ * -DMUTUAL_AUTH=1  !!!  This also requires running with root privs.
+d27 2
+a28 4
+ */
+
+/*
+ * Copyright (c) 1988 The Regents of the University of California.
+d31 28
+a58 11
+ * Redistribution and use in source and binary forms are permitted
+ * provided that the above copyright notice and this paragraph are
+ * duplicated in all such forms and that any documentation,
+ * advertising materials, and other materials related to such
+ * distribution and use acknowledge that the software was developed
+ * by the University of California, Berkeley.  The name of the
+ * University may not be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+d61 1
+a61 5
+/*
+ * Kerberos additions Copyright 1987, 1988 by the Massachusetts Institute
+ * of Technology. For copying and distribution information, please see
+ * the file <mit-copyright.h>.
+ */
+d64 1
+a64 2
+static char rcsid_ksu_c[] =
+"$Header: /usr/local/src/net/qi/util/RCS/kpwchk.c,v 1.2 1995/02/21 02:25:21 p-pomes Exp p-pomes $";
+a65 10
+
+#ifndef lint
+char copyright[] =
+"@@(#) Copyright (c) 1988 The Regents of the University of California.\n\
+ All rights reserved.\n";
+#endif /* not lint */
+
+#ifndef lint
+static char sccsid[] = "@@(#)su.c	5.11 (Berkeley) 12/7/88";
+#endif /* not lint */
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d5 5
+a9 5
+ * A lightweight Kerberos password checker.  It's designed to be run
+ * as root.  It does *not* do mutual authentication for faster execution
+ * by default.  If someone has compromised the host enough to change where
+ * this program looks for Kerberos information, then the information this
+ * check authorizes has already been compromised.
+d16 3
+a18 3
+ * cc -DMUTUAL_AUTH=1 -DKDOMAIN=\"UIUC.EDU\" -I/usr/local/include/kerberosIV \
+ * 	-o kcheck kcheck.c -L/usr/local/lib -lkrb -ldes -lresolv -l44bsd \
+ *	-lsocket -lnsl
+d23 1
+a23 1
+ * Output is <login><WS><code><WS><message>
+d53 1
+a53 1
+"$Header: /usr/local/src/net/qi/util/RCS/kpwchk.c,v 1.1 1995/02/21 02:15:57 p-pomes Exp $";
+d66 3
+d105 8
+a112 1
+	strcpy(lrealm, KDOMAIN);
+d150 8
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+ * $Source: /usr/local/src/net/qi/util/RCS/kcheck.c,v $
+d12 1
+a12 1
+ * -DMUTUAL_AUTH=1  !!!
+d19 7
+d53 1
+a53 1
+"$Header: /usr/local/src/net/qi/util/RCS/kcheck.c,v 1.1 1995/02/21 01:42:54 p-pomes Exp p-pomes $";
+d95 1
+a95 1
+  
+d121 1
+a121 1
+			pwd++; 
+@

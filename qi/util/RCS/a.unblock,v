@@ -1,0 +1,237 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	95.05.23.15.00.30;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@Unblock a Admissions record file.
+@
+
+
+1.2
+log
+@Revised GenPass().
+@
+text
+@#!%PerlProg%
+#
+# a.unblock - unblock a tape created from admissions records
+#	Use d.unblock to unblock a tape created from directory records
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: a.unblock,v 1.1 1995/01/11 00:05:11 p-pomes Exp p-pomes $
+
+# Tape layout is as follows:
+# 9	SSN				1-9
+# 1     pad				10
+# 20	name (last, first, mi)		11-30
+# 1     pad				31
+# 27	home street address #1		32-58
+# 1     pad				59
+# 27	home street address #2		60-86
+# 1     pad				87
+# 24	home street address #3		88-111
+# 1     pad				112
+# 4	curriculum			113-115
+#
+
+#
+# beginning of interesting stuff
+#
+
+#
+# usage
+if ($#ARGV<0) {print STDERR "usage: a.unblock prod.cnf [files]\n";exit 1;}
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+# 
+# Initialize the password arrays
+$DictFile = "/usr/share/lib/dict/words";
+open(DICT, "<$DictFile") || die "$DictFile: $!\n";
+while (<DICT>)
+{
+  chop;
+  next if (/\W/o || /[A-Z][A-Z]/o || /^ass$/o || /^butt$/o || /^crap$/o ||
+	   /^damn$/o || /^dyke$/o || /^fag$/o );
+  if (length == 3)
+  {
+    push(ThreeWord, $_);
+  }
+  elsif (length == 4)
+  {
+    push(FourWord, $_);
+  }
+}
+close(DICT);
+
+@@Punct = (2..9, '!', '*', '#', '$', '%', '&', '-', '+', '=', '<', '>', '?');
+srand(time|$$);
+
+#
+# read prod.cnf
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  chop;
+  if (/^#/) {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@@_ < 2) {next;}
+  $fid{$_[1]} = $_[0];
+}
+close(CONFIG);
+
+#
+# here we go...
+while (<>)
+{
+  tr/A-Z/a-z/;
+  if (length($_)<20) {next;}	# sanity check
+  
+  ($id,$name,$HomeAddr1,$HomeAddr2,$HomeAddr3,$curriculum)
+    = unpack("A9xA20xA27xA27xA24xA4",$_);
+  
+  if ($HomeAddr1 eq "ng") {
+    $HomeAddr = "";
+  }
+  else {
+    $HomeAddr = $HomeAddr1;
+    $HomeAddr = &SepCat($HomeAddr,"\\n",$HomeAddr2);
+    $HomeAddr = &SepCat($HomeAddr,"\\n",$HomeAddr3);
+  }
+  
+  #
+  # create default password
+  #
+  $Password = &GenPass();
+
+  $out = $fid{"id"} . ":" . $id . "\t4:person phone";
+  $out = &SepCat($out,"\t".$fid{"name"}.":",$name);
+  $out = &SepCat($out,"\t".$fid{"curriculum"}.":",$curriculum);
+  $out = &SepCat($out,"\t".$fid{"home_address"}.":",$HomeAddr);
+  $out = &SepCat($out,"\t".$fid{"created"}.":",$Date);
+  $out = &SepCat($out,"\t".$fid{"password"}.":",$Password);
+  
+  # fix this bit of stupidity
+  $out =~ s/ ,/, /g;
+  
+  # and print it...
+  print $out . "\n";
+}
+
+sub FixPhone
+{
+  $phone = $_[0];
+  if (length($phone)==7)
+  {
+    $phone =~ s/.../(217) $&-/;
+  }
+  elsif (length($phone)==10)
+  {
+    $phone =~ s/(...)(...)/($1) $2-/;
+  }
+  $phone;
+}
+
+sub SepCat
+{
+  ($str1,$sep,$str2) = @@_;
+  ($str1 ne "" && $str2 ne "") ? ($str1 .= $sep . $str2) : ($str1 .= $str2);
+}
+
+sub GenPass
+{
+  local($i,$word1, $word2, $sep);
+  if (rand() < 0.5)
+  {
+    $word1 = $ThreeWord[rand(@@ThreeWord)];
+    $word2 = $FourWord[rand(@@FourWord)];
+  }
+  else
+  {
+    $word1 = $FourWord[rand(@@FourWord)];
+    $word2 = $ThreeWord[rand(@@ThreeWord)];
+  }
+  $sep = $Punct[rand(@@Punct)];
+  $word1 .= $sep . $word2;
+
+  $i = 1;
+  $i = int(rand(8));
+  
+  $word2 = substr($word1, $i, 1);
+  $word2 =~ s/./\U$&/;
+  substr($word1, $i, 1) = $word2;
+
+  return($word1);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d40 1
+a40 1
+# @@(#)$Id: f.unblock,v 1.1 1994/03/12 00:59:25 paul Exp p-pomes $
+d77 2
+a78 1
+  next if (/\W/ || /[A-Z][A-Z]/);
+d168 1
+a168 1
+  local($word1, $word2, $sep);
+d181 8
+@

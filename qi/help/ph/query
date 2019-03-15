@@ -1,0 +1,229 @@
+SYNTAX: query [name-of-field=]value-of-field... [return {all|name-
+of-field...}]
+
+SUMMARY
+The "query" command is the most often used Nameserver command.  It
+selects and prints information about people and things in the Nameserver
+database.  In order to use the "query" command, you must be in ph's
+"interactive mode".  To issue a Nameserver query from the operating
+system prompt, use "query's" synonym, "ph".
+
+The "query" command consists of two clauses, the selection clause
+(mandatory) and the return clause (optional).  The selection clause is
+used by the Nameserver to select the specific people or things about
+which to print information.  The return clause is used to specify which
+fields to print for entries matching the selection clause.
+
+The selection clause consists of a list of field specifiers (field
+names) and the values the fields should contain.  If a field specifier
+is omitted, ph searches the "name" and "nickname" fields in the database
+for matches to "value-of-field".  Subject to certain restrictions, any
+entry whose fields match the selection clause of the "query" command
+will be printed.
+
+The Nameserver ignores both case and word order in the selection clause;
+e.g., the query expressions "query pomes paul", "query Pomes Paul", and
+"query Paul Pomes" are all exactly equivalent and will return the same
+entry.
+
+The return clause consists of the word "return" followed by either the
+word "all" or a list of the fields in which the user is interested.  If
+a return clause is not specified, a default set of fields will be printed.
+If the word "all" is used, all viewable fields from the entries matching
+the selection clause of the query will be printed.  If a list of field
+names is given, only those fields will be printed.
+
+The result of a query will be a list of entries (separated by lines of
+hyphens) or an error message. To learn more about the meaning about a
+specific error message, type "help" followed by the three-digit code
+preceding the error message; e.g., "help 502".
+
+METACHARACTERS
+When the exact spelling of a name or other value isn't known, it can be
+useful to ask the Nameserver for entries that are "sort of like"
+something.  This can be done by using special characters called
+"metacharacters".  If you are familiar with the metacharacters used by
+the UNIX shells for filename expansion, you'll be glad to know the
+Nameserver uses the same metacharacters.
+
+Specifically, the following metacharacters mean the following things
+to the Nameserver:
+
+   ? = any one character; "jo?n" would match "john", "joan",
+       "join", etc.
+
+  [] = any one of the characters between the brackets ([]);
+       "jo[ah]n" would match "john" or "joan", but not "join".
+
+   * = any characters or no characters; "jo*n" would match "john",
+      "joan", and "join", and also "jon" or "johann".
+
+Since the Nameserver and the shell use the same metacharacters, when
+using ph from the operating system command line, it is important that
+metacharacters be quoted or escaped to "protect" them from the shell.
+Where you might use the following query from within ph:
+
+   ph> query pa* pomes
+
+from the Unix shell you should say:
+
+   % ph pa\* pomes
+
+or
+
+   % ph "pa*" pomes
+
+If you don't do this, the shell will think you are asking it to look
+for file names, and you'll end up with something like this:
+
+   % ph pa* pomes
+   No match.
+
+Note: Although the Unix ph client requires that metacharacters be quoted
+or escaped when queries are issued from the command prompt, ph clients
+for other operating systems may not require or may even object to such
+a practice. To find out which method(s) are acceptable to the client
+you use, try experimenting with unprotected, quoted, and escaped
+metacharacters.
+
+RESTRICTIONS
+All field names used in the selection clause of a query must have a
+"Lookup" field attribute.  Due in part to philosophical considerations
+and in part to technical considerations, every selection clause MUST
+also include at least one field that has both "Indexed" and "Lookup"
+attributes (see help on "fields").  At the time of this writing, the
+fields so-designated were: "name", "alias", "callsign", "email",
+"office_phone", "proxy", "nickname", "high_school", "kerberos", and
+"slip".  Therefore, every query must use at least one of these fields
+in its selection clause.  Remember that if a field specifier is omitted,
+the "name" and "nickname" fields are assumed.
+
+In order to ensure that the Nameserver is not used for generating mailing
+lists or other violations of privacy to persons listed in the database,
+only a limited number of entries are printed for any given query.  If
+a query results in more matching entries than this limit (currently 25),
+no entries will be printed; instead, the user will receive a "too many
+entries to print" message.  If, in trying to locate one particular entry,
+you get this message, try reducing the number of matching entries by
+using additional field specifiers or a more complete version of the
+person's name in the selection clause.
+
+Certain fields in the Nameserver are not viewable by persons other than
+the owner of the entry.  The "id" field, for example, is viewable by
+the owner of the entry when logged in to the Nameserver, but others
+cannot view this field, even if it is specified in the return clause of
+a query. The "password" field is NEVER printed, regardless of who
+requests the information.
+
+EXAMPLES
+Example 1 shows the simplest form of query, a selection clause consisting
+of a name and no return clause:
+
+   ph> query paul pomes
+   ----------------------------------------
+              name: pomes paul
+             phone: (217) 333-6262
+           address: 1429 dcl, MC 256
+                  : 1304 w springfield
+                  : urbana, il 61801
+        department: computing services office
+             title: sr res programmer
+             hours: 10-6, M-F
+          email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+   ----------------------------------------
+
+The default list of fields is printed, including "name", "phone",
+"address", "department", "title", "hours", and "email to".  "Email to"
+is not actually a field, but rather an amalgam of the fields "alias"
+and "email".  The "alias" field is the part printed before the "@" sign
+in "p-pomes@uiuc.edu"; in this case, the alias is "p-pomes".  The "email"
+field is printed in parentheses; its value is "paul@uxc.cso.uiuc.edu".
+When sending electronic mail, it is best to use the first form of address
+(the alias followed by "@uiuc.edu").  So, to send mail to Paul Pomes,
+send it to "p-pomes@uiuc.edu".
+
+Note: If the text "no account registered" appears between the parentheses
+in the "email to" line, the alias-based address that precedes it cannot
+be used for sending mail.  The presence of this text does not necessarily
+mean that the person does not have an e-mail account, but rather that
+the "email" field in his or her Nameserver entry has not been filled
+in.  To find out whether the person actually does have an account, you
+must contact him or her through a means other than electronic mail.
+
+Example 2 illustrates the fact that every query must include some indexed
+field:
+
+   ph> query department=computing
+   -515:no non-null key field in query.
+   500:Did not understand query.
+
+Example 3 shows what happens when a query results in too many matches
+and how to get around the problem by adding some extra information to
+the selection clause (notice the use of the metacharacter, "*"):
+
+   ph> query m* smith
+   502:Too many entries to print.
+
+   ph> query m* smith department=super*
+   ----------------------------------------
+              name: smith michael d
+             phone: (217) 244-7714
+           address: 304 Advanced Computation Building
+        department: supercomputing applicatns
+             title: res programmer
+          email to: m-smith22@uiuc.edu (msmith@ncsa.uiuc.edu)
+   ----------------------------------------
+
+Example 4 illustrates the use of the return clause to specify a
+subset of the fields that would normally be displayed:
+
+   ph> query dorner return name alias phone
+   ----------------------------------------
+        name: dorner david paul
+       alias: d-dorner
+       phone: (217) 344-5151
+   ----------------------------------------
+        name: dorner joseph l
+       alias: j-dorner
+       phone: (217) 333-5300
+   ----------------------------------------
+        name: dorner joseph p
+       alias: j-dorner1
+       phone: 359-5411
+   ----------------------------------------
+        name: dorner marianne
+        alias: m-dorner
+      phone: (217) 333-4752
+   ----------------------------------------
+        name: dorner steven
+       alias: s-dorner
+       phone: (217) 244-1765
+   ----------------------------------------
+   
+Example 5 shows a query on an indexed field other than "name"/"nickname":
+
+   ph> query email=paul@uxc.cso.uiuc.edu
+   ----------------------------------------
+              name: pomes paul
+             phone: (217) 333-6262
+           address: 1429 dcl, MC 256
+                  : 1304 w springfield
+                  : urbana, il 61801
+        department: computing services office
+             title: sr res programmer
+             hours: 10-6, M-F
+          email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+   ----------------------------------------
+
+Example 6 demonstrates how the Nameserver allows people to enter
+additional names by which they are known in their "nickname" field.
+These names are treated as though they appear in the "name" field:
+
+   ph> query paul pomes return name nickname
+    ----------------------------------------
+          name: pomes paul
+      nickname: pbp paulp avatar
+   ----------------------------------------
+
+SEE ALSO: introduction, fields, me, login, nickname, alias, aliases,
+email, e-mail, ph, manpage

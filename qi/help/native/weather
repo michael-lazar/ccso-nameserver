@@ -1,0 +1,83 @@
+PH WEATHER INFORMATION
+
+Ph can display weather information for many locations throughout the
+state and country.  It also offers some special options for local weather
+information. The weather information is downloaded over serial lines
+from a commercial service.  The raw data is fed to a CCSO computer and
+is the source for several CCSO weather-related services including that
+provided by ph.  Ph weather information is updated in real-time as it
+arrives on the data feed.
+
+EXAMPLES:
+Weather conditions for a particular location are requested with the
+syntax:
+
+  ph type=weather airport_code(or city_name) conditions
+
+where "airport_code" or "city_name" is the name of the location in which
+you are interested.  The airport codes and corresponding city names for
+which information is available are given below:
+
+  ALN  alton           DSM  desmoines     MWA  marion
+  ARR  aurora          FNT  flint         MVN  mtvernon
+  BLV  belleville      GBG  galesburg     NBU  glenview
+  BMI  bloomington     IND  indianapolis  ORD  chicago ohare
+  BOS  boston          JFK  newyork       PIA  peoria
+  CGX  meigs           LAX  losangeles    PDX  portland
+  CMI  champaign       MDH  carbondale    RFD  rockford
+  CMX  houghton        MDW  midway        SFO  sanfrancisco
+  COU  columbia        MLI  moline        SPI  springfield
+  CPS  eaststlouis     MMO  marseilles    STL  stlouis
+  DEC  decatur         MSN  madison       SYR  syracuse
+  DPA  dupage          MSY  new orleans   UIN  quincy
+
+Note that city names consisting of more than one word are sometimes
+written as a single entity with no spaces (e.g., sanfrancisco), and
+other times are not (e.g., new orleans).  Due to this inconsistency, it
+may be easiest to use the three letter airport code instead.  The
+following example shows a request for Champaign weather conditions along
+with the query results:
+
+   ux1 11> ph type=weather cmi conditions
+   ----------------------------------------
+        name: CMI champaign conditions
+        text: CMI SA 1145 M60 BKN 100 OVC 6H 74/71/2310/986
+            : CMI SA 1245 M55 BKN 120 OVC 7 75/72/2210/987
+            : Mon Jul 13 at 12:45GMT (07:45CDT).
+            :   Weather: Cloudy
+            :      Temp:  75F ( 23C)
+            :  Humidity:  90%                  Dewpoint: 72F (22C)
+            :   Ceiling: meas   5500ft            Visibility: 7 mi
+            : Barometer: 29.87inHg (101.2KPa)
+            :      Wind: SW 12mph (10kt) (19km/h)
+            :
+   ----------------------------------------
+
+The first two lines of the "text" field in the example above consist of
+the raw weather data.  In the remaining lines, the raw data has been
+parsed and given labels so that it is easier to understand.
+
+In addition to current weather condition information, ph can also display
+radar summaries, special weather announcements, and 36 hour as well as
+extended forecast information.  These services are largely limited to
+the state of Illinois.  The sample queries in the left-hand column will
+yield the results listed in the right-hand column:
+
+  Query                                 Result
+  -----                                 ------
+  ph type=weather radar                 St. Louis and Marseilles
+                                        radar summaries
+
+  ph type=weather forecast              36 hour and extended
+                                        forecast for Illinois
+
+  ph type=weather special               Special weather advisories
+                                        from the National Weather
+                                        Service in Springfield
+                                        and Peoria
+
+  ph type=weather illinois conditions   Tabular report of
+                                        conditions throughout
+                                        the state
+
+SEE ALSO: type, query

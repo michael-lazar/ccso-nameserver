@@ -1,0 +1,156 @@
+#!%PerlProg%
+#
+# addnickname - add nickname from table but only for newly added
+# entries.  Run after the merge3 step.
+#
+# usage: addnickname config [files]
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @(#)$Id: addnickname,v 1.4 1995/05/23 19:19:12 p-pomes Exp $
+
+if ($#ARGV<0)
+  {print STDERR "Usage: addnickname config [files]\n";exit 1;}
+ 
+%nicks = (
+    "alexander","alex",
+    "andrew","andy",
+    "anthony","tony",
+    "barbara","barb",
+    "benjamin","ben",
+    "bradley","brad",
+    "calvin","cal",
+    "carolyn","carol",
+    "catherine","cathy",
+    "christine","chris",
+    "christopher","chris",
+    "clifford","cliff",
+    "constance","connie",
+    "daniel","dan",
+    "david","dave",
+    "deborah","deb",
+    "donald","don",
+    "douglas","doug",
+    "edward","ed",
+    "elizabeth","beth",
+    "eugene","gene",
+    "franklin","frank",
+    "frederick","fred",
+    "geoffrey","geoff",
+    "gerald","jerry",
+    "gregory","greg",
+    "jacqueline","jackie",
+    "james","jim",
+    "jeffery","jeff",
+    "jeffrey","jeff",
+    "jennifer","jenny",
+    "jonathan","jon",
+    "joseph","joe",
+    "joshua","josh",
+    "judith","judy",
+    "katherine","kathy",
+    "kathleen","kathy",
+    "kathryn","kathy",
+    "kenneth","ken",
+    "kimberley","kim",
+    "kimberly","kim",
+    "laurence","larry",
+    "lawrence","larry",
+    "leonard","len",
+    "matthew","matt",
+    "michael","mike",
+    "nicholas","nick",
+    "pamela","pam",
+    "patricia","pat",
+    "patrick","pat",
+    "philip","phil",
+    "phillip","phil",
+    "randall","randy",
+    "randolph","randy",
+    "raymond","ray",
+    "richard","dick rich rick",
+    "robert","rob bob",
+    "ronald","ron",
+    "russel","russ",
+    "russell","russ",
+    "samuel","sam",
+    "sandra","sandy",
+    "stanley","stan",
+    "stephen","steve",
+    "steven","steve",
+    "stuart","stu",
+    "thomas","tom",
+    "timothy","tim",
+    "victoria","vicky",
+    "walter","walt",
+    "william","will bill"
+);
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+# find the numbers of the noupdate and nickname fields
+$cnum = $namenum = $nonum = $nicknum = -1;
+$config=shift;
+open (CONFIG,$config) || die "$config: $!\n";
+while (<CONFIG>)
+{
+  if (/:no_update:/) {($nonum)=(split(':'))[0];}
+  elsif (/:name:/) {($namenum)=(split(':'))[0];}
+  elsif (/:nickname:/) {($nicknum)=(split(':'))[0];}
+  elsif (/:created:/) {($cnum)=(split(':'))[0];}
+}
+close(CONFIG);
+
+while (<>)
+{
+  if ((/^$namenum:/o || /\t$namenum:/o) && !/\t$nonum:/o && !/\t$nicknum:/o &&
+      /\t$cnum:$Date/o)
+  {
+    chop;
+    $line=$_;
+    $firstname = $nickname = "";
+
+    if (/\t$namenum:[^ 	][^ 	]*[ ]([^ 	]*).*/) {$firstname = $1;}
+    if (/^$namenum:[^ 	][^ 	]*[ ]([^ 	]*).*/) {$firstname = $1;}
+    $nickname = $nicks{$firstname};
+    if ($nickname ne "") { print "$line\t$nicknum:$nickname\n"; }
+    else { print "$line\n"; }
+  }
+  else { print $_; }
+}

@@ -1,0 +1,326 @@
+head	1.8;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.8
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.01.07.18.06.51;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	93.06.14.20.30.30;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	93.02.27.21.06.24;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.07.29.04.17.02;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.28.05.04.09;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.27.22.20.02;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.27.21.37.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.8
+log
+@New copyright statement.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id$";
+#endif
+
+/*
+ * replaces ssn fields with id fields, using id database
+ */
+
+#include <stdio.h>
+#include "protos.h"
+
+char * FindId __P((char *));
+char * AssignId __P((char *));
+
+#define BUF_SIZE    8192
+
+main(argc, argv)
+	int argc;
+	char **argv;
+{
+	char	buffer[BUF_SIZE];
+	char	*ssn1, *ssn2;
+	char	*id;
+	int	found = 0, assigned = 0, skipped = 0;
+	int	err;
+	short	assignOk = 0;
+	int	count = 0;
+
+	argc--, argv++;
+	if (argc >= 1 && !strcmp(argv[0], "-a"))
+	{
+		argc--, argv++;
+		assignOk = 1;
+	}
+	if (argc != 1)
+	{
+		fprintf(stderr, "Usage: ssnid [-a] ssndb\n");
+		exit(1);
+	}
+	if (err = IdInit(argv[0]))
+	{
+		perror(argv[0]);
+		exit(1);
+	}
+	ssn1 = buffer + 2;	/* ^5:X, where X is the beginning of SSN */
+	while (gets(buffer) != NULL)
+	{
+		if (++count % 500 == 0)
+			fprintf(stderr, "%d\r", count);
+		ssn2 = (char *)strchr(ssn1, '\t');	/* find end of ssn */
+		if (!ssn2)
+			continue;	/* skip */
+
+		*ssn2 = '\0';
+		if (id = FindId(ssn1))
+			found++;
+		else if (assignOk)
+		{
+			id = AssignId(ssn1);
+			assigned++;
+		} else
+		{
+			id = "<none>";
+			skipped++;
+		}
+		printf("5:%s\t%s\n", id, ssn2 + 1);
+	}
+	fprintf(stderr, "Found %d, assigned %d, skipped %d.\n", found, assigned, skipped);
+	IdDone();
+	exit(0);
+}
+@
+
+
+1.7
+log
+@Replaced index() with strchr().
+@
+text
+@d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 4
+@
+
+
+1.6
+log
+@Delete cdefs.h include.
+@
+text
+@d54 1
+a54 1
+		ssn2 = index(ssn1, '\t');	/* find end of ssn */
+@
+
+
+1.5
+log
+@System 5 changes, 1 or more of #include <sys/fcntl.h> instead of <sys/file.h>,
+define index/rindex replacements using strchr/strrchr, define L_SET, etc
+values if not present.
+@
+text
+@d14 1
+a14 12
+#include <cdefs.h>
+
+#ifdef __STDC__
+# include <stdlib.h>
+# include <string.h>
+# ifndef index
+#  define index strchr
+#  define rindex strrchr
+# endif /* !index */
+#else /* !__STDC__ */
+char	*index();
+#endif /* __STDC__ */
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d16 8
+d25 1
+@
+
+
+1.3
+log
+@Random, fixes.
+@
+text
+@d6 1
+a6 1
+ * You may direct questions to dorner@@garcon.cso.uiuc.edu
+@
+
+
+1.2
+log
+@Re-formatted for clarity
+@
+text
+@d13 2
+a14 1
+#include    <stdio.h>
+d16 5
+d23 3
+a25 1
+main(int argc, char **argv)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 11
+a11 12
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+
+/***********************************************************************
+* replaces ssn fields with id fields, using id database
+***********************************************************************/
+/* $Header: /nameserv/src/util/RCS/ssnid.c,v 1.2 89/03/21 14:33:40 dorner Exp Locker: dorner $ */
+d19 50
+a68 50
+  char  buffer[BUF_SIZE];
+  char   *ssn1, *ssn2;
+  char   *index();
+  char   *theId;
+  char *FindId(), *AssignId();
+  int found=0, assigned=0, skipped = 0;
+  int err;
+  short assignOk=0;
+  int count=0;
+  
+  argc--,argv++;
+  if (argc>=1 && !strcmp(argv[0],"-a"))
+  {
+    argc--,argv++;
+    assignOk=1;
+  }
+
+  
+  if (argc!=1) {fprintf(stderr,"Usage: ssnid [-a] ssndb\n");exit(1);}
+  if (err=IdInit(argv[0]))
+  {
+    perror(argv[0]);
+    exit(1);
+  }
+
+  ssn1 = buffer + 2; /* ^5:X, where X is the beginning of SSN */
+  while (gets(buffer) != NULL)
+  {
+    if (++count%500 == 0) fprintf(stderr,"%d\r",count);
+    ssn2 = index(ssn1,'\t');    /* find end of ssn */
+    if (!ssn2) continue;      /* skip */
+
+    *ssn2 = '\0';
+    if (theId = FindId(ssn1))
+      found++;
+    else if (assignOk)
+    {
+      theId = AssignId(ssn1);
+      assigned++;
+    }
+    else
+    {
+      theId="<none>";
+      skipped++;
+    }
+    printf("5:%s\t%s\n",theId,ssn2+1);
+  }
+  fprintf(stderr,"Found %d, assigned %d, skipped %d.\n",found,assigned, skipped);
+  IdDone();
+  exit(0);
+@

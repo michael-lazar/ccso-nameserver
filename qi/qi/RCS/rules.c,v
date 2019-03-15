@@ -1,0 +1,3168 @@
+head	1.11;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.11
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	92.07.27.21.26.39;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	90.12.18.08.41.47;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	89.03.20.15.15.02;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.12.02.14.45.45;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.11.15.13.35.42;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.04.19.08.12.08;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.04.15.16.14;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	88.04.04.14.40.35;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.11
+log
+@Added new copyright statement.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id$";
+#endif
+
+#include "protos.h"
+
+/*
+**	English to Phoneme rules.
+**
+**	Derived from: 
+**
+**	     AUTOMATIC TRANSLATION OF ENGLISH TEXT TO PHONETICS
+**	            BY MEANS OF LETTER-TO-SOUND RULES
+**
+**			NRL Report 7948
+**
+**		      January 21st, 1976
+**	    Naval Research Laboratory, Washington, D.C.
+**
+**
+**	Published by the National Technical Information Service as
+**	document "AD/A021 929".
+**
+**
+**
+**	The Phoneme codes:
+**
+**		IY	bEEt		IH	bIt
+**		EY	gAte		EH	gEt
+**		AE	fAt		AA	fAther
+**		AO	lAWn		OW	lOne
+**		UH	fUll		UW	fOOl
+**		ER	mURdER		AX	About
+**		AH	bUt		AY	hIde
+**		AW	hOW		OY	tOY
+**	
+**		p	Pack		b	Back
+**		t	Time		d	Dime
+**		k	Coat		g	Goat
+**		f	Fault		v	Vault
+**		TH	eTHer		DH	eiTHer
+**		s	Sue		z	Zoo
+**		SH	leaSH		SH	leiSure
+**		HH	How		m	suM
+**		n	suN		NG	suNG
+**		l	Laugh		w	Wear
+**		y	Young		r	Rate
+**		CH	CHar		j	Jar
+**		WH	WHere
+**
+**
+**	Rules are made up of four parts:
+**	
+**		The left context.
+**		The text to match.
+**		The right context.
+**		The phonemes to substitute for the matched text.
+**
+**	Procedure:
+**
+**		Seperate each block of letters (apostrophes included) 
+**		and add a space on each side.  For each unmatched 
+**		letter in the word, look through the rules where the 
+**		text to match starts with the letter in the word.  If 
+**		the text to match is found and the right and left 
+**		context patterns also match, output the phonemes for 
+**		that rule and skip to the next unmatched letter.
+**
+**
+**	Special Context Symbols:
+**
+**		#	One or more vowels
+**		:	Zero or more consonants
+**		^	One consonant.
+**		.	One of B, D, V, G, J, L, M, N, R, W or Z (voiced 
+**			consonants)
+**		%	One of ER, E, ES, ED, ING, ELY (a suffix)
+**			(Found in right context only)
+**		+	One of E, I or Y (a "front" vowel)
+**
+*/
+
+/* context definitions */
+static char anything[] = "";	/* no context requirement */
+static char nothing[] = " ";	/* context is beginning or end of word */
+
+/* phoneme definitions */
+static char aPause[] = " ";	/* short silence */
+static char silent[] = "";	/* no phonemes */
+
+#define left_part     0
+#define match_part    1
+#define right_part    2
+#define out_part    3
+
+typedef char *Rule[4];		/* rule is an array of 4 character pointers */
+
+/* 0 = punctuation */
+/*
+ *	left_part	match_part	right_part	out_part
+ */
+static Rule punct_rules[] =
+{
+	{anything,	" ",		anything,	aPause},
+	{anything,	"-",		anything,	silent},
+	{".",		"'s",		anything,	"z"},
+	{"#:.e",	"'s",		anything,	"z"},
+	{"#",		"'s",		anything,	"z"},
+	{anything,	"'",		anything,	silent},
+	{anything,	",",		anything,	aPause},
+	{anything,	".",		anything,	aPause},
+	{anything,	"?",		anything,	aPause},
+	{anything,	"!",		anything,	aPause},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule a_rules[] =
+{
+	{anything,	"a",		nothing,	"aa"},
+	{nothing,	"are",		nothing,	"aar"},
+	{nothing,	"ar",		"o",		"aar"},
+	{anything,	"ar",		"#",		"ehr"},
+	{"^",		"as",		"#",		"ays"},
+	{anything,	"a",		"wa",		"aa"},
+	{anything,	"aw",		anything,	"ao"},
+	{" :",		"any",		anything,	"ehnay"},
+	{anything,	"a",		"^+#",		"ay"},
+	{"#:",		"ally",		anything,	"aalay"},
+	{nothing,	"al",		"#",		"aal"},
+	{anything,	"again",	anything,	"aagehn"},
+	{"#:",		"ag",		"e",		"ihj"},
+	{anything,	"a",		"^+:#",		"ae"},
+	{" :",		"a",		"^+ ",		"ay"},
+	{anything,	"a",		"^%",		"ay"},
+	{nothing,	"arr",		anything,	"aar"},
+	{anything,	"arr",		anything,	"aer"},
+	{" :",		"ar",		nothing,	"aar"},
+	{anything,	"ar",		nothing,	"er"},
+	{anything,	"ar",		anything,	"aar"},
+	{anything,	"air",		anything,	"ehr"},
+	{anything,	"ai",		anything,	"ay"},
+	{anything,	"ay",		anything,	"ay"},
+	{anything,	"au",		anything,	"ao"},
+	{"#:",		"al",		nothing,	"aal"},
+	{"#:",		"als",		nothing,	"aalz"},
+	{anything,	"alk",		anything,	"aok"},
+	{anything,	"al",		"^",		"aol"},
+	{" :",		"able",		anything,	"aybaal"},
+	{anything,	"able",		anything,	"aabaal"},
+	{anything,	"ang",		"+",		"aynj"},
+	{anything,	"a",		anything,	"ae"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule b_rules[] =
+{
+	{nothing,	"be",		"^#",		"bih"},
+	{anything,	"being",	anything,	"bayihng"},
+	{nothing,	"both",		nothing,	"bowth"},
+	{nothing,	"bus",		"#",		"bihz"},
+	{anything,	"buil",		anything,	"bihl"},
+	{anything,	"b",		anything,	"b"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule c_rules[] =
+{
+	{nothing,	"ch",		"^",		"k"},
+	{"^e",		"ch",		anything,	"k"},
+	{anything,	"ch",		anything,	"ch"},
+	{" s",		"ci",		"#",		"say"},
+	{anything,	"ci",		"a",		"sh"},
+	{anything,	"ci",		"o",		"sh"},
+	{anything,	"ci",		"en",		"sh"},
+	{anything,	"c",		"+",		"s"},
+	{anything,	"ck",		anything,	"k"},
+	{anything,	"com",		"%",		"kaam"},
+	{anything,	"c",		anything,	"k"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule d_rules[] =
+{
+	{"#:",		"ded",		nothing,	"dihd"},
+	{".e",		"d",		nothing,	"d"},
+	{"#:^e",	"d",		nothing,	"t"},
+	{nothing,	"de",		"^#",		"dih"},
+	{nothing,	"do",		nothing,	"duw"},
+	{nothing,	"does",		anything,	"daaz"},
+	{nothing,	"doing",	anything,	"duwihng"},
+	{nothing,	"dow",		anything,	"daw"},
+	{anything,	"du",		"a",		"juw"},
+	{anything,	"d",		anything,	"d"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule e_rules[] =
+{
+	{"#:",		"e",		nothing,	silent},
+	{"':^",		"e",		nothing,	silent},
+	{" :",		"e",		nothing,	"ay"},
+	{"#",		"ed",		nothing,	"d"},
+	{"#:",		"e",		"d ",		silent},
+	{anything,	"ev",		"er",		"ehv"},
+	{anything,	"e",		"^%",		"ay"},
+	{anything,	"eri",		"#",		"ayray"},
+	{anything,	"eri",		anything,	"ehrih"},
+	{"#:",		"er",		"#",		"er"},
+	{anything,	"er",		"#",		"ehr"},
+	{anything,	"er",		anything,	"er"},
+	{nothing,	"even",		anything,	"ayvehn"},
+	{nothing,	"ephen",	anything,	"ayvehn"},
+	{"#:",		"e",		"w",		silent},
+	{"t",		"ew",		anything,	"uw"},
+	{"s",		"ew",		anything,	"uw"},
+	{"r",		"ew",		anything,	"uw"},
+	{"d",		"ew",		anything,	"uw"},
+	{"l",		"ew",		anything,	"uw"},
+	{"z",		"ew",		anything,	"uw"},
+	{"n",		"ew",		anything,	"uw"},
+	{"j",		"ew",		anything,	"uw"},
+	{"th",		"ew",		anything,	"uw"},
+	{"ch",		"ew",		anything,	"uw"},
+	{"sh",		"ew",		anything,	"uw"},
+	{anything,	"ew",		anything,	"yuw"},
+	{anything,	"e",		"o",		"ay"},
+	{"#:s",		"es",		nothing,	"ihz"},
+	{"#:c",		"es",		nothing,	"ihz"},
+	{"#:g",		"es",		nothing,	"ihz"},
+	{"#:z",		"es",		nothing,	"ihz"},
+	{"#:x",		"es",		nothing,	"ihz"},
+	{"#:j",		"es",		nothing,	"ihz"},
+	{"#:ch",	"es",		nothing,	"ihz"},
+	{"#:sh",	"es",		nothing,	"ihz"},
+	{"#:",		"e",		"s ",		silent},
+	{"#:",		"ely",		nothing,	"lay"},
+	{"#:",		"ement",	anything,	"mehnt"},
+	{anything,	"eful",		anything,	"fuhl"},
+	{anything,	"ee",		anything,	"ay"},
+	{anything,	"earn",		anything,	"ern"},
+	{nothing,	"ear",		"^",		"er"},
+	{anything,	"ead",		anything,	"ehd"},
+	{"#:",		"ea",		nothing,	"ayaa"},
+	{anything,	"ea",		"su",		"eh"},
+	{anything,	"ea",		anything,	"ay"},
+	{anything,	"eigh",		anything,	"ay"},
+	{anything,	"ei",		anything,	"ay"},
+	{nothing,	"eye",		anything,	"ay"},
+	{anything,	"ey",		anything,	"iy"},
+	{anything,	"eu",		anything,	"yuw"},
+	{anything,	"e",		anything,	"eh"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule f_rules[] =
+{
+	{anything,	"ful",		anything,	"fuhl"},
+	{anything,	"f",		anything,	"f"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule g_rules[] =
+{
+	{anything,	"giv",		anything,	"gihv"},
+	{nothing,	"g",		"i^",		"g"},
+	{anything,	"ge",		"t",		"geh"},
+	{"su",		"gges",		anything,	"gjehs"},
+	{anything,	"gg",		anything,	"g"},
+	{" b#",		"g",		anything,	"g"},
+	{anything,	"g",		"+",		"j"},
+	{anything,	"great",	anything,	"grayt"},
+	{"#",		"gh",		anything,	silent},
+	{anything,	"g",		anything,	"g"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule h_rules[] =
+{
+	{nothing,	"hav",		anything,	"haev"},
+	{nothing,	"here",		anything,	"hayr"},
+	{nothing,	"hour",		anything,	"awer"},
+	{anything,	"how",		anything,	"haw"},
+	{anything,	"h",		"#",		"h"},
+	{anything,	"h",		anything,	silent},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule i_rules[] =
+{
+	{nothing,	"in",		anything,	"ihn"},
+	{nothing,	"i",		nothing,	"ay"},
+	{anything,	"in",		"d",		"ayn"},
+	{anything,	"ier",		"^",		"er"},
+	{anything,	"ier",		anything,	"ayer"},
+	{"#:r",		"ied",		anything,	"ayd"},
+	{anything,	"ied",		nothing,	"ayd"},
+	{anything,	"ien",		anything,	"ayehn"},
+	{anything,	"ie",		"t",		"ayeh"},
+	{" :",		"i",		"%",		"ay"},
+	{anything,	"i",		"%",		"ay"},
+	{anything,	"ie",		anything,	"ay"},
+	{anything,	"i",		"^+:#",		"ih"},
+	{anything,	"ir",		"#",		"ayr"},
+	{anything,	"iz",		"%",		"ayz"},
+	{anything,	"is",		"%",		"ayz"},
+	{anything,	"i",		"d%",		"ay"},
+	{"+^",		"i",		"^+",		"ih"},
+	{anything,	"i",		"t%",		"ay"},
+	{"#:^",		"i",		"^+",		"ih"},
+	{anything,	"i",		"^+",		"ay"},
+	{anything,	"ir",		anything,	"er"},
+	{anything,	"igh",		anything,	"ay"},
+	{anything,	"ild",		anything,	"ayld"},
+	{anything,	"ign",		nothing,	"ayn"},
+	{anything,	"ign",		"^",		"ayn"},
+	{anything,	"ign",		"%",		"ayn"},
+	{anything,	"ique",		anything,	"ayk"},
+	{anything,	"i",		anything,	"ih"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule j_rules[] =
+{
+	{anything,	"j",		anything,	"j"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule k_rules[] =
+{
+	{nothing,	"k",		"n",		silent},
+	{anything,	"k",		anything,	"k"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule l_rules[] =
+{
+	{anything,	"lo",		"c#",		"low"},
+	{"l",		"l",		anything,	silent},
+	{"#:^",		"l",		"%",		"aal"},
+	{anything,	"lead",		anything,	"layd"},
+	{anything,	"l",		anything,	"l"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule m_rules[] =
+{
+	{anything,	"mov",		anything,	"muwv"},
+	{anything,	"m",		anything,	"m"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule n_rules[] =
+{
+	{"e",		"ng",		"+",		"nj"},
+	{anything,	"ng",		"r",		"ngg"},
+	{anything,	"ng",		"#",		"ngg"},
+	{anything,	"ngl",		"%",		"nggaal"},
+	{anything,	"ng",		anything,	"ng"},
+	{anything,	"nk",		anything,	"ngk"},
+	{nothing,	"now",		nothing,	"naw"},
+	{anything,	"nn",		anything,	"n"},
+	{anything,	"n",		anything,	"n"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule o_rules[] =
+{
+	{anything,	"of",		nothing,	"aav"},
+	{anything,	"orough",	anything,	"erow"},
+	{"#:",		"or",		nothing,	"er"},
+	{"#:",		"ors",		nothing,	"erz"},
+	{anything,	"or",		anything,	"aor"},
+	{nothing,	"one",		anything,	"waan"},
+	{anything,	"own",		anything,	"own"},
+	{anything,	"ow",		anything,	"aw"},
+	{nothing,	"over",		anything,	"owver"},
+	{anything,	"ov",		anything,	"aav"},
+	{anything,	"oer",		anything,	"er"},
+	{anything,	"o",		"^%",		"ow"},
+	{anything,	"o",		"^en",		"ow"},
+	{anything,	"o",		"^i#",		"ow"},
+	{anything,	"ol",		"d",		"owl"},
+	{anything,	"ought",	anything,	"aot"},
+	{anything,	"ough",		anything,	"aaf"},
+	{nothing,	"ou",		anything,	"aw"},
+	{"h",		"ou",		"s#",		"aw"},
+	{anything,	"ous",		anything,	"aas"},
+	{anything,	"our",		anything,	"aor"},
+	{anything,	"ould",		anything,	"uhd"},
+	{"^",		"ou",		"^l",		"aa"},
+	{anything,	"oup",		anything,	"uwp"},
+	{anything,	"ou",		anything,	"aw"},
+	{anything,	"oy",		anything,	"oy"},
+	{anything,	"oing",		anything,	"owihng"},
+	{anything,	"oi",		anything,	"oy"},
+	{anything,	"oor",		anything,	"aor"},
+	{anything,	"ook",		anything,	"uhk"},
+	{anything,	"ood",		anything,	"uhd"},
+	{anything,	"oo",		anything,	"uw"},
+	{anything,	"o",		"e",		"ow"},
+	{anything,	"o",		nothing,	"ow"},
+	{anything,	"oa",		anything,	"ow"},
+	{nothing,	"only",		anything,	"ownlay"},
+	{nothing,	"once",		anything,	"waans"},
+	{anything,	"on't",		anything,	"ownt"},
+	{"c",		"o",		"n",		"aa"},
+	{anything,	"o",		"ng",		"ao"},
+	{" :^",		"o",		"n",		"aa"},
+	{"i",		"on",		anything,	"aan"},
+	{"#:",		"on",		nothing,	"aan"},
+	{"#^",		"on",		anything,	"aan"},
+	{anything,	"o",		"st ",		"ow"},
+	{anything,	"of",		"^",		"aof"},
+	{anything,	"other",	anything,	"aather"},
+	{anything,	"oss",		nothing,	"aos"},
+	{"#:^",		"om",		anything,	"aam"},
+	{anything,	"o",		anything,	"aa"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule p_rules[] =
+{
+	{nothing,	"ph",		anything,	"f"},
+	{anything,	"ph",		nothing,	"f"},
+	{anything,	"ph",		anything,	"v"},
+	{anything,	"peop",		anything,	"payp"},
+	{anything,	"pow",		anything,	"paw"},
+	{anything,	"put",		nothing,	"puht"},
+	{anything,	"p",		anything,	"p"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule q_rules[] =
+{
+	{anything,	"quar",		anything,	"kwaor"},
+	{anything,	"qu",		anything,	"kw"},
+	{anything,	"q",		anything,	"k"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule r_rules[] =
+{
+	{nothing,	"re",		"^#",		"ray"},
+	{anything,	"r",		anything,	"r"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule s_rules[] =
+{
+	{anything,	"sh",		anything,	"sh"},
+	{"#",		"sion",		anything,	"shaan"},
+	{anything,	"some",		anything,	"saam"},
+	{"#",		"sur",		"#",		"sher"},
+	{anything,	"sur",		"#",		"sher"},
+	{"#",		"su",		"#",		"shuw"},
+	{"#",		"ssu",		"#",		"shuw"},
+	{"#",		"sed",		nothing,	"zd"},
+	{"#",		"s",		"#",		"z"},
+	{anything,	"said",		anything,	"sehd"},
+	{"^",		"sion",		anything,	"shaan"},
+	{anything,	"son",		nothing,	"saan"},
+	{anything,	"sen",		nothing,	"saan"},
+	{anything,	"s",		"s",		silent},
+	{".",		"s",		nothing,	"z"},
+	{"#:.e",	"s",		nothing,	"z"},
+	{"#:^##",	"s",		nothing,	"z"},
+	{"#:^#",	"s",		nothing,	"s"},
+	{"u",		"s",		nothing,	"s"},
+	{" :#",		"s",		nothing,	"z"},
+	{nothing,	"sch",		anything,	"sk"},
+	{anything,	"s",		"c+",		silent},
+	{"#",		"sm",		anything,	"zm"},
+	{"#",		"sn",		"'",		"zaan"},
+	{anything,	"s",		anything,	"s"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule t_rules[] =
+{
+	{nothing,	"the",		nothing,	"thaa"},
+	{anything,	"to",		nothing,	"tuw"},
+	{anything,	"that",		nothing,	"thaet"},
+	{nothing,	"this",		nothing,	"thihs"},
+	{nothing,	"they",		anything,	"thay"},
+	{nothing,	"there",	anything,	"thehr"},
+	{anything,	"ther",		anything,	"ther"},
+	{anything,	"their",	anything,	"thehr"},
+	{nothing,	"than",		nothing,	"thaen"},
+	{nothing,	"them",		nothing,	"thehm"},
+	{anything,	"these",	nothing,	"thayz"},
+	{nothing,	"then",		anything,	"thehn"},
+	{anything,	"through",	anything,	"thruw"},
+	{anything,	"those",	anything,	"thowz"},
+	{anything,	"though",	nothing,	"thow"},
+	{nothing,	"thus",		anything,	"thaas"},
+	{anything,	"th",		anything,	"th"},
+	{"#:",		"ted",		nothing,	"tihd"},
+	{"s",		"ti",		"#n",		"ch"},
+	{anything,	"ti",		"o",		"sh"},
+	{anything,	"ti",		"a",		"sh"},
+	{anything,	"tien",		anything,	"shaan"},
+	{anything,	"tur",		"#",		"cher"},
+	{anything,	"tu",		"a",		"chuw"},
+	{nothing,	"two",		anything,	"tuw"},
+	{anything,	"tch",		anything,	"ch"},
+	{anything,	"tsch",		anything,	"ch"},
+	{anything,	"t",		anything,	"t"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule u_rules[] =
+{
+	{nothing,	"un",		"i",		"yuwn"},
+	{nothing,	"un",		anything,	"aan"},
+	{nothing,	"upon",		anything,	"aapaon"},
+	{"t",		"ur",		"#",		"uhr"},
+	{"s",		"ur",		"#",		"uhr"},
+	{"r",		"ur",		"#",		"uhr"},
+	{"d",		"ur",		"#",		"uhr"},
+	{"l",		"ur",		"#",		"uhr"},
+	{"z",		"ur",		"#",		"uhr"},
+	{"n",		"ur",		"#",		"uhr"},
+	{"j",		"ur",		"#",		"uhr"},
+	{"th",		"ur",		"#",		"uhr"},
+	{"ch",		"ur",		"#",		"uhr"},
+	{"sh",		"ur",		"#",		"uhr"},
+	{anything,	"ur",		"#",		"yuhr"},
+	{anything,	"ur",		anything,	"er"},
+	{anything,	"u",		"^ ",		"aa"},
+	{anything,	"u",		"^^",		"aa"},
+	{anything,	"uy",		anything,	"ay"},
+	{" g",		"u",		"#",		silent},
+	{"g",		"u",		"%",		silent},
+	{"g",		"u",		"#",		"w"},
+	{"#n",		"u",		anything,	"yuw"},
+	{"t",		"u",		anything,	"uw"},
+	{"s",		"u",		anything,	"uw"},
+	{"r",		"u",		anything,	"uw"},
+	{"d",		"u",		anything,	"uw"},
+	{"l",		"u",		anything,	"uw"},
+	{"z",		"u",		anything,	"uw"},
+	{"n",		"u",		anything,	"uw"},
+	{"j",		"u",		anything,	"uw"},
+	{"th",		"u",		anything,	"uw"},
+	{"ch",		"u",		anything,	"uw"},
+	{"sh",		"u",		anything,	"uw"},
+	{anything,	"u",		anything,	"yuw"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule v_rules[] =
+{
+	{anything,	"view",		anything,	"vyuw"},
+	{anything,	"v",		anything,	"v"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule w_rules[] =
+{
+	{nothing,	"were",		anything,	"wer"},
+	{anything,	"wa",		"s",		"waa"},
+	{anything,	"wa",		"t",		"waa"},
+	{anything,	"where",	anything,	"wehr"},
+	{anything,	"what",		anything,	"waat"},
+	{anything,	"whol",		anything,	"howl"},
+	{anything,	"who",		anything,	"huw"},
+	{anything,	"wh",		anything,	"w"},
+	{anything,	"war",		anything,	"waor"},
+	{anything,	"wor",		"^",		"wer"},
+	{anything,	"wr",		anything,	"r"},
+	{anything,	"w",		anything,	"w"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule x_rules[] =
+{
+	{anything,	"x",		anything,	"ks"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule y_rules[] =
+{
+	{anything,	"young",	anything,	"yaang"},
+	{nothing,	"you",		anything,	"yuw"},
+	{nothing,	"yes",		anything,	"yehs"},
+	{nothing,	"y",		anything,	"y"},
+	{"#:^",		"y",		nothing,	"ay"},
+	{"#:^",		"y",		"i",		"ay"},
+	{" :",		"y",		nothing,	"ay"},
+	{" :",		"y",		"#",		"ay"},
+	{" :",		"y",		"^+:#",		"ih"},
+	{" :",		"y",		"^#",		"ay"},
+	{anything,	"y",		anything,	"ih"},
+	{anything,	0,		anything,	silent},
+};
+
+
+/*
+ *	left_part	 match_part	right_part	out_part
+ */
+static Rule z_rules[] =
+{
+	{anything,	"z",		anything,	"z"},
+	{anything,	0,		anything,	silent},
+};
+
+Rule	*rules[] =
+{
+	punct_rules,
+	a_rules, b_rules, c_rules, d_rules, e_rules, f_rules, g_rules,
+	h_rules, i_rules, j_rules, k_rules, l_rules, m_rules, n_rules,
+	o_rules, p_rules, q_rules, r_rules, s_rules, t_rules, u_rules,
+	v_rules, w_rules, x_rules, y_rules, z_rules
+};
+@
+
+
+1.10
+log
+@Revised #include file list.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d37 5
+@
+
+
+1.9
+log
+@Random fixes.
+@
+text
+@d3 7
+a9 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+@
+
+
+1.8
+log
+@Much re-formatting for clarity.
+@
+text
+@d379 1
+a379 1
+	{nothing,	"k",		"n"
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d2 1
+d11 1
+d13 74
+a86 65
+ * *  english to phoneme rules. *
+ *
+ *    derived from: *
+ *
+ *       automatic translation of english text to phonetics *          
+ * by means of letter-to-sound rules *
+ *
+ *            nrl report 7948 *
+ *
+ *          january 21st, 1976 *      naval research
+ * laboratory, washington, d.c. *
+ *
+ *
+ *    published by the national technical information service as *
+ * document "ad/a021 929". *
+ *
+ *
+ *
+ *    the phoneme codes: *
+ *
+ *        iy    beet      ih    bit *       ey    gate
+ * h  get *       ae    fat       aa    father *
+ * o  lawn      ow    lone *      uh    full      uw
+ * fool *         er    murder      ax    about *     ah
+ * but      ay    hide *      aw    how       oy    toy *   
+ *
+ *        p     pack      b     back *      t     time
+ *    dime *      k     coat      g     goat *      f
+ * fault        v     vault *     th    ether       dh
+ * either *       s     sue       z     zoo *       sh
+ * leash        sh    leisure *         hh    how
+ *    sum *       n     sun       ng    sung *      l
+ * laugh        w     wear *      y     young       r
+ * rate *         ch    char      j     jar *       wh
+ * where *
+ *
+ *
+ *    rules are made up of four parts: *    
+ *
+ *        the left context. *       the text to match. *
+ * he right context. *      the phonemes to substitute for the matched
+ * text. *
+ *
+ *    procedure: *
+ *
+ *        seperate each block of letters (apostrophes included) *
+ * nd add a space on each side.  for each unmatched *       letter in the
+ * word, look through the rules where the *       text to match starts
+ * with the letter in the word.  if *       the text to match is found
+ * and the right and left *       context patterns also match, output
+ * the phonemes for *       that rule and skip to the next unmatched
+ * letter. *
+ *
+ *
+ *    special context symbols: *
+ *
+ *        #     one or more vowels *      :     zero or more
+ * consonants *     ^     one consonant. *        .     one
+ * of b, d, v, g, j, l, m, n, r, w or z (voiced *
+ * ants) *        %     one of er, e, es, ed, ing, ely (a suffix) *
+ * found in right context only) *         +     one of e, i or y (a
+ * "front" vowel) *
+ *
+ */
+
+d89 2
+a90 2
+static char anything[] = "";  /* no context requirement */
+static char nothing[] = " ";  /* context is beginning or end of word */
+d93 2
+a94 2
+static char aPause[] = " ";   /* short silence */
+static char silent[] = "";    /* no phonemes */
+d101 1
+a101 1
+typedef char *Rule[4];      /* rule is an array of 4 character pointers */
+d105 1
+a105 1
+ * *  left_part     match_part    right_part    out_part 
+d109 11
+a119 11
+ {anything, " ", anything, aPause},
+ {anything, "-", anything, silent},
+ {".", "'s", anything, "z"},
+ {"#:.e", "'s", anything, "z"},
+ {"#", "'s", anything, "z"},
+ {anything, "'", anything, silent},
+ {anything, ",", anything, aPause},
+ {anything, ".", anything, aPause},
+ {anything, "?", anything, aPause},
+ {anything, "!", anything, aPause},
+ {anything, 0, anything, silent},
+d124 1
+a124 1
+ * *  left_part     match_part    right_part    out_part 
+d128 34
+a161 34
+ {anything, "a", nothing, "aa"},
+ {nothing, "are", nothing, "aar"},
+ {nothing, "ar", "o", "aar"},
+ {anything, "ar", "#", "ehr"},
+ {"^", "as", "#", "ays"},
+ {anything, "a", "wa", "aa"},
+ {anything, "aw", anything, "ao"},
+ {" :", "any", anything, "ehnay"},
+ {anything, "a", "^+#", "ay"},
+ {"#:", "ally", anything, "aalay"},
+ {nothing, "al", "#", "aal"},
+ {anything, "again", anything, "aagehn"},
+ {"#:", "ag", "e", "ihj"},
+ {anything, "a", "^+:#", "ae"},
+ {" :", "a", "^+ ", "ay"},
+ {anything, "a", "^%", "ay"},
+ {nothing, "arr", anything, "aar"},
+ {anything, "arr", anything, "aer"},
+ {" :", "ar", nothing, "aar"},
+ {anything, "ar", nothing, "er"},
+ {anything, "ar", anything, "aar"},
+ {anything, "air", anything, "ehr"},
+ {anything, "ai", anything, "ay"},
+ {anything, "ay", anything, "ay"},
+ {anything, "au", anything, "ao"},
+ {"#:", "al", nothing, "aal"},
+ {"#:", "als", nothing, "aalz"},
+ {anything, "alk", anything, "aok"},
+ {anything, "al", "^", "aol"},
+ {" :", "able", anything, "aybaal"},
+ {anything, "able", anything, "aabaal"},
+ {anything, "ang", "+", "aynj"},
+ {anything, "a", anything, "ae"},
+ {anything, 0, anything, silent},
+d166 1
+a166 1
+ * *  left_part     match_part    right_part    out_part 
+d170 7
+a176 7
+ {nothing, "be", "^#", "bih"},
+ {anything, "being", anything, "bayihng"},
+ {nothing, "both", nothing, "bowth"},
+ {nothing, "bus", "#", "bihz"},
+ {anything, "buil", anything, "bihl"},
+ {anything, "b", anything, "b"},
+ {anything, 0, anything, silent},
+d181 1
+a181 1
+ * *  left_part     match_part    right_part    out_part 
+d185 12
+a196 12
+ {nothing, "ch", "^", "k"},
+ {"^e", "ch", anything, "k"},
+ {anything, "ch", anything, "ch"},
+ {" s", "ci", "#", "say"},
+ {anything, "ci", "a", "sh"},
+ {anything, "ci", "o", "sh"},
+ {anything, "ci", "en", "sh"},
+ {anything, "c", "+", "s"},
+ {anything, "ck", anything, "k"},
+ {anything, "com", "%", "kaam"},
+ {anything, "c", anything, "k"},
+ {anything, 0, anything, silent},
+d201 1
+a201 1
+ * *  left_part     match_part    right_part    out_part 
+d205 11
+a215 11
+ {"#:", "ded", nothing, "dihd"},
+ {".e", "d", nothing, "d"},
+ {"#:^e", "d", nothing, "t"},
+ {nothing, "de", "^#", "dih"},
+ {nothing, "do", nothing, "duw"},
+ {nothing, "does", anything, "daaz"},
+ {nothing, "doing", anything, "duwihng"},
+ {nothing, "dow", anything, "daw"},
+ {anything, "du", "a", "juw"},
+ {anything, "d", anything, "d"},
+ {anything, 0, anything, silent},
+d220 1
+a220 1
+ * *  left_part     match_part    right_part    out_part 
+d224 54
+a277 54
+ {"#:", "e", nothing, silent},
+ {"':^", "e", nothing, silent},
+ {" :", "e", nothing, "ay"},
+ {"#", "ed", nothing, "d"},
+ {"#:", "e", "d ", silent},
+ {anything, "ev", "er", "ehv"},
+ {anything, "e", "^%", "ay"},
+ {anything, "eri", "#", "ayray"},
+ {anything, "eri", anything, "ehrih"},
+ {"#:", "er", "#", "er"},
+ {anything, "er", "#", "ehr"},
+ {anything, "er", anything, "er"},
+ {nothing, "even", anything, "ayvehn"},
+ {nothing, "ephen", anything, "ayvehn"},
+ {"#:", "e", "w", silent},
+ {"t", "ew", anything, "uw"},
+ {"s", "ew", anything, "uw"},
+ {"r", "ew", anything, "uw"},
+ {"d", "ew", anything, "uw"},
+ {"l", "ew", anything, "uw"},
+ {"z", "ew", anything, "uw"},
+ {"n", "ew", anything, "uw"},
+ {"j", "ew", anything, "uw"},
+ {"th", "ew", anything, "uw"},
+ {"ch", "ew", anything, "uw"},
+ {"sh", "ew", anything, "uw"},
+ {anything, "ew", anything, "yuw"},
+ {anything, "e", "o", "ay"},
+ {"#:s", "es", nothing, "ihz"},
+ {"#:c", "es", nothing, "ihz"},
+ {"#:g", "es", nothing, "ihz"},
+ {"#:z", "es", nothing, "ihz"},
+ {"#:x", "es", nothing, "ihz"},
+ {"#:j", "es", nothing, "ihz"},
+ {"#:ch", "es", nothing, "ihz"},
+ {"#:sh", "es", nothing, "ihz"},
+ {"#:", "e", "s ", silent},
+ {"#:", "ely", nothing, "lay"},
+ {"#:", "ement", anything, "mehnt"},
+ {anything, "eful", anything, "fuhl"},
+ {anything, "ee", anything, "ay"},
+ {anything, "earn", anything, "ern"},
+ {nothing, "ear", "^", "er"},
+ {anything, "ead", anything, "ehd"},
+ {"#:", "ea", nothing, "ayaa"},
+ {anything, "ea", "su", "eh"},
+ {anything, "ea", anything, "ay"},
+ {anything, "eigh", anything, "ay"},
+ {anything, "ei", anything, "ay"},
+ {nothing, "eye", anything, "ay"},
+ {anything, "ey", anything, "iy"},
+ {anything, "eu", anything, "yuw"},
+ {anything, "e", anything, "eh"},
+ {anything, 0, anything, silent},
+d282 1
+a282 1
+ * *  left_part     match_part    right_part    out_part 
+d286 3
+a288 3
+ {anything, "ful", anything, "fuhl"},
+ {anything, "f", anything, "f"},
+ {anything, 0, anything, silent},
+d293 1
+a293 1
+ * *  left_part     match_part    right_part    out_part 
+d297 11
+a307 11
+ {anything, "giv", anything, "gihv"},
+ {nothing, "g", "i^", "g"},
+ {anything, "ge", "t", "geh"},
+ {"su", "gges", anything, "gjehs"},
+ {anything, "gg", anything, "g"},
+ {" b#", "g", anything, "g"},
+ {anything, "g", "+", "j"},
+ {anything, "great", anything, "grayt"},
+ {"#", "gh", anything, silent},
+ {anything, "g", anything, "g"},
+ {anything, 0, anything, silent},
+d312 1
+a312 1
+ * *  left_part     match_part    right_part    out_part 
+d316 7
+a322 7
+ {nothing, "hav", anything, "haev"},
+ {nothing, "here", anything, "hayr"},
+ {nothing, "hour", anything, "awer"},
+ {anything, "how", anything, "haw"},
+ {anything, "h", "#", "h"},
+ {anything, "h", anything, silent},
+ {anything, 0, anything, silent},
+d327 1
+a327 1
+ * *  left_part     match_part    right_part    out_part 
+d331 30
+a360 30
+ {nothing, "in", anything, "ihn"},
+ {nothing, "i", nothing, "ay"},
+ {anything, "in", "d", "ayn"},
+ {anything, "ier", "^", "er"},
+ {anything, "ier", anything, "ayer"},
+ {"#:r", "ied", anything, "ayd"},
+ {anything, "ied", nothing, "ayd"},
+ {anything, "ien", anything, "ayehn"},
+ {anything, "ie", "t", "ayeh"},
+ {" :", "i", "%", "ay"},
+ {anything, "i", "%", "ay"},
+ {anything, "ie", anything, "ay"},
+ {anything, "i", "^+:#", "ih"},
+ {anything, "ir", "#", "ayr"},
+ {anything, "iz", "%", "ayz"},
+ {anything, "is", "%", "ayz"},
+ {anything, "i", "d%", "ay"},
+ {"+^", "i", "^+", "ih"},
+ {anything, "i", "t%", "ay"},
+ {"#:^", "i", "^+", "ih"},
+ {anything, "i", "^+", "ay"},
+ {anything, "ir", anything, "er"},
+ {anything, "igh", anything, "ay"},
+ {anything, "ild", anything, "ayld"},
+ {anything, "ign", nothing, "ayn"},
+ {anything, "ign", "^", "ayn"},
+ {anything, "ign", "%", "ayn"},
+ {anything, "ique", anything, "ayk"},
+ {anything, "i", anything, "ih"},
+ {anything, 0, anything, silent},
+d365 1
+a365 1
+ * *  left_part     match_part    right_part    out_part 
+d369 2
+a370 2
+ {anything, "j", anything, "j"},
+ {anything, 0, anything, silent},
+d375 1
+a375 1
+ * *  left_part     match_part    right_part    out_part 
+d379 3
+a381 3
+ {nothing, "k", "n", silent},
+ {anything, "k", anything, "k"},
+ {anything, 0, anything, silent},
+d386 1
+a386 1
+ * *  left_part     match_part    right_part    out_part 
+d390 6
+a395 6
+ {anything, "lo", "c#", "low"},
+ {"l", "l", anything, silent},
+ {"#:^", "l", "%", "aal"},
+ {anything, "lead", anything, "layd"},
+ {anything, "l", anything, "l"},
+ {anything, 0, anything, silent},
+d400 1
+a400 1
+ * *  left_part     match_part    right_part    out_part 
+d404 3
+a406 3
+ {anything, "mov", anything, "muwv"},
+ {anything, "m", anything, "m"},
+ {anything, 0, anything, silent},
+d411 1
+a411 1
+ * *  left_part     match_part    right_part    out_part 
+d415 10
+a424 10
+ {"e", "ng", "+", "nj"},
+ {anything, "ng", "r", "ngg"},
+ {anything, "ng", "#", "ngg"},
+ {anything, "ngl", "%", "nggaal"},
+ {anything, "ng", anything, "ng"},
+ {anything, "nk", anything, "ngk"},
+ {nothing, "now", nothing, "naw"},
+ {anything, "nn", anything, "n"},
+ {anything, "n", anything, "n"},
+ {anything, 0, anything, silent},
+d429 1
+a429 1
+ * *  left_part     match_part    right_part    out_part 
+d433 51
+a483 51
+ {anything, "of", nothing, "aav"},
+ {anything, "orough", anything, "erow"},
+ {"#:", "or", nothing, "er"},
+ {"#:", "ors", nothing, "erz"},
+ {anything, "or", anything, "aor"},
+ {nothing, "one", anything, "waan"},
+ {anything, "own", anything, "own"},
+ {anything, "ow", anything, "aw"},
+ {nothing, "over", anything, "owver"},
+ {anything, "ov", anything, "aav"},
+ {anything, "oer", anything, "er"},
+ {anything, "o", "^%", "ow"},
+ {anything, "o", "^en", "ow"},
+ {anything, "o", "^i#", "ow"},
+ {anything, "ol", "d", "owl"},
+ {anything, "ought", anything, "aot"},
+ {anything, "ough", anything, "aaf"},
+ {nothing, "ou", anything, "aw"},
+ {"h", "ou", "s#", "aw"},
+ {anything, "ous", anything, "aas"},
+ {anything, "our", anything, "aor"},
+ {anything, "ould", anything, "uhd"},
+ {"^", "ou", "^l", "aa"},
+ {anything, "oup", anything, "uwp"},
+ {anything, "ou", anything, "aw"},
+ {anything, "oy", anything, "oy"},
+ {anything, "oing", anything, "owihng"},
+ {anything, "oi", anything, "oy"},
+ {anything, "oor", anything, "aor"},
+ {anything, "ook", anything, "uhk"},
+ {anything, "ood", anything, "uhd"},
+ {anything, "oo", anything, "uw"},
+ {anything, "o", "e", "ow"},
+ {anything, "o", nothing, "ow"},
+ {anything, "oa", anything, "ow"},
+ {nothing, "only", anything, "ownlay"},
+ {nothing, "once", anything, "waans"},
+ {anything, "on't", anything, "ownt"},
+ {"c", "o", "n", "aa"},
+ {anything, "o", "ng", "ao"},
+ {" :^", "o", "n", "aa"},
+ {"i", "on", anything, "aan"},
+ {"#:", "on", nothing, "aan"},
+ {"#^", "on", anything, "aan"},
+ {anything, "o", "st ", "ow"},
+ {anything, "of", "^", "aof"},
+ {anything, "other", anything, "aather"},
+ {anything, "oss", nothing, "aos"},
+ {"#:^", "om", anything, "aam"},
+ {anything, "o", anything, "aa"},
+ {anything, 0, anything, silent},
+d488 1
+a488 1
+ * *  left_part     match_part    right_part    out_part 
+d492 8
+a499 8
+ {nothing, "ph", anything, "f"},
+ {anything, "ph", nothing, "f"},
+ {anything, "ph", anything, "v"},
+ {anything, "peop", anything, "payp"},
+ {anything, "pow", anything, "paw"},
+ {anything, "put", nothing, "puht"},
+ {anything, "p", anything, "p"},
+ {anything, 0, anything, silent},
+d504 1
+a504 1
+ * *  left_part     match_part    right_part    out_part 
+d508 4
+a511 4
+ {anything, "quar", anything, "kwaor"},
+ {anything, "qu", anything, "kw"},
+ {anything, "q", anything, "k"},
+ {anything, 0, anything, silent},
+d516 1
+a516 1
+ * *  left_part     match_part    right_part    out_part 
+d520 3
+a522 3
+ {nothing, "re", "^#", "ray"},
+ {anything, "r", anything, "r"},
+ {anything, 0, anything, silent},
+d527 1
+a527 1
+ * *  left_part     match_part    right_part    out_part 
+d531 26
+a556 26
+ {anything, "sh", anything, "sh"},
+ {"#", "sion", anything, "shaan"},
+ {anything, "some", anything, "saam"},
+ {"#", "sur", "#", "sher"},
+ {anything, "sur", "#", "sher"},
+ {"#", "su", "#", "shuw"},
+ {"#", "ssu", "#", "shuw"},
+ {"#", "sed", nothing, "zd"},
+ {"#", "s", "#", "z"},
+ {anything, "said", anything, "sehd"},
+ {"^", "sion", anything, "shaan"},
+ {anything, "son", nothing, "saan"},
+ {anything, "sen", nothing, "saan"},
+ {anything, "s", "s", silent},
+ {".", "s", nothing, "z"},
+ {"#:.e", "s", nothing, "z"},
+ {"#:^##", "s", nothing, "z"},
+ {"#:^#", "s", nothing, "s"},
+ {"u", "s", nothing, "s"},
+ {" :#", "s", nothing, "z"},
+ {nothing, "sch", anything, "sk"},
+ {anything, "s", "c+", silent},
+ {"#", "sm", anything, "zm"},
+ {"#", "sn", "'", "zaan"},
+ {anything, "s", anything, "s"},
+ {anything, 0, anything, silent},
+d561 1
+a561 1
+ * *  left_part     match_part    right_part    out_part 
+d565 29
+a593 29
+ {nothing, "the", nothing, "thaa"},
+ {anything, "to", nothing, "tuw"},
+ {anything, "that", nothing, "thaet"},
+ {nothing, "this", nothing, "thihs"},
+ {nothing, "they", anything, "thay"},
+ {nothing, "there", anything, "thehr"},
+ {anything, "ther", anything, "ther"},
+ {anything, "their", anything, "thehr"},
+ {nothing, "than", nothing, "thaen"},
+ {nothing, "them", nothing, "thehm"},
+ {anything, "these", nothing, "thayz"},
+ {nothing, "then", anything, "thehn"},
+ {anything, "through", anything, "thruw"},
+ {anything, "those", anything, "thowz"},
+ {anything, "though", nothing, "thow"},
+ {nothing, "thus", anything, "thaas"},
+ {anything, "th", anything, "th"},
+ {"#:", "ted", nothing, "tihd"},
+ {"s", "ti", "#n", "ch"},
+ {anything, "ti", "o", "sh"},
+ {anything, "ti", "a", "sh"},
+ {anything, "tien", anything, "shaan"},
+ {anything, "tur", "#", "cher"},
+ {anything, "tu", "a", "chuw"},
+ {nothing, "two", anything, "tuw"},
+ {anything, "tch", anything, "ch"},
+ {anything, "tsch", anything, "ch"},
+ {anything, "t", anything, "t"},
+ {anything, 0, anything, silent},
+d598 1
+a598 1
+ * *  left_part     match_part    right_part    out_part 
+d602 36
+a637 36
+ {nothing, "un", "i", "yuwn"},
+ {nothing, "un", anything, "aan"},
+ {nothing, "upon", anything, "aapaon"},
+ {"t", "ur", "#", "uhr"},
+ {"s", "ur", "#", "uhr"},
+ {"r", "ur", "#", "uhr"},
+ {"d", "ur", "#", "uhr"},
+ {"l", "ur", "#", "uhr"},
+ {"z", "ur", "#", "uhr"},
+ {"n", "ur", "#", "uhr"},
+ {"j", "ur", "#", "uhr"},
+ {"th", "ur", "#", "uhr"},
+ {"ch", "ur", "#", "uhr"},
+ {"sh", "ur", "#", "uhr"},
+ {anything, "ur", "#", "yuhr"},
+ {anything, "ur", anything, "er"},
+ {anything, "u", "^ ", "aa"},
+ {anything, "u", "^^", "aa"},
+ {anything, "uy", anything, "ay"},
+ {" g", "u", "#", silent},
+ {"g", "u", "%", silent},
+ {"g", "u", "#", "w"},
+ {"#n", "u", anything, "yuw"},
+ {"t", "u", anything, "uw"},
+ {"s", "u", anything, "uw"},
+ {"r", "u", anything, "uw"},
+ {"d", "u", anything, "uw"},
+ {"l", "u", anything, "uw"},
+ {"z", "u", anything, "uw"},
+ {"n", "u", anything, "uw"},
+ {"j", "u", anything, "uw"},
+ {"th", "u", anything, "uw"},
+ {"ch", "u", anything, "uw"},
+ {"sh", "u", anything, "uw"},
+ {anything, "u", anything, "yuw"},
+ {anything, 0, anything, silent},
+d642 1
+a642 1
+ * *  left_part     match_part    right_part    out_part 
+d646 3
+a648 3
+ {anything, "view", anything, "vyuw"},
+ {anything, "v", anything, "v"},
+ {anything, 0, anything, silent},
+d653 1
+a653 1
+ * *  left_part     match_part    right_part    out_part 
+d657 13
+a669 13
+ {nothing, "were", anything, "wer"},
+ {anything, "wa", "s", "waa"},
+ {anything, "wa", "t", "waa"},
+ {anything, "where", anything, "wehr"},
+ {anything, "what", anything, "waat"},
+ {anything, "whol", anything, "howl"},
+ {anything, "who", anything, "huw"},
+ {anything, "wh", anything, "w"},
+ {anything, "war", anything, "waor"},
+ {anything, "wor", "^", "wer"},
+ {anything, "wr", anything, "r"},
+ {anything, "w", anything, "w"},
+ {anything, 0, anything, silent},
+d674 1
+a674 1
+ * *  left_part     match_part    right_part    out_part 
+d678 2
+a679 2
+ {anything, "x", anything, "ks"},
+ {anything, 0, anything, silent},
+d684 1
+a684 1
+ * *  left_part     match_part    right_part    out_part 
+d688 12
+a699 12
+ {anything, "young", anything, "yaang"},
+ {nothing, "you", anything, "yuw"},
+ {nothing, "yes", anything, "yehs"},
+ {nothing, "y", anything, "y"},
+ {"#:^", "y", nothing, "ay"},
+ {"#:^", "y", "i", "ay"},
+ {" :", "y", nothing, "ay"},
+ {" :", "y", "#", "ay"},
+ {" :", "y", "^+:#", "ih"},
+ {" :", "y", "^#", "ay"},
+ {anything, "y", anything, "ih"},
+ {anything, 0, anything, silent},
+d704 1
+a704 1
+ * *  left_part     match_part    right_part    out_part 
+d708 2
+a709 2
+ {anything, "z", anything, "z"},
+ {anything, 0, anything, silent},
+d712 1
+a712 1
+Rule   *rules[] =
+d714 5
+a718 5
+ punct_rules,
+ a_rules, b_rules, c_rules, d_rules, e_rules, f_rules, g_rules,
+ h_rules, i_rules, j_rules, k_rules, l_rules, m_rules, n_rules,
+ o_rules, p_rules, q_rules, r_rules, s_rules, t_rules, u_rules,
+ v_rules, w_rules, x_rules, y_rules, z_rules
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d1 1
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d1 8
+a8 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+@
+
+
+1.4
+log
+@No help here.
+@
+text
+@d8 1
+a8 1
+ * *	english to phoneme rules. *
+d10 1
+a10 1
+ *	derived from: *
+d12 1
+a12 1
+ *	     automatic translation of english text to phonetics *	           
+d15 1
+a15 1
+ *			nrl report 7948 *
+d17 1
+a17 1
+ *		      january 21st, 1976 *	    naval research
+d21 1
+a21 1
+ *	published by the national technical information service as *
+d26 1
+a26 1
+ *	the phoneme codes: *
+d28 5
+a32 5
+ *		iy	beet		ih	bit *		ey	gate
+ * h	get *		ae	fat		aa	father *
+ * o	lawn		ow	lone *		uh	full		uw
+ * fool *		er	murder		ax	about *		ah
+ * but		ay	hide *		aw	how		oy	toy *	
+d34 8
+a41 8
+ *		p	pack		b	back *		t	time
+ * 	dime *		k	coat		g	goat *		f
+ * fault		v	vault *		th	ether		dh
+ * either *		s	sue		z	zoo *		sh
+ * leash		sh	leisure *		hh	how
+ * 	sum *		n	sun		ng	sung *		l
+ * laugh		w	wear *		y	young		r
+ * rate *		ch	char		j	jar *		wh
+d45 1
+a45 1
+ *	rules are made up of four parts: *	
+d47 2
+a48 2
+ *		the left context. *		the text to match. *
+ * he right context. *		the phonemes to substitute for the matched
+d51 1
+a51 1
+ *	procedure: *
+d53 6
+a58 6
+ *		seperate each block of letters (apostrophes included) *
+ * nd add a space on each side.  for each unmatched *		letter in the
+ * word, look through the rules where the *		text to match starts
+ * with the letter in the word.  if *		the text to match is found
+ * and the right and left *		context patterns also match, output
+ * the phonemes for *		that rule and skip to the next unmatched
+d62 1
+a62 1
+ *	special context symbols: *
+d64 2
+a65 2
+ *		#	one or more vowels *		:	zero or more
+ * consonants *		^	one consonant. *		.	one
+d67 2
+a68 2
+ * ants) *		%	one of er, e, es, ed, ing, ely (a suffix) *
+ * found in right context only) *		+	one of e, i or y (a
+d75 2
+a76 2
+static char anything[] = "";	/* no context requirement */
+static char nothing[] = " ";	/* context is beginning or end of word */
+d79 2
+a80 2
+static char aPause[] = " ";	/* short silence */
+static char silent[] = "";	/* no phonemes */
+d82 4
+a85 4
+#define left_part	0
+#define match_part	1
+#define right_part	2
+#define out_part	3
+d87 1
+a87 1
+typedef char *Rule[4];		/* rule is an array of 4 character pointers */
+d91 1
+a91 1
+ * *	left_part	match_part	right_part	out_part 
+d110 1
+a110 1
+ * *	left_part	match_part	right_part	out_part 
+d152 1
+a152 1
+ * *	left_part	match_part	right_part	out_part 
+d167 1
+a167 1
+ * *	left_part	match_part	right_part	out_part 
+d187 1
+a187 1
+ * *	left_part	match_part	right_part	out_part 
+d206 1
+a206 1
+ * *	left_part	match_part	right_part	out_part 
+d268 1
+a268 1
+ * *	left_part	match_part	right_part	out_part 
+d279 1
+a279 1
+ * *	left_part	match_part	right_part	out_part 
+d298 1
+a298 1
+ * *	left_part	match_part	right_part	out_part 
+d313 1
+a313 1
+ * *	left_part	match_part	right_part	out_part 
+d351 1
+a351 1
+ * *	left_part	match_part	right_part	out_part 
+d361 1
+a361 1
+ * *	left_part	match_part	right_part	out_part 
+d372 1
+a372 1
+ * *	left_part	match_part	right_part	out_part 
+d386 1
+a386 1
+ * *	left_part	match_part	right_part	out_part 
+d397 1
+a397 1
+ * *	left_part	match_part	right_part	out_part 
+d415 1
+a415 1
+ * *	left_part	match_part	right_part	out_part 
+d474 1
+a474 1
+ * *	left_part	match_part	right_part	out_part 
+d490 1
+a490 1
+ * *	left_part	match_part	right_part	out_part 
+d502 1
+a502 1
+ * *	left_part	match_part	right_part	out_part 
+d513 1
+a513 1
+ * *	left_part	match_part	right_part	out_part 
+d547 1
+a547 1
+ * *	left_part	match_part	right_part	out_part 
+d584 1
+a584 1
+ * *	left_part	match_part	right_part	out_part 
+d628 1
+a628 1
+ * *	left_part	match_part	right_part	out_part 
+d639 1
+a639 1
+ * *	left_part	match_part	right_part	out_part 
+d660 1
+a660 1
+ * *	left_part	match_part	right_part	out_part 
+d670 1
+a670 1
+ * *	left_part	match_part	right_part	out_part 
+d690 1
+a690 1
+ * *	left_part	match_part	right_part	out_part 
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d1 6
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d2 64
+a65 74
+**	english to phoneme rules.
+**
+**	derived from: 
+**
+**	     automatic translation of english text to phonetics
+**	            by means of letter-to-sound rules
+**
+**			nrl report 7948
+**
+**		      january 21st, 1976
+**	    naval research laboratory, washington, d.c.
+**
+**
+**	published by the national technical information service as
+**	document "ad/a021 929".
+**
+**
+**
+**	the phoneme codes:
+**
+**		iy	beet		ih	bit
+**		ey	gate		eh	get
+**		ae	fat		aa	father
+**		ao	lawn		ow	lone
+**		uh	full		uw	fool
+**		er	murder		ax	about
+**		ah	but		ay	hide
+**		aw	how		oy	toy
+**	
+**		p	pack		b	back
+**		t	time		d	dime
+**		k	coat		g	goat
+**		f	fault		v	vault
+**		th	ether		dh	either
+**		s	sue		z	zoo
+**		sh	leash		sh	leisure
+**		hh	how		m	sum
+**		n	sun		ng	sung
+**		l	laugh		w	wear
+**		y	young		r	rate
+**		ch	char		j	jar
+**		wh	where
+**
+**
+**	rules are made up of four parts:
+**	
+**		the left context.
+**		the text to match.
+**		the right context.
+**		the phonemes to substitute for the matched text.
+**
+**	procedure:
+**
+**		seperate each block of letters (apostrophes included) 
+**		and add a space on each side.  for each unmatched 
+**		letter in the word, look through the rules where the 
+**		text to match starts with the letter in the word.  if 
+**		the text to match is found and the right and left 
+**		context patterns also match, output the phonemes for 
+**		that rule and skip to the next unmatched letter.
+**
+**
+**	special context symbols:
+**
+**		#	one or more vowels
+**		:	zero or more consonants
+**		^	one consonant.
+**		.	one of b, d, v, g, j, l, m, n, r, w or z (voiced 
+**			consonants)
+**		%	one of er, e, es, ed, ing, ely (a suffix)
+**			(found in right context only)
+**		+	one of e, i or y (a "front" vowel)
+**
+*/
+d73 1
+a73 1
+static char pause[] = " ";	/* short silence */
+d81 1
+a81 1
+typedef char *Rule[4];	/* rule is an array of 4 character pointers */
+d83 1
+a83 1
+/*0 = punctuation */
+d85 2
+a86 2
+**	left_part	match_part	right_part	out_part
+*/
+d88 15
+a102 14
+	{
+	{anything,	" ",		anything,	pause	},
+	{anything,	"-",		anything,	silent	},
+	{".",		"'s",		anything,	"z"	},
+	{"#:.e",	"'s",		anything,	"z"	},
+	{"#",		"'s",		anything,	"z"	},
+	{anything,	"'",		anything,	silent	},
+	{anything,	",",		anything,	pause	},
+	{anything,	".",		anything,	pause	},
+	{anything,	"?",		anything,	pause	},
+	{anything,	"!",		anything,	pause	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d104 2
+a105 2
+**	left_part	match_part	right_part	out_part
+*/
+d107 38
+a144 37
+	{
+	{anything,	"a",		nothing,	"aa"	},
+	{nothing,	"are",		nothing,	"aar"	},
+	{nothing,	"ar",		"o",		"aar"	},
+	{anything,	"ar",		"#",		"ehr"	},
+	{"^",		"as",		"#",		"ays"	},
+	{anything,	"a",		"wa",		"aa"	},
+	{anything,	"aw",		anything,	"ao"	},
+	{" :",		"any",		anything,	"ehnay"	},
+	{anything,	"a",		"^+#",		"ay"	},
+	{"#:",		"ally",		anything,	"aalay"	},
+	{nothing,	"al",		"#",		"aal"	},
+	{anything,	"again",	anything,	"aagehn"},
+	{"#:",		"ag",		"e",		"ihj"	},
+	{anything,	"a",		"^+:#",		"ae"	},
+	{" :",		"a",		"^+ ",		"ay"	},
+	{anything,	"a",		"^%",		"ay"	},
+	{nothing,	"arr",		anything,	"aar"	},
+	{anything,	"arr",		anything,	"aer"	},
+	{" :",		"ar",		nothing,	"aar"	},
+	{anything,	"ar",		nothing,	"er"	},
+	{anything,	"ar",		anything,	"aar"	},
+	{anything,	"air",		anything,	"ehr"	},
+	{anything,	"ai",		anything,	"ay"	},
+	{anything,	"ay",		anything,	"ay"	},
+	{anything,	"au",		anything,	"ao"	},
+	{"#:",		"al",		nothing,	"aal"	},
+	{"#:",		"als",		nothing,	"aalz"	},
+	{anything,	"alk",		anything,	"aok"	},
+	{anything,	"al",		"^",		"aol"	},
+	{" :",		"able",		anything,	"aybaal"},
+	{anything,	"able",		anything,	"aabaal"},
+	{anything,	"ang",		"+",		"aynj"	},
+	{anything,	"a",		anything,	"ae"	},
+ 	{anything,	0,		anything,	silent	},
+	};
+
+d146 2
+a147 2
+**	left_part	match_part	right_part	out_part
+*/
+d149 11
+a159 10
+	{
+	{nothing,	"be",		"^#",		"bih"	},
+	{anything,	"being",	anything,	"bayihng"},
+	{nothing,	"both",		nothing,	"bowth"	},
+	{nothing,	"bus",		"#",		"bihz"	},
+	{anything,	"buil",		anything,	"bihl"	},
+	{anything,	"b",		anything,	"b"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d161 2
+a162 2
+**	left_part	match_part	right_part	out_part
+*/
+d164 16
+a179 15
+	{
+	{nothing,	"ch",		"^",		"k"	},
+	{"^e",		"ch",		anything,	"k"	},
+	{anything,	"ch",		anything,	"ch"	},
+	{" s",		"ci",		"#",		"say"	},
+	{anything,	"ci",		"a",		"sh"	},
+	{anything,	"ci",		"o",		"sh"	},
+	{anything,	"ci",		"en",		"sh"	},
+	{anything,	"c",		"+",		"s"	},
+	{anything,	"ck",		anything,	"k"	},
+	{anything,	"com",		"%",		"kaam"	},
+	{anything,	"c",		anything,	"k"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d181 2
+a182 2
+**	left_part	match_part	right_part	out_part
+*/
+d184 15
+a198 14
+	{
+	{"#:",		"ded",		nothing,	"dihd"	},
+	{".e",		"d",		nothing,	"d"	},
+	{"#:^e",	"d",		nothing,	"t"	},
+	{nothing,	"de",		"^#",		"dih"	},
+	{nothing,	"do",		nothing,	"duw"	},
+	{nothing,	"does",		anything,	"daaz"	},
+	{nothing,	"doing",	anything,	"duwihng"},
+	{nothing,	"dow",		anything,	"daw"	},
+	{anything,	"du",		"a",		"juw"	},
+	{anything,	"d",		anything,	"d"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d200 2
+a201 2
+**	left_part	match_part	right_part	out_part
+*/
+d203 58
+a260 57
+	{
+	{"#:",		"e",		nothing,	silent	},
+	{"':^",		"e",		nothing,	silent	},
+	{" :",		"e",		nothing,	"ay"	},
+	{"#",		"ed",		nothing,	"d"	},
+	{"#:",		"e",		"d ",		silent	},
+	{anything,	"ev",		"er",		"ehv"	},
+	{anything,	"e",		"^%",		"ay"	},
+	{anything,	"eri",		"#",		"ayray"	},
+	{anything,	"eri",		anything,	"ehrih"	},
+	{"#:",		"er",		"#",		"er"	},
+	{anything,	"er",		"#",		"ehr"	},
+	{anything,	"er",		anything,	"er"	},
+	{nothing,	"even",		anything,	"ayvehn"},
+	{nothing,	"ephen",	anything,	"ayvehn"},
+	{"#:",		"e",		"w",		silent	},
+	{"t",		"ew",		anything,	"uw"	},
+	{"s",		"ew",		anything,	"uw"	},
+	{"r",		"ew",		anything,	"uw"	},
+	{"d",		"ew",		anything,	"uw"	},
+	{"l",		"ew",		anything,	"uw"	},
+	{"z",		"ew",		anything,	"uw"	},
+	{"n",		"ew",		anything,	"uw"	},
+	{"j",		"ew",		anything,	"uw"	},
+	{"th",		"ew",		anything,	"uw"	},
+	{"ch",		"ew",		anything,	"uw"	},
+	{"sh",		"ew",		anything,	"uw"	},
+	{anything,	"ew",		anything,	"yuw"	},
+	{anything,	"e",		"o",		"ay"	},
+	{"#:s",		"es",		nothing,	"ihz"	},
+	{"#:c",		"es",		nothing,	"ihz"	},
+	{"#:g",		"es",		nothing,	"ihz"	},
+	{"#:z",		"es",		nothing,	"ihz"	},
+	{"#:x",		"es",		nothing,	"ihz"	},
+	{"#:j",		"es",		nothing,	"ihz"	},
+	{"#:ch",	"es",		nothing,	"ihz"	},
+	{"#:sh",	"es",		nothing,	"ihz"	},
+	{"#:",		"e",		"s ",		silent	},
+	{"#:",		"ely",		nothing,	"lay"	},
+	{"#:",		"ement",	anything,	"mehnt"	},
+	{anything,	"eful",		anything,	"fuhl"	},
+	{anything,	"ee",		anything,	"ay"	},
+	{anything,	"earn",		anything,	"ern"	},
+	{nothing,	"ear",		"^",		"er"	},
+	{anything,	"ead",		anything,	"ehd"	},
+	{"#:",		"ea",		nothing,	"ayaa"	},
+	{anything,	"ea",		"su",		"eh"	},
+	{anything,	"ea",		anything,	"ay"	},
+	{anything,	"eigh",		anything,	"ay"	},
+	{anything,	"ei",		anything,	"ay"	},
+	{nothing,	"eye",		anything,	"ay"	},
+	{anything,	"ey",		anything,	"iy"	},
+	{anything,	"eu",		anything,	"yuw"	},
+	{anything,	"e",		anything,	"eh"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d262 2
+a263 2
+**	left_part	match_part	right_part	out_part
+*/
+d265 7
+a271 6
+	{
+	{anything,	"ful",		anything,	"fuhl"	},
+	{anything,	"f",		anything,	"f"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d273 2
+a274 2
+**	left_part	match_part	right_part	out_part
+*/
+d276 15
+a290 14
+	{
+	{anything,	"giv",		anything,	"gihv"	},
+	{nothing,	"g",		"i^",		"g"	},
+	{anything,	"ge",		"t",		"geh"	},
+	{"su",		"gges",		anything,	"gjehs"	},
+	{anything,	"gg",		anything,	"g"	},
+	{" b#",		"g",		anything,	"g"	},
+	{anything,	"g",		"+",		"j"	},
+	{anything,	"great",	anything,	"grayt"	},
+	{"#",		"gh",		anything,	silent	},
+	{anything,	"g",		anything,	"g"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d292 2
+a293 2
+**	left_part	match_part	right_part	out_part
+*/
+d295 11
+a305 10
+	{
+	{nothing,	"hav",		anything,	"haev"	},
+	{nothing,	"here",		anything,	"hayr"	},
+	{nothing,	"hour",		anything,	"awer"	},
+	{anything,	"how",		anything,	"haw"	},
+	{anything,	"h",		"#",		"h"	},
+	{anything,	"h",		anything,	silent	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d307 2
+a308 2
+**	left_part	match_part	right_part	out_part
+*/
+d310 34
+a343 33
+	{
+	{nothing,	"in",		anything,	"ihn"	},
+	{nothing,	"i",		nothing,	"ay"	},
+	{anything,	"in",		"d",		"ayn"	},
+	{anything,	"ier",		"^",		"er"	},
+	{anything,	"ier",		anything,	"ayer"	},
+	{"#:r",		"ied",		anything,	"ayd"	},
+	{anything,	"ied",		nothing,	"ayd"	},
+	{anything,	"ien",		anything,	"ayehn"	},
+	{anything,	"ie",		"t",		"ayeh"	},
+	{" :",		"i",		"%",		"ay"	},
+	{anything,	"i",		"%",		"ay"	},
+	{anything,	"ie",		anything,	"ay"	},
+	{anything,	"i",		"^+:#",		"ih"	},
+	{anything,	"ir",		"#",		"ayr"	},
+	{anything,	"iz",		"%",		"ayz"	},
+	{anything,	"is",		"%",		"ayz"	},
+	{anything,	"i",		"d%",		"ay"	},
+	{"+^",		"i",		"^+",		"ih"	},
+	{anything,	"i",		"t%",		"ay"	},
+	{"#:^",		"i",		"^+",		"ih"	},
+	{anything,	"i",		"^+",		"ay"	},
+	{anything,	"ir",		anything,	"er"	},
+	{anything,	"igh",		anything,	"ay"	},
+	{anything,	"ild",		anything,	"ayld"	},
+	{anything,	"ign",		nothing,	"ayn"	},
+	{anything,	"ign",		"^",		"ayn"	},
+	{anything,	"ign",		"%",		"ayn"	},
+	{anything,	"ique",		anything,	"ayk"	},
+	{anything,	"i",		anything,	"ih"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d345 2
+a346 2
+**	left_part	match_part	right_part	out_part
+*/
+d348 6
+a353 5
+	{
+	{anything,	"j",		anything,	"j"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d355 2
+a356 2
+**	left_part	match_part	right_part	out_part
+*/
+d358 7
+a364 6
+	{
+	{nothing,	"k",		"n",		silent	},
+	{anything,	"k",		anything,	"k"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d366 2
+a367 2
+**	left_part	match_part	right_part	out_part
+*/
+d369 10
+a378 9
+	{
+	{anything,	"lo",		"c#",		"low"	},
+	{"l",		"l",		anything,	silent	},
+	{"#:^",		"l",		"%",		"aal"	},
+	{anything,	"lead",		anything,	"layd"	},
+	{anything,	"l",		anything,	"l"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d380 2
+a381 2
+**	left_part	match_part	right_part	out_part
+*/
+d383 7
+a389 6
+	{
+	{anything,	"mov",		anything,	"muwv"	},
+	{anything,	"m",		anything,	"m"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d391 2
+a392 2
+**	left_part	match_part	right_part	out_part
+*/
+d394 14
+a407 13
+	{
+	{"e",		"ng",		"+",		"nj"	},
+	{anything,	"ng",		"r",		"ngg"	},
+	{anything,	"ng",		"#",		"ngg"	},
+	{anything,	"ngl",		"%",		"nggaal"},
+	{anything,	"ng",		anything,	"ng"	},
+	{anything,	"nk",		anything,	"ngk"	},
+	{nothing,	"now",		nothing,	"naw"	},
+	{anything,	"nn",		anything,	"n"	},
+	{anything,	"n",		anything,	"n"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d409 2
+a410 2
+**	left_part	match_part	right_part	out_part
+*/
+d412 55
+a466 54
+	{
+	{anything,	"of",		nothing,	"aav"	},
+	{anything,	"orough",	anything,	"erow"	},
+	{"#:",		"or",		nothing,	"er"	},
+	{"#:",		"ors",		nothing,	"erz"	},
+	{anything,	"or",		anything,	"aor"	},
+	{nothing,	"one",		anything,	"waan"	},
+	{anything,	"own",		anything,	"own"	},
+	{anything,	"ow",		anything,	"aw"	},
+	{nothing,	"over",		anything,	"owver"	},
+	{anything,	"ov",		anything,	"aav"	},
+	{anything,	"oer",		anything,	"er"	},
+	{anything,	"o",		"^%",		"ow"	},
+	{anything,	"o",		"^en",		"ow"	},
+	{anything,	"o",		"^i#",		"ow"	},
+	{anything,	"ol",		"d",		"owl"	},
+	{anything,	"ought",	anything,	"aot"	},
+	{anything,	"ough",		anything,	"aaf"	},
+	{nothing,	"ou",		anything,	"aw"	},
+	{"h",		"ou",		"s#",		"aw"	},
+	{anything,	"ous",		anything,	"aas"	},
+	{anything,	"our",		anything,	"aor"	},
+	{anything,	"ould",		anything,	"uhd"	},
+	{"^",		"ou",		"^l",		"aa"	},
+	{anything,	"oup",		anything,	"uwp"	},
+	{anything,	"ou",		anything,	"aw"	},
+	{anything,	"oy",		anything,	"oy"	},
+	{anything,	"oing",		anything,	"owihng"},
+	{anything,	"oi",		anything,	"oy"	},
+	{anything,	"oor",		anything,	"aor"	},
+	{anything,	"ook",		anything,	"uhk"	},
+	{anything,	"ood",		anything,	"uhd"	},
+	{anything,	"oo",		anything,	"uw"	},
+	{anything,	"o",		"e",		"ow"	},
+	{anything,	"o",		nothing,	"ow"	},
+	{anything,	"oa",		anything,	"ow"	},
+	{nothing,	"only",		anything,	"ownlay"},
+	{nothing,	"once",		anything,	"waans"	},
+	{anything,	"on't",		anything,	"ownt"	},
+	{"c",		"o",		"n",		"aa"	},
+	{anything,	"o",		"ng",		"ao"	},
+	{" :^",		"o",		"n",		"aa"	},
+	{"i",		"on",		anything,	"aan"	},
+	{"#:",		"on",		nothing,	"aan"	},
+	{"#^",		"on",		anything,	"aan"	},
+	{anything,	"o",		"st ",		"ow"	},
+	{anything,	"of",		"^",		"aof"	},
+	{anything,	"other",	anything,	"aather"},
+	{anything,	"oss",		nothing,	"aos"	},
+	{"#:^",		"om",		anything,	"aam"	},
+	{anything,	"o",		anything,	"aa"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d468 2
+a469 2
+**	left_part	match_part	right_part	out_part
+*/
+d471 12
+a482 11
+	{
+	{nothing,	"ph",		anything,	"f"	},
+	{anything,	"ph",		nothing,	"f"	},
+	{anything,	"ph",		anything,	"v"	},
+	{anything,	"peop",		anything,	"payp"	},
+	{anything,	"pow",		anything,	"paw"	},
+	{anything,	"put",		nothing,	"puht"	},
+	{anything,	"p",		anything,	"p"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d484 2
+a485 2
+**	left_part	match_part	right_part	out_part
+*/
+d487 8
+a494 7
+	{
+	{anything,	"quar",		anything,	"kwaor"	},
+	{anything,	"qu",		anything,	"kw"	},
+	{anything,	"q",		anything,	"k"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d496 2
+a497 2
+**	left_part	match_part	right_part	out_part
+*/
+d499 7
+a505 6
+	{
+	{nothing,	"re",		"^#",		"ray"	},
+	{anything,	"r",		anything,	"r"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d507 2
+a508 2
+**	left_part	match_part	right_part	out_part
+*/
+d510 30
+a539 29
+	{
+	{anything,	"sh",		anything,	"sh"	},
+	{"#",		"sion",		anything,	"shaan"	},
+	{anything,	"some",		anything,	"saam"	},
+	{"#",		"sur",		"#",		"sher"	},
+	{anything,	"sur",		"#",		"sher"	},
+	{"#",		"su",		"#",		"shuw"	},
+	{"#",		"ssu",		"#",		"shuw"	},
+	{"#",		"sed",		nothing,	"zd"	},
+	{"#",		"s",		"#",		"z"	},
+	{anything,	"said",		anything,	"sehd"	},
+	{"^",		"sion",		anything,	"shaan"	},
+	{anything,	"son",		nothing,	"saan"	},
+	{anything,	"sen",		nothing,	"saan"	},
+	{anything,	"s",		"s",		silent	},
+	{".",		"s",		nothing,	"z"	},
+	{"#:.e",	"s",		nothing,	"z"	},
+	{"#:^##",	"s",		nothing,	"z"	},
+	{"#:^#",	"s",		nothing,	"s"	},
+	{"u",		"s",		nothing,	"s"	},
+	{" :#",		"s",		nothing,	"z"	},
+	{nothing,	"sch",		anything,	"sk"	},
+	{anything,	"s",		"c+",		silent	},
+	{"#",		"sm",		anything,	"zm"	},
+	{"#",		"sn",		"'",		"zaan"	},
+	{anything,	"s",		anything,	"s"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d541 2
+a542 2
+**	left_part	match_part	right_part	out_part
+*/
+d544 33
+a576 32
+	{
+	{nothing,	"the",		nothing,	"thaa"	},
+	{anything,	"to",		nothing,	"tuw"	},
+	{anything,	"that",		nothing,	"thaet"	},
+	{nothing,	"this",		nothing,	"thihs"	},
+	{nothing,	"they",		anything,	"thay"	},
+	{nothing,	"there",	anything,	"thehr"	},
+	{anything,	"ther",		anything,	"ther"	},
+	{anything,	"their",	anything,	"thehr"	},
+	{nothing,	"than",		nothing,	"thaen"	},
+	{nothing,	"them",		nothing,	"thehm"	},
+	{anything,	"these",	nothing,	"thayz"	},
+	{nothing,	"then",		anything,	"thehn"	},
+	{anything,	"through",	anything,	"thruw"	},
+	{anything,	"those",	anything,	"thowz"	},
+	{anything,	"though",	nothing,	"thow"	},
+	{nothing,	"thus",		anything,	"thaas"	},
+	{anything,	"th",		anything,	"th"	},
+	{"#:",		"ted",		nothing,	"tihd"	},
+	{"s",		"ti",		"#n",		"ch"	},
+	{anything,	"ti",		"o",		"sh"	},
+	{anything,	"ti",		"a",		"sh"	},
+	{anything,	"tien",		anything,	"shaan"	},
+	{anything,	"tur",		"#",		"cher"	},
+	{anything,	"tu",		"a",		"chuw"	},
+	{nothing,	"two",		anything,	"tuw"	},
+	{anything,	"tch",		anything,	"ch"	},
+	{anything,	"tsch",		anything,	"ch"	},
+	{anything,	"t",		anything,	"t"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d578 2
+a579 2
+**	left_part	match_part	right_part	out_part
+*/
+d581 40
+a620 39
+	{
+	{nothing,	"un",		"i",		"yuwn"	},
+	{nothing,	"un",		anything,	"aan"	},
+	{nothing,	"upon",		anything,	"aapaon"},
+	{"t",		"ur",		"#",		"uhr"	},
+	{"s",		"ur",		"#",		"uhr"	},
+	{"r",		"ur",		"#",		"uhr"	},
+	{"d",		"ur",		"#",		"uhr"	},
+	{"l",		"ur",		"#",		"uhr"	},
+	{"z",		"ur",		"#",		"uhr"	},
+	{"n",		"ur",		"#",		"uhr"	},
+	{"j",		"ur",		"#",		"uhr"	},
+	{"th",		"ur",		"#",		"uhr"	},
+	{"ch",		"ur",		"#",		"uhr"	},
+	{"sh",		"ur",		"#",		"uhr"	},
+	{anything,	"ur",		"#",		"yuhr"	},
+	{anything,	"ur",		anything,	"er"	},
+	{anything,	"u",		"^ ",		"aa"	},
+	{anything,	"u",		"^^",		"aa"	},
+	{anything,	"uy",		anything,	"ay"	},
+	{" g",		"u",		"#",		silent	},
+	{"g",		"u",		"%",		silent	},
+	{"g",		"u",		"#",		"w"	},
+	{"#n",		"u",		anything,	"yuw"	},
+	{"t",		"u",		anything,	"uw"	},
+	{"s",		"u",		anything,	"uw"	},
+	{"r",		"u",		anything,	"uw"	},
+	{"d",		"u",		anything,	"uw"	},
+	{"l",		"u",		anything,	"uw"	},
+	{"z",		"u",		anything,	"uw"	},
+	{"n",		"u",		anything,	"uw"	},
+	{"j",		"u",		anything,	"uw"	},
+	{"th",		"u",		anything,	"uw"	},
+	{"ch",		"u",		anything,	"uw"	},
+	{"sh",		"u",		anything,	"uw"	},
+	{anything,	"u",		anything,	"yuw"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d622 2
+a623 2
+**	left_part	match_part	right_part	out_part
+*/
+d625 7
+a631 6
+	{
+	{anything,	"view",		anything,	"vyuw"	},
+	{anything,	"v",		anything,	"v"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d633 2
+a634 2
+**	left_part	match_part	right_part	out_part
+*/
+d636 17
+a652 16
+	{
+	{nothing,	"were",		anything,	"wer"	},
+	{anything,	"wa",		"s",		"waa"	},
+	{anything,	"wa",		"t",		"waa"	},
+	{anything,	"where",	anything,	"wehr"	},
+	{anything,	"what",		anything,	"waat"	},
+	{anything,	"whol",		anything,	"howl"	},
+	{anything,	"who",		anything,	"huw"	},
+	{anything,	"wh",		anything,	"w"	},
+	{anything,	"war",		anything,	"waor"	},
+	{anything,	"wor",		"^",		"wer"	},
+	{anything,	"wr",		anything,	"r"	},
+	{anything,	"w",		anything,	"w"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d654 2
+a655 2
+**	left_part	match_part	right_part	out_part
+*/
+d657 6
+a662 5
+	{
+	{anything,	"x",		anything,	"ks"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d664 2
+a665 2
+**	left_part	match_part	right_part	out_part
+*/
+d667 16
+a682 15
+	{
+	{anything,	"young",	anything,	"yaang"	},
+	{nothing,	"you",		anything,	"yuw"	},
+	{nothing,	"yes",		anything,	"yehs"	},
+	{nothing,	"y",		anything,	"y"	},
+	{"#:^",		"y",		nothing,	"ay"	},
+	{"#:^",		"y",		"i",		"ay"	},
+	{" :",		"y",		nothing,	"ay"	},
+	{" :",		"y",		"#",		"ay"	},
+	{" :",		"y",		"^+:#",		"ih"	},
+	{" :",		"y",		"^#",		"ay"	},
+	{anything,	"y",		anything,	"ih"	},
+	{anything,	0,		anything,	silent	},
+	};
+
+d684 2
+a685 2
+**	left_part	match_part	right_part	out_part
+*/
+d687 4
+a690 4
+	{
+	{anything,	"z",		anything,	"z"	},
+	{anything,	0,		anything,	silent	},
+	};
+d692 8
+a699 8
+Rule *rules[] =
+	{
+	punct_rules,
+	a_rules, b_rules, c_rules, d_rules, e_rules, f_rules, g_rules, 
+	h_rules, i_rules, j_rules, k_rules, l_rules, m_rules, n_rules, 
+	o_rules, p_rules, q_rules, r_rules, s_rules, t_rules, u_rules, 
+	v_rules, w_rules, x_rules, y_rules, z_rules
+	};
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+a2 1
+**	English to Phoneme rules.
+d4 1
+a4 1
+**	Derived from: 
+d6 2
+a7 2
+**	     AUTOMATIC TRANSLATION OF ENGLISH TEXT TO PHONETICS
+**	            BY MEANS OF LETTER-TO-SOUND RULES
+d9 1
+a9 1
+**			NRL Report 7948
+d11 2
+a12 2
+**		      January 21st, 1976
+**	    Naval Research Laboratory, Washington, D.C.
+d15 2
+a16 2
+**	Published by the National Technical Information Service as
+**	document "AD/A021 929".
+d20 1
+a20 1
+**	The Phoneme codes:
+d22 8
+a29 8
+**		IY	bEEt		IH	bIt
+**		EY	gAte		EH	gEt
+**		AE	fAt		AA	fAther
+**		AO	lAWn		OW	lOne
+**		UH	fUll		UW	fOOl
+**		ER	mURdER		AX	About
+**		AH	bUt		AY	hIde
+**		AW	hOW		OY	tOY
+d31 13
+a43 13
+**		p	Pack		b	Back
+**		t	Time		d	Dime
+**		k	Coat		g	Goat
+**		f	Fault		v	Vault
+**		TH	eTHer		DH	eiTHer
+**		s	Sue		z	Zoo
+**		SH	leaSH		SH	leiSure
+**		HH	How		m	suM
+**		n	suN		NG	suNG
+**		l	Laugh		w	Wear
+**		y	Young		r	Rate
+**		CH	CHar		j	Jar
+**		WH	WHere
+d46 1
+a46 1
+**	Rules are made up of four parts:
+d48 4
+a51 4
+**		The left context.
+**		The text to match.
+**		The right context.
+**		The phonemes to substitute for the matched text.
+d53 1
+a53 1
+**	Procedure:
+d55 2
+a56 2
+**		Seperate each block of letters (apostrophes included) 
+**		and add a space on each side.  For each unmatched 
+d58 1
+a58 1
+**		text to match starts with the letter in the word.  If 
+d64 1
+a64 1
+**	Special Context Symbols:
+d66 4
+a69 4
+**		#	One or more vowels
+**		:	Zero or more consonants
+**		^	One consonant.
+**		.	One of B, D, V, G, J, L, M, N, R, W or Z (voiced 
+d71 3
+a73 3
+**		%	One of ER, E, ES, ED, ING, ELY (a suffix)
+**			(Found in right context only)
+**		+	One of E, I or Y (a "front" vowel)
+d78 3
+a80 3
+/* Context definitions */
+static char Anything[] = "";	/* No context requirement */
+static char Nothing[] = " ";	/* Context is beginning or end of word */
+d82 3
+a84 3
+/* Phoneme definitions */
+static char Pause[] = " ";	/* Short silence */
+static char Silent[] = "";	/* No phonemes */
+d86 4
+a89 4
+#define LEFT_PART	0
+#define MATCH_PART	1
+#define RIGHT_PART	2
+#define OUT_PART	3
+d91 1
+a91 1
+typedef char *Rule[4];	/* Rule is an array of 4 character pointers */
+d93 1
+a93 1
+/*0 = Punctuation */
+d95 1
+a95 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d99 11
+a109 11
+	{Anything,	" ",		Anything,	Pause	},
+	{Anything,	"-",		Anything,	Silent	},
+	{".",		"'S",		Anything,	"z"	},
+	{"#:.E",	"'S",		Anything,	"z"	},
+	{"#",		"'S",		Anything,	"z"	},
+	{Anything,	"'",		Anything,	Silent	},
+	{Anything,	",",		Anything,	Pause	},
+	{Anything,	".",		Anything,	Pause	},
+	{Anything,	"?",		Anything,	Pause	},
+	{Anything,	"!",		Anything,	Pause	},
+	{Anything,	0,		Anything,	Silent	},
+d113 1
+a113 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d115 1
+a115 1
+static Rule A_rules[] =
+d117 34
+a150 34
+	{Anything,	"A",		Nothing,	"AA"	},
+	{Nothing,	"ARE",		Nothing,	"AAr"	},
+	{Nothing,	"AR",		"O",		"AAr"	},
+	{Anything,	"AR",		"#",		"EHr"	},
+	{"^",		"AS",		"#",		"AYs"	},
+	{Anything,	"A",		"WA",		"AA"	},
+	{Anything,	"AW",		Anything,	"AO"	},
+	{" :",		"ANY",		Anything,	"EHnAY"	},
+	{Anything,	"A",		"^+#",		"AY"	},
+	{"#:",		"ALLY",		Anything,	"AAlAY"	},
+	{Nothing,	"AL",		"#",		"AAl"	},
+	{Anything,	"AGAIN",	Anything,	"AAgEHn"},
+	{"#:",		"AG",		"E",		"IHj"	},
+	{Anything,	"A",		"^+:#",		"AE"	},
+	{" :",		"A",		"^+ ",		"AY"	},
+	{Anything,	"A",		"^%",		"AY"	},
+	{Nothing,	"ARR",		Anything,	"AAr"	},
+	{Anything,	"ARR",		Anything,	"AEr"	},
+	{" :",		"AR",		Nothing,	"AAr"	},
+	{Anything,	"AR",		Nothing,	"ER"	},
+	{Anything,	"AR",		Anything,	"AAr"	},
+	{Anything,	"AIR",		Anything,	"EHr"	},
+	{Anything,	"AI",		Anything,	"AY"	},
+	{Anything,	"AY",		Anything,	"AY"	},
+	{Anything,	"AU",		Anything,	"AO"	},
+	{"#:",		"AL",		Nothing,	"AAl"	},
+	{"#:",		"ALS",		Nothing,	"AAlz"	},
+	{Anything,	"ALK",		Anything,	"AOk"	},
+	{Anything,	"AL",		"^",		"AOl"	},
+	{" :",		"ABLE",		Anything,	"AYbAAl"},
+	{Anything,	"ABLE",		Anything,	"AAbAAl"},
+	{Anything,	"ANG",		"+",		"AYnj"	},
+	{Anything,	"A",		Anything,	"AE"	},
+ 	{Anything,	0,		Anything,	Silent	},
+d154 1
+a154 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d156 1
+a156 1
+static Rule B_rules[] =
+d158 7
+a164 7
+	{Nothing,	"BE",		"^#",		"bIH"	},
+	{Anything,	"BEING",	Anything,	"bAYIHNG"},
+	{Nothing,	"BOTH",		Nothing,	"bOWTH"	},
+	{Nothing,	"BUS",		"#",		"bIHz"	},
+	{Anything,	"BUIL",		Anything,	"bIHl"	},
+	{Anything,	"B",		Anything,	"b"	},
+	{Anything,	0,		Anything,	Silent	},
+d168 1
+a168 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d170 1
+a170 1
+static Rule C_rules[] =
+d172 12
+a183 12
+	{Nothing,	"CH",		"^",		"k"	},
+	{"^E",		"CH",		Anything,	"k"	},
+	{Anything,	"CH",		Anything,	"CH"	},
+	{" S",		"CI",		"#",		"sAY"	},
+	{Anything,	"CI",		"A",		"SH"	},
+	{Anything,	"CI",		"O",		"SH"	},
+	{Anything,	"CI",		"EN",		"SH"	},
+	{Anything,	"C",		"+",		"s"	},
+	{Anything,	"CK",		Anything,	"k"	},
+	{Anything,	"COM",		"%",		"kAAm"	},
+	{Anything,	"C",		Anything,	"k"	},
+	{Anything,	0,		Anything,	Silent	},
+d187 1
+a187 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d189 1
+a189 1
+static Rule D_rules[] =
+d191 11
+a201 11
+	{"#:",		"DED",		Nothing,	"dIHd"	},
+	{".E",		"D",		Nothing,	"d"	},
+	{"#:^E",	"D",		Nothing,	"t"	},
+	{Nothing,	"DE",		"^#",		"dIH"	},
+	{Nothing,	"DO",		Nothing,	"dUW"	},
+	{Nothing,	"DOES",		Anything,	"dAAz"	},
+	{Nothing,	"DOING",	Anything,	"dUWIHNG"},
+	{Nothing,	"DOW",		Anything,	"dAW"	},
+	{Anything,	"DU",		"A",		"jUW"	},
+	{Anything,	"D",		Anything,	"d"	},
+	{Anything,	0,		Anything,	Silent	},
+d205 1
+a205 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d207 1
+a207 1
+static Rule E_rules[] =
+d209 54
+a262 54
+	{"#:",		"E",		Nothing,	Silent	},
+	{"':^",		"E",		Nothing,	Silent	},
+	{" :",		"E",		Nothing,	"AY"	},
+	{"#",		"ED",		Nothing,	"d"	},
+	{"#:",		"E",		"D ",		Silent	},
+	{Anything,	"EV",		"ER",		"EHv"	},
+	{Anything,	"E",		"^%",		"AY"	},
+	{Anything,	"ERI",		"#",		"AYrAY"	},
+	{Anything,	"ERI",		Anything,	"EHrIH"	},
+	{"#:",		"ER",		"#",		"ER"	},
+	{Anything,	"ER",		"#",		"EHr"	},
+	{Anything,	"ER",		Anything,	"ER"	},
+	{Nothing,	"EVEN",		Anything,	"AYvEHn"},
+	{Nothing,	"EPHEN",	Anything,	"AYvEHn"},
+	{"#:",		"E",		"W",		Silent	},
+	{"T",		"EW",		Anything,	"UW"	},
+	{"S",		"EW",		Anything,	"UW"	},
+	{"R",		"EW",		Anything,	"UW"	},
+	{"D",		"EW",		Anything,	"UW"	},
+	{"L",		"EW",		Anything,	"UW"	},
+	{"Z",		"EW",		Anything,	"UW"	},
+	{"N",		"EW",		Anything,	"UW"	},
+	{"J",		"EW",		Anything,	"UW"	},
+	{"TH",		"EW",		Anything,	"UW"	},
+	{"CH",		"EW",		Anything,	"UW"	},
+	{"SH",		"EW",		Anything,	"UW"	},
+	{Anything,	"EW",		Anything,	"yUW"	},
+	{Anything,	"E",		"O",		"AY"	},
+	{"#:S",		"ES",		Nothing,	"IHz"	},
+	{"#:C",		"ES",		Nothing,	"IHz"	},
+	{"#:G",		"ES",		Nothing,	"IHz"	},
+	{"#:Z",		"ES",		Nothing,	"IHz"	},
+	{"#:X",		"ES",		Nothing,	"IHz"	},
+	{"#:J",		"ES",		Nothing,	"IHz"	},
+	{"#:CH",	"ES",		Nothing,	"IHz"	},
+	{"#:SH",	"ES",		Nothing,	"IHz"	},
+	{"#:",		"E",		"S ",		Silent	},
+	{"#:",		"ELY",		Nothing,	"lAY"	},
+	{"#:",		"EMENT",	Anything,	"mEHnt"	},
+	{Anything,	"EFUL",		Anything,	"fUHl"	},
+	{Anything,	"EE",		Anything,	"AY"	},
+	{Anything,	"EARN",		Anything,	"ERn"	},
+	{Nothing,	"EAR",		"^",		"ER"	},
+	{Anything,	"EAD",		Anything,	"EHd"	},
+	{"#:",		"EA",		Nothing,	"AYAA"	},
+	{Anything,	"EA",		"SU",		"EH"	},
+	{Anything,	"EA",		Anything,	"AY"	},
+	{Anything,	"EIGH",		Anything,	"AY"	},
+	{Anything,	"EI",		Anything,	"AY"	},
+	{Nothing,	"EYE",		Anything,	"AY"	},
+	{Anything,	"EY",		Anything,	"IY"	},
+	{Anything,	"EU",		Anything,	"yUW"	},
+	{Anything,	"E",		Anything,	"EH"	},
+	{Anything,	0,		Anything,	Silent	},
+d266 1
+a266 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d268 1
+a268 1
+static Rule F_rules[] =
+d270 3
+a272 3
+	{Anything,	"FUL",		Anything,	"fUHl"	},
+	{Anything,	"F",		Anything,	"f"	},
+	{Anything,	0,		Anything,	Silent	},
+d276 1
+a276 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d278 1
+a278 1
+static Rule G_rules[] =
+d280 11
+a290 11
+	{Anything,	"GIV",		Anything,	"gIHv"	},
+	{Nothing,	"G",		"I^",		"g"	},
+	{Anything,	"GE",		"T",		"gEH"	},
+	{"SU",		"GGES",		Anything,	"gjEHs"	},
+	{Anything,	"GG",		Anything,	"g"	},
+	{" B#",		"G",		Anything,	"g"	},
+	{Anything,	"G",		"+",		"j"	},
+	{Anything,	"GREAT",	Anything,	"grAYt"	},
+	{"#",		"GH",		Anything,	Silent	},
+	{Anything,	"G",		Anything,	"g"	},
+	{Anything,	0,		Anything,	Silent	},
+d294 1
+a294 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d296 1
+a296 1
+static Rule H_rules[] =
+d298 7
+a304 7
+	{Nothing,	"HAV",		Anything,	"hAEv"	},
+	{Nothing,	"HERE",		Anything,	"hAYr"	},
+	{Nothing,	"HOUR",		Anything,	"AWER"	},
+	{Anything,	"HOW",		Anything,	"hAW"	},
+	{Anything,	"H",		"#",		"h"	},
+	{Anything,	"H",		Anything,	Silent	},
+	{Anything,	0,		Anything,	Silent	},
+d308 1
+a308 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d310 1
+a310 1
+static Rule I_rules[] =
+d312 30
+a341 30
+	{Nothing,	"IN",		Anything,	"IHn"	},
+	{Nothing,	"I",		Nothing,	"AY"	},
+	{Anything,	"IN",		"D",		"AYn"	},
+	{Anything,	"IER",		"^",		"ER"	},
+	{Anything,	"IER",		Anything,	"AYER"	},
+	{"#:R",		"IED",		Anything,	"AYd"	},
+	{Anything,	"IED",		Nothing,	"AYd"	},
+	{Anything,	"IEN",		Anything,	"AYEHn"	},
+	{Anything,	"IE",		"T",		"AYEH"	},
+	{" :",		"I",		"%",		"AY"	},
+	{Anything,	"I",		"%",		"AY"	},
+	{Anything,	"IE",		Anything,	"AY"	},
+	{Anything,	"I",		"^+:#",		"IH"	},
+	{Anything,	"IR",		"#",		"AYr"	},
+	{Anything,	"IZ",		"%",		"AYz"	},
+	{Anything,	"IS",		"%",		"AYz"	},
+	{Anything,	"I",		"D%",		"AY"	},
+	{"+^",		"I",		"^+",		"IH"	},
+	{Anything,	"I",		"T%",		"AY"	},
+	{"#:^",		"I",		"^+",		"IH"	},
+	{Anything,	"I",		"^+",		"AY"	},
+	{Anything,	"IR",		Anything,	"ER"	},
+	{Anything,	"IGH",		Anything,	"AY"	},
+	{Anything,	"ILD",		Anything,	"AYld"	},
+	{Anything,	"IGN",		Nothing,	"AYn"	},
+	{Anything,	"IGN",		"^",		"AYn"	},
+	{Anything,	"IGN",		"%",		"AYn"	},
+	{Anything,	"IQUE",		Anything,	"AYk"	},
+	{Anything,	"I",		Anything,	"IH"	},
+	{Anything,	0,		Anything,	Silent	},
+d345 1
+a345 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d347 1
+a347 1
+static Rule J_rules[] =
+d349 2
+a350 2
+	{Anything,	"J",		Anything,	"j"	},
+	{Anything,	0,		Anything,	Silent	},
+d354 1
+a354 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d356 1
+a356 1
+static Rule K_rules[] =
+d358 3
+a360 3
+	{Nothing,	"K",		"N",		Silent	},
+	{Anything,	"K",		Anything,	"k"	},
+	{Anything,	0,		Anything,	Silent	},
+d364 1
+a364 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d366 1
+a366 1
+static Rule L_rules[] =
+d368 6
+a373 6
+	{Anything,	"LO",		"C#",		"lOW"	},
+	{"L",		"L",		Anything,	Silent	},
+	{"#:^",		"L",		"%",		"AAl"	},
+	{Anything,	"LEAD",		Anything,	"lAYd"	},
+	{Anything,	"L",		Anything,	"l"	},
+	{Anything,	0,		Anything,	Silent	},
+d377 1
+a377 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d379 1
+a379 1
+static Rule M_rules[] =
+d381 3
+a383 3
+	{Anything,	"MOV",		Anything,	"mUWv"	},
+	{Anything,	"M",		Anything,	"m"	},
+	{Anything,	0,		Anything,	Silent	},
+d387 1
+a387 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d389 1
+a389 1
+static Rule N_rules[] =
+d391 10
+a400 10
+	{"E",		"NG",		"+",		"nj"	},
+	{Anything,	"NG",		"R",		"NGg"	},
+	{Anything,	"NG",		"#",		"NGg"	},
+	{Anything,	"NGL",		"%",		"NGgAAl"},
+	{Anything,	"NG",		Anything,	"NG"	},
+	{Anything,	"NK",		Anything,	"NGk"	},
+	{Nothing,	"NOW",		Nothing,	"nAW"	},
+	{Anything,	"NN",		Anything,	"n"	},
+	{Anything,	"N",		Anything,	"n"	},
+	{Anything,	0,		Anything,	Silent	},
+d404 1
+a404 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d406 1
+a406 1
+static Rule O_rules[] =
+d408 51
+a458 51
+	{Anything,	"OF",		Nothing,	"AAv"	},
+	{Anything,	"OROUGH",	Anything,	"EROW"	},
+	{"#:",		"OR",		Nothing,	"ER"	},
+	{"#:",		"ORS",		Nothing,	"ERz"	},
+	{Anything,	"OR",		Anything,	"AOr"	},
+	{Nothing,	"ONE",		Anything,	"wAAn"	},
+	{Anything,	"OWN",		Anything,	"OWn"	},
+	{Anything,	"OW",		Anything,	"AW"	},
+	{Nothing,	"OVER",		Anything,	"OWvER"	},
+	{Anything,	"OV",		Anything,	"AAv"	},
+	{Anything,	"OER",		Anything,	"ER"	},
+	{Anything,	"O",		"^%",		"OW"	},
+	{Anything,	"O",		"^EN",		"OW"	},
+	{Anything,	"O",		"^I#",		"OW"	},
+	{Anything,	"OL",		"D",		"OWl"	},
+	{Anything,	"OUGHT",	Anything,	"AOt"	},
+	{Anything,	"OUGH",		Anything,	"AAf"	},
+	{Nothing,	"OU",		Anything,	"AW"	},
+	{"H",		"OU",		"S#",		"AW"	},
+	{Anything,	"OUS",		Anything,	"AAs"	},
+	{Anything,	"OUR",		Anything,	"AOr"	},
+	{Anything,	"OULD",		Anything,	"UHd"	},
+	{"^",		"OU",		"^L",		"AA"	},
+	{Anything,	"OUP",		Anything,	"UWp"	},
+	{Anything,	"OU",		Anything,	"AW"	},
+	{Anything,	"OY",		Anything,	"OY"	},
+	{Anything,	"OING",		Anything,	"OWIHNG"},
+	{Anything,	"OI",		Anything,	"OY"	},
+	{Anything,	"OOR",		Anything,	"AOr"	},
+	{Anything,	"OOK",		Anything,	"UHk"	},
+	{Anything,	"OOD",		Anything,	"UHd"	},
+	{Anything,	"OO",		Anything,	"UW"	},
+	{Anything,	"O",		"E",		"OW"	},
+	{Anything,	"O",		Nothing,	"OW"	},
+	{Anything,	"OA",		Anything,	"OW"	},
+	{Nothing,	"ONLY",		Anything,	"OWnlAY"},
+	{Nothing,	"ONCE",		Anything,	"wAAns"	},
+	{Anything,	"ON'T",		Anything,	"OWnt"	},
+	{"C",		"O",		"N",		"AA"	},
+	{Anything,	"O",		"NG",		"AO"	},
+	{" :^",		"O",		"N",		"AA"	},
+	{"I",		"ON",		Anything,	"AAn"	},
+	{"#:",		"ON",		Nothing,	"AAn"	},
+	{"#^",		"ON",		Anything,	"AAn"	},
+	{Anything,	"O",		"ST ",		"OW"	},
+	{Anything,	"OF",		"^",		"AOf"	},
+	{Anything,	"OTHER",	Anything,	"AATHER"},
+	{Anything,	"OSS",		Nothing,	"AOs"	},
+	{"#:^",		"OM",		Anything,	"AAm"	},
+	{Anything,	"O",		Anything,	"AA"	},
+	{Anything,	0,		Anything,	Silent	},
+d462 1
+a462 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d464 1
+a464 1
+static Rule P_rules[] =
+d466 8
+a473 8
+	{Nothing,	"PH",		Anything,	"f"	},
+	{Anything,	"PH",		Nothing,	"f"	},
+	{Anything,	"PH",		Anything,	"v"	},
+	{Anything,	"PEOP",		Anything,	"pAYp"	},
+	{Anything,	"POW",		Anything,	"pAW"	},
+	{Anything,	"PUT",		Nothing,	"pUHt"	},
+	{Anything,	"P",		Anything,	"p"	},
+	{Anything,	0,		Anything,	Silent	},
+d477 1
+a477 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d479 1
+a479 1
+static Rule Q_rules[] =
+d481 4
+a484 4
+	{Anything,	"QUAR",		Anything,	"kwAOr"	},
+	{Anything,	"QU",		Anything,	"kw"	},
+	{Anything,	"Q",		Anything,	"k"	},
+	{Anything,	0,		Anything,	Silent	},
+d488 1
+a488 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d490 1
+a490 1
+static Rule R_rules[] =
+d492 3
+a494 3
+	{Nothing,	"RE",		"^#",		"rAY"	},
+	{Anything,	"R",		Anything,	"r"	},
+	{Anything,	0,		Anything,	Silent	},
+d498 1
+a498 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d500 1
+a500 1
+static Rule S_rules[] =
+d502 26
+a527 26
+	{Anything,	"SH",		Anything,	"SH"	},
+	{"#",		"SION",		Anything,	"SHAAn"	},
+	{Anything,	"SOME",		Anything,	"sAAm"	},
+	{"#",		"SUR",		"#",		"SHER"	},
+	{Anything,	"SUR",		"#",		"SHER"	},
+	{"#",		"SU",		"#",		"SHUW"	},
+	{"#",		"SSU",		"#",		"SHUW"	},
+	{"#",		"SED",		Nothing,	"zd"	},
+	{"#",		"S",		"#",		"z"	},
+	{Anything,	"SAID",		Anything,	"sEHd"	},
+	{"^",		"SION",		Anything,	"SHAAn"	},
+	{Anything,	"SON",		Nothing,	"sAAn"	},
+	{Anything,	"SEN",		Nothing,	"sAAn"	},
+	{Anything,	"S",		"S",		Silent	},
+	{".",		"S",		Nothing,	"z"	},
+	{"#:.E",	"S",		Nothing,	"z"	},
+	{"#:^##",	"S",		Nothing,	"z"	},
+	{"#:^#",	"S",		Nothing,	"s"	},
+	{"U",		"S",		Nothing,	"s"	},
+	{" :#",		"S",		Nothing,	"z"	},
+	{Nothing,	"SCH",		Anything,	"sk"	},
+	{Anything,	"S",		"C+",		Silent	},
+	{"#",		"SM",		Anything,	"zm"	},
+	{"#",		"SN",		"'",		"zAAn"	},
+	{Anything,	"S",		Anything,	"s"	},
+	{Anything,	0,		Anything,	Silent	},
+d531 1
+a531 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d533 1
+a533 1
+static Rule T_rules[] =
+d535 29
+a563 29
+	{Nothing,	"THE",		Nothing,	"THAA"	},
+	{Anything,	"TO",		Nothing,	"tUW"	},
+	{Anything,	"THAT",		Nothing,	"THAEt"	},
+	{Nothing,	"THIS",		Nothing,	"THIHs"	},
+	{Nothing,	"THEY",		Anything,	"THAY"	},
+	{Nothing,	"THERE",	Anything,	"THEHr"	},
+	{Anything,	"THER",		Anything,	"THER"	},
+	{Anything,	"THEIR",	Anything,	"THEHr"	},
+	{Nothing,	"THAN",		Nothing,	"THAEn"	},
+	{Nothing,	"THEM",		Nothing,	"THEHm"	},
+	{Anything,	"THESE",	Nothing,	"THAYz"	},
+	{Nothing,	"THEN",		Anything,	"THEHn"	},
+	{Anything,	"THROUGH",	Anything,	"THrUW"	},
+	{Anything,	"THOSE",	Anything,	"THOWz"	},
+	{Anything,	"THOUGH",	Nothing,	"THOW"	},
+	{Nothing,	"THUS",		Anything,	"THAAs"	},
+	{Anything,	"TH",		Anything,	"TH"	},
+	{"#:",		"TED",		Nothing,	"tIHd"	},
+	{"S",		"TI",		"#N",		"CH"	},
+	{Anything,	"TI",		"O",		"SH"	},
+	{Anything,	"TI",		"A",		"SH"	},
+	{Anything,	"TIEN",		Anything,	"SHAAn"	},
+	{Anything,	"TUR",		"#",		"CHER"	},
+	{Anything,	"TU",		"A",		"CHUW"	},
+	{Nothing,	"TWO",		Anything,	"tUW"	},
+	{Anything,	"TCH",		Anything,	"CH"	},
+	{Anything,	"TSCH",		Anything,	"CH"	},
+	{Anything,	"T",		Anything,	"t"	},
+	{Anything,	0,		Anything,	Silent	},
+d567 1
+a567 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d569 1
+a569 1
+static Rule U_rules[] =
+d571 36
+a606 36
+	{Nothing,	"UN",		"I",		"yUWn"	},
+	{Nothing,	"UN",		Anything,	"AAn"	},
+	{Nothing,	"UPON",		Anything,	"AApAOn"},
+	{"T",		"UR",		"#",		"UHr"	},
+	{"S",		"UR",		"#",		"UHr"	},
+	{"R",		"UR",		"#",		"UHr"	},
+	{"D",		"UR",		"#",		"UHr"	},
+	{"L",		"UR",		"#",		"UHr"	},
+	{"Z",		"UR",		"#",		"UHr"	},
+	{"N",		"UR",		"#",		"UHr"	},
+	{"J",		"UR",		"#",		"UHr"	},
+	{"TH",		"UR",		"#",		"UHr"	},
+	{"CH",		"UR",		"#",		"UHr"	},
+	{"SH",		"UR",		"#",		"UHr"	},
+	{Anything,	"UR",		"#",		"yUHr"	},
+	{Anything,	"UR",		Anything,	"ER"	},
+	{Anything,	"U",		"^ ",		"AA"	},
+	{Anything,	"U",		"^^",		"AA"	},
+	{Anything,	"UY",		Anything,	"AY"	},
+	{" G",		"U",		"#",		Silent	},
+	{"G",		"U",		"%",		Silent	},
+	{"G",		"U",		"#",		"w"	},
+	{"#N",		"U",		Anything,	"yUW"	},
+	{"T",		"U",		Anything,	"UW"	},
+	{"S",		"U",		Anything,	"UW"	},
+	{"R",		"U",		Anything,	"UW"	},
+	{"D",		"U",		Anything,	"UW"	},
+	{"L",		"U",		Anything,	"UW"	},
+	{"Z",		"U",		Anything,	"UW"	},
+	{"N",		"U",		Anything,	"UW"	},
+	{"J",		"U",		Anything,	"UW"	},
+	{"TH",		"U",		Anything,	"UW"	},
+	{"CH",		"U",		Anything,	"UW"	},
+	{"SH",		"U",		Anything,	"UW"	},
+	{Anything,	"U",		Anything,	"yUW"	},
+	{Anything,	0,		Anything,	Silent	},
+d610 1
+a610 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d612 1
+a612 1
+static Rule V_rules[] =
+d614 3
+a616 3
+	{Anything,	"VIEW",		Anything,	"vyUW"	},
+	{Anything,	"V",		Anything,	"v"	},
+	{Anything,	0,		Anything,	Silent	},
+d620 1
+a620 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d622 1
+a622 1
+static Rule W_rules[] =
+d624 13
+a636 13
+	{Nothing,	"WERE",		Anything,	"wER"	},
+	{Anything,	"WA",		"S",		"wAA"	},
+	{Anything,	"WA",		"T",		"wAA"	},
+	{Anything,	"WHERE",	Anything,	"wEHr"	},
+	{Anything,	"WHAT",		Anything,	"wAAt"	},
+	{Anything,	"WHOL",		Anything,	"hOWl"	},
+	{Anything,	"WHO",		Anything,	"hUW"	},
+	{Anything,	"WH",		Anything,	"w"	},
+	{Anything,	"WAR",		Anything,	"wAOr"	},
+	{Anything,	"WOR",		"^",		"wER"	},
+	{Anything,	"WR",		Anything,	"r"	},
+	{Anything,	"W",		Anything,	"w"	},
+	{Anything,	0,		Anything,	Silent	},
+d640 1
+a640 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d642 1
+a642 1
+static Rule X_rules[] =
+d644 2
+a645 2
+	{Anything,	"X",		Anything,	"ks"	},
+	{Anything,	0,		Anything,	Silent	},
+d649 1
+a649 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d651 1
+a651 1
+static Rule Y_rules[] =
+d653 12
+a664 12
+	{Anything,	"YOUNG",	Anything,	"yAANG"	},
+	{Nothing,	"YOU",		Anything,	"yUW"	},
+	{Nothing,	"YES",		Anything,	"yEHs"	},
+	{Nothing,	"Y",		Anything,	"y"	},
+	{"#:^",		"Y",		Nothing,	"AY"	},
+	{"#:^",		"Y",		"I",		"AY"	},
+	{" :",		"Y",		Nothing,	"AY"	},
+	{" :",		"Y",		"#",		"AY"	},
+	{" :",		"Y",		"^+:#",		"IH"	},
+	{" :",		"Y",		"^#",		"AY"	},
+	{Anything,	"Y",		Anything,	"IH"	},
+	{Anything,	0,		Anything,	Silent	},
+d668 1
+a668 1
+**	LEFT_PART	MATCH_PART	RIGHT_PART	OUT_PART
+d670 1
+a670 1
+static Rule Z_rules[] =
+d672 2
+a673 2
+	{Anything,	"Z",		Anything,	"z"	},
+	{Anything,	0,		Anything,	Silent	},
+d676 1
+a676 1
+Rule *Rules[] =
+d679 4
+a682 4
+	A_rules, B_rules, C_rules, D_rules, E_rules, F_rules, G_rules, 
+	H_rules, I_rules, J_rules, K_rules, L_rules, M_rules, N_rules, 
+	O_rules, P_rules, Q_rules, R_rules, S_rules, T_rules, U_rules, 
+	V_rules, W_rules, X_rules, Y_rules, Z_rules
+@

@@ -1,0 +1,691 @@
+head	1.15;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.15
+date	94.03.12.22.31.18;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.03.11.21.26.14;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.02.28.22.20.14;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.01.07.18.02.19;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	93.04.16.02.11.11;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	93.04.05.20.40.30;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	93.04.02.16.14.43;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	93.04.01.16.27.58;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	92.12.12.19.12.28;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.07.29.04.15.49;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.07.28.16.05.57;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.28.05.04.09;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.27.22.20.02;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.27.21.37.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.15
+log
+@Better error message.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: maked.c,v 1.14 1994/03/12 00:59:25 paul Exp $";
+#endif
+
+#include "protos.h"
+
+/*
+ * maked -- make a dir file for the nameserver
+ */
+
+extern int Quiet;		/* qi/qi.c */
+extern int IndicateAlways;	/* qi/query.c */
+
+#define BUF_SIZE    8192
+#define DIR_MAX	    80
+static char *Me;		/* the name of this program */
+int	lcount;
+
+main(argc, argv)
+	int	argc;
+	char	**argv;
+
+{
+	char	buffer[BUF_SIZE];
+	QDIR	dirp;
+
+	/* when you're strange, no one remembers your name */
+	Me = *argv;
+
+	OP_VALUE(NOLOG_OP) = strdup("");
+	IndicateAlways = 0;	/* somebody wants this */
+	dirp = (char **) malloc(DIR_MAX * sizeof (char *));
+
+	while (--argc > 0 && **(++argv) == '-')
+	{
+		char *equal, **opt;
+
+		(*argv)++;
+		if (**argv == 'q')
+			Quiet++;
+		else if (equal = strchr(*argv, '='))
+		{
+			*equal++ = '\0';
+			for (opt = Strings; *opt; opt += 2)
+				if (!strcmp(opt[0], *argv))
+				{
+					opt[1] = equal;
+					break;
+				}
+			if (*opt == '\0')
+			{
+				fprintf(stderr, "%s: %s: unknown string.\n",
+					Me, *argv);
+				exit(1);
+			}
+		} else
+		{
+			fprintf(stderr, "%s: %s: unknown option.\n", Me, *argv);
+			exit(1);
+		}
+	}
+	Database = (argc > 0) ? *argv : DATABASE;
+	if (!Quiet)
+		fprintf(stderr, "%s: building database %s\n", Me, Database);
+	sleep(5);
+	DoSysLog(0);		/* report errors to stderr */
+
+	if (!dbd_init(Database))
+	{
+		fprintf(stderr, "Couldn't init %s.\n", Database);
+		exit(2);
+	}
+	get_dir_head();
+
+	lcount = 0;
+	while (GetLine(buffer) != 0)
+	{
+		TurnIntoDir(buffer, dirp);
+
+		if (!new_ent())
+		{
+			perror("new_ent failed");
+			exit(1);
+		}
+		if (!putdata(dirp))
+		{
+			perror("Putdata");
+			abort();
+		}
+		set_date(0);
+		store_ent();
+		if (!Quiet && ++lcount % 500 == 0)
+			fprintf(stderr, "%d\r", lcount, dirp[0]);
+	}
+	if (!Quiet)
+		putc('\n', stderr);
+	put_dir_head();
+	exit(0);
+}
+
+/*
+ * get a line of input
+ */
+GetLine(line)
+	char *line;
+{
+	register int ccount = 0;
+	register int c;
+	register int backslash = 0;
+	char *sline = line;
+
+	for (c = getchar(); c != EOF && c != '\n'; c = getchar())
+	{
+		if (backslash)
+		{
+			if (c == 'n')
+				*line++ = '\n';
+			else if (c == 't')
+				*line++ = ' ';	/* cheating, I know... */
+			else
+				*line++ = c;
+			ccount++;
+			backslash = 0;
+		} else if (!(backslash = (c == '\\')))
+		{
+			*line++ = c;
+			ccount++;
+		}
+	}
+	if (ccount > BUF_SIZE)
+	{
+		fprintf(stderr, "\nOh no--overflow!\n");
+		fprintf(stderr, "line %d len %d\n", lcount+1, ccount);
+		fprintf(stderr, "%s\n", sline);
+		exit(4);
+	}
+	if (c == '\n')
+		ccount++;
+	*line = 0;
+	return (ccount);
+}
+
+/*
+ * turn an input line into a dir
+ */
+TurnIntoDir(line, dirp)
+	char	*line;
+	char   **dirp;
+{
+	char	*token;
+	char   **origDir = dirp;
+
+	for (token = strtok(line, "\t"); token; token = strtok(0, "\t"))
+	{
+		if (strchr(token, ':') == strrchr(token, ':') &&
+		    token[strlen(token) - 1] == ':')
+			continue;
+		*dirp++ = token;
+	}
+
+	*dirp = 0;
+	if (dirp - origDir > DIR_MAX)
+	{
+		fprintf(stderr, "Oh no--Dir overflow!\n");
+		fprintf(stderr, "line %d\n", lcount+1);
+		fprintf(stderr, "%s\n", line);
+		exit(5);
+	}
+}
+@
+
+
+1.14
+log
+@New copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d201 2
+@
+
+
+1.13
+log
+@Replace DontLog with Option setting macro.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.12
+log
+@Eliminated bug where non-empty fields that happened to end with ':'
+were omitted.
+@
+text
+@a14 1
+extern int DontLog;		/* qi/qi.c */
+d34 1
+a34 1
+	DontLog = 1;
+@
+
+
+1.11
+log
+@Replace index() with strchr().
+@
+text
+@d19 1
+a19 1
+#define BUF_SIZE    4096
+d22 1
+a30 1
+	int	count;
+d80 1
+a80 1
+	count = 0;
+d97 2
+a98 2
+		if (!Quiet && ++count % 500 == 0)
+			fprintf(stderr, "%d\r", count, dirp[0]);
+d112 1
+a112 1
+	register int count = 0;
+d115 1
+d127 1
+a127 1
+			count++;
+d132 1
+a132 1
+			count++;
+d135 1
+a135 1
+	if (count > BUF_SIZE)
+d137 3
+a139 1
+		fprintf(stderr, "Oh no--overflow!\n");
+d143 1
+a143 1
+		count++;
+d145 1
+a145 1
+	return (count);
+d160 4
+a163 2
+		if (token[strlen(token) - 1] != ':')
+			*dirp++ = token;
+@
+
+
+1.10
+log
+@Quiet now a global in qi/qi.c .
+@
+text
+@d46 1
+a46 1
+		else if (equal = index(*argv, '='))
+@
+
+
+1.9
+log
+@Minor fixes.
+@
+text
+@d16 1
+a30 1
+	int	Quiet = 0;
+@
+
+
+1.8
+log
+@Announce which database is being smashed, uhhhh built, and pause 5 seconds.
+@
+text
+@d15 2
+a16 1
+int	IndicateAlways = 0;	/* somebody wants this */
+a19 1
+int	DontLog = 1;
+d35 2
+a166 8
+}
+
+/*
+ * keep ld happy
+ */
+cleanup()
+{
+	exit(100);
+@
+
+
+1.7
+log
+@Now can modify Strings[] like qi, e.g. prog -DATABASE=/tmp/foo .
+@
+text
+@d66 3
+@
+
+
+1.6
+log
+@Fixed usage of Database.
+@
+text
+@d12 1
+a12 1
+ * mkdir -- make a dir file for the nameserver
+d20 1
+d30 1
+d32 3
+d37 3
+a39 1
+	argc--, argv++;
+d41 23
+a63 4
+	if (!argc)
+	{
+		fprintf(stderr, "Usage: mkdir dbname\n");
+		exit(1);
+d65 1
+a67 1
+	(void) strcpy(Database, *argv);
+d70 1
+a70 1
+		fprintf(stderr, "Couldn't init %s.\n", *argv);
+d92 1
+a92 1
+		if (++count % 500 == 0)
+d95 2
+a96 1
+	putc('\n', stderr);
+@
+
+
+1.5
+log
+@Deleted extraneous #include's.
+@
+text
+@d41 1
+a41 1
+	Database = *argv;
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 2
+a13 6
+
+#include <stdio.h>
+#include "conf.h"
+#include "db.h"
+#include "protos.h"
+#include "qi.h"
+@
+
+
+1.3
+log
+@Random fixes.
+@
+text
+@d16 1
+a17 2
+
+char	*strtok();
+@
+
+
+1.2
+log
+@Re-formatted for clarity
+@
+text
+@d13 1
+a13 1
+#include    <stdio.h>
+d17 3
+d32 1
+a32 1
+	DIR	dirp;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 11
+a11 12
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+
+/***********************************************************************
+* mkdir -- make a dir file for the nameserver
+***********************************************************************/
+/* $Header: /nameserv/Src/Util/RCS/maked.c,v 1.10 90/12/18 08:42:04 dorner Exp Locker: dorner $ */
+d17 2
+a18 2
+char   *strtok();
+int IndicateAlways=0;		/* somebody wants this */
+d20 2
+a21 2
+#define DIR_MAX     80
+int DontLog=1;
+d24 2
+a25 2
+int   argc;
+char  **argv;
+d28 46
+a73 47
+  char  buffer[BUF_SIZE];
+  Dir   theDir;
+  int   count;
+  char   *index();
+
+  theDir = (char **) malloc(DIR_MAX * sizeof(char *));
+  argc--, argv++;
+
+  if (!argc)
+  {
+    fprintf(stderr, "Usage: mkdir dbname\n");
+    exit(1);
+  }
+
+  DoSysLog(0);		/* report errors to stderr */
+
+  Database = *argv;
+  if (!dbd_init(Database))
+  {
+    fprintf(stderr, "Couldn't init %s.\n", *argv);
+    exit(2);
+  }
+  get_dir_head();
+
+  count = 0;
+  while (GetLine(buffer) != 0)
+  {
+    TurnIntoDir(buffer, theDir);
+
+    if (!new_ent())
+    {
+      perror("new_ent failed");
+      exit(1);
+    }
+    if (!putdata(theDir))
+    {
+      perror("Putdata");
+      abort();
+    }
+    set_date(0);
+    store_ent();
+    if (++count % 500 == 0)
+      fprintf(stderr, "%d\r", count, theDir[0]);
+  }
+  putc('\n',stderr);
+  put_dir_head();
+  exit(0);
+d76 5
+a80 5
+/***********************************************************************
+* get a line of input
+***********************************************************************/
+GetLine(theLine)
+register char *theLine;
+d82 31
+a112 32
+  register int count = 0;
+  register int c;
+  register int backslash = 0;
+
+  for (c = getchar(); c != EOF && c != '\n'; c = getchar())
+  {
+    if (backslash)
+    {
+      if (c == 'n')
+	*theLine++ = '\n';
+      else if (c == 't')
+	*theLine++ = ' ';     /* cheating, I know... */
+      else
+	*theLine++ = c;
+      count++;
+      backslash = 0;
+    }
+    else if (!(backslash = (c == '\\')))
+    {
+      *theLine++ = c;
+      count++;
+    }
+  }
+  if (count > BUF_SIZE)
+  {
+    fprintf(stderr, "Oh no--overflow!\n");
+    exit(4);
+  }
+  if (c == '\n')
+    count++;
+  *theLine = 0;
+  return (count);
+d115 6
+a120 6
+/***********************************************************************
+* turn an input line into a dir
+***********************************************************************/
+TurnIntoDir(theLine, theDir)
+char   *theLine;
+char  **theDir;
+d122 15
+a136 16
+  char   *token;
+  char  **origDir = theDir;
+  char   *index();
+
+  for (token = strtok(theLine, "\t"); token; token = strtok(0, "\t"))
+  {
+    if (token[strlen(token)-1] != ':')
+      *theDir++ = token;
+  }
+
+  *theDir = 0;
+  if (theDir - origDir > DIR_MAX)
+  {
+    fprintf(stderr, "Oh no--Dir overflow!\n");
+    exit(5);
+  }
+d139 3
+a141 3
+/***********************************************************************
+* keep ld happy
+***********************************************************************/
+d144 1
+a144 1
+  exit(100);
+@

@@ -1,0 +1,1076 @@
+head	1.27;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.27
+date	95.06.23.19.22.14;	author p-pomes;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.02.28.19.37.57;	author p-pomes;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	94.12.17.14.42.46;	author p-pomes;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	94.11.11.19.50.02;	author p-pomes;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.07.19.22.29.00;	author p-pomes;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	94.02.16.19.44.15;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	93.04.01.22.39.18;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	93.02.14.19.59.43;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.12.12.19.08.32;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.26.19.33.34;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.26.19.13.39;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	90.12.18.08.41.12;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	90.05.16.09.18.14;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	89.07.19.10.18.28;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.07.05.20.16.42;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.03.20.15.14.29;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.12.02.14.44.56;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.11.15.13.35.03;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.07.06.20.47.56;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.04.19.08.12.06;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.04.04.14.40.40;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.03.18.10.31.07;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.02.18.15.02.08;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.40;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.27
+log
+@Hero fields can't be modified from the net.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: auth.c,v 1.26 1995/02/28 19:37:57 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+static int IsProxy __P((QDIR, char *));
+extern int LocalUser, InputType;
+
+/*
+ * check if the logged in user is allowed to add entries
+ */
+int 
+CanAddEntries()
+{
+	return (AmHero);
+}
+
+/*
+ * can the current user see the field in question?
+ */
+int 
+CanSee(dir, fd, suppress)
+	QDIR dir;
+	FDESC *fd;
+	int suppress;
+{
+	if (AmHero || AmOpr)
+		return (1);	/* the supreme and semi-supreme being */
+
+	if (User != NULL)
+	{
+		if (!stricmp(FINDVALUE(dir, F_ALIAS), UserAlias))
+			return (1);	/* user's own record */
+
+		if (IsProxy(dir, UserAlias))
+			return (1);	/* (one of) the user's proxy(ies) */
+	}
+	if (suppress && !fd->fdForcePub)
+		return (0);
+	return (fd->fdPublic || (fd->fdLocalPub && LocalUser));
+}
+
+/*
+ * is the given alias a proxy of the given dir
+ */
+static int 
+IsProxy(dir, whichAlias)
+	QDIR dir;
+	char *whichAlias;
+{
+	char	*token;
+	char	proxies[2048];
+
+	strcpy(proxies, FINDVALUE(dir, F_PROXY));
+	for (token = strtok(proxies, " \t,\n"); token && *token; token = strtok((char *) 0, " \t,\n"))
+		if (!stricmp(whichAlias, token))
+			return (1);
+	return (0);
+}
+
+/*
+ * can the current user do a lookup using the field in question?
+ */
+int 
+CanLookup(fd, arg)
+	FDESC *fd;
+	char *arg;
+{
+	if (AmOpr || AmHero)
+		return (1);
+	if (!fd->fdLookup)
+		return (0);
+	if (fd->fdNoMeta && anyof(arg, METAS))
+		return (0);
+	return (1);
+}
+
+/*
+ * can the current user change anything in an entry?
+ */
+int 
+UserCanChange(dir)
+	QDIR dir;
+{
+	if (AmHero)
+		return (1);	/* the supreme being */
+
+	if (!User)
+		return (0);	/* nobody logged in */
+
+	if (!stricmp(FINDVALUE(dir, F_ALIAS), UserAlias))
+		return (1);	/* user's own entry */
+
+	if (IsProxy(dir, UserAlias))
+		return (1);	/* (one of) the user's proxy(ies) */
+
+	if (AmOpr)
+	{
+		if (*FINDVALUE(dir, F_HERO))
+			return (0);	/* oper not allowed to edit hero/opr */
+		return (1);
+	}
+
+	return (0);		/* sorry... */
+}
+
+/*
+ * can the current user change a field in an entry?
+ */
+int 
+CanChange(dir, fd)
+	QDIR dir;
+	FDESC *fd;
+{
+	int	isPerson;
+
+	if (fd->fdId == F_HERO && InputType != IT_TTY &&
+	    InputType != IT_PIPE && InputType != IT_FILE)
+		return(0);	/* hero field can't be touched from the net */
+
+	if (AmHero)
+		return (1);	/* the supreme being */
+
+	if (!User)
+		return (0);	/* nobody logged in */
+
+	isPerson = *FINDVALUE(dir, F_TYPE) == 'p';
+
+	if (!stricmp(FINDVALUE(dir, F_ALIAS), UserAlias))
+		return (fd->fdChange || fd->fdNoPeople && !isPerson);
+
+	if (IsProxy(dir, UserAlias) || AmOpr)
+		return (fd->fdChange || fd->fdNoPeople && !isPerson);
+
+	return (0);		/* sorry... */
+}
+
+/*
+ * Can the logged in user delete any entries at all?
+ */
+int 
+UserCanDelete()
+{
+	return (AmHero);
+}
+
+/*
+ * Can the logged in user delete a particular entry?
+ */
+int 
+CanDelete(dir)
+	QDIR dir;
+{
+	/* no one may delete the Hero entry */
+	/* return(AmHero && stricmp(Hero, FINDVALUE(dir,F_ALIAS))); */
+	return (AmHero);
+}
+@
+
+
+1.26
+log
+@Revised handling of NoMeta checking.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: auth.c,v 1.25 1994/12/17 14:42:46 p-pomes Exp p-pomes $";
+d44 1
+a44 1
+extern int LocalUser;
+d153 4
+@
+
+
+1.25
+log
+@Added support for NoMeta property to disallow lookups with metacharacters.
+Fields with it require an exact match.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: auth.c,v 1.24 1994/11/11 19:50:02 p-pomes Exp p-pomes $";
+d110 1
+a110 3
+	if (!fd->fdNoMeta)
+		return (1);
+	if (strchr(arg, '*') || strchr(arg, '?'))
+@
+
+
+1.24
+log
+@Allow operators to see fields like 100% heros.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: auth.c,v 1.23 1994/07/19 22:29:00 p-pomes Exp p-pomes $";
+d102 1
+a102 1
+CanLookup(fd)
+d104 1
+d106 9
+a114 1
+	return (AmOpr || AmHero || fd->fdLookup);
+@
+
+
+1.23
+log
+@LocalPub error fixed.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: auth.c,v 1.22 1994/03/12 00:24:45 paul Exp p-pomes $";
+d64 2
+a65 2
+	if (AmHero)
+		return (1);	/* the supreme being */
+@
+
+
+1.22
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d44 1
+d77 1
+a77 1
+	return (fd->fdPublic || fd->fdLocalPub);
+@
+
+
+1.21
+log
+@No longer need check LocalUser.  Now done in query.c.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.20
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@a12 2
+extern int LocalUser;
+
+d44 1
+a44 3
+	if (LocalUser)
+		return (fd->fdPublic || fd->fdLocalPub);
+	return (fd->fdPublic && ! fd->fdLocalPub);
+@
+
+
+1.19
+log
+@LocalPub keyword related changes.
+@
+text
+@d11 2
+d54 1
+a54 1
+int 
+@
+
+
+1.18
+log
+@Now supports the less-than-all-powerful hero.  If the hero field
+contains the string "opr", "oper", or "operator", then the user
+is allowed nearly unlimited proxy-like priviledges.  The exception
+is that the operator may not change an entry of any user that has
+a non-empty hero field.  Use is for consultants so that they can
+change passwords and email entries, but not name or id fields.
+In addition they can't add or delete entries.
+@
+text
+@d11 2
+d44 3
+a46 1
+	return (fd->fdPublic);
+@
+
+
+1.17
+log
+@Up-cased all #define's.
+@
+text
+@d70 1
+a70 1
+	return (AmHero || fd->fdLookup);
+d92 7
+d123 1
+a123 1
+	if (IsProxy(dir, UserAlias))
+@
+
+
+1.16
+log
+@Revised #include file list.
+@
+text
+@d34 1
+a34 1
+		if (!stricmp(FindValue(dir, F_ALIAS), UserAlias))
+d56 1
+a56 1
+	strcpy(proxies, FindValue(dir, F_PROXY));
+d86 1
+a86 1
+	if (!stricmp(FindValue(dir, F_ALIAS), UserAlias))
+d111 1
+a111 1
+	isPerson = *FindValue(dir, F_TYPE) == 'p';
+d113 1
+a113 1
+	if (!stricmp(FindValue(dir, F_ALIAS), UserAlias))
+d139 1
+a139 1
+	/* return(AmHero && stricmp(Hero,FindValue(dir,F_ALIAS))); */
+@
+
+
+1.15
+log
+@Fe-formatted for clarity.
+@
+text
+@a10 5
+#include <stdio.h>
+#include "commands.h"
+#include "field.h"
+#include "qi.h"
+
+@
+
+
+1.14
+log
+@Last Dorner changes.
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d3 8
+d16 5
+a20 4
+/***********************************************************************
+* check if the logged in user is allowed to add entries
+***********************************************************************/
+int CanAddEntries(void)
+d22 1
+a22 1
+  return (AmHero);
+d25 8
+a32 4
+/***********************************************************************
+* can the current user see the field in question?
+***********************************************************************/
+int CanSee(Dir whichDir,FieldDesc *theFD,int suppress)
+d34 2
+a35 2
+  if (AmHero)
+    return (1);       /* the supreme being */
+d37 4
+a40 8
+  if (User!=NULL)
+  {
+    if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+      return (1);       /* user's own record */
+      
+    if (IsProxy(whichDir,UserAlias))
+      return (1);		/* (one of) the user's proxy(ies) */
+  }
+d42 6
+a47 2
+  if (suppress && !theFD->fdForcePub) return(0);
+  return(theFD->fdPublic);
+d50 7
+a56 4
+/***********************************************************************
+* is the given alias a proxy of the given dir
+***********************************************************************/
+int IsProxy(Dir whichDir,char *whichAlias)
+d58 8
+a65 8
+  char *token;
+  char proxies[2048];
+  char *strtok();
+  
+  strcpy(proxies,FindValue(whichDir, F_PROXY));
+  for (token=strtok(proxies," \t,\n");token && *token;token=strtok((char *)0," \t,\n"))
+    if (!stricmp(whichAlias,token)) return(1);
+  return(0);
+d68 6
+a73 4
+/***********************************************************************
+* can the current user do a lookup using the field in question?
+***********************************************************************/
+int CanLookup(FieldDesc *theFD)
+d75 1
+a75 1
+  return (AmHero || theFD->fdLookup);
+d78 6
+a83 4
+/***********************************************************************
+* can the current user change anything in an entry?
+***********************************************************************/
+int UserCanChange(Dir whichDir)
+d85 5
+a89 2
+  if (AmHero)
+    return (1);       /* the supreme being */
+d91 2
+a92 2
+  if (!User)
+    return (0);      /* nobody logged in */
+d94 2
+a95 5
+  if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+    return (1);       /* user's own entry */
+    
+  if (IsProxy(whichDir,UserAlias))
+    return (1);		/* (one of) the user's proxy(ies) */
+d97 1
+a97 1
+  return (0);         /* sorry... */
+d100 7
+a106 4
+/***********************************************************************
+* can the current user change a field in an entry?
+***********************************************************************/
+int CanChange(Dir whichDir,FieldDesc *theFD)
+d108 9
+a116 4
+  int isPerson;
+  
+  if (AmHero)
+    return (1);       /* the supreme being */
+d118 2
+a119 7
+  if (!User)
+    return (0);      /* nobody logged in */
+  
+  isPerson = *FindValue(whichDir,F_TYPE)=='p';
+  
+  if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+    return (theFD->fdChange || theFD->fdNoPeople && !isPerson);    
+d121 2
+a122 2
+  if (IsProxy(whichDir,UserAlias))
+    return (theFD->fdChange || theFD->fdNoPeople && !isPerson);    
+d124 1
+a124 1
+  return (0);         /* sorry... */
+d127 5
+a131 4
+/***********************************************************************
+* Can the logged in user delete any entries at all?
+***********************************************************************/
+int UserCanDelete(void)
+d133 1
+a133 1
+  return (AmHero);
+d136 6
+a141 4
+/***********************************************************************
+* Can the logged in user delete a particular entry?
+***********************************************************************/
+int CanDelete(Dir theDir)
+d143 3
+a145 3
+  /* no one may delete the Hero entry */
+  /* return(AmHero && stricmp(Hero,FindValue(theDir,F_ALIAS))); */
+  return (AmHero);
+@
+
+
+1.13
+log
+@No help here.
+@
+text
+@d27 1
+a27 1
+int CanSee(Dir whichDir,FieldDesc *theFD)
+d32 8
+a39 2
+  if (User==NULL)
+    return (theFD->fdPublic);     /* nobody logged in */
+d41 2
+a42 7
+  if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+    return (1);       /* user's own record */
+    
+  if (IsProxy(whichDir,UserAlias))
+    return (1);		/* (one of) the user's proxy(ies) */
+
+  return (theFD->fdPublic);   /* just anybody */
+@
+
+
+1.12
+log
+@No help here.
+@
+text
+@d1 1
+a15 3
+char   *make_str();
+Arg  *FreshArg();
+
+d19 1
+a19 1
+CanAddEntries()
+d27 1
+a27 3
+CanSee(whichDir, theFD)
+Dir   whichDir;         /* the dir in question */
+FieldDesc *theFD;         /* the field in question */
+d32 1
+a32 1
+  if (!User)
+d47 1
+a47 3
+IsProxy(whichDir, whichAlias)
+Dir whichDir;
+char *whichAlias;
+d62 1
+a62 2
+CanLookup(theFD)
+FieldDesc *theFD;
+d70 1
+a70 2
+UserCanChange(whichDir)
+Dir   whichDir;
+d76 1
+a76 1
+    return (NULL);      /* nobody logged in */
+d90 1
+a90 3
+CanChange(whichDir, theFD)
+Dir   whichDir;
+FieldDesc *theFD;
+d98 1
+a98 1
+    return (NULL);      /* nobody logged in */
+d114 1
+a114 1
+UserCanDelete()
+d122 1
+a122 3
+/*ARGSUSED*/
+CanDelete(theDir)
+Dir   theDir;         /* the dir the user wants to delete */
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d102 2
+d109 5
+a114 3
+  if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+    return (theFD->fdChange);     /* user's own entry */
+    
+d116 1
+a116 1
+    return (theFD->fdChange);	/* (one of) the user's proxy(ies) */
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d11 3
+a13 3
+#include "../Include/commands.h"
+#include "../Include/field.h"
+#include "../Include/qi.h"
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d11 3
+a13 3
+#include "../include/commands.h"
+#include "../include/field.h"
+#include "../include/qi.h"
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d41 3
+d49 17
+d88 3
+d110 3
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d13 1
+a13 1
+Arg    *FreshArg();
+d20 1
+a20 1
+    return (AmHero);
+d27 2
+a28 2
+Dir     whichDir;		/* the dir in question */
+FieldDesc *theFD;		/* the field in question */
+d30 2
+a31 2
+    if (AmHero)
+	return (1);		/* the supreme being */
+d33 2
+a34 2
+    if (!User)
+	return (theFD->fdPublic);	/* nobody logged in */
+d36 2
+a37 2
+    if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+	return (1);		/* user's own record */
+d39 1
+a39 1
+    return (theFD->fdPublic);	/* just anybody */
+d48 1
+a48 1
+    return (AmHero || theFD->fdLookup);
+d55 1
+a55 1
+Dir     whichDir;
+d57 2
+a58 2
+    if (AmHero)
+	return (1);		/* the supreme being */
+d60 2
+a61 2
+    if (!User)
+	return (NULL);		/* nobody logged in */
+d63 2
+a64 2
+    if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+	return (1);		/* user's own entry */
+d66 1
+a66 1
+    return (0);			/* sorry... */
+d73 1
+a73 1
+Dir     whichDir;
+d76 2
+a77 2
+    if (AmHero)
+	return (1);		/* the supreme being */
+d79 2
+a80 2
+    if (!User)
+	return (NULL);		/* nobody logged in */
+d82 2
+a83 2
+    if (!stricmp(FindValue(whichDir, F_ALIAS), UserAlias))
+	return (theFD->fdChange);	/* user's own entry */
+d85 1
+a85 1
+    return (0);			/* sorry... */
+d93 1
+a93 1
+    return (AmHero);
+d101 1
+a101 1
+Dir     theDir;			/* the dir the user wants to delete */
+d103 3
+a105 3
+    /* no one may delete the Hero entry */
+    /* return(AmHero && stricmp(Hero,FindValue(theDir,F_ALIAS))); */
+    return (AmHero);
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d8 3
+a10 3
+#include "commands.h"
+#include "field.h"
+#include "qi.h"
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d24 3
+a28 3
+
+    if (AmHero)
+	return (1);		/* the supreme being */
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d6 2
+a7 2
+char *make_str();
+Arg *FreshArg();
+d14 1
+a14 1
+    return(AmHero);
+d20 3
+a22 3
+CanSee(whichDir,theFD)
+Dir whichDir;		/* the dir in question */
+FieldDesc *theFD;	/* the field in question */
+d25 1
+a25 1
+	return(theFD->fdPublic);	/* nobody logged in */
+d28 1
+a28 1
+	return(1);			/* the supreme being */
+d30 2
+a31 2
+    if (!stricmp(FindValue(whichDir,F_ALIAS),UserAlias))
+	return(1);			/* user's own record */
+d33 1
+a33 1
+    return(theFD->fdPublic);		/* just anybody */
+d42 1
+a42 1
+    return(AmHero || theFD->fdLookup);
+d49 1
+a49 1
+Dir whichDir;
+d52 1
+a52 1
+	return(1);		/* the supreme being */
+d55 1
+a55 4
+	return(NULL);		/* nobody logged in */
+    
+    if (!stricmp(FindValue(whichDir,F_ALIAS),UserAlias))
+	return(1);		/* user's own entry */
+d57 4
+a60 1
+    return(0);			/* sorry... */
+d66 2
+a67 2
+CanChange(whichDir,theFD)
+Dir whichDir;
+d71 1
+a71 1
+	return(1);		/* the supreme being */
+d74 1
+a74 4
+	return(NULL);		/* nobody logged in */
+    
+    if (!stricmp(FindValue(whichDir,F_ALIAS),UserAlias))
+	return(theFD->fdChange);	/* user's own entry */
+d76 4
+a79 1
+    return(0);			/* sorry... */
+d87 1
+a87 1
+    return(AmHero);
+d93 1
+d95 1
+a95 1
+Dir theDir;		/* the dir the user wants to delete */
+d98 2
+a99 2
+    /*return(AmHero && stricmp(Hero,FindValue(theDir,F_ALIAS)));*/
+    return(AmHero);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d51 3
+a56 3
+    if (AmHero)
+	return(1);		/* the supreme being */
+
+d70 3
+a75 3
+    if (AmHero)
+	return(1);		/* the supreme being */
+
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d97 2
+a98 1
+    return(AmHero && stricmp(Hero,FindValue(theDir,F_ALIAS)));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d30 1
+a30 1
+    if (!strcmp(FindValue(whichDir,F_ALIAS),UserAlias))
+d57 1
+a57 1
+    if (!strcmp(FindValue(whichDir,F_ALIAS),UserAlias))
+d76 1
+a76 1
+    if (!strcmp(FindValue(whichDir,F_ALIAS),UserAlias))
+d97 1
+a97 1
+    return(AmHero && strcmp(Hero,FindValue(theDir,F_ALIAS)));
+@

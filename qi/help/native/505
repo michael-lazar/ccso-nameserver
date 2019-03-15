@@ -1,0 +1,3 @@
+You have attempted to change a field that does not have the "Change"
+attribute.  You are not allowed to change such fields.  To see a list
+of fields and their attributes, use the "fields" command.

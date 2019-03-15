@@ -1,0 +1,63 @@
+Return-Path: info.ph
+From: gp@llnl.gov (George Pavel)
+Date: 17 Mar 93 18:02:45 GMT
+Newsgroup: info.ph/504
+Message-Id: <9303171802.AA10727@ocfmail.ocf.llnl.gov>
+Subject: Re: Still need help getting started
+
+>I have all the source and I have read the Installation manual.  I am not
+>sure how to proceed.  I am hoping for some general hints.
+
+I'll take a stab at it.  If you have compiled and installed qi and ph,
+presumably the question refers to how to get the data into the database. 
+The exact procedure will of course be dependent on where you get the data
+from, but the general steps are:
+
+Create the configuration file for the database itself.  This is often
+called prod.cnf (or replace "prod" with whatever you choose to call your
+database; this name is set in the configuration file for the compilation
+step--a file you created in the configs directory which contains examples).
+ prod.cnf contains the definitions of the fields you wish to use in the
+database and their properties (Indexed, Public, etc.).  You can keep all
+the fields, or comment out the ones you don't want.
+
+Next you need to create an input file of the directory (database)
+information.  This file will contain one line for each person.  Each line
+contains the fields for each person with the fields tab-separated.  The
+field information looks like fieldNumber:fieldValue.  The fieldNumber is
+defined in the prod.cnf file; the fieldValue is whatever the data for the
+person is.  Each line only needs to contain the fields that have values;
+fields without a value can be left out.  The fields can appear in any
+order.  For example, lets say you have the fields name, phone, and email
+defined in prod.cnf; these fields have the numbers 2, 1, and 3
+respectively.  The following lines are all valid lines to have in this
+input file (<tab> is the tab character):
+
+3:George Pavel<tab>1:510-422-4262<tab>2:gp@llnl.gov
+3:Joe Blow<tab>1:123-4567
+1:24262<tab>2:jdoe@llnl.gov<tab>3:Jane Doe
+
+Once you have this input file (lets call it qi.input), you need to figure
+out the appropriate size for your database.  This can be done by guessing
+or by running the command
+        sizedb prod.cnf qi.input
+which will result in a number that I will just call SIZE.
+
+Your prod.cnf file must exist in the directory that will contain the
+database when it is running.  This directory is defined in the
+configuration file in the configs directory when you compiled.  You can
+create the database in another directory and then copy the files to the
+running directory.  This is what I do so that the current database can stay
+running while the new database is being created. Then, to create the
+database, you do:
+        credb SIZE databaseName         #databaseName is either "prod" or
+                                         whatever you called it
+        maked databaseName < qi.input
+        makei databaseName
+        build -s databaseName
+        echo off Installing new database... > runningDirectory/databaseName.sta
+        mv databaseName* runningDirectory
+
+That should do it.  You can check it by making queries using Ph or Qi.
+
+George

@@ -1,0 +1,95 @@
+PH TIMETABLE INFORMATION
+
+UIUC course timetable information for the current fall, spring, or summer
+semester is available through the CCSO Nameserver.  The University
+timetable database is identical to the printed version and is searchable
+both by course number and words found in course titles.
+
+Nameserver timetable information is updated three times a year.  The
+fall timetable is available in early March, the spring timetable comes
+online in early October, and the summer timetable is available in the
+middle of February.
+
+EXAMPLES
+To do a timetable lookup by course number, set the "type" field specifier
+to "fall" (to search the fall timetable), "spring" (to search the spring
+timetable), "summer" (to search the summer timetable), or "timetable"
+(to search all available timetables), followed by the desired course
+number.  The course number itself, which usually consists of an
+abbreviated department or program name followed by a three digit number,
+should be typed as a single entity with NO spaces between the characters;
+e.g., "cs101", "span101", etc. (Note: The "type" field specifier [e.g.,
+"type=fall"] is not required, but its use in the selection clause of
+the query will limit the search to those items in the Nameserver database
+that belong to the specified timetable.)
+
+The following example illustrates a lookup on a single course number:
+
+   ph> ph type=fall music213
+   ----------------------------------------
+     name: music213 the history of music i
+     text: fall92
+         : prerequisite: music 110 or consent of instructor.
+         : required of all music students.
+         : 3 hours.
+         : 05929 lect             1       m  w  f  2100  music bld
+         : 05930 quiz       a     1        tu th   1180  music bld
+         : 05931 quiz       b     9        tu th   1144  music bld
+         : 05932 quiz       c    10        tu th   1148  music bld
+         : 05933 quiz       d     9          w  f  1184  music bld
+         : 05934 quiz       e    11          w  f  1148  music bld
+         : 05935 quiz       f     4        tu th   1161  music bld
+   ----------------------------------------
+
+The next example shows how the metacharacter "*" can be used to
+print the names of all 200-level art history courses:
+
+   ph> ph type=fall arthi2* return name
+   ----------------------------------------
+     name: arthi218 ancient greek sanctuaries
+   ----------------------------------------
+     name: arthi222 medieval art
+   ----------------------------------------
+     name: arthi231 northern renaissance art
+   ----------------------------------------
+     name: arthi241 twentiethcentury european art
+   ----------------------------------------
+     name: arthi289 senior honors in art history  b a
+   ----------------------------------------
+     name: arthi290 senior honors in art history  b f a
+   ----------------------------------------
+     name: arthi291 individual art history topics
+   ----------------------------------------
+
+To do a timetable lookup by course title, set the "type" field specifier
+to "fall" (to search the fall timetable), "spring" (to search the spring
+timetable), "summer" (to search the summer timetable), or "timetable"
+(to search all available timetables), followed by any significant word(s)
+in the course title.  For example:
+
+   ph> ph type=fall modern dance
+   ----------------------------------------
+     name: dance101 beginning modern dance
+     text: fall92
+         : for non-dance majors.
+         : *may be repeated for a total of 4 semester hours.
+         : *1 hour.
+         : student cost for supplies and concert ticket approx.
+         : $15.00.
+         : written assignments and concert attendance required.
+         : 02500 lab        a   430-6      tu th   drama rhrs kcpa
+         : 02501 lab        b    12        tu thf      b 905w nev
+   ----------------------------------------
+     name: dance102 intermediate modern dance
+     text: fall92
+         : prerequisite: dance 101 or consent of instructor.
+         : for non-dance majors.
+         : *may be repeated for a total of 4 semester hours.
+         : *1 hour.
+         : student cost for supplies and concert ticket approx.
+         : $15.00.
+         : written assignments and concert attendance required.
+         : 02502 lab              3-430   m  w     dance rhrs kcpa
+   ----------------------------------------
+
+SEE ALSO: query, type

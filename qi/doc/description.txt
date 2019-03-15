@@ -1,0 +1,660 @@
+
+
+
+
+
+
+
+               TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn
+
+                               by
+                Steven Dorner   s-dorner@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                          July 26, 1989
+
+
+                           updated by
+                Paul Pomes   paul-pomes@uiuc.edu
+           Computer and Communications Services Office
+                University of Illinois at Urbana
+
+                         August 2, 1992
+
+
+
+
+
+_I_n_t_r_o_d_u_c_t_i_o_n
+
+This document provides an overview of the CCSO Nameserver.  It
+should give the reader a good idea of the capabilities, implemen-
+tation and performance of the Nameserver.
+
+_O_v_e_r_v_i_e_w
+
+The CCSO Nameserver is a computer resident "phone book".  It can
+keep a relatively small amount of information about a relatively
+large number of people or things, and provide fast access to that
+information over the Internet.[1] Here at the University of Illi-
+nois, we keep the contents of the "white pages" of our
+_S_t_u_d_e_n_t/_S_t_a_f_f _D_i_r_e_c_t_o_r_y as well as other selected information, in
+the Nameserver.
+
+Unlike a printed directory, the information in the CCSO
+Nameserver is dynamic.  It can be updated at any time, from any
+computer on the Internet capable of running the "client" program,
+_p_h.[2] The Nameserver can also be taught to keep new _t_y_p_e_s of
+information, such as electronic mail addresses or office hours,
+without recompilation or change to the existing database.
+
+____________________
+   Converted to portable n/troff format using the -me macros from
+funky Next WriteNow format (icch).
+   [1]  The  collection of local, regional, and national networks
+using the TCP/IP protocols.
+   [2]  At  present this means 4.[23] BSD UNIX, VMS, VM/CMS, DOS,
+or Macintosh.
+
+
+
+
+
+
+
+
+
+
+
+
+22                             TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn
+
+
+The remainder of this document will examine in somewhat further
+depth three aspects of the Nameserver; what it does (CCaappaabbiillii--
+ttiieess), how it does them (IImmpplleemmeennttaattiioonn), and how well it does
+them (PPeerrffoorrmmaannccee).  There are in-depth documents describing some
+of these aspects of the Nameserver; the interested reader may
+refer to the _R_e_f_e_r_e_n_c_e_s section for the titles of these other
+documents.
+
+_C_a_p_a_b_i_l_i_t_i_e_s - _T_h_e _D_a_t_a_b_a_s_e
+
+The CCSO Nameserver manages a database that consists of many
+individual _e_n_t_r_i_e_s.  Each entry contains one or more _f_i_e_l_d_s, each
+field consisting of a one or more printable ASCII characters
+(including tab and newline).  Each field is associated with a
+particular _f_i_e_l_d _d_e_s_c_r_i_p_t_i_o_n that is used to specify the behavior
+of the field.  A field description includes a name, a maximum
+length for the fields it describes, and certain _p_r_o_p_e_r_t_i_e_s that
+determine how the field is used.
+
+There are essentially no intrinsic limits on the size of the
+database, in number of entries, numbers of field descriptions,
+numbers of fields per entry, or sizes of fields.[3]
+
+Certain fields[4] in the database are indexed.  Words from these
+fields can be used as keys to select entries in the database.
+Words from any field may be used to refine the selection made by
+the key fields.  The indexing scheme used is "double-hashing",
+and results in very fast lookups for key fields.  The hash table
+is also indexed to facilitate pattern matching on the hash table
+(and hence the database).
+
+_C_a_p_a_b_i_l_i_t_i_e_s - _T_h_e _S_e_r_v_e_r
+
+The database resides entirely on one computer and is managed by a
+server program, _q_i (query interpreter).  Multiple instances of _q_i
+may be executing at any one time; access to the database is con-
+trolled by advisory locks.  Any number of processes may read the
+database, unless a process is writing the database, in which case
+all processes must wait for that process to complete its work
+before beginning their own.
+
+_Q_i uses a command-reply scheme like that used by FTP.[5] It
+____________________
+   [3] Actually there are limits imposed by the  32-bit  pointers
+used  throughout  the  system.   Before  those  limits  could  be
+reached, however, the database  would  likely  be  too  large  to
+manage.
+   [4] Those whose field descriptions in the  ._c_n_f  file  contain
+the property "Indexed".
+   [5] See RFC-959, _F_i_l_e _T_r_a_n_s_f_e_r _P_r_o_t_o_c_o_l (_F_T_P), J.  Postel  and
+J. Reynolds.
+
+
+
+
+
+
+
+
+
+
+
+
+TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn                             33
+
+
+accepts commands from its standard input, and writes replies on
+its standard output.  Both commands and replies are couched in
+"netascii"; lines consisting of printable ASCII characters ter-
+minated with a newline (ASCII 10) or carriage-return newline
+(ASCII 13 ASCII 10) pair.  Additionally, the backslash "\" is
+used to "escape" certain characters, as in the C programming
+language.[6]
+
+Commands consist of a keyword optionally followed by one or more
+arguments or keywords.  Commands include: _q_u_e_r_y for querying the
+database; _c_h_a_n_g_e for changing fields in entries; _a_d_d for adding
+new entries.  Replies consist of a numerical code ranging from
+-599 to 599, and additional text.  The numerical codes may indi-
+cate an operation in progress (100-199), success (200-299), a
+request for further information (300-399), temporary failure
+(400-499), or permanent failure (500-599).  Replies in the range
+from -599 to -100 indicate that further replies are to be
+expected for the current command; they otherwise have the same
+meanings as their positive counterparts.
+
+The behavior of _q_i may be modified by use of certain _o_p_t_i_o_n_s,
+accessed by the _s_e_t command.  The number of available options is
+small; the most important options are _e_c_h_o, which causes _q_i to
+print commands on its output before executing them, and _l_i_m_i_t,
+which allows the user to specify a maximum number of entries to
+which a command may be applied.
+
+_Q_i operates in three different modes; anonymous, login, and hero.
+Each mode is more liberal than the previous in the operations it
+allows, and consequently more difficult to access.  Anonymous
+mode is used to make queries of public information[7] and for a
+few other innocuous purposes.  In anonymous mode, there is a max-
+imum number of entries that can be viewed with one command; the
+purpose of this limitation is to discourage the use of the
+Nameserver for the preparation of mailing lists.  Anonymous mode
+is used for most queries of the Nameserver.
+
+To enter login mode, a user must identify himself as the owner of
+a particular Nameserver entry by giving an _a_l_i_a_s (login name) and
+a password.[8] In addition to the capabilities of anonymous mode,
+____________________
+   [6] The set of such escapes is much more limited  than  in  C;
+only  "\n"  for newline, "\t" for tab, "\"" for double-quote, and
+"\\" for backslash are allowed.
+   [7]  I.e.,  to view fields whose field description contain the
+property "Public".
+   [8] Actually the user is asked to encrypt a string  using  his
+password,  and _q_i compares the result returned with the result it
+obtained by encrypting the same string  with  the  user's  stored
+password.  This is to provide additional security when running _q_i
+over networks; the user's password is never sent "in  the  clear"
+over a potentially insecure network.
+
+
+
+
+
+
+
+
+
+
+
+44                             TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn
+
+
+login mode allows the logged in user to change fields from his or
+her own entry in the Nameserver.[9]
+
+Hero mode is entered either by entering login mode as a
+Nameserver "hero" (superuser) or by running _q_i directly from a
+terminal, rather than over a network.  In this mode, all artifi-
+cial limits are removed; the hero may change any field in any
+entry in the database, as well as view as many entries as he
+wishes.  Hero mode is used mostly for administrative purposes.
+
+_C_a_p_a_b_i_l_i_t_i_e_s - _Q_u_e_r_i_e_s
+
+Since most of what the Nameserver does is answer queries, it is
+fitting to describe queries more fully here.  A nameserver query
+consists of five elements; the "query" keyword, values for one or
+more indexed fields, values for zero or more non-indexed fields,
+optionally the "return" keyword, and optionally a list of fields
+to print from the selected entries.  A couple of examples will
+clarify.  First, a plain query; the arguments are interpreted as
+requests for words from the name or nickname fields, both of them
+indexed fields:
+
+    qi> query steven dorner
+    -200:1:         alias: s-dorner
+    -200:1:          name: dorner steven c.
+    -200:1:         email: dorner@garcon.cso.uiuc.edu
+    -200:1:         phone: (w) 244-1765
+    -200:1:       address: 181 DCL, MC 256
+    -200:1:              : 1201 W. Washington, C, 61821
+    -200:1:         title: res programmer
+    -200:1:      nickname: Steve
+    -200:1:         hours: 8-4 weekdays
+    200:Ok.
+
+
+Here is an example that uses all five elements.  The "department"
+field is not indexed.
+
+    qi> query dorner department=computing return name email department
+    -200:1:          name: dorner steven c.
+    -200:1:         email: dorner@garcon.cso.uiuc.edu
+    -200:1:    department: computing services office
+    200:Ok.
+
+
+
+
+
+____________________
+   [9] Actually a user may change only those fields  whose  field
+description contain the property "Change".
+
+
+
+
+
+
+
+
+
+
+
+
+TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn                             55
+
+
+_C_a_p_a_b_i_l_i_t_i_e_s - _T_h_e _C_l_i_e_n_t
+
+Usually, the Nameserver is accessed via the "client" program _p_h.
+This program makes a connection to a copy of _q_i on the machine
+that keeps the Nameserver database.  It then provides assistance
+to the user of the Nameserver; it formulates queries, formats
+Nameserver responses, and provides other conveniences.
+
+_P_h operates in two modes; command-line and interactive.  In
+command-line mode, _p_h forms a Nameserver query from the arguments
+given it, sends it to _q_i, prints the result, and exits.  In
+interactive mode, _p_h reads commands from the user, relays them to
+_q_i, and prints _q_i's responses.  The responses are automatically
+sent through a paging program.  Some commands given to ph are
+expanded into more than one qi command.  For example, the _p_h
+"edit" command first asks _q_i for the value of the desired field,
+puts that value in an editor where the user edits it as s/he
+pleases, and then issues a "change" command to change the field
+to its desired new value.
+
+_I_m_p_l_e_m_e_n_t_a_t_i_o_n - _T_h_e _S_o_u_r_c_e
+
+The Nameserver is written in C (a small parser is written in
+lex[10]), and runs on UNIX systems.  The client, _p_h, may be run
+on 4.[23]BSD derived systems.  A version of _p_h exists for VMS,
+DOS, Mac, and a limited version exists for VM/CMS systems.
+
+There were at last count 320,000 bytes of C and lex source code;
+some 6,000 statements in 63 files.  This source is divided into
+several distinct categories; _q_i (230,000 bytes, 28 files, 3500
+statements), _p_h (46,000 bytes, 3 files, 700 statements), utili-
+ties (89,000 bytes, 21 files, 1700 statements), and libraries
+(19,500 bytes, 11 files, 300 statements).
+
+The database and _q_i reside on a Digital Equipment Corporation
+VAXServer 3500 running Ultrix.
+
+_I_m_p_l_e_m_e_n_t_a_t_i_o_n - _T_h_e _D_a_t_a_b_a_s_e
+
+The database is kept in six files with the extensions ._d_i_r, ._d_o_v,
+._i_d_x, ._i_o_v, ._s_e_q, and ._b_d_x.  The ._d_i_r and ._d_o_v files contain the
+actual data.  The ._i_d_x and ._i_o_v files contain the hash table,
+with pointers into the data files.  The ._s_e_q file contains all
+the words from the hash table, sorted alphabetically, along with
+pointers into the hash table; it is used for pattern-matching on
+the hash table.  The ._b_d_x file contains a tree of four-letter
+nodes, each node pointing to where entries with those four
+letters begin in the ._s_e_q file; the ._b_d_x file speeds search of
+____________________
+   [10] See _L_e_x-_A _L_e_x_i_c_a_l _A_n_a_l_y_z_e_r _G_e_n_e_r_a_t_o_r, M.E.  Lesk  and  E.
+Schmidt.
+
+
+
+
+
+
+
+
+
+
+
+
+66                             TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn
+
+
+the ._s_e_q file.
+
+The ._d_i_r file consists of a header and one fixed-length record
+for each entry in the database.  If there is too much data for
+one record, the remainder is placed in the ._d_o_v file.  The ._d_o_v
+file also consists of fixed-length records, and if one is not
+enough, the remainder can be placed in more ._d_o_v records.  Thus,
+an entry is really a linked list of fixed-length records, and is
+not limited in size.  It is relatively easy to play with the
+sizes of the ._d_i_r and ._d_o_v records (before compilation and
+installation of the database) for optimum performance.  We use a
+fairly small record size in the ._d_i_r file, to minimize space was-
+tage,[11] and a fairly large record size in the ._d_o_v file, to
+minimize linking.  Most entries are wholly contained in the ._d_i_r
+file; most of the rest require only one ._d_o_v record.
+
+Each entry begins with some fixed-length information, followed by
+the fields that make up its data.  Each field is a null-
+terminated ASCII string.  A field begins with an ASCII string
+that is the id of the field description for that field, and a
+colon.  The field's data follows, and then the null terminator
+(ASCII 0).  Tagging each field with its description number means
+that the database is not sensitive to the presence, absence or
+order of the fields.  This in turn means that field descriptions
+can be added to the Nameserver at will, and the newly-defined
+fields used, without recompilation or rebuilding of the database
+(see _I_m_p_l_e_m_e_n_t_a_t_i_o_n - _F_i_e_l_d _D_e_s_c_r_i_p_t_i_o_n_s below).
+
+The ._i_d_x file is made up of a fixed number of fixed-length
+records.  Each record that is in use contains a word from an
+indexed field, and a set of pointers to the ._d_i_r records that
+contain the word in an indexed field.  Overflow in the ._i_d_x file
+is handled like overflow in the ._d_i_r file; the excess pointers
+are put in one or more fixed-length records in the ._i_o_v file.
+Words are indexed by computing a hash function.  If the selected
+location is not empty but does not contain the desired word, the
+hash function is iterated, until a limit is reached (implying the
+failure of the index) or the word or an empty spot is found.  If
+the spot is empty, the word and a pointer to the entry in which
+it occurs is placed in the record.  If the spot is not empty, a
+pointer to the entry is appended to the list of pointers for that
+word.
+
+            Nroff version of Figure 1 not available.
+
+                _F_i_g_u_r_e _1.  _D_a_t_a_b_a_s_e _O_r_g_a_n_i_z_a_t_i_o_n
+
+____________________
+   [11] Not entirely successfully - see  _P_e_r_f_o_r_m_a_n_c_e  -  _D_a_t_a_b_a_s_e
+_S_i_z_e below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn                             77
+
+
+The ._s_e_q file uses fixed-length records (called _l_e_a_v_e_s) to keep a
+sorted list of all the words in the hash table (._i_d_x and ._i_o_v
+files).  Each leaf contains up to four words, and a pointer to
+the next leaf in alphabetical order.  With each word is stored a
+pointer into the hash table where that word is found.
+
+The ._b_d_x file has records (called _n_o_d_e_s) that contain one four-
+byte key, and two pointers; one to the previous node in alphabet-
+ical order, and one to the following node in alphabetical order.
+If a particular four-byte key happens to begin a leaf, that key's
+node will contain a pointer to that leaf instead of a pointer to
+another node.
+
+_I_m_p_l_e_m_e_n_t_a_t_i_o_n - _Q_u_e_r_i_e_s
+
+An incoming query is first broken down into its component parts.
+Then, the selection arguments of the query are checked for
+indexed arguments.  The longest indexed arguments[12] are looked
+up one by one in the hash table (or, if they contain pattern-
+matching characters, a search is made through the ._b_d_x and ._s_e_q
+files for each pattern).  The index entries are "anded" together
+to select only those entries that contain all of the indexed
+words.
+
+Next, the selected entries are fetched one by one, and matched
+against the argument list.  This is done for two reasons.  First,
+the fact that an entry appears in the index for a word says noth-
+ing about which _f_i_e_l_d the word is to be found in; it merely notes
+that the word does appear.  Therefore, it is necessary to recheck
+indexed fields, and make sure the words in question appear in the
+proper fields.  Second, the non-indexed words must be checked, to
+see that they appear in the proper fields in the entry.
+
+If the entry passes the checks, the selected fields (or a set of
+default fields) are printed.
+
+_I_m_p_l_e_m_e_n_t_a_t_i_o_n - _F_i_e_l_d _D_e_s_c_r_i_p_t_i_o_n_s
+
+Field descriptions are kept in a file that _q_i reads each time it
+is run.  This file consists of lines describing each field, in
+ASCII, with colons separating the elements in a line.  First
+comes the id number of the field, then the name of the field and
+its maximum length.  Finally, there is a colon-separated list of
+properties for the field.
+
+____________________
+   [12] Actually, the longest indexed arguments free of  pattern-
+matching  metacharacters.   Pattern matches take much longer than
+normal index lookups since  the  ._b_d_x  and  ._s_e_q  files  must  be
+searched,  and  since  such searches frequently result in a large
+number of matches being selected.
+
+
+
+
+
+
+
+
+
+
+
+
+88                             TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn
+
+
+Since this file is read each time _q_i starts up, lines can be
+added to define new fields at will.  All subsequent invocations
+of _q_i will be able to recognize and use the fields.
+
+The major properties fields may have are Indexed, Public,
+Default, Lookup, and Change.  Fields marked Indexed are kept
+track of in the database's index.  At least one such field _m_u_s_t
+be included in every query.  Fields marked Public may be viewed
+by anyone using _q_i in anonymous or login mode.  Fields not marked
+Public may only be viewed by the entry's owner in login mode, or
+by someone using _q_i in hero mode.  Default fields are printed if
+no "return" clause is given in a query.  Lookup fields may be
+used in the selection part of a query; a field not marked Lookup
+cannot be used to select entries.[13] Finally, a user in login
+mode in _q_i may change any of his or her fields that are marked
+Change.
+
+_P_e_r_f_o_r_m_a_n_c_e - _D_a_t_a_b_a_s_e _S_i_z_e
+
+Our database contains 80,140 entries, totalling 16 megabytes of
+information.  The ._d_i_r and ._d_o_v files together are 33 megabytes;
+nearly half the space is wasted.  This percentage could be
+reduced by reducing the record size of the ._d_i_r file.
+
+The hash table, which has room for 450,001 words, actually con-
+tains 157,324 words and 270,784 pointers, for a total of 1.3
+megabytes of hash table.  The ._i_d_x and ._i_o_v files are 19.5 mega-
+bytes in size; even allowing for a large number of empty hash
+table slots (necessary for performance), most of the space is
+wasted.  As with the ._d_i_r file, reducing the record size in the
+._i_d_x file would help the situation.
+
+Rounding out the database is 7.2 megabytes in the ._b_d_x and ._s_e_q
+files.
+
+_P_e_r_f_o_r_m_a_n_c_e - _S_p_e_e_d
+
+To test speed, we took 300 words from different parts of the
+index, and looked each one up using _q_i.  _Q_i found 396 entries in
+78 seconds; that is about 1/4 second per lookup.  Using four
+letter keys and wildcarding the rest, _q_i found 9213 entries in
+460 seconds, for about 11/2 seconds per lookup.
+
+In actual use over a network, response is slower, since the
+client program must establish a connection with the host that has
+the database.  Looking up 100 indexed words in separate
+____________________
+   [13] You might decide, for example, that no one should be  al-
+lowed to be found by his or her phone number.  You could mark the
+phone number field as Public (so it  could  be  viewed)  but  not
+Lookup (so no one could use it in searches).
+
+
+
+
+
+
+
+
+
+
+
+
+TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn                             99
+
+
+invocations of _p_h took 109 seconds, or 1 second per lookup; 118
+entries were found.
+
+_P_e_r_f_o_r_m_a_n_c_e - _U_s_a_g_e
+
+In a recent week, typical of most weeks, we had 3100 uses from
+over 70 campus machines.[14] By far most of the commands given
+were queries (3643).  There were also 175 logins, 264 changes,
+and a few hundred other commands issued.  Of the commands: 58%
+were successful; 26% were queries that found no entries; 8% were
+queries that found too many entries; 4% were other errors; 3%
+were rejected because they required login mode, but were being
+given in anonymous mode; and 1% failed due to command syntax
+errors.
+
+_F_u_r_t_h_e_r _D_i_r_e_c_t_i_o_n_s
+
+Overall, we are fairly satisfied with what has been done to date.
+Ongoing efforts will be centered around making the Nameserver
+convenient to use in a distributed environment.  This will pri-
+marily involve allowing users to specify a server, although some
+peripheral issues are also in need of resolution.
+
+Additionally, we will make some attempts to remove wasted space
+from the database and its associated index; this is not a high
+priority since the database, for all its wasted space, is still
+not unmanageably large.
+
+_D_i_s_t_r_i_b_u_t_i_o_n
+
+The CCSO Nameserver is Copyright (C) 1988 by the University of
+Illinois Board of Trustees.  Portions of the software are Copy-
+right (C) 1985 by CSNet.  It is distributed free of charge, and
+is available for anonymous ftp from uxc.cso.uiuc.edu, in the
+net/qi subdirectory as well as the pub/qi.tar.Z file.  The client
+software for UNIX and VMS is available on the same computer, in
+the net/ph subdirectory and in the file pub/ph.tar.Z.  No support
+will be provided by the University, and the University is not
+liable for anything bad that happens as a result of its use.  The
+software may not be redistributed without permission from CSNet.
+
+_R_e_f_e_r_e_n_c_e_s
+
+_U_N_I_X _M_a_n_u_a_l _P_a_g_e_s.  Manual pages are available on _p_h(1) and
+_q_i(8).
+
+
+____________________
+   [14] It is impossible to get an exact count of the  number  of
+machines, since there are some machines that use another computer
+as a relay; these machines do not show up in the count.
+
+
+
+
+
+
+
+
+
+
+
+
+1100                            TThhee CCCCSSOO NNaammeesseerrvveerr -- AA DDeessccrriippttiioonn
+
+
+_T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r, _A_n _I_n_t_r_o_d_u_c_t_i_o_n by Steven Dorner.  A brief
+introduction geared at a new user of _p_h.
+
+_T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r, _W_h_y by Steven Dorner.  A recap of the design
+decisions that made our Nameserver what it is, including evalua-
+tions of some similar systems available when our Nameserver was
+designed.
+
+_T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r, _S_e_r_v_e_r-_C_l_i_e_n_t _P_r_o_t_o_c_o_l by Steven Dorner.
+Full documentation of the language used between the Nameserver
+server program, _q_i, and the outside world.
+
+_T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r, _G_u_i_d_e _t_o _I_n_s_t_a_l_l_a_t_i_o_n by Steven Dorner.  How
+to install the programs that make up the CCSO Nameserver.
+
+_T_h_e _C_C_S_O _N_a_m_e_s_e_r_v_e_r, _A _P_r_o_g_r_a_m_m_e_r'_s _G_u_i_d_e by Steven Dorner.  In
+depth documentation for anyone maintaining or wishing to com-
+pletely understand the CCSO Nameserver.
+
+_R_e_b_u_i_l_d_i_n_g _a _N_a_m_e_s_e_r_v_e_r _D_a_t_a_b_a_s_e _I_n _2_4 _E_a_s_y _S_t_e_p_s by Steven
+Dorner.  Describes how we build a database, beginning with raw
+data we receive from our Administrative branch.
+
+_A_c_k_n_o_w_l_e_d_g_e_m_e_n_t
+
+Our Nameserver is very similar in function and philosophy the
+CSNet nameserver.  In fact, the database management code from
+that nameserver, with some modification, is used in our
+Nameserver.  We are grateful to CSNet that their program was made
+available to us.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

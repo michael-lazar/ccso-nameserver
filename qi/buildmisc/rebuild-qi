@@ -1,0 +1,138 @@
+#! /bin/sh -x
+#
+# rebuild-qi - unpack a mail message with the phone list and update the qi
+#	server.  Report errors back to the nameserver administrator.
+#
+# Typically invoked by cron as
+# 03 00 * * *	qiserv	/usr/local/libexec/rebuild-qi
+#
+# Written by Paul Pomes, University of Illinois, Computing Services Office
+# Copyright (c) 1992 by Paul Pomes and the University of Illinois Board
+# of Trustees.  
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the University of
+#	Illinois, Urbana and its contributors.
+# 4. Neither the name of the University nor the names of its contributors
+#    may be used to endorse or promote products derived from this software
+#    without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# Email:  Paul-Pomes@uiuc.edu        USMail:	Paul Pomes
+# ICBM:   40 06 47 N / 88 13 35 W		University of Illinois - CSO
+#						1304 West Springfield Avenue
+#						Urbana, Illinois,  61801-2910
+# @(#)$Id$
+
+# Root directory of nameserver files
+ROOTDIR=/nameserv
+
+# Shell script creates scratch files and builds new database here.
+WORKDIR=$ROOTDIR/work
+
+# Working database stored here.
+DBDIR=$ROOTDIR/db
+
+# Backup copy of database before update is stored here.
+SAVEDIR=$ROOTDIR/old
+
+# Modify $PATH to include nameserv commands.
+PATH=$ROOTDIR/bin:$PATH
+export PATH
+
+# Minimum line count of an update file.  Helps guard against trash sent
+# to the update alias.
+UPDATEMIN=800
+
+# Reset umask just in case.
+umask 022
+
+# Make all files in working directory.
+cd $WORKDIR
+
+# Be sure to remove prod.sta file in case of errors.
+trap "rm -f $DBDIR/prod.sta; exit 1" 1
+
+# See if there's work to do
+if [ "`find . -type f -newer c.tape.raw -print 2>/dev/null`" != "./c.tape.mail" ];
+then
+	exit 0
+fi
+
+# Get fresh copy of config file.
+cp $DBDIR/prod.cnf .
+
+# Strip the incoming file of excess lines.
+sed -e '1,/^\*\*\*\*\*  ATTACHMENT/d' -e '/^$/d' -e '$d' -e '/^/d' \
+	< c.tape.mail > c.tape.raw
+
+# Insure that the incoming file is of reasonable length.
+if [ `wc -l < c.tape.raw` -lt $UPDATEMIN ];
+then
+	Mail -s "$WORKDIR/c.tape.raw file too short" < /dev/null
+	exit 1
+fi
+
+# Mark the database as read-only.  "read" MUST be the first word!!
+cat > $DBDIR/prod.sta << EOF
+read database update
+EOF
+
+# Sleep to allow for pending queries to complete.  Not totally safe, but
+# safe enough.
+sleep 300
+
+# Make a copy of the existing database directory.
+cp $DBDIR/prod.* $SAVEDIR
+
+# Crank the input through the unblocker.  Look for sundry errors.
+rm -f c.tape
+make c.tape
+
+if [ `wc -l < c.tape.raw` -ne `wc -l < c.tape` ];
+then
+	Mail -s "Line count of c.tape and c.tape.raw not equal" < /dev/null
+	exit 1
+fi
+
+grep -v in-house c.tape > out-house
+if [ -s out-house ];
+then
+	Mail -s "Entries with bad phone numbers" postmaster < out-house
+fi
+
+# Let her rip through the rest.
+make > make.log 2>&1
+
+# Copy new directory into place.
+cp prod.* $DBDIR
+rm $DBDIR/prod.sta
+
+# Report stuff
+echo "" >> make.log
+echo `wc -l < c.kill` entries marked as left >> make.log
+echo `wc -l < c.kill.dead` entries deleted >> make.log
+
+Mail -s "ph database rebuild results" postmaster < make.log
+
+exit 0

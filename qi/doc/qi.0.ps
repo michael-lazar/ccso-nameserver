@@ -1,0 +1,327 @@
+%!PS-Adobe-3.0
+%%Creator: groff version 1.04
+%%DocumentNeededResources: font Times-Roman
+%%+ font Times-Bold
+%%+ font Times-Italic
+%%DocumentSuppliedResources: procset grops 1.04 0
+%%Pages: 1
+%%PageOrder: Ascend
+%%Orientation: Portrait
+%%EndComments
+%%BeginProlog
+%%BeginResource: procset grops 1.04 0
+%!PS-Adobe-3.0 Resource-ProcSet
+
+/setpacking where {
+	pop
+	currentpacking
+	true setpacking
+} if
+
+/grops 120 dict dup begin 
+
+% The ASCII code of the space character.
+/SC 32 def
+
+/A /show load def
+/B { 0 SC 3 -1 roll widthshow } bind def
+/C { 0 exch ashow } bind def
+/D { 0 exch 0 SC 5 2 roll awidthshow } bind def
+/E { 0 rmoveto show } bind def
+/F { 0 rmoveto 0 SC 3 -1 roll widthshow } bind def
+/G { 0 rmoveto 0 exch ashow } bind def
+/H { 0 rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/I { 0 exch rmoveto show } bind def
+/J { 0 exch rmoveto 0 SC 3 -1 roll widthshow } bind def
+/K { 0 exch rmoveto 0 exch ashow } bind def
+/L { 0 exch rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/M { rmoveto show } bind def
+/N { rmoveto 0 SC 3 -1 roll widthshow } bind def
+/O { rmoveto 0 exch ashow } bind def
+/P { rmoveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+/Q { moveto show } bind def 
+/R { moveto 0 SC 3 -1 roll widthshow } bind def
+/S { moveto 0 exch ashow } bind def
+/T { moveto 0 exch 0 SC 5 2 roll awidthshow } bind def
+
+% name size font SF -
+
+/SF {
+	findfont exch
+	[ exch dup 0 exch 0 exch neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+% name a c d font MF -
+
+/MF {
+	findfont
+	[ 5 2 roll
+	0 3 1 roll % b
+	neg 0 0 ] makefont
+	dup setfont
+	[ exch /setfont cvx ] cvx bind def
+} bind def
+
+/level0 0 def
+/RES 0 def
+/PL 0 def
+/LS 0 def
+
+% BP -
+
+/BP {
+	/level0 save def
+	1 setlinecap
+	1 setlinejoin
+	72 RES div dup scale
+	LS {
+		90 rotate
+	} {
+		0 PL translate
+	} ifelse
+	1 -1 scale
+} bind def
+
+/EP {
+	level0 restore
+	showpage
+} bind def
+
+
+% centerx centery radius startangle endangle DA -
+
+/DA {
+	newpath arcn stroke
+} bind def
+
+% x y SN - x' y'
+% round a position to nearest (pixel + (.25,.25))
+
+/SN {
+	transform 
+	.25 sub exch .25 sub exch
+	round .25 add exch round .25 add exch
+	itransform
+} bind def
+	
+% endx endy startx starty DL -
+% we round the endpoints of the line, so that parallel horizontal
+% and vertical lines will appear even
+
+/DL {
+	SN
+	moveto
+	SN
+	lineto stroke
+} bind def
+
+% centerx centery radius DC -
+
+/DC {
+	newpath 0 360 arc closepath
+} bind def
+
+
+/TM matrix def
+
+%  width height centerx centery DE -
+
+/DE {
+	TM currentmatrix pop
+	translate scale newpath 0 0 .5 0 360 arc closepath
+	TM setmatrix
+} bind def
+
+% these are for splines
+
+/RC /rcurveto load def
+/RL /rlineto load def
+/ST /stroke load def
+/MT /moveto load def
+/CL /closepath load def
+
+% fill the last path
+
+% amount FL -
+
+/FL {
+	currentgray exch setgray fill setgray
+} bind def
+
+% fill with the ``current color''
+
+/BL /fill load def
+
+/LW /setlinewidth load def
+% new_font_name encoding_vector old_font_name RE -
+
+/RE {
+	findfont
+	dup maxlength dict begin
+	{
+		1 index /FID ne { def } { pop pop } ifelse
+	} forall
+	/Encoding exch def
+	dup /FontName exch def
+	currentdict end definefont pop
+} bind def
+
+/DEFS 0 def
+
+% hpos vpos EBEGIN -
+
+/EBEGIN {
+	moveto
+	DEFS begin
+} bind def
+
+/EEND /end load def
+
+/CNT 0 def
+/level1 0 def
+
+% llx lly newwid wid newht ht newllx newlly PBEGIN -
+
+/PBEGIN {
+	/level1 save def
+	translate
+	div 3 1 roll div exch scale
+	neg exch neg exch translate
+	% set the graphics state to default values
+	0 setgray
+	0 setlinecap
+	1 setlinewidth
+	0 setlinejoin
+	10 setmiterlimit
+	[] 0 setdash
+	/setstrokeadjust where {
+		pop
+		false setstrokeadjust
+	} if
+	/setoverprint where {
+		pop
+		false setoverprint
+	} if
+	newpath
+	/CNT countdictstack def
+	userdict begin
+	/showpage {} def
+} bind def
+
+/PEND {
+	clear
+	countdictstack CNT sub { end } repeat
+	level1 restore
+} bind def
+
+end def
+
+/setpacking where {
+	pop
+	setpacking
+} if
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Times-Bold
+%%IncludeResource: font Times-Italic
+grops begin/DEFS 1 dict def DEFS begin/u{.001 mul}bind def end/RES 72 def/PL
+792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron/scaron/zcaron
+/Ydieresis/trademark/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/space/exclam
+/quotedbl/numbersign/dollar/percent/ampersand/quoteright/parenleft/parenright
+/asterisk/plus/comma/hyphen/period/slash/zero/one/two/three/four/five/six/seven
+/eight/nine/colon/semicolon/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J
+/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright/circumflex
+/underscore/quoteleft/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z
+/braceleft/bar/braceright/tilde/.notdef/quotesinglbase/guillemotleft
+/guillemotright/bullet/florin/fraction/perthousand/dagger/daggerdbl/endash
+/emdash/ff/fi/fl/ffi/ffl/dotlessi/dotlessj/grave/hungarumlaut/dotaccent/breve
+/caron/ring/ogonek/quotedblleft/quotedblright/oe/lslash/quotedblbase/OE/Lslash
+/.notdef/exclamdown/cent/sterling/currency/yen/brokenbar/section/dieresis
+/copyright/ordfeminine/guilsinglleft/logicalnot/minus/registered/macron/degree
+/plusminus/twosuperior/threesuperior/acute/mu/paragraph/periodcentered/cedilla
+/onesuperior/ordmasculine/guilsinglright/onequarter/onehalf/threequarters
+/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis/Aring/AE/Ccedilla
+/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute/Icircumflex/Idieresis/Eth
+/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis/multiply/Oslash/Ugrave
+/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls/agrave/aacute/acircumflex
+/atilde/adieresis/aring/ae/ccedilla/egrave/eacute/ecircumflex/edieresis/igrave
+/iacute/icircumflex/idieresis/eth/ntilde/ograve/oacute/ocircumflex/otilde
+/odieresis/divide/oslash/ugrave/uacute/ucircumflex/udieresis/yacute/thorn
+/ydieresis]def/Times-Italic@0 ENC0/Times-Italic RE/Times-Bold@0 ENC0/Times-Bold
+RE/Times-Roman@0 ENC0/Times-Roman RE
+%%EndSetup
+%%Page: 1 1
+%%BeginPageSetup
+BP
+%%EndPageSetup
+/F0 10/Times-Roman@0 SF 408.86(QI\(8L\) QI\(8L\))72 48 R/F1 9/Times-Bold@0 SF
+(NAME)72 84 Q F0(qi \255 the CCSO Nameserver server \(on-line phone book\))108
+96 Q F1(SYNOPSIS)72 112.8 Q/F2 10/Times-Bold@0 SF(qi)108 124.8 Q F0([)2.5 E F2
+<ad77>A F0 2.5(][)C F2<ad64>144.25 124.8 Q F0(])A F1(DESCRIPTION)72 141.6 Q/F3
+10/Times-Italic@0 SF(Qi)108 153.6 Q F0 .358
+(manages the database of the CCSO Nameserver)2.858 F 5.358(.I)-.55 G 2.858(ti)
+325.264 153.6 S 2.858(st)333.682 153.6 S .357
+(he "server" program of the server)343.21 153.6 R .357(-client pair that)-.2 F
+(make up the CCSO Nameserver \(the client program is)108 165.6 Q F3(ph)2.5 E F0
+(\(1\)\).).23 E .77(If given the)108 182.4 R F2<ad77>3.27 E F0(option,)3.27 E
+F3(qi)3.27 E F0 .77
+(will run in read-only mode; commands that would change the database are not)
+3.27 F 2.51(allowed. If)108 194.4 R .009(given the)2.51 F F2<ad64>2.509 E F0
+(option,)2.509 E F3(qi)2.509 E F0 .009
+(will be run as though invoked by a daemon; in this case,)2.509 F F3(qi)2.509 E
+F0 .009(will limit the)2.509 F(amount of cpu time it will consume.)108 206.4 Q
+F3(Qi)108 223.2 Q F0 .113(operates in "super)2.613 F .113
+(-user" mode when run with its standard input is a terminal, \214le, or pipe.)
+-.2 F .114(If its standard)5.114 F .888(input is none of the above \(implying \
+the connection comes from over the network\) it runs in anonymous)108 235.2 R
+(mode, and the operations that may be performed are limited.)108 247.2 Q F3(Qi)
+108 264 Q F0 1.156 -.55('s a).35 H .056
+(vailability may be controlled by the \214le).55 F F3(/nameserv/db/pr)2.556 E
+(od.sta)-.37 E F0 5.056(.I).24 G 2.557(ft)393.154 264 S .057
+(his \214le exists, and the \214rst word in)401.821 264 R .167
+(it is "read", then all invocations of)108 276 R F3(qi)2.667 E F0 .166
+(will be in read-only mode; no writing of the database will be allowed.)2.667 F
+.351(If the \214rst word of the \214le is not "read",)108 288 R F3(qi)2.852 E
+F0 .352(will refuse to run at all.)2.852 F .352
+(In either case, the remainder of)5.352 F F3(/name-)2.852 E(serv/db/pr)108 300
+Q(od.sta)-.37 E F0(will be printed by)2.5 E F3(qi)2.5 E F0
+(as the reason the database is unavailable.)2.5 E F1(FILES)72 316.8 Q F0
+(/nameserver/db/prod.{dir)108 328.8 Q(,dov)-.4 E(,idx,iov)-.65 E
+(,seq,bdx} \255 the database)-.65 E(/nameserver/db/LockFile \255)108 340.8 Q F3
+(\215ock)2.5 E F0(\(3\) lock \214le for the database).66 E
+(/nameserv/db/prod.sta \255 control \214le for the database.)108 352.8 Q F1
+(SEE ALSO)72 369.6 Q F3(The CCSO Nameserver \255 An Intr)108 381.6 Q(oduction)
+-.37 E F0 2.5(,b).21 G 2.5(yS)287.08 381.6 S
+(teven Dorner; updated by Paul Pomes.)300.14 381.6 Q F3
+(The CCSO Nameserver \255 A Description)108 393.6 Q F0 2.5(,b).21 G 2.5(yS)
+279.67 393.6 S(teven Dorner; updated by Paul Pomes.)292.73 393.6 Q F3
+(The CCSO Nameserver \255 Why)108 405.6 Q F0 2.5(,b).26 G 2.5(yS)241.66 405.6 S
+(teven Dorner; updated by Paul Pomes.)254.72 405.6 Q F3
+(The CCSO Nameserver \255 Server\255Client Pr)108 417.6 Q(otocol)-.37 E F0 2.5
+(,b).48 G 2.5(yS)318.54 417.6 S(teven Dorner; updated by Paul Pomes.)331.6
+417.6 Q F3(How T)108 429.6 Q 2.5(oR)-.92 G
+(ebuild A Nameserver Database, In 24 Easy Steps)147.64 429.6 Q F0 2.5(,b).28 G
+2.5(yS)354.56 429.6 S(teven Dorner; updated by Paul Pomes.)367.62 429.6 Q F3
+(The CCSO Nameserver \255 Guide T)108 441.6 Q 2.5(oI)-.92 G(nstallation)256.04
+441.6 Q F0 2.5(,b).21 G 2.5(yS)309.04 441.6 S
+(teven Dorner; updated by Paul Pomes.)322.1 441.6 Q F3
+(The CCSO Nameserver \255 A Pr)108 453.6 Q -2.13(ogrammer ')-.37 F 2.5(sG)-1.29
+G(uide)289.55 453.6 Q F0 2.5(,b).18 G 2.5(yS)316.95 453.6 S
+(teven Dorner; updated by Paul Pomes.)330.01 453.6 Q F3(ph)108 465.6 Q F0
+(\(1\)).23 E F1(AUTHOR)72 482.4 Q F0 .401
+(Parts written by Steven Dorner \(sdorner@qualcomm.com\), Qualcomm, Inc.)108
+494.4 R .401(\(formerly at the University of)5.401 F
+(Illinois Computing and Communications Services Of)108 506.4 Q(\214ce\))-.18 E
+(Parts derived from the CSNET Name Server)108 523.2 Q(.)-.55 E .401(Code is no\
+w maintained by Paul Pomes \(p\255pomes@uiuc.edu\), University of Illinois Com\
+puting and Com-)108 540 R(munications Services Of)108 552 Q(\214ce.)-.18 E
+202.335(30-Jul-1992 1)281.835 768 R EP
+%%Trailer
+end
+%%EOF

@@ -1,0 +1,70 @@
+A RANK BEGINNER'S GUIDE TO VI
+
+This page describes a few vi commands that can be used to accomplish
+simple editing tasks.  Full documentation for vi can be found in The
+UNIX User's Manual Supplementary Documents, chapter 15 (really advanced
+users should read chapter 16 as well).  Two things to keep in mind:
+First, the editor is pronounced "vee eye;" if you pronounce it "vie,"
+UNIX gurus will laugh at you, though not out loud.  Second, vi is
+case-sensitive; be sure to use upper or lower case commands as
+appropriate.
+
+MODES
+Vi is a modal editor; what you can do depends on what mode you are in.
+The two modes of interest to us are command mode and insert mode.  You
+type most commands in command mode; all you do in insert mode is type
+your text.  You get out of insert mode by pressing the "escape" key,
+usually marked "esc" on keyboards; on some keyboards, you may have to
+hold down the "control" or "alt" key and press "[".  If you press the
+"escape" key in command mode, vi will beep at you; so if you get
+confused, just press "escape" until vi beeps; then you'll be back in
+command mode.
+
+MOVING AROUND
+Here are some motion commands in vi.  They are typed in command mode.
+When motion commands are used, the editor remains in command mode.
+
+  COMMAND      WHAT IT DOES
+  control-h    Moves the cursor left one character.
+  h            Moves the cursor left one character.
+  j            Moves the cursor down one line.
+  k            Moves the cursor up one line.
+  l            Moves the cursor right one character.
+  w            Moves the cursor forward to the beginning of the
+               next word.
+  b            Moves the cursor backward to the beginning of the
+               previous word.
+
+DELETING TEXT
+Here are some commands to get rid of text.  Type them in command mode.
+When the following deletion commands are used, the editor remains in
+command mode.
+
+  COMMAND      WHAT IT DOES
+
+  dd           Deletes the current line.
+  x            Deletes the character at the cursor and moves the
+               rest of the line to fill the hole.
+
+ADDING TEXT
+All of the following commands put vi into insert mode and let you type
+text.  Press the "escape" key when you are finished adding text, and vi
+will be returned to command mode.
+
+  COMMAND      WHAT IT DOES
+  i            Starts inserting characters immediately before the
+               current cursor location.
+  a            Starts inserting characters immediately after the
+               current cursor location.
+  O            Creates a new line above the cursor and starts
+               inserting at the beginning of that line.  Note that
+               this command is a capital "O".
+
+LEAVING VI
+The following commands exit vi.  They work in command mode.
+
+  COMMAND      WHAT IT DOES
+  ZZ           Exits vi and saves the changes you have made.
+               Those are capital "Z"s!
+  :q!<cr>      Exits vi, but doesn't save changes (the "<cr>"
+               means press the "return" key).

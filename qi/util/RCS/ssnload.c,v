@@ -1,0 +1,276 @@
+head	1.6;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.6
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	93.12.19.18.43.04;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	93.07.24.19.07.14;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.02.27.21.06.24;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.27.22.20.02;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.27.21.37.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.6
+log
+@New copyright statement.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id$";
+#endif
+
+/*
+ * replaces ssn fields with id fields, using id database
+ */
+#include "conf.h"
+#include <stdio.h>
+#include <ndbm.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/file.h>
+
+#ifdef __STDC__
+# include <stdlib.h>
+# include <string.h>
+#endif /* __STDC__ */
+
+#define BUF_SIZE    1024
+
+main(argc, argv)
+	int argc;
+	char **argv;
+{
+	char	buffer[BUF_SIZE];
+	int	err;
+	DBM	*db;
+	datum	first, second;
+
+
+	if (argc != 2)
+	{
+		fprintf(stderr, "Usage: ssnload ssndb\n");
+		exit(1);
+	}
+	if ((db = dbm_open(argv[1], O_RDWR | O_CREAT, 0660)) == NULL)
+	{
+		perror(argv[1]);
+		exit(3);
+	}
+	first.dptr = buffer;
+	while (gets(buffer) != NULL)
+	{
+		second.dptr = strchr(buffer, ':');	/* find end of ssn */
+		if (!second.dptr)
+			continue;	/* skip */
+		first.dsize = second.dptr - first.dptr;
+		*second.dptr++ = '\0';
+		first.dsize = second.dptr - first.dptr;
+		second.dsize = strlen(second.dptr) + 1;
+		if (err = dbm_store(db, first, second, DBM_INSERT))
+			fprintf(stderr, "Dbm err %d on <%s:%s>\n", first.dptr, second.dptr);
+#ifdef DEBUG
+		else
+			printf("%d %s:%d %s\n", first.dsize, first.dptr, second.dsize, second.dptr);
+#endif
+	}
+
+	dbm_close(db);
+	exit(0);
+}
+@
+
+
+1.5
+log
+@fcntl.h is normally in /usr/include .
+@
+text
+@d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 4
+@
+
+
+1.4
+log
+@POSIX: index() -> strchr().  Always include file.h and fcntl.h.
+@
+text
+@d16 1
+a16 1
+#include <sys/fcntl.h>
+@
+
+
+1.3
+log
+@System 5 changes, 1 or more of #include <sys/fcntl.h> instead of <sys/file.h>,
+define index/rindex replacements using strchr/strrchr, define L_SET, etc
+values if not present.
+@
+text
+@d16 2
+a17 5
+#ifdef SYSV
+# include <sys/fcntl.h>
+#else /* !SYSV */
+# include <sys/file.h>
+#endif /* SYSV */
+a21 6
+# ifndef index
+#  define index strchr
+#  define rindex strrchr
+# endif /* !index */
+#else /* !__STDC__ */
+char	*index();
+d49 1
+a49 1
+		second.dptr = index(buffer, ':');	/* find end of ssn */
+@
+
+
+1.2
+log
+@Re-formatted for clarity
+@
+text
+@d16 16
+a31 2
+#include <sys/file.h>
+#include <strings.h>
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 11
+a11 12
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+
+/***********************************************************************
+* replaces ssn fields with id fields, using id database
+***********************************************************************/
+/* $Header: /nameserv/Src/Util/RCS/ssnload.c,v 1.2 90/12/18 08:42:16 dorner Exp Locker: dorner $ */
+a13 1
+/*#include <stdlib.h>*/
+d21 3
+a23 1
+main(int argc, char **argv)
+d25 28
+a52 25
+  char  buffer[BUF_SIZE];
+  int err;
+  DBM *theDB;
+  datum first,second;
+  
+  
+  if (argc!=2) {fprintf(stderr,"Usage: ssnload ssndb\n");exit(1);}
+  if ((theDB = dbm_open(argv[1], O_RDWR | O_CREAT, 0660)) == NULL)
+  {
+    perror(argv[1]);
+    exit (3);
+  }
+
+
+  first.dptr = buffer;
+  while (gets(buffer) != NULL)
+  {
+    second.dptr = index(buffer,':');    /* find end of ssn */
+    if (!second.dptr) continue;      /* skip */
+    first.dsize = second.dptr - first.dptr;
+    *second.dptr++ = '\0';
+    first.dsize = second.dptr - first.dptr;
+    second.dsize = strlen(second.dptr)+1;
+    if (err=dbm_store(theDB,first,second,DBM_INSERT))
+      fprintf(stderr,"Dbm err %d on <%s:%s>\n",first.dptr,second.dptr);
+d54 2
+a55 2
+    else
+      printf("%d %s:%d %s\n",first.dsize,first.dptr,second.dsize,second.dptr);
+d57 4
+a60 4
+  }
+  
+  dbm_close(theDB);
+  exit(0);
+@

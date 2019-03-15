@@ -1,0 +1,175 @@
+PH INFORMATION ON PEOPLE AT THE UNIVERSITY OF ILLINOIS
+
+The Nameserver database holds information for approximately 70,000 UIUC
+faculty, staff, and students.  This is the information that is most
+commonly requested by users of the database.
+
+Faculty and staff information is provided by the University Payroll
+Office and consists primarily of name, title, and home/office addresses
+and phone numbers.  Like the printed copy of the campus phone book,
+faculty/staff information in the ph database is updated once a year
+during the month of November.  All personal ph entries, however, can be
+manually updated at any time during the year to reflect changes in
+personal or professional information or to add new fields to one's own
+Nameserver entry (see help on "edit", "make", and "fields").
+
+The student information in the ph database comes from the Office of
+Admissions and Records.  Anyone who is taking a class at the University
+is listed in the database along with his or her phone number, address,
+curriculum, and, in the case of undergraduates, high school.  Student
+data is updated four times a year during the months of January, June,
+September, and October.
+
+EXAMPLES:
+To look up information about an individual on campus, enter the command
+"ph" followed by the person's name.  Ph looks for every record in the
+Nameserver database whose "name" and/or "nickname" fields contain the
+name(s) specified in the query.  The following example shows a query on
+the name "Paul Pomes":
+
+   ph> ph paul pomes
+   ----------------------------------------
+               name: pomes paul b
+              phone: (217) 333-6262
+            address: 1429 DCL, MC 256
+                   : 1304 West Springfield Avenue
+                   : Urbana, Illinois  61801-2910
+    office_location: 1429 Digital Computer Lab
+         department: computing and communications services office
+              title: sr res programmer
+              hours: Mon: 9:00 to 17:00
+                   : Tue-Fri: 13:00 to 18:00
+           email to: p-pomes@uiuc.edu (paul@uxc.cso.uiuc.edu)
+   ----------------------------------------
+
+Matching in ph is not sensitive to upper and lower case letters and is
+done on a word-by-word basis.  That is, both the query and the entry
+are broken up into words, and the individual words are compared.  Thus,
+the expressions "ph paul pomes", "ph pomes paul", and "ph Paul Pomes"
+would all produce the same results.
+
+Although ph is insensitive to case, it otherwise requires words to match
+exactly, with no characters left over; "john" does not match "johnson",
+for example.  When the exact spelling of a person's name isn't known,
+it can be useful to ask the Nameserver for entries that are "sort of
+like" something.  This can be done by using special characters called
+"metacharacters".  If you are familiar with the metacharacters used by
+the UNIX shells for filename expansion, you'll be glad to know the
+Nameserver uses the same metacharacters.
+
+Specifically, the following metacharacters mean the following things to
+the Nameserver:
+
+   ? = any one character; "jo?n" would match "john", "joan",
+       "join", etc.
+
+  [] = any one of the characters between the brackets ([]);
+       "jo[ah]n" would match "john" or "joan", but not "join".
+
+   * = any characters or no characters; "jo*n" would match "john",
+      "joan", and "join", and also "jon" or "johann".
+
+Since the Nameserver and the shell use the same metacharacters, when
+using ph from the operating system command line, it is important that
+metacharacters be quoted or escaped to "protect" them from the shell.
+Where you might use the following query from within ph:
+
+   ph> query pa* pomes
+
+from the Unix shell you should say:
+
+   % ph pa\* pomes
+
+or
+
+   % ph "pa*" pomes
+
+Queries on people in the Nameserver database return a default set of
+fields and, thus, may not display all of the fields in a person's ph
+entry.  To view an entry in its entirety, add the clause "return all"
+to the end of the query expression.  For example:
+
+   ph> ph paul pomes return all
+   ----------------------------------------
+                alias: p-pomes
+                 name: pomes paul b
+                email: paul@uxc.cso.uiuc.edu
+                phone: (217) 333-6262
+         office_phone: (217) 333-6262
+           home_phone: (217) 359-0881
+                  fax: (217) 244-7089
+              address: 1429 DCL, MC 256
+                     : 1304 West Springfield Avenue
+                     : Urbana, Illinois  61801-2910
+       office_address: 1429 DCL, MC 256
+                     : 1304 West Springfield Avenue
+                     : Urbana, Illinois  61801-2910
+      office_location: 1429 Digital Computer Lab
+         home_address: 717 West Washington Street
+                     : Champaign, IL  61820-3334
+                proxy: !!
+             nickname: pbp paulp avatar
+            no_update: !!
+           department: computing and communications services office
+                title: sr res programmer
+                hours: Mon: 9:00 to 17:00
+                     : Tue-Fri: 13:00 to 18:00
+               family: Kali, Dylan Freeman, Alanna Ruth, Roku & Suza
+          high_school: Downers Grove South, 1976
+                 type: person phone
+             kerberos: p-pomes
+                 slip: 128.174.22.63
+   ----------------------------------------
+
+A return clause can also be used to limit the fields that are displayed.
+To view specific fields in an entry, follow the selection clause by the
+word "return" and a list of the fields you want to see (with the field
+names separated by spaces).  For example:
+
+   ph> ph paul pomes return name email hours
+   ----------------------------------------
+        name: pomes paul b
+       hours: Mon: 9:00 to 17:00
+            : Tue-Fri: 13:00 to 18:00
+       email: paul@uxc.cso.uiuc.edu
+   ----------------------------------------
+
+In order to ensure that the Nameserver is not used for generating mailing
+lists or other violations of privacy to persons listed in the database,
+only a limited number of entries are printed for any given query.  If
+a query results in more matching entries than this limit (currently 25),
+no entries will be printed; instead, the user will receive a "too many
+entries to print" message.  If, in trying to locate one particular entry,
+you get this message, try reducing the number of matching entries by
+using additional field specifiers or a more complete version of the
+person's name in the selection clause.
+
+The following example shows what happens when a query results in too
+many matches:
+
+   ph> query m* smith
+   502:Too many entries to print.
+
+By adding some extra information to the selection clause (in this case,
+some information about the person's department), ph is able to display
+information about all of the "M. Smiths" who work in the department
+specified:
+
+   ph> query m* smith department=super*
+   ----------------------------------------
+              name: smith michael d
+             phone: (217) 244-7714
+           address: 304 Advanced Computation Building
+        department: supercomputing applicatns
+             title: res programmer
+          email to: m-smith22@uiuc.edu (msmith@ncsa.uiuc.edu)
+   ----------------------------------------
+
+In short, metacharacters can be used when you don't know enough
+information about a person to produce matching entries, and field
+specifiers can be used to narrow down the number of possible matches by
+providing additional search criteria.  Return clauses are useful for
+controlling the information that is actually printed for matching
+entries.
+
+SEE ALSO: edit, fields, make, query, type, introduction

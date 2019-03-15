@@ -1,0 +1,713 @@
+=====rebuild=====
+.lg 0
+.wh 0 hh
+.de hh
+.sp 97p
+..
+.wh -73p ff
+.de ff
+.bp
+..
+'vs 32
+'ad c
+'in 0p
+'ll 468p
+'ta 18p 468pR
+\fB\s18Rebuilding a Nameserver Database
+.br
+In 24 Easy Steps
+.br
+\fB\s13December 13,
+1988
+.br
+.sp
+'vs 12
+'ad c
+'in 36p
+'ll 468p
+'ta 432pR
+'vs 16
+'ad c
+'in 36p
+'ll 468p
+'ta 432pR
+\fI\s10by Steven Dorner
+.br
+Computing Services Office
+.br
+University of Illinois at Urbana\-Champaign
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fB\s10Introduction
+.br
+\fR\s10	At the beginning of each semester,
+it is necessary to rebuild the database used by the CSO Nameserver.
+The purpose of this annual ritual is to add to the database students and staff members who have joined the University since the last database was installed,
+and also to remove those who have left.
+.br
+\&	The process could in theory be done on a running database through use of the Nameserver add,
+delete,
+and change commands.
+This approach has several drawbacks: due to indexing demands,
+it is slow;
+ph performance suffers tremendously during the process;
+deleted entries are only marked as deleted,
+not removed from the database.
+In order to avoid these things,
+rebuilding of the nameserver database is done by first dumping the contents of the database into ascii files,
+then combining these files with files produced by reading the tapes supplied by AISS.
+.br
+\&	This method is not without its drawbacks.
+It takes a long time,
+it involves many steps,
+the nameserver database has to be locked throughout most of the process,
+and it takes quite a bit of disk space.
+On the positive side,
+the steps themselves are usually fairly simple,
+and,
+since the build is taking place separately from the installed database,
+it can be done on any convenient machine with lots of processor and disk space.
+.br
+.sp
+\fB\s10Overview
+.br
+\fR\s10	The process begins with three databases;
+the extant Nameserver database,
+the Staff directory tape,
+and the Student directory tape:
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+.sp
+'vs 16
+'ad c
+'in 18p
+'ll 450p
+'ta 18p 432pR
+\fB\s10Figure 1.
+The Starting Point
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fR\s10The extant database is locked,
+and three sets of data are extracted from it;
+the extant students,
+the extant staff,
+and other entries:
+.br
+.sp
+'vs 16
+'ad c
+'in 18p
+'ll 450p
+'ta 18p 432pR
+\fB\s10Figure 2.
+Steps 7\-11
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fR\s10	Then,
+the Staff tape and the Extant Staff are merged,
+as are the Student tape and the Extant Students.
+During this merge,
+students or staff members appearing only in the extant database,
+and not on the tapes,
+are deleted.
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+.sp
+'vs 16
+'ad c
+'in 18p
+'ll 450p
+'ta 18p 432pR
+\fB\s10Figure 3.
+Steps 1\-6 and 12\-13
+.br
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+\fR\s10	
+.br
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\&	The Staff and Student databases are now merged;
+this is to avoid duplicating entries for students who happen to be employees of the University\(emthese students will appear on both the Staff and Student tapes.
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+.sp
+.sp
+'vs 16
+'ad c
+'in 18p
+'ll 450p
+'ta 18p 432pR
+\fB\s10Figure 4.
+Steps 14\-16
+.br
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+\fR\s10	
+.br
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\&	Now,
+the resulting data is made into a Nameserver database,
+and the miscellaneous data taken from the old database is added into the new database by Nameserver add commands:
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+.sp
+'vs 16
+'ad c
+'in 18p
+'ll 450p
+'ta 18p 432pR
+\fB\s10Figure 5.
+Steps 17\-24
+.br
+.sp
+'vs 16
+'ad l
+'in 18p
+'ll 450p
+'ta 18p 432pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fR\s10The new database is ready for use by the Nameserver.
+.br
+.sp
+\fB\s10Introduction to the Detailed Description
+.br
+\fR\s10	As complicated as the above description is,
+it leaves out many steps and details.
+The rest of this document will explain in detail everything that is involved in the creation of a new Nameserver database.
+A few things that will help you follow the discussion are:
+.br
+'vs 16
+'ad b
+'in 27p
+'ll 449p
+'ta 9p -18p 422pR
+'ti -9p
+\(bu	The process involves many temporary files.
+These files follow a distinct naming scheme.
+The prefix ``\fB\s10f\fR\s10'' means the data pertains to staff;
+the prefix ``\fB\s10s\fR\s10'' means the data pertains to students.
+The prefix ``\fB\s10sf\fR\s10'' means the data is student and staff
+data combined.
+A postfix or infix ``\fB\s10tape\fR\s10'' means the data came from one of the directory tapes.
+A postfix or infix ``\fB\s10old\fR\s10'' means the data came from the extant database.
+A postfix or infix ``\fB\s10new\fR\s10'' means the data will be put in the new database.
+.br
+'ti -9p
+\(bu	At many stages of the process,
+temporary files may be omitted in favor of pipelines.
+This will allow the build to take place in less disk space;
+you stand to lose more processing time if something goes wrong,
+however.
+The frequent use of temporary files allows automatic ``checkpointing'' of the build process;
+if a step fails,
+you need only go back as far as the last temporary file to restart.
+Let your confidence be your guide...
+.br
+'ti -9p
+\(bu	Most data files are tab\-separated lists of fields.
+Each field begins with its Nameserver field number followed by a colon.
+When files are not in this format,
+a note will be made.
+During the build process,
+it is convenient to have the nameserver prod.cnf file handy for ready reference.
+.br
+.sp
+'vs 16
+'ad b
+'in 53p
+'ll 450p
+'ta 9p -17p 397pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fB\s10The 24\-Way Path to Nirvana
+.br
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 40p 19p 451pR
+\fR\s10
+'ti -40p
+\&		AISS produces 1600 bpi,
+unlabelled tapes in ebcdic,
+with the data elements in fixed\-width fields,
+one record per person,
+and multiple records per block.
+The UNIX utility dd is used to read these tapes onto disk,
+doing unblocking and character set conversion.
+\fI\s10Student.tape\fR\s10 and \fI\s10staff.tape\fR\s10 should be the names of devices on which the student and staff tapes are mounted.
+.br
+\fB\s11
+'ti -40p
+\& 1.\fR\s10	dd ibs=12100 cbs=121 conv=ascii,lcase <\fI\s10student.tape\fR\s10 >s.tape.raw
+.br
+\fB\s11
+'ti -40p
+\& 2.\fR\s10	dd ibs=3500 cbs=350 conv=ascii,lcase <\fI\s10staff.tape\fR\s10 >f.tape.raw
+.br
+.sp
+'ti -40p
+\&		Now,
+the tapes are converted from fixed\-width lines into tab\-separated lines,
+and the proper field numbers are prepended to each field.
+For students only,
+the AISS data element that encodes class and college is expanded into the Nameserver field ``curriculum''.
+The programs s.pb and f.pb perform these marvels.
+.br
+\fB\s11
+'ti -40p
+\& 3.\fR\s10	s.pb <s.tape.raw >s.tape.id
+.br
+\fB\s11
+'ti -40p
+\& 4.\fR\s10	f.pb <f.tape.raw >f.tape.id
+.br
+.sp
+'ti -40p
+\&		Next,
+the University id's in the data files are converted by ssnid into random Nameserver id's.
+This is done with the help of the dbm database IdDB,
+which remembers the mappings from University to Nameserver id's.
+University id's which have been encountered before will be mapped
+into whatever they were mapped into last time;
+those not appearing in the database will be assigned at random,
+and the choice recorded in IdDB.
+The resulting files are sorted on their first fields,
+the Nameserver id's.
+IdDB should be read in from tape,
+the programs run,
+and then IdDB should be written back out to tape and removed from disk.
+This will assure privacy of University id's.
+.br
+\fB\s11
+'ti -40p
+\& 5.\fR\s10	ssnid <s.tape.id | sort >s.tape
+.br
+\fB\s11
+'ti -40p
+\& 6.\fR\s10	ssnid <f.tape.id | sort >f.tape
+.br
+.sp
+'ti -40p
+\&		At this point,
+the running Nameserver database must be made read\-only by placing a line beginning with ``read'' in the .sta file (/nameserv/db/prod.sta on our system).
+.br
+\fB\s11
+'ti -40p
+\& 7.\fR\s10	echo read for database update >/nameserv/db/prod.sta
+.br
+.sp
+'ti -40p
+\&		Once the database is protected from modification,
+its contents should be dumped with mdump.
+This dumping is done into four different files;
+one for staff members,
+one for students,
+one for campus units,
+and one for other entries.
+Each dump may contain a different set of fields;
+for example,
+the ``students'' dump contains only fields that cannot be found on the student tape,
+whereas the ``other'' dump dumps all fields.
+In all cases,
+mdump outputs the ``id'' field first for each entry;
+mdump will manufacture a blank ``id'' field if none is present.
+The ``other'' dump is constructed to select those entries not selected by the other dumps.
+.br
+\fB\s11
+'ti -40p
+\& 8.\fR\s10	mdump students | sort >s.old
+.br
+\fB\s11
+'ti -40p
+\& 9.\fR\s10	mdump staff | sort >f.old
+.br
+\fB\s11
+'ti -40p
+\& 10.\fR\s10	mdump other | sort >other.old
+.br
+\fB\s11
+'ti -40p
+\& 11.\fR\s10	mdump units >units.old
+.br
+.sp
+'ti -40p
+\&		It is now time to reconcile the old data with the new data;
+this is done with tmerge.
+The idea is twofold;
+to drop from the database persons who do not appear on the new tapes,
+and to bring along from the old database any fields that are not found on the tapes themselves (e.g.,
+email addresses).
+.br
+'ti -40p
+\&		Tmerge takes four arguments;
+the name of the file with data from the tape,
+the name of the file with data from the extant database,
+the name of the file for the merged data,
+and (optionally)
+the name of a file into which to put entries from the old database that are not going into the new database.
+This last argument we do not use;
+such entries slip quietly into oblivion.
+.br
+\fB\s11
+'ti -40p
+\& 12.\fR\s10	tmerge s.tape s.old s.new
+.br
+\fB\s11
+'ti -40p
+\& 13.\fR\s10	tmerge f.tape f.old f.new
+.br
+.sp
+'ti -40p
+\&		Now,
+the stastu program is used to merge the staff and student files.
+For staff members who are also students,
+some fields will appear in each file (e.g.,
+address).
+In such cases,
+the field from the staff file is given preference.
+.br
+\fB\s11
+'ti -40p
+\& 14.\fR\s10	stastu f.new s.new >sf.new
+.br
+.sp
+'ti -40p
+\&		It is necessary to compute Nameserver aliases for the new database.
+To do this,
+we extract the current alias (if there is no alias,
+we use the magic cookie ``{none}'')
+and the base name for an assigned alias (the last name and the first letter of the first name).
+These two items are prepended to each entry from sf.new,
+and the whole is sorted into reverse order.
+.br
+\fB\s11
+'ti -40p
+\& 15.\fR\s10	aliasprepare <sf.new | sort >sf.prealias
+.br
+.sp
+'ti -40p
+\&		Awk handily if slowly assigns our aliases.
+.br
+\fB\s11
+'ti -40p
+\& 16.\fR\s10	awk \-f alias.awk sf.prealias >sf.alias
+.br
+.sp
+'ti -40p
+\&		We're getting close now.
+Use credb to create a new,
+empty database.
+The integer argument is the number of slots to use in the hash table;
+we use approximately 5 slots per entry.
+.br
+\fB\s11
+'ti -40p
+\& 17.\fR\s10	credb prod 300007
+.br
+.sp
+'ti -40p
+\&		Maked takes our tab\-separated ascii file and makes it into Nameserver .dir and .dov files.
+.br
+\fB\s11
+'ti -40p
+\& 18.\fR\s10	maked prod <sf.alias
+.br
+.sp
+'ti -40p
+\&		It is now time to build the index for the database.
+This step takes many hours (six the last time I did it,
+on our dual\-processor Gould super\-mini,
+in the dead of night).
+It is very disk\-intensive.
+.br
+\fB\s11
+'ti -40p
+\& 19.\fR\s10	makei prod
+.br
+.sp
+'ti -40p
+\&		Now we make an index to the index,
+to facilitate wildcard searches.
+.br
+\fB\s11
+'ti -40p
+\& 20.\fR\s10	build \-s prod
+.br
+.sp
+'ti -40p
+\&		This step is optional.
+If you have been doing the build on a machine with normal byteorder,
+and intend to use the database on a machine with reversed byteorder (like a VAX or 80x86),
+you must reverse the appropriate bytes in the database.
+The border program does this;
+it may be run on either the normal or the byte\-perversed machine.
+.br
+\fB\s11
+'ti -40p
+\& 21.\fR\s10	border prod	\fB\s11(Optional)
+.br
+.sp
+\fR\s10
+'ti -40p
+\&		It is now time to move the database into place;
+turn off the Nameserver completely,
+move the files into place,
+and let 'er rip.
+.br
+\fB\s11
+'ti -40p
+\& 22.\fR\s10	echo stop installing new database...
+>/nameserv/db/prod.sta
+.br
+\fB\s11
+'ti -40p
+\& 23.\fR\s10	mv prod.* /nameserv/db
+.br
+\fB\s11
+'ti -40p
+\& 24.\fR\s10	rm /nameserv/db/prod.sta
+.br
+.sp
+'ti -40p
+\&		Now that the database is up and running,
+we use normal Nameserver commands (via qi)
+to add in the entries from units.old and anything interesting from other.old.
+We then hope that the next semester won't come for a long time...
+.br
+.sp
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+.sp
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 40p 19p 451pR
+.ff
+'vs 16
+'ad c
+'in 0p
+'ll 468p
+'ta 37p 469pR
+\fB\s15Appendix A
+.br
+Data Tape Formats and Fields
+.br
+.sp
+'vs 16
+'ad b
+'in 18p
+'ll 450p
+'ta 47p 18p 432pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fB\s10Students
+.br
+\fR\s10	The student tape consists of blocks of 100 records,
+each record 121 bytes long.
+The tape is in ebcdic,
+and the layout is as follows:
+.br
+.sp
+'vs 16
+'ad b
+'in 18p
+'ll 450p
+'ta 47p 18p 432pR
+'vs 16
+'ad b
+'in 18p
+'ll 450p
+'ta 40pC 83pC 126pC 235pC 376pC
+\fB\s10	Start	Stop			Nameserver
+.br
+\&	Col.	Col.	Length	Description	Field
+.br
+\fR\s10	1	9	9	University id	id
+.br
+\&	10	29	20	name	name
+.br
+\&	30	47	18	street address	address
+.br
+\&	48	65	18	city	address
+.br
+\&	66	70	5	zip code
+.br
+\&	71	77	7	telephone number	phone
+.br
+\&	78	118	41	home address	
+.br
+\&	119	121	3	class and college	curriculum
+.br
+.sp
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+.sp
+.ff
+.sp
+'vs 16
+'ad b
+'in 18p
+'ll 450p
+'ta 47p 18p 432pR
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+\fB\s10Staff
+.br
+\fR\s10	The staff tape consists of blocks of 10 records,
+each record 350 bytes long.
+The tape is in ebcdic,
+and the layout is as follows:
+.br
+.sp
+'vs 16
+'ad b
+'in 18p
+'ll 450p
+'ta 47p 18p 432pR
+'vs 16
+'ad b
+'in 18p
+'ll 450p
+'ta 40pC 83pC 126pC 235pC 376pC
+\fB\s10	Start	Stop			Nameserver
+.br
+\&	Col.	Col.	Length	Description	Field
+.br
+\fR\s10	1	9	9	University id	id
+.br
+\fR\s8	\fR\s1010	10	1	padding
+.br
+\&	11	33	23	last name	name
+.br
+\&	34	48	15	first name	name
+.br
+\&	49	63	15	middle name	name
+.br
+\&	64	78	15	spouse name
+.br
+\&	79	153	75	job title	title
+.br
+\&	154	178	25	employing department	department
+.br
+\&	179	203	25	office number	address
+.br
+\&	204	228	25	office street	address
+.br
+\&	229	244	16	office city
+.br
+\&	245	246	2	office state
+.br
+\&	247	251	5	office zip code
+.br
+\&	252	254	3	office mailcode	address
+.br
+\&	255	264	10	office phone number	phone
+.br
+\&	265	265	1	suppress home address	
+.br
+\&	266	315	50	home street address	address
+.br
+\&	316	330	15	home city	address
+.br
+\&	331	332	2	home state
+.br
+\&	333	337	5	home zip code
+.br
+\&	338	338	1	suppress home phone number	
+.br
+\&	339	348	10	home phone number	phone
+.br
+\&	349	350	2	padding
+.br
+.sp
+'vs 16
+'ad b
+'in 0p
+'ll 468p
+'ta 19p 469pR
+.sp

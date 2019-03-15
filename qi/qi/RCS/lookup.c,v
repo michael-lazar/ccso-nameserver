@@ -1,0 +1,1035 @@
+head	1.22;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.22
+date	95.04.11.16.48.26;	author p-pomes;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	93.11.24.22.36.46;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	93.07.24.18.21.39;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.12.12.19.03.05;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	92.07.27.15.43.38;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	92.07.27.15.38.11;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	90.12.18.08.41.36;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.07.19.10.18.57;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.07.05.20.17.06;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.03.20.15.14.55;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.12.02.14.45.33;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.11.15.13.35.31;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.07.08.14.00.43;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.07.06.20.47.53;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.19.08.12.01;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.35;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.22
+log
+@Use strncpy() instead of strcpy().
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: lookup.c,v 1.21 1994/09/09 20:17:03 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+/*
+ * do_lookup takes an array of pointers to strings and an array of unsigned
+ * INT32 and returns an array of long which represent indicies into
+ * the directory of entries that contain all the strings given and is a
+ * subset of the array given. No array (empty) means return all matches.
+ *
+ * It always returns an array.
+ */
+
+#define ARY_FREE(a)	if(a){free((char*)a);a=NULL;}
+
+INT32 *
+do_lookup(strings, ary)
+	char **strings;
+	INT32 *ary;
+{
+	INT32	*new_ary, *old_ary;
+
+	while (*strings)
+	{
+#ifdef LIMIT_SEARCH
+		if (all_metas(*strings))
+		{		/*ignore all words with all metas */
+			*strings++ = (char *) NIL;
+			continue;
+		}
+#endif /*LIMIT_SEARCH*/
+
+		if (!quoted(*strings) && anyof(*strings, METAS))
+			new_ary = find_all(*strings++);
+		else
+			new_ary = findstr(*strings++);
+
+
+		if (!new_ary)
+		{		/*no entry for this string */
+			if (!ary)
+				ary = (INT32 *) malloc(WORDSIZE);
+			ary[0] = 0;
+			break;
+		}
+		if (!ary)
+		{		/*first time through, with no array given */
+			ary = new_ary;
+			continue;
+		}
+		ary = intersect(old_ary = ary, new_ary);
+
+		ARY_FREE(new_ary);
+		ARY_FREE(old_ary);
+
+		if (length(ary) == 0)	/*no matches */
+			break;
+	}
+	return (ary);
+}
+
+/*
+ * make_lookup puts all of the words in "str" into the index with a pointer
+ * to the directory entry "ent"
+ */
+
+void 
+make_lookup(str, ent)
+	char *str;
+	int ent;
+{
+	char	buf[MAX_LEN];
+	char	*cp;
+
+	(void) strncpy(buf, str, MAX_LEN-1);
+	for (cp = strtok(buf, IDX_DELIM); cp; cp = strtok(0, IDX_DELIM))
+	{
+		if (!putstr(cp, ent))
+			IssueMessage(LOG_ERR, "make_lookup: putstr failed (%s:%d).", cp, ent);
+	}
+}
+
+/*
+ * remove pointers to entries from the index for words in str
+ */
+void 
+unmake_lookup(str, ent)
+	char *str;
+	int ent;
+{
+	char	buf[MAX_LEN];
+	char	*cp;
+
+	(void) strncpy(buf, str, MAX_LEN-1);
+	for (cp = strtok(buf, IDX_DELIM); cp; cp = strtok(0, IDX_DELIM))
+	{
+		if (strlen(cp) > 1)
+			if (deletestr(cp, ent) == 0)
+				IssueMessage(LOG_ERR, "unmake_lookup: deletestr failed.");
+	}
+}
+
+/*
+ * make or unmake index entries for a directory entry
+ */
+MakeLookup(dirp, entry, func)
+	QDIR	dirp;
+	INT32	entry;
+	int	(*func) ();
+
+{
+	FDESC	*fd;
+	char	*value;
+	char	*atSign;
+
+	for (; *dirp; dirp++)
+	{
+		value = (*dirp);	/*value preceeded by number */
+		fd = FindFDI(atoi(value));
+		if (!fd)
+			IssueMessage(LOG_DEBUG, "Unknown database field %d.\n", atoi(value));
+		else
+		{
+			if (fd->fdIndexed)
+			{
+				if ((value = strchr(value, ':')))	/*strip number */
+				{
+					value++;
+					if (fd->fdTurn && *value == '*') /* don't index the star */
+					  if (*++value == '\0')
+					    continue;
+					switch (fd->fdId)
+					{
+					case F_EMAIL:
+						(*func) (value, entry);
+						if (atSign = strchr(value, '@@'))
+						{
+							*atSign = 0;
+							(*func) (value, entry);
+							*atSign = '@@';
+						}
+						break;
+					default:
+						(*func) (value, entry);
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+@
+
+
+1.21
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: lookup.c,v 1.20 1994/05/05 21:21:51 paul Exp p-pomes $";
+d113 1
+a113 1
+	(void) strcpy(buf, str);
+d132 1
+a132 1
+	(void) strcpy(buf, str);
+@
+
+
+1.20
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: lookup.c,v 1.19 1994/03/12 00:24:45 paul Exp paul $";
+d45 1
+a45 1
+ * long and returns an array of long which represent indicies into
+d54 1
+a54 1
+long *
+d57 1
+a57 1
+	long *ary;
+d59 1
+a59 1
+	long	*new_ary, *old_ary;
+d80 1
+a80 1
+				ary = (long *) malloc(WORDSIZE);
+d146 1
+a146 1
+	long	entry;
+@
+
+
+1.19
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d117 1
+a117 1
+			IssueMessage(LOG_WARNING, "putstr failed (%s:%d).", cp, ent);
+d137 1
+a137 1
+				IssueMessage(LOG_WARNING, "unmake_lookup deletestr failed.");
+@
+
+
+1.18
+log
+@Alan Crosswell <alan@@curta.cc.columbia.edu>.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 4
+ * This software is Copyright (C) 1988 by Steven Dorner and the University
+ * of Illinois Board of Trustees.  No warranties expressed or implied, no
+ * support provided.  Please do not redistribute it in its present form.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.17
+log
+@POSIX: index() -> strchr().
+@
+text
+@d134 3
+@
+
+
+1.16
+log
+@Up-cased all #define's.
+@
+text
+@d131 1
+a131 1
+				if ((value = index(value, ':')))	/*strip number */
+d138 1
+a138 1
+						if (atSign = index(value, '@@'))
+@
+
+
+1.15
+log
+@Revised #include file list.
+@
+text
+@d19 2
+d58 2
+a59 2
+		ary_free(new_ary);
+		ary_free(old_ary);
+@
+
+
+1.14
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a1 1
+#include "conf.h"
+d3 1
+a3 1
+/***********************************************************************
+d9 1
+a9 5
+#include <ctype.h>
+#include <stdio.h>
+#include "qi.h"
+#include "field.h"
+#include "commands.h"
+@
+
+
+1.13
+log
+@Random fixes.
+@
+text
+@a11 1
+#include <strings.h>
+@
+
+
+1.12
+log
+@Re-formatted for clarity.
+@
+text
+@d116 1
+a116 1
+	DIR	dirp;
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d3 1
+d5 5
+a9 5
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d20 1
+a20 1
+ * subset of the array given. No array (empty) means return all matches. 
+d22 1
+a22 1
+ * It always returns an array. 
+d25 4
+a28 1
+long *do_lookup(char **strings,long *ary)
+d30 1
+a30 2
+  long *new_ary, *old_ary;
+  long *intersect(), *findstr(), *find_all();
+d32 2
+a33 2
+  while (*strings)
+  {
+d35 5
+a39 5
+    if (all_metas(*strings))
+    {             /*ignore all words with all metas */
+      *strings++ = (char *) NIL;
+      continue;
+    }
+d42 27
+a68 27
+    if (!quoted(*strings) && anyof(*strings, METAS))
+      new_ary = find_all(*strings++);
+    else
+      new_ary = findstr(*strings++);
+
+
+    if (!new_ary)
+    {             /*no entry for this string */
+      if (!ary)
+	ary = (long *) malloc(WORDSIZE);
+      ary[0] = 0;
+      break;
+    }
+    if (!ary)
+    {             /*first time through, with no array given */
+      ary = new_ary;
+      continue;
+    }
+    ary = intersect(old_ary = ary, new_ary);
+
+    ary_free(new_ary);
+    ary_free(old_ary);
+
+    if (length(ary) == 0)   /*no matches */
+      break;
+  }
+  return (ary);
+d73 1
+a73 1
+ * to the directory entry "ent" 
+d76 4
+a79 1
+void make_lookup(char *str,int ent)
+d81 9
+a89 10
+  char  buf[MAX_LEN];
+  char   *cp;
+  char   *strtok();
+
+  strcpy(buf, str);
+  for (cp = strtok(buf, IDX_DELIM); cp; cp = strtok(0, IDX_DELIM))
+  {
+    if (!putstr(cp, ent))
+      IssueMessage(LOG_WARNING,"putstr failed (%s:%d).",cp,ent);
+  }
+d92 7
+a98 4
+/***********************************************************************
+* remove pointers to entries from the index for words in str
+***********************************************************************/
+void unmake_lookup(char *str,int ent)
+d100 10
+a109 11
+  char  buf[MAX_LEN];
+  char   *cp;
+  char   *strtok();
+
+  strcpy(buf, str);
+  for (cp = strtok(buf, IDX_DELIM); cp; cp = strtok(0, IDX_DELIM))
+  {
+    if (strlen(cp) > 1)
+      if (deletestr(cp, ent)==0)
+	IssueMessage(LOG_WARNING,"unmake_lookup deletestr failed.");
+  }
+d112 7
+a118 7
+/***********************************************************************
+* make or unmake index entries for a directory entry
+***********************************************************************/
+MakeLookup(theDir, theEntry, theFunction)
+Dir   theDir;
+long theEntry;
+int   (*theFunction) ();
+d121 5
+a125 15
+  FieldDesc *theFD;
+  char   *theValue;
+  char   *atSign;
+
+  for (; *theDir; theDir++)
+  {
+    theValue = (*theDir);   /*value preceeded by number */
+    theFD = FindFDI(atoi(theValue));
+    if (!theFD)
+      IssueMessage(LOG_DEBUG, "Unknown database field %d.\n", atoi(theValue));
+    else
+    {
+      if (theFD->fdIndexed)
+      {
+	if ((theValue = index(theValue,':'))) /*strip number */
+d127 29
+a155 16
+	  theValue++;
+	  switch (theFD->fdId)
+	  {
+	    case F_EMAIL:
+	      (*theFunction) (theValue, theEntry);
+	      if (atSign = index(theValue, '@@'))
+	      {
+		*atSign = 0;
+		(*theFunction) (theValue, theEntry);
+		*atSign = '@@';
+	      }
+	      break;
+	    default:
+	      (*theFunction) (theValue, theEntry);
+	      break;
+	  }
+a156 3
+      }
+    }
+  }
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d2 1
+d33 1
+a33 1
+    {             /* ignore all words with all metas */
+d37 1
+a37 1
+#endif LIMIT_SEARCH
+d46 1
+a46 1
+    {             /* no entry for this string */
+d53 1
+a53 1
+    {             /* first time through, with no array given */
+d62 1
+a62 1
+    if (length(ary) == 0)   /* no matches */
+d120 1
+a120 1
+    theValue = (*theDir);   /* value preceeded by number */
+d128 1
+a128 1
+	if ((theValue = index(theValue,':'))) /* strip number */
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d1 1
+d23 1
+a23 4
+long *
+do_lookup(strings, ary)
+char  **strings;
+long *ary;
+d72 1
+a72 3
+make_lookup(str, ent)
+char   *str;
+int   ent;
+d89 1
+a89 3
+unmake_lookup(str, ent)
+char   *str;
+int   ent;
+d122 1
+a122 1
+      IssueMessage(LOG_INFO, "Unknown database field %d.\n", atoi(theValue));
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d10 3
+a12 3
+#include "../Include/qi.h"
+#include "../Include/field.h"
+#include "../Include/commands.h"
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d10 3
+a12 3
+#include "../include/qi.h"
+#include "../include/field.h"
+#include "../include/commands.h"
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d86 1
+a86 1
+      syslog(LOG_WARNING,"putstr failed (%s:%d).",cp,ent);
+d106 1
+a106 1
+	syslog(LOG_WARNING,"unmake_lookup deletestr failed.");
+d128 1
+a128 1
+      syslog(LOG_INFO, "Unknown database field %d.\n", atoi(theValue));
+d133 1
+a133 2
+	theValue = FieldValue(theDir, 0);
+	switch (theFD->fdId)
+d135 2
+a136 9
+	  case F_OWNER:
+	  if (countc(theValue, '.') > 2)
+	    /* at least 3 periods */
+	    (*theFunction) (theValue, theEntry);
+	  break;
+
+	  case F_EMAIL:
+	  (*theFunction) (theValue, theEntry);
+	  if (atSign = index(theValue, '@@'))
+d138 12
+a149 3
+	    *atSign = 0;
+	    (*theFunction) (theValue, theEntry);
+	    *atSign = '@@';
+a150 4
+	  break;
+	  default:
+	  (*theFunction) (theValue, theEntry);
+	  break;
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d9 1
+d15 1
+a15 1
+ * long and returns an array of unsigned long which represent indicies into
+d22 1
+a22 1
+unsigned long *
+d25 1
+a25 1
+unsigned long *ary;
+d27 2
+a28 2
+    unsigned long *new_ary, *old_ary;
+    unsigned long *intersect(), *findstr(), *find_all();
+d30 2
+a31 2
+    while (*strings)
+    {
+d33 5
+a37 5
+	if (all_metas(*strings))
+	{			/* ignore all words with all metas */
+	    *strings++ = (char *) NIL;
+	    continue;
+	}
+d40 4
+a43 4
+	if (!quoted(*strings) && anyof(*strings, METAS))
+	    new_ary = find_all(*strings++);
+	else
+	    new_ary = findstr(*strings++);
+d46 13
+a58 13
+	if (!new_ary)
+	{			/* no entry for this string */
+	    if (!ary)
+		ary = (unsigned long *) malloc(WORDSIZE);
+	    ary[0] = 0;
+	    break;
+	}
+	if (!ary)
+	{			/* first time through, with no array given */
+	    ary = new_ary;
+	    continue;
+	}
+	ary = intersect(old_ary = ary, new_ary);
+d60 2
+a61 2
+	ary_free(new_ary);
+	ary_free(old_ary);
+d63 4
+a66 4
+	if (length(ary) == 0)	/* no matches */
+	    break;
+    }
+    return (ary);
+d76 1
+a76 1
+int     ent;
+d78 3
+a80 3
+    char    buf[MAX_LEN];
+    char   *cp;
+    char   *strtok();
+d82 6
+a87 5
+    strcpy(buf, str);
+    for (cp = strtok(buf, IDX_DELIM); cp; cp = strtok(0, IDX_DELIM))
+    {
+	putstr(cp, ent);
+    }
+d95 1
+a95 1
+int     ent;
+d97 3
+a99 3
+    char    buf[MAX_LEN];
+    char   *cp;
+    char   *strtok();
+d101 7
+a107 6
+    strcpy(buf, str);
+    for (cp = strtok(buf, IDX_DELIM); cp; cp = strtok(0, IDX_DELIM))
+    {
+	if (strlen(cp) > 1)
+	    deletestr(cp, ent);
+    }
+d114 3
+a116 3
+Dir     theDir;
+unsigned long theEntry;
+int     (*theFunction) ();
+d119 3
+a121 3
+    FieldDesc *theFD;
+    char   *theValue;
+    char   *atSign;
+d123 7
+a129 1
+    for (; *theDir; theDir++)
+d131 4
+a134 5
+	theValue = (*theDir);	/* value preceeded by number */
+	theFD = FindFDI(atoi(theValue));
+	if (!theFD)
+	    syslog(LOG_INFO, "Unknown database field %d.\n", atoi(theValue));
+	else
+d136 5
+a140 10
+	    if (theFD->fdIndexed)
+	    {
+		theValue = FieldValue(theDir, 0);
+		switch (theFD->fdId)
+		{
+		  case F_OWNER:
+		    if (countc(theValue, '.') > 2)
+			/* at least 3 periods */
+			(*theFunction) (theValue, theEntry);
+		    break;
+d142 12
+a153 14
+		  case F_EMAIL:
+		    (*theFunction) (theValue, theEntry);
+		    if (atSign = index(theValue, '@@'))
+		    {
+			*atSign = 0;
+			(*theFunction) (theValue, theEntry);
+			*atSign = '@@';
+		    }
+		    break;
+		  default:
+		    (*theFunction) (theValue, theEntry);
+		    break;
+		}
+	    }
+d155 1
+d157 1
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d9 3
+a11 3
+#include "qi.h"
+#include "field.h"
+#include "commands.h"
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d119 1
+a119 4
+#ifndef ultrix
+	    syslog(LOG_INFO, "Unknown database field %d.\n", atoi(theValue))
+#endif
+	    ;
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d119 4
+a122 1
+	    syslog(LOG_INFO, "Unknown database field %d.\n", atoi(theValue));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d7 4
+a10 5
+ *	do_lookup takes an array of pointers to strings and
+ *	an array of unsigned long and returns an array of unsigned long
+ *	which represent indicies into the directory of
+ *	entries that contain all the strings given and is a subset
+ *	of the array given. No array (empty) means return all matches.
+d12 1
+a12 1
+ *	It always returns an array.
+d17 1
+a17 1
+char **strings;
+d63 2
+a64 2
+ *	make_lookup puts all of the words in "str" into the index
+ *	with a pointer to the directory entry "ent"
+d68 2
+a69 2
+char *str;
+int ent;
+d71 3
+a73 3
+    char buf[MAX_LEN];
+    char *cp;
+    char *strtok();
+d75 2
+a76 2
+    strcpy(buf,str);
+    for (cp=strtok(buf,IDX_DELIM);cp;cp=strtok(0,IDX_DELIM))
+d86 2
+a87 2
+char *str;
+int ent;
+d89 3
+a91 3
+    char buf[MAX_LEN];
+    char *cp;
+    char *strtok();
+d93 2
+a94 2
+    strcpy(buf,str);
+    for (cp=strtok(buf,IDX_DELIM);cp;cp=strtok(0,IDX_DELIM))
+d96 1
+a96 1
+	if (strlen(cp)>1)
+d104 5
+a108 4
+MakeLookup(theDir,theEntry,theFunction)
+Dir theDir;
+long theEntry;
+int (*theFunction)();
+d111 2
+a112 3
+    char *theValue;
+    int fdIndex;
+    char *atSign;
+d114 1
+a114 1
+    for (;*theDir;theDir++)
+d119 1
+a119 1
+	    syslog(LOG_INFO,"Unknown database field %d.\n",atoi(theValue));
+d124 1
+a124 1
+		theValue = FieldValue(theDir,0);
+d127 5
+a131 5
+		    case F_OWNER:
+			if (countc(theValue,'.')>2)
+			    /* at least 3 periods */
+			    (*theFunction)(theValue,theEntry);
+			break;
+d133 12
+a144 12
+		    case F_EMAIL:
+			(*theFunction)(theValue,theEntry);
+			if (atSign=index(theValue,'@@'))
+			{
+			    *atSign = 0;
+			    (*theFunction)(theValue,theEntry);
+			    *atSign = '@@';
+			}
+			break;
+		    default:
+			(*theFunction)(theValue,theEntry);
+			break;
+@

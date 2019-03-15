@@ -1,0 +1,43 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	95.06.28.20.43.28;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@# ux6 - a HP 9000/891 running HP-UX v9.04
+@@Features = ("KRB4_AUTH","KRB5_AUTH","FWTK_AUTH","PASS_AUTH","EMAIL_AUTH","CLEAR_AUTH","KDB","NO_READ_LOCK");
+$DefineStrings{"DATABASE"} = "/var/apps/nameserv/db/prod";
+$DefineStrings{"QI_HOST"} = "ns.uiuc.edu";
+$DefineStrings{"QI_ALT"} = "ns1.uiuc.edu";
+$DefineStrings{"HELPDIR"} = "/var/apps/nameserv/help";
+$DefineStrings{"RUNDIR"} = "/var/apps/nameserv/db";
+$OtherDefines{"Max_Alias"} = 8;
+$QiExecDir = "/usr/local/libexec";
+$QiUtilDir = "/var/apps/nameserv/bin";
+$FwtkDir = "/usr/local/src/security/fwtk-1.3";
+$Krb4IncDir = "/usr/local/include/kerberosIV";
+$Krb5IncDir = "/usr/local/include";
+$Krb4LibDir = "/usr/local/lib";
+$Krb5LibDir = "/usr/local/lib";
+@@LocalAddrs = (".uiuc.edu",".cecer.army.mil");
+$Cflags .= " -Dhppa -I/usr/local/include -DKRBNSREALM=\\\"UIUC.EDU\\\" -g";
+$LocalLib = "-L/usr/local/lib -lresolv -l44bsd";
+@@WantDirs=("include","lib","api","qi","phquery","ph","util");
+1;
+@

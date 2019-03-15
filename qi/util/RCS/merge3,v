@@ -1,0 +1,314 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.03.12.22.59.36;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@Made location of perl a Makefile option.
+@
+text
+@#!%PerlProg%
+#
+# 3-way merge:
+#
+# merge3 prod.cnf sf.old s.tape f.tape sf.new [sf.kill]
+#
+# prod.cnf - the config file to use
+# sf.old - input - old entries
+# s.tape - input - student entries
+# f.tape - input - staff entries
+# sf.new - output - merged entries
+# sf.kill - output - killed entries (optional)
+#
+# Files should be sorted on their id fields, which should appear first in
+# each record.
+#
+# The prod.cnf file is read for merge information.  The merge info is read
+# from left to right; the first non-empty field is taken, unless the 'C'
+# selector is present and the entry has a "no_update" field, in which case
+# the old field is used even if empty.
+#
+# The selectors are:
+#   A - Add only if not present in old data.  Incompatible with O.
+#   O - Use old info.  Incompatible with A.
+#   C - conditional; use old if no_update
+#   S - student info
+#   F - staff info
+#
+# The assumption is made that if an entry appears in only one file,
+# the entry should be copied as is into either the new or (for old entries)
+# kill file.
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: merge3,v 1.2 1994/03/12 22:59:36 paul Exp p-pomes $
+
+
+$, = ", ";
+
+if ($#ARGV<4 || $#ARGV>5)
+{
+  print STDERR "Usage: merge3 config sf.old s.tape f.tape sf.new [sf.kill]\n"; 
+  exit 1;
+}
+
+($config,$oldFile,$studentFile,$staffFile,$newFile,$killFile) = @@ARGV;
+
+#
+# let's find out any bad news right away
+#
+open(CONFIG,"<$config") || die "$config: $!\n";
+open(STUDENTFILE,"<$studentFile") || die "$studentFile: $!\n";
+open(STAFFFILE,"<$staffFile") || die "$staffFile: $!\n";
+open(OLDFILE,"<$oldFile") || die "$oldFile: $!\n";
+open(NEWFILE,">$newFile") || die "$newFile: $!\n";
+if ($killFile ne "") {open(KILLFILE,">$killFile") || die "$killFile: $!\n";}
+
+select((select(NEWFILE),$|=1)[0]);
+select((select(KILLFILE),$|=1)[0]);
+
+#
+# parse the config file
+#
+while (<CONFIG>)
+{
+  chop;
+  if (substr($_,0,1) eq "#") {next;}
+  if (length==0) {next;}
+  split(/:/);
+  if (@@_ < 2) {next;}
+  $fMerge{$_[0]} = $_[4];
+  if ($_[1] eq "no_update") {$nup = $_[0];}
+}
+@@fids = sort(keys(%fMerge));
+
+#
+# Hoo, boy, here we go...
+#
+$student = (split(/[\t\n]/,$studentString=<STUDENTFILE>,2))[0];
+$staff = (split(/[\t\n]/,$staffString=<STAFFFILE>,2))[0];
+$old = (split(/[\t\n]/,$oldString=<OLDFILE>,2))[0];
+if ($staff ne "" && $student ne "")
+{
+  $curId = ($student lt $staff) ? $student : $staff;
+}
+else
+{
+  $curId = ($student ne "") ? $student : $staff;
+}
+
+#
+# keep going until we exhaust the student and staff files
+#
+while ($student ne "" || $staff ne "")
+{
+  #
+  # toss out old entries until we come up to the one we're looking for
+  #
+  while ($old ne "" && $old lt $curId)
+  {
+    if ($killFile ne "") {print KILLFILE $oldString;}
+    $old = (split(/[\t\n]/,$oldString=<OLDFILE>,2))[0];
+  }
+  
+  #
+  # copy entries until we come to the one we're looking for
+  #
+  while ($student ne "" && $student lt $curId)
+  {
+    print NEWFILE $studentString;
+    $student = (split(/[\t\n]/,$studentString=<STUDENTFILE>,2))[0];
+  }
+
+  while ($staff ne "" && $staff lt $curId)
+  {
+    print NEWFILE $staffString;
+    $staff = (split(/[\t\n]/,$staffString=<STAFFFILE>,2))[0];
+  }
+  
+  #
+  # copy into temp space
+  #
+  %oldFields = ($old ne $curId) ? () : &SplitFields($oldString);
+  %studentFields = ($student ne $curId) ? () : &SplitFields($studentString);
+  %staffFields = ($staff ne $curId) ? () : &SplitFields($staffString);
+  
+  #
+  # now, go through all the fields
+  #
+  $resString = "";
+  foreach $f (@@fids)
+  {
+    if ($f eq "5") {next;}	# don't output id twice
+    if ($f eq "42") {next;}	# if found on tape, don't output left field
+    @@selectors = split(//,$fMerge{$f});
+    foreach (@@selectors)
+    {
+      if (/C/ && $oldFields{$nup} ne "")
+      {
+        if ($oldFields{$f} ne "")
+	{
+	  $resString .= sprintf("\t%s:%s",$f,$oldFields{$f});
+	}
+	last;
+      }
+      elsif (/S/ && $student eq $curId)
+      {
+	if ($studentFields{$f})
+	{
+	  $resString .= sprintf("\t%s:%s",$f,$studentFields{$f});
+	}
+	last;
+      }
+      elsif (/F/ && $staff eq $curId)
+      {
+	if ($staffFields{$f})
+	{
+	  $resString .= sprintf("\t%s:%s",$f,$staffFields{$f});
+	}
+	last;
+      }
+      elsif (/O/ && $old eq $curId)
+      {
+	if ($oldFields{$f})
+	{
+	  $resString .= sprintf("\t%s:%s",$f,$oldFields{$f});
+	}
+	last;
+      }
+    }
+  }
+  if ($resString ne "") {print NEWFILE "$curId$resString\n";}
+  
+  #
+  # time for the next ones...
+  #
+  if ($old eq $curId)
+    {$old = (split(/[\t\n]/,$oldString=<OLDFILE>,2))[0];}
+  if ($staff eq $curId)
+    {$staff = (split(/[\t\n]/,$staffString=<STAFFFILE>,2))[0];}
+  if ($student eq $curId)
+    {$student = (split(/[\t\n]/,$studentString=<STUDENTFILE>,2))[0];}
+  
+  #
+  # compute new "lowest of the low"
+  if ($staff ne "" && $student ne "")
+  {
+    $curId = ($student lt $staff) ? $student : $staff;
+  }
+  else
+  {
+    $curId = ($student ne "") ? $student : $staff;
+  }
+}
+
+#
+# copy the rest of the old file
+if ($oldString ne "" && $killFile ne "")
+{
+  print KILLFILE $oldString;
+  while (<OLDFILE>) {print KILLFILE $_;}
+}
+
+sub SplitFields
+{
+  $_ = $_[0];
+  if ($_ ne "")
+  {
+    chop;
+    s/	([0-9]+):/	$1	/g;
+    s/:/	/;
+    %flds = split("\t");
+  }
+  else
+  {
+    ();
+  }
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+#!/usr/bin/perl
+d67 1
+a67 1
+# @@(#)$Id: merge3,v 1.1 1994/03/12 00:59:25 paul Exp paul $
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d67 1
+a67 1
+# @@(#)$Id$
+a125 1
+eval << 'EndOfEval'; $start = __LINE__;
+a234 1
+EndOfEval
+a250 1
+  
+@

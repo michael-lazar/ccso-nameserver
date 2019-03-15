@@ -1,0 +1,292 @@
+head	1.7;
+access;
+symbols
+	RELEASE:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.7
+date	93.11.11.15.58.42;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	93.06.24.04.50.31;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.10.07.15.14.57;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.03.09.00.16.47;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.02.23.14.36.15;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.02.17.23.16.19;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	91.03.18.15.38.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@UIUC-specific messages for phquery.
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@/*
+ * Written by Paul Pomes, University of Illinois, Computing Services Office
+ * Copyright (c) 1991 by Paul Pomes and the University of Illinois Board
+ * of Trustees.  
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	Illinois, Urbana and its contributors.
+ * 4. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * Email:	Paul-Pomes@@uiuc.edu	USMail:	Paul Pomes
+ * ICBM:	40 06 47 N / 88 13 35 W		University of Illinois - CSO
+ *						1304 West Springfield Avenue
+ *						Urbana, Illinois,  61801-2910
+ * @@(#)$Id: messages.h,v 1.6 1993/06/24 04:50:31 paul Exp paul $
+ */
+
+/* Messages for ErrorReturn().  How simple, yet stupid, do we have to be? */
+
+char	*NoMatchMsg[] = {
+ " The message, \"No matches to nameserver query,\" is generated whenever",
+ " the ph nameserver fails to locate either a ph alias or name field that",
+ " matches the supplied name.  The usual causes are typographical errors or",
+ " the use of nicknames.  Recommended action is to use the ph program to",
+ " determine the correct ph alias for the individuals addressed.  If ph is",
+ " not available, try sending to the most explicit form of the name, e.g.,",
+ " if mike-fox fails, try michael-fox or michael-j-fox.",
+ " ",
+ NULL
+};
+
+char	*MultiMsg[] = {
+ " The message, \"Multiple matches found for nameserver query,\" is generated",
+ " whenever the ph nameserver finds multiple matches for the supplied name.",
+ " The steering philosophy is that mail should be delivered only to the",
+ " addressed individual.  Since the supplied information is insufficient",
+ " to locate a specific individual, your message is being returned.",
+ " To help you locate the correct individual, selected fields from the",
+ " possible matches are included below.  The alias field is the only one",
+ " guaranteed unique within a given ph community.",
+ " ",
+ NULL
+};
+
+char	*TooManyMsg[] = {
+ " The message, \"Too many matches found to nameserver query,\" is generated",
+ " whenever the supplied name or alias matched over twenty five ph nameserver",
+ " entries.  In this case no information will be returned about possible",
+ " matches.  Recommended action is to supply more specific names, e.g.,",
+ " john-b-smith instead of john-smith, or use the per-person unique ph alias.",
+ " You may have thought that you had used a ph alias and not a name.  This is",
+ " an artifact of the address resolution process.  If the address fails as an",
+ " alias, it is retried first as a callsign and then as a name.  While aliases",
+ " are guaranteed unique, names can match multiple individuals depending on",
+ " how common the name is.",
+ " ",
+ NULL
+};
+
+char	*AbsentMsg[] = {
+ " The message, \"E-mail field not present in nameserver entry,\" is generated",
+ " whenever the ph nameserver matched the supplied name or alias with an",
+ " entry that lacked an email address field.  In this case no delivery can",
+ " be made.  Recommended action is to contact the individual by alternate",
+ " means via the information included below.  If the individual already has",
+ " an email address, s/he should edit their ph entry to include it.  N.B.,",
+ " postmaster will not have any information more current than this.",
+ " ",
+ NULL
+};
+
+char	*HardMsg[] = {
+ " The message, \"Nameserver hard error; general,\" is generated whenever",
+ " the ph nameserver encountered a permanent error in resolving an address.",
+ " These errors are sometimes due to actual faults with the nameserver (rare),",
+ " or with poorly formatted addresses.  The nameserver requires an address to",
+ " have at least one token longer than three characters.  The exact error is",
+ " reported below.",
+ " ",
+ NULL
+};
+@
+
+
+1.6
+log
+@Omit PhoneMsg.
+@
+text
+@d38 1
+a38 1
+ * @@(#)$Id: messages.h,v 1.5 1992/10/07 15:14:57 paul Exp paul $
+d50 1
+a50 1
+ " if mike-fox fails, try michael-j-fox.",
+d70 1
+a70 1
+ " whenever the supplied name or alias matched over twenty ph nameserver",
+d89 2
+a90 1
+ " an email address, s/he should edit their ph entry to include it.",
+@
+
+
+1.5
+log
+@Revised to report on more error types; to fetch fields from the server
+rather than compiling in; fields to return selected at compile time.
+@
+text
+@d38 1
+a38 1
+ * @@(#)$Id: messages.h,v 1.4 1992/03/09 00:16:47 paul Exp paul $
+a103 10
+
+char	*PhoneMsg[] = {
+ " A note regarding phone numbers: the UIUC area code is 217.  There are three",
+ " exchanges used by UIUC: 333, 332, and 244.  UIUC phone numbers are often",
+ " abbreviated by omitting the first two digits of the exchange.  Thus the",
+ " example phone number 3-6262 can be reached by dialing 1 217 333 6262.",
+ " ",
+ NULL
+};
+
+@
+
+
+1.4
+log
+@Replaced "REGENTS" with "TRUSTEES". *sigh*
+@
+text
+@d38 1
+a38 1
+ * @@(#)$Id: messages.h,v 1.3 1992/02/23 14:36:15 paul Exp paul $
+d90 11
+@
+
+
+1.3
+log
+@New copyright statement lifted from Berkeley code.
+@
+text
+@d22 1
+a22 1
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+d25 1
+a25 1
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+d38 1
+a38 1
+ * @@(#)$Id: messages.h,v 1.2 1992/02/17 23:16:19 paul Exp paul $
+@
+
+
+1.2
+log
+@Punted copyleft.
+@
+text
+@d3 1
+a3 1
+ * Copyright (C) 1991 by Paul Pomes and the University of Illinois Board
+d6 15
+a20 13
+ * Redistribution and use in source and binary forms are permitted
+ * provided that: (1) source distributions retain this entire copyright
+ * notice and comment, and (2) distributions including binaries display
+ * the following acknowledgement:  ``This product includes software
+ * developed by the University of Illinois, Urbana and its contributors''
+ * in the documentation or other materials provided with the distribution
+ * and in all advertising materials mentioning features or use of this
+ * software. Neither the name of the University nor the names of its
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+d22 12
+d38 1
+a38 1
+ * @@(#)$Id$
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 3
+a4 3
+ * Copyright (c) 1989 Paul Pomes
+ * Copyright (c) 1989 University of Illinois Board of Trustees
+ * All rights reserved.
+d7 9
+a15 10
+ * provided that the above copyright notice and this paragraph are
+ * duplicated in all such forms and that any documentation,
+ * advertising materials, and other materials related to such
+ * distribution and use acknowledge that the software was developed
+ * by the University of Illinois, Urbana.  In addition, redistribution
+ * and use must conform to the terms listed in the CopyLeft text below.
+ *
+ * The name of the University may not be used to endorse or promote products
+ * derived from this software without specific prior written permission.
+ *
+d18 1
+a18 1
+ * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+d20 5
+a24 1
+ * @@(#)$Header$
+@

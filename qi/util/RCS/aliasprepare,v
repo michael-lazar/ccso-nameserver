@@ -1,0 +1,118 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Made location of perl a Makefile option.
+@
+text
+@#!%PerlProg%
+#
+# aliasprepare - get a file ready for alias assignment
+# Moves the alias to the beginning of each line.
+# For lines without aliases, pretends the alias is "~~~~".
+#
+# Usage: aliasprepare config [files]
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: aliasprepare,v 1.1 1994/03/12 00:59:25 paul Exp p-pomes $
+
+
+if ($#ARGV<0)
+  {print STDERR "Usage: aliasprepare prod.cnf [files]\n";exit 1;}
+
+#
+# read the config file
+$config = shift;
+open(CONFIG,"<$config") || die "$config: $!\n";
+while (<CONFIG>)
+{
+  if (/:alias:/)
+  {
+    split(':');
+    $anum = $_[0];
+    last;
+  }
+}
+
+#
+# process
+while (<>)
+{
+  if (/\t$anum:/o)
+  {
+    s/(.*)\t$anum:([^\t\n]*)/$anum:$2\t$1/;
+  }
+  else
+  {
+    $_ = "$anum:~~~~\t" . $_;
+  }
+  print $_;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#!/usr/bin/perl
+d43 1
+a43 1
+# @@(#)$Id$
+@

@@ -1,0 +1,316 @@
+#
+# This warning gets printed at the top of each Makefile
+#
+
+$DontEditMake = <<"END";
+# This Makefile is automatically generated.  Do NOT edit it here.
+END
+
+#
+# Which source subdirectories you want
+#
+# add "cracklib" if the CRACKLIB Feature is selected
+
+@WantDirs=("include","lib","api","qi","util","ph","phquery");
+
+#
+# Where the source directory lives
+#
+
+$_ = `pwd`; chop;
+$SrcDir = $_;
+
+#
+# Features you want enabled
+#
+# PRE_ENCRYPT	Passwords kept encrypted.  This allows a user to use his
+#		cleartext password elsewhere safely should the database
+#		be compromised, but provides no added security to qi.
+# ID_FALLBACK	If no password, use last 8 chars of id field
+# DO_TILDE	field~value means field is empty or contains value
+# FWTK_AUTH	Use the auth server from the Trusted Information Systems (TIS)
+#		Firewall Toolkit (FWTK).  This authentication server supports
+#		the Digital Pathways SNK/4 and SecureId authenticator cards,
+#		S/Key, as well as re-useable passwords.  This requires prior
+#		installation of the authsrv program and access to the FWTK
+#		libraries.  Obtain it from
+#		ftp://ftp.tis.com//pub/firewalls/toolkit/fwtk.tar.Z
+#		Also required in the fwtk directory is the libdes.a library
+#		(*NOT* the same as libdes.a from v4 Kerberos!).  Obtain this
+#		libdes.a package from ftp://ftp.psy.uq.oz.au/???
+# KRB4_AUTH	Use Kerberos v4 authentication.  See also KRBHERO, KRB4SRVTAB,
+#		KRBNSREALM, and KDB
+# KRB5_AUTH	Use Kerberos v5 authentication.  See also KRBHERO, KRB5SRVTAB,
+#		KRBNSREALM, and KDB
+# KDB		Propagate alias add, change, and delete commands to a V5
+#		Kerberos database.  Must run as root user.
+# EMAIL_AUTH	Allow authorization by email field
+# CLEAR_AUTH	Allow authorization by clear-text passwords (big-time lose
+#		from a security point of view, however some clients are too
+#		brain-dead to do challenge encryption.
+# EMAIL_ANYOK	Any value is allowed for email field (even *@maildomain).
+#		Leave it out and get the default behavior which disallows
+#		setting an email address which ends in @maildomain.
+# PASS_AUTH	Allow authorization by password field.
+# RESTRICTED	Depreciated.  Make @OkAddrs non-empty for same function.
+# SORTED	Sort entries before printing.
+# NO_READ_LOCK	Do not lock for reading; helps on loaded systems, but
+#		may give wrong results every once in a blue moon.
+# CRACKLIB	Include Alec Moffett's cracklib library for extremely
+#		thorough password checks.  We find it too thorough as it
+#		disallows some pretty good passwords.  Requires prior
+#		installation of the dictionary part of the package.
+#		See vixen.cso.uiuc.edu:/pub/cracklib25.tar.gz
+#
+# eg: @Features = ("ID_FALLBACK","EMAIL_AUTH");
+
+@Features = ();
+
+#
+# Domains and IP addresses of hosts permitted to make queries.  Domain names
+# match the last part of the remote hostname, eg, "ux1.cso.uiuc.edu" matches
+# an @OkAddrs(".uiuc.edu").  IP addresses match the first part of the remote
+# address, eg, "128.174.5.59" matches an @OkAddrs("128.174.").  Leave this
+# empty to permit all hosts to make queries.  I recommend leaving this
+# empty and protecting individual fields with the "LocalPub" (see next item)
+# keyword.
+#
+# eg: @OkAddrs = (".uiuc.edu", "128.174.");
+
+@OkAddrs = ();
+
+# Domains that are considered "local" enough to see fields keyed as
+# "LocalPub" rather than "Public", e.g., home addresses, home phones, etc.
+# An empty set makes LocalPub == Public in prod.cnf.
+#
+# eg: @LocalAddrs = ("128.174.", ".uiuc.edu");
+
+@LocalAddrs = ();
+
+#
+# The set of targets you want in the toplevel makefile
+#
+
+@TopTargets=("all","install","depend","clean","tape","rcs");
+
+#
+# The directory containing the nameserver's libraries.
+#
+
+$LibDir = "$SrcDir/lib";
+
+# The location of the TIS Firewall Toolkit source directory.
+# Results in $CFLAGS .= "-I$FwtkDir", $LDFLAGS .= "-L$FwtkDir", and
+# $MoreLib .= "-lauth -lfwall -ldes"
+#
+# $FwtkDir = "/usr/local/src/security/fwtk-1.3"
+
+#
+# The location of v4 Kerberos include files (if not in usual cpp search path).
+# (Results in $CFLAGS .= "-I$Krb4IncDir")
+#
+# $Krb4IncDir = "/usr/local/include";
+
+#
+# The location of v5 Kerberos include files (if not in usual cpp search path).
+# (Results in $CFLAGS .= "-I$Krb5IncDir")
+#
+# $Krb5IncDir = "/usr/local/include";
+
+#
+# The location of v4 Kerberos libkrb.a and libdes.a (Results in
+# $LDFLAGS .= "-L$Krb4LibDir".
+#
+# $Krb4LibDir = "/usr/local/lib";
+
+#
+# The location of v5 Kerberos libkrb5.a and libkdb5.a (Results in
+# $LDFLAGS .= "-L$Krb5LibDir".
+#
+# $Krb5LibDir = "/usr/local/lib";
+
+
+#
+# compilers, et al.
+#
+# Add to Cflags as needed
+# -DMALLOC_DEBUG	include Gray Watson's malloc debugging package
+#		(ftp.psc.edu:/pub/malloc_dbg directory)
+# -DNO_MEMMOVE	no system-supplied memmove()
+# -DNO_STRSTR	no system-supplied strstr()
+# -DNO_STRERROR no system-supplied strerror()
+# -DNO_VFPRINTF no system-supplied vfprintf()
+# -DWAIT_INT	wait() returns int instead of struct wait
+# -DFCNTL_LOCK	Use fcntl() locking instead of the default flock()
+# -DKRBNSREALM=\\\"DOM.AIN\\\"
+#		Kerberos realm of the qi server if different from the domain
+#		portion of the domain name in the absence of a krb.realms
+#		file.  For example, at UIUC the realm is "UIUC.EDU", however
+#		the qi server lives on argus.cso.uiuc.edu.  In the absence
+#		of a /etc/krb.realms file, krb_realmofhost() would return
+#		"CSO.UIUC.EDU".  This is here rather than as a DefineString
+#		so that it's accessible when building libapi.a.  The
+#		triple '\' are required to adequately escape the quotes.
+# -DLOCALE=\\\"danish.iso88591\\\"
+#		National language support.  Requires setlocale().
+#
+
+$Cflags = "-I$SrcDir/include ";
+$Lflags = "-L$LibDir";
+$Para = "";		# Set this to "&" for sequent's parallel make
+$CC = "cc";		# ANSI or not, doesn't matter
+$Depend = "-M";		# get .h file dependencies
+			# Ultrix -Em
+			# Convex -k
+			# Normal -M
+			# gcc living dangerously -MM
+$Ci = "ci";		# for rcs
+$Perl = "perl";		# what perl to use
+$Lex = "lex";		# what lex to use
+$Perl = "/usr/bin/perl"; # Must be full pathname for use in scripts with #!
+$Ranlib = "ranlib";	# ranlib for BSD, echo for SYSV
+$Mode = "0755";			# mode for binaries
+$Owner = "nameserv";		# owner for binaries
+$Group = "nameserv";		# group for binaries
+
+$ApiLib = "-lqiapi";		# application program interface routines
+$NsLib = "-lu";			# library routines
+$QiLib = "-lqi";		# qi as a library; used by some utils
+$MoreLib = "-ll";		# need the lex library
+$DbmLib = "";			# need the dbm library if not in libc.a
+
+#
+# Directory for executables
+#
+
+$QiExecDir = "/usr/local/libexec";	# Where to install the qi server.
+$QiUtilDir = "$SrcDir/../bin";		# Where the maintenance programs live.
+$PhExecDir = "/usr/local/bin";		# Where the user ph client is installed.
+
+#
+# Directories for application program interface (api) files
+#
+
+$QiLibDir = "/usr/local/lib";
+$QiIncDir = "/usr/local/include";
+
+#
+# Make these links to ph (for easy lookup by type)
+#
+@PhLinks = ("timetable", "food", "phone", "unit", "areacode", "person",
+           "weather", "spring", "summer", "fall");
+
+#
+# Items for conf.h and conf.c
+#
+
+# These string-valued things are overridable at runtime, by specifying
+# (eg) qi -DATABASE=/some/dir/data .  Some explanation for the less 
+# obvious ones
+#
+# DEFQUERY	Which field is searched by default when a query command
+#		is given with no field name (e.g. "query paul pomes").
+#		If undefined, this defaults to "query name=..." as in 2.2.
+#		We use "query any=..." and have a number of fields defined
+#		with the Wild (==fdAny -- sheesh!) attribute (alias, email,
+#		name, nickname, oldname).
+#
+# KRBHERO	Kerberos hero instance ID (default phhero; we use a
+#		different one).	 You must login using the hero
+#		instance in order to actually become a hero -- in
+#		addition to having a hero field.  Probably making
+#		KRBHERO="" is reasonable for sites that don't care to
+#		have separate hero and regular passwords.
+#
+# KRB4SRVTAB	Path for v4 Kerberos srvtab (default /etc/srvtab).  Qi needs
+#		to know it's own password, but does not need to see root's,
+#		so we use a /nameserv/db/srvtab which is readable by the
+#		nameserv user.  Use this if inetd runs qi as a non-root
+#		user or if $OtherDefines{"Use_Uid"} != 0 .
+#
+# KRB5SRVTAB	Path for v5 Kerberos srvtab (default FILE:/etc/v5srvtab).
+#		Qi needs to know it's own password, but does not need to see
+#		root's, so we use a /nameserv/db/v5srvtab which is readable
+#		by the nameserv user.  Use this if inetd runs qi as a non-root
+#		user or if $OtherDefines{"Use_Uid"} != 0 .
+#
+# KRB4SRV	The name of the service principal (default rcmd) to query for.
+#		If qi is run as root, it can use the default rcmd principal.
+#		Otherwise it should use a different name (the value of
+#		NsService is a good choice) stored in a alternate srvtab file.
+#		See KRB4SRVTAB.
+#
+# KRB5SRV	The name of the service principal (default host) to query for.
+#		If qi is run as root, it can use the default host principal.
+#		Otherwise it should use a different name (the value of
+#		NsService is a good choice) stored in a alternate v5srvtab file.
+#		See KRB5SRVTAB.
+#
+# MAILDOMAIN	Used by ph clients to re-format the email address.  If this
+#		is not desired, comment out MAILDOMAIN completely.  This
+#		must also be done if MAILBOX does not equal "email".
+#
+# MAILFIELD	Name of the mailfield returned by "siteinfo" (default alias).
+#		If both MAILFIELD and MAILDOMAIN are defined, clients will
+#		display email addresses consisting of the MAILFIELD field of
+#		the entry, an "@", and the MAILDOMAIN value.
+#		If MAILDOMAIN is not defined, clients will display email
+#		address consisting only of the contents of the MAILFIELD
+#		field of the entry.
+#
+# MAILBOX	This is the field where the user's maildrop is kept.  It
+#		defaults to "email".  Older clients are unlikely to understand
+#		if you change it from "email"; proceed with caution.
+#
+# CHARSET	Name of the character set to be used in queries and responses.
+#		Values will be drawn from registered Internet character sets.
+#		If omitted, it will be assumed to be iso-8859-1.
+%DefineStrings=(
+"DATABASE",	"$SrcDir/../db/prod",	# Where the database lives, by default
+"MAILDOMAIN",	"uiuc.edu",		# Mail domain for phquery
+"MAILFIELD",	"alias",		# Field returned by siteinfo for email
+"ADMIN",	"p-pomes@uiuc.edu",	# Database administrator
+"PASSW",	"CCSO Resource Center",	# Mail here for passwords (deprecated)
+"MAILBOX",	"email",		# Use email field for forwarding
+"RUNDIR",	"$SrcDir/qi",		# Where QI should chdir() to at run-time
+"HELPDIR",	"$SrcDir/help",		# Where the help lives
+"NATIVESUBDIR","native",		# non-client-specific help
+"NOHELP",	"nohelp",		# file printed when no help topic
+"TEMPFILE",	"/tmp/qiXXXXXX",	# temporary file template
+"QI_HOST",	"ns.xyzzy.edu",		# FQDN of primary server for phquery
+"QI_ALT",	"ns1.xyzzy.edu",	# FQDN of backup server for phquery
+);
+
+# These will be used as normal defines.  The keys will be converted to
+# all upper-case.
+#
+# QueryLimit	Limits the maximum number of entries of any type that can
+#		be returned in a single query.  (Like PersonLimit, but for
+#		all types, not just type:p*).
+%OtherDefines=(
+  "Log_Qilog",	"LOG_LOCAL0",		# Syslog facility
+  "Sig_Type",	"void",			# signal() return type
+  "Mem_Type",	"char",			# *malloc() return type
+  "INT32",	"long",			# 32-bit integer type
+  "Cpu_Limit",	"20",			# limit for CPU time
+  "Drecsize",	400,			# size of .dir record
+  "Dovrsize",	400,			# size of .dov record
+  "Max_Key_len",16,			# max # chars to index
+  "NIChars",	32,			# size of .idx record
+  "NOChars",	1024,			# size of .iov record
+  "PersonLimit","25",			# max # of people to return
+#  "Use_Uid",	"10",			# setuid to this
+#  "Use_Gid",	"15",			# setgid to this
+);
+
+#
+# flags that are used only in the ph client
+#
+%PhFlags=(
+  "NsService",	"csnet-ns",		# name of nameserver service (RFC-1700)
+  "FallBackAddr","128.174.5.58",	# ns host ip address
+  "FallBackPort","105",			# ns port number
+  "MailDomain",	$DefineStrings{"MAILDOMAIN"},	# same as above
+  "Host",	"ns.uiuc.edu",		# default qi host
+  "Email_Auth",	"1",			# Use email authorization
+);

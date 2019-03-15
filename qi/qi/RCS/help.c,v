@@ -1,0 +1,751 @@
+head	1.14;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.14
+date	95.06.27.02.20.49;	author p-pomes;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.06.23.19.20.50;	author p-pomes;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.06.10.03.41.34;	author p-pomes;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	93.07.24.16.02.35;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	92.12.12.19.05.13;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.07.28.05.06.05;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.07.27.15.25.38;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.27.15.19.32;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	90.12.18.08.41.52;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	90.05.16.09.18.31;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: help.c,v 1.13 1995/06/23 19:20:50 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#include <dirent.h>
+#include <sys/param.h>
+
+static int HelpCopy __P((int, FILE *));
+static int HelpText __P((int, char *, char *));
+static int ListTopics __P((int, char *));
+
+/*
+ * give the user some help
+ */
+void 
+DoHelp(argp)
+	ARG *argp;
+{
+	char	*me;
+	char	*client;
+	int	foundOne = 0;
+	int	ix = 1;
+	char	*topic;
+
+	argp = argp->aNext;	/* skip the command name */
+
+	if (!argp)		/* no client specified */
+	{
+		DoReply(-LR_OK, "%d: The following clients have help:", ix);
+		foundOne = HelpText(ix, 0, 0);
+	} else
+	{
+		client = argp->aFirst;
+		if (strchr(client, '/'))
+			DoReply(-LR_BADHELP, "Valid help clients don't contain /'s.");
+		else
+			do
+			{
+				argp = argp->aNext;
+				topic = argp ? argp->aFirst : NULL;
+				if (topic && strchr(topic, '/'))
+				{
+					DoReply(-LR_BADHELP, "%d:%s: Valid help topics don't contain /'s.", ix, topic);
+					continue;
+				}
+				if (topic)
+					DoReply(-LR_OK, "%d:%s: ", ix, topic);
+				else
+					DoReply(-LR_OK, "%d: These ``%s'' help topics are available:", ix, client);
+				if (HelpText(ix, client, topic) || HelpText(ix, NATIVESUBDIR, topic))
+					foundOne = 1;
+				else if (!HelpText(ix, client, NOHELP))
+					HelpText(ix, NATIVESUBDIR, NOHELP);
+				ix++;
+			}
+			while (argp && argp->aNext);
+	}
+	if (foundOne)
+		DoReply(LR_OK, "Ok.");
+	else
+		DoReply(LR_ERROR, "No help available.");
+}
+
+/*
+ * give the user a specific help file
+ */
+static int 
+HelpText(ix, client, topic)
+	int ix;
+	char *client, *topic;
+{
+	FILE	*helpFile;
+	char	buffer[MAXPATHLEN];
+	char	*ep;
+	int	code;
+
+	if (!topic)
+	{
+		code = ListTopics(ix, client);
+		if (code)
+		{
+			if (client && !strcmp(client, NATIVESUBDIR))
+				DoReply(-LR_OK, "%d: To view one of these topics, type ``help %s name-of-topic-you-want''.", ix, NATIVESUBDIR);
+			else
+				DoReply(-LR_OK, "%d: To view one of these topics, type ``help name-of-topic-you-want''.", ix);
+		}
+		if (!code || client && strcmp(client, NATIVESUBDIR))
+		{
+			DoReply(-LR_OK, "%d: These ``%s'' help topics are also available:", ++ix, NATIVESUBDIR);
+			ListTopics(ix, NATIVESUBDIR);
+			DoReply(-LR_OK, "%d: To view one of these topics, type ``help %s name-of-topic-you-want''.", ix, NATIVESUBDIR);
+		}
+		return (code);
+	} else
+	{
+		(void) sprintf(buffer, "%s/%s/%s", HELPDIR, client, topic);
+		if ((helpFile = fopen(buffer, "r")) == NULL)
+			return (0);
+		HelpCopy(ix, helpFile);
+		(void) fclose(helpFile);
+		return (1);
+	}
+}
+
+static int
+XXcmp(x, y)
+char **x, **y;
+{
+	return stricmp(*x, *y);
+}
+
+/*
+ * list the help topics available
+ */
+static int 
+ListTopics(indx, client)
+	int indx;
+	char *client;
+{
+	char	line[81], dirname[MAXPATHLEN];
+	DIR	*dirp;
+	struct dirent *direntp;
+	char	*p, **names, **np;
+	int	i, r, c, rows, cols, cnt=50, longest=0;
+
+
+	if (client)
+		(void) sprintf(dirname, "%s/%s", HELPDIR, client);
+	else
+		(void) strcpy(dirname, HELPDIR);
+
+	if (dirname == NULL || *dirname == '\0')
+		return(1);
+
+	if ((dirp = opendir(dirname)) == NULL)
+		return(1);
+
+	names = (char **) malloc((cnt) * sizeof(char *));
+	np = names;
+
+	while ((direntp = readdir(dirp)) != NULL) {
+		if (*direntp->d_name == '.')
+			continue;
+		*np = strdup(direntp->d_name);
+		if ((i = strlen(*np)) > longest)
+			longest = i;
+		np++;
+		if (np == &names[cnt]) {
+			cnt += 50;
+			names = (char **)realloc(names, (cnt) * sizeof(char *));
+			np = &names[cnt - 50];
+		}
+	}
+	(void) closedir(dirp);
+	*np = NULL;
+	cnt = np - names;
+	qsort(names, cnt, sizeof(char *), XXcmp);
+
+	longest += 2;
+	cols = 70 / longest;
+	longest = 70 / cols;
+	rows = cnt / cols;
+	if (cnt % cols)
+		rows++;
+
+	for (r = 0; r < rows; r++) {
+		for (c = 0; c < cols; c++) {
+			i = (c * rows) + r;
+			if (i >= cnt)
+				p = strdup("");
+			else
+				p = names[i];
+			sprintf(&line[c*longest], "%-*s", longest, p);
+			free(p);
+		}
+		DoReply(-LR_OK, "%d: %s", indx, line);
+	}
+	free(names);
+	return (1);
+}
+
+/*
+ * copy help lines from a file pointer to the output
+ */
+static int 
+HelpCopy(indx, helpFile)
+	int indx;
+	FILE *helpFile;
+{
+	char	buffer[256];
+	char	*ep;
+
+	while (fgets(buffer, sizeof (buffer), helpFile))
+	{
+		ep = buffer + strlen(buffer) - 1;
+		if (*ep == '\n')
+			*ep = 0;
+		DoReply(-LR_OK, "%d: %s", indx, buffer);
+	}
+}
+@
+
+
+1.13
+log
+@use stricmp() instead of strcasecmp().
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: help.c,v 1.12 1995/06/10 03:41:34 p-pomes Exp p-pomes $";
+d207 1
+a207 1
+			if (i > cnt)
+@
+
+
+1.12
+log
+@Do directory listings internally.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: help.c,v 1.11 1994/03/12 00:24:45 paul Exp p-pomes $";
+d147 1
+a147 1
+	return strcasecmp(*x, *y);
+@
+
+
+1.11
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d43 1
+d143 7
+d158 6
+a163 2
+	char	buffer[MAXPATHLEN];
+	FILE	*ls;
+d166 1
+a166 1
+		(void) sprintf(buffer, "ls -C %s/%s|expand", HELPDIR, client);
+d168 1
+a168 1
+		(void) sprintf(buffer, "ls -C %s|expand", HELPDIR);
+d170 2
+a171 2
+	if ((ls = popen(buffer, "r")) == NULL)
+		return (0);
+d173 2
+a174 1
+	HelpCopy(indx, ls);
+d176 41
+a216 1
+	(void) pclose(ls);
+@
+
+
+1.10
+log
+@POSIX changes: index() -> strchr().
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.9
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d39 1
+a39 1
+		if (index(client, '/'))
+d46 1
+a46 1
+				if (topic && index(topic, '/'))
+@
+
+
+1.8
+log
+@Up-cased all #define's.  Removed absolute paths for ls and expand (allow
+popen() to find them).
+@
+text
+@d13 4
+d72 1
+a72 1
+int 
+d113 1
+a113 1
+int 
+d138 1
+a138 1
+int 
+@
+
+
+1.7
+log
+@Revised #include file list.
+@
+text
+@d51 1
+a51 1
+				if (HelpText(ix, client, topic) || HelpText(ix, NativeSubDir, topic))
+d53 2
+a54 2
+				else if (!HelpText(ix, client, NoHelp))
+					HelpText(ix, NativeSubDir, NoHelp);
+d83 2
+a84 2
+			if (client && !strcmp(client, NativeSubDir))
+				DoReply(-LR_OK, "%d: To view one of these topics, type ``help %s name-of-topic-you-want''.", ix, NativeSubDir);
+d88 1
+a88 1
+		if (!code || client && strcmp(client, NativeSubDir))
+d90 3
+a92 3
+			DoReply(-LR_OK, "%d: These ``%s'' help topics are also available:", ++ix, NativeSubDir);
+			ListTopics(ix, NativeSubDir);
+			DoReply(-LR_OK, "%d: To view one of these topics, type ``help %s name-of-topic-you-want''.", ix, NativeSubDir);
+d97 1
+a97 1
+		(void) sprintf(buffer, "%s/%s/%s", HelpDir, client, topic);
+d118 1
+a118 1
+		(void) sprintf(buffer, "/bin/ls -C %s/%s|/usr/ucb/expand", HelpDir, client);
+d120 1
+a120 1
+		(void) sprintf(buffer, "/bin/ls -C %s|/usr/ucb/expand", HelpDir);
+@
+
+
+1.6
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a1 1
+#include "conf.h"
+a10 2
+#include <stdio.h>
+#include <ctype.h>
+a11 4
+#include "commands.h"
+#include "options.h"
+#include "field.h"
+#include "qi.h"
+@
+
+
+1.5
+log
+@Random fixes.
+@
+text
+@a12 1
+#include <strings.h>
+a18 1
+#include "conf.h"
+@
+
+
+1.4
+log
+@Re-formatted for clarity.
+@
+text
+@d78 1
+a78 1
+HelpText(ix, *client, *topic)
+d134 1
+a134 1
+	HelpCopy(Indx, ls);
+@
+
+
+1.3
+log
+@Last Dorner changes.
+@
+text
+@a2 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d4 8
+d22 1
+a22 1
+/************************************************************************
+d24 4
+a27 2
+ ************************************************************************/
+void DoHelp(Arg *theArg)
+d29 9
+a37 24
+  char   *me;
+  char *client;
+  int foundOne = 0;
+  int ix = 1;
+  char *topic;
+
+  theArg = theArg->aNext;	/* skip the command name */
+  
+  if (!theArg)			/* no client specified */
+  {
+    DoReply(-LR_OK,"%d: The following clients have help:",ix);
+    foundOne = HelpText(ix,0,0);
+  }
+  else
+  {
+    client = theArg->aFirst;
+    if (index(client,'/'))
+      DoReply(-LR_BADHELP,"Valid help clients don't contain /'s.");
+    else
+      do
+      {
+	theArg = theArg->aNext;
+	topic = theArg ? theArg->aFirst : NULL;
+	if (topic && index(topic,'/'))
+d39 28
+a66 2
+	  DoReply(-LR_BADHELP,"%d:%s: Valid help topics don't contain /'s.",ix,topic);
+	  continue;
+d68 2
+a69 2
+	if (topic)
+	  DoReply(-LR_OK,"%d:%s: ",ix,topic);
+d71 1
+a71 13
+	  DoReply(-LR_OK,"%d: These ``%s'' help topics are available:",ix,client);
+	if (HelpText(ix,client,topic) || HelpText(ix,NativeSubDir,topic))
+	  foundOne = 1;
+	else if (!HelpText(ix,client,NoHelp))
+	  HelpText(ix,NativeSubDir,NoHelp);
+	ix++;
+      }
+      while (theArg && theArg->aNext);
+  }
+  if (foundOne)
+    DoReply(LR_OK,"Ok.");
+  else
+    DoReply(LR_ERROR,"No help available.");
+d74 1
+a74 1
+/************************************************************************
+d76 5
+a80 2
+ ************************************************************************/
+int HelpText(int ix,char *client,char *topic)
+d82 31
+a112 32
+  FILE *helpFile;
+  char buffer[MAXPATHLEN];
+  char *ep;
+  int code;
+  
+  if (!topic)
+  {
+    code = ListTopics(ix,client);
+    if (code)
+    {
+      if (client && !strcmp(client,NativeSubDir))
+	DoReply(-LR_OK,"%d: To view one of these topics, type ``help %s name-of-topic-you-want''.",ix,NativeSubDir); 
+      else
+	DoReply(-LR_OK,"%d: To view one of these topics, type ``help name-of-topic-you-want''.",ix);
+    }
+    if (!code || client && strcmp(client,NativeSubDir))
+    {
+      DoReply(-LR_OK,"%d: These ``%s'' help topics are also available:",++ix,NativeSubDir);
+      ListTopics(ix,NativeSubDir);
+      DoReply(-LR_OK,"%d: To view one of these topics, type ``help %s name-of-topic-you-want''.",ix,NativeSubDir);
+    }
+    return(code);
+  }
+  else
+  {
+    sprintf(buffer,"%s/%s/%s",HelpDir,client,topic);
+    if ((helpFile=fopen(buffer,"r"))==NULL)
+      return(0);
+    HelpCopy(ix,helpFile);
+    fclose(helpFile);
+    return(1);
+  }
+d115 1
+a115 1
+/************************************************************************
+d117 5
+a121 2
+ ************************************************************************/
+int ListTopics(int index,char *client)
+d123 15
+a137 15
+  char buffer[MAXPATHLEN];
+  FILE *ls;
+  
+  if (client)
+    sprintf(buffer,"/bin/ls -C %s/%s|/usr/ucb/expand",HelpDir,client);
+  else
+    sprintf(buffer,"/bin/ls -C %s|/usr/ucb/expand",HelpDir);
+    
+  if ((ls=popen(buffer,"r"))==NULL)
+    return(0);
+  
+  HelpCopy(index,ls);
+  
+  pclose(ls);
+  return(1);
+d140 1
+a140 1
+/************************************************************************
+d142 5
+a146 2
+ ************************************************************************/
+int HelpCopy(int index,FILE *helpFile)
+d148 10
+a157 9
+  char buffer[256];
+  char *ep;
+  
+  while (fgets(buffer,sizeof(buffer),helpFile))
+  {
+    ep = buffer + strlen(buffer) - 1;
+    if (*ep == '\n') *ep = 0;
+    DoReply(-LR_OK,"%d: %s",index,buffer);
+  }
+a158 2
+
+
+@
+
+
+1.2
+log
+@No help here.
+@
+text
+@d2 1
+d37 1
+a37 1
+    DoReply(-LR_OK,"%d:The following clients have help:",ix);
+d52 1
+a52 1
+	  DoReply(-LR_BADHELP,"%d:%s:Valid help topics don't contain /'s.",ix,topic);
+d56 1
+a56 1
+	  DoReply(-LR_OK,"%d:%s:",ix,topic);
+d58 1
+a58 1
+	  DoReply(-LR_OK,"%d:These ``%s'' help topics are available:",ix,client);
+d89 1
+a89 1
+	DoReply(-LR_OK,"%d:To view one of these topics, type ``help %s name-of-topic-you-want''.",ix,NativeSubDir); 
+d91 1
+a91 1
+	DoReply(-LR_OK,"%d:To view one of these topics, type ``help name-of-topic-you-want''.",ix);
+d95 1
+a95 1
+      DoReply(-LR_OK,"%d:These ``%s'' help topics are also available:",++ix,NativeSubDir);
+d97 1
+a97 1
+      DoReply(-LR_OK,"%d:To view one of these topics, type ``help %s name-of-topic-you-want''.",ix,NativeSubDir);
+d121 1
+a121 1
+    sprintf(buffer,"/bin/ls -C %s/%s",HelpDir,client);
+d123 1
+a123 1
+    sprintf(buffer,"/bin/ls -C %s",HelpDir);
+d146 1
+a146 1
+    DoReply(-LR_OK,"%d:%s",index,buffer);
+@
+
+
+1.1
+log
+@No help here.
+@
+text
+@d1 1
+d24 1
+a24 2
+DoHelp(theArg)
+Arg  *theArg;
+d75 1
+a75 4
+int HelpText(ix,client,topic)
+int ix;
+char *client;
+char *topic;
+d114 1
+a114 3
+int ListTopics(index,client)
+int index;
+char *client;
+d136 1
+a136 3
+HelpCopy(index,helpFile)
+int index;
+FILE *helpFile;
+@

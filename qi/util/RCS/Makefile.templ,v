@@ -1,0 +1,361 @@
+head	1.9;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.9
+date	95.06.28.17.37.35;	author p-pomes;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.06.26.22.17.55;	author p-pomes;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.06.10.17.33.46;	author p-pomes;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.01.24.17.45.09;	author p-pomes;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.01.10.23.50.05;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.08.18.16.28.05;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.08.09.17.40.03;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.03.12.01.10.30;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: Makefile.templ,v 1.8 1995/06/26 22:17:55 p-pomes Exp p-pomes $
+
+SHELL = /bin/sh
+
+######################################################################
+# variables set by Configure
+######################################################################
+CC	= _CC_
+CFLAGS	= _Cflags_
+LFLAGS	= _Lflags_
+######################################################################
+# other variables
+######################################################################
+SRCS	= border.c build.c credb.c id.c kpwchk.c maked.c \
+	  makei.c maket.c mdump.c nsck.c ssnid.c ssnload.c ssndump.c
+
+OBJS	= \
+  border.o build.o credb.o kpwchk.o id.o \
+  maked.o makei.o maket.o mdump.o \
+  nsck.o ssnid.o ssnload.o ssndump.o brute2.o
+
+BINS	= \
+  border build credb kpwchk maked	\
+  makei mdump nsck ssnid	\
+  ssnload ssndump brute
+
+SCRIPTS = addnickname allage studage aliasassign aliasprepare \
+	a.unblock d.unblock f.unblock h.unblock n.unblock s.unblock \
+	froshlog merge3 pg phify phoneaddr qierrs sizedb zaplist
+
+ALLLIB = _QiLib_ _NsLib_ _ApiLib_
+all:_Para_$(BINS)
+######################################################################
+# specific targets
+######################################################################
+brute:_Para_ brute2.o
+	$(CC) $(LFLAGS) -o brute brute2.o
+	
+build:_Para_ build.o maket.o
+	$(CC) $(LFLAGS) -o build build.o maket.o $(ALLLIB) _MoreLib_ _DbmLib_
+	
+maked :_Para_ maked.o
+	$(CC) $(LFLAGS) -o maked  maked.o $(ALLLIB) _MoreLib_ _DbmLib_
+
+kpwchk :_Para_ kpwchk.o
+	$(CC) $(LFLAGS) -o kpwchk  kpwchk.o -ll _MoreLib_
+
+mdump :_Para_ mdump.o
+	$(CC) $(LFLAGS) -o mdump  mdump.o $(ALLLIB) _MoreLib_ _DbmLib_
+
+nsck :_Para_ nsck.o ../qi/conf.o
+	$(CC) $(LFLAGS) -o nsck  nsck.o $(ALLLIB) _MoreLib_
+
+border : border.o
+	$(CC) $(LFLAGS) -o border  border.o
+
+ssnid : ssnid.o id.o
+	$(CC) $(LFLAGS) -o ssnid  ssnid.o id.o _DbmLib_
+
+ssndump : ssndump.o id.o
+	$(CC) $(LFLAGS) -o ssndump  ssndump.o id.o _DbmLib_
+
+ssnload : ssnload.o id.o
+	$(CC) $(LFLAGS) -o ssnload  ssnload.o id.o _DbmLib_
+
+makei :_Para_ makei.o
+	$(CC) $(LFLAGS) -o makei  makei.o $(ALLLIB) _MoreLib_ _DbmLib_
+
+credb :	credb.o
+	$(CC) $(LFLAGS) -o credb  credb.o $(ALLLIB) _MoreLib_
+
+######################################################################
+# standard targets
+######################################################################
+install:_Para_$(BINS) $(SCRIPTS)
+	-mkdir _QiUtilDir_
+	for b in $(BINS) ; do \
+	  _SrcDir_/bin/install.sh -m _Mode_ -o _Owner_ -g  _Group_ $$b _QiUtilDir_; done
+	for b in $(SCRIPTS) ; do \
+	  sed -e 's,%PerlProg%,_Perl_,' < $$b > _QiUtilDir_/$$b; done
+	cd _QiUtilDir_; chmod _Mode_ $(SCRIPTS); chown _Owner_ $(SCRIPTS); \
+	  chgrp _Group_ $(SCRIPTS)
+	touch install
+
+rcs:	$(SRCS)
+	_Ci_ $?
+	touch rcs
+
+clean:
+	rm -f $(BINS) $(OBJS) tags install
+depend: 
+	perl -i -e 'while(<>){print;if (/^# DO NOT DELETE/) {last;}}' Makefile
+	$(CC) _Depend_ $(CFLAGS) $(SRCS) >> Makefile
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.7 1995/06/10 17:33:46 p-pomes Exp p-pomes $
+d74 1
+a74 1
+	$(CC) $(LFLAGS) -o build build.o maket.o $(ALLLIB) _MoreLib_
+d77 1
+a77 1
+	$(CC) $(LFLAGS) -o maked  maked.o $(ALLLIB) _MoreLib_
+d83 1
+a83 1
+	$(CC) $(LFLAGS) -o mdump  mdump.o $(ALLLIB) _MoreLib_
+d101 1
+a101 1
+	$(CC) $(LFLAGS) -o makei  makei.o $(ALLLIB) _MoreLib_
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.6 1995/01/24 17:45:09 p-pomes Exp p-pomes $
+d37 2
+d112 1
+a112 1
+	  _Install_ -m _Mode_ -o _Owner_ -g  _Group_ $$b _QiUtilDir_; done
+@
+
+
+1.6
+log
+@updated SCRIPTS
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.5 1995/01/11 00:05:11 p-pomes Exp p-pomes $
+d46 1
+a46 1
+SRCS	= border.c build.c credb.c id.c maked.c \
+d50 1
+a50 1
+  border.o build.o credb.o id.o \
+d55 1
+a55 1
+  border build credb maked	\
+d59 1
+a59 1
+SCRIPTS = addnickname age aliasassign aliasprepare \
+d69 1
+a69 1
+	$(CC) $(CFLAGS) -o brute brute2.o
+d71 2
+a72 2
+build:_Para_ build.o maket.o $(ALLLIB)
+	$(CC) $(CFLAGS) -o build build.o maket.o $(ALLLIB) _MoreLib_
+d74 2
+a75 2
+maked :_Para_ maked.o $(ALLLIB)
+	$(CC) $(CFLAGS) -o maked  maked.o $(ALLLIB) _MoreLib_
+d77 2
+a78 2
+mdump :_Para_ mdump.o $(ALLLIB)
+	$(CC) $(CFLAGS) -o mdump  mdump.o $(ALLLIB) _MoreLib_
+d80 5
+a84 2
+nsck :_Para_ nsck.o ../qi/conf.o $(ALLLIB)
+	$(CC) $(CFLAGS) -o nsck  nsck.o $(ALLLIB) _MoreLib_
+d87 1
+a87 1
+	$(CC) $(CFLAGS) -o border  border.o
+d90 1
+a90 1
+	$(CC) $(CFLAGS) -o ssnid  ssnid.o id.o _DbmLib_
+d93 1
+a93 1
+	$(CC) $(CFLAGS) -o ssndump  ssndump.o id.o _DbmLib_
+d96 1
+a96 1
+	$(CC) $(CFLAGS) -o ssnload  ssnload.o id.o _DbmLib_
+d98 2
+a99 2
+makei :_Para_ makei.o $(ALLLIB)
+	$(CC) $(CFLAGS) -o makei  makei.o $(ALLLIB) _MoreLib_
+d102 1
+a102 1
+	$(CC) $(CFLAGS) -o credb  credb.o $(ALLLIB) _MoreLib_
+@
+
+
+1.5
+log
+@Made location of perl a Makefile option.
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.4 1995/01/10 23:50:05 p-pomes Exp $
+d59 3
+a61 3
+SCRIPTS = addnickname age aliasassign aliasprepare f.unblock \
+	froshlog h.unblock merge3 pg phify phoneaddr qierrs \
+	s.unblock sizedb zaplist
+@
+
+
+1.4
+log
+@mkdir _QiUtilDir_ before installing executeables.  From David Lee
+<T.D.Lee@@durham.ac.uk>.
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.3 1994/08/18 16:28:05 p-pomes Exp p-pomes $
+d106 1
+a106 1
+	for b in $(BINS) $(SCRIPTS) ; do \
+d108 4
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.2 1994/08/09 17:40:03 p-pomes Exp p-pomes $
+d105 1
+@
+
+
+1.2
+log
+@Added sizedb to BINS.
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.1 1994/03/12 01:10:30 paul Exp p-pomes $
+d56 1
+a56 1
+  makei mdump nsck sizedb ssnid	\
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id$
+d56 1
+a56 1
+  makei mdump nsck ssnid	\
+@

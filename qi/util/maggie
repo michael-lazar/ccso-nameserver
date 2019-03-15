@@ -1,0 +1,13 @@
+#!%PerlProg%
+while($#ARGV>=0)
+{
+  open(SSN,"ssnid <$ARGV[0]|") || die "ssnid: $!";
+  while (<SSN>)
+  {
+    chop;
+    s/5://;
+    split;
+    printf("%s%-50s\n",$_[0],$_[1]);
+  }
+  shift;
+}

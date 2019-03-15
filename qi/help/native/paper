@@ -1,0 +1,41 @@
+SUMMARY
+The "paper" field controls how your electronic mail address will appear
+in the printed Student/Staff Directory.  You have three options:
+
+1. If your "paper" field is empty, your email address will be listed in
+the printed directory as "your-alias@uiuc.edu"; for example,
+"p-pomes@uiuc.edu".  E-mail so addressed will be delivered to whatever
+account you have listed in the "email" field of your ph entry.  We
+strongly suggest you exercise this option and leave your "paper" field
+empty.  This is the default; you need do nothing to select it.
+
+2. If your "paper" field is set to "no", your email address will not be
+printed in the Directory at all.
+
+3. If your "paper" field is set to "specific", the address contained in
+the "email" field of your ph entry will be listed in the Student/Staff
+Directory.  WARNING:  If you exercise this option and then get a new
+e-mail address, your previous e-mail address will be listed incorrectly
+for as long as a year, since the Directory is printed only once per
+year.
+
+EXAMPLES:
+
+To change your "paper" field, you must first login to ph (see help
+on "login").  Then:
+
+If you want to see this kind of      Enter this ph command:
+address in the Directory:
+
+   p-pomes@uiuc.edu                     make paper=""
+
+   paul@uxc.cso.uiuc.edu                make paper="specific"
+
+   <none>                               make paper="no"
+
+Note: The "make" command is not available through all ph clients.
+You can also use the "edit" command to change the contents of your
+"paper" field to one of the three options described above.
+
+SEE ALSO: make, alias, aliases, login, password, edit, register,
+email, e-mail, me, vi

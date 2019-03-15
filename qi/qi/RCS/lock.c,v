@@ -1,0 +1,1118 @@
+head	1.27;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.27
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	94.03.04.22.55.25;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	93.12.21.21.44.16;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	93.12.19.18.40.13;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.08.04.13.01.28;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.07.24.18.21.10;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	93.04.05.21.32.02;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	93.02.23.04.28.09;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	92.12.16.23.12.40;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.12.12.19.03.43;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.09.22.16.48.38;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.28.16.22.00;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	92.07.27.15.37.43;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	92.07.27.15.33.53;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	90.12.18.08.41.35;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.10.18.07.52.18;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.07.19.10.18.55;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.07.05.20.17.05;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	89.03.20.15.14.53;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.12.02.14.45.30;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.11.15.13.35.30;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.07.08.14.00.51;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.07.06.20.47.58;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.04.19.08.12.14;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.44;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.27
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: lock.c,v 1.26 1994/03/12 00:24:45 paul Exp paul $";
+#endif
+
+#include "protos.h"
+
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/file.h>
+#include <signal.h>
+#include <setjmp.h>
+
+#define READ  0
+#define WRITE	1
+
+static int Lock = 0;
+static int Type;
+jmp_buf	WhereIWas;
+SIG_TYPE (*OldAlarm) __P((int));
+static void LockInit();
+static void TimeOut __P((int));
+
+extern int ReadOnly;		/* mqi.c */
+extern int LockTimeout;		/* qi.c */
+
+/*
+ * the following macros do all the junk required to make the lock
+ * routines timeout.
+ */
+#define TIMEOUT_ENABLE()		\
+    if (!setjmp(WhereIWas))		\
+    {			      \
+      OldAlarm = signal(SIGALRM,TimeOut);     \
+      alarm(LockTimeout);	     \
+    }			      \
+    else		      \
+    {			      \
+      signal(SIGALRM,OldAlarm);		  \
+      DoReply(LR_LOCK,"Lock timed out.");     \
+      return(0);      /* timeout popped */  \
+    }
+
+#define TIMEOUT_DISABLE()		  \
+    alarm(0);			  \
+    signal(SIGALRM,TimeOut);
+
+/*
+ * initialize the lock mechanism
+ */
+static void 
+LockInit()
+{
+	if (!Lock)
+	{
+		char	lockfile[256];
+
+		(void) sprintf(lockfile, "%s.lck", Database);
+		Lock = open(lockfile, O_RDWR | O_CREAT);
+		if (Lock < 0)
+		{
+			IssueMessage(LOG_ERR, "LockInit: open(%s): %s",
+				lockfile, strerror(errno));
+			exit(1);
+		}
+		(void) chmod(lockfile, 0660);
+	}
+}
+
+/*
+ * Set an exclusive lock
+ */
+int 
+GonnaWrite(msg)
+char *msg;
+{
+#ifdef FCNTL_LOCK
+	struct flock arg;
+
+	memset(&arg, (char)0, sizeof (arg));
+	arg.l_type = F_WRLCK;
+#endif /* FCNTL_LOCK */
+	LockInit();
+	if (ReadOnly)
+	{
+		DoReply(LR_READONLY, "Database is currently read-only.");
+		return (0);
+	}
+	IssueMessage(LOG_DEBUG, "%s wlock", msg);
+	TIMEOUT_ENABLE();
+#ifdef FCNTL_LOCK
+	if (fcntl(Lock, F_SETLKW, &arg) == -1)
+#else /* !FCNTL_LOCK */
+	if (flock(Lock, LOCK_EX) < 0)
+#endif /* FCNTL_LOCK */
+	{
+		DoReply(LR_LOCK, "Locking error: %s", strerror(errno));
+		return (0);
+	}
+	TIMEOUT_DISABLE();
+	Type = WRITE;
+	bintree_init(Database); /* initialize the bintree code */
+	read_index(Database);
+	if (!dbi_init(Database) || !dbd_init(Database))
+	{
+		fprintf(Output, "%d:Couldn't open database.", LR_INTERNAL);
+		exit(1);
+	}
+	get_dir_head();
+	return (1);
+}
+
+/*
+ * Set a shared lock
+ */
+int 
+GonnaRead(msg)
+char *msg;
+{
+#ifndef NO_READ_LOCK
+# ifdef FCNTL_LOCK
+	struct flock arg;
+
+	memset(&arg, (char)0, sizeof (arg));
+	arg.l_type = F_RDLCK;
+# endif /* FCNTL_LOCK */
+	LockInit();
+	IssueMessage(LOG_DEBUG, "%s rlock", msg);
+	TIMEOUT_ENABLE();
+# ifdef FCNTL_LOCK
+	if (fcntl(Lock, F_SETLKW, &arg) == -1)
+# else /* !FCNTL_LOCK */
+	if (flock(Lock, LOCK_SH) < 0)
+# endif /* FCNTL_LOCK */
+	{
+		DoReply(LR_LOCK, "Locking error: %s", strerror(errno));
+		return (0);
+	}
+	TIMEOUT_DISABLE();
+#endif /* !NO_READ_LOCK */
+	Type = READ;
+	bintree_init(Database); /* initialize the bintree code */
+	read_index(Database);
+	if (!dbi_init(Database) || !dbd_init(Database))
+	{
+		fprintf(Output, "%d:Couldn't open database.", LR_INTERNAL);
+		exit(1);
+	}
+	get_dir_head();
+	return (1);
+}
+
+/*
+ * Release a lock
+ */
+void 
+Unlock(msg)
+char *msg;
+{
+#ifdef FCNTL_LOCK
+	struct flock arg;
+
+	memset(&arg, (char)0, sizeof (arg));
+	arg.l_type = F_UNLCK;
+#endif /* FCNTL_LOCK */
+	LockInit();
+	if (Type == WRITE)
+	{
+		put_dir_head();
+		put_tree_head();
+	} else
+		close_tree();
+#ifdef NO_READ_LOCK
+	if (Type == READ)
+		return;
+#endif
+	IssueMessage(LOG_DEBUG, "%s %sunlock", msg, (Type == READ) ? "r" : "w");
+#ifdef FCNTL_LOCK
+	if (fcntl(Lock, F_SETLKW, &arg) == -1)
+#else /* !FCNTL_LOCK */
+	if (flock(Lock, LOCK_UN) < 0)
+#endif /* FCNTL_LOCK */
+		IssueMessage(LOG_ERR, "Unlock: flock: %s", strerror(errno));
+}
+
+/*
+ * function that handles timeouts
+ */
+static void 
+TimeOut(sig)
+	int sig;
+{
+	longjmp(WhereIWas, 1);
+}
+@
+
+
+1.26
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+a94 1
+		(void) chmod(lockfile, 0660);
+d97 2
+a98 2
+			perror(lockfile);
+			IssueMessage(LOG_INFO, "Couldn't open lockfile.");
+d101 1
+d218 1
+a218 1
+		IssueMessage(LOG_INFO, "_UN_locking error: %s", strerror(errno));
+@
+
+
+1.25
+log
+@Switch to force FCNTL_LOCK or not.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.24
+log
+@Use flock if LOCK_EX is defined.
+@
+text
+@d80 1
+a80 1
+#ifndef LOCK_EX
+d85 1
+a85 1
+#endif /* !LOCK_EX */
+d94 3
+a96 1
+#ifdef LOCK_EX
+d98 1
+a98 3
+#else /* !LOCK_EX */
+	if (fcntl(Lock, F_SETLKW, &arg) == -1)
+#endif /* LOCK_EX */
+d124 1
+a124 1
+# ifndef LOCK_EX
+d129 1
+a129 1
+# endif /* !LOCK_EX */
+d133 3
+a135 1
+# ifdef LOCK_EX
+d137 1
+a137 3
+# else /* !LOCK_EX */
+	if (fcntl(Lock, F_SETLKW, &arg) == -1)
+# endif /* LOCK_EX */
+d163 1
+a163 1
+#ifndef LOCK_EX
+d168 1
+a168 1
+#endif /* !LOCK_EX */
+d181 3
+a183 1
+#ifdef LOCK_EX
+d185 1
+a185 3
+#else /* !LOCK_EX */
+	if (fcntl(Lock, F_SETLKW, &arg) == -1)
+#endif /* LOCK_EX */
+@
+
+
+1.23
+log
+@fcntl.h is normally in /usr/include.
+@
+text
+@d80 1
+d85 1
+d94 3
+d98 1
+d124 1
+d129 1
+d133 3
+d137 1
+d143 1
+a143 1
+#endif
+d163 1
+d168 1
+d181 3
+d185 1
+@
+
+
+1.22
+log
+@GonnaWrite(), GonnaRead(), and Unlock() now LOG_DEBUG log
+their callers.  Idea is to locate hung locks.
+@
+text
+@d12 1
+a12 1
+#include <sys/fcntl.h>
+@
+
+
+1.21
+log
+@Use straight fcntl() locks.
+@
+text
+@d77 2
+a78 1
+GonnaWrite()
+d90 1
+d114 2
+a115 1
+GonnaRead()
+d123 1
+d148 2
+a149 1
+Unlock()
+d163 2
+a164 1
+	if (Type == WRITE)
+d166 3
+a168 2
+		if (fcntl(Lock, F_SETLKW, &arg) == -1)
+			IssueMessage(LOG_INFO, "_UN_locking error: %s", strerror(errno));
+@
+
+
+1.20
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d12 2
+a13 5
+#ifdef SYSV
+# include <sys/fcntl.h>
+#else /* !SYSV */
+# include <sys/file.h>
+#endif /* SYSV */
+a15 3
+#ifdef FCNTL_FLOCK
+#include "flock.h"
+#endif
+d79 4
+d90 1
+a90 1
+	if (flock(Lock, LOCK_EX) < 0)
+d115 4
+d121 1
+a121 1
+	if (flock(Lock, LOCK_SH) < 0)
+d146 4
+d160 1
+a160 1
+		if (flock(Lock, LOCK_UN) < 0)
+@
+
+
+1.19
+log
+@Include fcntl.h rather than file.h under System 5.
+@
+text
+@d30 3
+d60 1
+a60 1
+void 
+d161 1
+a161 1
+void 
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d12 5
+a16 1
+#include <sys/file.h>
+@
+
+
+1.17
+log
+@Removed duplicate definition of Database.
+@
+text
+@d15 3
+@
+
+
+1.16
+log
+@Replaced instances of %m in IssueMessage with strerror(errno).
+@
+text
+@a18 1
+extern char *Database;		/* conf.c */
+@
+
+
+1.15
+log
+@Revised #include file list.
+@
+text
+@d85 1
+a85 1
+		DoReply(LR_LOCK, "Locking error: %m");
+d112 1
+a112 1
+		DoReply(LR_LOCK, "Locking error: %m");
+d146 1
+a146 1
+			IssueMessage(LOG_INFO, "_UN_locking error: %m");
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@d10 1
+a10 1
+#include <stdio.h>
+a14 1
+#include "commands.h"
+@
+
+
+1.13
+log
+@Re-formatted for clarity.
+@
+text
+@d24 1
+a24 1
+void	(*OldAlarm) __P((int));
+@
+
+
+1.12
+log
+@last Dorner changes.
+@
+text
+@d2 8
+a9 7
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d18 1
+a18 1
+#define WRITE   1
+d20 1
+a20 1
+extern char *Database;      /* conf.c */
+d23 3
+a25 3
+jmp_buf WhereIWas;
+void   (*OldAlarm) (int);
+extern int ReadOnly;      /* mqi.c */
+d28 7
+a34 7
+/***********************************************************************
+* the following macros do all the junk required to make the lock
+* routines timeout.
+***********************************************************************/
+#define TIMEOUT_ENABLE()                \
+    if (!setjmp(WhereIWas))             \
+    {                         \
+d36 5
+a40 5
+      alarm(LockTimeout);            \
+    }                         \
+    else                      \
+    {                         \
+      signal(SIGALRM,OldAlarm);           \
+d45 2
+a46 2
+#define TIMEOUT_DISABLE()                 \
+    alarm(0);                     \
+d49 5
+a53 4
+/***********************************************************************
+* initialize the lock mechanism
+***********************************************************************/
+void LockInit(void)
+d55 14
+a68 13
+  if (!Lock)
+  {
+    char lockfile[256];
+    sprintf(lockfile,"%s.lck",Database);
+    Lock = open(lockfile, O_RDWR|O_CREAT);
+    (void) chmod(lockfile,0660);
+    if (Lock < 0)
+    {
+      perror(lockfile);
+      IssueMessage(LOG_INFO, "Couldn't open lockfile.");
+      exit(1);
+    }
+  }
+d71 5
+a75 4
+/***********************************************************************
+* Set an exclusive lock
+***********************************************************************/
+int GonnaWrite(void)
+d77 23
+a99 23
+  LockInit();
+  if (ReadOnly)
+  {
+    DoReply(LR_READONLY, "Database is currently read-only.");
+    return (0);
+  }
+  TIMEOUT_ENABLE();
+  if (flock(Lock, LOCK_EX)<0)
+  {
+    DoReply(LR_LOCK,"Locking error: %m");
+    return(0);
+  }
+  TIMEOUT_DISABLE();
+  Type = WRITE;
+  bintree_init(Database);   /* initialize the bintree code */
+  read_index(Database);
+  if (!dbi_init(Database) || !dbd_init(Database))
+  {
+    fprintf(Output, "%d:Couldn't open database.", LR_INTERNAL);
+    exit(1);
+  }
+  get_dir_head();
+  return (1);
+d102 5
+a106 4
+/***********************************************************************
+* Set a shared lock
+***********************************************************************/
+int GonnaRead(void)
+d109 8
+a116 8
+  LockInit();
+  TIMEOUT_ENABLE();
+  if (flock(Lock, LOCK_SH)<0)
+  {
+    DoReply(LR_LOCK,"Locking error: %m");
+    return(0);
+  }
+  TIMEOUT_DISABLE();
+d118 10
+a127 10
+  Type = READ;
+  bintree_init(Database);   /* initialize the bintree code */
+  read_index(Database);
+  if (!dbi_init(Database) || !dbd_init(Database))
+  {
+    fprintf(Output, "%d:Couldn't open database.", LR_INTERNAL);
+    exit(1);
+  }
+  get_dir_head();
+  return (1);
+d130 5
+a134 4
+/***********************************************************************
+* Release a lock
+***********************************************************************/
+void Unlock(void)
+d136 7
+a142 8
+  LockInit();
+  if (Type == WRITE)
+  {
+    put_dir_head();
+    put_tree_head();
+  }
+  else
+    close_tree();
+d144 1
+a144 1
+  if (Type == WRITE)
+d146 2
+a147 2
+  if (flock(Lock, LOCK_UN)<0)
+    IssueMessage(LOG_INFO,"_UN_locking error: %m");
+d150 6
+a155 4
+/***********************************************************************
+* function that handles timeouts
+***********************************************************************/
+void TimeOut(int sig)
+d157 1
+a157 1
+  longjmp(WhereIWas, 1);
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d10 1
+a18 1
+extern char *Lockfile;      /* conf.c */
+d25 1
+a30 1
+#define LOCK_TIMEOUT  30
+d35 1
+a35 1
+      alarm(LOCK_TIMEOUT);            \
+d55 4
+a58 1
+    Lock = open(Lockfile, O_RDWR);
+d61 1
+a61 1
+      fprintf(stderr, "Couldn't open lockfile.");
+d103 1
+d112 1
+d138 3
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d1 1
+d23 1
+a23 2
+int   (*OldAlarm) ();
+int   TimeOut();
+d51 1
+a51 1
+LockInit()
+d68 1
+a68 1
+GonnaWrite()
+d98 1
+a98 1
+GonnaRead()
+d123 1
+a123 1
+Unlock()
+d140 1
+a140 1
+TimeOut()
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d84 7
+a91 1
+  bintree_init(Database);
+d109 7
+a116 1
+  bintree_init(Database);
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d12 1
+a12 1
+#include "../Include/commands.h"
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d12 1
+a12 1
+#include "../include/commands.h"
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d1 7
+a7 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d30 1
+a30 1
+#define LOCK_TIMEOUT  1
+d59 1
+a59 1
+      syslog(LOG_INFO, "Couldn't open lockfile.");
+d70 1
+d79 1
+a79 1
+    DoReply(LR_LOCK,"Locking error.");
+d94 1
+d98 1
+a98 1
+    DoReply(LR_LOCK,"Locking error.");
+d113 1
+d121 2
+a122 5
+  if (flock(Lock, LOCK_UN)<0);
+  {
+    syslog(LOG_INFO,"_UN_locking error; must be gremlins.");
+    return(0);
+  }
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@a10 5
+#ifdef ultrix
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+d13 2
+a14 2
+#define READ	0
+#define WRITE	1
+d16 2
+a17 2
+extern char *Lockfile;		/* conf.c */
+extern char *Database;		/* conf.c */
+d21 3
+a23 3
+int     (*OldAlarm) ();
+int     TimeOut();
+extern int ReadOnly;		/* mqi.c */
+d29 13
+a41 13
+#define LOCK_TIMEOUT	1
+#define TIMEOUT_ENABLE()				\
+	if (!setjmp(WhereIWas))				\
+	{						\
+	    OldAlarm = signal(SIGALRM,TimeOut);		\
+	    alarm(LOCK_TIMEOUT);			\
+	}						\
+	else						\
+	{						\
+	    signal(SIGALRM,OldAlarm);			\
+	    DoReply(LR_LOCK,"Lock timed out.");		\
+	    return(0);		/* timeout popped */	\
+	}
+d43 3
+a45 3
+#define TIMEOUT_DISABLE()				\
+	alarm(0);					\
+	signal(SIGALRM,TimeOut);
+d52 4
+a55 1
+    if (!Lock)
+d57 3
+a59 7
+	Lock = open(Lockfile, O_RDWR);
+	if (Lock < 0)
+	{
+	    fprintf(stderr, "Couldn't open lockfile.");
+	    syslog(LOG_INFO, "Couldn't open lockfile.");
+	    exit(1);
+	}
+d61 1
+d69 16
+a84 12
+    if (ReadOnly)
+    {
+	DoReply(LR_READONLY, "Database is currently read-only.");
+	return (0);
+    }
+    TIMEOUT_ENABLE();
+    flock(Lock, LOCK_EX);
+    TIMEOUT_DISABLE();
+    Type = WRITE;
+    get_dir_head();
+    bintree_init(Database);
+    return (1);
+d92 11
+a102 7
+    TIMEOUT_ENABLE();
+    flock(Lock, LOCK_SH);
+    TIMEOUT_DISABLE();
+    Type = READ;
+    get_dir_head();
+    bintree_init(Database);
+    return (1);
+d110 12
+a121 8
+    if (Type == WRITE)
+    {
+	put_dir_head();
+	put_tree_head();
+    }
+    else
+	close_tree();
+    flock(Lock, LOCK_UN);
+d129 1
+a129 1
+    longjmp(WhereIWas, 1);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d16 1
+a16 1
+#include "commands.h"
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d5 3
+d9 1
+a56 1
+#ifndef ultrix
+a57 1
+#endif
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d53 1
+d55 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d13 1
+a13 1
+static int Lock=0;
+d16 2
+a17 2
+int (*OldAlarm)();
+int TimeOut();
+d49 1
+a49 1
+	Lock = open(Lockfile,O_RDWR);
+d52 2
+a53 2
+	    fprintf(stderr,"Couldn't open lockfile.");
+	    syslog(LOG_INFO,"Couldn't open lockfile.");
+d66 2
+a67 2
+	DoReply(LR_READONLY,"Database is currently read-only.");
+	return(0);
+d70 1
+a70 1
+    flock(Lock,LOCK_EX);
+d75 1
+a75 1
+    return(1);
+d84 1
+a84 1
+    flock(Lock,LOCK_SH);
+d89 1
+a89 1
+    return(1);
+d97 1
+a97 1
+    if (Type==WRITE)
+d104 1
+a104 1
+    flock(Lock,LOCK_UN);
+d112 1
+a112 1
+    longjmp(WhereIWas,1);
+@

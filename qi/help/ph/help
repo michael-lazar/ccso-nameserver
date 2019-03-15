@@ -1,0 +1,62 @@
+SYNTAX: help [native] name-of-topic...
+
+SUMMARY
+The "help" command gives help on Nameserver commands and concepts.  You
+can obtain a list of help topics by simply typing the word "help".
+
+You will notice that the list of topics is divided into two parts, "ph"
+help topics and "native" help topics.  The "ph" help topics pertain to
+commands and concepts related to the Unix ph client and other clients
+similar to it.  The "native" topics may of interest to anyone using the
+Nameserver database and are not specific to a particular client.
+
+If you ask for help on a topic, "help" will first look for that topic
+in the "ph" topics.  If there is no help specific to "ph" for the topic,
+it will look for a "native" help topic with that name.
+
+In the rare event that there you are interested in reading the "native"
+help text for a topic that also has a "ph" help text, you can type:
+"help native name-of-topic-you-want".
+
+If you find the concept of "ph" versus "native" help to be confusing,
+the following categorization of the ph help topics may be of use to you.
+The list below assigns each topic to one of five main subject areas:
+commands, concepts, fields, services, codes, and miscellaneous:
+
+COMMANDS - commands that can be typed at the ph> prompt: 
+
+   add                 help             me             quit
+   change              login            passwd         register
+   delete              logout           ph             status
+   edit                make             query          switch
+   fields
+
+CONCEPTS - introductory information and basic ph concepts:
+
+   aliases             commands         interactive_mode
+   command-line_mode   e-mail           introduction
+
+FIELDS - ph fields of special interest:
+
+   alias               nickname         paper          type
+   email               no_update        proxy
+
+SERVICES - services or categories of information that the ph
+database offers:
+
+   areacodes           people           timetable
+   campus_units        restaurants      weather
+
+CODES - explanations of the three digit result codes returned by ph:
+
+   100     300     403     503     508     513     518     523
+   101     301     475     504     509     514     519     598
+   102     400     500     505     510     515     520     599
+   200     401     501     506     511     516     521
+   201     402     502     507     512     517     522
+
+
+MISCELLANEOUS - help topics that do not fall into any of the areas above:
+
+   clients            manpage           policy         sites
+   forwarding         ph_news           protocol       vi

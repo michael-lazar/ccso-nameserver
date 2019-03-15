@@ -1,0 +1,11 @@
+SYNTAX: quit
+
+SUMMARY
+The "quit" command exits ph's interactive mode and returns the user to
+the operating system command prompt.  If the user was logged into ph
+(see help on "login"), "quit" serves both to log the user out and exit ph.
+
+The following commands are synonymous with "quit": "bye", "^D", and
+"exit".
+
+SEE ALSO: login, logout, interactive_mode

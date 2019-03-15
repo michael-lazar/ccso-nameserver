@@ -1,0 +1,368 @@
+head	1.9;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.9
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	93.06.14.20.29.06;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	93.02.01.16.29.11;	author paul;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	92.12.12.19.10.54;	author paul;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	92.07.30.03.46.08;	author paul;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	92.07.29.05.21.13;	author paul;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	92.07.28.18.31.42;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.07.27.22.20.02;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.07.27.21.37.00;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.9
+log
+@New copyright statement.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id$";
+#endif
+
+#include <stdio.h>
+#include <sys/types.h>
+#ifdef __STDC__
+#include <stdlib.h>
+#endif
+#include "protos.h"
+
+
+int	pstrcmp __P((char *, char *));
+
+#define SRT_SIZE 16384
+
+main()
+{
+	int	size = 0;
+	int	iRead;
+	char	*buffer = malloc(SRT_SIZE);
+	char	*spot;
+	int	nLines = 0;
+	char   **ptrs, **this;
+
+
+	/*
+	 * pass 1; read the file
+	 */
+	if (!buffer)
+		perror("malloc");
+
+	while ((iRead = read(0, buffer + size, SRT_SIZE)) > 0)
+	{
+		size += iRead;
+		buffer = realloc(buffer, size + SRT_SIZE);
+		if (!buffer)
+			perror("realloc");
+	}
+
+	buffer = realloc(buffer, size + 1);
+	if (!buffer)
+		perror("realloc");
+	buffer[size] = '\n';
+
+	/*
+	 * count the lines, and replace newlines with nulls
+	 */
+	for (spot = buffer; spot <= buffer + size; spot++)
+		if (*spot == '\n')
+		{
+			nLines++;
+			if (!(nLines % 500))
+				fprintf(stderr, "reading %d\r", nLines);
+			*spot = '\0';
+		}
+	nLines--;
+	putc('\n', stderr);
+
+	/*
+	 * build an array of pointers to the lines
+	 */
+	if (nLines == 0)	/* nothing to do and malloc(0) often dies */
+		exit(0);
+	ptrs = (char **) malloc(nLines * sizeof (char *));
+
+	if (!ptrs)
+		perror("malloc");
+	spot = buffer;
+	for (this = ptrs; this < ptrs + nLines; this++)
+	{
+		*this = spot;
+		while (*spot++) ;
+	}
+
+	/*
+	 * sort them
+	 */
+	qsort(ptrs, nLines, sizeof (char *), pstrcmp);
+
+	/*
+	 * output them
+	 */
+	while (nLines--)
+		puts(*ptrs++);
+	exit(0);
+}
+
+int 
+pstrcmp(p1, p2)
+	char *p1, *p2;
+{
+	return (strcmp(*(char **) p1, *(char **) p2));
+}
+@
+
+
+1.8
+log
+@Deleted cdefs.h include.  Check for nLines == 0 so as not to do a
+malloc(0) under AIX.
+@
+text
+@d1 40
+@
+
+
+1.7
+log
+@Left off a vital cast for some twisted reason.
+@
+text
+@a1 1
+#include <cdefs.h>
+d59 2
+@
+
+
+1.6
+log
+@Made friendlier to non-ANSI compilers.
+@
+text
+@d88 1
+a88 1
+	return (strcmp(p1, p2));
+@
+
+
+1.5
+log
+@Renamed BSIZE to LBSIZE.
+@
+text
+@d10 1
+a10 1
+int	pstrcmp __P((const void *, const void *));
+d86 1
+a86 1
+	const void *p1, *p2;
+d88 1
+a88 1
+	return (strcmp(*(char **) p1, *(char **) p2));
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d12 1
+a12 2
+#undef BSIZE
+#define BSIZE 16384
+d18 1
+a18 1
+	char	*buffer = malloc(BSIZE);
+d30 1
+a30 1
+	while ((iRead = read(0, buffer + size, BSIZE)) > 0)
+d33 1
+a33 1
+		buffer = realloc(buffer, size + BSIZE);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d82 1
+@
+
+
+1.2
+log
+@Re-formatted for clarity
+@
+text
+@d2 1
+d4 1
+d6 2
+d10 1
+a10 1
+int	pstrcmp(char *p1, char *p2);
+d12 1
+d85 2
+a86 1
+pstrcmp(char *p1, char *p2)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+a6 1
+int pstrcmp(char *p1, char *p2);
+d12 65
+a76 59
+  int size=0;
+  int iRead;
+  char *buffer=malloc(BSIZE);
+  char *spot;
+  int nLines=0;
+  char **ptrs, **this;
+  
+  
+  /*
+   * pass 1; read the file
+   */
+  if (!buffer) perror("malloc");
+  
+  while ((iRead = read(0,buffer+size,BSIZE))>0)
+  {
+    size += iRead;
+    buffer = realloc(buffer,size+BSIZE);
+    if (!buffer) perror("realloc");
+  }
+  
+  buffer = realloc(buffer,size+1);
+  if (!buffer) perror("realloc");
+  buffer[size] = '\n';
+  
+  /*
+   * count the lines, and replace newlines with nulls
+   */
+  for (spot=buffer;spot<=buffer+size;spot++)
+    if (*spot=='\n')
+    {
+      nLines++;
+      if (!(nLines%500)) fprintf(stderr,"reading %d\r",nLines);
+      *spot = '\0';
+    }
+  nLines--;
+  putc('\n',stderr);
+  
+  /*
+   * build an array of pointers to the lines
+   */
+  ptrs = (char **) malloc(nLines*sizeof(char *));
+  if (!ptrs) perror("malloc");
+  spot = buffer;
+  for (this=ptrs;this<ptrs+nLines;this++)
+  {
+    *this = spot;
+    while (*spot++);
+  }
+  
+  /*
+   * sort them
+   */
+  qsort(ptrs,nLines,sizeof(char *),pstrcmp);
+  
+  /*
+   * output them
+   */
+  while (nLines--)
+    puts(*ptrs++);
+d79 2
+a80 1
+int pstrcmp(char *p1, char *p2)
+d82 2
+a83 2
+  return (strcmp(*(char **)p1,*(char **)p2));
+}@

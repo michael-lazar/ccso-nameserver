@@ -1,0 +1,32 @@
+SYNTAX: delete [name-of-field=]value-of-field...
+
+SUMMARY
+This command is used to delete entire entries from the Nameserver
+database.  Most users are not allowed to use this command.  Note that
+it deletes ENTRIES; to delete a FIELD from an entry, use the "edit"
+command.
+
+You must be logged in and have special privileges to use "delete".
+
+The arguments to the "delete" command are the same as the selection part
+of a "query" command.  "Delete" finds all the entries that match the
+argument(s) and deletes them.
+
+The "delete" command obeys the Nameserver "limit" option, which can be
+used to prevent deletion of more entries than intended.  To change the
+limit option from its default of 2 to a smaller or larger number, type
+the command "set limit=#", where "#" equals the maximum number of
+entries that can be deleted.  If your intention is to delete one
+specific entry, the safest method is to use the "alias" field specifier
+in the argument; e.g., "delete alias=alias_of_entry_to_be_deleted".
+
+EXAMPLES
+ph> delete john doe
+200:2 entries deleted.
+ph>
+
+ph> delete alias=j-doe1
+200:1 entry deleted.
+ph>
+
+SEE ALSO: edit, change, add, login, query, make

@@ -1,0 +1,4 @@
+#  Most defaults are suitable for IRIX 4.0.5
+$OtherDefines{"Mem_Type"} = "void";
+$Cflags .= " -D__STDC__ -D_BSD_SIGNALS";
+1

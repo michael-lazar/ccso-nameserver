@@ -1,0 +1,234 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.7
+date	95.06.26.22.10.12;	author p-pomes;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.06.08.17.46.13;	author p-pomes;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.06.08.17.45.35;	author p-pomes;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.01.09.20.26.46;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.08.23.21.18.23;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.03.12.01.04.25;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.24.20.09.14;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: Makefile.templ,v 1.6 1995/06/08 17:46:13 p-pomes Exp p-pomes $
+
+SHELL = /bin/sh
+
+######################################################################
+# variables set by Configure
+######################################################################
+CC	= _CC_
+CFLAGS	= _ApiFlags_ _Cflags_
+LFLAGS	= _Lflags_
+######################################################################
+# other variables
+######################################################################
+SRCS=	cryptit.c fcrypt.c CloseQi.c FreeQIR.c OpenQi.c PipeQi.c FieldOps.c ReadQi.c LoginQi.c
+OBJS=	cryptit.o fcrypt.o CloseQi.o FreeQIR.o OpenQi.o PipeQi.o FieldOps.o ReadQi.o LoginQi.o
+OTHERS	= 
+BINS	= libqiapi.a _LibDir_/libqiapi.a apitest
+
+all:_Para_ $(BINS)
+######################################################################
+# specific targets
+######################################################################
+libqiapi.a:_Para_	$(OBJS)
+	rm -f $@@
+	ar crv $@@ $(OBJS)
+	_Ranlib_ $@@
+
+_LibDir_/libqiapi.a: libqiapi.a
+	rm -f $@@
+	cp libqiapi.a $@@
+	_Ranlib_ $@@
+
+apitest:_Para_ apitest.c
+	$(CC) $(CFLAGS) $(LFLAGS) -o apitest apitest.c libqiapi.a _MoreLib_
+
+######################################################################
+# standard targets
+######################################################################
+rcs:	$(SRCS)
+	_Ci_ $?
+	touch rcs
+
+clean:
+	rm -f $(BINS) $(OBJS) $(OTHERS) tags LINT install
+
+depend: 
+	perl -i -e 'while(<>){print;if (/^# DO NOT DELETE/) {last;}}' Makefile
+	$(CC) _Depend_ $(CFLAGS) $(SRCS) >> Makefile
+
+install:_Para_ $(BINS)
+	-mkdir _QiLibDir_
+	_SrcDir_/bin/install.sh -m 444 -o _Owner_ -g  _Group_ libqiapi.a _QiLibDir_
+	_Ranlib_ _QiLibDir_/libqiapi.a
+	touch install
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.5 1995/06/08 17:45:35 p-pomes Exp p-pomes $
+d37 2
+d43 1
+a43 1
+CFLAGS	= _Cflags_
+d86 1
+a86 1
+	_Install_ -m 444 -o _Owner_ -g  _Group_ libqiapi.a _QiLibDir_
+@
+
+
+1.5
+log
+@Deleted PipeKdb.c
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.4 1995/01/09 20:26:46 p-pomes Exp p-pomes $
+d47 1
+a47 1
+OBJS=	cryptit.o fcrypt.o CloseQi.o FreeQIR.o OpenQi.o PipeKdb.o PipeQi.o FieldOps.o ReadQi.o LoginQi.o
+@
+
+
+1.4
+log
+@Added PipeKdb.[co] targets.
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.3 1994/08/23 21:18:23 p-pomes Exp p-pomes $
+d46 1
+a46 1
+SRCS=	cryptit.c fcrypt.c CloseQi.c FreeQIR.c OpenQi.c PipeKdb.c PipeQi.c FieldOps.c ReadQi.c LoginQi.c
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.2 1994/03/12 01:04:25 paul Exp p-pomes $
+d46 2
+a47 2
+SRCS=	cryptit.c fcrypt.c CloseQi.c FreeQIR.c OpenQi.c PipeQi.c FieldOps.c ReadQi.c LoginQi.c
+OBJS=	cryptit.o fcrypt.o CloseQi.o FreeQIR.o OpenQi.o PipeQi.o FieldOps.o ReadQi.o LoginQi.o
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id$
+d46 2
+a47 2
+SRCS=	cryptit.c fcrypt.c CloseQi.c FreeQIR.c OpenQi.c FieldOps.c ReadQi.c LoginQi.c
+OBJS=	cryptit.o fcrypt.o CloseQi.o FreeQIR.o OpenQi.o FieldOps.o ReadQi.o LoginQi.o
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 36
+d46 2
+a47 2
+SRCS=	cryptit.c fcrypt.c CloseQi.c FreeQIR.c OpenQi.c FieldOps.c ReadQi.c
+OBJS=	cryptit.o fcrypt.o CloseQi.o FreeQIR.o OpenQi.o FieldOps.o ReadQi.o
+d49 1
+a49 1
+BINS	= libqiapi.a _LibDir_/libqiapi.a
+d64 4
+@

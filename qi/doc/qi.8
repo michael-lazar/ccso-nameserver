@@ -1,0 +1,95 @@
+.TH QI 8L "30-Jul-1992"
+.SH NAME
+qi \- the CCSO Nameserver server (on-line phone book)
+.SH SYNOPSIS
+.B qi
+.RB [ \-w ]
+.RB [ \-d ]
+.RB [ \-q ]
+.SH DESCRIPTION
+.PP
+.I Qi
+manages the database of the CCSO Nameserver.
+It is the "server" program of the server-client pair that make up the
+CCSO Nameserver (the client program is
+.IR ph (1)).
+.PP
+If given the
+.B \-w
+option,
+.I qi
+will run in read-only mode;
+commands that would change the database are not allowed.
+If given the
+.B \-d
+option,
+.I qi
+will be run as though invoked by a daemon; in this case,
+.I qi
+will limit the amount of cpu time it will consume.
+.PP
+\-q
+will cause prompts to be omitted even when run from a tty or pipe.
+.PP
+.I Qi
+operates in "super-user" mode when run with its standard
+input is a terminal, file, or pipe.
+If its standard input is none of the above
+(implying the connection comes from over the network)
+it runs in anonymous mode, and the operations that may be performed are limited.
+.PP
+.IR Qi 's
+availability may be controlled by the file
+.IR /nameserv/db/prod.sta .
+If this file exists, and the first word in it is "read",
+then all invocations of
+.I qi
+will be in read-only mode; no writing of the database will be allowed.
+If the first word of the file is not "read",
+.I qi
+will refuse to run at all.
+In either case, the remainder of
+.I /nameserv/db/prod.sta
+will be printed by
+.I qi
+as the reason the database is unavailable.
+.SH FILES
+/nameserver/db/prod.{dir,dov,idx,iov,seq,bdx} \- the database
+.br
+/nameserver/db/LockFile \-
+.IR flock (3)
+lock file for the database
+.br
+/nameserv/db/prod.sta \- control file for the database.
+.SH "SEE ALSO"
+.IR "The CCSO Nameserver \- An Introduction" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR "The CCSO Nameserver \- A Description" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR "The CCSO Nameserver \- Why" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR "The CCSO Nameserver \- Server\-Client Protocol" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR "How To Rebuild A Nameserver Database, In 24 Easy Steps" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR "The CCSO Nameserver \- Guide To Installation" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR "The CCSO Nameserver \- A Programmer's Guide" ,
+by Steven Dorner; updated by Paul Pomes.
+.br
+.IR ph (1)
+.SH AUTHOR
+Parts written by Steven Dorner (sdorner@qualcomm.com), Qualcomm, Inc.
+(formerly at the University of Illinois Computing and Communications
+Services Office)
+.PP
+Parts derived from the CSNET Name Server.
+.PP
+Code is now maintained by Paul Pomes (p\-pomes@uiuc.edu),
+University of Illinois Computing and Communications Services Office.

@@ -1,0 +1,209 @@
+head	1.5;
+access;
+symbols;
+locks
+	p-pomes:1.5; strict;
+comment	@# @;
+
+
+1.5
+date	95.06.26.22.14.47;	author p-pomes;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.01.10.23.47.37;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.03.12.04.31.21;	author paul;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.03.12.01.06.59;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.24.20.11.35;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: Makefile.templ,v 1.4 1995/01/10 23:47:37 p-pomes Exp p-pomes $
+
+SHELL = /bin/sh
+
+######################################################################
+# 
+######################################################################
+CC	= _CC_
+CFLAGS	= -DPH -I. _PhFlags_ _Cflags_
+LFLAGS	= _Lflags_
+######################################################################
+# other variables
+######################################################################
+FLGS	= 
+SRCS	= ph.c
+OBJS	= ph.o
+BINS	= ph
+DESTDIR = _PhExecDir_
+DESTMAN = /usr/man/man
+MANSUFF = l
+all:$(BINS)
+######################################################################
+# specific targets
+######################################################################
+ph:	$(OBJS)
+	$(CC) $(CFLAGS) -o ph $(OBJS) _Lflags_ _ApiLib_ _MoreLib_
+
+######################################################################
+# standard targets
+######################################################################
+install:_Para_$(BINS)
+	-mkdir $(DESTDIR)
+	for b in $? ; do \
+	  _SrcDir_/bin/install.sh -m _Mode_ $$b $(DESTDIR); done
+_PhLinks_
+# make ph setuid root if you want to allow rlogin-like ph logins
+	chown root $(DESTDIR)/ph
+	chmod 4511 $(DESTDIR)/ph
+	@@echo "Don't forget to install and/or update the /etc/services"
+	@@echo "for nameservice.  A typical value is"
+	@@echo ""
+	@@echo "ns	105/tcp		csnet-ns nameservice	# CSnet nameserver"
+	@@echo ""
+	@@echo "The service name must match NSSERVICE in this Makefile.  It's"
+	@@echo "also used in /etc/inetd.conf.  Example entry is"
+	@@echo ""
+	@@echo "ns	stream	tcp	nowait	qiserv	/nameserv/bin/qi	qi -d -t30"
+	@@touch install
+
+installman: ph.1
+	cp ph.1 $(DESTMAN)$(MANSUFF)/ph.$(MANSUFF)
+	touch installman
+
+rcs:	$(SRCS)
+	_Ci_ $?
+	touch rcs
+
+clean:
+	rm -f $(BINS) $(OBJS) tags install
+depend: 
+	perl -i -e 'while(<>){print;if (/^# DO NOT DELETE/) {last;}}' Makefile
+	$(CC) _Depend_ $(CFLAGS) $(SRCS) >> Makefile
+@
+
+
+1.4
+log
+@mkdir $(DESTDIR) before installing executeables.  From David Lee
+<T.D.Lee@@durham.ac.uk>.
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.3 1994/03/12 04:31:21 paul Exp p-pomes $
+d37 2
+d43 2
+a44 2
+CFLAGS	= -DPH -DHASSTRTOK -I. _PhFlags_ _Cflags_
+LFLAGS	= 
+d60 1
+a60 1
+	$(CC) $(CFLAGS) -o ph $(OBJS) _ApiLib_ _MoreLib_
+d68 1
+a68 1
+	  _Install_ -m _Mode_ $$b $(DESTDIR); done
+@
+
+
+1.3
+log
+@csnet-ns can't be made to work wither Kerberos.  Stick with ns for now.
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id: Makefile.templ,v 1.2 1994/03/12 01:06:59 paul Exp paul $
+d64 1
+@
+
+
+1.2
+log
+@New copyright statement.
+@
+text
+@d35 1
+a35 1
+# @@(#)$Id$
+d71 1
+a71 1
+	@@echo "for nameservice.  Typical values are"
+d73 1
+a73 3
+	@@echo "csnet-ns	105/tcp		ns		# CSnet nameserver"
+	@@echo "	or"
+	@@echo "ns		105/tcp		nameservice	# CSO nameserver"
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 36
+d58 1
+a58 1
+	$(CC) $(CFLAGS) -o ph $(OBJS) _MoreLib_ _ApiLib_
+d73 1
+a73 1
+	@@echo "csnet-ns	105/tcp				# CSnet nameserver"
+@

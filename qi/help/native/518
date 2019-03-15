@@ -1,0 +1,6 @@
+You have exceeded the "limit" option on a "change" command.  The default
+"limit" is 2, but can be increased or decreased with the command "set
+limit=#", where "#" is the maximum number of entries that can be changed.
+Either use a more specific query expression (e.g., instead of "change
+dorner", use "change steve dorner") or increase the "limit" option (e.g.,
+"set limit=10").

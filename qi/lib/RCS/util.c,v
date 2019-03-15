@@ -1,0 +1,925 @@
+head	1.15;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.15
+date	94.09.09.20.15.13;	author p-pomes;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.03.12.00.01.12;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	93.12.23.09.42.39;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	93.04.06.05.35.13;	author paul;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	92.07.29.04.11.26;	author paul;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	92.07.29.03.38.41;	author paul;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	92.07.28.05.02.43;	author paul;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	92.07.23.17.08.34;	author paul;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	90.12.18.08.41.05;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	89.07.19.10.18.22;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	89.07.05.20.16.37;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	89.03.20.15.14.25;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.12.02.14.44.50;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.11.15.13.34.57;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.08.10.45.01;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.15
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: util.c,v 1.14 1994/03/12 00:01:12 paul Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#ifdef __STDC__
+#include <stdarg.h>
+#else
+#include <varargs.h>
+#endif
+
+static char Delimiters[] = "  ,.:()&#;\n";
+
+void 
+free_ary(ary)
+	INT32 **ary;
+{
+	register int i;
+
+	for (i = 0; ary[i]; i++)
+	{
+		if (ary[i] != (void *) NIL)
+			free(ary[i]);
+		ary[i] = 0;
+	}
+}
+
+int 
+length(ary)
+	INT32 *ary;
+{
+	int	len;
+
+	if (!ary)
+		return (0);
+	for (len = 0; *ary++; len++) ;
+
+	return (len);
+}
+
+int 
+Plength(ary)
+	INT32 **ary;
+{
+	int	len;
+
+	if (!ary)
+		return (0);
+	for (len = 0; *ary++; len++) ;
+
+	return (len);
+}
+
+char *
+getword(str, buf)
+	char *str, *buf;
+{
+	register i = 0;
+
+	/* skip extraneous beginnings */
+	while (*str && any(*str, Delimiters))
+		str++;
+
+	if (*str == '\"')
+	{			/* this is a quoted string */
+		do
+		{		/* grab up to next quote */
+			*buf++ = *str++;
+			if (++i >= (WORDSIZE - 1))	/* limit word length */
+				break;
+			if (*str == '\"')
+			{
+				if (*++str != '\"')
+				{	/* not quoted quote */
+					*buf++ = '\"';
+					break;
+				}
+			}
+		}
+		while (*str);
+
+	} else
+	{
+		/* copy until uninteresting char found */
+		while (*str && !any(*str, Delimiters))
+		{
+			*buf++ = *str++;
+			if (++i >= (WORDSIZE - 1))	/* limit word length */
+				break;
+		}
+	}
+
+	*buf = '\0';
+	return (str);
+}
+
+
+/*
+ * if the string is quoted, strip the quotes in place and return 1 else 0
+ */
+int 
+quoted(str)
+	char *str;
+{
+	register char *ptr = str;
+
+	if (*str != '\"')
+		return 0;
+	while (*ptr = *++str)
+		ptr++;
+	if (ptr[-1] == '\"')
+		ptr[-1] = '\0';
+	return 1;
+}
+
+
+/*
+ * This function returns an index into the index file for string str limit is
+ * the max integer - 1 allowable. returns 1 <= x <= limit-1
+ */
+
+#define SEED  341		/* it's something isn't it? */
+
+INT32 
+ihash(str, seed, limit)
+	char *str;
+	INT32 seed, limit;
+{
+	int	i;
+
+	for (i = seed; *str; str++)
+	{
+		i = i * SEED + (isupper(*str) ? tolower(*str) : *str);
+	}
+	if (i < 0)
+		i = -i;
+	return (i % (limit - 1) + 1);	/* zero not allowed */
+}
+
+static int SysLog = 1;
+int 
+DoSysLog(yes)
+	int yes;
+{
+	SysLog = yes;
+}
+
+#ifdef __STDC__
+int 
+IssueMessage(int severity, char *fmt,...)
+#else /* !__STDC__ */
+int 
+IssueMessage(severity, fmt, va_alist)
+	int severity;
+	char *fmt;
+va_dcl
+#endif /* __STDC__ */
+{
+	va_list	args;
+
+	if (OP_VALUE(NOLOG_OP))
+		return (0);
+#ifdef __STDC__
+	va_start(args, fmt);
+#else /* !__STDC__ */
+	va_start(args);
+#endif /* __STDC__ */
+	if (SysLog)
+	{
+		char	buffer[4096];
+
+		vsprintf(buffer, fmt, args);
+		syslog(severity, "%s", buffer);
+	} else
+	{
+		fprintf(stderr, "Severity %d: ", severity);
+		vfprintf(stderr, fmt, args);
+		fputs("\n", stderr);
+	}
+	va_end(args);
+	return (0);
+}
+@
+
+
+1.14
+log
+@Replaced DontLog with new Options element.  New copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d53 1
+a53 1
+	long **ary;
+d67 1
+a67 1
+	long *ary;
+d78 13
+d161 1
+a161 1
+long 
+d164 1
+a164 1
+	long seed, limit;
+@
+
+
+1.13
+log
+@Replace make_str with strdup.
+D
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d37 6
+a183 1
+	extern int DontLog;	/* qi.c */
+d185 1
+a185 1
+	if (DontLog)
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@a18 17
+char *
+make_str(str)
+	char *str;
+{
+	char	*ptr;
+	int	len;
+
+	len = str ? strlen(str) : 1;
+	if (!(ptr = malloc((unsigned) len + 1)))
+	{
+		IssueMessage(LOG_ERR, "HELP! out of memory !\n");
+		return (NULL);
+	}
+	strcpy(ptr, str ? str : "");
+	return (ptr);
+}
+
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d29 1
+a29 1
+		fprintf(stderr, "HELP! out of memory !\n");
+@
+
+
+1.10
+log
+@Moved #include <strings.h> to qi.h.
+@
+text
+@a10 3
+#include "conf.h"
+#include <stdio.h>
+#include <ctype.h>
+a15 3
+
+#include "log.h"
+#include "qi.h"
+@
+
+
+1.9
+log
+@Random fixes.
+@
+text
+@a13 1
+#include <strings.h>
+@
+
+
+1.8
+log
+@Re-formatted for clarity.
+@
+text
+@d15 1
+d17 3
+d171 1
+a171 1
+	char *fmt
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d3 9
+a11 1
+/*LINTLIBRARY*/
+d16 1
+a16 1
+#include <stdlib.h>
+d22 15
+a36 13
+char *make_str(char *str)
+{
+  char   *ptr;
+  int   len;
+
+  len = str ? strlen(str) : 1;
+  if (!(ptr = malloc((unsigned)len + 1)))
+  {
+    fprintf(stderr, "HELP! out of memory !\n");
+    return (NULL);
+  }
+  strcpy(ptr, str?str:"");
+  return (ptr);
+d39 3
+a41 1
+void free_ary(long **ary)
+d43 1
+a43 1
+  register int i;
+d45 6
+a50 17
+  for (i = 0; ary[i]; i++)
+  {
+    if (ary[i] != (void *) NIL)
+      free(ary[i]);
+    ary[i] = 0;
+  }
+}
+
+int length(long *ary)
+{
+  int   len;
+
+  if (!ary)
+    return (0);
+  for (len = 0; *ary++; len++);
+
+  return (len);
+d53 50
+a102 21
+char *getword(char *str,char *buf)
+{
+  register i = 0;
+
+  /* skip extraneous beginnings */
+  while (*str && any(*str, Delimiters))
+    str++;
+
+  if (*str == '\"')
+  {               /* this is a quoted string */
+    do
+    {             /* grab up to next quote */
+      *buf++ = *str++;
+      if (++i >= (WORDSIZE - 1))  /* limit word length */
+	break;
+      if (*str == '\"')
+      {
+	if (*++str != '\"')
+	{         /* not quoted quote */
+	  *buf++ = '\"';
+	  break;
+a103 2
+      }
+    } while (*str);
+d105 2
+a106 14
+  }
+  else
+  {
+    /* copy until uninteresting char found */
+    while (*str && !any(*str, Delimiters))
+    {
+      *buf++ = *str++;
+      if (++i >= (WORDSIZE - 1))  /* limit word length */
+	break;
+    }
+  }
+
+  *buf = '\0';
+  return (str);
+d110 16
+a125 12
+/* if the string is quoted, strip the quotes in place and return 1 else 0 */
+int quoted(char *str)
+{
+  register char *ptr = str;
+
+  if (*str != '\"')
+    return 0;
+  while (*ptr = *++str)
+    ptr++;
+  if (ptr[-1] == '\"')
+    ptr[-1] = '\0';
+  return 1;
+d131 1
+a131 1
+ * the max integer - 1 allowable. returns 1 <= x <= limit-1 
+d134 1
+a134 1
+#define SEED  341       /* it's something isn't it? */
+d136 14
+a149 11
+long ihash(char *str,long seed,long limit)
+{
+  int   i;
+
+  for (i = seed; *str; str++)
+  {
+    i = i * SEED + (isupper(*str) ? tolower(*str) : *str);
+  }
+  if (i < 0)
+    i = -i;
+  return (i % (limit - 1) + 1);     /* zero not allowed */
+d153 42
+a194 40
+int DoSysLog(int yes)
+{
+    SysLog = yes;
+}
+
+int IssueMessage(int severity,char *fmt,...)
+{
+    va_list args;
+    extern int DontLog; /* qi.c */
+    
+    if (DontLog) return(0);
+    va_start(args,fmt);
+    if (SysLog)
+    {
+      char buffer[4096];
+
+#ifdef NO_VFPRINTF
+      struct _iobuf _strbuf;
+      _strbuf._flag = _IOWRT+_IOSTRG;
+      _strbuf._ptr = buffer;
+      _strbuf._cnt = 32767;
+      _doprnt(fmt, args, &_strbuf);
+      putc('\0', &_strbuf);
+#else
+      vsprintf(buffer,fmt,args);
+#endif
+      syslog(severity,"%s",buffer);
+    }
+    else
+    {
+      fprintf(stderr,"Severity %d: ",severity);
+#ifdef NO_VFPRINTF
+      _doprnt(fmt,args,stderr);
+#else
+      vfprintf(stderr,fmt,args);
+#endif
+      fputs("\n",stderr);
+    }
+    va_end(args);
+    return(0);
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d1 1
+d15 2
+d22 1
+a22 4
+char   *
+make_str(str)           /* copy string argument into malloc'd space,
+		 * return address */
+char   *str;
+d27 1
+a27 1
+  len = strlen(str);
+d33 1
+a33 1
+  strcpy(ptr, str);
+d37 1
+a37 3
+free_ary(ary)   /* for each valid pointer, free the space;
+		 * null term'd search */
+void  **ary;
+d49 1
+a49 2
+length(ary)           /* gives the length of array of pointer ary */
+void **ary;
+d60 1
+a60 4
+char   *
+getword(str, buf)         /* returns start of next word */
+register char *str;       /* where to get it from */
+register char *buf;       /* where to put it */
+d103 1
+a103 2
+quoted(str)
+char   *str;
+d124 1
+a124 4
+long ihash(str, seed, limit)
+char   *str;
+long   seed;
+long   limit;
+d138 1
+a138 2
+DoSysLog(yes)
+int yes;
+d143 1
+a143 2
+IssueMessage(a,b,c,d,e,f,g)
+long a,b,c,d,e,f,g;
+d145 5
+d151 15
+a165 1
+	syslog(a,b,c,d,e,f,g);
+d168 7
+a174 3
+	fprintf(stderr,"Severity %d: ",a);
+	fprintf(stderr,b,c,d,e,f,g);
+	fputs("\n",stderr);
+d176 2
+@
+
+
+1.5
+log
+@No help here.
+@
+text
+@d14 2
+a15 6
+#ifdef ULTRIX43LOG
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+#include "../Include/qi.h"
+@
+
+
+1.4
+log
+@No help here.
+@
+text
+@d19 1
+a19 1
+#include "../include/qi.h"
+@
+
+
+1.3
+log
+@No help here.
+@
+text
+@d1 9
+a10 8
+/***********************************************************************
+* Portions of this software Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  Portions of this software
+* orginally written for CSNET; copyright status unclear at this time.  No
+* warranties expressed or implied, no support provided.  Please do not
+* redistribute it in its present form.  Contact me for details
+* (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d14 5
+d149 20
+@
+
+
+1.2
+log
+@No help here.
+@
+text
+@d1 1
+d12 1
+d15 1
+a15 1
+static char Delimiters[] = " 	,.:()&#;\n";
+d18 2
+a19 2
+make_str(str)			/* copy string argument into malloc'd space,
+				 * return address */
+d22 2
+a23 2
+    char   *ptr;
+    int     len;
+d25 8
+a32 8
+    len = strlen(str);
+    if (!(ptr = (char *) malloc(len + 1)))
+    {
+	fprintf(stderr, "HELP! out of memory !\n");
+	return (NULL);
+    }
+    strcpy(ptr, str);
+    return (ptr);
+d35 3
+a37 3
+free_ary(ary)			/* for each valid pointer, free the space;
+				 * null term'd search */
+char  **ary;
+d39 1
+a39 1
+    register int i;
+d41 6
+a46 6
+    for (i = 0; ary[i]; i++)
+    {
+	if (ary[i] != (char *) NIL)
+	    free(ary[i]);
+	ary[i] = 0;
+    }
+d49 2
+a50 3
+length(ary)			/* gives the length of array of unsigned long
+				 * ary */
+unsigned long *ary;
+d52 1
+a52 1
+    int     len;
+d54 3
+a56 3
+    if (!ary)
+	return (0);
+    for (len = 0; *ary++; len++);
+d58 1
+a58 1
+    return (len);
+d62 3
+a64 3
+getword(str, buf)		/* returns start of next word */
+register char *str;		/* where to get it from */
+register char *buf;		/* where to put it */
+d66 1
+a66 1
+    register i = 0;
+d68 3
+a70 3
+    /* skip extraneous beginnings */
+    while (*str && any(*str, Delimiters))
+	str++;
+d72 16
+a87 16
+    if (*str == '\"')
+    {				/* this is a quoted string */
+	do
+	{			/* grab up to next quote */
+	    *buf++ = *str++;
+	    if (++i >= (WORDSIZE - 1))	/* limit word length */
+		break;
+	    if (*str == '\"')
+	    {
+		if (*++str != '\"')
+		{		/* not quoted quote */
+		    *buf++ = '\"';
+		    break;
+		}
+	    }
+	} while (*str);
+d89 5
+a93 2
+    }
+    else
+d95 3
+a97 7
+	/* copy until uninteresting char found */
+	while (*str && !any(*str, Delimiters))
+	{
+	    *buf++ = *str++;
+	    if (++i >= (WORDSIZE - 1))	/* limit word length */
+		break;
+	}
+d99 1
+d101 2
+a102 2
+    *buf = '\0';
+    return (str);
+d110 1
+a110 1
+    register char *ptr = str;
+d112 7
+a118 7
+    if (*str != '\"')
+	return 0;
+    while (*ptr = *++str)
+	ptr++;
+    if (ptr[-1] == '\"')
+	ptr[-1] = '\0';
+    return 1;
+d127 1
+a127 1
+#define SEED	341		/* it's something isn't it? */
+d129 1
+a129 1
+ihash(str, seed, limit)
+d131 2
+a132 2
+int     seed;
+int     limit;
+d134 1
+a134 1
+    int     i;
+d136 7
+a142 7
+    for (i = seed; *str; str++)
+    {
+	i = i * SEED + (isupper(*str) ? tolower(*str) : *str);
+    }
+    if (i < 0)
+	i = -i;
+    return (i % (limit - 1) + 1);	/* zero not allowed */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 8
+d11 1
+a11 1
+#include "../qi.h"
+d15 1
+a15 1
+char *
+d18 1
+a18 1
+char *str;
+d20 2
+a21 2
+    char *ptr;
+    int len;
+d24 1
+a24 1
+    if (!(ptr = (char *) malloc(len+1)))
+d35 1
+a35 1
+char **ary;
+d51 1
+a51 1
+    int len;
+d60 1
+a60 1
+char *
+d107 1
+a107 1
+char *str;
+d122 2
+a123 2
+ *	This function returns an index into the index file for string str
+ *	limit is the max integer - 1 allowable. returns 1 <= x <= limit-1
+d129 3
+a131 3
+char *str;
+int seed;
+int limit;
+d133 1
+a133 1
+    int i;
+@

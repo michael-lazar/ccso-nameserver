@@ -1,0 +1,3509 @@
+head	1.53;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.53
+date	95.06.10.03.40.37;	author p-pomes;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.03.01.20.07.51;	author p-pomes;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	94.06.16.23.44.52;	author paul;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	94.03.06.20.49.19;	author paul;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	94.03.03.16.53.17;	author paul;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	94.02.24.15.14.15;	author paul;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	93.12.23.09.55.56;	author paul;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	93.12.16.22.57.16;	author paul;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	93.12.09.17.38.49;	author paul;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	93.12.09.17.25.39;	author paul;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	93.11.24.22.39.24;	author paul;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	93.09.01.14.57.17;	author paul;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	93.08.23.16.33.27;	author paul;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	93.08.08.19.52.26;	author paul;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	93.07.24.15.53.20;	author paul;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	93.06.24.22.24.19;	author paul;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	93.04.03.23.53.14;	author paul;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	93.04.02.22.09.16;	author paul;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	93.02.14.19.59.43;	author paul;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	92.12.16.23.27.05;	author paul;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	92.12.12.19.08.02;	author paul;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	92.07.28.16.20.05;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	92.07.27.01.45.14;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	92.07.27.00.59.34;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	90.12.18.08.41.16;	author dorner;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	90.05.16.09.18.15;	author dorner;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	89.07.19.10.18.34;	author dorner;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	89.07.05.20.16.47;	author dorner;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	89.05.16.12.59.00;	author dorner;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	89.05.16.11.51.13;	author dorner;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	89.05.12.09.18.07;	author dorner;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	89.05.08.22.43.39;	author dorner;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	89.03.20.15.14.33;	author dorner;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	88.12.02.14.45.03;	author dorner;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	88.11.15.13.35.08;	author dorner;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	88.07.08.14.00.48;	author dorner;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	88.07.06.20.47.54;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	88.04.29.15.35.22;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	88.04.19.08.12.04;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	88.04.04.14.40.38;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	88.03.18.10.31.09;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.03.04.09.45.11;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.02.18.14.17.48;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.02.17.08.17.57;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.02.15.14.03.10;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	87.12.12.11.28.25;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	87.12.10.16.22.25;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.40;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.53
+log
+@Better checks in AliasIsUsed().
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: change.c,v 1.52 1995/03/01 20:07:51 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+#include <signal.h>
+
+#ifdef KDB
+# include <krb5/krb5.h>
+# include <krb5/kdb.h>
+#endif /* KDB */
+
+static int ChangeEntries __P((INT32 *, ARG *));
+
+extern int end;
+extern int InputType;
+
+/*
+ * Do a change command
+ */
+void
+DoChange(arg)
+    ARG *arg;
+{
+    INT32 *entries = NULL;
+    int  changedCount;
+    int  foundCount;
+
+    if (ReadOnly) {
+	DoReply(LR_READONLY, "changes not allowed to read-only database.");
+	return;
+    } if (!AmHero && !AmOpr && !User) {
+	DoReply(LR_NOTLOG, "You must be logged in to use this command.");
+	return;
+    } if (!ValidQuery(arg, C_CHANGE)) {
+	DoReply(LR_SYNTAX, "Did not understand change command.");
+	return;
+    }
+    else if (!GonnaWrite("DoChange")) {
+	/* GonnaWrite will issue an error message */ ;
+	return;
+    }
+    if (!(entries = DoLookup(arg))) {
+	Unlock("DoChange");
+	free((char *) entries);
+	DoReply(LR_NOMATCH, "No matches to specification.");
+	return;
+    }
+    while (arg->aType != RETURN)
+	arg = arg->aNext;	/* skip query */
+    arg = arg->aNext;
+
+    foundCount = length(entries);
+    if (OP_VALUE(LIMIT_OP) && foundCount > atoi(OP_VALUE(LIMIT_OP)))
+    {
+	Unlock("DoChange");
+	free((char *) entries);
+	DoReply(LR_LIMIT, "Too many entries (%d) selected; limit is %s.",
+		foundCount, OP_VALUE(LIMIT_OP));
+	return;
+    }
+    changedCount = ChangeEntries(entries, arg);
+    Unlock("DoChange");
+    free((char *) entries);
+    entries = NULL;
+    if (foundCount == changedCount)
+	DoReply(LR_OK, "%d entr%s changed.", changedCount,
+		changedCount > 1 ? "ies" : "y");
+    else if (changedCount)
+	DoReply(LR_ERROR, "Only %d entr%s changed (%d found).", changedCount,
+		changedCount > 1 ? "ies" : "y", foundCount);
+    else
+	DoReply(LR_ERROR, "%d entr%s found, none changed.",
+		foundCount, foundCount > 1 ? "ies" : "y");
+}
+
+/*
+** Change selected fields in entries
+*/
+static int
+ChangeEntries(entries, InArgs)
+    INT32 *entries;
+    ARG *InArgs;
+{
+    ARG *arg;
+    QDIR dir;
+    QDIR oldDir;
+    int  successes;
+    int  entryDirty;
+    int  indexDirty;
+    int  i;
+
+#ifdef PASS_AUTH
+    int  pwDirty;
+#endif /* PASS_AUTH */
+    char *reason = NULL;
+#ifdef SIG_BLOCK
+    sigset_t set, oldMask;
+#else
+    int  oldMask;
+#endif
+
+    /* loop through all requested entries */
+    for (successes = 0; *entries; entries++) {
+	/* retrieve the entry */
+	if (!next_ent(*entries)) {
+	    DoReply(-LR_TEMP, "%d:couldn't fetch.", *entries);
+	    IssueMessage(LOG_ERR, "ChangeEntries: %d:couldn't fetch", *entries);
+	    continue;
+	}
+	getdata(&dir);
+	getdata(&oldDir);
+	if (!UserCanChange(dir)) {
+	    IssueMessage(LOG_INFO, "%s not authorized to change entry for %s",
+			 UserAlias, FINDVALUE(dir, F_ALIAS));
+	    DoReply(-LR_AENTRY, "%s:You may not change this entry.",
+		    FINDVALUE(dir, F_ALIAS));
+	}
+	else {
+#ifdef PASS_AUTH
+	    entryDirty = indexDirty = pwDirty = 0;
+#else /* !PASS_AUTH */
+	    entryDirty = indexDirty = 0;
+#endif /* PASS_AUTH */
+	    for (arg = InArgs; arg; arg = arg->aNext) {
+		if (CanChange(dir, arg->aFD)) {
+		    if (OP_VALUE(ADDONLY_OP) && *FINDVALUE(dir, arg->aFD->fdId)) {
+			DoReply(-LR_ADDONLY, "Field has a value.");
+		    }
+		    else {
+			if (arg->aFD->fdId == F_ALIAS) {
+			    if ((reason = BadAlias(dir,arg->aSecond)) != NULL) {
+				DoReply(-LR_VALUE, reason);
+				continue;
+			    }
+			    else if (AliasIsUsed(arg->aSecond, *entries)) {
+				DoReply(-LR_ALIAS, "Alias %s conflicts with other users.",
+					arg->aSecond);
+				continue;
+			    }
+			}
+#ifdef PASS_AUTH
+			else if (arg->aFD->fdId == F_PASSWORD) {
+			    register char *k;
+
+			    for (k = arg->aSecond; *k; k++)
+				if (*k < ' ' || *k > '~') {
+				    DoReply(-LR_VALUE, "Passwords must use only printable characters; sorry.");
+				    DoReply(-LR_VALUE, "If your password met this rule, reissue your login command, and try again.");
+				    break;
+			    }
+			    if (*k)
+				continue;
+#ifdef CRACKLIB
+			    if (k = (char *) FascistCheck(dir, arg->aSecond, CRACKLIB)) {
+				DoReply(-LR_VALUE, "Please use a different password.");
+				DoReply(-LR_VALUE, "The one offered is unsuitable because %s.", k);
+				continue;
+			    }
+#endif /* CRACKLIB */
+#ifdef PRE_ENCRYPT
+			    {
+				char pwCrypt[14];
+
+				strncpy(pwCrypt, crypt(arg->aSecond, arg->aSecond), 13);
+				pwCrypt[13] = '\0';
+				free(arg->aSecond);
+				arg->aSecond = strdup(pwCrypt);
+			    }
+#endif /* PRE_ENCRYPT */
+			}
+#endif /* PASS_AUTH */
+#ifdef MAILDOMAIN
+			else if (arg->aFD->fdId == F_EMAIL) {
+			    char scratch[256];
+
+			    strcpy(scratch, "@@");
+			    strcat(scratch, MAILDOMAIN);
+			    if (strlen(scratch) > 1 &&
+				issub(arg->aSecond, scratch)) {
+				DoReply(-LR_VALUE, "Your email field must not contain addresses ending in @@%s;", MAILDOMAIN);
+				DoReply(-LR_VALUE, "Use a specific login and machine instead.");
+				break;
+			    }
+			}
+#endif /* MAILDOMAIN */
+#ifdef DOSOUND
+			else if (arg->aFD->fdId == F_NAME) {	/* change sound, too */
+			    if (!ChangeDir(&dir, FindFDI(F_SOUND), phonemify(arg->aSecond)))
+				IssueMessage(LOG_ERR, "ChangeEntries: couldn't change sound");
+			}
+#endif
+			if (!ChangeDir(&dir, arg->aFD, arg->aSecond)) {
+			    IssueMessage(LOG_ERR, "ChangeEntries: couldn't change dir entry");
+			    DoReply(-LR_TEMP, "Having difficulties.  Change has failed.");
+			}
+			else {
+#if defined(KRB4_AUTH) && defined(PASS_AUTH)
+			    /* Ph password changes don't go to Kerberos */
+			    if (arg->aFD->fdId == F_PASSWORD &&
+			      *FINDVALUE(dir, F_ALIAS)) {
+				DoReply(-LR_OK, "Ph password change for %s successful.", FINDVALUE(dir, F_ALIAS));
+				DoReply(-LR_OK, "Kerberos password for %s must be changed outside of ph with kpasswd.", FINDVALUE(dir, F_ALIAS));
+			    }
+#endif /* KRB4_AUTH && PASS_AUTH */
+#ifdef KDB
+			    if (arg->aFD->fdId == F_ALIAS &&
+			      *FINDVALUE(oldDir, F_ALIAS)) {
+				kdb_del_entry(FINDVALUE(oldDir, F_ALIAS));
+				if (!kdb_add_entry(arg->aSecond))
+				    DoReply(-LR_OK, "Kerberos password for %s must be reset outside of ph with kpasswd.",
+					arg->aSecond);
+			    }
+#endif /* KDB */
+			}
+#ifdef PASS_AUTH
+			pwDirty = pwDirty || arg->aFD->fdId == F_PASSWORD;
+#endif /* PASS_AUTH */
+			entryDirty = 1;
+			indexDirty = indexDirty || arg->aFD->fdIndexed;
+		    }
+		}
+		else
+		    DoReply(-LR_ACHANGE, "%s:you may not change this field.",
+			    arg->aFD->fdName);
+	    } if (entryDirty) {
+		if (!putdata(dir))
+		    DoReply(-LR_TEMP, "%s:Couldn't store.",
+			    FINDVALUE(dir, F_ALIAS));
+		else {
+		    successes++;
+#ifdef SIGXCPU
+# ifdef SIG_BLOCK
+		    sigemptyset(&set);
+		    sigaddset(&set, SIGXCPU);
+		    (void) sigprocmask(SIG_BLOCK, &set, &oldMask);
+# else /* !SIG_BLOCK */
+		    oldMask = sigblock(sigmask(SIGXCPU));
+# endif /* SIG_BLOCK */
+#endif /* SIGXCPU */
+		    set_date(1);
+		    store_ent();
+		    if (indexDirty) {
+			MakeLookup(oldDir, *entries, unmake_lookup);
+			MakeLookup(dir, *entries, make_lookup);
+		    }
+#ifdef SIGXCPU
+# ifdef SIG_BLOCK
+		    (void) sigprocmask(SIG_SETMASK, &oldMask, NULL);
+# else /* !SIG_BLOCK */
+		    sigsetmask(oldMask);
+# endif /* SIG_BLOCK */
+#endif /* SIGXCPU */
+		    if (OP_VALUE(VERBOSE_OP))
+			DoReply(LR_PROGRESS, "%s:changed.", FINDVALUE(dir, F_ALIAS));
+		    if (*entries == UserEnt) {	/* replace User dir with new dir */
+			FreeDir(&User);
+			FreeDir(&oldDir);
+			User = dir;
+			dir = NULL;
+#ifdef PASS_AUTH
+			if (pwDirty)
+			    crypt_start(PasswordOf(User));
+#endif /* PASS_AUTH */
+			UserAlias = FINDVALUE(User, F_ALIAS);
+			continue;	/* avoid freeing dir, which is now User */
+		    }
+		}
+	    }
+	}
+	FreeDir(&dir);
+	FreeDir(&oldDir);
+    } return (successes);
+}
+
+/*
+** change a dir entry
+*/
+int
+ChangeDir(dir, fd, value)
+    QDIR *dir;
+    FDESC *fd;
+    char *value;
+{
+    char **ptr;
+    int  indx;
+    int  count;
+    char scratch[MAX_LEN+6];	/* to cope with the added NNNN: tag */
+
+    if ((indx = FindField(*dir, fd->fdId)) >= 0) {
+	ptr = (*dir) + indx;
+	free(*ptr);
+    }
+    else if (!*value || strcmp(value, "none")) {
+	count = Plength((INT32 *) *dir) + 2;
+	*dir = (QDIR) realloc((char *) *dir, (unsigned) (count * sizeof (char *)));
+
+	ptr = (*dir) + count - 1;
+	*ptr = NULL;		/* dir terminator */
+	ptr--;			/* back up to right spot */
+    }
+    else {
+	/* we are deleting, && no value presently exists.  do nothing */
+	return (1);
+    }
+
+    /* ptr now points to the proper char pointer */
+    if (strcmp(value, "none")) {
+	sprintf(scratch, "%d:%s", fd->fdId, value);
+
+	/* enforce max length */
+	indx = fd->fdMax + ((char *)strchr(scratch, ':') - scratch) + 1;
+	scratch[indx] = '\0';
+	*ptr = strdup(scratch);
+    }
+    else {
+	/* remove pointer at ptr */
+	do {
+	    *ptr = *(ptr + 1);
+	} while (*++ptr);
+    } return (1);
+}
+
+/*
+** Check to see if alias is in use as an alias or name by any record
+** other than the one belonging to the current user.  (New JLN version).
+*/
+int
+AliasIsUsed(alias, requestor)
+    char *alias;
+    INT32 requestor;
+{
+    QDIR user;
+    ARG *argList;
+    ARG *arg;
+    INT32 *entry, *e1;
+    int  result = ! AmHero;	/* superuser knows what they're doing (?) */
+    char *p, tc;
+#ifdef KDB
+    krb5_boolean more;
+    krb5_error_code retval;
+    krb5_db_entry kentry;
+    krb5_principal newprinc;
+    int nprincs = 1;
+    int exists = FALSE;
+
+    /* Can't re-use an existing principal no matter who you are. */
+    if (retval = krb5_parse_name(alias, &newprinc)) {
+	IssueMessage(LOG_ERR, "AliasIsUsed: krb5_parse_name(%s): %s.",
+	    alias, error_message(retval));
+	return(1);		/* Protocol Failure */
+    }
+    if (retval = krb5_db_get_principal(newprinc, &kentry, &nprincs, &more))
+    {
+	IssueMessage(LOG_ERR, "AliasIsUsed: krb5_db_get_principal(%s): %s.",
+	    alias, error_message(retval));
+	return(1);
+    }
+    krb5_free_principal(newprinc);
+    krb5_db_free_principal(&kentry, nprincs);
+    if (nprincs)
+	exists = TRUE;
+#endif /* KDB */
+
+    /* Can't re-use an existing alias no matter who you are. */
+    if (user = GetAliasDir(alias)) {
+	FreeDir(&user);
+#ifdef KDB
+	if (!exists) {
+	    IssueMessage(LOG_ERR, "AliasIsUsed: %s in qi but not KDC.", alias);
+	    return(1);
+	}
+#endif /* KDB */
+	return(1);
+    }
+#ifdef KDB
+    else if (exists) {
+	IssueMessage(LOG_ERR, "AliasIsUsed: %s in KDC but not in qi.", alias);
+	return(1);
+    }
+#endif /* KDB */
+
+    /* This check is bypassed if a Hero made the request. */
+    if (result) {
+
+	/*
+	** Build a ARG list for making name queries.  Set A_NO_RECURSE to
+	** disable tail recursion into nickname.
+	*/
+	arg = argList = FreshArg();
+	arg->aType = COMMAND;
+	arg->aFirst = strdup("query");
+	arg->aFlag = A_NO_RECURSE;
+	arg->aNext = FreshArg();
+	arg = arg->aNext;
+	arg->aType = VALUE | EQUAL | VALUE2;
+	arg->aFirst = strdup("name");
+	arg->aSecond = strdup(alias);
+	arg->aFlag = A_NO_RECURSE;
+
+	/*
+	** Loop through checks until we either match the user making the
+	** request (result=0) or exhaust permutations (result=1).
+	*/
+	while (1) {
+	    (void) ValidQuery(argList, C_QUERY);
+	    if ((entry = DoLookup(argList)) != NULL) {
+		for (result = 1, e1 = entry; *e1 && result; e1++) {
+		    next_ent(*e1);
+		    result = (CurrentIndex() == requestor) ? 0 : 1;
+		}
+		free((char *) entry);
+		entry = NULL;
+		break;
+	    }
+
+	    /*
+	    ** If the first DoLookup() failed to match anyone, break up the
+	    ** requested alias into separate words.  If any string is a single
+	    ** character, make it into a wildcard, e.g, "p-pomes" becomes
+	    ** "p*" and "pomes".
+	    */
+	    if (p = strchr(arg->aSecond, '-')) {
+		*p = '\0';
+		if (strlen(arg->aSecond) == 1) {
+		    tc = *arg->aSecond;
+		    arg->aSecond = strdup("  ");
+		    (void) sprintf(arg->aSecond, "%c*", tc);
+		}
+		if (p[1]) {
+		    arg->aNext = FreshArg();
+		    arg = arg->aNext;
+		    arg->aType = VALUE | EQUAL | VALUE2;
+		    arg->aFirst = strdup("name");
+		    arg->aSecond = strdup(p + 1);
+		    arg->aFlag = A_NO_RECURSE;
+		    if (strlen(arg->aSecond) == 1) {
+			tc = *arg->aSecond;
+			arg->aSecond = strdup("  ");
+			(void) sprintf(arg->aSecond, "%c*", tc);
+		    }
+		}
+		continue;
+	    }
+	    result = 0;
+	    break;
+	}
+	FreeArgs(argList);
+    }
+    if (requestor && CurrentIndex() != requestor) {
+	if (!result)
+	    IssueMessage(LOG_INFO, "Caught one; %x was going to be stored in %x",
+			 requestor, CurrentIndex());
+	if (!next_ent(requestor)) {
+	    DoReply(-LR_ERROR, "Fatal database error.");
+	    cleanup(-1);
+	}
+    }
+    return result;
+}
+
+/*
+** Check to see if an alias is reasonable
+*/
+static char *
+BadReason[] = {
+    "Alias is too long or too short.",
+    "Alias field is locked and may not be changed.",
+    "Aliases must begin with an alpha character, a-z",
+    "Only alphanumerics and ``-'' are allowed in aliases.",
+    "Alias is too common a name.",
+};
+
+char *
+BadAlias(dir, alias)
+    QDIR dir;
+    char *alias;
+{
+    char *cp;
+    int  len;
+
+    if (alias == NULL)
+	return (BadReason[0]);
+    len = strlen(alias);
+    if (len < MIN_ALIAS && !(len == 0 && AmHero) ||
+	len > FindFDI(F_ALIAS)->fdMax)
+	return (BadReason[0]);
+
+#ifdef MAX_ALIAS
+    if (len > MAX_ALIAS)
+	return (BadReason[0]);
+    if (dir != NULL && !AmOpr && !AmHero && *FINDVALUE(dir, F_LOCKED))
+	return (BadReason[1]);
+#endif
+    if (!isalpha(*alias))
+	return (BadReason[2]);
+    for (cp = alias; *cp; cp++)
+	if (!isalnum(*cp) && *cp != '-')
+	    return (BadReason[3]);
+    if (RateAKey(alias) < 0)
+	return (BadReason[4]);
+
+    return (NULL);
+}
+@
+
+
+1.52
+log
+@working version checkpoint.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: change.c,v 1.55 1995/02/28 19:15:41 p-pomes Exp $";
+d324 1
+a324 1
+    char scratch[MAX_LEN];
+d381 1
+a381 1
+    int exists;
+d385 2
+a386 2
+	IssueMessage(LOG_ERR, "AliasIsUsed: parse failure while parsing '%s", 
+	    alias);
+d391 2
+a392 2
+	IssueMessage(LOG_ERR, "AliasIsUsed: failure %d while verifying '%s",
+	    retval, alias);
+d405 2
+a406 3
+	if (exists != (CurrentIndex() == requestor)) {
+	    IssueMessage(LOG_ERR, "AliasIsUsed: %s not in both qi and KDB",
+		alias);
+d410 6
+a415 1
+	return ((CurrentIndex() == requestor) ? 0 : 1);
+d417 1
+d439 1
+a439 1
+	** request (result=0) or exhaust permutations (result=1).  
+@
+
+
+1.51
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: change.c,v 1.50 1994/06/16 23:44:52 paul Exp p-pomes $";
+d42 1
+d44 4
+a47 1
+#include <signal.h>
+d106 1
+a106 1
+	DoReply(LR_ERROR, "Only %d entr%s changed (%d found)", changedCount,
+d127 1
+d129 1
+a129 1
+#ifndef KERBEROS
+d131 1
+a131 1
+#endif /* !KERBEROS */
+d152 1
+a152 1
+	    DoReply(-LR_AENTRY, "%s:You may not change this entry.\n",
+d156 3
+a158 1
+#ifdef KERBEROS
+d160 1
+a160 3
+#else /* !KERBEROS */
+	    entryDirty = indexDirty = pwDirty = 0;
+#endif /* KERBEROS */
+d178 2
+a179 2
+#ifndef KERBEROS
+			    else if (arg->aFD->fdId == F_PASSWORD) {
+d208 1
+a208 1
+#endif /* !KERBEROS */
+d215 2
+a216 1
+			    if (issub(arg->aSecond, scratch)) {
+d233 20
+a252 1
+#ifndef KERBEROS
+d254 1
+a254 1
+#endif /* !KERBEROS */
+d269 1
+a269 1
+#ifdef SIG_BLOCK
+d273 1
+a273 1
+#else
+d275 2
+a276 2
+#endif
+#endif
+d284 1
+a284 1
+#ifdef SIG_BLOCK
+d286 1
+a286 1
+#else
+d288 2
+a289 2
+#endif
+#endif
+d297 1
+a297 1
+#ifndef KERBEROS
+d300 1
+a300 1
+#endif /* !KERBEROS */
+d310 6
+a315 3
+}				/*
+				 * * change a dir entry
+				 */ int
+d375 25
+d404 7
+d486 1
+a486 1
+	    DoReply(-LR_ERROR, "Fatal database error.\n");
+@
+
+
+1.50
+log
+@Chris Koenigsberg <ckk@@uchicago.edu> points out that a check block that
+uses MAILDOMAIN must be wrapped with #ifdef MAILDOMAIN.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: change.c,v 1.49 1994/05/05 21:21:51 paul Exp paul $";
+d45 1
+a45 1
+static int ChangeEntries __P((long *, ARG *));
+d57 1
+a57 1
+    long *entries = NULL;
+d114 1
+a114 1
+    long *entries;
+d303 1
+a303 1
+	count = length((long *) *dir) + 2;
+d339 1
+a339 1
+    long requestor;
+d344 1
+a344 1
+    long *entry, *e1;
+@
+
+
+1.49
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: change.c,v 1.48 1994/03/12 00:24:45 paul Exp $";
+d204 1
+d216 1
+@
+
+
+1.48
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d139 1
+a139 1
+	    IssueMessage(LOG_WARNING, "%d:couldn't fetch.", *entries);
+d145 1
+a145 1
+	    IssueMessage(LOG_INFO, "%s not authorized to change entry for %s.",
+d218 1
+a218 1
+				IssueMessage(LOG_WARNING, "Couldn't change sound.");
+d222 1
+a222 1
+			    IssueMessage(LOG_WARNING, "Couldn't change dir entry.");
+d421 1
+a421 1
+	    IssueMessage(LOG_INFO, "Caught one; %x was going to be stored in %x.",
+@
+
+
+1.47
+log
+@On the road to finding a malloc bug.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees.  No warranties of any
+ * kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed for commercial purposes.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.46
+log
+@zero freed pointers.
+@
+text
+@d25 1
+a25 1
+    long *entries;
+d65 1
+a65 1
+    entries = 0;
+d165 1
+a165 1
+				pwCrypt[13] = 0;
+d247 2
+a248 1
+	} FreeDir(&dir);
+d287 1
+a287 1
+	scratch[indx] = 0;
+d350 1
+a350 1
+		entry = 0;
+d361 1
+a361 1
+		*p = 0;
+@
+
+
+1.45
+log
+@Clarify array index arithmetic.
+@
+text
+@d65 1
+d349 1
+@
+
+
+1.44
+log
+@Replaced make_str() with strdup().
+@
+text
+@d282 1
+d284 2
+a285 1
+	scratch[fd->fdMax + strchr(scratch, ':') - scratch + 1] = 0;
+@
+
+
+1.43
+log
+@BadAlias() now returns a char * pointer to the message that explains
+why, or NULL if the alias is OK.  BadAlias() also calls RateAKey() to
+insure easily searched values.
+@
+text
+@d166 1
+a166 1
+				arg->aSecond = make_str(pwCrypt);
+d284 1
+a284 1
+	*ptr = make_str(scratch);
+d325 1
+a325 1
+	arg->aFirst = make_str("query");
+d330 2
+a331 2
+	arg->aFirst = make_str("name");
+	arg->aSecond = make_str(alias);
+d359 1
+a359 1
+		    arg->aSecond = make_str("  ");
+d366 2
+a367 2
+		    arg->aFirst = make_str("name");
+		    arg->aSecond = make_str(p + 1);
+d371 1
+a371 1
+			arg->aSecond = make_str("  ");
+@
+
+
+1.42
+log
+@Enhanced comments.
+@
+text
+@d94 1
+a94 1
+    int  reason;
+d130 3
+a132 18
+			    if (reason = BadAlias(dir, arg->aSecond)) {
+				switch (reason) {
+				case 1:
+				    DoReply(-LR_VALUE, "Alias is too long or too short.");
+				    break;
+				case 2:
+				    DoReply(-LR_VALUE, "Only alphanumerics and ``-'' are allowed in aliases.");
+				    break;
+				case 3:
+				    DoReply(-LR_VALUE, "Alias field is locked and may not be changed.");
+				    break;
+				case 4:
+				    DoReply(-LR_VALUE, "Aliases must begin with an alpha character, a-z");
+				    break;
+				default:
+				    DoReply(-LR_VALUE, "Alias is bad.");
+				    break;
+				} continue;
+d397 10
+a406 1
+int
+d415 1
+a415 1
+	return (1);
+d419 1
+a419 1
+	return (1);
+d423 1
+a423 1
+	return (1);
+d425 1
+a425 1
+	return (3);
+d428 1
+a428 1
+	return (4);
+d431 3
+a433 1
+	    return (2);
+d435 1
+a435 1
+    return (0);
+@
+
+
+1.41
+log
+@streamlined Hero check in AliasIsUsed().
+@
+text
+@d322 1
+a322 1
+    int  result = ! AmHero;
+d325 1
+d330 2
+d333 5
+d348 5
+d363 7
+@
+
+
+1.40
+log
+@Allow a new alias to match other names iff it also matches the requestor
+as well.  To cut down spoofing, tail recursion of nicknames is disabled
+during the check.
+
+/pbp
+@
+text
+@d183 1
+a183 1
+#endif /* PRE_ENCRYPT */ 
+d185 1
+a185 1
+#endif /* !KERBEROS */ 
+d322 1
+a322 1
+    int  result;
+d327 1
+a327 1
+	result = CurrentIndex() == requestor ? 0 : 1;
+d329 1
+a329 1
+    else {
+d345 1
+a345 1
+		    result = CurrentIndex() == requestor ? 0 : 1;
+@
+
+
+1.39
+log
+@Re-arrange code to force Unlock() before terminal i/o.
+@
+text
+@d321 1
+a321 1
+    long *entry;
+d323 1
+a323 1
+    char *p;
+d333 1
+d339 1
+d343 2
+a344 2
+		if (length(entry) == 1) {
+		    next_ent(*entry);
+d347 1
+a347 3
+		else {
+		    result = 1;
+		} free((char *) entry);
+d349 2
+a350 1
+	    } if (p = strchr(arg->aSecond, '-')) {
+d352 5
+d363 10
+a372 2
+		} continue;
+	    } result = 0;
+d374 4
+a377 2
+	} FreeArgs(argList);
+    } if (requestor && CurrentIndex() != requestor) {
+d385 2
+a386 1
+    } return result;
+@
+
+
+1.38
+log
+@Recovering from indent changes.
+@
+text
+@d42 4
+a45 1
+    } if (!(entries = DoLookup(arg))) {
+d47 3
+a49 2
+	goto done;
+    } while (arg->aType != RETURN)
+d55 3
+d60 6
+a65 1
+    else if (foundCount == (changedCount = ChangeEntries(entries, arg)))
+a73 4
+
+  done:
+    Unlock("DoChange");
+    free((char *) entries);
+@
+
+
+1.37
+log
+@*** empty log message ***
+@
+text
+@d66 1
+a66 1
+}				/*
+d68 4
+a71 2
+				 * * Change selected fields in entries
+				 */ static int
+a84 1
+
+a86 1
+
+a88 1
+
+a90 1
+
+d284 4
+a287 1
+    } /* ptr now points to the proper char pointer */ if (strcmp(value, "none")) {
+d299 7
+a305 4
+}				/*
+				 * * Check to see if alias is in use as an alias or name by any record
+				 * * other than the one belonging to the current user.  (New JLN version).
+				 */ int
+d362 6
+a367 3
+}				/*
+				 * * Check to see if an alias is reasonable
+				 */ int
+@
+
+
+1.36
+log
+@Added POSIX signal handling.
+@
+text
+@d21 1
+a21 1
+void 
+d23 1
+a23 1
+	ARG *arg;
+d25 42
+a66 31
+	long	*entries;
+	int	changedCount;
+	int	foundCount;
+
+	if (ReadOnly)
+	{
+		DoReply(LR_READONLY, "changes not allowed to read-only database.");
+		return;
+	}
+	if (!AmHero && !AmOpr && !User)
+	{
+		DoReply(LR_NOTLOG, "You must be logged in to use this command.");
+		return;
+	}
+	if (!ValidQuery(arg, C_CHANGE))
+	{
+		DoReply(LR_SYNTAX, "Did not understand change command.");
+		return;
+	} else if (!GonnaWrite())
+	{
+		/* GonnaWrite will issue an error message */ ;
+		return;
+	}
+	if (!(entries = DoLookup(arg)))
+	{
+		DoReply(LR_NOMATCH, "No matches to specification.");
+		goto done;
+	}
+	while (arg->aType != RETURN)
+		arg = arg->aNext;	/* skip query */
+	arg = arg->aNext;
+d68 2
+a69 23
+	foundCount = length(entries);
+	if (OP_VALUE(LIMIT_OP) && foundCount > atoi(OP_VALUE(LIMIT_OP)))
+		DoReply(LR_LIMIT, "Too many entries (%d) selected; limit is %s.",
+			foundCount, OP_VALUE(LIMIT_OP));
+	else if (foundCount == (changedCount = ChangeEntries(entries, arg)))
+		DoReply(LR_OK, "%d entr%s changed.", changedCount,
+			changedCount > 1 ? "ies" : "y");
+	else if (changedCount)
+		DoReply(LR_ERROR, "Only %d entr%s changed (%d found)", changedCount,
+			changedCount > 1 ? "ies" : "y", foundCount);
+	else
+		DoReply(LR_ERROR, "%d entr%s found, none changed.",
+			foundCount, foundCount > 1 ? "ies" : "y");
+
+      done:
+	Unlock();
+	free((char *) entries);
+}
+
+/*
+ * Change selected fields in entries
+ */
+static int 
+d71 2
+a72 2
+	long *entries;
+	ARG *InArgs;
+d74 7
+a80 6
+	ARG	*arg;
+	QDIR	dir;
+	QDIR	oldDir;
+	int	successes;
+	int	entryDirty;
+	int	indexDirty;
+d82 2
+a83 1
+	int	pwDirty;
+d85 2
+a86 1
+	int	reason;
+d88 2
+a89 1
+	sigset_t set, oldMask;
+d91 2
+a92 1
+	int	oldMask;
+d95 17
+a111 20
+	/* loop through all requested entries */
+	for (successes = 0; *entries; entries++)
+	{
+		/* retrieve the entry */
+		if (!next_ent(*entries))
+		{
+			DoReply(-LR_TEMP, "%d:couldn't fetch.", *entries);
+			IssueMessage(LOG_WARNING, "%d:couldn't fetch.", *entries);
+			continue;
+		}
+		getdata(&dir);
+		getdata(&oldDir);
+		if (!UserCanChange(dir))
+		{
+			IssueMessage(LOG_INFO, "%s not authorized to change entry for %s.",
+				     UserAlias, FINDVALUE(dir, F_ALIAS));
+			DoReply(-LR_AENTRY, "%s:You may not change this entry.\n",
+				FINDVALUE(dir, F_ALIAS));
+		} else
+		{
+d113 1
+a113 1
+			entryDirty = indexDirty = 0;
+d115 1
+a115 1
+			entryDirty = indexDirty = pwDirty = 0;
+d117 32
+a148 33
+			for (arg = InArgs; arg; arg = arg->aNext)
+			{
+				if (CanChange(dir, arg->aFD))
+				{
+					if (OP_VALUE(ADDONLY_OP) && *FINDVALUE(dir, arg->aFD->fdId))
+					{
+						DoReply(-LR_ADDONLY, "Field has a value.");
+					} else
+					{
+						if (arg->aFD->fdId == F_ALIAS)
+						{
+							if (reason = BadAlias(arg->aSecond))
+							{
+								switch (reason)
+								{
+								    case 1:
+									DoReply(-LR_VALUE, "Alias is too long or too short.");
+									break;
+								    case 2:
+									DoReply(-LR_VALUE, "Only alphanumerics and ``-'' are allowed in aliases.");
+									break;
+								    default:
+									DoReply(-LR_VALUE, "Alias is bad.");
+									break;
+								}
+								continue;
+							} else if (AliasIsUsed(arg->aSecond, *entries))
+							{
+								DoReply(-LR_ALIAS, "Alias %s conflicts with other users.",
+									arg->aSecond);
+								continue;
+							}
+						}
+d150 41
+a190 38
+						else if (arg->aFD->fdId == F_PASSWORD)
+						{
+							register char *k;
+
+							for (k = arg->aSecond; *k; k++)
+								if (*k < ' ' || *k > '~')
+								{
+									DoReply(-LR_VALUE, "Passwords must use only printable characters; sorry.");
+									DoReply(-LR_VALUE, "If your password met this rule, reissue your login command, and try again.");
+									break;
+								}
+							if (*k)
+								continue;
+# ifdef PRE_ENCRYPT
+							{
+								char	pwCrypt[14];
+
+								strncpy(pwCrypt, crypt(arg->aSecond, arg->aSecond), 13);
+								pwCrypt[13] = 0;
+								free(arg->aSecond);
+								arg->aSecond = make_str(pwCrypt);
+							}
+# endif /* PRE_ENCRYPT */
+						}
+#endif /* !KERBEROS */
+						else if (arg->aFD->fdId == F_EMAIL)
+						{
+							char	scratch[256];
+
+							strcpy(scratch, "@@");
+							strcat(scratch, MAILDOMAIN);
+							if (issub(arg->aSecond, scratch))
+							{
+								DoReply(-LR_VALUE, "Your email field must not contain addresses ending in @@%s;", MAILDOMAIN);
+								DoReply(-LR_VALUE, "Use a specific login and machine instead.");
+								break;
+							}
+						}
+d192 4
+a195 5
+						else if (arg->aFD->fdId == F_NAME)
+						{	/* change sound, too */
+							if (!ChangeDir(&dir, FindFDI(F_SOUND), phonemify(arg->aSecond)))
+								IssueMessage(LOG_WARNING, "Couldn't change sound.");
+						}
+d197 4
+a200 5
+						if (!ChangeDir(&dir, arg->aFD, arg->aSecond))
+						{
+							IssueMessage(LOG_WARNING, "Couldn't change dir entry.");
+							DoReply(-LR_TEMP, "Having difficulties.  Change has failed.");
+						}
+d202 1
+a202 1
+						pwDirty = pwDirty || arg->aFD->fdId == F_PASSWORD;
+d204 13
+a216 15
+						entryDirty = 1;
+						indexDirty = indexDirty || arg->aFD->fdIndexed;
+					}
+				} else
+					DoReply(-LR_ACHANGE, "%s:you may not change this field.",
+						arg->aFD->fdName);
+			}
+			if (entryDirty)
+			{
+				if (!putdata(dir))
+					DoReply(-LR_TEMP, "%s:Couldn't store.",
+						FINDVALUE(dir, F_ALIAS));
+				else
+				{
+					successes++;
+d218 7
+a224 8
+
+# ifdef SIG_BLOCK
+					sigemptyset(&set);
+					sigaddset(&set, SIGXCPU);
+					(void) sigprocmask(SIG_BLOCK, &set, &oldMask);
+# else
+					oldMask = sigblock(sigmask(SIGXCPU));
+# endif
+d226 6
+a231 7
+					set_date(1);
+					store_ent();
+					if (indexDirty)
+					{
+						MakeLookup(oldDir, *entries, unmake_lookup);
+						MakeLookup(dir, *entries, make_lookup);
+					}
+d233 5
+a237 5
+# ifdef SIG_BLOCK
+					(void) sigprocmask(SIG_SETMASK, &oldMask, NULL);
+# else
+					sigsetmask(oldMask);
+# endif
+d239 7
+a245 8
+					if (OP_VALUE(VERBOSE_OP))
+						DoReply(LR_PROGRESS, "%s:changed.", FINDVALUE(dir, F_ALIAS));
+					if (*entries == UserEnt)
+					{	/* replace User dir with new dir */
+						FreeDir(&User);
+						FreeDir(&oldDir);
+						User = dir;
+						dir = NULL;
+d247 2
+a248 2
+						if (pwDirty)
+							crypt_start(PasswordOf(User));
+d250 3
+a252 5
+						UserAlias = FINDVALUE(User, F_ALIAS);
+						continue;	/* avoid freeing dir, which is now User */
+					}
+				}
+			}
+d254 7
+a260 10
+		FreeDir(&dir);
+		FreeDir(&oldDir);
+	}
+	return (successes);
+}
+
+/*
+ * change a dir entry
+ */
+int 
+d262 3
+a264 3
+	QDIR *dir;
+	FDESC *fd;
+	char *value;
+d266 19
+a284 39
+	char	**ptr;
+	int	indx;
+	int	count;
+	char	scratch[MAX_LEN];
+
+	if ((indx = FindField(*dir, fd->fdId)) >= 0)
+	{
+		ptr = (*dir) + indx;
+		free(*ptr);
+	} else if (!*value || strcmp(value, "none"))
+	{
+		count = length((long *) *dir) + 2;
+		*dir = (QDIR) realloc((char *) *dir, (unsigned) (count * sizeof (char *)));
+
+		ptr = (*dir) + count - 1;
+		*ptr = NULL; /* dir terminator */
+		ptr--;	/* back up to right spot */
+	} else
+	{
+		/* we are deleting, && no value presently exists.  do nothing */
+		return (1);
+	}
+
+	/* ptr now points to the proper char pointer */
+	if (strcmp(value, "none"))
+	{
+		sprintf(scratch, "%d:%s", fd->fdId, value);
+		/* enforce max length */
+		scratch[fd->fdMax + strchr(scratch, ':') - scratch + 1] = 0;
+		*ptr = make_str(scratch);
+	} else
+	{
+		/* remove pointer at ptr */
+		do
+		{
+			*ptr = *(ptr + 1);
+		}
+		while (*++ptr);
+	}
+d286 16
+a301 7
+}
+
+/*
+ * Check to see if alias is in use as an alias or name by any record
+ * other than the one belonging to the current user.  (New JLN version).
+ */
+int 
+d303 2
+a304 2
+	char *alias;
+	long requestor;
+d306 26
+a331 52
+	QDIR	user;
+	ARG	*argList;
+	ARG	*arg;
+	long	*entry;
+	int	result;
+	char	*p;
+
+	if (user = GetAliasDir(alias))
+	{
+		FreeDir(&user);
+		result = CurrentIndex() == requestor ? 0 : 1;
+	} else
+	{
+		arg = argList = FreshArg();
+		arg->aType = COMMAND;
+		arg->aFirst = make_str("query");
+		arg->aNext = FreshArg();
+		arg = arg->aNext;
+		arg->aType = VALUE | EQUAL | VALUE2;
+		arg->aFirst = make_str("name");
+		arg->aSecond = make_str(alias);
+		while (1)
+		{
+			(void) ValidQuery(argList, C_QUERY);
+			if ((entry = DoLookup(argList)) != NULL)
+			{
+				if (length(entry) == 1)
+				{
+					next_ent(*entry);
+					result = CurrentIndex() == requestor ? 0 : 1;
+				} else
+				{
+					result = 1;
+				}
+				free((char *) entry);
+				break;
+			}
+			if (p = strchr(arg->aSecond, '-'))
+			{
+				*p = 0;
+				if (p[1])
+				{
+					arg->aNext = FreshArg();
+					arg = arg->aNext;
+					arg->aType = VALUE | EQUAL | VALUE2;
+					arg->aFirst = make_str("name");
+					arg->aSecond = make_str(p + 1);
+				}
+				continue;
+			}
+			result = 0;
+			break;
+d333 23
+a355 1
+		FreeArgs(argList);
+d357 7
+a363 20
+	if (requestor && CurrentIndex() != requestor)
+	{
+		if (!result)
+			IssueMessage(LOG_INFO, "Caught one; %x was going to be stored in %x.",
+				     requestor, CurrentIndex());
+		if (!next_ent(requestor))
+		{
+			DoReply(-LR_ERROR, "Fatal database error.\n");
+			cleanup(-1);
+		}
+	}
+	return result;
+}
+
+/*
+ * Check to see if an alias is reasonable
+ */
+int 
+BadAlias(alias)
+	char *alias;
+d365 2
+a366 2
+	char	*cp;
+	int	len;
+d368 6
+a373 4
+	len = strlen(alias);
+	if (len < MIN_ALIAS && !(len == 0 && AmHero) ||
+	    len > FindFDI(F_ALIAS)->fdMax)
+		return (1);
+d376 4
+a379 2
+	if (len > MAX_ALIAS)
+		return (1);
+d381 5
+a385 3
+	for (cp = alias; *cp; cp++)
+		if (!isalnum(*cp) && *cp != '-')
+			return (2);
+d387 1
+a387 1
+	return (0);
+@
+
+
+1.35
+log
+@Hook to prevent long aliases from getting created.
+@
+text
+@d94 3
+d98 1
+d121 1
+a121 1
+			oldMask = entryDirty = indexDirty = 0;
+d123 1
+a123 1
+			oldMask = entryDirty = indexDirty = pwDirty = 0;
+d228 6
+d235 1
+d245 3
+d249 1
+d312 1
+a312 1
+		scratch[fd->fdMax + index(scratch, ':') - scratch + 1] = 0;
+d372 1
+a372 1
+			if (p = index(arg->aSecond, '-'))
+@
+
+
+1.34
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d400 2
+a401 1
+	if (len < MIN_ALIAS && !(len == 0 && AmHero) || len > FindFDI(F_ALIAS)->fdMax)
+d404 4
+@
+
+
+1.33
+log
+@Kerberos changes from Brown University.
+@
+text
+@d13 2
+d79 1
+a79 1
+int 
+d383 1
+a383 1
+			cleanup(1);
+@
+
+
+1.32
+log
+@Allow login to read-only database but disallow all changes.  This allows
+terminal server users to validate their passwords while the database is
+marked read-only for updates.
+@
+text
+@d88 1
+d90 1
+d114 3
+d118 1
+d151 3
+a153 1
+						} else if (arg->aFD->fdId == F_PASSWORD)
+d166 1
+a166 1
+#ifdef PRE_ENCRYPT
+d175 4
+a178 2
+#endif
+						} else if (arg->aFD->fdId == F_EMAIL)
+d203 1
+d205 1
+d242 1
+d245 1
+@
+
+
+1.31
+log
+@Now supports the less-than-all-powerful hero.  If the hero field
+contains the string "opr", "oper", or "operator", then the user
+is allowed nearly unlimited proxy-like priviledges.  The exception
+is that the operator may not change an entry of any user that has
+a non-empty hero field.  Use is for consultants so that they can
+change passwords and email entries, but not name or id fields.
+In addition they can't add or delete entries.
+@
+text
+@d27 5
+@
+
+
+1.30
+log
+@DOn't reset signal mask if SIGXCPU missing.
+@
+text
+@d27 1
+a27 1
+	if (!AmHero && !User)
+@
+
+
+1.29
+log
+@Up-cased all #define's.
+@
+text
+@d204 1
+d206 1
+d214 1
+d216 1
+@
+
+
+1.28
+log
+@Revised #include file list.
+@
+text
+@d102 1
+a102 1
+				     UserAlias, FindValue(dir, F_ALIAS));
+d104 1
+a104 1
+				FindValue(dir, F_ALIAS));
+d112 1
+a112 1
+					if (OP_VALUE(ADDONLY_OP) && *FindValue(dir, arg->aFD->fdId))
+d168 1
+a168 1
+							strcat(scratch, MailDomain);
+d171 1
+a171 1
+								DoReply(-LR_VALUE, "Your email field must not contain addresses ending in %s;", MailDomain);
+d200 1
+a200 1
+						FindValue(dir, F_ALIAS));
+d214 1
+a214 1
+						DoReply(LR_PROGRESS, "%s:changed.", FindValue(dir, F_ALIAS));
+d223 1
+a223 1
+						UserAlias = FindValue(User, F_ALIAS);
+@
+
+
+1.27
+log
+@*** empty log message ***
+@
+text
+@a10 2
+#include <stdio.h>
+#include <ctype.h>
+a11 5
+#include "commands.h"
+#include "options.h"
+#include "field.h"
+#include "qi.h"
+
+@
+
+
+1.26
+log
+@Re-formatted for clarity.
+@
+text
+@d339 1
+a339 1
+			if (p = strchr(arg->aSecond, '-'))
+@
+
+
+1.25
+log
+@Last Dorner changes.
+@
+text
+@a1 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  No warranties of any
+* kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed for commercial purposes.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu
+**********************************************************************/
+d3 8
+d23 6
+a28 4
+/***********************************************************************
+* Do a change command
+***********************************************************************/
+void DoChange(Arg *theArg)
+d30 44
+a73 50
+  long *theEntries;
+  int   changedCount;
+  int   foundCount;
+
+  if (!AmHero && !User)
+  {
+    DoReply(LR_NOTLOG, "You must be logged in to use this command.");
+    return;
+  }
+
+  if (!ValidQuery(theArg, C_CHANGE))
+  {
+    DoReply(LR_SYNTAX, "Did not understand change command.");
+    return;
+  }
+  else if (!GonnaWrite())
+  {
+     /* GonnaWrite will issue an error message */ ;
+    return;
+  }
+
+  if (!(theEntries = DoLookup(theArg)))
+  {
+    DoReply(LR_NOMATCH, "No matches to specification.");
+    goto done;
+  }
+
+  while (theArg->aType != RETURN)
+    theArg = theArg->aNext;     /* skip query */
+  theArg = theArg->aNext;
+
+  foundCount = length(theEntries);
+  if (OP_VALUE(LIMIT_OP) && foundCount > atoi(OP_VALUE(LIMIT_OP)))
+    DoReply(LR_LIMIT, "Too many entries (%d) selected; limit is %s.",
+	foundCount, OP_VALUE(LIMIT_OP));
+  else
+  if (foundCount == (changedCount = ChangeEntries(theEntries, theArg)))
+    DoReply(LR_OK, "%d entr%s changed.", changedCount,
+	changedCount > 1 ? "ies" : "y");
+  else
+  if (changedCount)
+    DoReply(LR_ERROR, "Only %d entr%s changed (%d found)", changedCount,
+	changedCount > 1 ? "ies" : "y", foundCount);
+  else
+    DoReply(LR_ERROR, "%d entr%s found, none changed.",
+	foundCount, foundCount > 1 ? "ies" : "y");
+
+done:
+  Unlock();
+  free((char *)theEntries);
+d76 7
+a82 4
+/***********************************************************************
+* Change selected fields in entries
+***********************************************************************/
+int ChangeEntries(long *theEntries,Arg *theArgs)
+d84 15
+a98 50
+  Arg  *theArg;
+  Dir   dir;
+  Dir   oldDir;
+  int   successes;
+  int   entryDirty;
+  int   indexDirty;
+  int   pwDirty;
+  int   reason;
+  int   oldMask;
+  char   *phonemify();
+  char  **getdata();
+
+  /* loop through all requested entries */
+  for (successes = 0; *theEntries; theEntries++)
+  {
+    /* retrieve the entry */
+    if (!next_ent(*theEntries))
+    {
+      DoReply(-LR_TEMP, "%d:couldn't fetch.", *theEntries);
+      IssueMessage(LOG_WARNING, "%d:couldn't fetch.",*theEntries);
+      continue;
+    }
+
+    getdata(&dir);
+    getdata(&oldDir);
+    if (!UserCanChange(dir))
+    {
+      IssueMessage(LOG_INFO, "%s not authorized to change entry for %s.",
+	   UserAlias, FindValue(dir, F_ALIAS));
+      DoReply(-LR_AENTRY, "%s:You may not change this entry.\n",
+	  FindValue(dir, F_ALIAS));
+    }
+    else
+    {
+      oldMask = entryDirty = indexDirty = pwDirty = 0;
+      for (theArg = theArgs; theArg; theArg = theArg->aNext)
+      {
+	if (CanChange(dir, theArg->aFD))
+	{
+	  if (OP_VALUE(ADDONLY_OP) && *FindValue(dir, theArg->aFD->fdId))
+	  {
+	    DoReply(-LR_ADDONLY,"Field has a value.");
+	  }
+	  else
+	  {
+	    if (theArg->aFD->fdId == F_ALIAS)
+	    {
+	      if (reason = BadAlias(theArg->aSecond))
+	      {
+		switch (reason)
+d100 3
+a102 9
+		  case 1:
+		    DoReply(-LR_VALUE, "Alias is too long or too short.");
+		    break;
+		  case 2:
+		    DoReply(-LR_VALUE, "Only alphanumerics and ``-'' are allowed in aliases.");
+		    break;
+		  default:
+		    DoReply(-LR_VALUE, "Alias is bad.");
+		  break;
+d104 9
+a112 14
+		continue;
+	      }
+	      else if (AliasIsUsed(theArg->aSecond,*theEntries))
+	      {
+		DoReply(-LR_ALIAS, "Alias %s conflicts with other users.",
+		    theArg->aSecond);
+		continue;
+	      }
+	    }
+	    else if (theArg->aFD->fdId == F_PASSWORD)
+	    {
+	      register char *k;
+	      for (k=theArg->aSecond;*k;k++)
+		if (*k < ' ' || *k > '~')
+d114 46
+a159 5
+		  DoReply(-LR_VALUE, "Passwords must use only printable characters; sorry.");
+		  DoReply(-LR_VALUE, "If your password met this rule, reissue your login command, and try again.");
+		  break;
+		}
+	      if (*k) continue;
+d161 8
+a168 7
+              {
+	        char pwCrypt[14];
+		strncpy(pwCrypt, crypt(theArg->aSecond, theArg->aSecond), 13);
+		pwCrypt[13] = 0;
+		free(theArg->aSecond);
+		theArg->aSecond = make_str(pwCrypt);
+	      }
+d170 13
+a182 13
+	    }
+	    else if (theArg->aFD->fdId == F_EMAIL)
+	    {
+	      char scratch[256];
+	      strcpy(scratch,"@@");
+	      strcat(scratch,MailDomain);
+	      if (issub(theArg->aSecond,scratch))
+	      {
+	        DoReply(-LR_VALUE, "Your email field must not contain addresses ending in %s;",MailDomain);
+		DoReply(-LR_VALUE, "Use a specific login and machine instead.");
+		break;
+	      }
+	    }
+d184 5
+a188 5
+	    else if (theArg->aFD->fdId == F_NAME)
+	    {         /* change sound, too */
+	      if (!ChangeDir(&dir, FindFDI(F_SOUND), phonemify(theArg->aSecond)))
+		IssueMessage(LOG_WARNING,"Couldn't change sound.");
+	    }
+d190 82
+a271 9
+	    if (!ChangeDir(&dir, theArg->aFD, theArg->aSecond))
+	    {
+	      IssueMessage(LOG_WARNING,"Couldn't change dir entry.");
+	      DoReply(-LR_TEMP,"Having difficulties.  Change has failed.");
+	    }
+	    pwDirty = pwDirty || theArg->aFD->fdId==F_PASSWORD;
+	    entryDirty = 1;
+	    indexDirty = indexDirty || theArg->aFD->fdIndexed;
+	  }
+d273 9
+a281 10
+	else
+	  DoReply(-LR_ACHANGE, "%s:you may not change this field.",
+	      theArg->aFD->fdName);
+      }
+      if (entryDirty)
+      {
+	if (!putdata(dir))
+	  DoReply(-LR_TEMP, "%s:Couldn't store.",
+	      FindValue(dir, F_ALIAS));
+	else
+d283 6
+a288 22
+	  successes++;
+	  oldMask = sigblock(sigmask(SIGXCPU));
+	  set_date(1);
+	  store_ent();
+	  if (indexDirty)
+	  {
+	    MakeLookup(oldDir, *theEntries, unmake_lookup);
+	    MakeLookup(dir, *theEntries, make_lookup);
+	  }
+	  sigsetmask(oldMask);
+	  if (OP_VALUE(VERBOSE_OP))
+	    DoReply(LR_PROGRESS, "%s:changed.", FindValue(dir, F_ALIAS));
+	  if (*theEntries == UserEnt)
+	  {       /* replace User dir with new dir */
+	    FreeDir(&User);
+	    FreeDir(&oldDir);
+	    User = dir;
+	    dir = NULL;
+	    if (pwDirty) crypt_start(PasswordOf(User));
+	    UserAlias = FindValue(User, F_ALIAS);
+	    continue; /* avoid freeing dir, which is now User */
+	  }
+d290 1
+a290 6
+      }
+    }
+    FreeDir(&dir);
+    FreeDir(&oldDir);
+  }
+  return (successes);
+d293 8
+a300 4
+/***********************************************************************
+* change a dir entry
+***********************************************************************/
+int ChangeDir(Dir *dir,FieldDesc *theFD,char *theValue)
+d302 6
+a307 43
+  char  **thePtr;
+  int   theIndex;
+  int   count;
+  char  scratch[MAX_LEN];
+
+  if ((theIndex = FindField(*dir, theFD->fdId)) >= 0)
+  {
+    thePtr = (*dir) + theIndex;
+    free(*thePtr);
+  }
+  else if (!*theValue || strcmp(theValue, "none"))
+  {
+    count = length((long*)*dir) + 2;
+    *dir = (Dir) realloc((char *)*dir,(unsigned)(count * sizeof(char *)));
+    thePtr = (*dir) + count - 1;
+    *thePtr = NULL;     /* dir terminator */
+    thePtr--;         /* back up to right spot */
+  }
+  else
+  {
+    /* we are deleteing, && no value presently exists.  do nothing */
+    return (1);
+  }
+
+  /* thePtr now points to the proper char pointer */
+  if (strcmp(theValue, "none"))
+  {
+    sprintf(scratch, "%d:%s", theFD->fdId, theValue);
+    /* enforce max length */
+    scratch[theFD->fdMax + index(scratch, ':') - scratch + 1] = 0;
+    *thePtr = make_str(scratch);
+  }
+  else
+  {
+    /* remove pointer at thePtr */
+    do
+    {
+      *thePtr = *(thePtr+1);
+    }
+    while (*++thePtr);
+  }
+  return (1);
+}
+d309 47
+a355 35
+/***********************************************************************
+* Check to see if alias is in use as an alias or name by any record
+* other than the one belonging to the current user.  (New JLN version).
+***********************************************************************/
+int AliasIsUsed(char *theAlias, long requestor)
+{
+  Dir user;
+  Arg *theArgList;
+  Arg *theArg;
+  long *theEntry;
+  int result;
+  char *p;
+
+  if (user = GetAliasDir(theAlias)) {
+    FreeDir(&user);
+    result = CurrentIndex() == requestor ? 0 : 1;
+  }
+  else
+  {
+    theArg = theArgList = FreshArg();
+    theArg->aType = COMMAND;
+    theArg->aFirst = make_str("query");
+    theArg->aNext = FreshArg();
+    theArg = theArg->aNext;
+    theArg->aType = VALUE | EQUAL | VALUE2;
+    theArg->aFirst = make_str("name");
+    theArg->aSecond = make_str(theAlias);
+    while (1) {
+      (void) ValidQuery(theArgList, C_QUERY);
+      if ((theEntry = DoLookup(theArgList)) != NULL) {
+	if (length(theEntry) == 1) {
+	  next_ent(*theEntry);
+	  result = CurrentIndex() == requestor ? 0 : 1;
+	} else {
+	  result = 1;
+d357 10
+a366 13
+	free((char*)theEntry);
+	break;
+      }
+      if (p = strchr(theArg->aSecond,'-'))
+      {
+	*p = 0;
+	if (p[1])
+	{
+	  theArg->aNext = FreshArg();
+	  theArg = theArg->aNext;
+	  theArg->aType = VALUE|EQUAL|VALUE2;
+	  theArg->aFirst = make_str("name");
+	  theArg->aSecond = make_str(p+1);
+d368 1
+a368 19
+	continue;
+      }
+      result = 0;
+      break;
+    }
+    FreeArgs(theArgList);
+  }
+  if (requestor && CurrentIndex()!=requestor)
+  {
+    if (!result)
+      IssueMessage(LOG_INFO,"Caught one; %x was going to be stored in %x.",
+                 requestor,CurrentIndex());
+    if (!next_ent(requestor))
+    {
+      DoReply(-LR_ERROR,"Fatal database error.\n");
+      cleanup(1);
+    }
+  }
+  return result;
+d371 6
+a376 4
+/***********************************************************************
+* Check to see if an alias is reasonable
+***********************************************************************/
+int BadAlias(char *theAlias)
+d378 2
+a379 2
+  char   *cp;
+  int   len;
+d381 7
+a387 7
+  len = strlen(theAlias);
+  if (len < MIN_ALIAS && !(len==0 && AmHero) || len > FindFDI(F_ALIAS)->fdMax)
+    return (1);
+
+  for (cp = theAlias; *cp; cp++)
+    if (!isalnum(*cp) && *cp != '-')
+      return (2);
+d389 1
+a389 1
+  return (0);
+@
+
+
+1.24
+log
+@No help here.
+@
+text
+@d166 9
+d180 1
+a180 1
+	      strcat(scratch,MAILDOMAIN);
+d183 1
+a183 1
+	        DoReply(-LR_VALUE, "Your email field must not contain addresses ending in %s;",MAILDOMAIN);
+d262 1
+a262 2
+  else
+  if (strcmp(theValue, "none"))
+d297 2
+a298 2
+* Check to see if an alias is in use in any indexed field not belonging
+* to the current user
+d300 1
+a300 1
+int AliasIsUsed(char *theAlias,long requestor)
+d302 3
+a304 1
+  char **aStr, *aToken, scratch[MAX_LEN], *strtok(), *aStrings[40];
+d306 2
+a307 1
+  long *do_lookup();
+d309 5
+a313 4
+  /* does the alias exist as an alias? */
+  aStrings[0] = theAlias;
+  aStrings[1] = NULL;
+  if (theEntry = do_lookup(aStrings, (long *)NULL))
+d315 35
+a349 4
+    if (length(theEntry)>1 || length(theEntry)==1 && *theEntry!=requestor)
+    {
+      free((char *)theEntry);
+      return (1);
+d351 1
+d353 1
+a353 8
+
+  /* are there people with that name? */
+  strcpy(scratch,theAlias);
+  for (aToken=strtok(scratch,"-"), aStr=aStrings;
+       *aStr = aToken;
+       aToken=strtok(0,"-"),aStr++);
+  *aStr = NULL;
+  if (theEntry = do_lookup(aStrings, (long *)NULL))
+d355 4
+a358 1
+    if (length(theEntry)>1 || length(theEntry)==1 && *theEntry!=requestor)
+d360 2
+a361 2
+      free((char *)theEntry);
+      return (1);
+d364 1
+a364 3
+
+  /* it's ok, I guess */
+  return (0);
+@
+
+
+1.23
+log
+@No help here.
+@
+text
+@d1 1
+a18 3
+char   *make_str();
+char   *PasswordOf();
+Arg  *FreshArg();
+a21 1
+char   *sbrk();
+d26 1
+a26 2
+DoChange(theArgs)
+Arg  *theArgs;
+d38 1
+a38 1
+  if (!ValidQuery(theArgs, C_CHANGE))
+d43 1
+a43 2
+  else
+  if (!GonnaWrite())
+d49 1
+a49 1
+  if (!(theEntries = DoLookup(theArgs)))
+d55 3
+a57 3
+  while (theArgs->aType != RETURN)
+    theArgs = theArgs->aNext;     /* skip query */
+  theArgs = theArgs->aNext;
+d64 1
+a64 1
+  if (foundCount == (changedCount = ChangeEntries(theEntries, theArgs)))
+d83 1
+a83 3
+ChangeEntries(theEntries, theArgs)
+long *theEntries;
+Arg  *theArgs;
+a91 2
+  int   make_lookup();
+  int   unmake_lookup();
+d241 1
+a241 4
+ChangeDir(dir, theFD, theValue)
+Dir  *dir;
+FieldDesc *theFD;
+char   *theValue;
+a245 1
+  char   *realloc();
+a246 2
+  char   *make_str();
+  char   *index();
+d256 1
+a256 1
+    count = length(*dir) + 2;
+d292 1
+a292 3
+AliasIsUsed(theAlias,requestor)
+char   *theAlias;
+long requestor;
+a297 1
+
+d332 1
+a332 2
+BadAlias(theAlias)
+char   *theAlias;
+@
+
+
+1.22
+log
+@No help here.
+@
+text
+@d176 12
+d315 1
+d327 1
+a327 1
+  
+d357 1
+a357 1
+  if (len < MIN_ALIAS || len > FindFDI(F_ALIAS)->fdMax)
+@
+
+
+1.21
+log
+@No help here.
+@
+text
+@d13 4
+a16 4
+#include "../Include/commands.h"
+#include "../Include/options.h"
+#include "../Include/field.h"
+#include "../Include/qi.h"
+d303 12
+d319 2
+a320 1
+       aToken=strtok(0,"-"),aStr++); 
+d329 2
+@
+
+
+1.20
+log
+@No help here.
+@
+text
+@d13 4
+a16 4
+#include "../include/commands.h"
+#include "../include/options.h"
+#include "../include/field.h"
+#include "../include/qi.h"
+a247 1
+  char  decrypted[MAX_LEN];
+a249 1
+  char   *decrypt();
+d274 1
+a274 7
+    if (InputType==IT_NET && theFD->fdEncrypt)
+    {
+      decrypt(decrypted, theValue);
+      sprintf(scratch, "%d:%s", theFD->fdId, decrypted);
+    }
+    else
+      sprintf(scratch, "%d:%s", theFD->fdId, theValue);
+@
+
+
+1.19
+log
+@No help here.
+@
+text
+@d324 1
+a324 2
+  else
+    return (0);
+@
+
+
+1.18
+log
+@No help here.
+@
+text
+@d300 2
+a301 1
+* Check to see if an alias is in use
+d307 1
+a307 4
+  static Arg *argList = 0;
+  static Arg *nextArg;
+  char *aStrings[20];
+  char **aStr, *aToken, scratch[MAX_LEN], *strtok();
+a309 1
+  int isSame;
+a310 11
+  if (argList == 0)
+  {
+    argList = FreshArg();
+    nextArg = argList->aNext = FreshArg();
+    argList->aType = COMMAND;
+    argList->aFirst = make_str("query");
+    nextArg->aFirst = make_str("alias");
+    nextArg->aType = VALUE | EQUAL | VALUE2;
+    aStrings[1] = NULL;
+  }
+
+a325 12
+
+
+  nextArg->aSecond = theAlias;
+  (void) ValidQuery(argList, C_QUERY);
+  if (theEntry = DoLookup(argList))
+  {
+    isSame = *theEntry==requestor;
+    free((char *)theEntry);
+    return (!isSame);
+  }
+  else
+    return (0);       /* not in use */
+@
+
+
+1.17
+log
+@No help here.
+@
+text
+@d157 1
+a157 1
+	      else if (AliasIsUsed(theArg->aSecond))
+d159 1
+a159 1
+		DoReply(-LR_ALIAS, "Alias %s in use or is too common a name.",
+d302 1
+a302 1
+AliasIsUsed(theAlias)
+d304 1
+d308 2
+a309 1
+  static char *aStrings[2];
+d312 1
+d325 5
+a329 2
+  /* are there a LOT of'em? */
+  aStrings[0] = theAlias;
+d332 1
+a332 1
+    if (length(theEntry) > TOO_COMMON_ALIAS)
+d346 1
+d348 1
+a348 1
+    return (1);
+@
+
+
+1.16
+log
+@No help here.
+@
+text
+@d98 1
+d113 1
+d128 1
+a128 1
+      oldMask = entryDirty = indexDirty = 0;
+d188 1
+d222 1
+a222 1
+	    crypt_start(PasswordOf(User));
+@
+
+
+1.15
+log
+@No help here.
+@
+text
+@d1 9
+a9 6
+/***********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the University
+* of Illinois Board of Trustees.  No warranties expressed or implied, no
+* support provided.  Please do not redistribute it in its present form.
+* Contact me for details (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d119 1
+a119 1
+      syslog(LOG_INFO, "%s not authorized to change entry for %s.",
+d144 2
+a145 2
+		  DoReply(-LR_VALUE, "Alias is too long or too short.");
+		  break;
+d147 2
+a148 2
+		  DoReply(-LR_VALUE, "Only alphanumerics and ``%s'' are allowed in aliases.", OK_CHARS);
+		  break;
+d150 1
+a150 1
+		  DoReply(-LR_VALUE, "Alias is bad.");
+d155 1
+a155 2
+	      else
+	      if (AliasIsUsed(theArg->aSecond))
+d162 12
+a173 1
+	    else
+d175 1
+a175 1
+	    if (theArg->aFD->fdId == F_NAME)
+d178 1
+a178 1
+		syslog(LOG_WARNING,"Couldn't change sound.");
+d183 1
+a183 1
+	      syslog(LOG_WARNING,"Couldn't change dir entry.");
+d358 1
+a358 1
+    if (!isalnum(*cp) && !index(OK_CHARS, *cp))
+@
+
+
+1.14
+log
+@No help here.
+@
+text
+@d17 1
+a17 1
+Arg    *FreshArg();
+d27 1
+a27 1
+Arg    *theArgs;
+d29 3
+a31 3
+    unsigned long *theEntries;
+    int     changedCount;
+    int     foundCount;
+d33 5
+a37 5
+    if (!AmHero && !User)
+    {
+	DoReply(LR_NOTLOG, "You must be logged in to use this command.");
+	return;
+    }
+d39 11
+a49 11
+    if (!ValidQuery(theArgs, C_CHANGE))
+    {
+	DoReply(LR_SYNTAX, "Did not understand change command.");
+	return;
+    }
+    else
+    if (!GonnaWrite())
+    {
+	 /* GonnaWrite will issue an error message */ ;
+	return;
+    }
+d51 5
+a55 5
+    if (!(theEntries = DoLookup(theArgs)))
+    {
+	DoReply(LR_NOMATCH, "No matches to specification.");
+	goto done;
+    }
+d57 3
+a59 3
+    while (theArgs->aType != RETURN)
+	theArgs = theArgs->aNext;	/* skip query */
+    theArgs = theArgs->aNext;
+d61 15
+a75 15
+    foundCount = length((char *)theEntries);
+    if (OP_VALUE(LIMIT_OP) && foundCount > atoi(OP_VALUE(LIMIT_OP)))
+	DoReply(LR_LIMIT, "Too many entries (%d) selected; limit is %s.",
+		foundCount, OP_VALUE(LIMIT_OP));
+    else
+    if (foundCount == (changedCount = ChangeEntries(theEntries, theArgs)))
+	DoReply(LR_OK, "%d entr%s changed.", changedCount,
+		changedCount > 1 ? "ies" : "y");
+    else
+    if (changedCount)
+	DoReply(LR_ERROR, "Only %d entr%s changed (%d found)", changedCount,
+		changedCount > 1 ? "ies" : "y", foundCount);
+    else
+	DoReply(LR_ERROR, "%d entr%s found, none changed.",
+		foundCount, foundCount > 1 ? "ies" : "y");
+d78 2
+a79 2
+    Unlock();
+    free((char *)theEntries);
+d86 2
+a87 2
+unsigned long *theEntries;
+Arg    *theArgs;
+d89 12
+a100 12
+    Arg    *theArg;
+    Dir     dir;
+    Dir     oldDir;
+    int     successes;
+    int     entryDirty;
+    int     indexDirty;
+    int     make_lookup();
+    int     unmake_lookup();
+    int     reason;
+    int     oldMask;
+    char   *phonemify();
+    char  **getdata();
+d102 5
+a106 2
+    /* loop through all requested entries */
+    for (successes = 0; *theEntries; theEntries++)
+d108 3
+a110 6
+	/* retrieve the entry */
+	if (!next_ent(*theEntries))
+	{
+	    DoReply(-LR_TEMP, "%d:couldn't fetch.", *theEntries);
+	    continue;
+	}
+d112 15
+a126 3
+	getdata(&dir);
+	getdata(&oldDir);
+	if (!UserCanChange(dir))
+d128 7
+a134 9
+	    syslog(LOG_INFO, "%s not authorized to change entry for %s.",
+		   UserAlias, FindValue(dir, F_ALIAS));
+	    DoReply(-LR_AENTRY, "%s:You may not change this entry.\n",
+		    FindValue(dir, F_ALIAS));
+	}
+	else
+	{
+	    oldMask = entryDirty = indexDirty = 0;
+	    for (theArg = theArgs; theArg; theArg = theArg->aNext)
+d136 3
+a138 1
+		if (CanChange(dir, theArg->aFD))
+d140 9
+a148 42
+		    if (OP_VALUE(ADDONLY_OP) && *FindValue(dir, theArg->aFD->fdId))
+		    {
+			DoReply(-LR_ADDONLY,"Field has a value.");
+		    }
+		    else
+		    {
+			if (theArg->aFD->fdId == F_ALIAS)
+			{
+			    if (reason = BadAlias(theArg->aSecond))
+			    {
+				switch (reason)
+				{
+				  case 1:
+				    DoReply(-LR_VALUE, "Alias is too long or too short.");
+				    break;
+				  case 2:
+				    DoReply(-LR_VALUE, "Only alphanumerics and ``%s'' are allowed in aliases.", OK_CHARS);
+				    break;
+				  default:
+				    DoReply(-LR_VALUE, "Alias is bad.");
+				    break;
+				}
+				continue;
+			    }
+			    else
+			    if (AliasIsUsed(theArg->aSecond))
+			    {
+				DoReply(-LR_ALIAS, "Alias %s in use or is too common a name.",
+					theArg->aSecond);
+				continue;
+			    }
+			}
+			else
+			if (theArg->aFD->fdId == F_NAME)
+			{		/* change sound, too */
+			    ChangeDir(&dir, FindFDI(F_SOUND),
+				      phonemify(theArg->aSecond));
+			}
+			ChangeDir(&dir, theArg->aFD, theArg->aSecond);
+			entryDirty = 1;
+			indexDirty = indexDirty || theArg->aFD->fdIndexed;
+		    }
+d150 9
+a158 3
+		else
+		    DoReply(-LR_ACHANGE, "%s:you may not change this field.",
+			    theArg->aFD->fdName);
+d160 9
+a168 1
+	    if (entryDirty)
+d170 2
+a171 27
+		if (!putdata(dir))
+		    DoReply(-LR_TEMP, "%s:Couldn't store.",
+			    FindValue(dir, F_ALIAS));
+		else
+		{
+		    successes++;
+		    oldMask = sigblock(sigmask(SIGXCPU));
+		    store_ent();
+		    if (indexDirty)
+		    {
+			MakeLookup(oldDir, *theEntries, unmake_lookup);
+			MakeLookup(dir, *theEntries, make_lookup);
+		    }
+		    sigsetmask(oldMask);
+		    if (OP_VALUE(VERBOSE_OP))
+			DoReply(LR_PROGRESS, "%s:changed.", FindValue(dir, F_ALIAS));
+		    if (*theEntries == UserEnt)
+		    {		/* replace User dir with new dir */
+			FreeDir(&User);
+			FreeDir(&oldDir);
+			User = dir;
+			dir = NULL;
+			crypt_start(PasswordOf(User));
+			UserAlias = FindValue(User, F_ALIAS);
+			continue; /* avoid freeing dir, which is now User */
+		    }
+		}
+d173 3
+d177 35
+a211 2
+	FreeDir(&dir);
+	FreeDir(&oldDir);
+d213 4
+a216 1
+    return (successes);
+d223 1
+a223 1
+Dir    *dir;
+d227 9
+a235 9
+    char  **thePtr;
+    int     theIndex;
+    int     count;
+    char   *realloc();
+    char    scratch[MAX_LEN];
+    char    decrypted[MAX_LEN];
+    char   *make_str();
+    char   *index();
+    char   *decrypt();
+d237 19
+a255 19
+    if ((theIndex = FindField(*dir, theFD->fdId)) >= 0)
+    {
+	thePtr = (*dir) + theIndex;
+	free(*thePtr);
+    }
+    else
+    if (strcmp(theValue, "none"))
+    {
+	count = length(*dir) + 2;
+	*dir = (Dir) realloc((char *)*dir,(unsigned)(count * sizeof(char *)));
+	thePtr = (*dir) + count - 1;
+	*thePtr = NULL;		/* dir terminator */
+	thePtr--;		/* back up to right spot */
+    }
+    else
+    {
+	/* we are deleteing, && no value presently exists.  do nothing */
+	return (1);
+    }
+d257 4
+a260 2
+    /* thePtr now points to the proper char pointer */
+    if (strcmp(theValue, "none"))
+d262 2
+a263 10
+	if (InputType==IT_NET && theFD->fdEncrypt)
+	{
+	    decrypt(decrypted, theValue);
+	    sprintf(scratch, "%d:%s", theFD->fdId, decrypted);
+	}
+	else
+	    sprintf(scratch, "%d:%s", theFD->fdId, theValue);
+	/* enforce max length */
+	scratch[theFD->fdMax + index(scratch, ':') - scratch + 1] = 0;
+	*thePtr = make_str(scratch);
+d266 9
+d276 1
+a276 6
+	/* remove pointer at thePtr */
+	do
+	{
+	    *thePtr = *(thePtr+1);
+	}
+	while (*++thePtr);
+d278 3
+a280 1
+    return (1);
+d289 5
+a293 5
+    static Arg *argList = 0;
+    static Arg *nextArg;
+    static char *aStrings[2];
+    unsigned long *theEntry;
+    unsigned long *do_lookup();
+d295 10
+a304 10
+    if (argList == 0)
+    {
+	argList = FreshArg();
+	nextArg = argList->aNext = FreshArg();
+	argList->aType = COMMAND;
+	argList->aFirst = make_str("query");
+	nextArg->aFirst = make_str("alias");
+	nextArg->aType = VALUE | EQUAL | VALUE2;
+	aStrings[1] = NULL;
+    }
+d306 5
+a310 3
+    /* are there a LOT of'em? */
+    aStrings[0] = theAlias;
+    if (theEntry = do_lookup(aStrings, NULL))
+d312 2
+a313 5
+	if (length(theEntry) > TOO_COMMON_ALIAS)
+	{
+	    free((char *)theEntry);
+	    return (1);
+	}
+d315 3
+a317 2
+    else
+	return (0);
+d320 9
+a328 9
+    nextArg->aSecond = theAlias;
+    ValidQuery(argList, C_QUERY);
+    if (theEntry = DoLookup(argList))
+    {
+	free((char *)theEntry);
+	return (1);
+    }
+    else
+	return (0);		/* not in use */
+d337 2
+a338 2
+    char   *cp;
+    int     len;
+d340 3
+a342 3
+    len = strlen(theAlias);
+    if (len < MIN_ALIAS || len > FindFDI(F_ALIAS)->fdMax)
+	return (1);
+d344 3
+a346 3
+    for (cp = theAlias; *cp; cp++)
+	if (!isalnum(*cp) && !index(OK_CHARS, *cp))
+	    return (2);
+d348 1
+a348 1
+    return (0);
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d1 6
+d10 4
+a13 4
+#include "commands.h"
+#include "options.h"
+#include "field.h"
+#include "qi.h"
+d128 1
+a128 1
+		    if (theArg->aFD->fdId == F_ALIAS)
+d130 5
+a134 1
+			if (reason = BadAlias(theArg->aSecond))
+d136 1
+a136 1
+			    switch (reason)
+d138 13
+a150 9
+			      case 1:
+				DoReply(-LR_VALUE, "Alias is too long or too short.");
+				break;
+			      case 2:
+				DoReply(-LR_VALUE, "Only alphanumerics and ``%s'' are allowed in aliases.", OK_CHARS);
+				break;
+			      default:
+				DoReply(-LR_VALUE, "Alias is bad.");
+				break;
+d152 7
+a158 1
+			    continue;
+d161 4
+a164 5
+			if (AliasIsUsed(theArg->aSecond))
+			{
+			    DoReply(-LR_ALIAS, "Alias %s in use or is too common a name.",
+				    theArg->aSecond);
+			    continue;
+d166 3
+a169 9
+		    else
+		    if (theArg->aFD->fdId == F_NAME)
+		    {		/* change sound, too */
+			ChangeDir(&dir, FindFDI(F_SOUND),
+				  phonemify(theArg->aSecond));
+		    }
+		    ChangeDir(&dir, theArg->aFD, theArg->aSecond);
+		    entryDirty = 1;
+		    indexDirty = indexDirty || theArg->aFD->fdIndexed;
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@a109 1
+#ifndef ultrix
+a111 1
+#endif
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d14 1
+d110 1
+d113 1
+d242 1
+a242 1
+	if (theFD->fdEncrypt)
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d187 1
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d9 3
+a11 3
+char *make_str();
+char *PasswordOf();
+Arg *FreshArg();
+d14 2
+a15 1
+char *sbrk();
+d20 1
+a20 1
+Arg *theArgs;
+d23 2
+a24 2
+    int changedCount;
+    int foundCount;
+d28 1
+a28 1
+	DoReply(LR_NOTLOG,"Must be logged in to execute.");
+d32 1
+a32 1
+    if (!ValidQuery(theArgs,C_CHANGE))
+d34 1
+a34 1
+	DoReply(LR_SYNTAX,"Did not understand change command.");
+d37 2
+a38 1
+    else if (!GonnaWrite())
+d40 1
+a40 1
+	/* GonnaWrite will issue an error message */;
+d46 1
+a46 1
+	DoReply(LR_NOMATCH,"No matches to specification.");
+d50 2
+a51 1
+    while (theArgs->aType!=RETURN) theArgs = theArgs->aNext; /* skip query */
+d54 1
+a54 1
+    foundCount = length(theEntries);
+d56 2
+a57 8
+	DoReply(LR_LIMIT,"Too many entries (%d) selected; limit is %s.",
+	    foundCount,OP_VALUE(LIMIT_OP));
+    else if (foundCount==(changedCount=ChangeEntries(theEntries,theArgs)))
+	DoReply(LR_OK,"%d entr%s changed.",changedCount,
+		changedCount>1?"ies":"y");
+    else if (changedCount)
+	DoReply(LR_ERROR,"Only %d entr%s changed (%d found)",changedCount,
+		changedCount>1?"ies":"y",foundCount);
+d59 10
+a68 2
+	DoReply(LR_ERROR,"%d entr%s found, none changed.",
+		foundCount,foundCount>1?"ies":"y");
+d72 1
+a72 1
+    free(theEntries);
+d78 1
+a78 1
+ChangeEntries(theEntries,theArgs)
+d80 1
+a80 1
+Arg *theArgs;
+d82 12
+a93 11
+    Arg *theArg;
+    Dir dir;
+    Dir oldDir;
+    int successes;
+    int entryDirty;
+    int indexDirty;
+    int make_lookup();
+    int unmake_lookup();
+    int reason;
+    int oldMask;
+    char *phonemify();
+d96 1
+a96 1
+    for (successes = 0;*theEntries;theEntries++)
+d101 1
+a101 1
+	    DoReply(-LR_TEMP,"%d:couldn't fetch.",*theEntries);
+d109 4
+a112 4
+	    syslog(LOG_INFO,"%s not authorized to change entry for %s.",
+		UserAlias,FindValue(dir,F_ALIAS));
+	    DoReply(-LR_AENTRY,"%s:You may not change this entry.\n",
+		FindValue(dir,F_ALIAS));
+d117 1
+a117 1
+	    for (theArg=theArgs;theArg;theArg=theArg->aNext)
+d119 1
+a119 1
+		if (CanChange(dir,theArg->aFD))
+d121 1
+a121 1
+		    if (theArg->aFD->fdId==F_ALIAS)
+d123 1
+a123 1
+			if (reason=BadAlias(theArg->aSecond))
+d127 9
+a135 9
+				case 1:
+				    DoReply(-LR_VALUE,"Alias is too long or too short.");
+				    break;
+				case 2:
+				    DoReply(-LR_VALUE,"Only alphanumerics and %s are allowed in aliases.",OK_CHARS);
+				    break;
+				default:
+				    DoReply(-LR_VALUE,"Alias is bad.");
+				    break;
+d139 2
+a140 1
+			else if (AliasIsUsed(theArg->aSecond))
+d142 2
+a143 2
+			    DoReply(-LR_ALIAS,"Alias %s in use or is too common a name.",
+				theArg->aSecond);
+d147 5
+a151 4
+		    else if (theArg->aFD->fdId==F_NAME)
+		    {	/* change sound, too */
+			ChangeDir(&dir,FindFDI(F_SOUND),
+				    phonemify(theArg->aSecond));
+d153 1
+a153 1
+		    ChangeDir(&dir,theArg->aFD,theArg->aSecond);
+d158 2
+a159 2
+		    DoReply(-LR_ACHANGE,"%s:you may not change this field.",
+			theArg->aFD->fdName);
+d164 2
+a165 1
+		    DoReply(-LR_TEMP,"%s:Database error.");
+d173 2
+a174 2
+			MakeLookup(oldDir,*theEntries,unmake_lookup);
+			MakeLookup(dir,*theEntries,make_lookup);
+d178 3
+a180 3
+			DoReply(LR_PROGRESS,"%s:changed.",FindValue(dir,F_ALIAS));
+		    if (*theEntries==UserEnt)
+		    {	/* replace User dir with new dir */
+d186 2
+a187 2
+			UserAlias = FindValue(User,F_ALIAS);
+		    }	
+d194 1
+a194 1
+    return(successes);
+d200 2
+a201 2
+ChangeDir(dir,theFD,theValue)
+Dir *dir;
+d203 1
+a203 1
+char *theValue;
+d205 9
+a213 8
+    char **thePtr;
+    int theIndex;
+    int count;
+    char *realloc();
+    char scratch[MAX_LEN];
+    char decrypted[MAX_LEN];
+    char *make_str();
+    char *index();
+d215 1
+a215 1
+    if ((theIndex=FindField(*dir,theFD->fdId))>=0)
+d217 1
+a217 1
+	thePtr = (*dir)+theIndex;
+d220 2
+a221 1
+    else if (strcmp(theValue,"none"))
+d223 5
+a227 5
+	count = length(*dir)+2;
+	*dir = (Dir) realloc(*dir,count*sizeof(char *));
+	thePtr = (*dir)+count-1;
+	*thePtr = NULL;			/* dir terminator */
+	thePtr--;			/* back up to right spot */
+d232 1
+a232 1
+	return(1);
+d236 1
+a236 1
+    if (strcmp(theValue,"none"))
+d240 2
+a241 2
+	    decrypt(decrypted,theValue);
+	    sprintf(scratch,"%d:%s",theFD->fdId,decrypted);
+d244 1
+a244 1
+	    sprintf(scratch,"%d:%s",theFD->fdId,theValue);
+d246 1
+a246 1
+	scratch[theFD->fdMax + index(scratch,':')-scratch + 1] = 0;
+d254 1
+a254 1
+	    *thePtr = *(++thePtr);
+d256 1
+a256 1
+	while (*thePtr);
+d258 1
+a258 1
+    return(1);
+d265 1
+a265 1
+char *theAlias;
+d267 1
+a267 1
+    static Arg *argList=0;
+d280 2
+a281 2
+	nextArg->aType = VALUE|EQUAL|VALUE2;
+	aStrings[1]=NULL;
+d286 1
+a286 1
+    if (theEntry=do_lookup(aStrings,NULL))
+d290 2
+a291 2
+	    free(theEntry);
+	    return(1);
+d295 1
+a295 1
+	return(0);
+d299 1
+a299 1
+    ValidQuery(argList,C_QUERY);
+d302 2
+a303 2
+	free(theEntry);
+	return(1);
+d306 1
+a306 1
+	return(0);		/* not in use */
+d313 1
+a313 1
+char *theAlias;
+d315 2
+a316 2
+    char *cp;
+    int len;
+d320 1
+a320 1
+	return(1);
+d322 5
+a326 5
+    for (cp=theAlias;*cp;cp++)
+	if (!isalnum(*cp) && !index(OK_CHARS,*cp))
+	    return(2);
+    
+    return(0);
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d87 1
+d139 5
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d3 1
+d25 1
+a25 1
+    if (!User)
+d82 1
+d86 1
+d109 1
+a109 1
+	    entryDirty = 0;
+d141 1
+d153 2
+d156 6
+a161 3
+		    successes++;
+		    MakeLookup(oldDir,*theEntries,unmake_lookup);
+		    MakeLookup(dir,*theEntries,make_lookup);
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d9 1
+d161 1
+a161 1
+			crypt_start(FindValue(User,F_PASSWORD));
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d130 1
+a130 1
+			    DoReply(-LR_ALIAS,"Alias %s in use.",
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d161 1
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d160 1
+d184 1
+d210 7
+a216 1
+	sprintf(scratch,"%d:%s",theFD->fdId,theValue);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d4 1
+d50 4
+a53 1
+    if (foundCount==(changedCount=ChangeEntries(theEntries,theArgs)))
+d61 1
+a61 1
+		foundCount>1?"ies":"y",foundCount);
+d152 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d19 2
+d48 7
+a54 2
+    if (ChangeEntries(theEntries,theArgs))
+	DoReply(LR_OK,"Done. (%d)",sbrk(0)-(char *)&end);
+d56 2
+a57 1
+	DoReply(LR_ERROR,"Changes failed.");
+@

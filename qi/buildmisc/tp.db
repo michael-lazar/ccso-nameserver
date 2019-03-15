@@ -1,0 +1,163 @@
+#!/usr/bin/perl
+# timetable reformatter
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @(#)$Id$
+
+while(<>)
+{
+  $_=substr($_,0,120);		# trim end junk
+  s/  *$//;			# nuke trailing spaces
+  tr/A-Z"/a-z'/;		# get rid of caps, quotes
+  if (/^0/)			# '0' in column zero is separator
+  {
+    if ($count)			# finish off the last course
+    {
+      if (!$debug) {print "\n";}
+      $count = 0;
+    }
+    $inCourse = 0;
+  }
+  elsif (!$inCourse)		# we're expecting a course title
+  {
+    if (length>32)
+    {
+      $courseType = substr($_,27,5);
+      $courseType =~ s/ //g;
+      sprintf($courseType,"%5s",$courseType);
+      substr($_,27,5) = $courseType;
+    }
+    @w=split(' ',$_,5);
+    if ($#w == 4)		# looks like we got it
+    {
+      $inCourse = 1;
+      $courseNum = $w[1];
+      if ($courseNum>=100)		# if not dept info, begin output
+      {
+        $courseName = $w[2] . $w[3] . " " . $w[4];
+	$courseName =~ s/  */ /g;
+	if ($debug) {print "\n" . $courseName . "\n";}
+	else
+	{
+	  $type = $ARGV;
+	  chop($type);
+	  chop($type);
+	  printf "3:%s\t4:timetable %s\t34:%s\\n",
+	    $courseName,$type,$ARGV;
+	}
+	$count = 1;
+      }
+    }
+  }
+  elsif ($courseNum >= 100)	# don't do department intros
+  {
+    if ($count > 3800)			# have to split it
+    {
+      if (!$debug) {print "\n";}
+      if ($debug) {print "\n" . $courseName . "\n";}
+      else {printf "3:%s\t4:timetable %s\t34:",$courseName,$type;}
+      $count = 1;
+    }
+    elsif ($count>1 && !$debug)
+      {print "\\n";$count+=2;}	# terminate last line in entry
+    if (substr($_,23,1) eq " ")		# descriptive info
+    {
+      s/                                  .*//;	# trim junk
+      print substr($_,36,2048);		# output the descriptive line
+      $count += length(substr($_,36,2048));
+    }
+    else				# time/location info
+    {
+      print substr($_,34,5); $count += 5;
+      print substr($_,44,15); $count += 15;
+      print substr($_,62,19); $count += 19;
+      print substr($_,82,18); $count += 18;
+      print substr($_,103,2048); $count += length(substr($_,103,2048));
+    }
+    if ($debug) {print "\n";}
+  }
+}
+
+if ($count && !$debug) {print "\n";}		# terminate last course
+
+# $count - approximate number of characters output for current entry
+# $inCourse - whether or not we're currently processing a course
+# $courseNum - current course number (eg, 101 for cs101)
+# $courseName - current course name (eg, "cs101 Intro to Computer Science")
+#
+# The data consists of blocks of lines for each course.  Each block of lines
+# is separated by a line consisting of a single '0'.  The first line of each
+# block gives title information.  The remaining lines are either descriptive
+# or give time and location information.  The latter will have the department
+# code beginning in column 24; the former will not.  Every line in a block
+# will have the course number as its second word.  If the course number is
+# 1, we're talking about departmental information, which is elided.
+#
+# There is a bunch of uninteresting information in blocks; this we remove.
+#
+# Following is a sample of a data file.
+#
+#             17050 001                                        ACCOUNTANCY                                                00J 3 015   
+#             17050 001                                                                                                   00K 3 015   
+#             17050 001                    DEPARTMENT OFFICE                       360 COM WEST                           00L 3 015   
+#0                                                                                                                                    
+#             17050 199     ACCY  199     UNDERGRADUATE OPEN SEMINAR.                                                     001 1 015   
+#             17050 199              *MAY BE REPEATED.                                                                    001 2 015   
+#             17050 199              *1 TO 5 HOURS.                                         57       1                    899 2 015   
+#             17050 199              FOR INDEPENDENT STUDY REGISTRATION IN THIS COURSE, STUDENTS SHOULD                   001 3 015   
+#             17050 199              CONTACT THE DEPARTMENT OFFICE.                                                       002 3 015   
+#             17050 199              SECTIONS B, C, D AND E ARE MICROCOMPUTER APPLICATIONS 2 HOURS.                       003 3 015   
+#             17050 199              PRIORITY REGISTRATION WILL BE GIVEN TO ACCOUNTANCY MAJORS.                           004 3 015   
+#             17050 199 ACCY  100        9  7 CONF       A   6 ARR                                       IND STUDY        005 4       
+#             17050 199 ACCY  021  00002    5 LAB-DISC   B   7 ARR                                                        010 4       
+#             17050 199 ACCY  021  00003    5 LAB-DISC   C   7 ARR                                                        015 4       
+#             17050 199 ACCY  021  00004    5 LAB-DISC   D   7 ARR                                                        040 4       
+#             17050 199 ACCY  021  00005    5 LAB-DISC   E   7 ARR                                                        050 4       
+#0                                                                                                                                    
+#             17050 200     ACCY  200     FUNDAMENTALS OF ACCOUNTING.                                                     001 1 015   
+#             17050 200              PREREQUISITE: SOPHOMORE STANDING.                                                    001 2 015   
+#             17050 200              FOR NON-COMMERCE STUDENTS ONLY.                                                      002 2 015   
+#             17050 200              *CREDIT IS NOT GIVEN FOR BOTH ACCY 200 AND 201 OR 202.                               003 2 015   
+#             17050 200              *3 HOURS.                                              6        2                    899 2 015   
+#             17050 200              PRIORITY REGISTRATION WILL BE GIVEN TO STUDENTS IN CURRICULA                         001 3 015   
+#             17050 200              REQUIRING THIS COURSE.                                                               002 3 015   
+#             17050 200 ACCY  040  00006    6 DISC       A        8-920         F    166  COM WEST   159                  010 4       
+#             17050 200 ACCY  040        8  2 LECT                2       M  W       103  MUM HALL   069 FELLER           020 4       
+#             17050 200 ACCY  040  00007    6 DISC       B      930-1050        F    166  COM WEST   159                  030 4       
+#             17050 200 ACCY  040        8  2 LECT                2       M  W       103  MUM HALL   069 FELLER           040 4       
+#             17050 200 ACCY  040  00008    6 DISC       C     1230-150         F    166  COM WEST   159                  050 4       
+#             17050 200 ACCY  040        8  2 LECT                2       M  W       103  MUM HALL   069 FELLER           060 4       
+

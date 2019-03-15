@@ -1,0 +1,43 @@
+Syntax: fields [name-of-field]
+
+The "fields" command is used to view the list of fields that are defined
+in the Nameserver database.  The output of the "fields" command consists
+of two lines describing each field.  For example, here are the lines
+that describe the "password" field:
+
+-200:7:password:max 16 Change Encrypt
+-200:7:password:User's nameserver password.
+
+Each line begins with a Nameserver reply code of "-200"; this can be
+safely ignored.  The next thing in each line is the field id number (in
+this case, "7").  This too is of small interest.  Next comes the name
+of the field ("password").  From this point on, the two lines differ.
+The first line continues with the maximum length of the field (in this
+case, "max 16", meaning the field can be no more than 16 characters
+long), followed by a set of field attributes ("Change Encrypt").  The
+second line is a brief description of what the field is intended to
+hold.
+
+A field's attributes determine how the field behaves.  Here is a list
+of the attributes you are likely to encounter and their meanings:
+
+Change     - the field can be changed by the owner of the entry
+Default    - the field is printed (displayed) if no fields were
+             specified in a query with a return clause
+Encrypt    - the field must be encrypted before transmission
+ForcePub   - the field is viewable/searchable regardless of the
+             contents of the "suppress" field
+Indexed    - the field appears in the Nameserver's index; all
+             Nameserver lookups must include at least one indexed
+             field
+Lookup     - the field can be used in queries
+NoPeople   - no entry of type "person" may include this field;
+             i.e., the field is limited to non-person entries such
+             as campus units, groups, weather info., etc.
+Public     - anyone is allowed to see the contents of the field
+
+To view the description for a single field, rather than the entire list
+of fields defined in the Nameserver database, specify the name of the
+field you want to see; e.g., "fields email".
+
+SEE ALSO: query, edit, make

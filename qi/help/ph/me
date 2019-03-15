@@ -1,0 +1,25 @@
+SYNTAX: me
+
+SUMMARY
+The "me" command allows you to view each and every field in your
+Nameserver entry including sensitive fields that cannot be viewed by
+other users.  In order to use "me", you must first login to the
+Nameserver (see help on "login").  Then enter "me" at the "ph>" prompt.
+The contents of your entire entry will be displayed.
+
+"Me" is particularly helpful in conjunction with commands that allow
+you to change fields in your own entry such as "make" and "edit".  It
+can be used to verify that the changes you made were what you intended.
+
+The "me" command does not show fields that are empty (do not exist) in
+your entry.  The Nameserver is capable of holding much more information
+for a person than is normally provided by the Office of Payroll (for
+faculty/staff) and the Office of Admissions and Records (for students).
+To add additional information to your entry, such as your birthday,
+special projects on which your are working, your office hours, etc.,
+you must add additional fields using the "edit" or "make" command.  To
+see a list of fields that can be added to your entry and a description
+of the kind of information each field is intended to hold, use the
+"fields" command.
+
+SEE ALSO: edit, make, login, fields, policy

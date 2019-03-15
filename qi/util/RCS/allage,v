@@ -1,0 +1,145 @@
+head	1.2;
+access;
+symbols;
+locks
+	p-pomes:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Made location of perl a Makefile option.
+@
+text
+@#!%PerlProg%
+#
+# age - mark killed entries as gone
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: age,v 1.1 1994/03/12 00:59:25 paul Exp p-pomes $
+
+$deleteMonths = 10;		# really delete people this old
+$fieldName = "left_uiuc";	# name of field to use
+if ($#ARGV<2 || $#ARGV>3)
+{
+  print STDERR "Usage: age prod.cnf sf.kill [sf.kill.dead]\n"; 
+  exit 1;
+}
+
+($config,$stiffFile,$killFile) = @@ARGV;
+
+#
+# let's find out any bad news right away
+#
+open(CONFIG,"<$config") || die "$config: $!\n";
+open(STIFFFILE,"<$stiffFile") || die "$studentFile: $!\n";
+if ($killFile ne "") {open(KILLFILE,">$killFile") || die "$killFile: $!\n";}
+
+#
+# find the number of the left field
+$lnum = -1;
+while (<CONFIG>)
+{
+  if (/:$fieldName:/) {($lnum)=(split(':'))[0];last;}
+}
+if ($lnum<0) {die "Couldn't find $fieldName in $config.\n";}
+
+#
+# figure out today's number
+($month,$year) = (split(' ',`date`))[1,5];
+$m = 0;
+foreach $monthName ("Jan","Feb","Mar","Apr","May","Jun",
+                    "Jul","Aug","Sep","Oct","Nov","Dec")
+{
+  if ($month eq $monthName) {$month=$m;last;}
+  $m++;
+}
+$now = $year*12+$month;
+$month++;
+
+while (<STIFFFILE>)
+{
+  chop;
+  if (/\t$lnum:/)
+  {
+    $tmp = $_;
+    $tmp =~ s/.*\t$lnum://;
+    $tmp =~ s/\t.*//;
+    ($m,$y) = split('/',$tmp);
+    if ($y*12+$m-1 < $now-$deleteMonths)
+    {
+      if ($killFile ne "") {print KILLFILE "$_\n";}
+    }
+    else
+    {
+      print "$_\n";
+    }
+  }
+  else
+  {
+    print "$_\t$lnum:$month/$year\n";
+  }
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#!/usr/bin/perl
+d39 1
+a39 1
+# @@(#)$Id$
+@

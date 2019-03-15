@@ -1,0 +1,687 @@
+Interesting Info
+
+- to get on the ph mailing list, send mail to listserv@postoffice.cso.uiuc.edu
+	with "subscribe info-ph" in the BODY (not Subject: !)
+- qi.tar.gz (server) lives on vixen.cso.uiuc.edu, pub subdirectory.
+- ph.tar.gz (clients) lives on vixen.cso.uiuc.edu, pub subdirectory.
+
+Files with the .gz extension require the GNU gunzip package for decompression.
+Source for gzip, which can also handle regular compress(1) files, is in
+vixen.cso.uiuc.edu:gnu/gzip-1.2.2.tar .  The version number will increase
+over time so use the ftp dir command to find the latest.
+
+Release Notes for the CSO Nameserver
+
+26/Jul/95 #########################
+
+Added new authenticate field to siteinfo command that returns the supported
+list of authentication methods to the client.  The qi server now supports
+
+	Kerberos V5 (Beta 4, patch 3; the beta 5 release had too many problems)
+	Kerberos V4 (we use the Cygnus Network Security package)
+	TIS Firewall Toolkit authentication server
+		(supports SNK/4, S/Key, SecureId)
+	Traditional password and email authentication
+
+The protocol has been extended to include the xlogin command.  This subsumes
+the undocumented klogin command.  See the api/LoginQi.c and qi/commands.c
+files.
+
+All contributed bug fixes have been included.
+
+26/Feb/95 #########################
+
+Must now explicitly enable password authorization with the PASS_AUTH
+ Feature() (see configs/defaults).  Changed to create a uniform selection
+ process for authentication methods.
+The KERBEROS feature has been re-named to KRB4_AUTH for the same reasons.
+
+9/Dec/94 ###########################
+
+prod.cnf property NoMeta added.  Disallows wildcard lookups on the field.
+DEC alpha changes rolled in.
+Phquery now part of qi instead of sendmail.  UIUC is migrating away
+ from IDA sendmail to v8.6.9.
+Ph now has the -q (quiet) argument.  With it and -b together, the output
+ is very close to what qi produces.
+Miscellaneous bugs fixed.
+
+03/11/94 ###########################
+
+Alan Crosswell <alan@curta.cc.columbia.edu> contributed many improvements.
+Most notable is a more seamless integration of Kerberos V4 authentication
+into qi.  I've changed the order of attempts in the api/LoginQi.c module
+contributed to try email authentication first.  More detail in the
+README.COLUMBIA file.
+
+A tricky malloc'ed area overrun was located and fixed.  This should cure
+many of the "oops, lost connection to server" errors.
+
+qi is gradually moving towards POSIX conformance with string operators
+coming first (index->strchr,bcopy->memmove,etc).
+
+The MAILDOMAIN and CHARSET settings have been added to siteinfo.
+
+Fields marked LocalPub are now invisible to outsiders (not shown
+in fields command, can't be searched, or specified in a return clause).
+
+At the moment, only "ns" works as an instance for Kerberos authentication.
+I could not get "csnet-ns" to work either paired in the srvtab file with
+"ns" or by itself.  This may be a non-problem as anyone installing a
+Kerberos ph client here can be told only to use "ns".
+
+01/22/94 ###########################
+
+The Solaris /usr/lib/libresolv.a does NOT canonicalize names.  This can
+cause Kerberos authentication to fail if the ph server host is compiled
+into ph as a CNAME that points to the real host.  At UIUC, ns.uiuc.edu
+points to argus.cso.uiuc.edu.  With the Solaris libresolv.a, the mutual
+authentication is done with ns.uiuc.edu (wrong) rather than with
+argus.cso.uiuc.edu (right).  The fix is to install the Bind 4.9 or later
+libresolv.a.
+
+All instances of index/rindex converted to strchr/strrchr.  Ditto for
+bcopy/bzero to memmove/memset.  It's probably safe enough here to
+#define memmove memcpy if memmove isn't available (memmove supports 
+overlapping copies like bcopy).
+
+The Columbia speedup changes to qi/dbi.c and util/makei.c work fine while
+building the database, but fail on read-write databases during operation.
+Entries disappear with "unmake_lookup deletestr failed" errors in syslog.
+This is under investigation.
+
+
+07/22/93 ###########################
+
+Added new directory name to configs/defaults.  $QiExecDir now states
+where the qi program is installed.  $QiUtilDir indicates where the
+other support programs go.  Previously all qi programs, except ph,
+were installed in $QiExecDir.  Default value for $QiExecDir is now
+/usr/local/libexec.
+
+06/22/93 ###########################
+
+Systems using the BSD shadow password facilty have a getpass() that
+can return up to 128 characters.  To provide a uniform interface,
+the ph client now truncates passwords at PH_PW_LEN (8) characters.
+
+Added a beginning application program interface library for network
+queries.  qi, phquery, and qtacacsd (ph authentication for cisco terminal
+servers) now use it.  qtacacsd is available from vixen.cso.uiuc.edu in
+the net/qtacacsd directory.  If you have @WantDirs() in your host-specific
+configuration file, be sure to add "api" to the list after "lib".
+
+A sloppy bug that caused qi to die when conversing with unregistered
+hosts has been fixed.
+
+The source to the primes and factor programs included in xtra/primes.shar .
+primes is used in sample/Makefile to size the database.
+
+05/06/93 ###########################
+
+Somehow bogus versions of lib/fcrypt.c and qi/language.l crept into
+the distribution.  Now fixed.
+
+mdump.c now uses strstr() to locate type keywords anywhere in the
+text string.  Most systems seem to have it.  If not, add -DNO_STRSTR
+to the $Cflags variable in the OS-specific file.
+
+04/02/93 ###########################
+
+NOTICE: util/credb now takes its arguments in reverse order from before.
+Usage is: credb size [filename[.(idx|dir)]]
+This was done to allow file specification via the -DATABASE=/tmp/foo
+mechanism.
+
+
+New @Feature(): FCRYPT selects use of fcrypt() from the Crack v4.1
+package.  Much faster than the standard crypt() and necessary in the
+UIUC enviroment where ph/qi is used for terminal server validation.
+qi sleeps after failed logins to inhibit guessing.
+
+As a consequence to the terminal server requirement, login is now
+permitted to read-only databases however all change operations are
+inhibited.
+
+
+Another new @Feature(): KERBEROS selects V4 Kerberos authentication
+rather than passwords.  From the original changes done by Brown
+University.  N.B., For Kerberos, klanguage.l must be used instead of
+language.l to build lex.yy.c .  If someone can combine these neatly
+into one file, I'd appreciate it.  Kerberos changes un-tested at UIUC.
+
+
+qi now supports "LocalPub" keyword in prod.cnf.  Use instead of "Public"
+in fields such as home_phone and home_address to keep them from being
+shown to remote queries.  They will be shown to queries that come from
+hosts listed in @LocalAddrs().  Example: 
+
+@LocalAddrs(".uiuc.edu", "128.174.");
+
+would show LocalPub tagged fields to a query from uxc.cso.uiuc.edu and
+from any host on the 128.174.0.0 net that lacked an inverse DNS entry.
+Domain matches are anchored to the end of the remote host name, IP
+address matches are anchored to the front.
+
+
+The RESTRICTED @Feature() has been depreciated.  To obtain the same
+functionalty, make @OkAddrs() non-empty as in @LocalAddrs() above.
+
+
+Most C programs in the util/ directory will now take arguments of the
+form -DATABASE=/tmp/db/prod to override default settings in the Strings[]
+array.  To help prevent disaster, the name of the database to be smashed,
+ummmm built, is printed prior to a sleep(5) statement.
+
+
+Many globals and functions were made static to their source file.
+
+02/27/93 ###########################
+
+	**IMPORTANT**
+
+All #define foos have been upper-cased to FOOS.  Impact is that all files
+in the configs directory will need any $DefineStrings converted to upper
+case.  Example:
+
+$DefineStrings{"Database"} = "/nameserv/db/prod";
+    becomes
+$DefineStrings{"DATABASE"} = "/nameserv/db/prod";
+
+qi now supports the less-than-all-powerful hero.  If the hero field
+contains the string "opr", "oper", or "operator", then the user
+is allowed nearly unlimited proxy-like priviledges.  The exception
+is that the operator may not change an entry of any user that has
+a non-empty hero field.  Use is for consultants so that they can
+change passwords and email entries, but not name or id fields.
+In addition they can't add or delete entries.
+
+Re-ordered the tests in WhoAreYou() because S5R3.2 allows lseek() on
+network sockets.  WhoAreYou() now sets SO_KEEPALIVE on network connections.
+
+Made qi more paranoid about checking given hostnames.  Define NOCHECKNET
+to disable.
+
+Add common nicknames to badKeys to compensate for extra nickname fields
+generated by util/addnickname.
+
+Replaced '%m' in IssueMessage() calls with '%s' filled in with strerror().
+Add
+	$Cflags .= " -DNO_STRERROR";
+to your OS file in the configs directory if your system lacks strerror().
+
+Checks under EMAIL_AUTH are now case insensitive and check only the first
+address in the email field after deleting any leading and trailing whitespace.
+
+Absolute paths for ls and expand removed.
+
+Several System 5 changes: some files have one or more of
+	a) #include <sys/fcntl.h> instead of <sys/file.h>
+	b) Defining index/rindex as strchr/strrchr
+	c) Provide missing definitions for L_SET, L_CUR, L_XTND.
+
+util/mdump.c now has "generics" argument for producing IDA sendmail compatible
+generics file.
+
+Sample inetd.conf entry in xtra directory plus other goodies.
+
+9/5/92 #############################
+
+Revised doc/introduction.me document courtesy of Lynn Ward, CCSO.
+
+New directory "sample" created to illustrate database building process.
+N.B., copy the directory to a temp location and work there.
+
+lib/flock.[ch] added for those sites w.o. flock().  Set either FCNTL_FLOCK
+(preferred) or LOCKF_FLOCK in @Features .
+
+7/29/92 #############################
+
+Maintenenance and development transferred to Paul Pomes (paul-pomes@uiuc.edu)
+after Steve Dorner left the University.  Code completely re-formatted to use
+full-tab indents and wrappers around ANSI prototypes to allow compilation on
+non-ANSI C equipped hosts.  Tested on VAX-3500 with Ultrix-3.2, and SUN4 with
+SunOS 4.1.2.  Compiled but not extensively tested on Convex, RS6000, and MIPS
+with RISCos.
+
+Last vestiges of f.config eliminated.  Most file names lower-cased.  All usages
+of theArg, theValue, thePassword, theEtc eliminated in favor of shorter names
+that omit the leading "the".  Ick.
+
+All docs converted to native UNIX format - troff and -man macros for man pages,
+troff and -me macros for everything else.
+
+4/2/92 #############################
+
+doc/install is now at least minimally useful.
+
+3/12/92 #############################
+
+IMPORTANT - the field config file should now be named database.cnf, where
+"database" is the basename of your database (eg, prod.cnf).  I've included
+a sample of our field config file.
+
+IMPORTANT - a new field has been included in the field config file.
+Util/merge3 is the only program that cares about it; but it must be
+present.
+
+NOTE - qi now will print the contents of database.bnr (eg, prod.bnr)
+as part of the response to a "status" command.
+
+2/26/92 #############################
+
+I've completely revised the configuration process.  Hopefully, I've made
+it easier; it's certainly been easier for me.  The idea now is that you
+create perl scripts in the Configs subdirectory.  These scripts are run
+by the master script (Configure), after it has run ConfigDefaults.
+Look in ConfigDefaults for what sorts of things you can configure.
+Some example configurations are in the Configs subdirectory.
+
+To do a configuration, cd to the top of the source tree, and type:
+
+  perl Configure [other config files...]
+
+Eg, when I install Qi for our production nameserver, I say:
+
+  perl Configure Ultrix garcon
+
+For our "Network Navigator" (please don't ask), I do:
+
+  perl Configure NeXT net-nav
+
+I'm having good luck using the exact same source tree for different
+databases and even record sizes, which is nice, since I run several
+Qi databases.
+
+It's not quite finished, and there are some inconsistencies in how the
+Configure script goes about its business.  But it's much nicer than
+it was.
+
+I've successfully used this set of sources on Ultrix, NeXT, Convex,
+Dynix, and AIX.  (At least, the Qi part; I'm not sure I've compiled the
+attendant stuff from this tree on all those platforms.)
+
+The documentation remains woefully out of date.  I have decided to start
+updating it, however, so it should be better in a few months (I can only
+give it a couple hours per week).
+
+2/4/92 #############################
+
+IMPORTANT - I've changed the way CPU limits are handled.  The old way could
+result in corrupted databases, since the cpu timer could expire while
+changes were being made.  Now, only queries are time-limited.  If you
+don't implement the fix, you need to turn off cpu limits.
+
+I've also added a third possible response to a login challenge; validation
+by email-field.  If ph is coming from a port <1024, and the entry's email
+field matches the peer host and a username supplied with a (new) "email
+username" command, a password is not required for login.
+
+12/5/91  #############################
+
+I've updated this README (see f.config warning below) and added my f.config
+file back into the distribution.
+
+I've also fixed yet another bug in the AliasIsUsed routine, this one minor.
+
+12/3/91 #############################
+
+Fixed a nasty bug in the AliasIsUsed code.  If you're using the 3/28 or
+10/23 versions, you'll want to update right away.
+
+10/23/91 #############################
+
+Rewrote most of the database rebuild tools.
+
+WARNING - I changed dir and dov record sizes in db.h; make them whatever's
+appropriate for your data.
+
+WARNING - I changed the format of the f.config file, adding another field
+before the attributes begin.  I use this field for database rebuilds;
+see Src/Util/merge3.
+
+A few minor bug fixes.
+
+3/28/91 #############################
+
+Added a specific allowance for query proxy=logged-in-alias to return more
+than the normal maximum number of matches; handy for the Macintosh ph
+client that's under development.
+
+ 3/11/91 #############################
+
+Some more of the database build utilities have been converted to perl.
+
+'Siteinfo' command added.
+
+'Ph' client tinkered with.
+
+ 12/17/90 #############################
+
+Some of the database build utilities have been converted to perl.
+
+A line length limit imposed by lex has been excised.
+
+A table of common names was added to RateAKey; speeds some lookups by
+an order of magnitude.
+
+6/27/90 #############################
+
+This version fixes a few bugs in the utilities, which were caused by
+blunders while ansi-fying the code.
+
+This version of the server very occasionally dumps core.  I'll fix it
+sometime soon.
+
+5/18/90 #############################
+
+This release is more or less experimental;  we haven't been running it
+for very long.
+
+A little of the documentation has been updated, but don't get too excited.
+
+Much of the code has been ANSI-fied.  I know some of you will hate me for that.
+I have made it run under gcc on a 4.3bsd(purdue) Sequent Balance,
+an Ultrix VAX, and a NeXT machine.  The VAX vcc linker doesn't like it,
+but I don't really care why.
+
+In the process of running it on the NeXT machine, I've found some of the
+NULL-dereference bugs those of you with Suns know all about.  I have
+eradicated those I found.
+
+I have fixed a bug in using the add command to add entries with aliases
+(specifically, it would hang, trying to read the .idx file from stdin...).
+
+I have removed the history stuff, which never worked to my satisfaction.
+
+A very rudimentary shell script is included, Util/testqi.csh, to test
+qi, ph, and your database.  It tests a few basic things, but is by
+no means exhaustive.
+
+BTW - I suggest those of you running the server set up a DNS alias for its
+server host, using the service name.  For example, you can find our server
+by trying "ns.uiuc.edu".  This will give people a good chance of finding
+Nameservers in other domains.
+
+3/22/90 #############################
+
+Still no updated documentation.
+
+Two really nasty, ugly, horrid, embarassing bugs fixed.
+
+First, the version posted as of 2/6/90 allowed any field to be changed,
+whether or not it had the Change attribute.
+
+Second, the help command allowed the reading of any file accessible to
+the server, if you put in the right number of ..'s and /'s.
+
+This version FIXES both those things.
+
+2/6/90 #############################
+
+This REALLY is an interim release.  There's a bug fix to makei, for one.
+There are other changes as well.
+
+There is a bug in the "add" command in this version; it cannot add an
+entry with an alias.  Look for a fix soon.
+
+10/18/89 #############################
+
+This release is something of an interim release.  The documentation is
+(still) out of date, and some of the new features are documented poorly
+or not at all.  It does add significant new functionality, as well as
+fixes a few nasty bugs.
+
+WARNING: I've changed the indexing software in two (related) ways.
+First, it only indexes the first n characters of words.
+Second, I've drastically cut NICHARS, the size of a primary hash
+table entry.  This leads to a much more space-efficient index,
+but also means that the code is INCOMPATIBLE with older databases.
+
+New Features:
+	- a "help" command was added to the server.  Syntax is
+	  help name-of-client topic-list.  The help itself is
+	  kept in files, one for each topic, residing in subdirectories,
+	  one for each client.
+	- Ph now rewrites email and alias fields into one line on
+	  the display.
+	- Switches added to control Ph's behavior:
+		- "-s hostname" controls what server ph uses
+		- "-p portnumber" controls what port ph uses
+		- "-[mM]" turns off/on use of pager
+		- "-[rR]" turns off/on email reformatting
+		- "-[nN]" turns off/on reading of .netrc file
+		- "-[bB]" turns off/on beautification of query results
+	- a switch command was added to Ph to set switches inside ph
+	- database rebuild stuff considerably modified.  A Makefile
+	  for databases included, that might serve as a guide to database
+	  builds.
+
+Bugs fixed:
+	- Older versions of ph sometimes hung after edit command; now fixed.
+	- Database headers were not being updated properly during simul-
+	  taneous qi sessions, leading to shared overflow blocks; fixed.
+	- Fields command in Ph now uses pager
+	- Some more null-dereference bugs fixed
+	- probably others I've forgotten
+	
+7/28/89 #############################
+
+Some bugs introduced in Ph by the last revision are fixed.
+
+7/19/89 #############################
+
+N.B.:
+The documentation distributed with this program is somewhat out-of-date.  At some point in the future, the documentation will be updated.  Until that time,
+bear in mind the contents of this file when you read the documentation.
+
+Bugs fixed:
+	- a certain dereference of a NULL pointer was excised from commands.c
+	- the code that checked aliases for uniqueness was broken the last
+	  time it was enhanced.  It is now fixed.
+Behavior changed:
+	- Previously, if a client issued a login command, and did not
+	  follow it with an answer command, the server issued a 599 reply,
+	  followed by the reply to the new command:
+	  	login xyzzy
+		301:akdjfjfajflajfajlfjsdaslfjdf
+		ph dorner
+		599:expecting answer
+		-200...
+		200
+	  I was prevailed upon to change this behavior so that clients
+	  who get out of synch won't have a problem.  Now, the complaint
+	  about the missing answer is given as a -523:
+	  	login xyzzy
+		301:akdjfjfajflajfajlfjsdaslfjdf
+		ph dorner
+		-523:expecting answer
+		-200...
+		200
+	  This way, a client who thinks it should read only until it
+	  gets a code >=200 and who also screws up a login won't have
+	  a problem.
+Enhancements:
+	- Ph now exits with 0 if the last command was successful, or the
+	  upper digit of the code if the last command failed (e.g., exit(5)
+	  for a 500 series reply).  An exit status of 1 implies some
+	  other error, not a 100 reply (since 100 is in-progress, and
+	  a final reply will be waited for).
+	- The following enhancements were made to the server by Mark Edwards,
+	  edwards@dogie.macc.wisc.edu.  If you have questions about these
+	  features, please contact him.
+	  	- If a field description named "any" is added to f.config,
+		  a query like "ph dorner any=compute" will return entries
+		  that have "compute" in any one of fields marked "Wild" in
+		  f.config.
+		- If a field descirption named "always" is added to f.config
+		  a query like "ph dorner return email always" will print,
+		  in addition to the email field, any fields marked "Always"
+		  in f.config
+		- Various changes were made to Ph for Wisconsin use.  These
+		  can be enabled by #define'ing MACC.
+		- A directory called Xtra was added, containing a version of
+		  syslog for use by the benighted systems who do not have
+		  the 4.3 syslog.  It will take some Makefile work to integrate
+		  this with qi.
+
+Some source code issues were also addressed; they are uninteresting for
+the most part.
+
+5/16/89 #############################
+
+This release differs only slightly from the 5/13 release.  Some dead
+code has been removed from AliasIsUsed in qi/change.c.  It should be
+noted that this code, when operational, could cause data from one
+entry to be duplicated and written ON TOP OF ANOTHER ENTRY.  This could
+occur when the "alias" field was changed.
+
+If you are running a pre-5/13/89 version of qi, YOU MUST DEAL WITH
+AliasIsUsed, either by grabbing a newer version or hacking your own.
+The problem is AliasIsUsed does a standard lookup on the alias requested,
+to see if it exists in the database.  This lookup (via DoLookup),
+can cause the "current entry" in dbm.c to be changed, which results
+in the duplication/overwrite bug.  To fix AliasIsUsed, either avoid the
+"DoLookup" or restore dbm.c's current entry (cur_ent).  We have chosen
+the former course, using the lowlevel, index-file only do_lookup.  This
+results in further restrictions on aliases (now, an alias cannot appear
+in any indexed fields of any other entries), but we are content with
+the more restrictive behavior.
+
+5/13/89 #############################
+
+There are still two outstanding bugs in this version.  One causes duplicate
+entries.  This occurs in our database (fairly large and well-used) about
+once every other month.  I have been unable to duplicate, find, or fix
+this bug.  The second causes two entries to share the same overflow block.
+In well over a year of operation, this has happened ONCE.  The fix to
+putdirent (see below) will make this bug even less likely to occur.
+If you find you can duplicate (or fix, for that matter) either of these
+bugs, PLEASE get in touch with me, paul-pomes@uiuc.edu.
+
+Fixed a Makefile error that caused include/conf.h not to appear before it
+was needed.
+
+Made whoi work after 'enhancing' it broke it.
+
+Added a "PARANOID" ifdef to dbd.c to check the contents of every entry
+after it is written.  Suggest this be used for debugging only.
+
+Changed change.c to disallow aliases whose components result in valid
+lookups to persons other than the one whose alias is changed.  For example,
+our database contains both "Steve Dorner" and "Paul Pomes".  Paul is allowed
+to have an alias of "paul-pomes", but Steve is not.  We need this for
+our mail forwarding scheme.
+
+Fixed language.l to understand "exit" (not "end").
+
+Changed putdirent to reuse old overflow blocks (previously, overflow
+blocks were discarded, not reused, any time an entry with overflow
+blocks was changed, leading to monotonic growth in the .dov file, even
+under constant size real data).
+
+Changed ph to be consistent in its use of the PASSW define, and made
+a cosmetic change or two.
+
+4/28/89 #############################
+
+This distribution changes the procedure for creating a "hero" user,
+fixes a bug, adds a new service, and adds a new utility.
+
+Who the Nameserver "hero" (super-user) was used to be determined by
+matching the user's alias against a string compiled into qi.  Now,
+there is a "hero" field, the presence of which means the user is
+a "hero".  This allows for multiple "heroes".
+
+The bug was (again) in encryption/decryption synchronization.  The
+old code restarted the encryption machine after any change was made
+to the logged-in user's entry.  The new (fixed) code only restarts
+the encryption machine if the user changes his password.  This is
+not only more reasonable behavior, it is how the client (ph) behaves.
+This bug caused people who changed their passwords after changing
+something else in their entry to wind up with bad passwords.
+
+The service is a "whois" front-end for qi.  It assumes you send it
+a name (and only a name), and returns the results of a query on that
+name.  This allows Nameserver sites to respond to whois queries.
+
+The utility is "nsck", which checks Nameserver databases for some
+obvious corruptions.  There is, alas, no documentation available for
+nsck; read the code to see what exactly it does.  It does NOT fix
+anything, it just will warn you of problems.
+
+3/21/89 #############################
+
+This distribution adds a minor feature, avoids a major bug, and
+implements a minor performance enhancement.
+
+The bug is that the encryption/decryption routines can get out of
+synch if encrypted data is not decrypted.  Therefore, the server
+no longer prints any data at all when asked to print the values
+of encrypted fields.  You may undo this change iff you change your
+clients to notice that some encrypted data has been sent to them,
+and make them decrypt it.
+
+The minor feature is that the "owner" field has been changed to
+a "proxy" field; aliases put in the "proxy" field of an entry are
+allowed to change the user-changeable data for that entry.
+
+The performance enhancement is that the lookup routines stop selecting
+entries when the overflow count has been reached.  They used to con-
+tinue the search until all entries had been located, and then report
+there were too many entries to print; this extra work is now avoided.
+
+Other minor changes were made as well.
+
+
+
+
+1/18/89 #############################
+
+This distribution contains the version of the Nameserver in production
+use as of the date above at the University of Illinois.  We provide
+no warrantees of any kind, and take no responsibility for anything
+bad that might happen as a result of using our software.  The
+software is Copyright 1988, 1989 by the University of Illinois
+Board of Trustees.  Portions of the software are Copyright 1985 by
+CSNET.  This software may not be redistributed without prior consent
+of CSNET.
+
+While we cannot provide formal support, we ARE interested in your
+experiences with the software.  I will answer your questions, as
+time permits, and am interested in bugs you discover, things you
+think need to be better documented, and enhancements you make.
+Feel free to drop me a line about any of those things.
+
+Once you have retrieved the file qi.tar.Z, you should first uncompress
+it:  "uncompress qi.tar.Z".  Then, extract the files from it: "tar
+xvf qi.tar".  This will create several subdirectories.  The first
+directory to examine is doc, which contains the documentation for
+the Nameserver.
+
+The doc directory contains nine documents.  Two of them are troff
+manual pages (ph.1 and qi.8).  Seven of them are provided in two
+formats; MacBinary WriteNow for the Macintosh format (.wn.Bin) and
+Rich Text Format (.rtf), suitable for importing to Microsoft Word
+for the Macintosh.  While other machines (notably NeXT machines)
+can read both WriteNow and RTF files, the graphics in the files
+will be lost unless they are printed on a Macintosh.  If both
+document formats leave you cold, send me a note with your paper
+mail address, and I will send you paper copies of the documentation.
+
+The document of most immediate interest to you is Installation,
+which covers the file layout of the distribution, and gives
+instructions for the installation of the software.
+
+Good luck.
+
+This document was written by Steve Dorner.  Steve has since gone on to
+other opportunities and has left qi/ph development to Paul Pomes.
+Steve continues to develop Eudora and it will continue to be a free
+product.
+
+Paul Pomes, U of Illinois Computing Services Office
+Internet: Paul-Pomes@uiuc.edu
+Paper:	1451 DCL, MC 256
+	1304 W. Springfield
+	Urbana, IL 61801

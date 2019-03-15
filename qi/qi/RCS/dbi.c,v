@@ -1,0 +1,3096 @@
+head	1.30;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.30
+date	95.01.09.13.15.49;	author p-pomes;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	94.09.09.20.17.03;	author p-pomes;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	94.05.05.21.21.51;	author paul;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	94.03.21.13.14.24;	author paul;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	94.03.12.00.24.45;	author paul;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	93.12.09.17.01.29;	author paul;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	93.11.24.22.37.46;	author paul;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	93.07.24.15.55.10;	author paul;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	93.06.14.21.37.38;	author paul;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	93.04.06.16.53.49;	author paul;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	93.04.05.22.17.54;	author paul;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	93.04.05.21.30.18;	author paul;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	92.09.22.16.48.38;	author paul;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	92.08.16.17.11.43;	author paul;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	92.07.29.04.41.04;	author paul;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	92.07.29.03.37.36;	author paul;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	92.07.27.14.48.14;	author paul;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	92.07.27.14.30.30;	author paul;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	90.12.18.08.41.26;	author dorner;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	89.10.18.07.52.16;	author dorner;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	89.07.19.10.18.46;	author dorner;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	89.07.05.20.16.57;	author dorner;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	89.03.20.15.14.44;	author dorner;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	88.12.02.14.45.20;	author dorner;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	88.11.15.13.35.22;	author dorner;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	88.07.08.14.00.44;	author dorner;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	88.07.06.20.47.48;	author dorner;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	88.04.19.08.11.51;	author dorner;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	88.02.18.14.56.26;	author dorner;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	87.12.09.13.36.46;	author dorner;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.30
+log
+@Renamed delete() to qidelete().
+@
+text
+@/*
+ * Copyright (c) 1985 Corporation for Research and Educational Networking
+ * Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+ *		Dorner, and Paul Pomes
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the Corporation for
+ *	Research and Educational Networking (CREN), the University of
+ *	Illinois at Urbana, and their contributors.
+ * 4. Neither the name of CREN, the University nor the names of their
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#ifndef lint
+static char  RcsId[] = "@@(#)$Id: dbi.c,v 1.29 1994/09/09 20:17:03 p-pomes Exp p-pomes $";
+#endif
+
+#include "protos.h"
+
+#define ESC '\033'		/* the special account entry marker */
+
+#define ASIZE 32		/* granule size for INT32 array allocation */
+
+
+static int debug = 0;
+static int ixfd;			/* index file desciptor */
+static int ovfd;			/* overflow file desciptor */
+static INT32 IDXSIZE;
+static INT32 OVRSIZE;
+static INT32 oarry[NOPTRS];
+
+static int getient __P((register char *, struct iindex *));
+static INT32 *getrecptrs __P((struct iindex *));
+static int getx __P((INT32 *));
+static INT32 *i_oread __P((INT32, INT32 *));
+static int i_owrite __P((INT32 *, INT32));
+static int i_read __P((struct iindex *, INT32));
+static int i_write __P((struct iindex *, INT32));
+static int ovrnew();
+static void printarry __P((INT32 *));
+static INT32 *un_dupi __P((INT32 *));
+
+extern struct dirhead DirHead;
+extern int Have_head;
+
+/*
+ * This routine takes a string and searches for it in the inverted index. It
+ * returns a pointer to an array of INT32 which are the directory
+ * entries that contain this string.
+ */
+
+INT32 *
+findstr(str)
+	char *str;
+{
+	struct iindex x;
+
+	if (getient(str, &x) <= 0)
+		return (0);
+
+	return (un_dupi(getrecptrs(&x)));
+}
+
+/*
+ * this returns an array of record pointers (INT32) gleaned from the
+ * index entry idx.
+ */
+
+static INT32 *
+getrecptrs(idx)
+	struct iindex *idx;
+{
+	register int src, dest;
+	int	array_size;
+	INT32	*array;
+
+	array_size = (NIPTRS + 1) * PTRSIZE;	/* One extra space for
+			       * benefit of putstr() */
+	array = (INT32 *) malloc(array_size);
+	memset((void *) array, (char) 0, array_size);
+
+	/* copy recptrs into array */
+	src = getx((INT32 *) idx);
+	dest = 0;
+	while (src < NIPTRS)
+		array[dest++] = idx->i_recptrs[src++];
+	dest--;
+
+	/* read overflow index blocks into array */
+	while (array[dest])
+	{
+		array = (INT32 *) realloc(array, array_size += NOPTRS * PTRSIZE);
+		(void) i_oread(array[dest], &array[dest]);
+		dest += NOPTRS - 1;
+	}
+
+	return (array);
+}
+
+
+/*
+ * finds the first integer after the end of the string in buffer str.
+ */
+
+static int 
+getx(str)
+	INT32 *str;
+{
+	/* please hide this stuff away somewhere, it's gross */
+	int	i;
+
+	for (i = 0;; i++)
+	{
+		if ((str[i] & 0xff) == 0 || (str[i] & 0xff00) == 0 ||
+		    (str[i] & 0xff0000) == 0 || (str[i] & 0xff000000) == 0)
+		{
+			i++;
+			break;
+		}
+	}
+	return (i);		/* finally have index into str as if it were
+				 * an array of INT32 */
+}
+
+/*
+ * This routine returns the index into the index file of string str and puts
+ * a copy of the entry in xbuf. It returns 0 on failure and the negative of
+ * the index of the first null entry it finds. It uses a rehashing strategy
+ * for searching.
+ */
+
+int	TryCount;
+int	TrySum;
+int	TryTimes;
+
+static int 
+getient(str, x)
+	char *str;
+	struct iindex *x;
+{
+	INT32	strtix = 0;
+	INT32	emptynode = 0;
+	char	scratch[256];
+
+	(void) strlcpy(scratch, str);
+	scratch[MAX_KEY_LEN] = 0;	/* index only first MAX_KEY_LEN chars */
+
+	TrySum += TryCount;
+	TryTimes++;
+	TryCount = 0;
+	do
+	{
+		strtix = ihash(scratch, strtix, IDXSIZE);
+
+		/*
+		 * ihash() should never return an entry that goes beyond EOF,
+		 * so i_read() should never fail due to that. Correct???
+		 * (Otherwise, we've got a third possibility).
+		 * Rick McCarty <mccarty@@add.itg.ti.com>
+		 */
+
+		if (!i_read(x, strtix))
+			return (0);
+		if ((x->i_string)[0] == 0)
+		{		/* pristine node */
+			if (Have_head && TryCount < NHASH)
+				DirHead.hashes[TryCount]++;
+			return (emptynode ? -emptynode : -strtix);
+		} else if ((x->i_string)[0] == EMPTY)
+		{		/* was once a part of a hash chain */
+			if (!emptynode)
+				emptynode = strtix;
+
+			/*
+			 * Not sure about this but this may be a lurking bug.
+			 * What is "DirHead" used for.
+			 * Rick McCarty <mccarty@@add.itg.ti.com>
+			 */
+			if (Have_head && TryCount < NHASH)
+				DirHead.hashes[TryCount]++;
+		} else if (!stricmp(scratch, x->i_string))
+		{
+			if (Have_head && TryCount < NHASH)
+				DirHead.hashes[TryCount]++;
+			return (strtix);
+		}
+	}
+	while (TryCount++ < MAXTRIES);
+
+	/*
+	 * Here's where I think we can take care of the other case.  We
+	 * have traveled down the maximum number of tries, but did not find
+	 * a match.  We did, however, encounter an empty node along the way.
+	 * Return it.   Rick McCarty <mccarty@@add.itg.ti.com>
+	 */
+	if (emptynode)
+		return (-emptynode);
+
+	/*
+	 * Well, we couldn't find it. This isn't a good way to end. It means
+	 * that the index is getting full. These should be logged somehow to
+	 * let someone know they should increase idx file size.
+	 */
+	IssueMessage(LOG_ERR, "MAXTRIES exceeded on string \"%s\"", str);
+	return (0);
+}
+
+/*
+ * This routine takes a string and searches for it in the inverted index. If
+ * it is in the index it adds the record number "recnum" to the array of
+ * directory entries associated with the string. If the string is not found,
+ * it is added.
+ *
+ * putstr() indexes on record.
+ * putstrarry() indexes a list of them in one shot.
+ */
+
+int	WordsIndexed = 0;
+int	MaxIdx = 0;
+int	DoTree = 1;		/* bing the bintree stuff */
+
+int
+putstr(str, recnum)
+	char *str;
+	int recnum;
+{
+	INT32 arry[2];
+
+	arry[0] = recnum;
+	arry[1] = 0;
+	return putstrarry(str, arry);
+}
+
+int 
+putstrarry(str, newarry)
+	char *str;
+	INT32 *newarry;		/* newarry is assumed to be sorted! */
+{
+	struct iindex x;
+	INT32	iloc, i, j, save, ovrflo, recnum;
+	INT32	*arry;
+	char	scratch[MAX_KEY_LEN + 1];
+
+	if (strlen(str) < 2)
+		return (1);	/* ignore, but pretend success */
+	strncpy(scratch, str, sizeof (scratch));
+	scratch[MAX_KEY_LEN] = 0;	/* truncate */
+	iloc = getient(scratch, &x);
+	if (debug)
+		IssueMessage(LOG_DEBUG, "putstrarry: iloc= %ld", iloc);
+	if (iloc == 0)
+		return (0);
+	if (iloc < 0)
+	{			/* this is an empty entry */
+		WordsIndexed++;
+		(void) strlcpy(x.i_string, scratch);
+		/* copy the first few recnums into the primary index entry. */
+		for (i = getx((INT32 *) &x), j = 0; i < (NIPTRS - 1) && newarry[j]; i++, j++)
+		  x.i_recptrs[i] = newarry[j];
+		if (newarry[j]) { /* overflow: more recnums to go into the .iov file */
+			if ((ovrflo = x.i_recptrs[i] = ovrnew()) < 0) {
+				IssueMessage(LOG_ERR,"putstrarry: ovrnew failed");
+				return(0);
+			}
+			while (ovrflo) {
+				for (i = 0; i < (NOPTRS-1) && newarry[j]; i++,j++)
+				  oarry[i] = newarry[j];
+				if (newarry[j]) {
+					if ((oarry[i] = ovrnew()) < 0) {
+						IssueMessage(LOG_ERR,"putstrarry: ovrnew failed");
+						return(0);
+					}
+				} else {
+					oarry[i] = oarry[NOPTRS-1] = 0;
+				}
+				if (!i_owrite(oarry,ovrflo)) {
+					  IssueMessage(LOG_ERR,"putstrarry: i_owrite failed");
+					  return(0);
+				}
+				ovrflo = oarry[NOPTRS-1];
+			}
+		} else {	/* no overlow: everything fits in the .idx entry */
+			x.i_recptrs[i] = 0;
+			x.i_recptrs[NIPTRS - 1] = 0;	/* make sure don't think we ovrflo */
+		}
+		if (i_write(&x, -iloc) == 0)
+		{
+			IssueMessage(LOG_ERR, "putstrarry: i_write failed");
+			return (0);
+		}
+		if (DoTree && *str != ESC)
+			insert(x.i_string, -iloc);	/* update the sequence file */
+	} else
+	{			/* got one; merge arry and newarry */
+		arry = getrecptrs(&x);
+		if (debug)
+			printarry(arry);
+
+		/* sort the new entries in, return if already there */
+		if (newarry[2])	/* if the new array is more than 1 element, realloc to make room */
+		  arry = (INT32 *) realloc(arry, (length(arry) + length(newarry) + 1) * PTRSIZE);
+		if (arry == NULL) {
+			IssueMessage(LOG_ERR, "putstrarry: realloc(\"%s\"): %s", str, strerror(errno));
+			return(0);
+		}
+		for (j = 0; recnum=newarry[j]; j++) { /* gross hack way to merge these in */
+			for (i = 0; recnum; i++)
+			  {
+
+				  if (arry[i] > recnum || arry[i] == 0)
+				    {
+					    save = arry[i];
+					    arry[i] = recnum;
+					    recnum = save;
+				    }
+			  }
+			arry[i] = 0;	/* zero terminate */
+			if (i > MaxIdx)
+			  MaxIdx = i;
+		}
+		if (debug)
+			printarry(arry);
+		if (!putarry(&x, arry, iloc))
+		{
+			IssueMessage(LOG_ERR, "putstrarry: putarry failed");
+			free(arry);
+			return (0);
+		}
+		free(arry);
+	}
+	return (1);
+}
+
+int 
+putarry(x, arry, iloc)
+	struct iindex *x;
+	INT32 *arry, iloc;
+{
+	int	i, j;
+	INT32	had_ovrflo, ovrdo, size, oloc;
+	INT32	*addr;
+
+	j = getx((INT32 *) x);
+
+	addr = x->i_recptrs;
+	size = NIPTRS - 1;
+	had_ovrflo = addr[size];
+	addr[size] = 0;
+	ovrdo = 0;		/* whether we are filling an ovrflo block */
+
+	for (i = 0; arry[i]; i++, j++)
+	{			/* write out array */
+
+		if (j >= size)
+		{		/* get next ovrflo block */
+
+			if (!had_ovrflo)
+				if ((had_ovrflo = ovrnew()) < 0)
+				{
+					IssueMessage(LOG_ERR, "putarry: ovrnew failed");
+					return (0);
+				}
+			addr[size] = had_ovrflo;
+
+			if (ovrdo)
+			{	/* write out last ovrflo block */
+				if (i_owrite(addr, oloc) == 0)	/* ignore lint--this is ok */
+				{
+					IssueMessage(LOG_ERR, "putarry: i_owrite failed");
+					return (0);
+				}
+			}
+			addr = i_oread(had_ovrflo, oarry);
+			j = 0;
+			ovrdo++;
+			size = NOPTRS - 1;
+			oloc = had_ovrflo;	/* new location in ovr file */
+			had_ovrflo = addr[size];
+		}
+		addr[j] = arry[i];
+	}
+	addr[j] = 0;		/* zero terminate */
+
+	/* write out index entry */
+	if (i_write(x, iloc) == 0)
+	{
+		IssueMessage(LOG_ERR, "putarry: i_write failed");
+		return (0);
+	}
+	/* write out any partial ovrflo blocks */
+	addr[size] = 0;		/* zero ovrflo block ptr */
+	if (ovrdo)
+	{
+		if (i_owrite(addr, oloc) < 0)
+		{
+			IssueMessage(LOG_ERR, "putarry: i_owrite failed");
+			return (0);
+		}
+	}
+	return (1);
+}
+
+static void 
+printarry(arry)
+	INT32 *arry;
+{
+	printf("array entries : ");
+	while (*arry)
+		printf(" %ld ", *arry++);
+	printf("\n");
+}
+
+/*
+ * This routine will delete the record recnum from the inverted index entry
+ * for str. If this is the only record that str is found in, then str in
+ * removed from the index.
+ */
+
+int 
+deletestr(str, recnum)
+	char *str;
+	int recnum;
+{
+	struct iindex x;
+	INT32	iloc, offset, i;
+	INT32	*arry;
+	char	scratch[MAX_KEY_LEN + 1];
+
+	strncpy(scratch, str, MAX_KEY_LEN);
+	scratch[MAX_KEY_LEN] = 0;	/* index only first MAX_KEY_LEN chars */
+	str = scratch;
+
+	if ((iloc = getient(str, &x)) <= 0)
+	{
+		IssueMessage(LOG_ERR, "deletestr: no index ent for \"%s\"\n", str);
+		return (0);
+	}
+	arry = getrecptrs(&x);
+
+	offset = 0;
+
+	/* get rid of the record pointer */
+	for (i = 0; arry[i]; i++)
+	{
+		if (arry[i] == recnum)	/* is it there? */
+			offset = 1;
+		arry[i] = arry[i + offset];
+	}
+	if (!offset)
+	{
+		IssueMessage(LOG_ERR, "deletestr: no recptr for \"%s\",%ld\n", str, recnum);
+		free(arry);
+		return (0);
+	}
+	/* get rid of the entry */
+	if (arry[0] == 0)
+	{			/* empty, remove the entry */
+		x.i_string[0] = EMPTY;
+		x.i_recptrs[NIPTRS - 1] = 0;
+		if (i_write(&x, iloc) == 0)
+		{
+			IssueMessage(LOG_ERR, "deletestr: i_write failed");
+			return (0);
+		}
+		if (*str != ESC)
+			if (qidelete(str) == 0)
+			{
+				IssueMessage(LOG_ERR, "deletestr: qidelete failed");
+			}
+	} else if (!putarry(&x, arry, iloc))
+	{
+		free(arry);
+		IssueMessage(LOG_ERR, "deletestr: putarry failed");
+		return (0);
+	}
+	free(arry);
+	return (1);
+}
+
+/*
+ * This routine returns an array of all INT32 common to the two
+ * arrays given as argument. It assumes that the arrays are sorted.
+ */
+
+INT32 *
+intersect(ary0, ary1)
+	INT32 *ary0, *ary1;
+{
+	INT32	*result;
+	int	i, j, k, size0, size1;
+
+	/* all right, who's the smallest ? */
+	for (size0 = 0; ary0[size0]; size0++) ;
+	for (size1 = 0; ary1[size1]; size1++) ;
+
+	/* get result array, can't run out (right?) */
+
+	if (size0 > size1)
+		i = (((size0 * PTRSIZE) / ASIZE + 1) * ASIZE);
+	else
+		i = (((size1 * PTRSIZE) / ASIZE + 1) * ASIZE);
+	result = (INT32 *) malloc((unsigned) i);
+
+	for (i = 0, j = 0, k = 0; i < size0; i++)
+	{			/* foreach element in ary0 */
+		while (ary1[j] < ary0[i] && ++j < size1) ;	/* no match */
+		if (j >= size1)
+			break;
+		if (ary0[i] == ary1[j])
+		{
+			result[k++] = ary0[i];
+			continue;
+		}
+	}
+	result[k] = 0;
+	return (result);
+
+}
+
+static INT32 *
+un_dupi(ary)
+	INT32 *ary;
+{
+	register INT32 *ptr, *orig;
+
+	orig = ary;
+
+	if (!ary[0] || !ary[1])
+		return (ary);
+
+	for (ptr = ary++; *ary; ary++)
+	{
+		if (*ptr != *ary)
+			*++ptr = *ary;
+	}
+	*++ptr = 0;
+
+	return (orig);
+}
+
+/*
+ * This routine opens the index and index-overflow files file is the prefix
+ * of the database name.
+ */
+
+int 
+dbi_init(file)
+	char *file;
+{
+	struct iindex *x;
+	char	idxname[100], iovname[100];
+	static int firstTime = 1;
+
+	/* make file names */
+	strcpy(idxname, file);
+	strcat(idxname, ".idx");
+	strcpy(iovname, file);
+	strcat(iovname, ".iov");
+
+	if (firstTime && (ixfd = open(idxname, 2)) < 0)
+	{
+		IssueMessage(LOG_ERR, "dbi_init: open(%s): %s",
+			idxname, strerror(errno));
+		return (0);
+	}
+	IDXSIZE = lseek(ixfd, 0L, 2) / sizeof *x;
+
+	if (firstTime && (ovfd = open(iovname, 2)) < 0)
+	{
+		IssueMessage(LOG_ERR, "dbi_init: open(%s): %s",
+			iovname, strerror(errno));
+		return (0);
+	}
+	OVRSIZE = lseek(ovfd, 0L, 2) / (PTRSIZE * NOPTRS);
+	if (OVRSIZE == 0)
+		if (ovrnew() < 0)
+		{
+			IssueMessage(LOG_ERR, "dbi_init: overnew failed");
+			cleanup(-1);
+		}
+	if (debug)
+		printf("init: IDXSIZE= %ld, OVRSIZE= %ld\n", IDXSIZE, OVRSIZE);
+	firstTime = 0;
+	return (1);
+}
+
+static int 
+i_write(x, iloc)
+	struct iindex *x;
+	INT32 iloc;
+{
+	if (lseek(ixfd, iloc * (sizeof *x), 0) != iloc * (sizeof *x))
+	{
+		IssueMessage(LOG_INFO, "i_write: lseek(%d,%ld,0): %s",
+			ixfd, iloc * (sizeof *x), strerror(errno));
+		return (0);
+	}
+	if (write(ixfd, x, sizeof *x) < 0)
+	{
+		IssueMessage(LOG_ERR, "i_write: write() at %ld: %s",
+			iloc, strerror(errno));
+		return (0);
+	}
+	return (1);
+}
+
+static int 
+i_read(x, iloc)
+	struct iindex *x;
+	INT32 iloc;
+{
+	if (lseek(ixfd, iloc * (sizeof *x), 0) != iloc * (sizeof *x))
+	{
+		IssueMessage(LOG_ERR, "i_read: lseek(%d,%ld,0): %s",
+			ixfd, iloc * (sizeof *x), strerror(errno));
+		return (0);
+	}
+	if (read(ixfd, x, sizeof *x) == -1)
+	{
+		IssueMessage(LOG_ERR, "i_read: read: %s", strerror(errno));
+		return (0);
+	}
+	return (1);
+}
+
+static int 
+i_owrite(x, ioloc)
+	INT32 *x, ioloc;
+{
+	if (lseek(ovfd, ioloc * PTRSIZE * NOPTRS, 0) != ioloc * PTRSIZE * NOPTRS)
+	{
+		IssueMessage(LOG_ERR, "i_owrite: lseek(%d,%ld,0): %s",
+			ovfd, ioloc * PTRSIZE * NOPTRS, strerror(errno));
+		return (0);
+	}
+	if (write(ovfd, x, PTRSIZE * NOPTRS) < 0)
+	{
+		IssueMessage(LOG_ERR, "i_owrite: write at %ld: %s",
+			ioloc, strerror(errno));
+		return (0);
+	}
+	return (1);
+}
+
+/*
+ * this routine fetches the overflow record indexed by oloc out of the
+ * overflow file. It returns a pointer to a static area with the data in it,
+ * therefore it can't be used recursively without copying the data out.
+ */
+
+static INT32 *
+i_oread(oloc, arry)
+	INT32 oloc, *arry;
+{
+
+	if (lseek(ovfd, (PTRSIZE * NOPTRS) * oloc, 0) < 0)
+	{			/* get upset */
+		IssueMessage(LOG_ERR, "i_oread: lseek(%d,%ld,0): %s",
+			ovfd, (PTRSIZE * NOPTRS) * oloc, strerror(errno));
+		abort();
+		exit(1);
+	}
+	if (read(ovfd, arry, PTRSIZE * NOPTRS) != PTRSIZE * NOPTRS)
+	{			/* get upset */
+		IssueMessage(LOG_ERR, "i_oread: read: %s",
+			strerror(errno));
+		abort();
+		exit(1);
+	}
+	return (arry);
+}
+
+static int 
+ovrnew()
+{
+	char	i;
+
+	if (lseek(ovfd, (PTRSIZE * NOPTRS * (OVRSIZE + 1)) - 1, 0) < 0)
+	{
+		IssueMessage(LOG_ERR, "ovrnew: lseek(%d,%ld,0): %s",
+			ovfd, (PTRSIZE * NOPTRS * (OVRSIZE + 1)) - 1, strerror(errno));
+		return (-1);
+	} else if (write(ovfd, &i, 1) < 0)
+	{
+		IssueMessage(LOG_ERR, "ovrnew: write: %s", strerror(errno));
+		return (-1);
+	}
+	return (OVRSIZE++);
+}
+
+INT32 *
+get_dir_ptrs(iloc)
+	INT32 iloc;
+{
+	struct iindex x;
+
+	if (i_read(&x, iloc) == 0)
+	{
+		return (NULL);
+	}
+	return (un_dupi(getrecptrs(&x)));
+}
+@
+
+
+1.29
+log
+@OSF/1 V2.1 patches for DEC Alpha where longs are 64 bits.  Contributed
+by Steve Madsen <smadsen@@cs.muohio.edu>.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: dbi.c,v 1.28 1994/05/05 21:21:51 paul Exp p-pomes $";
+d489 1
+a489 1
+			if (delete(str) == 0)
+d491 1
+a491 1
+				IssueMessage(LOG_ERR, "deletestr: delete failed");
+@
+
+
+1.28
+log
+@Revised syslog() messages to a consistent format, eliminated use of perror.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: dbi.c,v 1.27 1994/03/21 13:14:24 paul Exp $";
+d45 1
+a45 1
+#define ASIZE 32		/* granule size for long array allocation */
+d51 3
+a53 3
+static long IDXSIZE;
+static long OVRSIZE;
+static long oarry[NOPTRS];
+d56 6
+a61 6
+static long *getrecptrs __P((struct iindex *));
+static int getx __P((long *));
+static long *i_oread __P((long, long *));
+static int i_owrite __P((long *, long));
+static int i_read __P((struct iindex *, long));
+static int i_write __P((struct iindex *, long));
+d63 2
+a64 2
+static void printarry __P((long *));
+static long *un_dupi __P((long *));
+d71 1
+a71 1
+ * returns a pointer to an array of long which are the directory
+d75 1
+a75 1
+long *
+d88 1
+a88 1
+ * this returns an array of record pointers (long) gleaned from the
+d92 1
+a92 1
+static long *
+d98 1
+a98 1
+	long	*array;
+d102 1
+a102 1
+	array = (long *) malloc(array_size);
+d106 1
+a106 1
+	src = getx((long *) idx);
+d115 1
+a115 1
+		array = (long *) realloc(array, array_size += NOPTRS * PTRSIZE);
+d130 1
+a130 1
+	long *str;
+d145 1
+a145 1
+				 * an array of long */
+d164 2
+a165 2
+	long	strtix = 0;
+	long	emptynode = 0;
+d250 1
+a250 1
+	long arry[2];
+d260 1
+a260 1
+	long *newarry;		/* newarry is assumed to be sorted! */
+d263 2
+a264 2
+	long	iloc, i, j, save, ovrflo, recnum;
+	long	*arry;
+d281 1
+a281 1
+		for (i = getx((long *) &x), j = 0; i < (NIPTRS - 1) && newarry[j]; i++, j++)
+d324 1
+a324 1
+		  arry = (long *) realloc(arry, (length(arry) + length(newarry) + 1) * PTRSIZE);
+d360 1
+a360 1
+	long *arry, iloc;
+d363 2
+a364 2
+	long	had_ovrflo, ovrdo, size, oloc;
+	long	*addr;
+d366 1
+a366 1
+	j = getx((long *) x);
+d428 1
+a428 1
+	long *arry;
+d448 2
+a449 2
+	long	iloc, offset, i;
+	long	*arry;
+d504 1
+a504 1
+ * This routine returns an array of all long common to the two
+d508 1
+a508 1
+long *
+d510 1
+a510 1
+	long *ary0, *ary1;
+d512 1
+a512 1
+	long	*result;
+d525 1
+a525 1
+	result = (long *) malloc((unsigned) i);
+d543 1
+a543 1
+static long *
+d545 1
+a545 1
+	long *ary;
+d547 1
+a547 1
+	register long *ptr, *orig;
+d613 1
+a613 1
+	long iloc;
+d633 1
+a633 1
+	long iloc;
+d651 1
+a651 1
+	long *x, ioloc;
+d674 1
+a674 1
+static long *
+d676 1
+a676 1
+	long oloc, *arry;
+d714 1
+a714 1
+long *
+d716 1
+a716 1
+	long iloc;
+@
+
+
+1.27
+log
+@Arrays don't need leading & in calls.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id: dbi.c,v 1.26 1994/03/12 00:24:45 paul Exp paul $";
+d227 1
+a227 1
+	IssueMessage(LOG_WARNING, "MAXTRIES exceeded on string \"%s\"\n", str);
+d273 1
+a273 1
+		IssueMessage(LOG_DEBUG, "putstr: iloc= %ld", iloc);
+d285 1
+a285 1
+				IssueMessage(LOG_WARNING,"putstrarry: ovrnew failed.");
+d293 1
+a293 1
+						IssueMessage(LOG_WARNING,"putstrarry: ovrnew failed.");
+d300 1
+a300 1
+					  IssueMessage(LOG_WARNING,"putstrarry: i_owrite failed.");
+d311 1
+a311 1
+			IssueMessage(LOG_WARNING, "putstr i_write failed.");
+d326 1
+a326 1
+			IssueMessage(LOG_WARNING, "Coulnd't realloc for string \"%s\"\n", str);
+d348 1
+a348 1
+			IssueMessage(LOG_WARNING, "putstrarry: putarry failed.");
+d383 1
+a383 1
+					IssueMessage(LOG_WARNING, "putarry: ovrnew failed.");
+d392 1
+a392 1
+					IssueMessage(LOG_WARNING, "putarry i_owrite failed");
+d410 1
+a410 1
+		IssueMessage(LOG_WARNING, "putarry i_write failed.");
+d419 1
+a419 1
+			IssueMessage(LOG_WARNING, "putarry i_owrite failed");
+d458 1
+a458 1
+		IssueMessage(LOG_WARNING, "deletestr: no index ent for \"%s\"\n", str);
+d474 1
+a474 1
+		IssueMessage(LOG_WARNING, "deletestr: no recptr for \"%s\",%ld\n", str, recnum);
+d485 1
+a485 1
+			IssueMessage(LOG_WARNING, "deletestr i_write failed.");
+d491 1
+a491 1
+				IssueMessage(LOG_WARNING, "deletestr: delete failed.");
+d496 1
+a496 1
+		IssueMessage(LOG_WARNING, "deletestr: putarry failed.");
+d585 2
+a586 1
+		IssueMessage(LOG_INFO, "dbi_init %s %s", idxname, strerror(errno));
+d593 2
+a594 1
+		IssueMessage(LOG_INFO, "dbi_init %s %s", iovname, strerror(errno));
+d601 1
+a601 1
+			IssueMessage(LOG_WARNING, "dbi_init: overnew failed.");
+d617 2
+a618 1
+		IssueMessage(LOG_INFO, "i_write %s", strerror(errno));
+d623 2
+a624 1
+		IssueMessage(LOG_WARNING, "i_write %ld, %s", iloc, strerror(errno));
+d637 2
+a638 1
+		IssueMessage(LOG_INFO, "i_read(lseek) %s", strerror(errno));
+d643 1
+a643 1
+		IssueMessage(LOG_INFO, "i_read(read) %s", strerror(errno));
+d655 2
+a656 1
+		IssueMessage(LOG_INFO, "i_owrite(lseek) %ld %s", ioloc, strerror(errno));
+d661 2
+a662 1
+		IssueMessage(LOG_WARNING, "i_owrite(write) %ld: %s", ioloc, strerror(errno));
+d681 2
+a682 1
+		IssueMessage(LOG_INFO, "i_oread: bad seek (%ld)\n", oloc);
+d688 2
+a689 1
+		IssueMessage(LOG_INFO, "i_oread: bad read (%ld)\n", oloc);
+d703 2
+a704 1
+		IssueMessage(LOG_WARNING, "ovrnew lseek %s", strerror(errno));
+d708 1
+a708 1
+		IssueMessage(LOG_WARNING, "overnew write %s", strerror(errno));
+@
+
+
+1.26
+log
+@Added new copyright statement.
+@
+text
+@d38 1
+a38 1
+static char  RcsId[] = "@@(#)$Id$";
+d254 1
+a254 1
+	return putstrarry(str,&arry);
+@
+
+
+1.25
+log
+@Arrays are based by address already.
+@
+text
+@a0 2
+#include "protos.h"
+
+d2 33
+a34 5
+ * This software is Copyright (C) 1988 by Steven Dorner and the
+ * University of Illinois Board of Trustees, and by CSNET.  No warranties of
+ * any kind are expressed or implied.  No support will be provided.
+ * This software may not be redistributed without prior consent of CSNET.
+ * You may direct questions to nameserv@@uiuc.edu
+d36 6
+@
+
+
+1.24
+log
+@Improvements from Alan Crosswell <alan@@curta.cc.columbia.edu>.
+@
+text
+@d267 1
+a267 1
+				if (!i_owrite(&oarry,ovrflo)) {
+d293 1
+a293 1
+		if (arry < 0) {
+@
+
+
+1.23
+log
+@POSIX changes: bzero() -> memset().
+@
+text
+@d204 3
+d213 1
+a213 1
+int 
+d218 12
+d231 1
+a231 1
+	long	iloc, i, save;
+d248 29
+a276 4
+		i = getx((long *) &x);
+		x.i_recptrs[i++] = recnum;
+		x.i_recptrs[i] = 0;
+		x.i_recptrs[NIPTRS - 1] = 0;	/* make sure don't think we ovrflo */
+d285 1
+a285 1
+	{			/* got one */
+d290 21
+a310 11
+		/* sort the new entry in, return if already there */
+
+		for (i = 0; recnum; i++)
+		{
+
+			if (arry[i] > recnum || arry[i] == 0)
+			{
+				save = arry[i];
+				arry[i] = recnum;
+				recnum = save;
+			}
+a311 3
+		arry[i] = 0;	/* zero terminate */
+		if (i > MaxIdx)
+			MaxIdx = i;
+d316 1
+a316 1
+			IssueMessage(LOG_WARNING, "putstr: putarry failed.");
+@
+
+
+1.22
+log
+@Re-use empty nodes if one is found before a pristeen node (or if no
+pristeen nodes are found).
+From Rick McCarty <mccarty@@add.itg.ti.com>
+@
+text
+@d71 1
+a71 1
+	bzero((void *) array, array_size);
+@
+
+
+1.21
+log
+@Replaced instances of fprintf(stderr, ...) with IssueMessage(LOG_ERR, ...)
+@
+text
+@d145 8
+d165 7
+d182 9
+d195 1
+a195 1
+	IssueMessage(LOG_WARNING, "MAXTRIES exceded on string \"%s\"\n", str);
+@
+
+
+1.20
+log
+@Mark some globals as static.
+@
+text
+@d202 1
+a202 1
+		fprintf(stderr, "putstr: iloc= %ld\n", iloc);
+@
+
+
+1.19
+log
+@Many functions converted to static for better localization and fewer
+side effects.  Modest space savings as well.
+@
+text
+@d16 6
+a21 6
+int	debug = 0;
+int	ixfd;			/* index file desciptor */
+int	ovfd;			/* overflow file desciptor */
+long	IDXSIZE;
+long	OVRSIZE;
+long	oarry[NOPTRS];
+@
+
+
+1.18
+log
+@Replaced instances of %m in IssueMessage with strerror(errno).
+@
+text
+@d23 11
+d60 1
+a60 1
+long *
+d96 1
+a96 1
+int 
+d127 1
+a127 1
+int 
+d136 1
+a136 1
+	strlcpy(scratch, str);
+d208 1
+a208 1
+		strlcpy(x.i_string, scratch);
+d323 1
+a323 1
+void 
+d440 1
+a440 1
+long *
+d497 1
+a497 1
+			cleanup();
+d505 1
+a505 1
+int 
+d523 1
+a523 1
+int 
+d541 1
+a541 1
+int 
+d564 1
+a564 1
+long *
+d584 1
+a584 1
+int 
+@
+
+
+1.17
+log
+@Zero array after malloc.
+@
+text
+@d471 1
+a471 1
+		IssueMessage(LOG_INFO, "dbi_init %s %m", idxname);
+d478 1
+a478 1
+		IssueMessage(LOG_INFO, "dbi_init %s %m", iovname);
+d501 1
+a501 1
+		IssueMessage(LOG_INFO, "i_write %m");
+d506 1
+a506 1
+		IssueMessage(LOG_WARNING, "i_write %ld, %m", iloc);
+d519 1
+a519 1
+		IssueMessage(LOG_INFO, "i_read(lseek) %m");
+d524 1
+a524 1
+		IssueMessage(LOG_INFO, "i_read(read) %m");
+d536 1
+a536 1
+		IssueMessage(LOG_INFO, "i_owrite(lseek) %ld %m", ioloc);
+d541 1
+a541 1
+		IssueMessage(LOG_WARNING, "i_owrite(write) %ld: %m", ioloc);
+d580 1
+a580 1
+		IssueMessage(LOG_WARNING, "ovrnew lseek %m");
+d584 1
+a584 1
+		IssueMessage(LOG_WARNING, "overnew write %m");
+@
+
+
+1.16
+log
+@Revised #include file list.
+@
+text
+@d60 1
+@
+
+
+1.15
+log
+@Deleted #include <strings.h> in favor of one in qi.h.
+@
+text
+@a1 1
+#include "conf.h"
+a9 6
+
+#include <stdio.h>
+#include <ctype.h>
+#include "log.h"
+#include "db.h"
+#include "qi.h"
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@d13 1
+a14 2
+#include <ctype.h>
+#include <strings.h>
+d16 1
+@
+
+
+1.13
+log
+@last dorner changes.
+@
+text
+@a2 8
+/***********************************************************************/
+/*********************************************************************
+* This software is Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees, and by CSNET.  No warranties of
+* any kind are expressed or implied.  No support will be provided.
+* This software may not be redistributed without prior consent of CSNET.
+* You may direct questions to dorner@@garcon.cso.uiuc.edu.
+**********************************************************************/
+d4 8
+d18 1
+a18 1
+#define ESC '\033'        /* the special account entry marker */
+d20 1
+a20 1
+#define ASIZE 32        /* granule size for long array allocation */
+d23 6
+a28 6
+int   debug = 0;
+int   ixfd;           /* index file desciptor */
+int   ovfd;           /* overflow file desciptor */
+long   IDXSIZE;
+long   OVRSIZE;
+long oarry[NOPTRS];
+d36 1
+a36 1
+ * entries that contain this string. 
+d39 3
+a41 1
+long *findstr(char *str)
+d43 1
+a43 1
+  struct iindex x;
+d45 2
+a46 2
+  if (getient(str, &x) <= 0)
+    return (0);
+d48 1
+a48 1
+  return (un_dupi(getrecptrs(&x)));
+d53 1
+a53 1
+ * index entry idx. 
+d56 26
+a81 24
+long *getrecptrs(struct iindex *idx)
+{
+  register int src, dest;
+  int   array_size;
+  long *array;
+
+  array_size = (NIPTRS + 1) * PTRSIZE;    /* One extra space for
+			 * benefit of putstr() */
+  array = (long *) malloc(array_size);
+
+  /* copy recptrs into array */
+  src = getx((long *) idx);
+  dest = 0;
+  while (src < NIPTRS)
+    array[dest++] = idx->i_recptrs[src++];
+  dest--;
+
+  /* read overflow index blocks into array */
+  while (array[dest])
+  {
+    array = (long *) realloc(array, array_size += NOPTRS * PTRSIZE);
+    (void) i_oread(array[dest], &array[dest]);
+    dest += NOPTRS - 1;
+  }
+d83 1
+a83 1
+  return (array);
+d88 1
+a88 1
+ * finds the first integer after the end of the string in buffer str. 
+d91 3
+a93 1
+int getx(long *str)
+d95 2
+a96 2
+  /* please hide this stuff away somewhere, it's gross */
+  int   i;
+d98 11
+a108 11
+  for (i = 0;; i++)
+  {
+    if ((str[i] & 0xff) == 0 || (str[i] & 0xff00) == 0 ||
+      (str[i] & 0xff0000) == 0 || (str[i] & 0xff000000) == 0)
+    {
+      i++;
+      break;
+    }
+  }
+  return (i);         /* finally have index into str as if it were
+		 * an array of long */
+d115 1
+a115 1
+ * for searching. 
+d118 50
+a167 50
+int   TryCount;
+int   TrySum;
+int   TryTimes;
+
+int getient(register char *str,struct iindex *x)
+{
+  long   strtix = 0;
+  long   emptynode = 0;
+  char  scratch[256];
+
+  strlcpy(scratch, str);
+  scratch[MAX_KEY_LEN] = 0;	/* index only first MAX_KEY_LEN chars */
+
+  TrySum += TryCount;
+  TryTimes++;
+  TryCount = 0;
+  do
+  {
+    strtix = ihash(scratch, strtix, IDXSIZE);
+    if (!i_read(x, strtix))
+      return(0);
+    if ((x->i_string)[0] == 0)
+    {             /* pristine node */
+      if (Have_head && TryCount < NHASH)
+	DirHead.hashes[TryCount]++;
+      return (emptynode ? -emptynode : -strtix);
+    }
+    else
+    if ((x->i_string)[0] == EMPTY)
+    {             /* was once a part of a hash chain */
+      if (!emptynode)
+	emptynode = strtix;
+
+    }
+    else
+    if (!stricmp(scratch, x->i_string))
+    {
+      if (Have_head && TryCount < NHASH)
+	DirHead.hashes[TryCount]++;
+      return (strtix);
+    }
+  } while (TryCount++ < MAXTRIES);
+
+  /*
+   * Well, we couldn't find it. This isn't a good way to end. It means that
+   * the index is getting full. These should be logged somehow to let
+   * someone know they should increase idx file size. 
+   */
+  IssueMessage(LOG_WARNING, "MAXTRIES exceded on string \"%s\"\n", str);
+  return (0);
+d174 1
+a174 1
+ * it is added. 
+d177 149
+a325 145
+int   WordsIndexed = 0;
+int   MaxIdx = 0;
+int   DoTree = 1;       /* bing the bintree stuff */
+
+int putstr(char *str,int recnum)
+{
+  struct iindex x;
+  long   iloc, i, save;
+  long *arry;
+  char scratch[MAX_KEY_LEN+1];
+
+  if (strlen(str) < 2)
+    return (1);       /* ignore, but pretend success */
+  strncpy(scratch,str,sizeof(scratch));
+  scratch[MAX_KEY_LEN] = 0;	/* truncate */
+  iloc = getient(scratch, &x);
+  if (debug)
+    fprintf(stderr, "putstr: iloc= %ld\n", iloc);
+  if (iloc == 0)
+    return (0);
+  if (iloc < 0)
+  {               /* this is an empty entry */
+    WordsIndexed++;
+    strlcpy(x.i_string, scratch);
+    i = getx((long *) &x);
+    x.i_recptrs[i++] = recnum;
+    x.i_recptrs[i] = 0;
+    x.i_recptrs[NIPTRS - 1] = 0;  /* make sure don't think we ovrflo */
+    if (i_write(&x, -iloc)==0)
+    {
+      IssueMessage(LOG_WARNING,"putstr i_write failed.");
+      return(0);
+    }
+
+    if (DoTree && *str != ESC)
+      insert(x.i_string, -iloc);  /* update the sequence file */
+  }
+  else
+  {               /* got one */
+    arry = getrecptrs(&x);
+    if (debug)
+      printarry(arry);
+
+    /* sort the new entry in, return if already there */
+
+    for (i = 0; recnum; i++)
+    {
+
+      if (arry[i] > recnum || arry[i] == 0)
+      {
+	save = arry[i];
+	arry[i] = recnum;
+	recnum = save;
+      }
+    }
+    arry[i] = 0;      /* zero terminate */
+    if (i > MaxIdx)
+      MaxIdx = i;
+    if (debug)
+      printarry(arry);
+    if (!putarry(&x, arry, iloc))
+    {
+      IssueMessage(LOG_WARNING,"putstr: putarry failed.");
+      free(arry);
+      return(0);
+    }
+    free(arry);
+  }
+  return (1);
+}
+
+int putarry(struct iindex *x,long *arry,long iloc)
+{
+  int   i, j;
+  long had_ovrflo, ovrdo, size, oloc;
+  long *addr;
+
+  j = getx((long *) x);
+
+  addr = x->i_recptrs;
+  size = NIPTRS - 1;
+  had_ovrflo = addr[size];
+  addr[size] = 0;
+  ovrdo = 0;          /* whether we are filling an ovrflo block */
+
+  for (i = 0; arry[i]; i++, j++)
+  {               /* write out array */
+
+    if (j >= size)
+    {             /* get next ovrflo block */
+
+      if (!had_ovrflo)
+	if ((had_ovrflo = ovrnew())<0)
+	{
+	  IssueMessage(LOG_WARNING,"putarry: ovrnew failed.");
+	  return(0);
+	}
+      addr[size] = had_ovrflo;
+
+      if (ovrdo)
+      {           /* write out last ovrflo block */
+	if (i_owrite(addr, oloc)==0)  /* ignore lint--this is ok */
+	{
+	  IssueMessage(LOG_WARNING,"putarry i_owrite failed");
+	  return(0);
+	}
+      }
+      addr = i_oread(had_ovrflo, oarry);
+      j = 0;
+      ovrdo++;
+      size = NOPTRS - 1;
+      oloc = had_ovrflo;  /* new location in ovr file */
+      had_ovrflo = addr[size];
+    }
+    addr[j] = arry[i];
+  }
+  addr[j] = 0;        /* zero terminate */
+
+  /* write out index entry */
+  if (i_write(x, iloc)==0)
+  {
+    IssueMessage(LOG_WARNING,"putarry i_write failed.");
+    return(0);
+  }
+
+  /* write out any partial ovrflo blocks */
+  addr[size] = 0;       /* zero ovrflo block ptr */
+  if (ovrdo)
+  {
+    if (i_owrite(addr, oloc)<0)
+    {
+      IssueMessage(LOG_WARNING,"putarry i_owrite failed");
+      return(0);
+    }
+  }
+
+  return(1);
+}
+
+void printarry(long *arry)
+{
+  printf("array entries : ");
+  while (*arry)
+    printf(" %ld ", *arry++);
+  printf("\n");
+d331 1
+a331 1
+ * removed from the index. 
+d334 59
+a392 61
+int deletestr(char *str,int recnum)
+{
+  struct iindex x;
+  long   iloc, offset, i;
+  long *arry;
+  char  scratch[MAX_KEY_LEN+1];
+
+  strncpy(scratch, str,MAX_KEY_LEN);
+  scratch[MAX_KEY_LEN] = 0;	/* index only first MAX_KEY_LEN chars */
+  str = scratch;
+
+  if ((iloc = getient(str, &x)) <= 0)
+  {
+    IssueMessage(LOG_WARNING, "deletestr: no index ent for \"%s\"\n", str);
+    return (0);
+  }
+
+  arry = getrecptrs(&x);
+
+  offset = 0;
+
+  /* get rid of the record pointer */
+  for (i = 0; arry[i]; i++)
+  {
+    if (arry[i] == recnum)  /* is it there? */
+      offset = 1;
+    arry[i] = arry[i + offset];
+  }
+  if (!offset)
+  {
+    IssueMessage(LOG_WARNING, "deletestr: no recptr for \"%s\",%ld\n", str, recnum);
+    free(arry);
+    return (0);
+  }
+
+  /* get rid of the entry */
+  if (arry[0] == 0)
+  {               /* empty, remove the entry */
+    x.i_string[0] = EMPTY;
+    x.i_recptrs[NIPTRS - 1] = 0;
+    if (i_write(&x, iloc)==0)
+    {
+      IssueMessage(LOG_WARNING,"deletestr i_write failed.");
+      return(0);
+    }
+
+    if (*str != ESC)
+      if (delete(str)==0)
+      {
+	IssueMessage(LOG_WARNING,"deletestr: delete failed.");
+      }
+
+  }
+  else if (!putarry(&x, arry, iloc))
+  {
+    free(arry);
+    IssueMessage(LOG_WARNING,"deletestr: putarry failed.");
+    return(0);
+  }
+  free(arry);
+  return (1);
+d397 1
+a397 1
+ * arrays given as argument. It assumes that the arrays are sorted. 
+d400 32
+a431 30
+long *intersect(long *ary0,long *ary1)
+{
+  long *result;
+  int   i, j, k, size0, size1;
+
+  /* all right, who's the smallest ? */
+  for (size0 = 0; ary0[size0]; size0++);
+  for (size1 = 0; ary1[size1]; size1++);
+
+  /* get result array, can't run out (right?) */
+
+  if (size0 > size1)
+    i = (((size0 * PTRSIZE) / ASIZE + 1) * ASIZE);
+  else
+    i = (((size1 * PTRSIZE) / ASIZE + 1) * ASIZE);
+  result = (long *) malloc((unsigned) i);
+
+  for (i = 0, j = 0, k = 0; i < size0; i++)
+  {               /* foreach element in ary0 */
+    while (ary1[j] < ary0[i] && ++j < size1);     /* no match */
+    if (j >= size1)
+      break;
+    if (ary0[i] == ary1[j])
+    {
+      result[k++] = ary0[i];
+      continue;
+    }
+  }
+  result[k] = 0;
+  return (result);
+d435 3
+a437 1
+long *un_dupi(long *ary)
+d439 1
+a439 1
+  register long *ptr, *orig;
+d441 1
+a441 1
+  orig = ary;
+d443 2
+a444 2
+  if (!ary[0] || !ary[1])
+    return (ary);
+d446 6
+a451 6
+  for (ptr = ary++; *ary; ary++)
+  {
+    if (*ptr != *ary)
+      *++ptr = *ary;
+  }
+  *++ptr = 0;
+d453 1
+a453 1
+  return (orig);
+d458 1
+a458 1
+ * of the database name. 
+d461 78
+a538 1
+int dbi_init(char *file)
+d540 11
+a550 78
+  struct iindex *x;
+  char  idxname[100], iovname[100];
+  static int firstTime=1;
+  
+  /* make file names */
+  strcpy(idxname, file);
+  strcat(idxname, ".idx");
+  strcpy(iovname, file);
+  strcat(iovname, ".iov");
+
+  if (firstTime && (ixfd = open(idxname, 2)) < 0)
+  {
+    IssueMessage(LOG_INFO, "dbi_init %s %m", idxname);
+    return (0);
+  }
+  IDXSIZE = lseek(ixfd, 0L, 2) / sizeof *x;
+
+  if (firstTime && (ovfd = open(iovname, 2)) < 0)
+  {
+    IssueMessage(LOG_INFO, "dbi_init %s %m", iovname);
+    return (0);
+  }
+  OVRSIZE = lseek(ovfd, 0L, 2) / (PTRSIZE * NOPTRS);
+  if (OVRSIZE == 0)
+    if (ovrnew()<0)
+    {
+      IssueMessage(LOG_WARNING,"dbi_init: overnew failed.");
+      cleanup();
+    }
+  if (debug)
+    printf("init: IDXSIZE= %ld, OVRSIZE= %ld\n", IDXSIZE, OVRSIZE);
+  firstTime = 0;
+  return (1);
+}
+
+int i_write(struct iindex *x,long iloc)
+{
+  if (lseek(ixfd, iloc * (sizeof *x), 0) != iloc * (sizeof *x))
+  {
+    IssueMessage(LOG_INFO, "i_write %m");
+    return (0);
+  }
+  if (write(ixfd, x, sizeof *x)<0)
+  {
+    IssueMessage(LOG_WARNING,"i_write %ld, %m",iloc);
+    return(0);
+  }
+  return (1);
+}
+
+int i_read(struct iindex *x,long iloc)
+{
+  if (lseek(ixfd, iloc * (sizeof *x), 0) != iloc * (sizeof *x))
+  {
+    IssueMessage(LOG_INFO, "i_read(lseek) %m");
+    return (0);
+  }
+  if (read(ixfd, x, sizeof *x) == -1)
+  {
+    IssueMessage(LOG_INFO, "i_read(read) %m");
+    return (0);
+  }
+  return (1);
+}
+
+int i_owrite(long *x,long ioloc)
+{
+  if (lseek(ovfd, ioloc * PTRSIZE * NOPTRS, 0) != ioloc * PTRSIZE * NOPTRS)
+  {
+    IssueMessage(LOG_INFO, "i_owrite(lseek) %ld %m",ioloc);
+    return (0);
+  }
+  if (write(ovfd, x, PTRSIZE * NOPTRS)<0)
+  {
+    IssueMessage(LOG_WARNING,"i_owrite(write) %ld: %m",ioloc);
+    return(0);
+  }
+  return (1);
+d556 1
+a556 1
+ * therefore it can't be used recursively without copying the data out. 
+d559 40
+a598 1
+long *i_oread(long oloc,long *arry)
+d600 1
+d602 5
+a606 42
+  if (lseek(ovfd, (PTRSIZE * NOPTRS) * oloc, 0) < 0)
+  {               /* get upset */
+    IssueMessage(LOG_INFO, "i_oread: bad seek (%ld)\n", oloc);
+    abort();
+    exit(1);
+  }
+
+  if (read(ovfd, arry, PTRSIZE * NOPTRS) != PTRSIZE * NOPTRS)
+  {               /* get upset */
+    IssueMessage(LOG_INFO, "i_oread: bad read (%ld)\n", oloc);
+    abort();
+    exit(1);
+  }
+  return (arry);
+}
+
+int ovrnew(void)
+{
+  char  i;
+
+  if (lseek(ovfd, (PTRSIZE * NOPTRS * (OVRSIZE + 1)) - 1, 0)<0)
+  {
+    IssueMessage(LOG_WARNING,"ovrnew lseek %m");
+    return(-1);
+  }
+  else if ( write(ovfd, &i, 1)<0)
+  {
+    IssueMessage(LOG_WARNING,"overnew write %m");
+    return(-1);
+  }
+  return (OVRSIZE++);
+}
+
+long *get_dir_ptrs(long iloc)
+{
+  struct iindex x;
+
+  if (i_read(&x, iloc) == 0)
+  {
+    return (NULL);
+  }
+  return (un_dupi(getrecptrs(&x)));
+@
+
+
+1.12
+log
+@No help here.
+@
+text
+@d2 1
+@
+
+
+1.11
+log
+@No help here.
+@
+text
+@d1 1
+a31 3
+long *findstr(), *getrecptrs(), *i_oread(), *intersect(), *un_dupi(), ihash();
+char *malloc(), *realloc(), *strlcpy();
+
+d38 1
+a38 3
+long *
+findstr(str)
+char   *str;
+d53 1
+a53 3
+long *
+getrecptrs(idx)
+struct iindex *idx;
+d86 1
+a86 2
+getx(str)
+long *str;
+d115 1
+a115 3
+getient(str, x)
+register char *str;
+struct iindex *x;
+d132 1
+a132 1
+    if ((x->i_string)[0] == NULL)
+d174 1
+a174 3
+putstr(str, recnum)
+char   *str;
+int   recnum;
+d198 1
+a198 1
+    if (i_write(&x, -iloc)==NULL)
+d241 1
+a241 4
+putarry(x, arry, iloc)
+struct iindex *x;
+long *arry;
+long   iloc;
+d289 1
+a289 1
+  if (i_write(x, iloc)==NULL)
+d309 1
+a309 2
+printarry(arry)
+long *arry;
+d323 1
+a323 3
+deletestr(str, recnum)
+char   *str;
+int   recnum;
+d363 1
+a363 1
+    if (i_write(&x, iloc)==NULL)
+d391 1
+a391 4
+long *
+intersect(ary0, ary1)
+long ary0[], ary1[];
+
+d424 1
+a424 3
+long *
+un_dupi(ary)
+register long *ary;
+d448 1
+a448 2
+dbi_init(file)
+char   *file;
+d485 1
+a485 3
+i_write(x, iloc)
+struct iindex *x;
+long   iloc;
+d500 1
+a500 3
+i_read(x, iloc)
+struct iindex *x;
+long   iloc;
+d515 1
+a515 3
+i_owrite(x, ioloc)
+long *x;
+long   ioloc;
+d536 1
+a536 4
+long *
+i_oread(oloc, arry)
+long  oloc;
+long *arry;
+d555 1
+a555 1
+ovrnew()
+d572 1
+a572 3
+long *
+get_dir_ptrs(iloc)
+long iloc;
+d576 1
+a576 1
+  if (i_read(&x, iloc) == NULL)
+@
+
+
+1.10
+log
+@No help here.
+@
+text
+@d131 1
+d190 1
+d194 3
+a196 1
+  iloc = getient(str, &x);
+d204 1
+a204 1
+    strlcpy(x.i_string, str);
+d345 1
+d347 4
+d475 2
+a476 1
+
+d483 1
+a483 1
+  if ((ixfd = open(idxname, 2)) < 0)
+d490 1
+a490 1
+  if ((ovfd = open(iovname, 2)) < 0)
+d504 1
+@
+
+
+1.9
+log
+@No help here.
+@
+text
+@d11 1
+a11 5
+#ifdef ULTRIX43LOG
+#include <syslog43.h>
+#else
+#include <syslog.h>
+#endif
+d14 1
+a14 1
+#include "../Include/db.h"
+@
+
+
+1.8
+log
+@No help here.
+@
+text
+@d18 1
+a18 1
+#include "../include/db.h"
+@
+
+
+1.7
+log
+@No help here.
+@
+text
+@d1 9
+a9 8
+/***********************************************************************
+* Portions of this software Copyright (C) 1988 by Steven Dorner and the
+* University of Illinois Board of Trustees.  Portions of this software
+* orginally written for CSNET; copyright status unclear at this time.  No
+* warranties expressed or implied, no support provided.  Please do not
+* redistribute it in its present form.  Contact me for details
+* (dorner@@garcon.cso.uiuc.edu).
+***********************************************************************/
+d171 1
+a171 1
+  syslog(LOG_WARNING, "MAXTRIES exceded on string \"%s\"\n", str);
+d195 1
+a195 1
+    return (0);       /* ignore */
+d211 1
+a211 1
+      syslog(LOG_WARNING,"putstr i_write failed.");
+d243 1
+a243 1
+      syslog(LOG_WARNING,"putstr: putarry failed.");
+d278 1
+a278 1
+	  syslog(LOG_WARNING,"putarry: ovrnew failed.");
+d287 1
+a287 1
+	  syslog(LOG_WARNING,"putarry i_owrite failed");
+d303 1
+a303 1
+  if (i_write(x, iloc))
+d305 1
+a305 1
+    syslog(LOG_WARNING,"putarry i_write failed.");
+d315 1
+a315 1
+      syslog(LOG_WARNING,"putarry i_owrite failed");
+d348 1
+a348 1
+    fprintf(stderr, "no index ent for \"%s\"\n", str);
+d365 1
+a365 1
+    fprintf(stderr, "no recptr for \"%s\",%ld\n", str, recnum);
+d375 1
+a375 1
+    if (i_write(&x, iloc)<0)
+d377 1
+a377 1
+      syslog(LOG_WARNING,"deletestr i_write failed.");
+d384 1
+a384 1
+	syslog(LOG_WARNING,"deletestr: delete failed.");
+d391 1
+a391 1
+    syslog(LOG_WARNING,"deletestr: putarry failed.");
+d479 1
+a479 1
+    syslog(LOG_INFO, "dbi_init %s %m", idxname);
+d486 1
+a486 1
+    syslog(LOG_INFO, "dbi_init %s %m", iovname);
+d493 1
+a493 1
+      syslog(LOG_WARNING,"dbi_init: overnew failed.");
+d507 1
+a507 1
+    syslog(LOG_INFO, "i_write %m");
+d512 1
+a512 1
+    syslog(LOG_WARNING,"i_write %ld, %m",iloc);
+d524 1
+a524 1
+    syslog(LOG_INFO, "i_read(lseek) %m");
+d529 1
+a529 1
+    syslog(LOG_INFO, "i_read(read) %m");
+d541 1
+a541 1
+    syslog(LOG_INFO, "i_owrite(lseek) %ld %m",ioloc);
+d546 1
+a546 1
+    syslog(LOG_WARNING,"i_owrite(write) %ld: %m",ioloc);
+d566 1
+a566 1
+    syslog(LOG_INFO, "i_oread: bad seek (%ld)\n", oloc);
+d573 1
+a573 1
+    syslog(LOG_INFO, "i_oread: bad read (%ld)\n", oloc);
+d586 1
+a586 1
+    syslog(LOG_WARNING,"ovrnew lseek %m");
+d591 1
+a591 1
+    syslog(LOG_WARNING,"overnew write %m");
+@
+
+
+1.6
+log
+@No help here.
+@
+text
+@d10 1
+a10 1
+#ifdef ultrix
+d19 1
+a19 1
+#define ESC '\033'		/* the special account entry marker */
+d21 1
+a21 1
+#define ASIZE 32		/* granule size for long array allocation */
+d24 6
+a29 6
+int     debug = 0;
+int     ixfd;			/* index file desciptor */
+int     ovfd;			/* overflow file desciptor */
+int     IDXSIZE;
+int     OVRSIZE;
+unsigned long oarry[NOPTRS];
+d34 2
+a35 4
+unsigned long *
+findstr(), *getrecptrs(), *i_oread(), *intersect(), *un_dupi();
+char   *
+malloc(), *realloc();
+d39 1
+a39 1
+ * returns a pointer to an array of unsigned long which are the directory
+d43 1
+a43 1
+unsigned long *
+d47 1
+a47 1
+    struct iindex x;
+d49 2
+a50 2
+    if (getient(str, &x) <= 0)
+	return (0);
+d52 1
+a52 1
+    return (un_dupi(getrecptrs(&x)));
+d56 1
+a56 1
+ * this returns an array of record pointers (unsigned long) gleaned from the
+d60 1
+a60 1
+unsigned long *
+d64 3
+a66 3
+    register int src, dest;
+    int     array_size;
+    unsigned long *array;
+d68 3
+a70 3
+    array_size = (NIPTRS + 1) * PTRSIZE;	/* One extra space for
+						 * benefit of putstr() */
+    array = (unsigned long *) malloc(array_size);
+d72 6
+a77 6
+    /* copy recptrs into array */
+    src = getx((unsigned long *) idx);
+    dest = 0;
+    while (src < NIPTRS)
+	array[dest++] = idx->i_recptrs[src++];
+    dest--;
+d79 7
+a85 7
+    /* read overflow index blocks into array */
+    while (array[dest])
+    {
+	array = (unsigned long *) realloc(array, array_size += NOPTRS * PTRSIZE);
+	(void) i_oread(array[dest], &array[dest]);
+	dest += NOPTRS - 1;
+    }
+d87 1
+a87 1
+    return (array);
+d96 1
+a96 1
+unsigned long *str;
+d98 2
+a99 2
+    /* please hide this stuff away somewhere, it's gross */
+    int     i;
+d101 4
+a104 1
+    for (i = 0;; i++)
+d106 2
+a107 6
+	if ((str[i] & 0xff) == 0 || (str[i] & 0xff00) == 0 ||
+	    (str[i] & 0xff0000) == 0 || (str[i] & 0xff000000) == 0)
+	{
+	    i++;
+	    break;
+	}
+d109 3
+a111 2
+    return (i);			/* finally have index into str as if it were
+				 * an array of unsigned long */
+d121 3
+a123 3
+int     TryCount;
+int     TrySum;
+int     TryTimes;
+d129 3
+a131 3
+    int     strtix = 0;
+    int     emptynode = 0;
+    char    scratch[256];
+d133 1
+a133 1
+    strlcpy(scratch, str);
+d135 23
+a157 4
+    TrySum += TryCount;
+    TryTimes++;
+    TryCount = 0;
+    do
+d159 5
+a163 13
+	strtix = ihash(scratch, strtix, IDXSIZE);
+	i_read(x, strtix);
+	if ((x->i_string)[0] == NULL)
+	{			/* pristine node */
+	    if (Have_head && TryCount < NHASH)
+		DirHead.hashes[TryCount]++;
+	    return (emptynode ? -emptynode : -strtix);
+	}
+	else
+	if ((x->i_string)[0] == EMPTY)
+	{			/* was once a part of a hash chain */
+	    if (!emptynode)
+		emptynode = strtix;
+d165 7
+a171 17
+	}
+	else
+	if (!stricmp(scratch, x->i_string))
+	{
+	    if (Have_head && TryCount < NHASH)
+		DirHead.hashes[TryCount]++;
+	    return (strtix);
+	}
+    } while (TryCount++ < MAXTRIES);
+
+    /*
+     * Well, we couldn't find it. This isn't a good way to end. It means that
+     * the index is getting full. These should be logged somehow to let
+     * someone know they should increase idx file size. 
+     */
+    fprintf(stderr, "MAXTRIES exceded on string \"%s\"\n", str);
+    return (0);
+d181 3
+a183 3
+int     WordsIndexed = 0;
+int     MaxIdx = 0;
+int     DoTree = 1;		/* bing the bintree stuff */
+d187 1
+a187 1
+int     recnum;
+d189 3
+a191 3
+    struct iindex x;
+    int     iloc, i, save;
+    unsigned long *arry;
+d193 27
+a219 3
+    if (strlen(str) < 2)
+	return (0);		/* ignore */
+    iloc = getient(str, &x);
+d221 1
+a221 12
+	fprintf(stderr, "putstr: iloc= %d\n", iloc);
+    if (iloc == 0)
+	return (0);
+    if (iloc < 0)
+    {				/* this is an empty entry */
+	WordsIndexed++;
+	strlcpy(x.i_string, str);
+	i = getx((unsigned long *) &x);
+	x.i_recptrs[i++] = recnum;
+	x.i_recptrs[i] = 0;
+	x.i_recptrs[NIPTRS - 1] = 0;	/* make sure don't think we ovrflo */
+	i_write(&x, -iloc);
+d223 1
+a223 2
+	if (DoTree && *str != ESC)
+	    insert(x.i_string, -iloc);	/* update the sequence file */
+d225 2
+a226 6
+    }
+    else
+    {				/* got one */
+	arry = getrecptrs(&x);
+	if (debug)
+	    printarry(arry);
+d228 6
+a233 19
+	/* sort the new entry in, return if already there */
+
+	for (i = 0; recnum; i++)
+	{
+
+	    if (arry[i] > recnum || arry[i] == 0)
+	    {
+		save = arry[i];
+		arry[i] = recnum;
+		recnum = save;
+	    }
+	}
+	arry[i] = 0;		/* zero terminate */
+	if (i > MaxIdx)
+	    MaxIdx = i;
+	if (debug)
+	    printarry(arry);
+	putarry(&x, arry, iloc);
+	free(arry);
+d235 14
+a248 1
+    return (1);
+d253 2
+a254 2
+unsigned long *arry;
+int     iloc;
+d256 3
+a258 2
+    int     i, j, had_ovrflo, ovrdo, size, oloc;
+    unsigned long *addr;
+d260 1
+a260 1
+    j = getx((unsigned long *) x);
+d262 5
+a266 5
+    addr = x->i_recptrs;
+    size = NIPTRS - 1;
+    had_ovrflo = addr[size];
+    addr[size] = 0;
+    ovrdo = 0;			/* whether we are filling an ovrflo block */
+d268 2
+a269 2
+    for (i = 0; arry[i]; i++, j++)
+    {				/* write out array */
+d271 2
+a272 2
+	if (j >= size)
+	{			/* get next ovrflo block */
+d274 7
+a280 3
+	    if (!had_ovrflo)
+		had_ovrflo = ovrnew();
+	    addr[size] = had_ovrflo;
+d282 6
+a287 10
+	    if (ovrdo)
+	    {			/* write out last ovrflo block */
+		i_owrite(addr, oloc);	/* ignore lint--this is ok */
+	    }
+	    addr = i_oread(had_ovrflo, oarry);
+	    j = 0;
+	    ovrdo++;
+	    size = NOPTRS - 1;
+	    oloc = had_ovrflo;	/* new location in ovr file */
+	    had_ovrflo = addr[size];
+d289 7
+a295 1
+	addr[j] = arry[i];
+d297 3
+a299 1
+    addr[j] = 0;		/* zero terminate */
+d301 6
+a306 2
+    /* write out index entry */
+    i_write(x, iloc);
+d308 5
+a312 3
+    /* write out any partial ovrflo blocks */
+    addr[size] = 0;		/* zero ovrflo block ptr */
+    if (ovrdo)
+d314 2
+a315 1
+	i_owrite(addr, oloc);
+d317 1
+d319 1
+d323 1
+a323 1
+unsigned long *arry;
+d325 4
+a328 4
+    printf("array entries : ");
+    while (*arry)
+	printf(" %d ", *arry++);
+    printf("\n");
+d339 1
+a339 1
+int     recnum;
+d341 3
+a343 3
+    struct iindex x;
+    int     iloc, offset, i;
+    unsigned long *arry;
+d345 5
+a349 5
+    if ((iloc = getient(str, &x)) <= 0)
+    {
+	fprintf(stderr, "no index ent for \"%s\"\n", str);
+	return (0);
+    }
+d351 1
+a351 1
+    arry = getrecptrs(&x);
+d353 1
+a353 1
+    offset = 0;
+d355 20
+a374 2
+    /* get rid of the record pointer */
+    for (i = 0; arry[i]; i++)
+d376 2
+a377 3
+	if (arry[i] == recnum)	/* is it there? */
+	    offset = 1;
+	arry[i] = arry[i + offset];
+a378 6
+    if (!offset)
+    {
+	fprintf(stderr, "no recptr for \"%s\",%d\n", str, recnum);
+	free(arry);
+	return (0);
+    }
+d380 5
+a384 6
+    /* get rid of the entry */
+    if (arry[0] == 0)
+    {				/* empty, remove the entry */
+	x.i_string[0] = EMPTY;
+	x.i_recptrs[NIPTRS - 1] = 0;
+	i_write(&x, iloc);
+d386 3
+a388 6
+	if (*str != ESC)
+	    delete(str);	/* update the sequence file */
+
+    }
+    else			/* rewrite it */
+	putarry(&x, arry, iloc);
+d390 5
+a394 1
+    return (1);
+d398 1
+a398 1
+ * This routine returns an array of all unsigned long common to the two
+d402 1
+a402 1
+unsigned long *
+d404 1
+a404 1
+unsigned long ary0[], ary1[];
+d407 2
+a408 2
+    unsigned long *result;
+    int     i, j, k, size0, size1;
+d410 3
+a412 3
+    /* all right, who's the smallest ? */
+    for (size0 = 0; ary0[size0]; size0++);
+    for (size1 = 0; ary1[size1]; size1++);
+d414 1
+a414 1
+    /* get result array, can't run out (right?) */
+d416 5
+a420 5
+    if (size0 > size1)
+	i = (((size0 * PTRSIZE) / ASIZE + 1) * ASIZE);
+    else
+	i = (((size1 * PTRSIZE) / ASIZE + 1) * ASIZE);
+    result = (unsigned long *) malloc((unsigned) i);
+d422 9
+a430 10
+    for (i = 0, j = 0, k = 0; i < size0; i++)
+    {				/* foreach element in ary0 */
+	while (ary1[j] < ary0[i] && ++j < size1);	/* no match */
+	if (j >= size1)
+	    break;
+	if (ary0[i] == ary1[j])
+	{
+	    result[k++] = ary0[i];
+	    continue;
+	}
+d432 3
+a434 2
+    result[k] = 0;
+    return (result);
+d438 1
+a438 1
+unsigned long *
+d440 1
+a440 1
+register unsigned long *ary;
+d442 1
+a442 1
+    register unsigned long *ptr, *orig;
+d444 1
+a444 1
+    orig = ary;
+d446 2
+a447 2
+    if (!ary[0] || !ary[1])
+	return (ary);
+d449 6
+a454 6
+    for (ptr = ary++; *ary; ary++)
+    {
+	if (*ptr != *ary)
+	    *++ptr = *ary;
+    }
+    *++ptr = 0;
+d456 1
+a456 1
+    return (orig);
+d467 2
+a468 2
+    struct iindex *x;
+    char    idxname[100], iovname[100];
+d470 5
+a474 5
+    /* make file names */
+    strcpy(idxname, file);
+    strcat(idxname, ".idx");
+    strcpy(iovname, file);
+    strcat(iovname, ".iov");
+d476 6
+a481 6
+    if ((ixfd = open(idxname, 2)) < 0)
+    {
+	syslog(LOG_INFO, "dbi_init %s %m", idxname);
+	return (0);
+    }
+    IDXSIZE = lseek(ixfd, 0L, 2) / sizeof *x;
+d483 8
+a490 1
+    if ((ovfd = open(iovname, 2)) < 0)
+d492 2
+a493 2
+	syslog(LOG_INFO, "dbi_init %s %m", iovname);
+	return (0);
+d495 3
+a497 6
+    OVRSIZE = lseek(ovfd, 0L, 2) / (PTRSIZE * NOPTRS);
+    if (OVRSIZE == 0)
+	ovrnew();
+    if (debug)
+	printf("init: IDXSIZE= %d, OVRSIZE= %d\n", IDXSIZE, OVRSIZE);
+    return (1);
+d502 1
+a502 1
+int     iloc;
+d504 11
+a514 7
+    if (lseek(ixfd, iloc * (sizeof *x), 0) != iloc * (sizeof *x))
+    {
+	syslog(LOG_INFO, "i_write %m");
+	return (0);
+    }
+    write(ixfd, x, sizeof *x);
+    return (1);
+d519 1
+a519 1
+int     iloc;
+d521 11
+a531 12
+    if (lseek(ixfd, iloc * (sizeof *x), 0) != iloc * (sizeof *x))
+    {
+	syslog(LOG_INFO, "i_read(lseek) %m");
+	return (0);
+    }
+    if (read(ixfd, x, sizeof *x) == -1)
+    {
+	syslog(LOG_INFO, "i_read(read) %m");
+	abort();
+	return (0);
+    }
+    return (1);
+d535 2
+a536 2
+unsigned long *x;
+int     ioloc;
+d538 11
+a548 7
+    if (lseek(ovfd, ioloc * PTRSIZE * NOPTRS, 0) != ioloc * PTRSIZE * NOPTRS)
+    {
+	syslog(LOG_INFO, "i_owrite(lseek) %m");
+	return (0);
+    }
+    write(ovfd, x, PTRSIZE * NOPTRS);
+    return (1);
+d557 1
+a557 1
+unsigned long *
+d559 2
+a560 2
+int     oloc;
+unsigned long *arry;
+d563 6
+a568 6
+    if (lseek(ovfd, (PTRSIZE * NOPTRS) * oloc, 0) < 0)
+    {				/* get upset */
+	syslog(LOG_INFO, "i_oread: bad seek (%d)\n", oloc);
+	abort();
+	exit(1);
+    }
+d570 7
+a576 7
+    if (read(ovfd, arry, PTRSIZE * NOPTRS) != PTRSIZE * NOPTRS)
+    {				/* get upset */
+	syslog(LOG_INFO, "i_oread: bad read (%d)\n", oloc);
+	abort();
+	exit(1);
+    }
+    return (arry);
+d581 1
+a581 1
+    char    i;
+d583 11
+a593 3
+    lseek(ovfd, (PTRSIZE * NOPTRS * (OVRSIZE + 1)) - 1, 0);
+    write(ovfd, &i, 1);
+    return (OVRSIZE++);
+d596 1
+a596 1
+unsigned long *
+d598 1
+a598 1
+unsigned long iloc;
+d600 1
+a600 1
+    struct iindex x;
+d602 5
+a606 5
+    if (i_read(&x, iloc) == NULL)
+    {
+	return (NULL);
+    }
+    return (un_dupi(getrecptrs(&x)));
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d1 8
+d17 1
+a17 1
+#include "db.h"
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d2 3
+d6 1
+a433 1
+#ifndef ultrix
+a434 1
+#endif
+a440 1
+#ifndef ultrix
+a441 1
+#endif
+a457 1
+#ifndef ultrix
+a458 1
+#endif
+a470 1
+#ifndef ultrix
+a471 1
+#endif
+a475 1
+#ifndef ultrix
+a476 1
+#endif
+a488 1
+#ifndef ultrix
+a489 1
+#endif
+a509 1
+#ifndef ultrix
+a510 1
+#endif
+a516 1
+#ifndef ultrix
+a517 1
+#endif
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d430 1
+d432 1
+d439 1
+d441 1
+d458 1
+d460 1
+d473 1
+d475 1
+d480 1
+d482 1
+d495 1
+d497 1
+d518 1
+d520 1
+d527 1
+d529 1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d4 1
+d12 5
+a16 5
+int debug = 0;
+int ixfd;			/* index file desciptor */
+int ovfd;			/* overflow file desciptor */
+int IDXSIZE;
+int OVRSIZE;
+d24 1
+a24 1
+char *
+d28 3
+a30 4
+ *	This routine takes a string and searches for it in the
+ *	inverted index. It returns a pointer to an array of unsigned
+ *	long which are the directory entries that contain this
+ *	string.
+d35 1
+a35 1
+char *str;
+d46 2
+a47 2
+ *	this returns an array of record pointers (unsigned long) gleaned
+ *	from the index entry idx.
+d55 1
+a55 1
+    int array_size;
+d82 1
+a82 1
+ *	finds the first integer after the end of the string in buffer str.
+d89 1
+a89 1
+    int i;
+d105 4
+a108 4
+ *	This routine returns the index into the index file of string str
+ *	and puts a copy of the entry in xbuf. It returns 0 on failure and
+ *	the negative of the index of the first null entry it finds. It uses
+ *	a rehashing strategy for searching.
+d111 3
+a113 3
+int TryCount;
+int TrySum;
+int TryTimes;
+d119 3
+a121 3
+    int strtix = 0;
+    int emptynode = 0;
+    char scratch[256];
+d123 1
+a123 1
+    strlcpy(scratch,str);
+d164 4
+a167 4
+ *	This routine takes a string and searches for it in the
+ *	inverted index. If it is in the index it adds the record
+ *	number "recnum" to the array of directory entries associated
+ *	with the string. If the string is not found, it is added.
+d170 4
+a173 3
+int WordsIndexed = 0;
+int MaxIdx = 0;
+int DoTree = 1;		/* bing the bintree stuff */
+d175 2
+a176 2
+char *str;
+int recnum;
+d179 1
+a179 1
+    int iloc, i, save;
+a180 1
+    char *ptr;
+d182 2
+a183 2
+    if (strlen(str)<2)
+	return(0);		/* ignore */
+d222 2
+a223 1
+	if (i>MaxIdx) MaxIdx=i;
+d235 1
+a235 1
+int iloc;
+d237 1
+a237 1
+    int i, j, had_ovrflo, ovrdo, size, oloc;
+d260 1
+a260 1
+		i_owrite(addr, oloc);
+d295 3
+a297 3
+ *	This routine will delete the record recnum from the inverted index
+ *	entry for str. If this is the only record that str is found in,
+ *	then str in removed from the index.
+d301 2
+a302 2
+char *str;
+int recnum;
+d305 1
+a305 1
+    int iloc, offset, i;
+a306 1
+    register char *ptr;
+d350 2
+a351 2
+ *	This routine returns an array of all unsigned long common to the two
+ *	arrays given as argument. It assumes that the arrays are sorted.
+d360 1
+a360 1
+    int i, j, k, size0, size1;
+d411 4
+a414 4
+ /*
+  * This routine opens the index and index-overflow files file is the prefix
+  * of the database name. 
+  */
+d417 1
+a417 1
+char *file;
+d420 1
+a420 1
+    char idxname[100], iovname[100];
+d430 1
+a430 1
+	syslog(LOG_INFO,"dbi_init %s %m",idxname);
+d437 1
+a437 1
+	syslog(LOG_INFO,"dbi_init %s %m",iovname);
+d450 1
+a450 1
+int iloc;
+d454 1
+a454 1
+	syslog(LOG_INFO,"i_write %m");
+d463 1
+a463 1
+int iloc;
+d467 1
+a467 1
+	syslog(LOG_INFO,"i_read(lseek) %m");
+d472 1
+a472 1
+	syslog(LOG_INFO,"i_read(read) %m");
+d481 1
+a481 1
+int ioloc;
+d485 1
+a485 1
+	syslog(LOG_INFO,"i_owrite(lseek) %m");
+d493 3
+a495 4
+ *	this routine fetches the overflow record indexed by oloc
+ * 	out of the overflow file. It returns a pointer to a static
+ *	area with the data in it, therefore it can't be used recursively
+ *	without copying the data out.
+d500 1
+a500 1
+int oloc;
+d522 1
+a522 1
+    char i;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d116 1
+a116 1
+char *str;
+d121 1
+d123 2
+d130 1
+a130 1
+	strtix = ihash(str, strtix, IDXSIZE);
+d146 1
+a146 1
+	if (!stricmp(str, x->i_string))
+d192 1
+a192 1
+	strcpy(x.i_string, str);
+d200 1
+a200 1
+	    insert(str, -iloc);	/* update the sequence file */
+@

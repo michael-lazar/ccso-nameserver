@@ -1,0 +1,321 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	95.06.26.22.03.32;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.03.01.03.05.51;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.03.12.01.12.10;	author paul;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.24.20.08.50;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@#!/usr/bin/perl
+######################################################################
+# This script configures the CCSO Nameserver.
+#
+# The configuration process includes:
+#	Building include files
+#	Building Makefiles
+#
+# The script first sources defaults. Then, it sources each of its
+# arguments in turn.  This allows maximum flexibility in configuration.
+#
+# defaults contains a list of things you might want to put in
+# your own configuration files
+######################################################################
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1995 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: Configure,v 1.3 1995/03/01 03:05:51 p-pomes Exp p-pomes $
+
+
+######################################################################
+# Setup
+######################################################################
+print "\nWARNING: This version of Configure now expects any DefineStrings to\n";
+print 'be uppercase, e.g., $DefineStrings{"DATABASE"} = "/nameserv/db/prod"';
+print "\n\nConfiguring for ". join(' ',@@ARGV) . "\n";
+@@INC = (@@INC,"configs");		# search configs
+require "defaults";			# read defaults
+foreach $a (@@ARGV) {require $a;}	# and each argument file
+chdir $SrcDir || die "$SrcDir: $!\n";
+
+######################################################################
+# All our settings are now read.  Let's get to work.
+######################################################################
+
+######################################################################
+# Phase 1; generate configuration files
+######################################################################
+&OpenOrElse(CONFH,">include/conf.h",1);
+&OpenOrElse(CONFC,">qi/conf.c",1);
+print CONFH "#ifndef CONF_H\n#define CONF_H\n";
+
+foreach $f (@@Features) {
+	print CONFH "#define $f\n";eval "\$$f=1;";
+	if ($f eq "KRB4_AUTH") {
+		if ($Krb4IncDir) {$Cflags .= " -I$Krb4IncDir";}
+		if ($Krb4LibDir) {$MoreLib .= " -L$Krb4LibDir";}
+		$MoreLib .= " -lkrb -ldes";
+		$PhFlags .= " -DKRB4_AUTH";
+	}
+	if ($f eq "KRB5_AUTH") {
+		if ($Krb5IncDir) {$Cflags .= " -I$Krb5IncDir";}
+		if ($Krb5LibDir) {$MoreLib .= " -L$Krb5LibDir";}
+		$MoreLib .= " -lkrb5 -lkdb5 -lcrypto -lcom_err";
+		$PhFlags .= " -DKRB5_AUTH";
+	}
+	if ($f eq "FWTK_AUTH") {
+		if ($FwtkDir) {
+			$Cflags .= " -I$FwtkDir";
+			$MoreLib .= " -L$FwtkDir";
+		}
+		# Full path for libdes.a to avoid conflict with -ldes from KRB4
+		$MoreLib .= " -lauth -lfwall $FwtkDir/des/libdes.a";
+	}
+	if ($f eq "CRACKLIB") {
+		$MoreLib .= " $LibDir/libcrack.a";
+	}
+}
+if ($LocalLib) { $MoreLib = $MoreLib." ".$LocalLib; }
+print CONFH "#define OWNER \"$Owner\"\n";
+print CONFH "#define GROUP \"$Group\"\n";
+if (!$EMAIL_AUTH)
+  {$StripEmail = ";perl -i -n -e 'if (!/email/) {print;}' temp.l";}
+
+print CONFH "extern char *OkAddrs[];\n";
+print CONFC "char *OkAddrs[]={";
+foreach $ok (@@OkAddrs) {print CONFC qq/"$ok",/;}
+print CONFC "0};\n";
+
+print CONFH "extern char *LocalAddrs[];\n";
+print CONFC "char *LocalAddrs[]={";
+foreach $loc (@@LocalAddrs) {print CONFC qq/"$loc",/;}
+print CONFC "0};\n";
+
+$i = 1;
+print CONFH "extern char *Strings[];\n";
+print CONFC '#include <sys/param.h>'."\n";
+print CONFC '#include "conf.h"'."\n";
+print CONFC "char *Strings[] = {\n";
+foreach $d (keys(%DefineStrings))
+{
+  printf CONFH "#define $d (Strings[%d])\n",$i;
+  $i += 2;
+  print CONFC qq/  "$d","$DefineStrings{$d}",\n/; 
+}
+print CONFC "0 };\n";
+foreach $d (keys(%OtherDefines))
+{
+  $realD = $d;
+  $realD =~ tr/a-z/A-Z/;
+  print CONFH "#define $realD $OtherDefines{$d}\n";
+}
+print CONFH "extern char *Database;\n#endif\n";
+print CONFC "char *Database = NULL;\n";
+close(CONFH);
+close(CONFC);
+
+######################################################################
+# Phase 2; generate the Makefiles
+#  Except for the top-level makefile, these are generated by eval-ing
+#  each line of Makefile.templ, and adding some stuff
+######################################################################
+foreach $l (@@PhLinks) {$PhLinks .= "\t-ln -s ph \$(DESTDIR)/$l\n";}
+chop($PhLinks);
+foreach $phopt (keys(%PhFlags))
+{
+  $PhFlags .= " -D";
+  $opt = $phopt;  $opt =~ tr/a-z/A-Z/;
+  $PhFlags .= $opt;
+  if ($PhFlags{$phopt} ne "")
+  {
+    $PhFlags .= qq|=\\"$PhFlags{$phopt}\\"|;
+  }
+}
+
+foreach $apiopt (keys(%ApiFlags))
+{
+  $ApiFlags .= " -D";
+  $opt = $apiopt;  $opt =~ tr/a-z/A-Z/;
+  $ApiFlags .= $opt;
+  if ($ApiFlags{$apiopt} ne "")
+  {
+    $ApiFlags .= qq|=\\"$ApiFlags{$apiopt}\\"|;
+  }
+}
+
+&OpenOrElse(TOPMAKE,">Makefile",1);
+print TOPMAKE $DontEditMake;
+
+foreach $targ (@@TopTargets)
+{
+  print TOPMAKE $targ eq "install" ? "$targ: all\n" : "$targ:\n";
+  if ($targ eq "clean") {print TOPMAKE "\trm -f tags\n";}
+  foreach $dir (@@WantDirs) {print TOPMAKE "\tcd $dir; make $targ\n";}
+  print TOPMAKE "\n";
+}
+print TOPMAKE "tags:\n\tcd lib; ctags -t -f ../tags ../*/*.[chly]\n";
+foreach $dir (@@WantDirs) {print TOPMAKE "\tln tags $dir/tags\n";}
+close(TOPMAKE);
+
+foreach $dir (@@WantDirs)
+{
+  &OpenOrElse(TEMPLATE,"<$dir/Makefile.templ",0);
+  &OpenOrElse(MAKEFILE,">$dir/Makefile",1);
+  chdir $dir || die "$dir: $!";
+  
+  print MAKEFILE $DontEditMake;
+  
+  #
+  # copy makefile, expanding variables as we go
+  #
+  while (<TEMPLATE>)
+  {
+    $_ = &SubLine($_);
+    print MAKEFILE $_;
+  }
+  print MAKEFILE "# DO NOT DELETE THIS LINE.\n\n";
+
+  close(TEMPLATE);
+  close(MAKEFILE);
+  chdir $SrcDir;
+}
+
+system("make clean" . ($Depend ne "" ? " depend" : ""));
+
+######################################################################
+# subroutines
+######################################################################
+sub OpenOrElse
+{
+  ($filehandle,$filename,$snitch) = @@_;
+  $fnOnly = substr($filename,1);
+  if (open($filehandle,$filename)) {if ($snitch) {print "$fnOnly...\n";}}
+  else {die "$fnOnly: $!\n";}
+}
+
+sub SubLine
+{
+  $line = "";
+  @@line = split('_',$_[0]);
+  for ($i=0;;$i+=2)
+  {
+    if ($i>$#line) {last;}
+    $line .= $line[$i];
+    if ($i==$#line) {last;}
+    $line .= eval("\$$line[$i+1]");
+  }
+  $line;
+}
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d17 1
+a17 1
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+d50 1
+a50 1
+# @@(#)$Id: Configure,v 1.2 1994/03/12 01:12:10 paul Exp p-pomes $
+d83 14
+d101 1
+d157 12
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d50 1
+a50 1
+# @@(#)$Id$
+d77 3
+a79 3
+	if ($f eq "KERBEROS") {
+		if ($KrbIncDir) {$Cflags .= " -I$KrbIncDir";}
+		if ($KrbLibDir) {$MoreLib .= " -L$KrbLibDir";}
+d81 1
+a81 1
+		$PhFlags .= " -DKERBEROS";
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+#!/usr/local/bin/perl
+d15 37
+d75 12
+a86 2
+foreach $f (@@Features)
+  {print CONFH "#define $f\n";eval "\$$f=1;";}
+@

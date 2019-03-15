@@ -1,0 +1,3 @@
+#  Most defaults are suitable for Convex
+$Cflags .= " -DWAIT_INT";
+1;

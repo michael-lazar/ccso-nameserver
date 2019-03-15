@@ -1,0 +1,70 @@
+SUMMARY
+The "email" field should contain the specific account and machine name
+at which you receive mail.  The information in this field tells users
+at this campus and other locations how to reach you by electronic mail.
+It is also used by the Nameserver for routing e-mail with addresses
+based on names or aliases.
+
+The information in the "email" field is NOT automatically filled in
+during regular Nameserver database updates.  You, as the owner of your
+ph entry, are entirely responsible for making sure that your "email"
+field is filled in and up to date.  Because the "email" field is used
+by the Nameserver electronic mail delivery service, it is especially
+important that the contents of this field be accurate.
+
+In general, "Internet style" addresses are recommended for the
+"email" field.  Internet style addresses take the form:
+"userid@fully.qualified.domain.name".  Examples of internet style
+addresses for several computers on which UIUC students and staff
+commonly receive mail are given below:
+
+   VMD: userid@vmd.cso.uiuc.edu
+
+   UX1: userid@ux1.cso.uiuc.edu
+
+   UXA: userid@uxa.cso.uiuc.edu
+
+   UICVMC: userid@uicvmc.aiss.uiuc.edu
+
+The text "userid" in the above examples should, of course, be replaced
+with your specific login ID; e.g., "ward@ux1.cso.uiuc.edu".
+
+Note: Although it is technically possible to enter more than one e-mail
+address in the "email" field, this practice is strongly discouraged.
+If you have more than one e-mail account and/or would like tell people
+how to reach you via a UUCP or BITNET style address, it is recommended
+that you put such information in the "other" field of your ph entry.
+
+UPDATING YOUR "EMAIL" FIELD
+To update your "email" field, you must first login to ph (see help on
+"login").  Once logged in, you can use the "edit" or "make" command to
+modify your entry.  For example:
+
+  make email="paul@uxc.cso.uiuc.edu"
+
+  edit email  (You will be placed in the default text editor,
+              usually vi.  Enter your current e-mail address
+              and save the file.)
+
+The "register" command also provides a convenient method for updating
+one's "email" field. It registers the account from which you logged in
+to ph as the electronic mail address in your ph entry.  For example, if
+you logged in to ph from the CCSO mainframe "ux1" and your login ID on
+"ux1" was "smythe", the "register" command would put the following
+information into your "email" field: "smythe@ux1.cso.uiuc.edu".
+
+To use "register", you must first login to the Nameserver (see help on
+"login").  Then, simply type "register" at the "ph>" prompt. The account
+into which you are currently logged will automatically be entered into
+your "email" field.  If a different address was already in your "email"
+field, the "register" command will overwrite it with your current account
+information.
+
+Note: The methods described above for modifying your "email" field apply
+specifically to the Unix ph client and may or may not work with the ph
+client you use.  The "edit" command works with most clients that have
+been modelled on the Unix client.  At the time of this writing, the
+"register" command was only available through the Unix client.
+
+SEE ALSO: e-mail, edit, make, fields, login, introduction, vi,
+register, clients

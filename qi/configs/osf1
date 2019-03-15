@@ -1,0 +1,12 @@
+#
+#  changes for DEC OSF/1
+#
+$Cflags = "-I$SrcDir/include -D_BSD -DOSF1";
+$Lflags = "-lbsd";
+$CC = "gcc";
+$Lex = "lex";
+$QiExecDir = "$SrcDir/bin";
+$QiIncDir = "/usr/local/include";
+$OtherDefines{"Mem_Type"} = "void";
+$OtherDefines{"INT32"} = "int";
+1;

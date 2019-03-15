@@ -1,0 +1,71 @@
+SYNTAX: switch [-rRmMbBlLT] [-t name-of-type]
+
+SUMMARY
+The "switch" command is used to change ph switches during a session; it
+can also be used to view the current switch settings.  Switches exist
+to control the following things:
+
+ 
+  Reformatting   - whether or not ph reformats alias and email information.
+                   The -R switch turns this ON (the default);
+                   -r turns it OFF.
+
+  Paging         - whether or not ph uses a paging program for its output. 
+                   The -M switch turns this ON (the default);
+                   -m turns it OFF.
+
+  Beautification - whether or not ph beautifies the results of queries.
+                   The -B switch turns this ON (the default);
+                   -b turns it OFF.
+
+  Labelling      - whether or not ph prints labels for fields.
+                   The -L switch turns this ON (the default);
+                   -l turns it OFF.
+
+  Type           - what entry type ph uses by default.
+                   The -T switch turns this OFF (the default);
+                   "-t name-of-type" turns it ON.  Turning it on
+                   has the same effect as adding "type=name-of-type"
+                   to every query.  The default type can be overridden
+                   when turned on by specifying a type.  See "type"
+                   for further explanation.
+
+VIEWING SWITCH SETTINGS
+You must be in ph's interactive mode to use the "switch" command.  To
+view the current settings, just type "switch" with no arguments at the
+"ph>" prompt.  You will get a display similar to:
+
+  ph> switch
+The following things can be changed with "switch":
+
+  Paging is ON; use "switch -m" to turn it off.
+  Email reformatting is ON; use "switch -r" to turn it off.
+  Query beautification is ON; use "switch -b" to turn it off.
+  Label printing is ON; use "switch -l" to turn it off.
+  Edit confirmation is OFF; use "switch -C" to turn it on.
+  Default entry type is OFF; use "switch -t name-of-type" to set
+  it to "name-of-type".
+  Default field list is default; use "switch -f field1,field2,..."
+  to set it to "field1,field2,...".
+
+The following things cannot be changed with "switch":
+
+  Connected to server ns.cso.uiuc.edu at port 26880
+  The .netrc file was read.
+
+(Note that the .netrc, Server, and Port options cannot be controlled
+from inside ph.  They are available, however, when typing ph commands
+from the operating system prompt [command mode].)
+
+SETTING SWITCH SETTINGS (say that three times fast)
+Switch settings are made just like on the command line; one or more
+switches preceded by hyphens.  For example, to turn Paging OFF, type:
+
+  ph> switch -m
+  ph>
+
+Changes in ph switch settings are only in effect for the current
+interactive session.  Once you exit ph, they return to their default
+settings.
+
+SEE ALSO: manpage, type, interactive_mode, command-line_mode

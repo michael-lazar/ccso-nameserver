@@ -1,0 +1,143 @@
+INTRODUCTION
+In addition to making many types of information available to students
+and staff at the UIUC campus, the CCSO Nameserver fulfills an important
+electronic mail routing function.  Because the Nameserver links the name
+of each person on campus with a unique alias and e-mail address, there
+are three possible ways of addressing mail to someone on the campus
+network (UIUCnet): 1) using an alias, 2) using a name, or 3) using a
+specific login and machine.  We will discuss each method separately
+below.  But first, for the sake of an example, let me introduce you to
+a fictitious friend of mine, Molly Modern.  The results of a Nameserver
+query on Molly are shown below:
+
+   % ph Molly Modern
+   ----------------------------------------
+              name: modern molly
+      office_phone: 333-3333
+    office_address: 194 DCL, MC 256
+        department: computing services office
+          email to: m-modern@uiuc.edu (mm1358@uxa.cso.uiuc.edu)
+   ----------------------------------------
+
+USING AN ALIAS
+The best way to send mail is to use an alias-based address.  The address
+to use is the first one in the "email to:" line--that is, the one that
+ends in "@uiuc.edu".  The mail system will use the Nameserver to look
+up the alias and then send the mail to the account that is specified in
+the "email" field of the entry.  Thus, the best way to send mail to
+Molly is to use the address:  "m-modern@uiuc.edu".
+
+There are three major advantages to this method; first, "m-modern@uiuc.edu"
+is easier to type and remember than "mm1358@uxa.cso.uiuc.edu"; second,
+if Molly starts receiving her e-mail at a different account, you needn't
+change the address you use for her; in other words, you can continue to
+use "m-modern@uiuc.edu"; third, since every person is guaranteed to have
+a unique Nameserver alias, you can be absolutely sure that your mail
+will be delivered to Molly (assuming the "email" field in Molly's ph
+entry is filled in).
+
+Note: Some ph client programs display the "email" field and the "alias"
+field separately instead of combining them into the single pseudo-field
+"email to:".  A query on Molly using such a client would produce results
+that look like this:
+
+      ----------------------------------------
+             alias: m-modern
+              name: modern molly
+             email: mm1358@uxa.cso.uiuc.edu
+      office_phone: 333-3333
+    office_address: 194 DCL, MC 256
+        department: computing services office
+   ----------------------------------------
+
+In the above example, Molly's alias-based address is not listed
+explicitly.  It can be created by simply adding "@uiuc.edu" to the end
+of the contents of the "alias" field, e.g., "m-modern@uiuc.edu".  All
+alias-based addresses at UIUC use the form: "user-alias@uiuc.edu".
+
+USING A NAME
+If you do not know a person's alias or specific e-mail account, you
+might try sending mail using the person's name.  This can be done by
+putting a hyphen between the recipient's first and last name and adding
+"@uiuc.edu" to the end.  For example, Molly might be reached by the
+address "molly-modern@uiuc.edu".
+
+The chief advantage to this method is convenience.  The only "computerese"
+thing you need to remember is "@uiuc.edu".  There are a couple of major
+limitations, however, which sometimes make this method impossible to
+use.  First, the name you use must be listed in the "name" or "nickname"
+field of the recipient's ph entry.  Nicknames won't work unless the
+recipient has added them to his or her "nickname" field (see help on
+"nickname"); thus, mail sent to "mol-modern@uiuc.edu" will not be
+delivered unless "mol" appears in Molly's "nickname" field.  Second,
+there may be more than one person at UIUC with a given name.  Mail sent
+to "john-smith@uiuc.edu" won't be delivered because there is more than
+one John Smith in the Nameserver database, and the mail system won't
+know which one you mean.
+
+USING A SPECIFIC LOGIN AND MACHINE
+The last way to send mail is to send it to a person's specific login
+and machine.  You could, for example, send mail for Molly to
+"mm1358@uxa.cso.uiuc.edu".
+
+The advantage to this method is that it doesn't rely on the Nameserver.
+In the unlikely event of a Nameserver outage, you might wish to use this
+method.  Also, if the recipient has not registered his or her e-mail
+address with the Nameserver, this is the only method that will work.
+The Nameserver can only route mail to individuals who have entered their
+current e-mail account in the "email" field of their ph entry.  Finally,
+this is generally the only method available for sending e-mail to people
+at other institutions.
+
+There are two disadvantages to this method.  First, it requires you to
+remember things like "mm1358", a decidedly unpleasant task.  Second, if
+the recipient gets a new account, you will have to forget the old address
+and learn the new one.  This happens frequently in the computer world.
+
+There are two morals to this story: 1) under most circumstances, it's
+a good a idea to use alias-based addresses to send e-mail to other people
+on campus, and 2)in order for the Nameserver to successfully route mail,
+every user should keep the "email" field in his or her ph entry up to
+date (for information on how to do so, see help on "make", "edit",
+"register", and "email").
+
+WHAT ABOUT ERRORS?
+The mail system reports errors in addresses the same way the Post Office
+does, by returning the mail to you.  It is beyond the scope of this text
+to explain all the errors you might encounter.  Below is a summary of
+the types of errors you can expect with each method:
+
+USING AN ALIAS
+  -If you use an alias that doesn't exist, the mail will be
+   returned with the message "No matches to Nameserver query".
+
+  -If the recipient has no account registered in the "email"
+   field of his or her ph entry, the returned mail will be
+   marked "Email field not present in Nameserver entry".
+
+USING A NAME
+  -If you use a name that the Nameserver doesn't know, the
+   mail will be returned with the message "No matches to
+   Nameserver query".
+
+  -If the recipient has no account registered in the "email"
+   field of his or her ph entry, the returned mail will be
+   marked "Email field not present in Nameserver entry".
+
+  -If more than one person has the name you have given, the
+   mail will be returned with the message "Multiple matches
+   found for Nameserver query".  If twenty or less people
+   have the name, you will be given a list of them.  You can
+   find the person you were trying to reach in the list and
+   use his or her alias-based or machine address instead.
+
+USING A SPECIFIC LOGIN AND MACHINE
+  -If the login doesn't exist, but the machine does, the
+   message on the returned mail will be "User unknown".
+
+  -If the machine doesn't exist, the message on the returned mail
+   will be "Host unknown".
+
+  -There are lots of other possibilities.
+
+SEE ALSO: alias, aliases, nickname, introduction, register, email

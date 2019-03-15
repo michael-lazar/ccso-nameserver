@@ -1,0 +1,21 @@
+[ The documents here have been converted to vanilla troff/pic/tbl with
+  -me macros in the doc directory.  This directory will be removed 
+  entirely before the next distribution.  -pbp ]
+
+These documents come in a variety of formats.  The format can be derived
+from the filename.  Here are the formats:
+
+.rtf   - Microsoft's Rich Text Format
+.ps    - PostScript, produced by the NeXT version of WriteNow.
+.macps - PostScript, produced by the Mac version of WriteNow.  You will
+         need Apple's "md" PostScript dictionary, which is copyrighted,
+	 and ill-behaved to boot.  I suggest obtaining the program "macps"
+	 by anonymous ftp to sumex-aim.stanford.edu, somewhere in the
+	 "info-mac" directory tree.
+.troff - Very raw troff source.
+.lpr   - Line-printer suitable stuff.
+
+
+Not all documents are available in all formats.  The troff and lpr versions
+do not contain figures.  The troff and lpr versions of some documents (Rebuild,
+for example) are incorrectly formatted in places.

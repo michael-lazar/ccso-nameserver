@@ -1,0 +1,16 @@
+# vixen - a SUN Sparc 10/512 running Solaris 2.3
+@Features = ("KRB4_AUTH","PASS_AUTH","EMAIL_AUTH","NO_READ_LOCK");
+$DefineStrings{"DATABASE"} = "/var/apps/nameserv/db/prod";
+$DefineStrings{"HELPDIR"} = "/var/apps/nameserv/help";
+$DefineStrings{"RUNDIR"} = "/var/apps/nameserv/db";
+$QiExecDir = "/usr/local/libexec";
+$QiUtilDir = "/var/apps/nameserv/bin";
+$Krb4IncDir = "/usr/local/include";
+$Krb4LibDir = "/usr/local/lib";
+@LocalAddrs = (".uiuc.edu",".cecer.army.mil");
+$CC = "cc";
+$Cflags .= " -DKRBNSREALM=\\\"UIUC.EDU\\\" -g";
+@WantDirs=("include","lib","api","qi","ph","util");
+$Owner = "nameserv";
+$Group = "nameserv";
+1;

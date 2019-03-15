@@ -1,0 +1,3 @@
+The Nameserver was expecting to receive an "answer" command to complete
+the login process, but received another command instead.  The login in
+process has been terminated, but the other command was executed.

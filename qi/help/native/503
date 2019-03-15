@@ -1,0 +1,6 @@
+You have asked to view a field that you are not allowed to view.  You
+may view all fields in your own entry (except the "password" field,
+which is not viewable) when you are logged in to the Nameserver.  When
+viewing entries other than your own, you may only view those fields with
+the "Public" attribute.  To see a list of fields and their attributes,
+use the "fields" command.

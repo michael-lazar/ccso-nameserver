@@ -1,0 +1,6 @@
+Your query has resulted in too many matches.  In order to preclude use
+of the Nameserver database for the generation of junk-mail mailing lists,
+any query that selects more than 25 entries is refused.  Try being more
+specific in your query; specify a first name, if you know one, or use
+some other qualifying information.  See the following help topics for
+suggestions: introduction, query, type.

@@ -1,0 +1,1163 @@
+head	1.8;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.8
+date	95.06.09.20.26.09;	author p-pomes;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.05.28.00.02.48;	author p-pomes;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.05.27.20.59.28;	author p-pomes;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.05.27.17.46.23;	author p-pomes;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.05.26.20.53.13;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.05.26.20.34.45;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.05.25.21.54.30;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.05.24.22.53.47;	author p-pomes;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@#!%PerlProg%
+#
+# n.rewrite - rewrite a network ID file from AISS with Network IDs creating
+#		missing ones as needed.  Also creates input file for the
+#		n.oarlet script.  n.oarlet generates the sorted letter address
+#		file.
+#
+# Usage: n.rewrite [-d] letfile [blank_netid_file]
+#
+#	-d	print debugging and trace information.
+#	letfile	output file to put assigned network id, password, address, etc.
+#
+# Copyright (c) 1995 University of Illinois Board of Trustees and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: n.rewrite,v 1.7 1995/05/28 00:02:48 p-pomes Exp p-pomes $
+
+# Layout is:		Len	Col
+#ssn			9	1
+#current-full-name	40	10
+#previous-ssn		9	50
+#permanent-addr-line1	30	59
+#permanent-addr-line2	30	89
+#permanent-addr-street	30	119
+#permanent-addr-city	15	149
+#permanent-addr-state	2	164
+#permanent-addr-zip	9	166
+#local-addr-line1	30	175
+#local-addr-line2	30	205
+#local-addr-street	30	235
+#local-addr-city	15	265
+#local-addr-state	2	280
+#local-addr-zip		9	282
+#last-auth-date		8	291
+#network-id		8	299
+#new-status		1	307
+#class-code		1	308
+#coll-enr-category	1	309
+#college		2	310
+#curriculum		4	312
+#hs-name		30	316
+#ferpa			20	346
+#citizenship		1	366
+#auth_src		1	367
+#term_type		10	368
+
+require 'open2.pl';
+
+%dorms = (
+"ceramics","105 S Goodwin Ave\\nUrbana, IL 61801",
+"altgeld","1409 W Green St\\nUrbana, IL 61801",
+"an sci","1207 W Gregory Dr\\nUrbana, IL 61801",
+"educ bldg","1310 S Sixth St\\nChampaign, IL 61820",
+"for lang","707 S Mathews Ave\\nUrbana, IL 61801",
+"gregory hall","810 S Wright St\\nUrbana, IL 61801",
+"adams lab","600 S Mathews Dr\\nUrbana, IL 61801",
+"armory","505 E Armory Ave\\nChampaign, IL 61820",
+"beckman inst","405 N Mathews Ave\\nUrbana, IL 61801",
+"bevier","905 S Goodwin Ave\\nUrbana, IL 61801",
+"burrill","407 S Goodwin Ave\\nUrbana, IL 61801",
+"com w","1206 S Sixth St\\nChampaign, IL 61820",
+"comm w","1206 S Sixth St\\nChampaign, IL 61820",
+"csl","1101 W Springfield Ave\\nUrbana, IL 61801",
+"csrl","1308 W Main St\\nUrbana, IL 61801",
+"davenport","607 S Mathews Ave\\nUrbana, IL 61801",
+"dcl","1304 W Springfield Ave\\nUrbana, IL 61801",
+"dkh","1407 W Gregory Dr\\nUrbana, IL 61801",
+"flb","707 S Mathews Ave\\nUrbana, IL 61801",
+"freer","906 S Goodwin Ave\\nUrbana, IL 61801",
+"huff","1206 S Fourth St\\nChampaign, IL 61820",
+"intnl stu bldg","910 S Fifth St\\nChampaign, IL 61820",
+"loomis","1110 W Green St\\nUrbana, IL 61801",
+"mech eng","1206 W Green St\\nUrbana, IL 61801",
+"morrill","505 S Goodwin Ave\\nUrbana, IL 61801",
+"mumford","1301 W Gregory\\nUrbana, IL 61801",
+"nat his","1301 W Green St\\nUrbana, IL 61801",
+"newmark","205 N Mathews Ave\\nUrbana, IL 61801",
+"noyes","505 S Mathews Ave\\nUrbana, IL 61801",
+"pabl","1201 W Gregory Dr\\nUrbana, IL 61801",
+"psych","603 E Daniel St\\nChampaign, IL 61820",
+"ral","600 S Mathews Ave\\nUrbana, IL 61801",
+"talbot","104 S Wright St\\nUrbana, IL 61801",
+"trans","104 S Mathews Ave\\nUrbana, IL 61801",
+"turner","1102 S Goodwin Ave\\nUrbana, IL 61801",
+"allen","1005 W Gregory Dr\\nUrbana, IL 61801",
+"busey","1111 W Nevada St\\nUrbana, IL 61801",
+"evans","1115 W Nevada St\\nUrbana, IL 61801",
+"lincoln","1005 S Lincoln Ave\\nUrbana, IL 61801",
+"babcock","906 W College Ct\\nUrbana, IL 61801",
+"blaisdell","906 W College Ct\\nUrbana, IL 61801",
+"carr","906 W College Ct\\nUrbana, IL 61801",
+"oglesby","1001 W College Ct\\nUrbana, IL 61801",
+"saunders","906 W College Ct\\nUrbana, IL 61801",
+"trelease","1001 W College Ct\\nUrbana, IL 61801",
+"barton","1205 S Fourth St\\nChampaign, IL 61820",
+"clark","1203 S Fourth St\\nChampaign, IL 61820",
+"forbes","101 E Gregory Dr\\nChampaign, IL 61820",
+"garner","201 E Gregory Dr\\nChampaign, IL 61820",
+"hopkins","103 E Gregory Dr\\nChampaign, IL 61820",
+"lundgren","1201 S Fourth St\\nChampaign, IL 61820",
+"townsend","1010 W ILlinois St\\nUrbana, Il 61801",
+"wardall","1010 W ILlinois St\\nUrbana, Il 61801",
+"scott","202 E Peabody Dr\\nChampaign, IL 61820",
+"snyder","206 E Peabody Dr\\nChampaign, IL 61820",
+"taft","1213 S Fourth St\\nChampaign, IL 61820",
+"weston","204 E Peabody Dr\\nChampaign, IL 61820",
+"van doren","1213 S Fourth St\\nChampaign, IL 61820",
+"daniels","1010 W Green St\\nUrbana, IL 61801",
+"sherman","909 S Fifth St\\nChampaign, IL 61820"
+);
+
+%BadKeys = (
+	"alan", "1",
+	"andrew", "1",
+	"andy", "1",
+	"ann", "1",
+	"anne", "1",
+	"bill", "1",
+	"bob", "1",
+	"brian", "1",
+	"charles", "1",
+	"chris", "1",
+	"christopher", "1",
+	"dan", "1",
+	"daniel", "1",
+	"dave", "1",
+	"david", "1",
+	"ed", "1",
+	"edward", "1",
+	"eric", "1",
+	"james", "1",
+	"jeff", "1",
+	"jeffrey", "1",
+	"jennifer", "1",
+	"jenny", "1",
+	"jim", "1",
+	"joe", "1",
+	"john", "1",
+	"joseph", "1",
+	"kevin", "1",
+	"lee", "1",
+	"lynn", "1",
+	"marie", "1",
+	"mark", "1",
+	"mary", "1",
+	"matt", "1",
+	"matthew", "1",
+	"michael", "1",
+	"mike", "1",
+	"paul", "1",
+	"rich", "1",
+	"richard", "1",
+	"rob", "1",
+	"robert", "1",
+	"scott", "1",
+	"steven", "1",
+	"susan", "1",
+	"thomas", "1",
+	"tom", "1",
+	"will", "1",
+	"william", "1"
+);
+
+#
+# beginning of interesting stuff
+#
+
+# How long can an alias be?
+$LEN = 8;
+
+$Debug = 0;
+while ($_ = $ARGV[0], /^-/) {
+  shift;
+  last if /^--$/;
+  /^-d/ && $Debug++;
+  /^-l(.*)/ && ($LEN = $1);
+}
+
+#
+# Check other arguments.
+die "Usage: $0 [-d] letfile [blank_netid_file]\n" if ($#ARGV < 0);
+
+#
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+# Open the letter information output file for writing
+# name<tab>address<tab>netid<tab>password<tab>citizenship<tab>new_status
+#   <tab>coll_enr_category<tab>college
+$Let = shift;
+#die "$0: $Let exists and would be over-written.\n" if ( -e $Let );
+open(LET,">>$Let") || die "$Let: $!\n";
+select((select(LET), $| = 1)[$[]);
+
+#
+# Initialize the password arrays
+$DictFile = "/usr/share/dict/words";
+open(DICT, "<$DictFile") || die "$DictFile: $!\n";
+while (<DICT>)
+{
+  chop;
+  next if (/\W/o || /[A-Z][A-Z]/o || /^ass$/o || /^butt$/o || /^crap$/o ||
+	   /^damn$/o || /^dyke$/o || /^fag$/o );
+  if (length == 3)
+  {
+    push(ThreeWord, $_);
+  }
+  elsif (length == 4)
+  {
+    push(FourWord, $_);
+  }
+}
+close(DICT);
+
+@@Punct = (2..9, '!', '*', '#', '%', '&', '-', '+', '=', '<', '>', '?');
+srand(time|$$);
+
+# Open the qi process
+$QIR = 'QR'; $QIW = 'QW';
+$Qcmd = '/usr/local/libexec/qi -q';
+$qpid = &open2($QIR, $QIW, $Qcmd);
+die "Can't open2($Qcmd): $!\n" if ($qpid == 0);
+select((select($QIR), $| = 1)[$[]);
+select((select($QIW), $| = 1)[$[]);
+
+# Open the kdb5_edit process
+$KDR = 'KR'; $KDW = 'KW';
+$Kcmd = '/usr/local/sbin/kdb5_edit -p';
+$kpid = &open2($KDR, $KDW, $Kcmd);
+die "Can't open2($Kcmd): $!\n" if ($kpid == 0);
+select((select($KDR), $| = 1)[$[]);
+select((select($KDW), $| = 1)[$[]);
+
+print STDERR "Debug level $Debug\n" if ($Debug > 0);
+
+#
+# here we go...
+while (<>)
+{
+  #
+  # lowercase, sanitize, unblock
+  #
+  chop;
+  tr/A-Z/a-z/;
+  tr/ -~/ /c;
+  $line = $_;
+
+  ($id, $name, $prevId, $stuff1, $SaveNetid, $stuff2)
+    = unpack("A9A40A9A240A8A71", $_);
+
+  ($id, $name, $prevId, $p1, $p2, $pstreet, $pcity, $pstate, $pzip,
+   $c1, $c2, $cstreet, $ccity, $cstate, $czip,
+   $lastterm, $SaveNetid, $new_status, $class_code, $cec, $college, $curric,
+   $hsName, $ferpa, $cit, $auth_src, $term_type)
+    = unpack("A9A40A9A30A30A30A15A2A9A30A30A30A15A2A9A8A8A1A1A1A2A4A30A20A1A1A10", $line);
+
+  #
+  # massage fields
+  #
+  $college = -1 if ($college eq "");
+  $cit = "d" if ($cit eq "" || $cit eq "i");
+  $cec = -1 if ($cec eq "");
+  $new_status = -1 if ($new_status eq "");
+  $class_code = -1 if ($class_code eq "");
+
+  if ($ccity eq "campus")
+  {
+    foreach $d (keys(%dorms))
+    {
+      if ($cstreet =~ /$d/)
+      {
+        $ccity = $dorms{$d};
+	$cstate = $czip = "";
+	last;
+      }
+    }
+  }
+  if ($pcity eq "campus")
+  {
+    foreach $d (keys(%dorms))
+    {
+      if ($pstreet =~ /$d/)
+      {
+        $pcity = $dorms{$d};
+	$pstate = $pzip = "";
+	last;
+      }
+    }
+  }
+
+  #
+  # Clean up and create the campus address
+  if ($c1 ne "")
+  {
+    $campusAddr = $c1;
+    $campusAddr = &SepCat($campusAddr,"\\n",$c2);
+    $campusAddr = &SepCat($campusAddr,"\\n",$cstreet);
+  }
+  elsif ($c2 ne "")
+  {
+    $campusAddr = $c2;
+    $campusAddr = &SepCat($campusAddr,"\\n",$cstreet);
+  }
+  else
+  {
+    $campusAddr = $cstreet;
+  }
+  $campusAddr = &SepCat($campusAddr,"\\n",$ccity);
+  $campusAddr = &SepCat($campusAddr,", ",$cstate);
+  $campusAddr = &SepCat($campusAddr,"  ",$czip);
+  $Addr = $campusAddr;
+  $campusAddr = '"'.$campusAddr.'"';
+
+  #
+  # Clean up and create the permanent address
+  if ($p1 ne "")
+  {
+    $permAddr = $p1;
+    $permAddr = &SepCat($permAddr,"\\n",$p2);
+    $permAddr = &SepCat($permAddr,"\\n",$pstreet);
+  }
+  elsif ($p2 ne "")
+  {
+    $permAddr = $p2;
+    $permAddr = &SepCat($permAddr,"\\n",$pstreet);
+  }
+  else
+  {
+    $permAddr = $pstreet;
+  }
+  $permAddr = &SepCat($permAddr,"\\n",$pcity);
+  $permAddr = &SepCat($permAddr,", ",$pstate);
+  $permAddr = &SepCat($permAddr,"  ",$pzip);
+  if ($Addr eq "" || $Addr =~ /^ng/o && $permAddr ne "") {
+    $Addr = $permAddr;
+  }
+  $permAddr = '"'.$permAddr.'"';
+
+  if ($campusAddr eq $permAddr)
+  {
+    $permAddr = "";
+  }
+  if ($Addr eq "") {
+    $Addr = "ng\\nng";
+  }
+
+  foreach $junk ("high school","school","high","sch","schl","h","s","hs","il")
+  {
+    $hsName =~ s/\b$junk\b//;
+  }
+  $hsName =~ s/^ +//;
+  $hsName =~ s/ +$//;
+  $hsName =~ s/  +/ /;
+  $hsName = '"'.$hsName.'"';
+
+  if ($lastterm ne "")
+  {
+    ($lastyear = $lastterm) =~ s/^(....).*/$1/;
+    ($lastmonth = $lastterm) =~ s/^....(..).*/$1/;
+    $lastmonth =~ s/^0//;
+    $lastterm = $lastmonth."/".$lastyear;
+  }
+
+  # See if this id number already has a network id.
+  $netid = &GetQiField("id=$id", "alias");
+  if ($SaveNetid ne "" && $SaveNetid ne $netid) {
+    print STDERR "ID $id has NetID $SaveNetid but ph alias $netid\n";
+  }
+  if ($netid ne "") {
+    print STDERR "found $netid for $id\n" if ($Debug > 0);
+    print LET "$name\t$Addr\t$netid\tSee Registrar\t$cit\t$new_status\t$cec\t$college\n";
+    printf "%-9s%-40s%-9s%-240s%-8s%-71s\n",
+	  $id, $name, $prevId, $stuff1, $netid, $stuff2;
+    next;
+  }
+
+  # See if a previous id was used.
+  if ($prevId ne "") {
+    $netid = &GetQiField("id=$prevId", "alias");
+  }
+
+  # If a netid is found with the old id, change qi to use the new id.
+  if ($netid ne "") {
+    print STDERR "changing $prevId to $id for $netid\n" if ($Debug > 0);
+    ($res,$text) = &QiCommand("change id=$prevId make id=$id");
+    if ($res != 200) {
+      print STDERR "change id=$prevId make id=$id FAILED (not printed): $text\n";
+      exit (1);
+    }
+    if ($SaveNetid ne "" && $SaveNetid ne $netid) {
+      print STDERR "ID $id has NetID $SaveNetid but ph alias $netid\n";
+    }
+    print STDERR "found $netid for $id\n" if ($Debug > 0);
+    print LET "$name\t$Addr\t$netid\tSee Registrar\t$cit\t$new_status\t$cec\t$college\n";
+    printf "%-9s%-40s%-9s%-240s%-8s%-71s\n",
+	  $id, $name, $prevId, $stuff1, $netid, $stuff2;
+    next;
+  }
+
+  # If the netid isn't found, create a new one.
+  $Password = &GenPass();
+
+  # Create an alias via multiple means
+  $name =~ tr/ a-z//cd;			# delete illegal alias characters
+  @@frags = split(" ",$name);		# break into components
+
+  # <first name>-<last name>.  Set to null if over $LEN.
+  $Nalias0 = $#frags>0 ? $frags[1] . "-" . $frags[0] : "";
+  $Nalias0 = "" if (length($Nalias0 > $LEN));
+
+  # <last name> iff 3 or more characters.  Chopped to $LEN if over that.
+  $Nalias1 = length($frags[0]) > 2 ? $frags[0] : "";
+
+  # <last name> iff 3 or more characters.  Remove last vowel until less than
+  # $LEN.
+  $Nalias2 = length($frags[0]) > 2 ? $frags[0] : "";
+
+  # <first initial>-<last name>.  If over $LEN, remove '-'.  If still over,
+  # chop to $LEN.
+  $Nalias3 = $#frags>0 ? substr($frags[1],0,1) . "-" . $frags[0] : $name;
+
+  # <first initial><middle initial>-<last name>.  If over $LEN, remove '-'.
+  # If still over, chop to $LEN.
+  $Nalias4 = $#frags>1 ? substr($frags[1],0,1) . substr($frags[2],0,1) . "-" . $frags[0] : "";
+
+  # <first initial>-<last name> iff 3 or more characters.  If over $LEN, remove
+  # '-'.  If still over, remove last vowel until less than $LEN.
+  $Nalias5 = $#frags>0 ? substr($frags[1],0,1) . "-" . $frags[0] : $name;
+
+  # <first initial><middle initial>-<last name> iff 3 or more characters.
+  # If over $LEN, remove '-'.  If still over, remove last vowel until less
+  # than $LEN.
+  $Nalias6 = $#frags>1 ? substr($frags[1],0,1) . substr($frags[2],0,1) . "-" . $frags[0] : "";
+
+  # For hypenated first names, e.g., lee-jen, use lj.  Otherwise as
+  # <first initial><middle initial>-<last name> iff 3 or more characters.
+  # If over $LEN, remove '-'.  If still over, remove last vowel until less
+  # than $LEN.
+  if ($#frags>0 && $frags[1] =~ /-/)
+  {
+    $Nalias7 = substr($frags[1],0,1) . substr($frags[1],index($frags[1], "-")+1,1) . "-" . $frags[0];
+  } else
+  {
+    $Nalias7 = "";
+  }
+  $sequence = "";
+  print STDERR "Sequence =$sequence=\n" if ($Debug > 1);
+
+  # Iterate over the candidates until one succeeds.
+  for(;;)
+  {
+    # Chop to length if over $LEN
+    while (length($Nalias1) > $LEN)
+    {
+      chop($Nalias1);
+    }
+
+    # Remove last vowel if over $LEN.  If no more vowels, chop to $LEN.
+    while ((length($Nalias2)+length($sequence)) > $LEN)
+    {
+      $Temp = reverse($Nalias2);
+      $Temp =~ s/[aeiou]+//;
+      last if (length($Temp) == length($Nalias2));
+      $Nalias2 = reverse($Temp);
+    }
+    while ((length($Nalias2)+length($sequence)) > $LEN)
+    {
+      chop($Nalias2);
+    }
+
+    # If over $LEN, remove '-'.  If still too long, chop to length.
+    while ((length($Nalias3)+length($sequence)) > $LEN)
+    {
+      if (!($Nalias3 =~ s/-//))
+      {
+	chop($Nalias3);
+      }
+    }
+
+    # If over $LEN, remove '-'.  If still too long, chop to length.
+    while ($Nalias4 ne "" && length($Nalias4)+length($sequence) > $LEN)
+    {
+      if (!($Nalias4 =~ s/-//))
+      {
+	chop($Nalias4);
+      }
+    }
+
+    # If over $LEN, remove '-'.  If still too long, remove last vowel.
+    # If no more vowels, chop to $LEN.
+    while (($i = length($Nalias5)+length($sequence)) > $LEN)
+    {
+      if (!($Nalias5 =~ s/-//))
+      {
+	$Temp = reverse($Nalias5);
+	$Temp =~ s/[aeiou]+//;
+	last if (length($Temp) == length($Nalias5));
+	$Nalias5 = reverse($Temp);
+      }
+    }
+    while ((length($Nalias5)+length($sequence)) > $LEN)
+    {
+      chop($Nalias5);
+    }
+
+    # If over $LEN, remove '-'.  If still too long, remove last vowel.
+    # If no more vowels, chop to $LEN.
+    if ($Nalias6 ne "")
+    {
+      if (!($Nalias6 =~ s/-//))
+      {
+	while (($i = length($Nalias6)+length($sequence)) > $LEN)
+	{
+	  $Temp = reverse($Nalias6);
+	  $Temp =~ s/[aeiou]+//;
+	  last if (length($Temp) == length($Nalias6));
+	  $Nalias6 = reverse($Temp);
+	}
+      }
+    }
+    while ($Nalias6 ne "" && (length($Nalias6)+length($sequence)) > $LEN)
+    {
+      chop($Nalias6);
+    }
+
+    # Chop to length if over $LEN
+    while (length($Nalias7) > $LEN)
+    {
+      chop($Nalias7);
+    }
+
+    # Now see if any are available.
+    if ($Nalias0 ne "" && $BadKeys{$Nalias0} ne "1")
+    {
+      $netid = &GetQiField("alias=$Nalias0", "alias");
+      print STDERR "0) Tried $Nalias0, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias0;
+	last;
+      }
+    }
+    if ($Nalias1 ne "" && $BadKeys{$Nalias1} ne "1") {
+      $netid = &GetQiField("alias=$Nalias1", "alias");
+      print STDERR "1) Tried $Nalias1, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias1;
+	last;
+      }
+    }
+    if ($Nalias2 ne "" && $BadKeys{$Nalias2} ne "1") {
+      $netid = &GetQiField("alias=$Nalias2", "alias");
+      print STDERR "2) Tried $Nalias2, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias2;
+	last;
+      }
+    }
+    if ($Nalias3 ne "" && $BadKeys{$Nalias3} ne "1") {
+      $netid = &GetQiField("alias=$Nalias3", "alias");
+      print STDERR "3) Tried $Nalias3, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias3;
+	last;
+      }
+    }
+    if ($Nalias4 ne "" && $BadKeys{$Nalias4} ne "1") {
+      $netid = &GetQiField("alias=$Nalias4", "alias");
+      print STDERR "4) Tried $Nalias4, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias4;
+	last;
+      }
+    }
+    $try = $Nalias5.$sequence;
+    if ($Nalias5 ne "" && $BadKeys{$try} ne "1") {
+      $netid = &GetQiField("alias=$try", "alias");
+      print STDERR "5) Tried $try, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias5.$sequence;
+	last;
+      }
+    }
+    $try = $Nalias6.$sequence;
+    if ($Nalias6 ne "" && $BadKeys{$try} ne "1") {
+      $netid = &GetQiField("alias=$try", "alias");
+      print STDERR "6) Tried $try, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias6.$sequence;
+	last;
+      }
+    }
+    $try = $Nalias7.$sequence;
+    if ($Nalias7 ne "" && $BadKeys{$try} ne "1") {
+      $netid = &GetQiField("alias=$try", "alias");
+      print STDERR "7) Tried $try, result $netid\n" if ($Debug > 1);
+      if ($netid eq "") {
+	$netid = $Nalias7.$sequence;
+	last;
+      }
+    }
+    $sequence++;
+  }
+
+  # Netid had better equal something or we are in trouble
+  if ($netid eq "") {
+    print STDERR "Could not generate alias for id=$id, name=$name\n";
+  }
+  $out = "add alias=$netid name=\"$name\" id=$id type=\"person phone\" created=$Date left_uiuc=$Date password=$Password";
+  $out = &SepCat($out, " college=", $college);
+  $out = &SepCat($out, " curriculum=", $curric);
+  $out = &SepCat($out, " high_school=", $hsName);
+  if ($campusAddr ne "" && $campusAddr !~ /^ng/o) {
+    $out = &SepCat($out, " home_address=", $campusAddr);
+  }
+  if ($permAddr ne "" && $permAddr !~ /^ng/o) {
+    $out = &SepCat($out, " permanent_address=", $permAddr);
+  }
+  if ($campusAddr ne "" && $campusAddr !~ /^ng/o) {
+    $out = &SepCat($out, " address=", $campusAddr);
+  }
+  elsif ($permAddr ne "" && $permAddr !~ /^ng/o) {
+    $out = &SepCat($out, " address=", $permAddr);
+  }
+
+  $out = &SepCat($out, " last_term=", $lastterm);
+
+  # Send it to qi
+  print STDERR "creating $netid for $id\n" if ($Debug > 0);
+  print STDERR "=$out=\n" if ($Debug > 1);
+  ($res, $text) = &QiCommand($out);
+  if ($res != 200) {
+    print STDERR "$out FAILED (not printed): $text\n";
+    exit (1);
+  }
+  print $KDW "cv4k $netid\n$Password\n";
+  $text = <$KDR>;
+  print LET "$name\t$Addr\t$netid\t$Password\t$cit\t$new_status\t$cec\t$college\n";
+  printf "%-9s%-40s%-9s%-240s%-8s%-71s\n",
+	$id, $name, $prevId, $stuff1, $netid, $stuff2;
+}
+
+print $QIW "quit\n";
+print $KDW "quit\n";
+
+exit 0;
+
+sub QiCommand
+{
+  local($cmd, $resp, $code);
+  $cmd = $_[0];
+  print $QIW "$cmd\n" || die "QI write failed: $!\n";
+  $resp = '';
+  $code = 500;
+  while (<$QIR>)
+  {
+    $resp .= $_;
+    chop;
+    $code=(split(':'))[0];
+    if ($code >= 200) {return($code, $resp);}
+  }
+  die "Lost qi connection.\n";
+}
+
+sub GetQiField
+{
+  local($query, $field, $code, $resp, $val, $l);
+  ($query, $field) = @@_;
+  ($code, $resp) = &QiCommand("query $query return $field");
+  $val = '';
+  foreach $l (split('\n', $resp))
+  {
+    if ($l =~ /^-200:1:/o)
+    {
+      $l =~ s/-200:1:[^:]*: //;
+      $val .= "$l\n";
+    }
+    elsif ($l =~ /^-200:2:/o)
+    {
+      print STDERR "More than one ph entry for $query.\n";
+      last;
+    }
+  }
+  chop($val);
+  $val;
+}
+
+sub SepCat
+{
+  ($str1,$sep,$str2) = @@_;
+  ($str1 ne "" && $str2 ne "") ? ($str1 .= $sep . $str2)							: ($str1 .= $str2);
+}
+
+sub GenPass
+{
+  local($i, $word1, $word2, $sep);
+  if (rand() < 0.5)
+  {
+    $word1 = $ThreeWord[rand(@@ThreeWord)];
+    $word2 = $FourWord[rand(@@FourWord)];
+  }
+  else
+  {
+    $word1 = $FourWord[rand(@@FourWord)];
+    $word2 = $ThreeWord[rand(@@ThreeWord)];
+  }
+  $sep = $Punct[rand(@@Punct)];
+  $word1 .= $sep . $word2;
+
+  $i = 1;
+  $i = int(rand(8));
+
+  $word2 = substr($word1, $i, 1);
+  $word2 =~ s/./\U$&/;
+  substr($word1, $i, 1) = $word2;
+
+  return($word1);
+}
+@
+
+
+1.7
+log
+@update comments.
+@
+text
+@d8 1
+a8 1
+# Usage: n.rewrite letfile [-d] [blank_netid_file]
+d44 1
+a44 1
+# @@(#)$Id: n.rewrite,v 1.6 1995/05/27 20:59:28 p-pomes Exp p-pomes $
+d73 1
+d209 1
+a209 1
+die "Usage: $0 letfile [-d] [blank_netid_file]\n" if ($#ARGV < 0);
+d221 3
+a223 2
+if ( -e $Let ) { die "$0: $Let exists and would be over-written.\n"; }
+open(LET,">$Let") || die "$Let: $!\n";
+d279 1
+a279 1
+    = unpack("A9A40A9A240A8A61", $_);
+d284 2
+a285 2
+   $hsName, $ferpa, $cit, $auth_src)
+    = unpack("A9A40A9A30A30A30A15A2A9A30A30A30A15A2A9A8A8A1A1A1A2A4A30A20A1A1", $line);
+d402 1
+a402 1
+    printf "%-9s%-40s%-9s%-240s%-8s%-61s\n",
+d425 1
+a425 1
+    printf "%-9s%-40s%-9s%-240s%-8s%-61s\n",
+d667 2
+a668 2
+  print LET "$name\t$Addr\t$netid\t$Password\t$cit\t$new_status\t$college\t$cec\t$college\n";
+  printf "%-9s%-40s%-9s%-240s%-8s%-61s\n",
+@
+
+
+1.6
+log
+@Now writes letter information to a separate file.
+@
+text
+@d3 4
+a6 2
+# n.rewrite - rewrite a network ID file from AISS with Network IDs
+#		Create missing entries as needed.
+d8 6
+a13 3
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+d26 1
+a26 2
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+d28 1
+a28 1
+# 4. Neither the name of CREN, the University nor the names of their
+d44 1
+a44 1
+# @@(#)$Id: n.rewrite,v 1.5 1995/05/27 17:46:23 p-pomes Exp p-pomes $
+d206 3
+a215 16
+# Open the qi process
+$QIR = 'QR'; $QIW = 'QW';
+$Qcmd = '/usr/local/libexec/qi -q';
+$qpid = &open2($QIR, $QIW, $Qcmd);
+die "Can't open2($Qcmd): $!\n" if ($qpid == 0);
+select((select($QIR), $| = 1)[$[]);
+select((select($QIW), $| = 1)[$[]);
+
+# Open the kdb5_edit process
+$KDR = 'KR'; $KDW = 'KW';
+$Kcmd = '/usr/local/sbin/kdb5_edit -p';
+$kpid = &open2($KDR, $KDW, $Kcmd);
+die "Can't open2($Kcmd): $!\n" if ($kpid == 0);
+select((select($KDR), $| = 1)[$[]);
+select((select($KDW), $| = 1)[$[]);
+
+d218 1
+a218 1
+#   <tab>coll_enr_category
+d246 16
+d288 2
+d399 1
+a399 1
+    print LET "$name\t$Addr\t$netid\tSee Registrar\t$cit\t$new_status\t$cec\n";
+d422 1
+a422 1
+    print LET "$name\t$Addr\t$netid\tSee Registrar\t$cit\t$new_status\t$cec\n";
+d652 1
+a652 1
+  
+d665 1
+a665 1
+  print LET "$name\t$Addr\t$netid\t$Password\t$cit\t$new_status\t$cec\n";
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d40 1
+a40 1
+# @@(#)$Id: n.rewrite,v 1.4 1995/05/26 20:53:13 p-pomes Exp p-pomes $
+d225 7
+d264 1
+d267 1
+a268 1
+  $line = $_;
+d270 1
+a270 37
+    = unpack("A9A40A9A240A8A39", $line);
+    #= unpack("A9A40A9A240A8A61", $line);
+
+  $netid = &GetQiField("id=$id", "alias");
+  if ($SaveNetid ne "" && $SaveNetid ne $netid) {
+    print STDERR "ID $id has NetID $SaveNetid but ph alias $netid\n";
+  }
+  if ($netid ne "") {
+    print STDERR "found $netid for $id\n" if ($Debug > 0);
+    #printf "%-9s%-40s%-9s%-240s%-8s%-61\n",
+    printf "%-9s%-40s%-9s%-240s%-8s%-39s\n",
+	  $id, $name, $prevId, $stuff1, $netid, $stuff2;
+    next;
+  }
+
+  # See if a previous id was used.
+  if ($prevId ne "") {
+    $netid = &GetQiField("id=$prevId", "alias");
+  }
+
+  # If a netid is found with the old id, change qi to use the new id.
+  if ($netid ne "") {
+    print STDERR "changing $prevId to $id for $netid\n" if ($Debug > 0);
+    ($res,$text) = &QiCommand("change id=$prevId make id=$id");
+    if ($res != 200) {
+      print STDERR "change id=$prevId make id=$id FAILED (not printed): $text\n";
+      exit (1);
+    }
+    if ($SaveNetid ne "" && $SaveNetid ne $netid) {
+      print STDERR "ID $id has NetID $SaveNetid but ph alias $netid\n";
+    }
+    print STDERR "found $netid for $id\n" if ($Debug > 0);
+    #printf "%-9s%-40s%-9s%-240s%-8s%-61s\n",
+    printf "%-9s%-40s%-9s%-240s%-8s%-39s\n",
+	  $id, $name, $prevId, $stuff1, $netid, $stuff2;
+    next;
+  }
+a271 6
+  # If the netid isn't found, create a new one.
+  #($id, $name, $prevId, $p1, $p2, $pstreet, $pcity, $pstate, $pzip,
+   #$c1, $c2, $cstreet, $ccity, $cstate, $czip,
+   #$lastterm, $netid, $new_status, $class_code, $cec, $college, $curric,
+   #$hsName, $ferpa, $citizenship, $auth_src)
+    #= unpack("A9A40A9A30A30A30A15A2A9A30A30A30A15A2A9A8A8A1A1A1A2A4A30A20A1A1", $line);
+d274 3
+a276 3
+   $lastterm, $netid, $new_status, $class_code, $cec, $college, $curric,
+   $hsName)
+    = unpack("A9A40A9A30A30A30A15A2A9A30A30A30A15A2A9A8A8A1A1A1A2A4A30", $line);
+d281 4
+d314 1
+a314 1
+    $campusAddr = '"'.$c1;
+d320 1
+a320 1
+    $campusAddr = '"'.$c2;
+d325 1
+a325 1
+    $campusAddr = '"'.$cstreet;
+d330 2
+a331 1
+  $campusAddr = $campusAddr.'"';
+d337 1
+a337 1
+    $permAddr = '"'.$p1;
+d343 1
+a343 1
+    $permAddr = '"'.$p2;
+d348 1
+a348 1
+    $permAddr = '"'.$pstreet;
+d353 4
+a356 1
+  $permAddr = $permAddr.'"';
+d362 3
+d382 38
+d656 2
+a657 2
+  #printf "%-9s%-40s%-9s%-240s%-8s%-61s\n",
+  printf "%-9s%-40s%-9s%-240s%-8s%-39s\n",
+@
+
+
+1.4
+log
+@A working version
+@
+text
+@d40 1
+a40 1
+# @@(#)$Id: n.rewrite,v 1.3 1995/05/26 20:34:45 p-pomes Exp p-pomes $
+d616 1
+a616 1
+  if ($campusAddr ne "ng") {
+d619 1
+a619 1
+  if ($permAddr ne "ng") {
+d622 7
+d676 1
+a676 1
+    if ($l =~ /^-200:1:/)
+d681 1
+a681 1
+    elsif ($l =~ /^-200:2:/)
+@
+
+
+1.3
+log
+@A lot closer.
+@
+text
+@a0 1
+#!/usr/bin/perl
+d40 1
+a40 1
+# @@(#)$Id: n.rewrite,v 1.2 1995/05/25 21:54:30 p-pomes Exp p-pomes $
+a633 1
+  print STDERR "created $netid for $id\n" if ($Debug > 0);
+@
+
+
+1.2
+log
+@It's something closer to done.
+@
+text
+@d41 1
+a41 1
+# @@(#)$Id: n.rewrite,v 1.1 1995/05/24 22:53:47 p-pomes Exp p-pomes $
+d192 11
+a202 3
+#
+# usage
+#if ($#ARGV<1) {print STDERR "usage: n.rewrite email mia [files]\n";exit 1;}
+d221 1
+a221 1
+$kpid = &open2($KDR, $KDW, $Cmd);
+d246 1
+a246 1
+@@Punct = (2..9, '!', '*', '#', '$', '%', '&', '-', '+', '=', '<', '>', '?');
+d249 2
+d263 2
+a264 1
+    = unpack("A9A40A9A240A8A61", $line);
+d271 3
+a273 1
+    printf "%-9s%-40s%-9s%-240%-8s%-39s\n",
+d285 2
+a286 1
+    ($res,$text) = &QiCommand('change id=$prevId make id=$id');
+d289 1
+a289 1
+      next;
+d294 2
+d302 5
+d310 2
+a311 2
+   $hsName, $ferpa, $citizenship, $auth_src)
+    = unpack("A9A40A9A30A30A30A15A2A9A30A30A30A15A2A9A8A8A1A1A1A2A4A30A20A1A1", $line);
+d452 1
+d541 1
+d549 1
+d557 1
+d565 1
+d573 1
+d579 4
+a582 2
+    if ($Nalias5 ne "" && $BadKeys{$Nalias5.$sequence} ne "1") {
+      $netid = &GetQiField("alias=$Nalias5.$sequence", "alias");
+d588 4
+a591 2
+    if ($Nalias6 ne "" && $BadKeys{$Nalias6.$sequence} ne "1") {
+      $netid = &GetQiField("alias=$Nalias6.$sequence", "alias");
+d597 4
+a600 2
+    if ($Nalias7 ne "" && $BadKeys{$Nalias7.$sequence} ne "1") {
+      $netid = &GetQiField("alias=$Nalias7.$sequence", "alias");
+d613 1
+a613 1
+  $out = 'add alias=$netid name="$name" id=$id type="person phone" created=$Date left_uiuc=$Date password=$Password';
+d626 2
+d631 1
+a631 1
+    next;
+d635 2
+d684 6
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d5 1
+d41 1
+a41 1
+# @@(#)$Id: s.unblock,v 1.2 1995/01/11 00:07:47 p-pomes Exp $
+d67 5
+d136 52
+d194 23
+a216 1
+if ($#ARGV<1) {print STDERR "usage: n.rewrite email mia [files]\n";exit 1;}
+d219 4
+a222 4
+# read email file
+$efile = shift;
+open(EMAIL, "<$efile") || die "$efile: $!\n";
+while (<EMAIL>)
+d225 10
+a234 2
+  ($id,$alias,$addr) =  split(/\t/);
+  $email{$id} = $alias;
+d236 1
+a236 1
+close(EMAIL);
+d238 2
+a239 4
+#
+# Print those w.o. network ids here
+$mia = shift;
+open(MIA, ">$mia") || die "$mia: $!\n";
+d245 149
+a393 2
+  ($id,$stuff1,$netid,$stuff2)
+    = unpack("A9A289A8A39",$_);
+d395 182
+a576 1
+  $netid = $email{$id};
+d578 11
+a588 1
+    printf MIA "%s%-289s        %-39s\n", $id,$stuff1,$stuff2;
+d590 32
+a621 2
+  else {
+    printf "%s%-289s%-8s%-39s\n", $id,$stuff1,$netid,$stuff2;
+d623 50
+@

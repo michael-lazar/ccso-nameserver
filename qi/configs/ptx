@@ -1,0 +1,6 @@
+# $OtherDefines{"Sig_Type"} = "int";	# ptx 1.3, possibly 1.4?
+$OtherDefines{"Sig_Type"} = "void";
+$Cflags .= " -DSYSV -DWAIT_INT -DFCNTL_LOCK";
+$MoreLib .= " -lseq -lsocket -linet -lnsl -lmalloc";
+$Ranlib = "echo";
+$Para = '&';

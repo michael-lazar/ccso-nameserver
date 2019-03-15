@@ -1,0 +1,522 @@
+head	1.4;
+access;
+symbols;
+locks
+	p-pomes:1.4; strict;
+comment	@# @;
+
+
+1.4
+date	95.01.11.00.05.11;	author p-pomes;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.07.26.21.32.13;	author p-pomes;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.07.26.21.25.25;	author p-pomes;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.03.12.00.59.25;	author paul;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@Made location of perl a Makefile option.
+@
+text
+@#!%PerlProg%
+#
+# aliasassign - assign aliases
+#
+# assumes first field is alias
+#
+# usage: aliasassign config [files]
+#
+# Copyright (c) 1985 Corporation for Research and Educational Networking
+# Copyright (c) 1988 University of Illinois Board of Trustees, Steven
+#		Dorner, and Paul Pomes
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. All advertising materials mentioning features or use of this software
+#    must display the following acknowledgement:
+#	This product includes software developed by the Corporation for
+#	Research and Educational Networking (CREN), the University of
+#	Illinois at Urbana, and their contributors.
+# 4. Neither the name of CREN, the University nor the names of their
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# @@(#)$Id: aliasassign,v 1.3 1994/07/26 21:32:13 p-pomes Exp p-pomes $
+
+# How long can an alias be?
+$LEN = 8;
+
+
+if ($#ARGV<0)
+  {print STDERR "Usage: aliasassign [-d] [-lN] prod.cnf [files]\n";exit 1;}
+
+while ($_ = $ARGV[0], /^-/) {
+  shift;
+  last if /^--$/;
+  /^-d/ && $debug++;
+  /^-l(.*)/ && ($LEN = $1);
+}
+
+
+%BadKeys = (
+	"alan", "1",
+	"andrew", "1",
+	"andy", "1",
+	"ann", "1",
+	"anne", "1",
+	"bill", "1",
+	"bob", "1",
+	"brian", "1",
+	"charles", "1",
+	"chris", "1",
+	"christopher", "1",
+	"dan", "1",
+	"daniel", "1",
+	"dave", "1",
+	"david", "1",
+	"ed", "1",
+	"edward", "1",
+	"eric", "1",
+	"james", "1",
+	"jeff", "1",
+	"jeffrey", "1",
+	"jennifer", "1",
+	"jenny", "1",
+	"jim", "1",
+	"joe", "1",
+	"john", "1",
+	"joseph", "1",
+	"kevin", "1",
+	"lee", "1",
+	"lynn", "1",
+	"marie", "1",
+	"mark", "1",
+	"mary", "1",
+	"matt", "1",
+	"matthew", "1",
+	"michael", "1",
+	"mike", "1",
+	"paul", "1",
+	"rich", "1",
+	"richard", "1",
+	"rob", "1",
+	"robert", "1",
+	"scott", "1",
+	"steven", "1",
+	"susan", "1",
+	"thomas", "1",
+	"tom", "1",
+	"will", "1",
+	"william", "1"
+);
+
+#
+# find the numbers of the name and alias fields
+$anum = -1;
+$nnum = -1;
+$config=shift;
+open (CONFIG,$config) || die "$config: $!\n";
+while (<CONFIG>)
+{
+  if (/:name:/) {($nnum)=(split(':'))[0];}
+  elsif (/:alias:/) {($anum)=(split(':'))[0];}
+  elsif (/:email:/) {($enum)=(split(':'))[0];}
+  elsif (/:type:/) {($tnum)=(split(':'))[0];}
+}
+close(CONFIG);
+
+#
+# collect all the defined aliases
+$aliases{""} = 1;
+while (<>)
+{
+  chop;
+  ($alias,$rest) = split(/[\t]/,$_,2);
+  $alias =~ s/[0-9]*://;
+  $alias =~ tr/A-Z/a-z/;
+  if ($alias eq "~~~~") {last;}		# marker for no alias
+  $aliases{$alias} = 1;
+  if ($rest =~ /\t$tnum:[ ]*person/o)
+  {
+    print "$rest\t$anum:$alias\n";
+  }
+}
+$_ .= "\n";
+
+#
+# now, assign new ones
+do
+{
+  chop;
+
+  ($email = $_) =~ s/.*\t$enum:([^\t]*).*/$1/;
+  $email =~ s/\\n.*//;
+  $email =~ tr/A-Z/a-z/;
+  $email = "" if ($email =~ /uicvmc/);
+  $email =~ s/[@@%=_].*//;
+  $email = "" if ($email =~ /[0-9]/);
+  $email =~ tr/ \-a-z//cd;
+  while ($email ne "" && length($email) > $LEN)
+  {
+    chop($email);
+  }
+  $email = "" if (length($email) < 3);
+
+  s/[^\t]*\t//;				# strip alias
+  ($name = $_) =~ s/.*\t$nnum:([^\t]*).*/$1/;	# grab name
+  $name =~ tr/ a-z//cd;			# delete illegal alias characters
+  @@frags = split(" ",$name);		# break into components
+
+  # <first name>-<last name>.  Set to null if over $LEN.
+  $Nalias0 = $#frags>0 ? $frags[1] . "-" . $frags[0] : "";
+  $Nalias0 = "" if (length($Nalias0 > $LEN));
+
+  # <last name> iff 3 or more characters.  Chopped to $LEN if over that.
+  $Nalias1 = length($frags[0]) > 2 ? $frags[0] : "";
+
+  # <last name> iff 3 or more characters.  Remove last vowel until less than
+  # $LEN.
+  $Nalias2 = length($frags[0]) > 2 ? $frags[0] : "";
+
+  # <first initial>-<last name>.  If over $LEN, remove '-'.  If still over,
+  # chop to $LEN.
+  $Nalias3 = $#frags>0 ? substr($frags[1],0,1) . "-" . $frags[0] : $name;
+
+  # <first initial><middle initial>-<last name>.  If over $LEN, remove '-'.
+  # If still over, chop to $LEN.
+  $Nalias4 = $#frags>1 ? substr($frags[1],0,1) . substr($frags[2],0,1) . "-" . $frags[0] : "";
+
+  # <first initial>-<last name> iff 3 or more characters.  If over $LEN, remove
+  # '-'.  If still over, remove last vowel until less than $LEN.
+  $Nalias5 = $#frags>0 ? substr($frags[1],0,1) . "-" . $frags[0] : $name;
+
+  # <first initial><middle initial>-<last name> iff 3 or more characters.
+  # If over $LEN, remove '-'.  If still over, remove last vowel until less
+  # than $LEN.
+  $Nalias6 = $#frags>1 ? substr($frags[1],0,1) . substr($frags[2],0,1) . "-" . $frags[0] : "";
+
+  # For hypenated first names, e.g., lee-jen, use lj.  Otherwise as
+  # <first initial><middle initial>-<last name> iff 3 or more characters.
+  # If over $LEN, remove '-'.  If still over, remove last vowel until less
+  # than $LEN.
+  if ($#frags>0 && $frags[1] =~ /-/)
+  {
+    $Nalias7 = substr($frags[1],0,1) . substr($frags[1],index($frags[1], "-")+1,1) . "-" . $frags[0];
+  } else
+  {
+    $Nalias7 = "";
+  }
+  $sequence = "";
+  for(;;)
+  {
+    # Chop to length if over $LEN
+    while (length($Nalias1) > $LEN)
+    {
+      chop($Nalias1);
+    }
+
+    # Remove last vowel if over $LEN.  If no more vowels, chop to $LEN.
+    while ((length($Nalias2)+length($sequence)) > $LEN)
+    {
+      $Temp = reverse($Nalias2);
+      $Temp =~ s/[aeiou]+//;
+      last if (length($Temp) == length($Nalias2));
+      $Nalias2 = reverse($Temp);
+    }
+    while ((length($Nalias2)+length($sequence)) > $LEN)
+    {
+      chop($Nalias2);
+    }
+
+    # If over $LEN, remove '-'.  If still too long, chop to length.
+    while ((length($Nalias3)+length($sequence)) > $LEN)
+    {
+      if (!($Nalias3 =~ s/-//))
+      {
+        chop($Nalias3);
+      }
+    }
+
+    # If over $LEN, remove '-'.  If still too long, chop to length.
+    while ($Nalias4 ne "" && length($Nalias4)+length($sequence) > $LEN)
+    {
+      if (!($Nalias4 =~ s/-//))
+      {
+        chop($Nalias4);
+      }
+    }
+
+    # If over $LEN, remove '-'.  If still too long, remove last vowel.
+    # If no more vowels, chop to $LEN.
+    while (($i = length($Nalias5)+length($sequence)) > $LEN)
+    {
+      if (!($Nalias5 =~ s/-//))
+      {
+        $Temp = reverse($Nalias5);
+        $Temp =~ s/[aeiou]+//;
+	last if (length($Temp) == length($Nalias5));
+        $Nalias5 = reverse($Temp);
+      }
+    }
+    while ((length($Nalias5)+length($sequence)) > $LEN)
+    {
+      chop($Nalias5);
+    }
+
+    # If over $LEN, remove '-'.  If still too long, remove last vowel.
+    # If no more vowels, chop to $LEN.
+    if ($Nalias6 ne "")
+    {
+      if (!($Nalias6 =~ s/-//))
+      {
+        while (($i = length($Nalias6)+length($sequence)) > $LEN)
+        {
+          $Temp = reverse($Nalias6);
+          $Temp =~ s/[aeiou]+//;
+	  last if (length($Temp) == length($Nalias6));
+          $Nalias6 = reverse($Temp);
+	}
+      }
+    }
+    while ($Nalias6 ne "" && (length($Nalias6)+length($sequence)) > $LEN)
+    {
+      chop($Nalias6);
+    }
+
+    # Chop to length if over $LEN
+    while (length($Nalias7) > $LEN)
+    {
+      chop($Nalias7);
+    }
+
+    # Now see if any are available.
+    if ($email ne "" && $aliases{$email} eq "" && $BadKeys{$email} ne "1")
+    {
+      $alias = $email;
+      $aliases{$alias} = 1;
+      last;
+    }
+    else { $email = "";}
+    if ($Nalias0 ne "" && $aliases{$Nalias0} eq "" && $BadKeys{$Nalias0} ne "1")
+    {
+      $alias = $Nalias0;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias1 ne "" && $aliases{$Nalias1} eq "" && $BadKeys{$Nalias1} ne "1") {
+      $alias = $Nalias1;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias2 ne "" && $aliases{$Nalias2} eq "" && $BadKeys{$Nalias2} ne "1") {
+      $alias = $Nalias2;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias3 ne "" && $aliases{$Nalias3} eq "" && $BadKeys{$Nalias3} ne "1") {
+      $alias = $Nalias3;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias4 ne "" && $aliases{$Nalias4} eq "" && $BadKeys{$Nalias4} ne "1") {
+      $alias = $Nalias4;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias5 ne "" && $aliases{$Nalias5.$sequence} eq "" && $BadKeys{$Nalias5.$sequence} ne "1") {
+      $alias = $Nalias5.$sequence;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias6 ne "" && $aliases{$Nalias6.$sequence} eq "" && $BadKeys{$Nalias6.$sequence} ne "1") {
+      $alias = $Nalias6.$sequence;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias7 ne "" && $aliases{$Nalias7.$sequence} eq "" && $BadKeys{$Nalias7.$sequence} ne "1") {
+      $alias = $Nalias7.$sequence;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias1 ne "" && $aliases{$Nalias1} eq "" && $BadKeys{$Nalias1} ne "1") {
+      $alias = $Nalias1;
+      $aliases{$alias} = 1;
+      last;
+    }
+    if ($Nalias2 ne "" && $aliases{$Nalias2} eq "" && $BadKeys{$Nalias2} ne "1") {
+      $alias = $Nalias2;
+      $aliases{$alias} = 1;
+      last;
+    }
+    $sequence++;
+  }
+  print "$anum:$alias\t$_\n";
+}
+while (<>);
+@
+
+
+1.3
+log
+@Make maximum alias length a variable settable from the command line.
+@
+text
+@d1 1
+a1 1
+#!/usr/bin/perl
+d43 1
+a43 1
+# @@(#)$Id: aliasassign,v 1.2 1994/07/26 21:25:25 p-pomes Exp p-pomes $
+@
+
+
+1.2
+log
+@Get rid of locked field.
+@
+text
+@d43 1
+a43 1
+# @@(#)$Id: aliasassign,v 1.1 1994/03/12 00:59:25 paul Exp p-pomes $
+d45 2
+d48 1
+d50 9
+a58 1
+  {print STDERR "Usage: aliasassign prod.cnf [files]\n";exit 1;}
+d158 1
+a158 1
+  while ($email ne "" && length($email) > 8)
+d169 1
+a169 1
+  # <first name>-<last name>.  Set to null if over 8.
+d171 1
+a171 1
+  $Nalias0 = "" if (length($Nalias0 > 8));
+d173 1
+a173 1
+  # <last name> iff 3 or more characters.  Chopped to 8 if over that.
+d176 2
+a177 1
+  # <last name> iff 3 or more characters.  Remove last vowel until less than 8.
+d180 2
+a181 2
+  # <first initial>-<last name>.  If over 8, remove '-'.  If still over,
+  # chop to 8.
+d184 2
+a185 2
+  # <first initial><middle initial>-<last name>.  If over 8, remove '-'.
+  # If still over, chop to 8.
+d188 2
+a189 2
+  # <first initial>-<last name> iff 3 or more characters.  If over 8, remove
+  # '-'.  If still over, remove last vowel until less than 8.
+d193 2
+a194 1
+  # If over 8, remove '-'.  If still over, remove last vowel until less than 8.
+d199 2
+a200 1
+  # If over 8, remove '-'.  If still over, remove last vowel until less than 8.
+d211 2
+a212 2
+    # Chop to length if over 8
+    while (length($Nalias1) > 8)
+d217 2
+a218 2
+    # Remove last vowel if over 8.  If no more vowels, chop to 8.
+    while ((length($Nalias2)+length($sequence)) > 8)
+d225 1
+a225 1
+    while ((length($Nalias2)+length($sequence)) > 8)
+d230 2
+a231 2
+    # If over 8, remove '-'.  If still too long, chop to length.
+    while ((length($Nalias3)+length($sequence)) > 8)
+d239 2
+a240 2
+    # If over 8, remove '-'.  If still too long, chop to length.
+    while ($Nalias4 ne "" && length($Nalias4)+length($sequence) > 8)
+d248 3
+a250 3
+    # If over 8, remove '-'.  If still too long, remove last vowel.
+    # If no more vowels, chop to 8.
+    while (($i = length($Nalias5)+length($sequence)) > 8)
+d260 1
+a260 1
+    while ((length($Nalias5)+length($sequence)) > 8)
+d265 2
+a266 2
+    # If over 8, remove '-'.  If still too long, remove last vowel.
+    # If no more vowels, chop to 8.
+d271 1
+a271 1
+        while (($i = length($Nalias6)+length($sequence)) > 8)
+d280 1
+a280 1
+    while ($Nalias6 ne "" && (length($Nalias6)+length($sequence)) > 8)
+d285 2
+a286 2
+    # Chop to length if over 8
+    while (length($Nalias7) > 8)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d43 1
+a43 1
+# @@(#)$Id$
+a104 1
+$lnum = -1;
+a111 1
+  elsif (/:locked:/) {($lnum)=(split(':'))[0];}
+a116 6
+# Datestamp
+($sec, $min, $hour, $mday, $mon, $year, $wday, $yday, $isdst) = localtime(time);
+$year += ($year < 70) ? 2000 : 1900;
+$Date = sprintf("%d/%d", $mon+1, $year);
+
+#
+d338 1
+a338 1
+  print "$anum:$alias\t$_\t$lnum:$Date\n";
+@
