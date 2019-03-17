@@ -4,22 +4,21 @@ RUN yum -y groupinstall "Development Tools"
 RUN yum -y install gdbm-devel flex-devel bison-devel
 RUN yum -y install flex bison bc
 
-RUN mkdir /opt/csso
-RUN mkdir -p /usr/app/nameserv/bin
-RUN mkdir -p /usr/app/nameserv/help
-RUN mkdir -p /usr/app/nameserv/db
+RUN mkdir -p /opt/nameserv/{util,source,bin,db}
 
-COPY qi /opt/csso/qi
-WORKDIR /opt/csso/qi
+COPY qi /opt/nameserv/source
+COPY util /opt/nameserv/util
+
+WORKDIR /opt/nameserv/source
 RUN ./Configure centos7
 RUN make install
+RUN cp -r help /opt/nameserv/help
 
-COPY util /opt/csso/util
-WORKDIR /opt/csso/util/primes
+WORKDIR /opt/nameserv/util/primes
 RUN make primes
 RUN make install
 
-WORKDIR /opt/csso/util/db_seed
+WORKDIR /opt/nameserv/util/db_seed
 RUN ./build_database.sh
 
 EXPOSE 105

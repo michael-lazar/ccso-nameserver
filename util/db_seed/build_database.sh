@@ -14,10 +14,10 @@ echo "PH database build script started..."
 #
 # cd to the cso library directory.  We assume all the cso programs
 # are installed here:
-cd /usr/app/nameserv
+cd /opt/nameserv
 
-cp /opt/csso/util/db_seed/prod-new.cnf prod-new.cnf
-cp /opt/csso/util/db_seed/qi.input qi.input
+cp util/db_seed/prod-new.cnf prod-new.cnf
+cp util/db_seed/qi.input qi.input
 
 #
 # Determine the size for the database using the "sizedb" program
@@ -49,6 +49,6 @@ mv prod-new.idx db/prod.idx
 mv prod-new.iov db/prod.iov
 mv prod-new.lck db/prod.lck
 mv prod-new.seq db/prod.seq
-mv prod-new-cnf db/prod.cnf
+mv prod-new.cnf db/prod.cnf
 #
 echo "PH database build script complete."
