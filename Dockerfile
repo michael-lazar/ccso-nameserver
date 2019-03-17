@@ -7,7 +7,7 @@ RUN yum -y install flex bison bc
 RUN mkdir /opt/csso
 RUN mkdir -p /usr/app/nameserv/bin
 RUN mkdir -p /usr/app/nameserv/help
-RUN mkdir -p /usr/app/nameserv/db/prod
+RUN mkdir -p /usr/app/nameserv/db
 
 COPY qi /opt/csso/qi
 WORKDIR /opt/csso/qi

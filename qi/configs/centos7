@@ -11,7 +11,7 @@ $QiExecDir = "/usr/app/nameserv/bin";
 $QiUtilDir = "/usr/app/nameserv/bin";
 $PhExecDir = "/usr/app/nameserv/bin";
 
-$DefineStrings{"DATABASE"} = "/usr/app/nameserv/db";
+$DefineStrings{"DATABASE"} = "/usr/app/nameserv/db/prod";
 $DefineStrings{"RUNDIR"} = "/usr/app/nameserv/db";
 $DefineStrings{"HELPDIR"} = "/usr/app/nameserv/help";
 

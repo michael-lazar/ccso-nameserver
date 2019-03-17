@@ -49,5 +49,6 @@ mv prod-new.idx db/prod.idx
 mv prod-new.iov db/prod.iov
 mv prod-new.lck db/prod.lck
 mv prod-new.seq db/prod.seq
+mv prod-new-cnf db/prod.cnf
 #
 echo "PH database build script complete."
