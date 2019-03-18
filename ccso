@@ -43,13 +43,13 @@ case $1 in
     	;;
     *)
       echo "Unrecognized command, must be one of the following:"
-      echo "  build"
-      echo "  initdb"
-      echo "  shell"
-      echo "  ph"
-      echo "  qi"
-      echo "  daemon"
-      echo "  install-service"
+      echo "  build            : Build the docker container"
+      echo "  initdb           : Initialize the ccso database inside of a volume"
+      echo "  shell            : Launch a bash shell into the container"
+      echo "  ph               : Launch the ph client"
+      echo "  qi               : Launch the qi server in local hero mode"
+      echo "  daemon           : Launch the qi server in daemon mode (for connecting to inetd)"
+      echo "  install-service  : Install systemd service files"
       exit 1
       ;;
 esac
