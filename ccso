@@ -37,6 +37,8 @@ case $1 in
         set -x
     	install ccso.socket /etc/systemd/system/ccso.socket
     	install ccso@.service /etc/systemd/system/@ccso.service
+    	systemctl enable ccso.socket
+    	systemctl start ccso.socket
     	;;
     *)
       echo "Unrecognized command, must be one of the following:"
