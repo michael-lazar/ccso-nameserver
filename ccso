@@ -49,7 +49,7 @@ case $1 in
       echo "  ph               : Launch the ph client"
       echo "  qi               : Launch the qi server in local hero mode"
       echo "  daemon           : Launch the qi server in daemon mode (for connecting to inetd)"
-      echo "  install-service  : Install systemd service files"
+      echo "  install-service  : Install the systemd service files"
       exit 1
       ;;
 esac
