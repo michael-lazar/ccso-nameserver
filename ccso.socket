@@ -3,7 +3,7 @@
 Description=CCSO Nameserver
 
 [Socket]
-ListenStream=125
+ListenStream=105
 Accept=yes
 
 [Install]
