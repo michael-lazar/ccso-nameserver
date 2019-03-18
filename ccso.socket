@@ -1,0 +1,10 @@
+# /etc/systemd/system/ccso.socket
+[Unit]
+Description=CCSO Nameserver
+
+[Socket]
+ListenStream=125
+Accept=yes
+
+[Install]
+WantedBy=sockets.target

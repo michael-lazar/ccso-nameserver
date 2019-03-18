@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+cd $(dirname "$0")
+
+case $1 in
+    build)
+        echo "Building ccso docker image"
+	    set -x
+        docker build -t ccso -f Dockerfile .
+   		;;
+    initdb)
+  	    echo "Initializing ccso database volume"
+  	    set -x
+    	docker run -it --rm -v ccso:/opt/nameserv/db ccso /opt/nameserv/util/db/initdb
+   	    ;;
+    shell)
+        echo "Launching bash shell in docker container"
+        set -x
+        docker run -it --rm -v ccso:/opt/nameserv/db ccso /bin/bash
+        ;;
+    ph)
+        echo "Launching ph client in interactive mode"
+        set -x
+        docker run -it --rm -v ccso:/opt/nameserv/db ccso /opt/nameserv/bin/ph ${@:2}
+        ;;
+    qi)
+        echo "Connecting to qi server in local admin mode"
+        set -x
+        docker run -it --rm -v ccso:/opt/nameserv/db ccso /opt/nameserv/bin/qi ${@:2}
+        ;;
+    daemon)
+        # The service will pipe stdout over network so we don't want to echo anything extra
+        docker run -i --rm -a stdin -a stdout -v ccso:/opt/nameserv/db ccso /opt/nameserv/bin/qi -d
+        ;;
+    install-service)
+    	echo "Installing systemd network service files"
+        set -x
+    	install ccso.socket /etc/systemd/system/ccso.socket
+    	install ccso@.service /etc/systemd/system/@ccso.service
+    	;;
+    *)
+      echo "Unrecognized command, must be one of the following:"
+      echo "  build"
+      echo "  initdb"
+      echo "  shell"
+      echo "  ph"
+      echo "  qi"
+      echo "  qi-daemon"
+      echo "  install-service"
+      exit 1
+      ;;
+esac

@@ -1,0 +1,12 @@
+[Unit]
+Description=CCSO Service
+Requires=ccso.socket
+
+[Service]
+Type=simple
+ExecStart=/var/ccso/ccso daemon
+StandardInput=socket
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
