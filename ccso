@@ -36,8 +36,8 @@ case $1 in
     install-service)
     	echo "Installing systemd network service files"
         set -x
-    	install ccso.socket /etc/systemd/system/ccso.socket
-    	install ccso@.service /etc/systemd/system/ccso@.service
+    	install systemd/ccso.socket /etc/systemd/system/ccso.socket
+    	install systemd/ccso@.service /etc/systemd/system/ccso@.service
     	systemctl enable ccso.socket
     	systemctl start ccso.socket
     	;;

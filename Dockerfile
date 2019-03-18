@@ -24,6 +24,7 @@ RUN cp -r help /opt/nameserv/help
 RUN cp doc/ph.1 /usr/share/man/man1/ph.1
 RUN cp doc/qi.8 /usr/share/man/man8/qi.8
 
+# This is and old BSD package used by the database generation scripts
 WORKDIR /opt/nameserv/util/primes
 RUN make primes
 RUN make install
