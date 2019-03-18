@@ -1,8 +1,15 @@
 FROM centos:7
 
 RUN yum -y groupinstall "Development Tools"
-RUN yum -y install gdbm-devel flex-devel bison-devel
-RUN yum -y install flex bison bc
+RUN yum -y install \
+    gdbm-devel \
+    flex-devel \
+    bison-devel \
+    flex \
+    bison \
+    bc \
+    man \
+    vim
 
 RUN mkdir -p /opt/nameserv/{util,source,bin,db}
 
@@ -12,15 +19,21 @@ COPY util /opt/nameserv/util
 WORKDIR /opt/nameserv/source
 RUN ./Configure centos7
 RUN make install
+
 RUN cp -r help /opt/nameserv/help
+RUN cp doc/ph.1 /usr/share/man/man1/ph.1
+RUN cp doc/qi.8 /usr/share/man/man8/qi.8
 
 WORKDIR /opt/nameserv/util/primes
 RUN make primes
 RUN make install
 
-WORKDIR /opt/nameserv/util/db_seed
-RUN ./build_database.sh
+VOLUME ["/opt/nameserv/db"]
 
-EXPOSE 105
+# forward request and error logs to docker log collector
+# RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+# 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
-CMD python2 -m SimpleHTTPServer 105
+# https://docs.docker.com/config/containers/logging/configure/
+
+CMD ["/opt/nameserv/bin/qi"]

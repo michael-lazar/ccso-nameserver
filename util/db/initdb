@@ -16,8 +16,8 @@ echo "PH database build script started..."
 # are installed here:
 cd /opt/nameserv
 
-cp util/db_seed/prod-new.cnf prod-new.cnf
-cp util/db_seed/qi.input qi.input
+cp util/db/prod-new.cnf prod-new.cnf
+cp util/db/qi.input qi.input
 
 #
 # Determine the size for the database using the "sizedb" program
