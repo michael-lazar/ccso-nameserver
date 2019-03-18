@@ -20,8 +20,9 @@ case $1 in
         ;;
     ph)
         echo "Launching ph client in interactive mode"
+        echo "Don't forget to specify the server host with '-s hostname'"
         set -x
-        docker run -it --rm -v ccso:/opt/nameserv/db ccso /opt/nameserv/bin/ph ${@:2}
+        docker run -it --rm ccso /opt/nameserv/bin/ph ${@:2}
         ;;
     qi)
         echo "Connecting to qi server in local admin mode"
@@ -36,7 +37,7 @@ case $1 in
     	echo "Installing systemd network service files"
         set -x
     	install ccso.socket /etc/systemd/system/ccso.socket
-    	install ccso@.service /etc/systemd/system/@ccso.service
+    	install ccso@.service /etc/systemd/system/ccso@.service
     	systemctl enable ccso.socket
     	systemctl start ccso.socket
     	;;
@@ -47,7 +48,7 @@ case $1 in
       echo "  shell"
       echo "  ph"
       echo "  qi"
-      echo "  qi-daemon"
+      echo "  daemon"
       echo "  install-service"
       exit 1
       ;;
