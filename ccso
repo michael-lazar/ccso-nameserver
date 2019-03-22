@@ -5,14 +5,14 @@ cd $(dirname "$0")
 case $1 in
     build)
         echo "Building ccso docker image"
-	    set -x
+        set -x
         docker build -t ccso -f Dockerfile .
-   		;;
+        ;;
     initdb)
-  	    echo "Initializing ccso database volume"
-  	    set -x
-    	docker run -it --rm -v ccso:/opt/nameserv/db ccso /opt/nameserv/util/db/initdb
-   	    ;;
+        echo "Initializing ccso database volume"
+        set -x
+        docker run -it --rm -v ccso:/opt/nameserv/db ccso /opt/nameserv/util/db/initdb
+        ;;
     shell)
         echo "Launching bash shell in docker container"
         set -x
@@ -34,22 +34,22 @@ case $1 in
         docker run -i --rm -a stdin -a stdout -v ccso:/opt/nameserv/db ccso /opt/nameserv/bin/qi -d
         ;;
     install-service)
-    	echo "Installing systemd network service files"
+        echo "Installing systemd network service files"
         set -x
-    	install systemd/ccso.socket /etc/systemd/system/ccso.socket
-    	install systemd/ccso@.service /etc/systemd/system/ccso@.service
-    	systemctl enable ccso.socket
-    	systemctl start ccso.socket
-    	;;
+        install systemd/ccso.socket /etc/systemd/system/ccso.socket
+        install systemd/ccso@.service /etc/systemd/system/ccso@.service
+        systemctl enable ccso.socket
+        systemctl start ccso.socket
+        ;;
     *)
-      echo "Unrecognized command, must be one of the following:"
-      echo "  build            : Build the docker container"
-      echo "  initdb           : Initialize the ccso database inside of a volume"
-      echo "  shell            : Launch a bash shell into the container"
-      echo "  ph               : Launch the ph client"
-      echo "  qi               : Launch the qi server in local hero mode"
-      echo "  daemon           : Launch the qi server in daemon mode (for connecting to inetd)"
-      echo "  install-service  : Install the systemd service files"
-      exit 1
-      ;;
+        echo "Unrecognized command, must be one of the following:"
+        echo "  build            : Build the docker container"
+        echo "  initdb           : Initialize the ccso database inside of a volume"
+        echo "  shell            : Launch a bash shell into the container"
+        echo "  ph               : Launch the ph client"
+        echo "  qi               : Launch the qi server in local hero mode"
+        echo "  daemon           : Launch the qi server in daemon mode (for connecting to inetd)"
+        echo "  install-service  : Install the systemd service files"
+        exit 1
+        ;;
 esac
