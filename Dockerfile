@@ -9,6 +9,7 @@ RUN yum -y install \
     bison \
     bc \
     man \
+    groff \
     vim
 
 RUN mkdir -p /opt/nameserv/{util,source,bin,db}
