@@ -9,8 +9,8 @@ early-to-middle 1990s. [[1]](https://en.wikipedia.org/wiki/CCSO_Nameserver)
 This repository contains a working version of the original CCSO nameserver
 (aka *"Qi"*) developed by Steven Domer at University of Illinois in '93. I
 salvaged the source code from some long forgotten FTP server. Then I stuck it
-in a CentOS Docker Container, and I smashed it with a hammer until *gcc* cried
-uncle and submitted to compiling without errors.
+in a CentOS Docker Container, and proceeded to smash it with a hammer until
+*gcc* cried uncle and submitted to compiling without errors.
 
 The fruits of this labor can be seen here:
 
@@ -52,4 +52,3 @@ Other miscellaneous documentation:
 - [CSO Nameserver FAQ](https://mozz.us/static/ccso/FAQ.txt)
 - [Qi Installation Quick-Start](https://mozz.us/static/ccso/quick-start.txt)
 - [Rebuilding a Nameserver Database in 24 Easy Steps](https://mozz.us/static/ccso/rebuild.pdf)
-
