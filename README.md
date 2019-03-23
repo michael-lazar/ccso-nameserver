@@ -27,7 +27,7 @@ web. I have searched extensively and have not been able to find any others.
 
 A series of reference documents were published by the University of Illinois
 between 1988 and 1992. These cover everything from the motivations for creating
-the CCSO Nameserver, to a retrospective of what worked and what didn't work.
+the CCSO Nameserver, to a retrospective of what worked and what didn't.
 These are a great place to start if you're looking for some historical context:
 
 - [The CCSO Nameserver - A Description](https://mozz.us/static/ccso/description.pdf)
