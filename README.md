@@ -16,9 +16,6 @@ The fruits of this labor can be seen here:
 
 **cso://mozz.us:105**
 
-This is probably the only example of a running CCSO server left on the open
-web. I have searched extensively and have not been able to find any others.
-
 ## Documentation
 
 *In progress...*
