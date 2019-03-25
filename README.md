@@ -16,8 +16,9 @@ The fruits of this labor can be seen here:
 
 **cso://mozz.us:105**
 
-This is one of very few servers left running on the open web, and probably
-the first new CCSO service that has been lanched in over a decade!
+There are less than a handful of CCSO servers still running on the open web.
+This is probably the first new Nameserver that has been made public in over a
+decade!
 
 ## Documentation
 
