@@ -17,7 +17,7 @@ The fruits of this labor can be seen here:
 **cso://mozz.us:105**
 
 This is one of very few servers left running on the open web, and probably
-the first new CCSO service to be lanched in over a decade!
+the first new CCSO service that has been lanched in over a decade!
 
 ## Documentation
 
