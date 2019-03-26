@@ -38,7 +38,7 @@ a shortcut command to launch Ph from the repository. Use the ``-s`` flag to
 specify a server host. 
 
 <p align="center">
-<img alt="title image" src="resources/demo_ph.png"/>
+<img alt="Ph Demo" src="resources/demo_ph.png"/>
 </p>
 
 ### Lynx
@@ -50,8 +50,8 @@ the fields that are indexed and searchable by the CCSO server. Pretty neat!
 **Example:** ``$ lynx cso://mozz.us``
 
 <p align="center">
-<img alt="title image" src="resources/demo_lynx.png"/>
-<img alt="title image" src="resources/demo_lynx2.png"/>
+<img alt="Lynx Demo" src="resources/demo_lynx.png"/>
+<img alt="Lynx Demo 2" src="resources/demo_lynx2.png"/>
 </p>
 
 Lynx also recognizes gopher URLs with item type 2, and will parse everything
@@ -60,7 +60,7 @@ after the ``?`` as a CCSO query.
 **Example:** ``$ lynx "gopher://mozz.us:105/2?name=adams clay"``
 
 <p align="center">
-<img alt="title image" src="resources/demo_lynx3.png"/>
+<img alt="Lynx Demo 3" src="resources/demo_lynx3.png"/>
 </p>
 
 ### Telnet
@@ -68,7 +68,7 @@ after the ``?`` as a CCSO query.
 Good ol' Telnet. Is there anything it can't do?
 
 <p align="center">
-<img alt="title image" src="resources/demo_telnet.png"/>
+<img alt="Telnet Demo" src="resources/demo_telnet.png"/>
 </p>
 
 ### Python
@@ -78,7 +78,7 @@ The script was borrowed from [https://github.com/jcollie/ccso](https://github.co
 and has been ported to work with python 3.
 
 <p align="center">
-<img alt="title image" src="resources/demo_python.png"/>
+<img alt="Python Demo" src="resources/demo_python.png"/>
 </p>
 
 ## Interesting Documents
