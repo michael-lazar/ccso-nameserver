@@ -31,7 +31,7 @@ case $1 in
         ;;
     daemon)
         # The service will pipe stdout over network so we don't want to echo anything extra
-        docker run -i --rm -a stdin -a stdout -v ccso:/opt/nameserv/db ccso /opt/nameserv/bin/qi -d
+        docker run -i --rm -a stdin -a stdout -v ccso:/opt/nameserv/db ccso /opt/nameserv/bin/qi -d -q
         ;;
     install-service)
         echo "Installing systemd network service files"
