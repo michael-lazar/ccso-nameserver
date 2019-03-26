@@ -33,7 +33,7 @@ range of terminal clients. Some are more sophisticated than others.
 
 Ph (stands for *"Phonebook"*) was the original CCSO client that was developed
 alongside the Qi server by University of Illinois. The source code is bundled
-with Qi, and its built and installed inside of the docker image. I've included
+with Qi, and it gets built and installed inside of the docker image. I've included
 a shortcut command to launch Ph from the docker container. Use the ``-s`` flag
 to specify a server host. 
 
