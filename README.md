@@ -17,14 +17,14 @@ The fruits of this labor can be seen here:
 **cso://mozz.us:105**
 
 There are less than a handful of CCSO servers still running on the open web.
-This is probably the first new Nameserver that has been made public in over a
+This is probably the first new nameserver that has been published in over a
 decade!
 
 ## Documentation
 
 *In progress...*
 
-## Clients (Or, how do I connect to it?)
+## Clients
 
 CCSO's simple, plaintext ASCII protocol lends itself to work with a wide
 range of terminal clients. Some are more sophisticated than others.
@@ -33,9 +33,9 @@ range of terminal clients. Some are more sophisticated than others.
 
 Ph (stands for *"Phonebook"*) was the original CCSO client that was developed
 alongside the Qi server by University of Illinois. The source code is bundled
-with Qi, and its built and installed inside of the docker image. I've included
-a shortcut command to launch Ph from the repository. Use the ``-s`` flag to
-specify a server host. 
+with Qi, and it gets built and installed inside of the docker image. I've included
+a shortcut command to launch Ph from the docker container. Use the ``-s`` flag
+to specify a server host. 
 
 <p align="center">
 <img alt="Ph Demo" src="resources/demo_ph.png"/>
@@ -73,7 +73,7 @@ Good ol' Telnet. Is there anything it can't do?
 
 ### Python
 
-This repo also includes a python script for automating connections to CCSO servers.
+This repo also includes a [python script](util/ccso.py) for automating connections to CCSO servers.
 The script was borrowed from [https://github.com/jcollie/ccso](https://github.com/jcollie/ccso)
 and has been ported to work with python 3.
 
