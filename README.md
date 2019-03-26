@@ -24,6 +24,66 @@ decade!
 
 *In progress...*
 
+## Clients (Or, how can I do something with it?)
+
+CCSO's simple plaintext ASCII protocol lends itself to working with a wide
+range of terminal clients. Some are more sophisticated than others.
+
+### Ph
+
+Ph (stands for "Phonebook") was the original CCSO client that was developed
+alongside the Qi server by University of Illinois. The source code is bundled
+with Qi, and is built and installed inside of the docker image. I have included
+a shortcut command to launch Ph from the repository. Use the ``-s`` flag to
+specify a server host. 
+
+<p align="center">
+<img alt="title image" src="resources/demo_ph.png"/>
+</p>
+
+### Lynx
+
+Lynx (the curses web browser) supports CCSO links using the ``cso://`` protocol.
+When you open a cso link, lynx will present you with a form that contains all of
+the fields that are indexed and searchable by the CCSO server. Pretty neat!
+
+**Example:** ``$ lynx cso://mozz.us``
+
+<p align="center">
+<img alt="title image" src="resources/demo_lynx.png"/>
+</p>
+
+<p align="center">
+<img alt="title image" src="resources/demo_lynx2.png"/>
+</p>
+
+Lynx also recognizes gopher URLs with item type 2, and will parse everything
+after the ``?`` as the CCSO query.
+
+**Example:** ``$ lynx "gopher://mozz.us:105/2?name=adams clay"``
+
+<p align="center">
+<img alt="title image" src="resources/demo_lynx3.png"/>
+</p>
+
+### Telnet
+
+Good ol' Telnet. Is there anything it can't do?
+
+<p align="center">
+<img alt="title image" src="resources/demo_telnet.png"/>
+</p>
+
+### Python
+
+This repo includes a python script for automating connections to CCSO servers.
+The script was borrowed from [https://github.com/jcollie/ccso](https://github.com/jcollie/ccso)
+and has been ported to work with python 3.
+
+<p align="center">
+<img alt="title image" src="resources/demo_python.png"/>
+</p>
+
 ## Interesting Documents
 
 A series of reference documents were published by the University of Illinois
