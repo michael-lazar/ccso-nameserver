@@ -16,8 +16,9 @@ The fruits of this labor can be seen here:
 
 **cso://mozz.us:105**
 
-This is probably the only example of a running CCSO server left on the open
-web. I have searched extensively and have not been able to find any others.
+There are less than a handful of CCSO servers still running on the open web.
+This is probably the first new Nameserver that has been made public in over a
+decade!
 
 ## Documentation
 
@@ -27,7 +28,7 @@ web. I have searched extensively and have not been able to find any others.
 
 A series of reference documents were published by the University of Illinois
 between 1988 and 1992. These cover everything from the motivations for creating
-the CCSO Nameserver, to a retrospective of what worked and what didn't work.
+the CCSO Nameserver, to a retrospective of what worked and what didn't.
 These are a great place to start if you're looking for some historical context:
 
 - [The CCSO Nameserver - A Description](https://mozz.us/static/ccso/description.pdf)
