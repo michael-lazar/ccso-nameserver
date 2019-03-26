@@ -17,14 +17,14 @@ The fruits of this labor can be seen here:
 **cso://mozz.us:105**
 
 There are less than a handful of CCSO servers still running on the open web.
-This is probably the first new Nameserver that has been made public in over a
+This is probably the first new nameserver that has been published in over a
 decade!
 
 ## Documentation
 
 *In progress...*
 
-## Clients (Or, how do I connect to it?)
+## Clients
 
 CCSO's simple, plaintext ASCII protocol lends itself to work with a wide
 range of terminal clients. Some are more sophisticated than others.
