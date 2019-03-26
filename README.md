@@ -73,7 +73,7 @@ Good ol' Telnet. Is there anything it can't do?
 
 ### Python
 
-This repo also includes a python script for automating connections to CCSO servers.
+This repo also includes a [python script](util/ccso.py) for automating connections to CCSO servers.
 The script was borrowed from [https://github.com/jcollie/ccso](https://github.com/jcollie/ccso)
 and has been ported to work with python 3.
 
