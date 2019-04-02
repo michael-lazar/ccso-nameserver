@@ -54,7 +54,7 @@ Command | Description
 ``./ccso daemon`` | Run the qi server in silent daemon mode
 ``./ccso install-service`` | Install a systemd service that exposes the qi server
 
-### Running qi as a daemon
+### Running Qi as a Daemon
 
 Qi was originally designed to run behind an [inetd](https://en.wikipedia.org/wiki/Inetd) service. The ``qi`` binary itself has very straightforward behavior: Read one or more commands from *stdin*, write its response to *stdout*, and exit. Inetd handles running the actual TCP server and managing the incoming socket connections.
 
@@ -92,7 +92,7 @@ StandardError=journal
 WantedBy=multi-user.target
 ```
 
-### Customizing the database
+### Customizing the Database
 
 You can customize the fields in your CCSO database by editing the following files:
 
