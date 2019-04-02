@@ -29,7 +29,7 @@ git clone https://github.com/michael-lazar/ccso-nameserver.git && cd ccso-namese
 ./ccso qi
 ```
 
-*This will build a new docker container, initialize the CCSO database using the built-in seed data, and launch an interactive Qi command line prompt. The only dependency is [Docker](https://www.docker.com/).*
+*This will build the docker container, initialize a new CCSO database using the built-in seed data, and launch an interactive Qi command line prompt. The only dependency is [Docker](https://www.docker.com/).*
 
 ## Using this Repository
 
