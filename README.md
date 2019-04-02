@@ -20,6 +20,13 @@ There are less than a handful of CCSO servers still running on the open web.
 This is probably the first new nameserver that has been published in over a
 decade!
 
+## Table of Contents
+
+- [Quickstart](#quickstart)
+- [Using this Repository](#using-this-repository)
+- [CCSO Clients](#ccso-clients)
+- [Interesting Documents](#interesting-documents)
+
 ## Quickstart
 
 ```bash
