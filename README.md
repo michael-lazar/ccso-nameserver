@@ -87,7 +87,7 @@ WantedBy=multi-user.target
 
 ### Customizing the database
 
-You can customize the fields in your CCSO database by editing the following files in this repository:
+You can customize the fields in your CCSO database by editing the following files:
 
 File | Description
 --- | ---
