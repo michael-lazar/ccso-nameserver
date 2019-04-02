@@ -56,6 +56,19 @@ Inetd is not very popular anymore and has been largely supplanted by other servi
 Here's what the systemd service looks like:
 
 ```ini
+# /etc/systemd/system/ccso.socket
+[Unit]
+Description=CCSO Nameserver
+
+[Socket]
+ListenStream=105
+Accept=yes
+
+[Install]
+WantedBy=sockets.target
+```
+
+```ini
 # /etc/systemd/system/ccso@.service
 [Unit]
 Description=CCSO Service
@@ -70,19 +83,6 @@ StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
-```
-
-```ini
-# /etc/systemd/system/ccso.socket
-[Unit]
-Description=CCSO Nameserver
-
-[Socket]
-ListenStream=105
-Accept=yes
-
-[Install]
-WantedBy=sockets.target
 ```
 
 ### Customizing the database
