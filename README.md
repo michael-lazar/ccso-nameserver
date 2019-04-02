@@ -53,7 +53,7 @@ Qi was originally designed to run behind an [inetd](https://en.wikipedia.org/wik
 
 Inetd is not very popular anymore and has been largely supplanted by other services. For my implementation, I decided to use [systemd sockets](https://www.freedesktop.org/software/systemd/man/systemd.socket.html) instead. Systemd binds to port 105 on the host machine, and everytime there's an incoming connection it launches an ephemeral docker container that executes the ``qi`` binary. The container runs for the duration of the connection and shuts down once the connection closes.
 
-Here's what the service files look like:
+Here's what the systemd service looks like:
 
 ```ini
 # /etc/systemd/system/ccso@.service
