@@ -20,11 +20,95 @@ There are less than a handful of CCSO servers still running on the open web.
 This is probably the first new nameserver that has been published in over a
 decade!
 
-## Documentation
+## Quickstart
 
-*In progress...*
+```bash
+git clone https://github.com/michael-lazar/ccso-nameserver.git && cd ccso-nameserver
+./ccso build
+./ccso initdb
+./ccso qi
+```
 
-## Clients
+*This will build a new docker container, initialize the CCSO database using the built-in seed data, and launch an interactive Qi command line prompt. The only dependency is [Docker](https://www.docker.com/).*
+
+## Using this Repository
+
+### Commands
+
+I have included a [bash script](ccso) that contains aliases for my commonly used docker commands:
+
+Command | Description
+--- | ---
+``./ccso build`` | Build the CCSO docker image
+``./ccso initdb`` | Setup the CCSO database files inside of a persistant docker volume
+``./ccso shell`` | Launch a shell into the docker container
+``./ccso ph`` | Launch the ph client
+``./ccso qi`` | Run the qi server in local "hero" mode
+``./ccso daemon`` | Run the qi server in silent daemon mode
+``./ccso install-service`` | Install a systemd service that exposes the qi server
+
+### Running qi as a daemon
+
+Qi was originally designed to run behind an [inetd](https://en.wikipedia.org/wiki/Inetd) service. The qi binary itself has very straightforward behavior: Read one or more commands from *stdin*, write its response to *stdout*, and exit. Inetd handles running the actual TCP server and managing the incoming socket connections.
+
+Inetd is not very popular anymore and has been largely supplanted by other services. For my implementation, I decided to use [systemd sockets](https://www.freedesktop.org/software/systemd/man/systemd.socket.html) instead. Systemd binds to port 105 on the host machine, and everytime there's an incoming connection it launches an ephemeral docker container that executes the ``qi`` binary. The container runs for the duration of the connection and shuts down once the connection closes.
+
+Here's what the service files look like:
+
+```ini
+# /etc/systemd/system/ccso@.service
+[Unit]
+Description=CCSO Service
+Requires=ccso.socket
+
+[Service]
+Type=simple
+# Assumes the repository was cloned into /var/ccso/
+ExecStart=/var/ccso/ccso daemon
+StandardInput=socket
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```ini
+# /etc/systemd/system/ccso.socket
+[Unit]
+Description=CCSO Nameserver
+
+[Socket]
+ListenStream=105
+Accept=yes
+
+[Install]
+WantedBy=sockets.target
+```
+
+### Customizing the database
+
+You can customize the fields in your CCSO database by editing the following files in this repository:
+
+File | Description
+--- | ---
+[util/db/prod-new.cnf](util/db/prod-new.cnf) | Defines all of the fields and indices that will be available to the nameserver
+[util/db/qi.input](util/db/qi.input) | Defines seed data that will be added when the database is created
+[util/db/initdb](initdb) | Shell script used to construct the database files
+
+See the [CSO Nameserver FAQ](https://mozz.us/static/ccso/FAQ.txt) for more information on how these files are structured.
+
+You can re-initialize the database at any time with the following commands, but beware that it will overwrite any existing data saved in the CCSO server. Migrating data from an old format appears to be a painful process, and I have not yet attempted it.
+
+```bash
+./ccso build
+./ccso initdb
+```
+
+### Explore!
+
+There are a ton of tools for *qi* and *ph* that are bundled with the source code but that I haven't documented here. A great place to start is by launching a shell into the docker container and poking around the **/opt/nameserv/** directory.
+
+## CCSO Clients
 
 CCSO's simple, plaintext ASCII protocol lends itself to work with a wide
 range of terminal clients. Some are more sophisticated than others.
