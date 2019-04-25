@@ -17,7 +17,10 @@ The fruits of this labor can be seen here:
 **cso://mozz.us:105**
 
 There are less than a handful of CCSO servers still running on the open web.
-This is probably the first new nameserver to go live in over a decade!
+This is probably the first new nameserver to go live in over a decade! More
+information about CCSO, including a list of active domains, can be found at
+[gopher://mozz.us:70/1/ccso](gopher://mozz.us:70/1/ccso)
+([http proxy](https://gopher.floodgap.com/gopher/gw gopher://mozz.us:70/1/ccso)).
 
 ## Table of Contents
 
