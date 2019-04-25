@@ -1,5 +1,9 @@
 # CCSO Nameserver
 
+<p align="center">
+<img alt="Ph Demo" src="resources/demo_ph.png"/>
+</p>
+
 The CCSO nameserver was an early form of database search on the Internet. 
 In its most common form, it was used as an electronic "Phone Book" to
 lookup information such as telephone numbers and email addresses. Today,
