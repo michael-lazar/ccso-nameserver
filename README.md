@@ -6,9 +6,8 @@
 
 The CCSO nameserver was an early form of database search on the Internet. 
 In its most common form, it was used as an electronic "Phone Book" to
-lookup information such as telephone numbers and email addresses. It was
-used mainly in the early-to-middle 1990s. Today, this service has largely
-been replaced by LDAP.  [[1]](https://en.wikipedia.org/wiki/CCSO_Nameserver)
+lookup information such as telephone numbers and email addresses. Today,
+this service has largely been replaced by LDAP.  [[1]](https://en.wikipedia.org/wiki/CCSO_Nameserver)
 
 This repository contains a working version of the original CCSO nameserver
 (aka *"Qi"*) developed by Steven Domer at University of Illinois in '93. I
